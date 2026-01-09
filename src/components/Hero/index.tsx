@@ -1,6 +1,6 @@
 export default function Hero() {
   return (
-    <section className="relative max-w-6xl mx-auto px-6 pt-16 pb-24 text-center">
+    <section className="relative max-w-6xl mx-auto px-6 pt-10 pb-24 text-center">
 
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-white to-[#F2FAFB] -z-10"></div>
@@ -22,7 +22,7 @@ export default function Hero() {
       {/* IMAGE */}
       <img
         src="/hero-attestation.png"
-        alt="Preview of Certif-Scope CO₂ attestation showing Scope 1, 2 and 3 emissions"
+        alt="Preview of Certif-Scope CO₂ attestation"
         className="mx-auto mt-10 w-full max-w-lg rounded-2xl shadow-xl border border-slate-100"
       />
 
