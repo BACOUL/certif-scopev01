@@ -4,12 +4,6 @@ export default function Hero() {
 
       <div className="absolute inset-0 bg-gradient-to-b from-white to-[#F2FAFB] -z-10"></div>
 
-      <img
-        src="/logo.png"
-        alt="Certif-Scope"
-        className="mx-auto mt-3 w-full max-w-[90px] md:max-w-[120px]"
-      />
-
       <h1 className="text-[1.35rem] md:text-4xl font-extrabold text-[#0B3A63] leading-snug md:leading-tight tracking-tight mt-4">
         Instant Certified Carbon Attestation
         <br />
