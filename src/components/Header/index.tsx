@@ -37,9 +37,9 @@ const Header = () => {
             <Image
               src="/logo.png"
               alt="Certif-Scope"
-              width={130}
-              height={48}
-              className="w-[120px] md:w-[130px]"
+              width={150}
+              height={54}
+              className="w-[135px] md:w-[150px]"
               priority
             />
           </Link>
@@ -50,17 +50,17 @@ const Header = () => {
             className="lg:hidden flex flex-col justify-center items-center w-12 h-12 rounded-lg active:scale-95 transition"
           >
             <span
-              className={`h-[3px] w-8 rounded bg-black dark:bg-white transition-all ${
+              className={`h-[4px] w-8 rounded bg-black dark:bg-white transition-all ${
                 navbarOpen ? "rotate-45 translate-y-2" : ""
               }`}
             />
             <span
-              className={`h-[3px] w-8 my-[7px] rounded bg-black dark:bg-white transition-all ${
+              className={`h-[4px] w-8 my-[6px] rounded bg-black dark:bg-white transition-all ${
                 navbarOpen ? "opacity-0" : ""
               }`}
             />
             <span
-              className={`h-[3px] w-8 rounded bg-black dark:bg-white transition-all ${
+              className={`h-[4px] w-8 rounded bg-black dark:bg-white transition-all ${
                 navbarOpen ? "-rotate-45 -translate-y-2" : ""
               }`}
             />
@@ -134,7 +134,7 @@ const Header = () => {
           </div>
 
         </div>
-      </div>
+      </div
     </header>
   );
 };
