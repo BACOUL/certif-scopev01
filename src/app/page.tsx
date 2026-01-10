@@ -1,7 +1,7 @@
 import AboutSectionOne from "@/components/About/AboutSectionOne";
 import AboutSectionTwo from "@/components/About/AboutSectionTwo";
 import Blog from "@/components/Blog";
-import Brands from "@/components/Brands";
+import ProblemSolution from "@/components/ProblemSolution";
 import ScrollUp from "@/components/Common/ScrollUp";
 import Contact from "@/components/Contact";
 import Hero from "@/components/Hero";
@@ -20,7 +20,7 @@ export default function Home() {
     <>
       <ScrollUp />
       <Hero />
-      <Brands />
+      <ProblemSolution />   {/* Remplace Brands ici */}
       <Video />
       <AboutSectionOne />
       <AboutSectionTwo />
