@@ -1,4 +1,3 @@
-import AboutSectionOne from "@/components/About/AboutSectionOne";
 import AboutSectionTwo from "@/components/About/AboutSectionTwo";
 import Blog from "@/components/Blog";
 import ProblemSolution from "@/components/ProblemSolution";
@@ -28,7 +27,6 @@ export default function Home() {
       <HowItWorks />
       <Features />
       <Trust />
-      <AboutSectionOne />
       <AboutSectionTwo />
       <Testimonials />
       <Pricing />
