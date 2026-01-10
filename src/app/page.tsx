@@ -7,7 +7,7 @@ import Contact from "@/components/Contact";
 import Hero from "@/components/Hero";
 import Pricing from "@/components/Pricing";
 import Testimonials from "@/components/Testimonials";
-import Video from "@/components/Video";
+import Differentiation from "@/components/Differentiation"; 
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -20,8 +20,8 @@ export default function Home() {
     <>
       <ScrollUp />
       <Hero />
-      <ProblemSolution />   {/* Remplace Brands ici */}
-      <Video />
+      <ProblemSolution />
+      <Differentiation />
       <AboutSectionOne />
       <AboutSectionTwo />
       <Testimonials />
