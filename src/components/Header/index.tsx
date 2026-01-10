@@ -13,9 +13,9 @@ const Header = () => {
 
   const [sticky, setSticky] = useState(false);
   useEffect(() => {
-    const handleScroll = () => setSticky(window.scrollY >= 60);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setSticky(window.scrollY > 10);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const [openIndex, setOpenIndex] = useState(-1);
@@ -24,22 +24,22 @@ const Header = () => {
 
   return (
     <header
-      className={`top-0 left-0 z-50 w-full transition-all ${
+      className={`top-0 left-0 z-50 w-full transition-all duration-300 ${
         sticky
-          ? "fixed bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg shadow-sm"
+          ? "fixed bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl shadow-sm"
           : "absolute bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-5">
-        <div className="flex items-center justify-between py-4">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="flex items-center justify-between py-3 md:py-4">
 
           <Link href="/" className="flex items-center">
             <Image
               src="/logo.png"
               alt="Certif-Scope"
-              width={120}
-              height={45}
-              className="w-[110px] md:w-[120px]"
+              width={130}
+              height={48}
+              className="w-[120px] md:w-[130px]"
               priority
             />
           </Link>
@@ -50,28 +50,28 @@ const Header = () => {
             className="lg:hidden flex flex-col justify-center items-center w-12 h-12 rounded-lg active:scale-95 transition"
           >
             <span
-              className={`h-[3px] w-7 rounded bg-black dark:bg-white transition-all ${
+              className={`h-[3px] w-8 rounded bg-black dark:bg-white transition-all ${
                 navbarOpen ? "rotate-45 translate-y-2" : ""
               }`}
             />
             <span
-              className={`h-[3px] w-7 my-[6px] rounded bg-black dark:bg-white transition-all ${
+              className={`h-[3px] w-8 my-[7px] rounded bg-black dark:bg-white transition-all ${
                 navbarOpen ? "opacity-0" : ""
               }`}
             />
             <span
-              className={`h-[3px] w-7 rounded bg-black dark:bg-white transition-all ${
+              className={`h-[3px] w-8 rounded bg-black dark:bg-white transition-all ${
                 navbarOpen ? "-rotate-45 -translate-y-2" : ""
               }`}
             />
           </button>
 
           <nav
-            className={`absolute right-5 top-full mt-2 w-[250px] rounded-xl border bg-white dark:bg-gray-900 dark:border-gray-700 shadow-lg p-6 transition-all duration-300 lg:static lg:bg-transparent lg:shadow-none lg:border-none lg:p-0 lg:w-auto lg:flex lg:items-center ${
-              navbarOpen ? "opacity-100 visible" : "opacity-0 invisible lg:visible lg:opacity-100"
+            className={`absolute right-6 top-full mt-3 w-[260px] rounded-xl border bg-white dark:bg-gray-900 dark:border-gray-700 shadow-xl p-6 transition-all duration-300 lg:static lg:bg-transparent lg:shadow-none lg:border-none lg:p-0 lg:w-auto lg:flex lg:items-center ${
+              navbarOpen ? "opacity-100 visible" : "opacity-0 invisible lg:opacity-100 lg:visible"
             }`}
           >
-            <ul className="flex flex-col gap-4 lg:flex-row lg:gap-10">
+            <ul className="flex flex-col gap-5 lg:flex-row lg:gap-10">
               {menuData.map((item, index) => (
                 <li key={index} className="relative">
                   {item.path ? (
@@ -102,7 +102,7 @@ const Header = () => {
                           openIndex === index
                             ? "block"
                             : "hidden lg:block lg:opacity-0 lg:group-hover:opacity-100"
-                        } lg:absolute lg:left-0 lg:mt-3 lg:w-[220px] lg:rounded-lg lg:shadow-xl lg:bg-white lg:dark:bg-gray-900 lg:p-4`}
+                        } lg:absolute lg:left-0 lg:mt-3 lg:w-[220px] lg:rounded-xl lg:shadow-xl lg:bg-white lg:dark:bg-gray-900 lg:p-4`}
                       >
                         {item.submenu &&
                           item.submenu.map((subItem, subIndex) => (
