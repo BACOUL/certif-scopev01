@@ -1,50 +1,50 @@
 export default function HowItWorks() {
   return (
     <section className="py-20 bg-white dark:bg-gray-900">
-      <div className="max-w-6xl mx-auto px-6 text-center">
+      <div className="max-w-6xl mx-auto px-6">
 
-        {/* TITRE */}
-        <h2 className="text-2xl md:text-3xl font-extrabold text-[#0B3A63]">
-          How it works
+        <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 dark:text-gray-100">
+          How Certif-Scope Works
         </h2>
 
-        {/* SOUS-TITRE */}
-        <p className="mt-6 text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-          A standardized CO₂ attestation generated in three simple steps.
+        <p className="mt-4 text-center text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          A simple, auditable and compliant process designed for instant carbon attestation.
         </p>
 
-        {/* SÉPARATEUR PREMIUM */}
-        <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto my-12"></div>
+        <div className="grid md:grid-cols-3 gap-12 mt-16">
 
-        {/* 3 ÉTAPES */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-
-          {/* Étape 1 */}
-          <div className="flex flex-col items-center max-w-xs mx-auto">
-            <div className="text-4xl font-extrabold text-[#1FB6C1]">1</div>
-            <h3 className="mt-4 text-lg font-semibold text-[#0B3A63] dark:text-white">
-              Provide business data
+          {/* STEP 1 */}
+          <div className="text-center">
+            <div className="h-14 w-14 mx-auto rounded-full bg-teal-600 text-white flex items-center justify-center text-xl font-bold">
+              1
+            </div>
+            <h3 className="mt-6 text-lg font-semibold text-gray-800 dark:text-gray-200">
+              Input your data
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Company name, country, sector, and annual spend/turnover.
+              Provide spend-based or activity-based information required for emissions estimation.
             </p>
           </div>
 
-          {/* Étape 2 */}
-          <div className="flex flex-col items-center max-w-xs mx-auto">
-            <div className="text-4xl font-extrabold text-[#1FB6C1]">2</div>
-            <h3 className="mt-4 text-lg font-semibold text-[#0B3A63] dark:text-white">
-              Automated CO₂ estimation
+          {/* STEP 2 */}
+          <div className="text-center">
+            <div className="h-14 w-14 mx-auto rounded-full bg-teal-600 text-white flex items-center justify-center text-xl font-bold">
+              2
+            </div>
+            <h3 className="mt-6 text-lg font-semibold text-gray-800 dark:text-gray-200">
+              Automated calculation
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Engine calculates Scope 1, 2 and 3 indicators aligned with GHG Protocol.
+              Certif-Scope generates a standardized carbon estimation aligned with GHG Protocol.
             </p>
           </div>
 
-          {/* Étape 3 */}
-          <div className="flex flex-col items-center max-w-xs mx-auto">
-            <div className="text-4xl font-extrabold text-[#1FB6C1]">3</div>
-            <h3 className="mt-4 text-lg font-semibold text-[#0B3A63] dark:text-white}>
+          {/* STEP 3 */}
+          <div className="text-center">
+            <div className="h-14 w-14 mx-auto rounded-full bg-teal-600 text-white flex items-center justify-center text-xl font-bold">
+              3
+            </div>
+            <h3 className="mt-6 text-lg font-semibold text-gray-800 dark:text-gray-200">
               Instant certified attestation
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
@@ -53,12 +53,6 @@ export default function HowItWorks() {
           </div>
 
         </div>
-
-        {/* RÉASSURANCE */}
-        <p className="mt-14 text-sm md:text-base text-gray-600 dark:text-gray-400 max-w-xl mx-auto leading-relaxed">
-          Compatible with procurement, banking, due diligence and compliance processes.
-        </p>
-
       </div>
     </section>
   );
