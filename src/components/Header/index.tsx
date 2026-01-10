@@ -38,7 +38,7 @@ const Header = () => {
           <div className="relative -mx-4 flex items-center justify-between">
 
             {/* LOGO */}
-            <div className="w-60 max-w-full px-4 xl:mr-12">
+            <div className="w-40 max-w-full px-4 xl:mr-12">
               <Link
                 href="/"
                 className={`header-logo block ${
@@ -49,9 +49,9 @@ const Header = () => {
                 <Image
                   src="/logo.png"
                   alt="Certif-Scope"
-                  width={160}
-                  height={50}
-                  className="max-w-[120px] md:max-w-[160px] dark:hidden"
+                  width={130}
+                  height={40}
+                  className="max-w-[110px] md:max-w-[130px] dark:hidden"
                   priority
                 />
 
@@ -59,9 +59,9 @@ const Header = () => {
                 <Image
                   src="/logo.png"
                   alt="Certif-Scope"
-                  width={160}
-                  height={50}
-                  className="hidden max-w-[120px] md:max-w-[160px] dark:block"
+                  width={130}
+                  height={40}
+                  className="hidden max-w-[110px] md:max-w-[130px] dark:block"
                   priority
                 />
               </Link>
