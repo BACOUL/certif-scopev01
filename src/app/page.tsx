@@ -10,6 +10,7 @@ import Testimonials from "@/components/Testimonials";
 import Differentiation from "@/components/Differentiation";
 import HowItWorks from "@/components/HowItWorks";
 import Features from "@/components/Features";
+import Trust from "@/components/Trust";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -26,6 +27,7 @@ export default function Home() {
       <Differentiation />
       <HowItWorks />
       <Features />
+      <Trust />
       <AboutSectionOne />
       <AboutSectionTwo />
       <Testimonials />
