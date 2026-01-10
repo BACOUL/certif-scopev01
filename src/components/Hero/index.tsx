@@ -1,10 +1,16 @@
 export default function Hero() {
   return (
-    <section className="relative max-w-5xl mx-auto px-5 pt-20 pb-24 text-center">
+    <section className="relative max-w-5xl mx-auto px-5 pt-14 pb-24 text-center">
 
       <div className="absolute inset-0 bg-gradient-to-b from-white to-[#F2FAFB] -z-10"></div>
 
-      <h1 className="text-[1.35rem] md:text-4xl font-extrabold text-[#0B3A63] leading-snug md:leading-tight tracking-tight">
+      <img
+        src="/logo.png"
+        alt="Certif-Scope"
+        className="mx-auto mt-3 w-full max-w-[90px] md:max-w-[120px]"
+      />
+
+      <h1 className="text-[1.35rem] md:text-4xl font-extrabold text-[#0B3A63] leading-snug md:leading-tight tracking-tight mt-4">
         Instant Certified Carbon Attestation
         <br />
         <span className="text-[#1FB6C1] text-[1.45rem] md:text-4xl">for SMEs</span>
@@ -18,7 +24,7 @@ export default function Hero() {
       <img
         src="/hero-attestation.png"
         alt="Preview Certif-Scope attestation"
-        className="mx-auto mt-8 w-full max-w-xs md:max-w-md rounded-2xl shadow-xl border border-slate-100"
+        className="mx-auto mt-8 w-full max-w-xs md:max-w-lg rounded-2xl shadow-xl border border-slate-100"
       />
 
       <div className="flex flex-col md:flex-row justify-center gap-6 mt-10">
