@@ -30,7 +30,7 @@ export default function AttestationPreview() {
         <div className="flex justify-center">
           <div className="relative w-full max-w-[600px]">
             <Image
-              src="/images/attestation/preview.png"
+              src="/preview.png"
               alt="Certif-Scope Attestation Preview"
               width={1200}
               height={800}
@@ -55,4 +55,4 @@ export default function AttestationPreview() {
       </div>
     </section>
   );
-              }
+}
