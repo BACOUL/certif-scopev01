@@ -2,30 +2,25 @@ export default function Hero() {
   return (
     <section className="relative max-w-5xl mx-auto px-5 pt-20 pb-24 text-center">
 
-      {/* Background soft gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-white to-[#F2FAFB] -z-10"></div>
 
-      {/* Title */}
-      <h1 className="text-2xl md:text-5xl font-extrabold text-[#0B3A63] leading-snug md:leading-tight tracking-tight">
+      <h1 className="text-xl md:text-4xl font-extrabold text-[#0B3A63] leading-snug md:leading-tight tracking-tight">
         Instant Certified Carbon Attestation
         <br />
         <span className="text-[#1FB6C1] text-xl md:text-4xl">for SMEs</span>
       </h1>
 
-      {/* Subtitle */}
-      <p className="text-base md:text-lg text-[#475569] max-w-2xl mx-auto mt-5 leading-relaxed">
+      <p className="text-base md:text-lg text-[#475569] max-w-sm md:max-w-2xl mx-auto mt-5 leading-relaxed">
         Generate a certified carbon footprint attestation instantly.
         Trusted by European banks, procurement teams and insurers.
       </p>
 
-      {/* Image */}
       <img
         src="/hero-attestation.png"
-        alt="Preview of Certif-Scope CO₂ attestation showing Scope 1, 2 and 3 emissions"
+        alt="Preview attestation"
         className="mx-auto mt-8 w-full max-w-xs md:max-w-md rounded-2xl shadow-xl border border-slate-100"
       />
 
-      {/* CTA buttons */}
       <div className="flex flex-col md:flex-row justify-center gap-6 mt-10">
         <a
           href="#assessment"
