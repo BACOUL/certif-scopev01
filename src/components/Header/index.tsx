@@ -36,30 +36,38 @@ const Header = () => {
       >
         <div className="container">
           <div className="relative -mx-4 flex items-center justify-between">
+
+            {/* LOGO */}
             <div className="w-60 max-w-full px-4 xl:mr-12">
               <Link
                 href="/"
-                className={`header-logo block w-full ${
-                  sticky ? "py-5 lg:py-2" : "py-8"
+                className={`header-logo block ${
+                  sticky ? "py-5 lg:py-3" : "py-8"
                 } `}
               >
+                {/* LIGHT MODE */}
                 <Image
                   src="/logo.png"
-                  alt="logo"
+                  alt="Certif-Scope"
                   width={160}
                   height={50}
-                  className="w-full dark:hidden"
+                  className="max-w-[120px] md:max-w-[160px] dark:hidden"
+                  priority
                 />
+
+                {/* DARK MODE */}
                 <Image
                   src="/logo.png"
-                  alt="logo"
+                  alt="Certif-Scope"
                   width={160}
                   height={50}
-                  className="hidden w-full dark:block"
+                  className="hidden max-w-[120px] md:max-w-[160px] dark:block"
+                  priority
                 />
               </Link>
             </div>
 
+            {/* NAVIGATION */}
             <div className="flex w-full items-center justify-between px-4">
               <div>
                 <button
@@ -149,6 +157,7 @@ const Header = () => {
                 </nav>
               </div>
 
+              {/* RIGHT ACTIONS */}
               <div className="flex items-center justify-end pr-16 lg:pr-0">
                 <Link
                   href="/signin"
@@ -162,10 +171,9 @@ const Header = () => {
                 >
                   Sign Up
                 </Link>
-                <div>
-                  <ThemeToggler />
-                </div>
+                <ThemeToggler />
               </div>
+
             </div>
           </div>
         </div>
