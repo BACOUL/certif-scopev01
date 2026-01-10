@@ -1,25 +1,31 @@
 export default function Hero() {
   return (
-    <section className="relative max-w-6xl mx-auto px-6 pt-20 pb-28 text-center">
+    <section className="relative max-w-5xl mx-auto px-5 pt-16 pb-24 text-center">
 
+      {/* Background soft gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-white to-[#F2FAFB] -z-10"></div>
 
-      <h1 className="text-2xl md:text-5xl font-black text-[#0B3A63] leading-normal tracking-tight">
-        Instant Certified Carbon Attestation<br />
-        <span className="text-[#1FB6C1] text-xl md:text-4xl">for SMEs</span>
+      {/* Title */}
+      <h1 className="text-3xl md:text-5xl font-extrabold text-[#0B3A63] leading-snug md:leading-tight tracking-tight">
+        Instant Certified Carbon Attestation
+        <br />
+        <span className="text-[#1FB6C1] text-2xl md:text-4xl">for SMEs</span>
       </h1>
 
-      <p className="text-sm md:text-lg text-[#475569] max-w-3xl mx-auto mt-4 leading-relaxed">
-        Generate a certified carbon footprint attestation instantly. Trusted by European banks,
-        procurement teams and insurers.
+      {/* Subtitle */}
+      <p className="text-base md:text-lg text-[#475569] max-w-2xl mx-auto mt-4 leading-relaxed">
+        Generate a certified carbon footprint attestation instantly.
+        Trusted by European banks, procurement teams and insurers.
       </p>
 
+      {/* Image */}
       <img
         src="/hero-attestation.png"
         alt="Preview of Certif-Scope CO₂ attestation showing Scope 1, 2 and 3 emissions"
-        className="mx-auto mt-8 w-full max-w-lg rounded-2xl shadow-xl border border-slate-100"
+        className="mx-auto mt-8 w-full max-w-sm md:max-w-md rounded-2xl shadow-xl border border-slate-100"
       />
 
+      {/* CTA buttons */}
       <div className="flex flex-col md:flex-row justify-center gap-6 mt-10">
         <a
           href="#assessment"
@@ -36,6 +42,7 @@ export default function Hero() {
         </a>
       </div>
 
+      {/* Link */}
       <a href="/sample-pdf" className="text-sm underline text-[#1FB6C1] font-medium block mt-6">
         View sample attestation
       </a>
