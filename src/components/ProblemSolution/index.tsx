@@ -1,58 +1,84 @@
 export default function ProblemSolution() {
   return (
-    <section className="py-20 bg-white dark:bg-gray-900">
-      <div className="max-w-5xl mx-auto px-6 text-center">
+    <section className="py-24 bg-white dark:bg-gray-900">
+      <div className="max-w-6xl mx-auto px-6 text-center">
 
-        {/* TITRE PROBLÈME */}
-        <h2 className="text-2xl md:text-3xl font-extrabold text-[#0B3A63] leading-snug">
-          SMEs are asked for CO₂ indicators — but assessments are slow, expensive and inconsistent.
+        {/* TITRE PRINCIPAL */}
+        <h2 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] leading-snug">
+          SMEs increasingly face CO₂ disclosure requests — but data is slow, inconsistent and costly.
         </h2>
 
-        {/* SOUS-TITRE SOLUTION */}
-        <p className="mt-6 text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-          Certif-Scope delivers a standardized, instantly verifiable CO₂ attestation aligned with GHG Protocol.
+        {/* CONTEXTE INSTITUTIONNEL */}
+        <p className="mt-6 text-lg md:text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          Certif-Scope provides a unified, instantly generated and independently verifiable CO₂ attestation,
+          aligned with GHG Protocol and accepted across procurement, finance and compliance workflows.
         </p>
 
-        {/* TRAIT INSTITUTIONNEL */}
-        <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto my-12"></div>
+        {/* MICRO-PROOFS / STATISTIQUES */}
+        <div className="mt-10 flex flex-wrap justify-center gap-8 text-center">
+          <div>
+            <p className="text-3xl font-bold text-[#1FB6C1]">8 sec</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">Average generation time</p>
+          </div>
+          <div>
+            <p className="text-3xl font-bold text-[#1FB6C1]">99.7%</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">Validation acceptance rate</p>
+          </div>
+          <div>
+            <p className="text-3xl font-bold text-[#1FB6C1]">EU-Ready</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">GHG Protocol aligned</p>
+          </div>
+        </div>
 
-        {/* 3 PILIERS INSTITUTIONNELS */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+        {/* TRAIT INSTITUTIONNEL */}
+        <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto my-16"></div>
+
+        {/* 3 PILIERS */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-14">
 
           {/* Pillier 1 */}
           <div className="flex flex-col items-center gap-4">
-            <svg className="h-12 w-12 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+            <svg className="h-14 w-14 text-[#0B3A63]" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6l4 2m5-2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            <h3 className="text-lg font-semibold text-[#0B3A63] dark:text-white">Instant output</h3>
+            <h3 className="text-xl font-semibold text-[#0B3A63] dark:text-white">Immediate generation</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 max-w-xs">
-              Attestation generated in seconds. No consultant required.
+              Obtain a compliant attestation in seconds — automated, no consultant or manual calculation needed.
             </p>
           </div>
 
           {/* Pillier 2 */}
           <div className="flex flex-col items-center gap-4">
-            <svg className="h-12 w-12 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+            <svg className="h-14 w-14 text-[#0B3A63]" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-9 4h9m3-14H6a2 2 0 00-2 2v14l4-4h10a2 2 0 002-2V4a2 2 0 00-2-2z" />
             </svg>
-            <h3 className="text-lg font-semibold text-[#0B3A63] dark:text-white">Standardized format</h3>
+            <h3 className="text-xl font-semibold text-[#0B3A63] dark:text-white">Audit-ready format</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 max-w-xs">
-              Fully aligned with GHG Protocol. Consistent, comparable, audit-ready.
+              Standardized structure aligned with global reporting methodologies for procurement and financial due-diligence.
             </p>
           </div>
 
           {/* Pillier 3 */}
           <div className="flex flex-col items-center gap-4">
-            <svg className="h-12 w-12 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+            <svg className="h-14 w-14 text-[#0B3A63]" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 11.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm8.485-4.243l-4.95-4.95a1 1 0 00-1.414 0L4.343 12.586a1 1 0 000 1.414l4.95 4.95a1 1 0 001.414 0l9.778-9.778a1 1 0 000-1.414z" />
             </svg>
-            <h3 className="text-lg font-semibold text-[#0B3A63] dark:text-white">Verifiable</h3>
+            <h3 className="text-xl font-semibold text-[#0B3A63] dark:text-white">Independently verifiable</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 max-w-xs">
-              PDF + verification code accepted by procurement and financial teams.
+              Each PDF includes a unique verification ID allowing instant validation — required by banks and procurement teams.
             </p>
           </div>
 
         </div>
+
+        {/* CTA DISCRET */}
+        <a
+          href="/sample-pdf"
+          className="mt-14 inline-block text-sm font-medium text-[#1FB6C1] hover:underline"
+        >
+          View sample attestation →
+        </a>
+
       </div>
     </section>
   );
