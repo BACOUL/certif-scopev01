@@ -7,7 +7,8 @@ import Contact from "@/components/Contact";
 import Hero from "@/components/Hero";
 import Pricing from "@/components/Pricing";
 import Testimonials from "@/components/Testimonials";
-import Differentiation from "@/components/Differentiation"; 
+import Differentiation from "@/components/Differentiation";
+import HowItWorks from "@/components/HowItWorks";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -22,6 +23,7 @@ export default function Home() {
       <Hero />
       <ProblemSolution />
       <Differentiation />
+      <HowItWorks />
       <AboutSectionOne />
       <AboutSectionTwo />
       <Testimonials />
@@ -30,4 +32,4 @@ export default function Home() {
       <Contact />
     </>
   );
-}
+      }
