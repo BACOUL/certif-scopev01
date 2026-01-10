@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -8,28 +9,24 @@ import menuData from "./menuData";
 
 const Header = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);
-  const navbarToggleHandler = () => setNavbarOpen(!navbarOpen);
+  const pathname = usePathname();
 
   const [sticky, setSticky] = useState(false);
   useEffect(() => {
-    const onScroll = () => {
-      setSticky(window.scrollY >= 80);
-    };
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    const handleScroll = () => setSticky(window.scrollY >= 80);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const [openIndex, setOpenIndex] = useState(-1);
   const handleSubmenu = (index: number) =>
     setOpenIndex(openIndex === index ? -1 : index);
 
-  const pathname = usePathname();
-
   return (
     <header
       className={`top-0 left-0 z-40 flex w-full items-center transition-all ${
         sticky
-          ? "fixed bg-white/90 backdrop-blur-md shadow-sm dark:bg-gray-dark/80"
+          ? "fixed bg-white/90 backdrop-blur-md shadow-sm dark:bg-gray-dark/90"
           : "absolute bg-transparent"
       }`}
     >
@@ -40,16 +37,14 @@ const Header = () => {
           <div className="px-4 xl:mr-12">
             <Link
               href="/"
-              className={`block ${
-                sticky ? "py-4 lg:py-3" : "py-6"
-              }`}
+              className={`block ${sticky ? "py-4 lg:py-3" : "py-6"}`}
             >
               <Image
                 src="/logo.png"
                 alt="Certif-Scope"
-                width={120}
+                width={115}
                 height={40}
-                className="w-[110px] md:w-[130px]"
+                className="w-[100px] md:w-[115px]"
                 priority
               />
             </Link>
@@ -58,10 +53,10 @@ const Header = () => {
           {/* NAVIGATION */}
           <div className="flex w-full items-center justify-between px-4">
 
-            {/* Mobile Toggle */}
+            {/* MOBILE ICON */}
             <button
-              onClick={navbarToggleHandler}
-              aria-label="Mobile Menu"
+              onClick={() => setNavbarOpen(!navbarOpen)}
+              aria-label="Menu"
               className="lg:hidden absolute top-1/2 right-4 -translate-y-1/2 rounded-lg px-3 py-2 focus:ring-2 ring-primary"
             >
               <span
@@ -81,13 +76,12 @@ const Header = () => {
               />
             </button>
 
-            {/* Menu */}
+            {/* MENU */}
             <nav
-              className={`absolute right-0 top-full z-30 w-[240px] rounded border bg-white py-4 px-6 duration-300 dark:bg-dark dark:border-body-color/20 lg:static lg:w-auto lg:border-none lg:bg-transparent lg:p-0 lg:opacity-100 ${
-                navbarOpen
-                  ? "opacity-100 visible"
-                  : "opacity-0 invisible lg:visible lg:opacity-100"
-              }`}
+              className={`absolute right-0 top-full z-30 w-[240px] rounded border bg-white py-4 px-6 duration-300 dark:bg-dark dark:border-body-color/20 
+                lg:static lg:w-auto lg:border-none lg:bg-transparent lg:p-0 lg:opacity-100 
+                ${navbarOpen ? "opacity-100 visible" : "opacity-0 invisible lg:visible lg:opacity-100"}
+              `}
             >
               <ul className="block lg:flex lg:space-x-10">
                 {menuData.map((menuItem, index) => (
@@ -95,7 +89,7 @@ const Header = () => {
                     {menuItem.path ? (
                       <Link
                         href={menuItem.path}
-                        className={`flex py-2 text-base lg:inline-flex lg:py-4 ${
+                        className={`flex py-2 text-base lg:py-4 ${
                           pathname === menuItem.path
                             ? "text-primary dark:text-white font-semibold"
                             : "text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
@@ -107,7 +101,7 @@ const Header = () => {
                       <>
                         <p
                           onClick={() => handleSubmenu(index)}
-                          className="flex items-center justify-between py-2 cursor-pointer text-base text-dark group-hover:text-primary lg:py-4 dark:text-white/70 dark:group-hover:text-white"
+                          className="flex items-center justify-between py-2 cursor-pointer text-base lg:py-4 text-dark group-hover:text-primary dark:text-white/70 dark:group-hover:text-white"
                         >
                           {menuItem.title}
                           <span className="pl-3">
@@ -121,9 +115,8 @@ const Header = () => {
                         </p>
 
                         <div
-                          className={`lg:absolute lg:left-0 lg:w-[220px] lg:p-4 lg:rounded lg:shadow-lg dark:bg-dark bg-white transition-all duration-300 ${
-                            openIndex === index ? "block" : "hidden lg:block lg:opacity-0 lg:group-hover:opacity-100"
-                          }`}
+                          className={`lg:absolute lg:left-0 lg:w-[220px] lg:p-4 lg:rounded lg:shadow-lg dark:bg-dark bg-white transition-all duration-300 
+                          ${openIndex === index ? "block" : "hidden lg:block lg:opacity-0 lg:group-hover:opacity-100"}`}
                         >
                           {menuItem.submenu.map((submenuItem, subIndex) => (
                             <Link
@@ -142,7 +135,7 @@ const Header = () => {
               </ul>
             </nav>
 
-            {/* Right actions */}
+            {/* RIGHT BUTTONS */}
             <div className="hidden md:flex items-center gap-6">
               <Link
                 href="/signin"
