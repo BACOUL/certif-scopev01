@@ -1,12 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
 import Breadcrumb from "@/components/Common/Breadcrumb";
 
 export default function ProductPage() {
-  const [openMenu, setOpenMenu] = useState(false);
-
   return (
     <>
       <Breadcrumb
@@ -17,23 +13,11 @@ export default function ProductPage() {
       {/* MAIN LAYOUT — SIDEBAR + CONTENT */}
       <div className="max-w-7xl mx-auto px-6 pt-16 pb-24 grid grid-cols-1 md:grid-cols-4 gap-10">
 
-        {/* SIDEBAR — FIXED ON DESKTOP */}
+        {/* SIDEBAR ALWAYS VISIBLE — NO BUTTONS */}
         <aside className="md:col-span-1">
 
-          {/* MOBILE BUTTON */}
-          <button
-            onClick={() => setOpenMenu(!openMenu)}
-            className="md:hidden mb-4 px-4 py-2 bg-[#0B3A63] text-white rounded-lg"
-          >
-            {openMenu ? "Close sections" : "Open sections"}
-          </button>
+          <nav className="sticky top-24 space-y-3 text-sm">
 
-          <nav
-            className={`
-              ${openMenu ? "block" : "hidden"}
-              md:block sticky top-24 space-y-3 text-sm
-            `}
-          >
             <h3 className="text-lg font-semibold text-[#0B3A63] mb-2">Sections</h3>
 
             <ul className="space-y-2 text-gray-700 dark:text-gray-300">
@@ -56,6 +40,7 @@ export default function ProductPage() {
               <li><a href="#s16" className="hover:text-[#0B3A63]">16. Technical FAQ</a></li>
 
             </ul>
+
           </nav>
         </aside>
 
@@ -111,7 +96,7 @@ export default function ProductPage() {
           </section>
 
           {/* ================================================================= */}
-          {/* SECTION 2 — PLACEHOLDER STRUCTURES */}
+          {/* SECTION PLACEHOLDERS */}
           {/* ================================================================= */}
 
           <section id="s2"><h2 className="section-title">Key Benefits Summary</h2></section>
