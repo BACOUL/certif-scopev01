@@ -1,63 +1,48 @@
-/* === FONTS === */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+/* === GOOGLE FONTS === */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-/* === TAILWIND === */
+/* === TAILWIND v4 === */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* === GLOBAL RESET === */
+/* === GLOBAL === */
 body {
   font-family: "Inter", sans-serif;
   background-color: #F8FAFC;
   color: #1E293B;
 }
 
-/* === BORDER COLOR FIX === */
+/* === BORDER FIX === */
 *, ::before, ::after {
   border-color: #e5e7eb;
 }
 
-/* === SIMPLE CUSTOM CLASSES (v4 compatible) === */
-
-/* Header logo spacing */
-.header-logo {
-  padding-top: 1.25rem; /* py-5 */
-  padding-bottom: 1.25rem;
-}
-
-/* Sticky header adjusts spacing */
-.sticky .header-logo {
-  padding-top: 0.5rem; /* py-2 */
-  padding-bottom: 0.5rem;
-}
-
-/* Menu active state */
-.menu-scroll.active {
-  opacity: 0.7;
-}
-
-/* Dot toggle */
-input#togglePlan:checked ~ .dot {
-  transform: translateX(100%);
-}
-
-/* Checkbox reveal */
-input#checkboxLabel:checked ~ .box span {
-  opacity: 1;
-}
-
-/* Custom button */
+/* === CUSTOM BUTTON === */
 .btn-primary {
-  background-color: #22C55E;
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  font-weight: 500;
-  box-shadow: 0px 5px 20px rgba(4,10,34,0.1);
-  transition: opacity 0.2s;
+  @apply bg-[#22C55E] text-white px-6 py-3 rounded-lg font-medium shadow-md hover:opacity-90 transition;
 }
 
-.btn-primary:hover {
-  opacity: 0.9;
+/* === RESPONSIVE CONTAINER === */
+.container {
+  margin-inline: auto;
+  padding-inline: 1rem;
+  max-width: 1200px;
+}
+
+/* === SMOOTH SHADOWS === */
+.shadow-soft {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* === HEADER FIX === */
+.header-logo {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.sticky .header-logo {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  transition: padding 0.2s ease;
 }
