@@ -1,0 +1,129 @@
+import { NextResponse } from "next/server";
+import chromium from "@sparticuz/chromium";
+import puppeteer from "puppeteer-core";
+import crypto from "crypto";
+import { v4 as uuidv4 } from "uuid";
+import QRCode from "qrcode";
+import { renderAttestation } from "@/lib/renderAttestation";
+
+export const runtime = "nodejs"; // IMPORTANT FOR VERCEL
+
+function computeHash(buffer: Buffer) {
+  return crypto.createHash("sha256").update(buffer).digest("hex");
+}
+
+export async function POST(req: Request) {
+  try {
+    const report = await req.json();
+    if (!report) {
+      return NextResponse.json({ error: "Missing report data" }, { status: 400 });
+    }
+
+    const attestationId = uuidv4();
+    const now = new Date();
+
+    const baseUrl =
+      process.env.NEXT_PUBLIC_BASE_URL ||
+      process.env.VERCEL_URL
+        ? `https://${process.env.VERCEL_URL}`
+        : "http://localhost:3000";
+
+    const s1 = Number(report.scope1 || 0);
+    const s2 = Number(report.scope2 || 0);
+    const s3 = Number(report.scope3 || 0);
+    const total = Number(report.total || 0);
+
+    const dataInitial = {
+      attestationId,
+      issueDate: now.toISOString(),
+      companyName: report.companyName || "N/A",
+      sector: report.sector || "N/A",
+      country: report.country || "France",
+      period: report.period || `${now.getFullYear()}`,
+      methodologyVersion: "3.1",
+      scope1: s1,
+      scope2: s2,
+      scope3: s3,
+      total,
+      preparedOn: now.toISOString(),
+      qrCodeUrl: "",
+      hash: "",
+    };
+
+    const htmlInitial = renderAttestation(dataInitial);
+
+    const executablePath =
+      process.env.NODE_ENV === "development"
+        ? chromium.executablePath
+        : await chromium.executablePath;
+
+    const browser1 = await puppeteer.launch({
+      args: chromium.args,
+      defaultViewport: chromium.defaultViewport,
+      executablePath,
+      headless: chromium.headless,
+    });
+
+    const page1 = await browser1.newPage();
+    await page1.setContent(htmlInitial, { waitUntil: "networkidle0" });
+
+    const tmpPdfBuffer = await page1.pdf({
+      format: "a4",
+      printBackground: true,
+      margin: { top: "10mm", right: "10mm", bottom: "10mm", left: "10mm" },
+    });
+
+    await browser1.close();
+
+    const pdfHash = computeHash(tmpPdfBuffer);
+
+    const verifyUrl = `${baseUrl}/verify?id=${attestationId}&hash=${pdfHash}`;
+    const qrDataUrl = await QRCode.toDataURL(verifyUrl);
+
+    const dataFinal = {
+      ...dataInitial,
+      qrCodeUrl: qrDataUrl,
+      hash: pdfHash,
+    };
+
+    const htmlFinal = renderAttestation(dataFinal);
+
+    const browser2 = await puppeteer.launch({
+      args: chromium.args,
+      defaultViewport: chromium.defaultViewport,
+      executablePath,
+      headless: chromium.headless,
+    });
+
+    const page2 = await browser2.newPage();
+    await page2.setContent(htmlFinal, { waitUntil: "networkidle0" });
+
+    const finalPdfBuffer = await page2.pdf({
+      format: "a4",
+      printBackground: true,
+      margin: { top: "10mm", right: "10mm", bottom: "10mm", left: "10mm" },
+    });
+
+    await browser2.close();
+
+    await fetch(`${baseUrl}/api/register-attestation`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: attestationId, hash: pdfHash }),
+    });
+
+    return NextResponse.json({
+      id: attestationId,
+      hash: pdfHash,
+      hashShort: pdfHash.substring(0, 8),
+      verifyUrl,
+      pdfBase64: finalPdfBuffer.toString("base64"),
+    });
+  } catch (err: any) {
+    console.error("ATT-ERROR:", err);
+    return NextResponse.json(
+      { error: "PDF generation failed", details: err.message },
+      { status: 500 }
+    );
+  }
+      }
