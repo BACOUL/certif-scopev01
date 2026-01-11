@@ -1,10 +1,13 @@
-export default function Page() {
+import Breadcrumb from "@/components/Common/Breadcrumb";
+
+export default function PricingPage() {
   return (
-    <div className="container py-20">
-      <h1 className="text-4xl font-bold">Pricing</h1>
-      <p className="mt-4 text-lg text-gray-600">
-        Page in construction.
-      </p>
-    </div>
+    <>
+      <Breadcrumb
+        pageName="Pricing"
+        description="Simple and transparent fixed pricing. No subscription, no hidden fees."
+      />
+      ... (reste du contenu)
+    </>
   );
 }
