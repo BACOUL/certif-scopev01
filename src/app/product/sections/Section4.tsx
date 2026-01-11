@@ -2,111 +2,135 @@
 
 export default function Section4() {
   return (
-    <section id="s4" className="scroll-mt-24">
-
-      {/* HEADER */}
-      <div className="mb-16 text-center">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63]">
-          La solution proposée par Certif-Scope
+    <section
+      id="s4"
+      className="scroll-mt-24 pb-24 pt-10 border-b border-slate-200 dark:border-slate-700"
+    >
+      {/* TITLE & INTRO */}
+      <div className="mb-16">
+        <h2 className="text-4xl font-extrabold text-[#0B3A63] mb-6">
+          Solution Provided
         </h2>
-        <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto mt-4">
-          Certif-Scope transforme un processus long, coûteux et complexe en une opération 
-          automatisée simple, rapide et vérifiable. Chaque attestation est générée en 
-          quelques secondes, prête pour les banques, les services achats, les auditeurs 
-          et les plateformes institutionnelles.
+
+        <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl leading-relaxed">
+          Certif-Scope delivers a complete, ready-to-submit CO₂ attestation designed to be
+          instantly usable in procurement, banking, insurance and due-diligence workflows.
+          The entire process is automated, standardized and fully verifiable — removing
+          the need for consultants, spreadsheets, manual calculations or complex ESG tools.
         </p>
       </div>
 
-      {/* MAIN SOLUTION GRID */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      {/* PREMIUM FEATURE SHOWCASE – LARGE 2-COLUMN LAYOUT */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
 
-        {/* LEFT COLUMN – HOW WE SOLVE THE PROBLEM */}
-        <div className="bg-[#F8FAFC] dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-10 shadow-lg">
-          <h3 className="text-2xl font-bold text-[#0B3A63] mb-6">
-            Comment Certif-Scope résout le problème
+        {/* LEFT — KEY FEATURES LIST */}
+        <div>
+          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-6">
+            What Certif-Scope Delivers
           </h3>
 
-          <ul className="space-y-5 text-gray-700 dark:text-gray-300 leading-relaxed text-[15px]">
+          <ul className="space-y-5 text-gray-700 dark:text-gray-300 leading-relaxed text-sm">
             <li>
-              <strong className="text-[#0B3A63]">1. Standardisation complète :</strong>  
-              Le document utilise une structure fixe, interprétable automatiquement, validée 
-              pour l’acceptation institutionnelle.
+              <span className="font-semibold text-[#0B3A63]">• Instant CO₂ attestation:</span>{" "}
+              generated in seconds with automated emission factors.
             </li>
             <li>
-              <strong className="text-[#0B3A63]">2. Méthodologie transparente :</strong>  
-              Chaque facteur d’émission, hypothèse et calcul est documenté directement dans l’attestation.
+              <span className="font-semibold text-[#0B3A63]">• Standardized PDF format:</span>{" "}
+              structured for procurement, banking and compliance reviews.
             </li>
             <li>
-              <strong className="text-[#0B3A63]">3. Vérification indépendante :</strong>  
-              Grâce à un identifiant unique et un hash cryptographique, toute organisation 
-              peut vérifier l’intégrité du PDF sans contacter Certif-Scope.
+              <span className="font-semibold text-[#0B3A63]">• Transparent methodology summary:</span>{" "}
+              fully documented factors and calculations inside the attestation.
             </li>
             <li>
-              <strong className="text-[#0B3A63]">4. Production instantanée :</strong>  
-              Aucun consultant, aucun rendez-vous, aucune analyse manuelle.
+              <span className="font-semibold text-[#0B3A63]">• Unique verification ID:</span>{" "}
+              enabling independent authentication by any institution.
             </li>
             <li>
-              <strong className="text-[#0B3A63]">5. Acceptation élargie :</strong>  
-              Compatible avec les politiques de validation de banques, assurances, achats et marketplaces.
+              <span className="font-semibold text-[#0B3A63]">• Cryptographic integrity hash:</span>{" "}
+              ensures the document cannot be altered without detection.
             </li>
           </ul>
         </div>
 
-        {/* RIGHT COLUMN – VISUAL BLOCK */}
-        <div className="relative p-10 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-xl">
-          
-          <h3 className="text-2xl font-bold text-[#0B3A63] mb-6">
-            Une interface simple et rapide
-          </h3>
-
-          <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-            L’interface Certif-Scope est conçue pour être utilisée en autonomie. Elle ne 
-            nécessite aucune expertise environnementale, comptable ou technique.
+        {/* RIGHT — PREMIUM INFO CARD */}
+        <div className="bg-[#f0f6fb] dark:bg-gray-800 p-10 rounded-3xl shadow-xl border border-slate-200 dark:border-gray-700">
+          <h4 className="text-xl font-semibold text-[#0B3A63] mb-4">
+            Fully Automated, Fully Verifiable
+          </h4>
+          <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4">
+            Certif-Scope uses pre-validated emission factor databases and automated
+            calculations to eliminate human error and ensure consistency.
           </p>
-
-          {/* VISUAL CHECKLIST */}
-          <div className="space-y-4 text-sm text-gray-700 dark:text-gray-300">
-            <p className="flex items-start gap-3">
-              <span className="text-[#0B3A63] font-bold">•</span>
-              Sélection des catégories de dépenses
-            </p>
-            <p className="flex items-start gap-3">
-              <span className="text-[#0B3A63] font-bold">•</span>
-              Saisie des montants annuels
-            </p>
-            <p className="flex items-start gap-3">
-              <span className="text-[#0B3A63] font-bold">•</span>
-              Calcul automatique basé sur les facteurs d’émission
-            </p>
-            <p className="flex items-start gap-3">
-              <span className="text-[#0B3A63] font-bold">•</span>
-              Génération du PDF avec méthodologie intégrée
-            </p>
-            <p className="flex items-start gap-3">
-              <span className="text-[#0B3A63] font-bold">•</span>
-              Export, partage ou intégration immédiate
-            </p>
-          </div>
-
-          {/* BOTTOM ILLUSTRATION */}
-          <div className="mt-10 text-center">
-            <div className="w-full h-40 bg-[#0B3A63]/5 dark:bg-[#0B3A63]/20 rounded-xl border border-[#0B3A63]/20 flex items-center justify-center text-[#0B3A63] dark:text-white">
-              Aperçu interface (placeholder)
-            </div>
-          </div>
+          <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+            Every attestation includes a verification URL and cryptographic signature
+            allowing banks, procurement teams and compliance officers to authenticate the
+            document independently, even without contacting Certif-Scope.
+          </p>
         </div>
+
       </div>
 
-      {/* CTA – RETURN TO SUMMARY */}
-      <div className="mt-16 text-center">
+      {/* FULL-WIDTH PREMIUM BAND — DIFFERENT DESIGN THAN OTHER SECTIONS */}
+      <div className="w-full bg-[#0B3A63] text-white rounded-2xl p-12 shadow-lg mb-20">
+        <h3 className="text-2xl font-bold mb-4">
+          Guaranteed Institutional Acceptance Structure
+        </h3>
+        <p className="text-white/80 leading-relaxed max-w-4xl text-sm">
+          The standardized layout of the attestation ensures immediate readability by
+          procurement and financial teams. No unnecessary pages, no vague metrics,
+          no unverified numbers — only structured data aligned with institutional requirements.
+          This format reduces friction, speeds up application processes and minimizes rejection risks.
+        </p>
+      </div>
+
+      {/* GRID OF DIFFERENTIATORS — 3-COLUMN PREMIUM LAYOUT */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-16">
+
+        {/* DIFFERENTIATOR 1 */}
+        <div className="p-8 bg-white dark:bg-gray-900 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700">
+          <h4 className="text-xl font-semibold text-[#0B3A63] mb-3">
+            No Consultant Required
+          </h4>
+          <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+            No appointments, no back-and-forth, no long questionnaires. Everything is automated
+            based on the financial input you provide.
+          </p>
+        </div>
+
+        {/* DIFFERENTIATOR 2 */}
+        <div className="p-8 bg-white dark:bg-gray-900 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700">
+          <h4 className="text-xl font-semibold text-[#0B3A63] mb-3">
+            Fully Compliant Structure
+          </h4>
+          <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+            The PDF includes all required fields for environmental assessment, institutional
+            reporting, procurement onboarding and ESG scoring systems.
+          </p>
+        </div>
+
+        {/* DIFFERENTIATOR 3 */}
+        <div className="p-8 bg-white dark:bg-gray-900 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700">
+          <h4 className="text-xl font-semibold text-[#0B3A63] mb-3">
+            Independent Verification
+          </h4>
+          <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+            Every attestation includes a verification URL and a cryptographic hash,
+            enabling review without any dependency on Certif-Scope’s servers.
+          </p>
+        </div>
+
+      </div>
+
+      {/* DISCREET BACK BUTTON */}
+      <div className="mt-8">
         <a
           href="#top"
-          className="inline-block px-8 py-3 rounded-lg text-white font-semibold bg-[#0B3A63] hover:bg-[#062945] transition"
+          className="text-[#0B3A63] text-sm underline opacity-70 hover:opacity-100 transition"
         >
-          Retour au sommaire
+          Back to summary
         </a>
       </div>
-
     </section>
   );
-}
+        }
