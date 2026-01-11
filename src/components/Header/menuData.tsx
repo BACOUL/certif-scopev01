@@ -2,6 +2,12 @@ import { Menu } from "@/types/menu";
 
 const menuData: Menu[] = [
   {
+    id: 0,
+    title: "Home",
+    path: "/",
+    newTab: false,
+  },
+  {
     id: 1,
     title: "Product",
     path: "/product",
