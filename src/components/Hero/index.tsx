@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Hero() {
   return (
     <section className="relative max-w-6xl mx-auto px-6 pt-28 pb-20 text-center">
@@ -10,9 +12,7 @@ export default function Hero() {
       <h1 className="text-[2.2rem] md:text-[3.2rem] font-extrabold text-[#0B3A63] leading-tight tracking-tight">
         Instant Certified Carbon Attestation
         <br />
-        <span className="text-[#1FB6C1] text-[2.3rem] md:text-[3.2rem]">
-          for SMEs
-        </span>
+        <span className="text-[#1FB6C1] text-[2.3rem] md:text-[3.2rem]">for SMEs</span>
       </h1>
 
       <p className="text-base md:text-lg text-[#475569] max-w-2xl mx-auto mt-6 leading-relaxed">
@@ -21,11 +21,13 @@ export default function Hero() {
       </p>
 
       <div className="flex justify-center mt-12">
-        <img
+        <Image
           src="/hero-attestation.png"
           alt="Certif-Scope attestation preview"
+          width={900}
+          height={600}
+          priority={true}
           className="w-full max-w-sm md:max-w-xl rounded-2xl shadow-xl border border-slate-100"
-          loading="lazy"
         />
       </div>
 
@@ -45,10 +47,7 @@ export default function Hero() {
         </a>
       </div>
 
-      <a
-        href="/sample-pdf"
-        className="text-sm underline text-[#1FB6C1] font-medium block mt-8"
-      >
+      <a href="/sample-pdf" className="text-sm underline text-[#1FB6C1] font-medium block mt-8">
         View sample attestation
       </a>
     </section>
