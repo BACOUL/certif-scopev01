@@ -1,90 +1,104 @@
-<section id="s1" className="w-full">
+{/* SECTION 1 — PRODUCT OVERVIEW */}
+<section id="section-1" className="max-w-6xl mx-auto px-6 pt-24 pb-24">
 
-  <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-6">
+  {/* SUBTITLE */}
+  <p className="text-sm md:text-base font-semibold tracking-wide text-[#0B3A63]/70 uppercase mb-3">
     Product Overview
-  </h1>
-
-  <p className="text-lg text-gray-700 dark:text-gray-300 mb-10">
-    Certif-Scope enables small and medium enterprises across Europe to instantly generate a
-    standardized and institution-ready CO₂ attestation. Built around the GHG Protocol
-    spend-based methodology, each attestation provides a verifiable environmental indicator aligned
-    with procurement workflows, banking due diligence, insurer onboarding, marketplace validation,
-    ESG reporting and regulatory compliance.
   </p>
 
-  {/* MOBILE SECTION MENU */}
-  <div className="md:hidden mb-14">
-    <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">Sections</h3>
-    <ul className="space-y-2 text-gray-700 dark:text-gray-300 text-base">
-      <li><a href="#s1" className="underline">1. Product Overview</a></li>
-      <li><a href="#s2">2. Key Benefits Summary</a></li>
-      <li><a href="#s3">3. Why the product exists</a></li>
-      <li><a href="#s4">4. Solution provided</a></li>
-      <li><a href="#s5">5. Use cases</a></li>
-      <li><a href="#s6">6. How it works</a></li>
-      <li><a href="#s7">7. Value proposition</a></li>
-      <li><a href="#s8">8. Security & Verification</a></li>
-      <li><a href="#s9">9. Sample PDF</a></li>
-      <li><a href="#s10">10. Data Sources</a></li>
-      <li><a href="#s11">11. Methodological limitations</a></li>
-      <li><a href="#s12">12. Data privacy</a></li>
-      <li><a href="#s13">13. Integrations</a></li>
-      <li><a href="#s14">14. Industry-specific uses</a></li>
-      <li><a href="#s15">15. Maintenance & Updates</a></li>
-      <li><a href="#s16">16. Technical FAQ</a></li>
-    </ul>
-  </div>
+  {/* MAIN TITLE */}
+  <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] leading-tight mb-8">
+    Instant Certified CO₂ Attestation for SMEs
+  </h1>
 
-  {/* CARDS */}
+  {/* INTRO PARAGRAPH */}
+  <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed max-w-3xl mb-14">
+    Certif-Scope enables small and medium enterprises across Europe to instantly generate a 
+    standardized and institution-ready CO₂ attestation. Built around the GHG Protocol spend-based 
+    methodology, each attestation provides a verifiable environmental indicator that aligns with 
+    procurement workflows, banking due diligence, insurer requirements, supply-chain onboarding, 
+    and ESG transparency requests. The document is instantly produced, digitally signed, and 
+    independently verifiable through a unique cryptographic identifier.
+  </p>
+
+  {/* 3 CORE VALUE BLOCKS */}
   <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-    <div className="p-8 rounded-2xl bg-white dark:bg-gray-800 shadow-lg border">
-      <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">Designed for institutional workflows</h3>
+    {/* CARD 1 */}
+    <div className="p-8 rounded-2xl bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700">
+      <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
+        Instant Generation
+      </h3>
       <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-        Structured exactly like expected by procurement, compliance and financial reviews.
+        Generate a structured CO₂ attestation in under 30 seconds. No consultants, no audits, 
+        no multi-week processes — simply input annual expenses across key categories and obtain 
+        a fully formatted institutional document immediately.
       </p>
     </div>
 
-    <div className="p-8 rounded-2xl bg-white dark:bg-gray-800 shadow-lg border">
-      <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">Instant generation</h3>
+    {/* CARD 2 */}
+    <div className="p-8 rounded-2xl bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700">
+      <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
+        Standardized Format
+      </h3>
       <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-        No long audits or consultants. Enter expenses and generate a verified PDF instantly.
+        Each attestation adheres to a strict and predictable structure: company identity, 
+        emission factors applied, methodological summary, scope approximation, annexed data 
+        sources, and verification details. This consistency greatly accelerates institutional 
+        review, procurement checks, and ESG onboarding.
       </p>
     </div>
 
-    <div className="p-8 rounded-2xl bg-white dark:bg-gray-800 shadow-lg border">
-      <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">Independent verification</h3>
+    {/* CARD 3 */}
+    <div className="p-8 rounded-2xl bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700">
+      <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
+        Independent Verification
+      </h3>
       <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-        Each document includes a verification ID and cryptographic hash ensuring authenticity.
+        Every document includes a cryptographic hash and unique verification ID. Banks, auditors, 
+        and compliance teams can verify authenticity without depending on Certif-Scope servers. 
+        This ensures long-term transparency and institutional trust.
       </p>
     </div>
 
   </div>
 
-  {/* WHY THIS PRODUCT EXISTS */}
-  <div className="mt-20">
+  {/* WHY THIS PRODUCT EXISTS — FULL SECTION */}
+  <div className="mt-20 max-w-4xl">
 
     <h2 className="text-2xl md:text-3xl font-bold text-[#0B3A63] mb-5">
       Why this product exists
     </h2>
 
     <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-      SMEs face increasing requirements for standardized environmental indicators to access banking,
-      procurement, insurance, logistics, and institutional partnerships. A formal CO₂ indicator is
-      often mandatory prior to onboarding.
+      European SMEs increasingly face environmental disclosure requirements when applying for loans, 
+      responding to procurement processes, negotiating logistics contracts, or complying with 
+      corporate ESG policies. Institutions demand reliable CO₂ indicators, yet SMEs typically lack 
+      internal expertise, time, and financial resources to conduct full environmental audits.
     </p>
 
     <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-      Traditional carbon audits take weeks and cost thousands. Certif-Scope provides a fast,
-      transparent, structured alternative suitable for review.
+      Traditional carbon assessments can take 3–6 weeks and involve consultants, manual data 
+      collection, and high costs. Many smaller businesses cannot afford these processes or do not 
+      meet the complexity threshold required by auditing firms. Certif-Scope bridges this gap by 
+      providing a fast, automated and standardized alternative that remains transparent and 
+      methodologically consistent.
     </p>
 
     <ul className="mt-6 space-y-4 text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-      <li>• Institutions require CO₂ indicators in compliance workflows</li>
-      <li>• Banks use environmental data for risk scoring</li>
-      <li>• Procurement teams request standardized disclosures</li>
-      <li>• SMEs lack internal environmental expertise</li>
+      <li>• Institutions now require CO₂ indicators for compliance and risk analysis</li>
+      <li>• Procurement processes often mandate environmental documentation</li>
+      <li>• Banks rely on CO₂ data for sustainability-linked financing decisions</li>
+      <li>• Insurance and logistics partners request CO₂ metrics before onboarding</li>
+      <li>• SMEs lack access to affordable, standardized carbon reporting tools</li>
     </ul>
+
+    <p className="text-gray-700 dark:text-gray-300 leading-relaxed mt-8">
+      Certif-Scope focuses specifically on the needs of SMEs: simplicity, speed, and acceptance. 
+      The generated document is not a certification — it is a standardized attestation, based on 
+      declared financial activity and recognized emission factors, designed to satisfy institutional 
+      review processes while remaining accessible and cost-effective.
+    </p>
 
   </div>
 
