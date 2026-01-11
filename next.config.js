@@ -14,7 +14,8 @@ const nextConfig = {
   },
 
   experimental: {
-    optimizeCss: true,
+    optimizeCss: true,                     // inline critical CSS
+    optimizePackageImports: ["react", "react-dom"], // supprime ancien JS + polyfills inutiles
   },
 
   compiler: {
