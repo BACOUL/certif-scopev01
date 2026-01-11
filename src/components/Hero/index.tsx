@@ -22,11 +22,12 @@ export default function Hero() {
 
       <div className="flex justify-center mt-12">
         <Image
-          src="/hero-attestation.png"
+          src="/hero-attestation.webp"
           alt="Certif-Scope attestation preview"
           width={900}
           height={600}
-          priority={true}
+          priority
+          sizes="(max-width: 768px) 100vw, 600px"
           className="w-full max-w-sm md:max-w-xl rounded-2xl shadow-xl border border-slate-100"
         />
       </div>
@@ -47,7 +48,10 @@ export default function Hero() {
         </a>
       </div>
 
-      <a href="/sample-pdf" className="text-sm underline text-[#1FB6C1] font-medium block mt-8">
+      <a
+        href="/sample-pdf"
+        className="text-sm underline text-[#1FB6C1] font-medium block mt-8"
+      >
         View sample attestation
       </a>
     </section>
