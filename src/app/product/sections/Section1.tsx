@@ -1,102 +1,87 @@
-"use client";
+<section
+  id="s1"
+  className="scroll-mt-24 bg-white border-b border-slate-200 pt-10 pb-20"
+>
+  <div className="max-w-6xl mx-auto px-6">
 
-export default function Section1() {
-  return (
-    <section
-      id="s1"
-      className="scroll-mt-24 border-b border-slate-200 dark:border-slate-700 pb-20"
-    >
-      {/* TITLE */}
-      <h2 className="text-4xl font-extrabold text-[#0B3A63] mb-6">
-        Product Overview
-      </h2>
+    {/* HEADER */}
+    <div className="mb-14">
+      <h1 className="text-4xl font-extrabold text-[#0B3A63] leading-tight">
+        Instant Certified CO₂ Attestation for SMEs
+      </h1>
 
-      {/* INTRO PARAGRAPH */}
-      <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl leading-relaxed mb-12">
-        Certif-Scope enables small and medium enterprises to instantly generate
-        a standardized, institution-ready CO₂ attestation. The document follows
-        GHG Protocol principles and is accepted by procurement, banking,
-        compliance, insurance and due-diligence teams across Europe. Every
-        attestation includes a verifiable methodology summary and a cryptographic
-        verification identifier allowing offline validation.
+      <p className="mt-6 text-lg text-slate-600 max-w-3xl leading-relaxed">
+        Certif-Scope provides a structured, verifiable and institution-ready CO₂
+        attestation designed for procurement, banking, insurance and ESG
+        compliance workflows. The document is generated instantly and includes a
+        unique verification ID, a cryptographic integrity hash and a transparent
+        methodology summary aligned with recognized frameworks.
       </p>
+    </div>
 
-      {/* PREMIUM GRID */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {/* CARD 1 */}
-        <div className="p-8 bg-white dark:bg-gray-900 shadow-lg rounded-2xl border border-gray-200 dark:border-gray-700 hover:shadow-xl transition">
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
-            Built for institutional workflows
-          </h3>
-          <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-            Structured exactly like the documentation reviewed by financial,
-            procurement and compliance teams. Includes identity fields, scope
-            indicators, emission factors, methodology summary, and verification data.
-          </p>
-        </div>
-
-        {/* CARD 2 */}
-        <div className="p-8 bg-white dark:bg-gray-900 shadow-lg rounded-2xl border border-gray-200 dark:border-gray-700 hover:shadow-xl transition">
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
-            Instant generation — under 30 seconds
-          </h3>
-          <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-            No need for consultants or lengthy audits. Enter annual expenses, 
-            validate categories, and download the fully formatted attestation immediately.
-          </p>
-        </div>
-
-        {/* CARD 3 */}
-        <div className="p-8 bg-white dark:bg-gray-900 shadow-lg rounded-2xl border border-gray-200 dark:border-gray-700 hover:shadow-xl transition">
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
-            Independently verifiable
-          </h3>
-          <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-            Each attestation includes a unique verification ID and cryptographic hash.
-            A third-party auditor, bank or insurer can validate integrity without
-            interacting with Certif-Scope servers.
-          </p>
-        </div>
+    {/* SPLIT-LAYOUT WITH ICONS */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
+      <div>
+        <h2 className="text-2xl font-semibold text-[#1E90FF] mb-4">
+          Built for institutional acceptance
+        </h2>
+        <p className="text-slate-600 leading-relaxed">
+          The attestation follows the standard structure expected by European
+          banks, procurement teams and compliance departments. Every document
+          includes company identification, emission calculations, methodology
+          details, and integrity verification markers.
+        </p>
       </div>
 
-      {/* WHY SECTION */}
-      <div className="mt-20 max-w-4xl">
-        <h3 className="text-2xl font-bold text-[#0B3A63] mb-6">
-          Why this product exists
-        </h3>
-
-        <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-          European procurement processes, financial institutions and compliance
-          departments increasingly require standardized CO₂ indicators during
-          onboarding, risk assessment or funding evaluation. Most SMEs lack the
-          internal resources to produce an audit-ready environmental analysis.
-        </p>
-
-        <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-          Traditional ESG reporting is slow, expensive and fragmented. Certif-Scope
-          solves this by providing a fast, structured and universally verifiable
-          attestation aligned with institutional expectations. No manual reporting,
-          no consultancy, no delays.
-        </p>
-
-        <ul className="space-y-3 text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-          <li>• Growing demand for CO₂ transparency in B2B workflows</li>
-          <li>• Banks integrate CO₂ metrics into risk-assessment models</li>
-          <li>• Procurement imposes mandatory environmental disclosure</li>
-          <li>• ESG checklists require standardized and verifiable data</li>
-          <li>• SMEs lack time and budget for traditional carbon audits</li>
+      <div className="p-6 bg-[#E9F4FF] rounded-2xl shadow-sm border border-slate-200">
+        <ul className="space-y-3 text-slate-700">
+          <li>• Standardized structure for institutional review</li>
+          <li>• Fully automated generation under 30 seconds</li>
+          <li>• Cryptographic proof enabling offline verification</li>
+          <li>• Accepted across banking, procurement & grants</li>
         </ul>
       </div>
+    </div>
 
-      {/* PREMIUM BACK BUTTON */}
-      <div className="mt-16 flex">
-        <a
-          href="#top"
-          className="text-[#0B3A63] text-sm underline opacity-70 hover:opacity-100 transition"
-        >
-          Back to summary
-        </a>
+    {/* THREE-PILLARS BLOCK (unique layout for section 1) */}
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="p-6 rounded-xl bg-white shadow-md border border-slate-200">
+        <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
+          Institutional Structure
+        </h3>
+        <p className="text-sm text-slate-600">
+          Clear segmentation: identification, emissions, methodology, verification.
+        </p>
       </div>
-    </section>
-  );
-}
+
+      <div className="p-6 rounded-xl bg-white shadow-md border border-slate-200">
+        <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
+          Fully Automated
+        </h3>
+        <p className="text-sm text-slate-600">
+          No consultants, no delays. Enter expenses → download certified PDF.
+        </p>
+      </div>
+
+      <div className="p-6 rounded-xl bg-white shadow-md border border-slate-200">
+        <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
+          Independently Verifiable
+        </h3>
+        <p className="text-sm text-slate-600">
+          Unique ID + cryptographic hash for offline validation.
+        </p>
+      </div>
+    </div>
+
+    {/* RETURN TO SUMMARY */}
+    <div className="text-right mt-12">
+      <a
+        href="#top"
+        className="text-[#0B3A63] text-sm opacity-60 hover:opacity-100 underline"
+      >
+        Return to summary
+      </a>
+    </div>
+
+  </div>
+</section>
