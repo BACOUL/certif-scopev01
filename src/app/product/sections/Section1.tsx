@@ -2,98 +2,106 @@
 
 export default function Section1() {
   return (
-    <section
-      id="s1"
-      className="scroll-mt-24 pt-6 pb-20 border-b border-gray-200 dark:border-gray-800"
-    >
-      {/* SECTION HEADER */}
-      <div className="mb-10">
-        <p className="uppercase tracking-wider text-sm font-semibold text-[#0B3A63]/70">
-          Section 1
-        </p>
+    <section id="s1" className="scroll-mt-24 w-full">
+      {/* WRAPPER */}
+      <div className="bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl shadow-sm p-10">
 
-        <h2 className="text-4xl font-extrabold text-[#0B3A63] mt-2">
-          Product Overview
+        {/* TITLE */}
+        <h2 className="text-3xl font-bold text-[#0B3A63] mb-6">
+          1. Product Overview
         </h2>
 
-        <p className="mt-4 text-lg text-gray-700 dark:text-gray-300 max-w-3xl">
-          Certif-Scope provides SMEs with an instantly generated, 
-          institution-ready CO₂ attestation aligned with procurement, 
-          banking, compliance and ESG disclosure requirements. Designed to 
-          pass institutional review, the document is standardized, verifiable, 
-          and universally readable across European administrative and financial workflows.
-        </p>
-      </div>
-
-      {/* PREMIUM FEATURE GRID */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-
-        {/* Card 1 */}
-        <div className="p-8 rounded-2xl bg-white dark:bg-gray-900 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-shadow">
-          <h3 className="text-[#0B3A63] text-xl font-semibold mb-3">
-            Institutional Structure
-          </h3>
-          <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-            Mirrors the exact format used by procurement officers, 
-            compliance reviewers and financial auditors: company ID, footprint, 
-            methodology, emission factors and verification hash.
-          </p>
-        </div>
-
-        {/* Card 2 */}
-        <div className="p-8 rounded-2xl bg-[#E9F2FA] dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-shadow">
-          <h3 className="text-[#0B3A63] text-xl font-semibold mb-3">
-            Instant Generation
-          </h3>
-          <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-            Automated in under 30 seconds. No consultants, no back-and-forth, 
-            no ESG expertise required. Input expenses → receive a compliant PDF.
-          </p>
-        </div>
-
-        {/* Card 3 */}
-        <div className="p-8 rounded-2xl bg-white dark:bg-gray-900 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-shadow">
-          <h3 className="text-[#0B3A63] text-xl font-semibold mb-3">
-            Independent Verification
-          </h3>
-          <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-            Includes a unique verification ID + cryptographic hash enabling  
-            banks, insurers, partners or auditors to authenticate the document 
-            without depending on Certif-Scope servers.
-          </p>
-        </div>
-
-      </div>
-
-      {/* SUBSECTION — WHY IT MATTERS */}
-      <div className="mt-16 max-w-4xl">
-        <h3 className="text-2xl font-bold text-[#0B3A63] mb-4">Why it matters</h3>
-
-        <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-          Across Europe, organizations increasingly require standardized and 
-          verifiable CO₂ indicators to complete procurement, risk analysis, 
-          supplier onboarding and due diligence workflows. Certif-Scope fills 
-          the compliance gap by delivering a structured, automated and proof-ready 
-          attestation without the cost or complexity of traditional ESG audits.
+        {/* INTRO BLOCK */}
+        <p className="text-lg text-slate-700 leading-relaxed mb-8">
+          Certif-Scope provides an instant, verifiable CO₂ attestation based on
+          standardized expenditure-based calculations. It is designed for
+          procurement teams, financial institutions, auditors, and digital
+          workflows that require compliant environmental documentation under
+          European frameworks (CSRD, GHG Protocol, EU Taxonomy).
         </p>
 
-        <ul className="space-y-3 text-gray-700 dark:text-gray-300 text-sm ml-3 list-disc">
-          <li>Rapidly growing demand for CO₂ transparency in B2B workflows</li>
-          <li>Financial institutions require carbon indicators for risk scoring</li>
-          <li>Procurement frameworks impose environmental disclosure requirements</li>
-          <li>ESG forms need consistent, standardized and readable data</li>
-          <li>SMEs lack resources for full-scale carbon audits</li>
-        </ul>
-      </div>
+        {/* KEY TAGLINE / HIGHLIGHT */}
+        <div className="p-6 rounded-lg bg-[#15B097]/10 border-l-4 border-[#15B097] mb-10">
+          <p className="text-[#0B3A63] font-semibold text-lg">
+            Generate a carbon attestation in less than 3 seconds — exportable,
+            verifiable and ready for institutional use.
+          </p>
+        </div>
 
-      {/* RETURN BUTTON */}
-      <div className="mt-16 flex justify-end">
-        <a
-          href="#top"
-          className="text-sm text-[#0B3A63]/80 hover:text-[#0B3A63] underline underline-offset-4 transition-colors"
-        >
-          Return to summary
-        </a>
+        {/* 3 FEATURE COLUMNS */}
+        <div className="grid md:grid-cols-3 gap-8 mb-14">
+          <div className="p-6 bg-white rounded-xl border border-[#E2E8F0] shadow-sm">
+            <h3 className="text-[#0B3A63] font-semibold text-lg mb-2">Instant Results</h3>
+            <p className="text-slate-600 text-sm leading-relaxed">
+              Calculations performed immediately and formatted in a professional
+              attestation suitable for audits, due diligence, and compliance.
+            </p>
+          </div>
+
+          <div className="p-6 bg-white rounded-xl border border-[#E2E8F0] shadow-sm">
+            <h3 className="text-[#0B3A63] font-semibold text-lg mb-2">
+              Standardized Methodology
+            </h3>
+            <p className="text-slate-600 text-sm leading-relaxed">
+              Built on GHG Protocol principles with transparent factors and
+              institutional-grade traceability.
+            </p>
+          </div>
+
+          <div className="p-6 bg-white rounded-xl border border-[#E2E8F0] shadow-sm">
+            <h3 className="text-[#0B3A63] font-semibold text-lg mb-2">
+              Ready for Integration
+            </h3>
+            <p className="text-slate-600 text-sm leading-relaxed">
+              Works with procurement workflows, loan applications, supplier
+              assessments, and digital onboarding processes.
+            </p>
+          </div>
+        </div>
+
+        {/* INSTITUTIONAL USE CASE BLOCK */}
+        <div className="bg-white p-8 rounded-xl border border-[#E2E8F0] shadow-sm mb-12">
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-4">
+            Built for Institutional Requirements
+          </h3>
+
+          <ul className="space-y-3 text-slate-700">
+            <li>• Accepted by procurement teams and corporate buyers</li>
+            <li>• Suitable for bank loan applications and financing files</li>
+            <li>• Aligns with standard ESG & compliance documentation</li>
+            <li>• Compatible with multilingual (EU) regulatory environments</li>
+            <li>• Exportable in PDF and digital JSON verification format</li>
+          </ul>
+        </div>
+
+        {/* CTA BOX */}
+        <div className="p-8 rounded-xl bg-[#0B3A63] text-white shadow-md mb-10">
+          <h3 className="text-2xl font-semibold mb-3">
+            A simple, verifiable CO₂ attestation designed for Europe
+          </h3>
+          <p className="text-white/80 mb-5">
+            Certif-Scope allows any company — regardless of size — to instantly
+            provide environmental impact documentation compliant with European
+            expectations.
+          </p>
+
+          <a
+            href="/"
+            className="inline-block px-6 py-3 text-sm font-medium bg-[#15B097] text-white rounded-lg shadow hover:bg-[#139a84] transition"
+          >
+            Learn more on the homepage
+          </a>
+        </div>
+
+        {/* RETURN BUTTON (UNIFORM ACROSS ALL SECTIONS) */}
+        <div className="mt-6">
+          <a
+            href="#top"
+            className="inline-block text-xs font-medium text-[#0B3A63] underline hover:text-[#15B097] transition"
+          >
+            Back to summary
+          </a>
+        </div>
       </div>
     </section>
   );
