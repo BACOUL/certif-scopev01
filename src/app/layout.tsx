@@ -1,12 +1,22 @@
-"use client";
-
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import ScrollToTop from "@/components/ScrollToTop";
 import { Inter } from "next/font/google";
 import "../styles/index.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+});
+
+export const metadata = {
+  title: "Certif-Scope – Instant Carbon Attestation",
+  description:
+    "Generate a standardized, compliant carbon footprint attestation in seconds — aligned with GHG Protocol and accepted by procurement and banking workflows.",
+  icons: {
+    icon: "/favicon.png",
+  },
+};
 
 export default function RootLayout({
   children,
@@ -14,14 +24,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html suppressHydrationWarning lang="en">
-      <head />
+    <html lang="en" suppressHydrationWarning>
       <body className={`bg-[#FCFCFC] dark:bg-black ${inter.className}`}>
-        <div className="isolate">
-          <Header />
-          {children}
-          <Footer />
-        </div>
+        <Header />
+        {children}
+        <Footer />
         <ScrollToTop />
       </body>
     </html>
