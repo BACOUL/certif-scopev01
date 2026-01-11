@@ -1,111 +1,92 @@
-"use client";
+<section id="s2" className="scroll-mt-24">
 
-export default function Section2() {
-  return (
-    <section id="s2" className="scroll-mt-24">
+  {/* TITLE */}
+  <div className="border-b border-gray-200 pb-6">
+    <h2 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63]">
+      Key Benefits Summary
+    </h2>
+    <p className="text-gray-600 dark:text-gray-300 mt-4 max-w-2xl text-lg">
+      A complete institutional-grade benefits overview designed for procurement, banking and compliance workflows.
+    </p>
+  </div>
 
-      {/* TITLE */}
-      <h2 className="text-4xl font-extrabold text-[#0B3A63] mb-6">
-        Key Benefits Summary
-      </h2>
+  {/* BENEFITS GRID */}
+  <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-12">
 
-      {/* INTRO TEXT */}
-      <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl mb-14 leading-relaxed">
-        Certif-Scope provides a fast, compliant and independently verifiable CO₂ attestation
-        tailored for institutional workflows. Each attestation is structured to align
-        with procurement, ESG and regulatory requirements across Europe — ensuring clarity,
-        speed and acceptance.
+    {/* BENEFIT 1 */}
+    <div className="relative pl-12">
+      <div className="absolute left-0 top-1 w-8 h-8 rounded-full bg-[#15B097] shadow-md"></div>
+      <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">Instant Certification</h3>
+      <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+        Companies generate a CO₂ attestation in less than 30 seconds thanks to automated data processing,
+        standardized formatting and an auditable methodology. No external consultant required.
       </p>
+    </div>
 
-      {/* HIGHLIGHTED BENEFITS ROW */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-16">
+    {/* BENEFIT 2 */}
+    <div className="relative pl-12">
+      <div className="absolute left-0 top-1 w-8 h-8 rounded-full bg-[#15B097] shadow-md"></div>
+      <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">Universal Acceptance</h3>
+      <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+        The format mirrors review expectations from European procurement departments, banks, insurers,
+        and regulatory auditors, ensuring immediate readability and minimal friction.
+      </p>
+    </div>
 
-        {/* BENEFIT 01 */}
-        <div className="p-8 rounded-2xl shadow-md bg-gradient-to-b from-white to-[#F5FBF8] dark:from-gray-800 dark:to-gray-700 border border-[#D6EDE5]">
-          <div className="text-[#47B39C] text-5xl font-bold mb-3">01</div>
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
-            Instant Attestation
-          </h3>
-          <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
-            Generate a complete attestation in under 30 seconds — eliminating manual
-            calculations, consulting delays and document formatting.
-          </p>
-        </div>
+    {/* BENEFIT 3 */}
+    <div className="relative pl-12">
+      <div className="absolute left-0 top-1 w-8 h-8 rounded-full bg-[#15B097] shadow-md"></div>
+      <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">Independent Verification</h3>
+      <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+        Every attestation includes a unique verification ID and a cryptographic hash, allowing third
+        parties to confirm authenticity without contacting the issuer. Transparency is built into the system.
+      </p>
+    </div>
 
-        {/* BENEFIT 02 */}
-        <div className="p-8 rounded-2xl shadow-md bg-gradient-to-b from-white to-[#EDF7FA] dark:from-gray-800 dark:to-gray-700 border border-[#C9E7F1]">
-          <div className="text-[#4CC4CF] text-5xl font-bold mb-3">02</div>
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
-            Institutional-Ready Structure
-          </h3>
-          <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
-            The layout follows recognised ESG reporting formats, including methodology,
-            emission factors, scope breakdown and verification ID.
-          </p>
-        </div>
+    {/* BENEFIT 4 */}
+    <div className="relative pl-12">
+      <div className="absolute left-0 top-1 w-8 h-8 rounded-full bg-[#15B097] shadow-md"></div>
+      <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">Cost-Effective Structure</h3>
+      <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+        Certif-Scope provides an accessible alternative to costly ESG consulting. Pricing is transparent,
+        predictable, and suitable for SMEs and independent suppliers requiring repeat certification.
+      </p>
+    </div>
 
-        {/* BENEFIT 03 */}
-        <div className="p-8 rounded-2xl shadow-md bg-gradient-to-b from-white to-[#F0F4FF] dark:from-gray-800 dark:to-gray-700 border border-[#D1D9FF]">
-          <div className="text-[#0B3A63] text-5xl font-bold mb-3">03</div>
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
-            Independently Verifiable
-          </h3>
-          <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
-            Each document includes a cryptographic hash and verification link — allowing
-            banks, auditors or insurers to authenticate validity instantly.
-          </p>
-        </div>
+    {/* BENEFIT 5 */}
+    <div className="relative pl-12">
+      <div className="absolute left-0 top-1 w-8 h-8 rounded-full bg-[#15B097] shadow-md"></div>
+      <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">Methodology Transparency</h3>
+      <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+        Attestations clearly detail all emission factors used, the methodology applied and any sector-specific
+        assumptions. Full traceability ensures trust and regulatory compatibility.
+      </p>
+    </div>
 
-      </div>
+    {/* BENEFIT 6 */}
+    <div className="relative pl-12">
+      <div className="absolute left-0 top-1 w-8 h-8 rounded-full bg-[#15B097] shadow-md"></div>
+      <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">Scalable for All Company Sizes</h3>
+      <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+        Whether used by a sole trader, SME, manufacturing supplier or e-commerce vendor, the system
+        adapts seamlessly. No configuration required; the format remains consistent across volumes.
+      </p>
+    </div>
+  </div>
 
-      {/* SECOND ROW */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+  {/* CTA BOX */}
+  <div className="bg-[#F8FAFC] border border-gray-200 shadow-lg rounded-xl p-10 mt-20">
+    <h4 className="text-2xl font-bold text-[#0B3A63] mb-4">Designed for Europe-wide acceptance</h4>
+    <p className="text-gray-600 dark:text-gray-300 max-w-3xl">
+      Certif-Scope is built for international workflows across the EU. Its structure is easy to translate,
+      validated by internal reviewers, and compliant with documentation standards required for cross-border trade.
+    </p>
+    <a
+      href="#top"
+      className="inline-block mt-8 text-sm font-medium px-5 py-2 rounded-md border border-[#0B3A63]
+                text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition">
+      Back to Summary
+    </a>
+  </div>
 
-        {/* BENEFIT 04 */}
-        <div className="flex items-start gap-6 p-6 bg-white dark:bg-gray-800 shadow border border-[#E5E9EC] rounded-xl">
-          <div className="w-14 h-14 rounded-full bg-[#47B39C]/15 flex items-center justify-center">
-            <span className="text-[#47B39C] text-2xl font-bold">€</span>
-          </div>
-          <div>
-            <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
-              Cost-Effective
-            </h3>
-            <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
-              Avoid consultant fees and lengthy ESG audits. One fixed price. Immediate delivery.
-            </p>
-          </div>
-        </div>
-
-        {/* BENEFIT 05 */}
-        <div className="flex items-start gap-6 p-6 bg-white dark:bg-gray-800 shadow border border-[#E5E9EC] rounded-xl">
-          <div className="w-14 h-14 rounded-full bg-[#4CC4CF]/15 flex items-center justify-center">
-            <span className="text-[#4CC4CF] text-2xl font-bold">EU</span>
-          </div>
-          <div>
-            <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
-              Accepted Across Europe
-            </h3>
-            <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
-              Compatible with procurement, financial and regulatory expectations across all EU
-              member states.
-            </p>
-          </div>
-        </div>
-
-      </div>
-
-      {/* SEPARATOR */}
-      <div className="w-full mt-16 mb-10 h-px bg-gradient-to-r from-transparent via-[#4CC4CF] to-transparent opacity-60"></div>
-
-      {/* RETURN BUTTON */}
-      <div className="flex justify-end">
-        <a
-          href="#top"
-          className="text-sm text-[#0B3A63] hover:text-[#47B39C] opacity-80 hover:opacity-100 transition-colors duration-200 underline-offset-4 hover:underline"
-        >
-          Return to Summary
-        </a>
-      </div>
-    </section>
-  );
-}
+</section>
