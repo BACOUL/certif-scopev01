@@ -29,6 +29,11 @@ export default function LegalPage() {
             <li><strong>Official Contact Email:</strong> contact@certif-scope.com</li>
           </ul>
 
+          <h3 className="text-xl font-semibold mb-4">Publication Responsible</h3>
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-10">
+            The publication manager and director is Jeason Alexandre Bacoul.
+          </p>
+
           <h3 className="text-xl font-semibold mb-4">Hosting</h3>
           <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-10">
             The site is hosted by Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, USA.
@@ -45,6 +50,12 @@ export default function LegalPage() {
             Certif-Scope provides informational and digital verification services. 
             The operator cannot be held responsible for improper use of generated documents 
             by third parties.
+          </p>
+
+          <h3 className="text-xl font-semibold mb-4">Abuse Reports</h3>
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+            For any report of illegal content or technical issue, please contact: <br />
+            <strong>contact@certif-scope.com</strong>
           </p>
         </div>
       </section>
