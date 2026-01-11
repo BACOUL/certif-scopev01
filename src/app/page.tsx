@@ -8,7 +8,7 @@ import Trust from "@/components/Trust";
 import AttestationPreview from "@/components/AttestationPreview";
 import Testimonials from "@/components/Testimonials";
 import Pricing from "@/components/Pricing";
-import FAQ from "@/components/FAQ"; // ← ajouté
+import FAQ from "@/components/FAQ";
 
 import { Metadata } from "next";
 
@@ -30,8 +30,7 @@ export default function Home() {
       <AttestationPreview />
       <Testimonials />
       <Pricing />
-      <FAQ /> {/* ← ajouté */}
-      {/* Blog et Contact supprimés */}
+      <FAQ />
     </>
   );
 }
