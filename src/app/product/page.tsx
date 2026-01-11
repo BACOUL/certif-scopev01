@@ -41,19 +41,22 @@ export default function ProductPage() {
         {/* MAIN CONTENT */}
         <div className="md:col-span-3 space-y-24">
 
-          {/* SECTION 1 */}
-          <section id="s1">
+          {/* SECTION 1 — FULL VERSION */}
+          <section id="s1" className="max-w-6xl">
+
             <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-6">
               Product Overview
             </h1>
 
             <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl mb-10">
-              Certif-Scope enables small and medium enterprises to instantly generate a standardized,
-              institution-ready CO₂ attestation, aligned with GHG Protocol principles and accepted by
-              procurement, banking, compliance and due diligence teams across Europe.
+              Certif-Scope enables small and medium enterprises across Europe to instantly generate a
+              standardized and institution-ready CO₂ attestation. Built around the GHG Protocol
+              spend-based methodology, each attestation provides a verifiable environmental indicator
+              aligned with procurement workflows, banking due diligence, insurer requirements,
+              supply-chain onboarding, and ESG transparency requests.
             </p>
 
-            {/* MOBILE SECTION MENU (NOW PLACED CORRECTLY) */}
+            {/* MOBILE SECTION MENU */}
             <div className="md:hidden mb-14">
               <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">Sections</h3>
               <ul className="space-y-2 text-gray-700 dark:text-gray-300 text-base">
@@ -76,56 +79,84 @@ export default function ProductPage() {
               </ul>
             </div>
 
-            {/* CONTENT BOXES */}
+            {/* CARDS — Expanded version */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-              <div className="p-6 rounded-xl bg-white dark:bg-gray-800 shadow border">
-                <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
+              <div className="p-8 rounded-2xl bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700">
+                <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
                   Designed for institutional workflows
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400 text-sm">
-                  Structured exactly like required by procurement, compliance and financial reviews.
+                <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                  The attestation mirrors the structure expected by financial institutions,
+                  procurement departments and compliance reviewers.
                 </p>
               </div>
 
-              <div className="p-6 rounded-xl bg-white dark:bg-gray-800 shadow border">
-                <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
-                  30-second generation
+              <div className="p-8 rounded-2xl bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700">
+                <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
+                  Instant generation
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400 text-sm">
-                  No consultant. No delay. Enter expenses → instant verified PDF.
+                <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                  No consultants. No long audits. Enter expenses and download a verified PDF instantly.
                 </p>
               </div>
 
-              <div className="p-6 rounded-xl bg-white dark:bg-gray-800 shadow border">
-                <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
+              <div className="p-8 rounded-2xl bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700">
+                <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
                   Independent verification
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400 text-sm">
-                  Each attestation includes a unique verification code + cryptographic hash.
+                <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                  Each document contains a verification ID and cryptographic hash ensuring authenticity.
                 </p>
               </div>
 
             </div>
 
+            {/* WHY THIS PRODUCT EXISTS */}
+            <div className="mt-20 max-w-4xl">
+
+              <h2 className="text-2xl md:text-3xl font-bold text-[#0B3A63] mb-5">
+                Why this product exists
+              </h2>
+
+              <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+                SMEs now face environmental disclosure requirements for banking, procurement,
+                insurance, logistics, and ESG reporting. They require formal CO₂ indicators.
+              </p>
+
+              <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+                Traditional carbon audits take 3-6 weeks and cost thousands of euros. Certif-Scope
+                offers a fast, transparent, and standardized alternative suitable for institutional
+                review.
+              </p>
+
+              <ul className="mt-6 space-y-4 text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+                <li>• Institutions require CO₂ data for compliance</li>
+                <li>• Banks use CO₂ indicators in risk evaluation</li>
+                <li>• Procurement demands standardized CO₂ metrics</li>
+                <li>• SMEs lack internal environmental expertise</li>
+              </ul>
+
+            </div>
+
           </section>
 
-          {/* PLACEHOLDERS FOR NEXT SECTIONS */}
-          <section id="s2"><h2 className="section-title">Key Benefits Summary</h2></section>
-          <section id="s3"><h2 className="section-title">Why the product exists</h2></section>
-          <section id="s4"><h2 className="section-title">Solution provided</h2></section>
-          <section id="s5"><h2 className="section-title">Use cases</h2></section>
-          <section id="s6"><h2 className="section-title">How it works</h2></section>
-          <section id="s7"><h2 className="section-title">Value proposition</h2></section>
-          <section id="s8"><h2 className="section-title">Security & Verification</h2></section>
-          <section id="s9"><h2 className="section-title">Sample PDF</h2></section>
-          <section id="s10"><h2 className="section-title">Data Sources</h2></section>
-          <section id="s11"><h2 className="section-title">Methodological limitations</h2></section>
-          <section id="s12"><h2 className="section-title">Data privacy</h2></section>
-          <section id="s13"><h2 className="section-title">Integrations</h2></section>
-          <section id="s14"><h2 className="section-title">Industry-specific uses</h2></section>
-          <section id="s15"><h2 className="section-title">Maintenance & Updates</h2></section>
-          <section id="s16"><h2 className="section-title">Technical FAQ</h2></section>
+          {/* PLACEHOLDERS FOR OTHER SECTIONS */}
+          <section id="s2"><h2>Key Benefits Summary</h2></section>
+          <section id="s3"><h2>Why the product exists</h2></section>
+          <section id="s4"><h2>Solution provided</h2></section>
+          <section id="s5"><h2>Use cases</h2></section>
+          <section id="s6"><h2>How it works</h2></section>
+          <section id="s7"><h2>Value proposition</h2></section>
+          <section id="s8"><h2>Security & Verification</h2></section>
+          <section id="s9"><h2>Sample PDF</h2></section>
+          <section id="s10"><h2>Data Sources</h2></section>
+          <section id="s11"><h2>Methodological limitations</h2></section>
+          <section id="s12"><h2>Data privacy</h2></section>
+          <section id="s13"><h2>Integrations</h2></section>
+          <section id="s14"><h2>Industry-specific uses</h2></section>
+          <section id="s15"><h2>Maintenance & Updates</h2></section>
+          <section id="s16"><h2>Technical FAQ</h2></section>
 
         </div>
       </div>
