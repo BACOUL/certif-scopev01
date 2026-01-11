@@ -25,7 +25,7 @@ export default function AttestationPreview() {
         <div className="flex justify-center">
           <div className="relative w-full max-w-[600px]">
             <Image
-              src="/preview.png"
+              src="/preview.webp"
               alt="Certif-Scope Attestation Preview"
               width={1200}
               height={800}
