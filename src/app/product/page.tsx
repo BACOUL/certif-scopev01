@@ -1,105 +1,134 @@
-{/* SECTION 1 — PRODUCT OVERVIEW */}
-<section id="section-1" className="max-w-6xl mx-auto px-6 pt-24 pb-24">
+"use client";
 
-  {/* SUBTITLE */}
-  <p className="text-sm md:text-base font-semibold tracking-wide text-[#0B3A63]/70 uppercase mb-3">
-    Product Overview
-  </p>
+import Breadcrumb from "@/components/Common/Breadcrumb";
 
-  {/* MAIN TITLE */}
-  <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] leading-tight mb-8">
-    Instant Certified CO₂ Attestation for SMEs
-  </h1>
+export default function ProductPage() {
+  return (
+    <>
+      <Breadcrumb
+        pageName="Product Overview"
+        description="Instant CO₂ attestation designed for procurement, banking and compliance workflows."
+      />
 
-  {/* INTRO PARAGRAPH */}
-  <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed max-w-3xl mb-14">
-    Certif-Scope enables small and medium enterprises across Europe to instantly generate a 
-    standardized and institution-ready CO₂ attestation. Built around the GHG Protocol spend-based 
-    methodology, each attestation provides a verifiable environmental indicator that aligns with 
-    procurement workflows, banking due diligence, insurer requirements, supply-chain onboarding, 
-    and ESG transparency requests. The document is instantly produced, digitally signed, and 
-    independently verifiable through a unique cryptographic identifier.
-  </p>
+      {/* MAIN LAYOUT WRAPPER */}
+      <div className="max-w-7xl mx-auto px-6 pt-24 pb-24 grid grid-cols-1 md:grid-cols-4 gap-10">
 
-  {/* 3 CORE VALUE BLOCKS */}
-  <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* SIDEBAR — DESKTOP ONLY */}
+        <aside className="hidden md:block md:col-span-1">
+          <nav className="sticky top-24 space-y-3 text-sm">
+            <h3 className="text-lg font-semibold text-[#0B3A63] mb-2">Sections</h3>
+            <ul className="space-y-2 text-gray-700 dark:text-gray-300">
+              <li><a href="#s1" className="hover:text-[#0B3A63]">1. Product Overview</a></li>
+              <li><a href="#s2" className="hover:text-[#0B3A63]">2. Key Benefits Summary</a></li>
+              <li><a href="#s3" className="hover:text-[#0B3A63]">3. Why the product exists</a></li>
+              <li><a href="#s4" className="hover:text-[#0B3A63]">4. Solution provided</a></li>
+              <li><a href="#s5" className="hover:text-[#0B3A63]">5. Use cases</a></li>
+              <li><a href="#s6" className="hover:text-[#0B3A63]">6. How it works</a></li>
+              <li><a href="#s7" className="hover:text-[#0B3A63]">7. Value proposition</a></li>
+              <li><a href="#s8" className="hover:text-[#0B3A63]">8. Security & Verification</a></li>
+              <li><a href="#s9" className="hover:text-[#0B3A63]">9. Sample PDF</a></li>
+              <li><a href="#s10" className="hover:text-[#0B3A63]">10. Data Sources</a></li>
+              <li><a href="#s11" className="hover:text-[#0B3A63]">11. Methodological limitations</a></li>
+              <li><a href="#s12" className="hover:text-[#0B3A63]">12. Data privacy</a></li>
+              <li><a href="#s13" className="hover:text-[#0B3A63]">13. Integrations</a></li>
+              <li><a href="#s14" className="hover:text-[#0B3A63]">14. Industry-specific uses</a></li>
+              <li><a href="#s15" className="hover:text-[#0B3A63]">15. Maintenance & Updates</a></li>
+              <li><a href="#s16" className="hover:text-[#0B3A63]">16. Technical FAQ</a></li>
+            </ul>
+          </nav>
+        </aside>
 
-    {/* CARD 1 */}
-    <div className="p-8 rounded-2xl bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700">
-      <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
-        Instant Generation
-      </h3>
-      <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-        Generate a structured CO₂ attestation in under 30 seconds. No consultants, no audits, 
-        no multi-week processes — simply input annual expenses across key categories and obtain 
-        a fully formatted institutional document immediately.
-      </p>
-    </div>
+        {/* MAIN CONTENT */}
+        <div className="md:col-span-3 space-y-24">
 
-    {/* CARD 2 */}
-    <div className="p-8 rounded-2xl bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700">
-      <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
-        Standardized Format
-      </h3>
-      <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-        Each attestation adheres to a strict and predictable structure: company identity, 
-        emission factors applied, methodological summary, scope approximation, annexed data 
-        sources, and verification details. This consistency greatly accelerates institutional 
-        review, procurement checks, and ESG onboarding.
-      </p>
-    </div>
+          {/* SECTION 1 */}
+          <section id="s1">
+            <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-6">
+              Product Overview
+            </h1>
 
-    {/* CARD 3 */}
-    <div className="p-8 rounded-2xl bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700">
-      <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
-        Independent Verification
-      </h3>
-      <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-        Every document includes a cryptographic hash and unique verification ID. Banks, auditors, 
-        and compliance teams can verify authenticity without depending on Certif-Scope servers. 
-        This ensures long-term transparency and institutional trust.
-      </p>
-    </div>
+            <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl mb-10">
+              Certif-Scope enables small and medium enterprises to instantly generate a standardized,
+              institution-ready CO₂ attestation, aligned with GHG Protocol principles and accepted by
+              procurement, banking, compliance and due diligence teams across Europe.
+            </p>
 
-  </div>
+            {/* MOBILE SECTION MENU (NOW PLACED CORRECTLY) */}
+            <div className="md:hidden mb-14">
+              <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">Sections</h3>
+              <ul className="space-y-2 text-gray-700 dark:text-gray-300 text-base">
+                <li><a href="#s1" className="underline">1. Product Overview</a></li>
+                <li><a href="#s2">2. Key Benefits Summary</a></li>
+                <li><a href="#s3">3. Why the product exists</a></li>
+                <li><a href="#s4">4. Solution provided</a></li>
+                <li><a href="#s5">5. Use cases</a></li>
+                <li><a href="#s6">6. How it works</a></li>
+                <li><a href="#s7">7. Value proposition</a></li>
+                <li><a href="#s8">8. Security & Verification</a></li>
+                <li><a href="#s9">9. Sample PDF</a></li>
+                <li><a href="#s10">10. Data Sources</a></li>
+                <li><a href="#s11">11. Methodological limitations</a></li>
+                <li><a href="#s12">12. Data privacy</a></li>
+                <li><a href="#s13">13. Integrations</a></li>
+                <li><a href="#s14">14. Industry-specific uses</a></li>
+                <li><a href="#s15">15. Maintenance & Updates</a></li>
+                <li><a href="#s16">16. Technical FAQ</a></li>
+              </ul>
+            </div>
 
-  {/* WHY THIS PRODUCT EXISTS — FULL SECTION */}
-  <div className="mt-20 max-w-4xl">
+            {/* CONTENT BOXES */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-    <h2 className="text-2xl md:text-3xl font-bold text-[#0B3A63] mb-5">
-      Why this product exists
-    </h2>
+              <div className="p-6 rounded-xl bg-white dark:bg-gray-800 shadow border">
+                <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
+                  Designed for institutional workflows
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400 text-sm">
+                  Structured exactly like required by procurement, compliance and financial reviews.
+                </p>
+              </div>
 
-    <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-      European SMEs increasingly face environmental disclosure requirements when applying for loans, 
-      responding to procurement processes, negotiating logistics contracts, or complying with 
-      corporate ESG policies. Institutions demand reliable CO₂ indicators, yet SMEs typically lack 
-      internal expertise, time, and financial resources to conduct full environmental audits.
-    </p>
+              <div className="p-6 rounded-xl bg-white dark:bg-gray-800 shadow border">
+                <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
+                  30-second generation
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400 text-sm">
+                  No consultant. No delay. Enter expenses → instant verified PDF.
+                </p>
+              </div>
 
-    <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-      Traditional carbon assessments can take 3–6 weeks and involve consultants, manual data 
-      collection, and high costs. Many smaller businesses cannot afford these processes or do not 
-      meet the complexity threshold required by auditing firms. Certif-Scope bridges this gap by 
-      providing a fast, automated and standardized alternative that remains transparent and 
-      methodologically consistent.
-    </p>
+              <div className="p-6 rounded-xl bg-white dark:bg-gray-800 shadow border">
+                <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
+                  Independent verification
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400 text-sm">
+                  Each attestation includes a unique verification code + cryptographic hash.
+                </p>
+              </div>
 
-    <ul className="mt-6 space-y-4 text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-      <li>• Institutions now require CO₂ indicators for compliance and risk analysis</li>
-      <li>• Procurement processes often mandate environmental documentation</li>
-      <li>• Banks rely on CO₂ data for sustainability-linked financing decisions</li>
-      <li>• Insurance and logistics partners request CO₂ metrics before onboarding</li>
-      <li>• SMEs lack access to affordable, standardized carbon reporting tools</li>
-    </ul>
+            </div>
 
-    <p className="text-gray-700 dark:text-gray-300 leading-relaxed mt-8">
-      Certif-Scope focuses specifically on the needs of SMEs: simplicity, speed, and acceptance. 
-      The generated document is not a certification — it is a standardized attestation, based on 
-      declared financial activity and recognized emission factors, designed to satisfy institutional 
-      review processes while remaining accessible and cost-effective.
-    </p>
+          </section>
 
-  </div>
+          {/* PLACEHOLDERS FOR NEXT SECTIONS */}
+          <section id="s2"><h2 className="section-title">Key Benefits Summary</h2></section>
+          <section id="s3"><h2 className="section-title">Why the product exists</h2></section>
+          <section id="s4"><h2 className="section-title">Solution provided</h2></section>
+          <section id="s5"><h2 className="section-title">Use cases</h2></section>
+          <section id="s6"><h2 className="section-title">How it works</h2></section>
+          <section id="s7"><h2 className="section-title">Value proposition</h2></section>
+          <section id="s8"><h2 className="section-title">Security & Verification</h2></section>
+          <section id="s9"><h2 className="section-title">Sample PDF</h2></section>
+          <section id="s10"><h2 className="section-title">Data Sources</h2></section>
+          <section id="s11"><h2 className="section-title">Methodological limitations</h2></section>
+          <section id="s12"><h2 className="section-title">Data privacy</h2></section>
+          <section id="s13"><h2 className="section-title">Integrations</h2></section>
+          <section id="s14"><h2 className="section-title">Industry-specific uses</h2></section>
+          <section id="s15"><h2 className="section-title">Maintenance & Updates</h2></section>
+          <section id="s16"><h2 className="section-title">Technical FAQ</h2></section>
 
-</section>
+        </div>
+      </div>
+    </>
+  );
+}
