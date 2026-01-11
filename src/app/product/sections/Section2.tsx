@@ -4,95 +4,121 @@ export default function Section2() {
   return (
     <section
       id="s2"
-      className="scroll-mt-24 bg-[#E8F3FA] py-20 border-y border-slate-200"
+      className="scroll-mt-24 pt-6 pb-24 border-b border-gray-200 dark:border-gray-800"
     >
-      <div className="max-w-6xl mx-auto px-6">
+      {/* TITLE BLOCK */}
+      <div className="text-center mb-14">
+        <p className="uppercase tracking-widest text-xs font-semibold text-[#0B3A63]/60">
+          Section 2
+        </p>
 
-        {/* HEADER */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-extrabold text-[#0B3A63]">
-            Key Benefits Summary
-          </h2>
-          <p className="mt-4 text-lg text-slate-700 max-w-3xl mx-auto leading-relaxed">
-            Certif-Scope offers fast, standardized and verifiable CO₂ attestations 
-            designed to satisfy procurement, banking, ESG, risk evaluation and 
-            compliance requirements across Europe — without consultants, rework or delays.
+        <h2 className="text-4xl font-extrabold text-[#0B3A63] mt-3">
+          Key Benefits Summary
+        </h2>
+
+        <p className="mt-4 text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
+          The Certif-Scope attestation is engineered for institutional acceptance,
+          designed to eliminate friction, accelerate compliance, and provide a unified,
+          review-ready CO₂ indicator across procurement, banking, insurance and regulatory workflows.
+        </p>
+      </div>
+
+      {/* FEATURE ROW — NEW DESIGN (ICON GRID + GRADIENT ACCENTS) */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-12">
+
+        {/* BENEFIT 1 */}
+        <div className="relative p-8 rounded-2xl bg-gradient-to-b from-white to-[#E9F2FA] dark:from-gray-900 dark:to-gray-800 shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all">
+          <div className="absolute -top-5 left-5 bg-[#0B3A63] text-white w-10 h-10 rounded-xl flex items-center justify-center text-lg font-bold shadow-lg">
+            1
+          </div>
+
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-4 mt-6">
+            Instantly Available
+          </h3>
+
+          <p className="text-gray-700 dark:text-gray-400 leading-relaxed text-sm">
+            Generate a fully structured attestation in under 30 seconds. Designed for
+            urgent procurement reviews, supplier validations, grant applications and  
+            financial onboarding where delays are unacceptable.
           </p>
         </div>
 
-        {/* MAIN FEATURE GRID (Premium layout) */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-
-          {/* LARGE FEATURE CARD – LEFT */}
-          <div className="p-10 rounded-3xl bg-white shadow-xl border border-slate-200">
-            <h3 className="text-2xl font-semibold text-[#1E90FF] mb-4">
-              Instant and Automated
-            </h3>
-            <p className="text-slate-600 leading-relaxed mb-6">
-              Generate a fully structured CO₂ attestation in under 30 seconds.
-              No manual spreadsheets, no consultant delays, no multi-week processing.
-              Ideal for urgent procurement onboarding, partner verification or 
-              loan applications requiring immediate documentation.
-            </p>
-            <ul className="space-y-3 text-slate-700 text-sm">
-              <li>• Instant calculation and PDF export</li>
-              <li>• No human validation required</li>
-              <li>• Can be repeated at any time without extra cost</li>
-              <li>• Perfect for small teams with limited ESG resources</li>
-            </ul>
+        {/* BENEFIT 2 */}
+        <div className="relative p-8 rounded-2xl bg-white dark:bg-gray-900 shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all">
+          <div className="absolute -top-5 left-5 bg-[#0B3A63] text-white w-10 h-10 rounded-xl flex items-center justify-center text-lg font-bold shadow-lg">
+            2
           </div>
 
-          {/* 4 SMALL CARDS – RIGHT GRID */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-4 mt-6">
+            Standardized & Review-Ready
+          </h3>
 
-            <div className="p-6 rounded-2xl bg-white shadow-md border border-slate-200">
-              <h4 className="text-xl font-semibold text-[#0B3A63] mb-3">
-                Standardized Format
-              </h4>
-              <p className="text-sm text-slate-600 leading-relaxed">
-                Document structure fully aligned with European procurement and ESG review frameworks.
-              </p>
-            </div>
+          <p className="text-gray-700 dark:text-gray-400 leading-relaxed text-sm">
+            Built around institutional ESG workflows. Every attestation follows a strict  
+            structure: company identity, methodology, emission factors, computations,
+            verification ID and signature reference — readable by any compliance officer.
+          </p>
+        </div>
 
-            <div className="p-6 rounded-2xl bg-white shadow-md border border-slate-200">
-              <h4 className="text-xl font-semibold text-[#0B3A63] mb-3">
-                Accepted by Institutions
-              </h4>
-              <p className="text-sm text-slate-600 leading-relaxed">
-                Banks, insurers, buyers and public institutions can instantly review and validate.
-              </p>
-            </div>
-
-            <div className="p-6 rounded-2xl bg-white shadow-md border border-slate-200">
-              <h4 className="text-xl font-semibold text-[#0B3A63] mb-3">
-                Independently Verifiable
-              </h4>
-              <p className="text-sm text-slate-600 leading-relaxed">
-                Includes a verification ID and cryptographic hash for offline authenticity checks.
-              </p>
-            </div>
-
-            <div className="p-6 rounded-2xl bg-white shadow-md border border-slate-200">
-              <h4 className="text-xl font-semibold text-[#0B3A63] mb-3">
-                Transparent Methodology
-              </h4>
-              <p className="text-sm text-slate-600 leading-relaxed">
-                All emission factors and calculations documented clearly inside the attestation.
-              </p>
-            </div>
-
+        {/* BENEFIT 3 */}
+        <div className="relative p-8 rounded-2xl bg-gradient-to-b from-[#E9F2FA] to-white dark:from-gray-800 dark:to-gray-900 shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all">
+          <div className="absolute -top-5 left-5 bg-[#0B3A63] text-white w-10 h-10 rounded-xl flex items-center justify-center text-lg font-bold shadow-lg">
+            3
           </div>
+
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-4 mt-6">
+            Fully Verifiable
+          </h3>
+
+          <p className="text-gray-700 dark:text-gray-400 leading-relaxed text-sm">
+            Each PDF includes an independent cryptographic hash and verification ID that
+            allows third parties — banks, insurers, auditors — to authenticate validity
+            without needing to contact Certif-Scope.
+          </p>
         </div>
 
-        {/* RETURN TO SUMMARY (DISCRET) */}
-        <div className="text-right mt-12">
-          <a
-            href="#top"
-            className="text-[#0B3A63] text-sm opacity-60 hover:opacity-100 underline"
-          >
-            Return to summary
-          </a>
+      </div>
+
+      {/* SECOND FEATURE ROW — WITH CHECKMARKS */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-16">
+
+        <div className="p-8 rounded-2xl bg-white dark:bg-gray-900 shadow-lg border border-gray-200 dark:border-gray-700">
+          <h4 className="text-[#0B3A63] font-semibold text-lg mb-3">Cost-Effective</h4>
+          <ul className="text-sm text-gray-700 dark:text-gray-400 space-y-2">
+            <li>• No consultant fees</li>
+            <li>• No audit scheduling delays</li>
+            <li>• Affordable flat pricing</li>
+          </ul>
         </div>
+
+        <div className="p-8 rounded-2xl bg-[#E9F2FA] dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700">
+          <h4 className="text-[#0B3A63] font-semibold text-lg mb-3">Europe-wide Acceptance</h4>
+          <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-2">
+            <li>• Compatible with EU procurement norms</li>
+            <li>• Accepted by financial institutions</li>
+            <li>• Adapted for ESG disclosure forms</li>
+          </ul>
+        </div>
+
+        <div className="p-8 rounded-2xl bg-white dark:bg-gray-900 shadow-lg border border-gray-200 dark:border-gray-700">
+          <h4 className="text-[#0B3A63] font-semibold text-lg mb-3">Transparent Methodology</h4>
+          <ul className="text-sm text-gray-700 dark:text-gray-400 space-y-2">
+            <li>• Documented emission factors</li>
+            <li>• Spend-based GHG Protocol alignment</li>
+            <li>• Clear and traceable calculations</li>
+          </ul>
+        </div>
+
+      </div>
+
+      {/* RETURN BUTTON */}
+      <div className="mt-20 flex justify-end">
+        <a
+          href="#top"
+          className="text-sm text-[#0B3A63]/80 hover:text-[#0B3A63] underline underline-offset-4 transition-colors"
+        >
+          Return to summary
+        </a>
       </div>
     </section>
   );
