@@ -1,8 +1,7 @@
-/* === FONT IMPORT === */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
-
-/* === TAILWIND IMPORT === */
-@import 'tailwindcss';
+/* === TAILWIND === */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* === THEME CERTIF-SCOPE === */
 @theme {
@@ -131,6 +130,13 @@
     background-color: var(--color-light);
     color: var(--color-body-color);
   }
+}
+
+/* === ACCESSIBILITY — BUTTONS === */
+button,
+a,
+[role="button"] {
+  outline-offset: 4px;
 }
 
 /* === COMPONENT UTILITIES === */
