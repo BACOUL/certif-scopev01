@@ -1,134 +1,138 @@
-"use client";
-
 export default function Section5() {
   return (
     <section
       id="s5"
-      className="scroll-mt-24 py-24 border-b border-slate-200 dark:border-slate-700"
+      className="scroll-mt-24 py-28 bg-gradient-to-b from-white to-[#F8FAFC] dark:from-gray-900 dark:to-gray-800 border-b border-gray-200 dark:border-gray-700"
     >
 
       {/* TITLE */}
-      <div className="mb-14">
-        <h2 className="text-4xl font-extrabold text-[#0B3A63] mb-6">
-          Use Cases
+      <div className="text-center max-w-4xl mx-auto px-6 mb-20">
+        <h2 className="text-4xl font-extrabold text-[#0B3A63]">
+          Where Certif-Scope is Used
         </h2>
-
-        <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl leading-relaxed">
-          Certif-Scope is designed for real operational needs across procurement, banking,
-          compliance, insurance, grant applications, supplier onboarding and B2B partnerships.
-          The standardized format ensures immediate compatibility with institutional workflows
-          and reduces the risk of rejection or manual review delays.
+        <p className="mt-5 text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+          The attestation is built for real operational workflows. It fits directly into
+          procurement, financing, compliance and platform onboarding processes used across Europe.
         </p>
       </div>
 
-      {/* PREMIUM BUBBLE GRID STYLE — DIFFERENT FROM OTHER SECTIONS */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
+      {/* USE CASE GRID */}
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
 
-        {/* USE CASE 1 */}
-        <div className="p-10 bg-gradient-to-br from-[#EAF3FA] to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl shadow-lg border border-gray-200 dark:border-gray-700">
-          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
-            Supplier Onboarding
+        {/* CARD 1 */}
+        <div className="p-10 rounded-3xl shadow-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 relative">
+          <div className="absolute top-0 right-0 w-24 h-24 bg-[#47B39C]/20 rounded-bl-3xl" />
+          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3 relative">
+            Banking & Financial Institutions
           </h3>
-          <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-            Procurement departments increasingly require CO₂ transparency before onboarding
-            new suppliers. Certif-Scope provides an instant attestation that fits directly
-            into due-diligence and vendor approval workflows.
+          <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed relative">
+            Banks increasingly require CO₂ disclosure for risk scoring. Certif-Scope provides 
+            a standardized and verifiable indicator that can be validated independently by analysts.
           </p>
+          <ul className="mt-5 text-sm text-gray-600 dark:text-gray-400 space-y-2 relative">
+            <li>• Loan applications</li>
+            <li>• ESG risk scoring</li>
+            <li>• Subsidies & grant eligibility</li>
+            <li>• Due diligence for investments</li>
+          </ul>
         </div>
 
-        {/* USE CASE 2 */}
-        <div className="p-10 bg-gradient-to-br from-[#EAF3FA] to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl shadow-lg border border-gray-200 dark:border-gray-700">
-          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
-            Banking & Loan Applications
+        {/* CARD 2 */}
+        <div className="p-10 rounded-3xl shadow-xl bg-[#F8FAFC] dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
+            Procurement & Supplier Onboarding
           </h3>
           <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-            Financial institutions assess environmental indicators for risk evaluation.
-            Certif-Scope provides a standardized, verifiable CO₂ footprint accepted in
-            loan processes and financing eligibility checks.
+            Enterprises and public buyers are increasingly demanding CO₂ metrics for vendor 
+            qualification. Certif-Scope ensures suppliers can provide a compliant and accepted format.
           </p>
+          <ul className="mt-5 text-sm text-gray-600 dark:text-gray-400 space-y-2">
+            <li>• RFP submissions</li>
+            <li>• Buyer compliance validation</li>
+            <li>• Vendor onboarding workflows</li>
+            <li>• Supplier performance metrics</li>
+          </ul>
         </div>
 
-        {/* USE CASE 3 */}
-        <div className="p-10 bg-gradient-to-br from-[#EAF3FA] to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl shadow-lg border border-gray-200 dark:border-gray-700">
-          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
-            Insurance Risk Assessment
+        {/* CARD 3 */}
+        <div className="p-10 rounded-3xl shadow-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700">
+          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
+            Marketplaces & Digital Platforms
           </h3>
           <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-            Insurers increasingly use environmental metrics to evaluate risk categories.
-            Certif-Scope provides a traceable PDF that can be independently verified
-            without requiring additional documentation.
+            Many platforms now require environmental indicators to list products or services. 
+            Certif-Scope offers a ready-to-upload document accepted by these systems.
           </p>
+          <ul className="mt-5 text-sm text-gray-600 dark:text-gray-400 space-y-2">
+            <li>• Online marketplaces</li>
+            <li>• B2B platforms</li>
+            <li>• Onboarding verification</li>
+            <li>• ESG-compliant listings</li>
+          </ul>
         </div>
 
-        {/* USE CASE 4 */}
-        <div className="p-10 bg-gradient-to-br from-[#EAF3FA] to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl shadow-lg border border-gray-200 dark:border-gray-700">
-          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
-            Grant Applications & Public Funding
+        {/* CARD 4 */}
+        <div className="p-10 rounded-3xl shadow-xl bg-[#47B39C]/10 dark:bg-[#47B39C]/20 border border-[#47B39C]/30">
+          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
+            Internal ESG Reporting
+          </h3>
+          <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+            Companies use Certif-Scope internally to provide a consistent CO₂ baseline for 
+            reporting, investor communication and long-term sustainability metrics.
+          </p>
+          <ul className="mt-5 text-sm text-gray-700 dark:text-gray-300 space-y-2">
+            <li>• Annual ESG reports</li>
+            <li>• Board reporting</li>
+            <li>• Impact measurement</li>
+            <li>• Investor communication</li>
+          </ul>
+        </div>
+
+        {/* CARD 5 */}
+        <div className="p-10 rounded-3xl shadow-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 relative">
+          <div className="absolute inset-0 bg-gradient-to-br from-transparent to-[#47B39C]/10" />
+          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3 relative">
+            Insurance & Risk Management
+          </h3>
+          <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed relative">
+            Insurers use standardized CO₂ indicators to refine underwriting logic, premium 
+            calculations and environmental exposure assessments.
+          </p>
+          <ul className="mt-5 text-sm text-gray-600 dark:text-gray-400 space-y-2 relative">
+            <li>• Environmental risk scoring</li>
+            <li>• Policy eligibility</li>
+            <li>• Green insurance products</li>
+            <li>• Environmental exposure analysis</li>
+          </ul>
+        </div>
+
+        {/* CARD 6 */}
+        <div className="p-10 rounded-3xl shadow-xl bg-[#F8FAFC] dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
+            Public Grants & Regulatory Programs
           </h3>
           <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-            Many European funding programs require environmental disclosure. Certif-Scope
-            provides a fast and compliant attestation that can be attached to applications
-            without consultant involvement.
+            Many public tenders and grants require applicants to provide CO₂ indicators. 
+            Certif-Scope offers a fast and accepted solution for these submissions.
           </p>
+          <ul className="mt-5 text-sm text-gray-600 dark:text-gray-400 space-y-2">
+            <li>• European subsidies</li>
+            <li>• Local environmental programs</li>
+            <li>• Public purchasing frameworks</li>
+            <li>• Professional certifications</li>
+          </ul>
         </div>
-
       </div>
 
-      {/* DARK FULL-WIDTH STRIP WITH ICONLIST */}
-      <div className="w-full bg-[#0B3A63] text-white rounded-3xl p-12 shadow-xl mb-20">
-
-        <h3 className="text-2xl font-bold mb-6">
-          Additional Professional Use Cases
-        </h3>
-
-        <ul className="space-y-4 text-white/80 text-sm leading-relaxed max-w-4xl">
-          <li>• Export compliance checks for international procurement workflows</li>
-          <li>• ESG scoring and automated supplier ranking systems</li>
-          <li>• Internal company reporting for annual sustainability reports</li>
-          <li>• Risk and compliance reviews for mergers and acquisitions (M&A)</li>
-          <li>• Marketplace vendor validation where CO₂ indicators are required</li>
-        </ul>
-      </div>
-
-      {/* 3-COLUMN “INDUSTRY SNAPSHOTS” — VISUAL DIFFERENCE */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-14">
-
-        {/* INDUSTRY BOX 1 */}
-        <div className="p-8 bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 shadow-lg">
-          <h4 className="text-xl font-semibold text-[#0B3A63] mb-3">Manufacturing</h4>
-          <p className="text-gray-600 dark:text-gray-400 text-sm">
-            Quick CO₂ disclosure used in subcontracting and industrial supply chains.
-          </p>
-        </div>
-
-        {/* INDUSTRY BOX 2 */}
-        <div className="p-8 bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 shadow-lg">
-          <h4 className="text-xl font-semibold text-[#0B3A63] mb-3">Tech & SaaS</h4>
-          <p className="text-gray-600 dark:text-gray-400 text-sm">
-            Procurement compliance for cloud providers, digital platforms and IT services.
-          </p>
-        </div>
-
-        {/* INDUSTRY BOX 3 */}
-        <div className="p-8 bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 shadow-lg">
-          <h4 className="text-xl font-semibold text-[#0B3A63] mb-3">Construction</h4>
-          <p className="text-gray-600 dark:text-gray-400 text-sm">
-            On-site contractors must provide CO₂ documentation to meet regulatory standards.
-          </p>
-        </div>
-
-      </div>
-
-      {/* DISCREET RETURN BUTTON */}
-      <div className="mt-12">
+      {/* RETURN BUTTON */}
+      <div className="text-center mt-20">
         <a
           href="#top"
-          className="text-[#0B3A63] text-sm underline opacity-70 hover:opacity-100 transition"
+          className="inline-block text-sm text-gray-500 hover:text-[#0B3A63] border border-gray-300 px-4 py-2 rounded-lg transition"
         >
-          Back to summary
+          Back to summary ↑
         </a>
       </div>
-
     </section>
   );
-        }
+}
