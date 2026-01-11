@@ -11,7 +11,7 @@ export default function ProductPage() {
       {/*
       ======================================================================
       OFFICIAL PRODUCT PAGE STRUCTURE — 16 SECTIONS
-      (Internal table of contents — not visible on the website)
+      (Internal table of contents — NOT visible on the website)
       ======================================================================
 
       1. Product Overview
@@ -31,7 +31,10 @@ export default function ProductPage() {
       15. Maintenance & Updates (methodology versioning)
       16. Technical FAQ (edge cases + interpretation)
 
-      All sections MUST be implemented progressively, in this order.
+      NOTE:
+      – These sections will be added progressively.
+      – Only Section 1 is currently implemented below.
+      – Keep the same order for SEO, IA-lisibility and product clarity.
       ======================================================================
       */}
 
