@@ -18,6 +18,11 @@ const Header = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Fermer automatiquement le menu quand la route change
+  useEffect(() => {
+    setNavbarOpen(false);
+  }, [pathname]);
+
   const [openIndex, setOpenIndex] = useState(-1);
   const handleSubmenu = (index: number) =>
     setOpenIndex(openIndex === index ? -1 : index);
@@ -33,7 +38,7 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between py-3 md:py-4">
 
-          <Link href="/" className="flex items-center">
+          <Link href="/" className="flex items-center" onClick={() => setNavbarOpen(false)}>
             <Image
               src="/logo.png"
               alt="Certif-Scope"
@@ -44,6 +49,7 @@ const Header = () => {
             />
           </Link>
 
+          {/* Mobile menu button */}
           <button
             onClick={() => setNavbarOpen(!navbarOpen)}
             aria-label="Menu"
@@ -66,6 +72,7 @@ const Header = () => {
             />
           </button>
 
+          {/* Navigation */}
           <nav
             className={`absolute right-6 top-full mt-3 w-[260px] rounded-xl border bg-white dark:bg-gray-900 dark:border-gray-700 shadow-xl p-6 transition-all duration-300 lg:static lg:bg-transparent lg:shadow-none lg:border-none lg:p-0 lg:w-auto lg:flex lg:items-center ${
               navbarOpen ? "opacity-100 visible" : "opacity-0 invisible lg:opacity-100 lg:visible"
@@ -77,6 +84,7 @@ const Header = () => {
                   {item.path ? (
                     <Link
                       href={item.path}
+                      onClick={() => setNavbarOpen(false)}
                       className={`text-base font-medium transition ${
                         pathname === item.path
                           ? "text-[#1FB6C1]"
@@ -109,6 +117,7 @@ const Header = () => {
                             <Link
                               key={subIndex}
                               href={subItem.path}
+                              onClick={() => setNavbarOpen(false)}
                               className="block py-2 text-sm text-gray-700 dark:text-gray-300 hover:text-[#1FB6C1]"
                             >
                               {subItem.title}
@@ -120,8 +129,10 @@ const Header = () => {
                 </li>
               ))}
 
+              {/* CTA desktop */}
               <Link
                 href="/assessment"
+                onClick={() => setNavbarOpen(false)}
                 className="hidden lg:inline-block bg-[#1FB6C1] text-white font-semibold px-6 py-3 rounded-lg shadow hover:bg-[#18a8ad] transition"
               >
                 Generate Attestation
