@@ -18,10 +18,10 @@
   --color-current: currentColor;
   --color-transparent: transparent;
 
-  --color-primary: #0F172A;     /* bleu-noir institutionnel */
-  --color-accent: #22C55E;      /* vert validation */
-  --color-light: #F8FAFC;       /* fond clair pro */
-  --color-text: #1E293B;        /* texte lisible pro */
+  --color-primary: #0F172A;
+  --color-accent: #22C55E;
+  --color-light: #F8FAFC;
+  --color-text: #1E293B;
 
   --color-white: #ffffff;
   --color-black: #0F172A;
@@ -79,47 +79,6 @@
   ::backdrop,
   ::file-selector-button {
     border-color: var(--color-gray-200, currentcolor);
-  }
-}
-
-/* === HEADER UTILITIES === */
-@utility sticky {
-  & .header-logo {
-    @apply py-5 lg:py-2;
-  }
-
-  & .menu-scroll.active {
-    @apply opacity-70;
-  }
-}
-
-@utility header-logo {
-  .sticky & {
-    @apply py-5 lg:py-2;
-  }
-}
-
-@utility menu-scroll {
-  .sticky &.active {
-    @apply opacity-70;
-  }
-}
-
-@utility active {
-  .sticky &.menu-scroll {
-    @apply opacity-70;
-  }
-}
-
-@utility dot {
-  input#togglePlan:checked ~ & {
-    @apply translate-x-full;
-  }
-}
-
-@utility box {
-  input#checkboxLabel:checked ~ & span {
-    @apply opacity-100;
   }
 }
 
