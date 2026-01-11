@@ -7,6 +7,7 @@ import "../styles/index.css";
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata = {
@@ -25,9 +26,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`bg-[#FCFCFC] dark:bg-black ${inter.className}`}>
+      <body className={inter.className}>
         <Header />
-        {children}
+        <main>{children}</main>
         <Footer />
         <ScrollToTop />
       </body>
