@@ -1,134 +1,159 @@
-"use client";
-
 export default function Section8() {
   return (
-    <section id="s8" className="scroll-mt-24">
+    <section
+      id="s8"
+      className="scroll-mt-24 py-32 bg-white dark:bg-gray-900"
+    >
 
-      {/* SECTION HEADER */}
-      <div className="mb-14">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-4">
-          Security & Verification Model
+      {/* HEADER */}
+      <div className="max-w-4xl mx-auto text-center px-6 mb-20">
+        <h2 className="text-4xl font-extrabold text-[#0B3A63]">
+          Security & Verification
         </h2>
-        <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl">
-          Certif-Scope is built with a trust-minimized and transparent verification architecture,
-          ensuring that each CO₂ attestation is authentic, tamper-resistant and independently
-          verifiable by auditors, banks, insurers, procurement officers and regulatory bodies.
+
+        <p className="mt-6 text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+          Certif-Scope ensures integrity, authenticity and long-term verifiability
+          through cryptographic hashing, standardized structure and independent validation,
+          enabling institutions to check reports without contacting us.
         </p>
       </div>
 
-      {/* GRID LAYOUT */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-
-        {/* LEFT BLOCK - PRINCIPLES */}
-        <div className="p-8 rounded-xl bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700">
-
-          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-6">
-            Core Security Principles
+      {/* SECURITY BANNER */}
+      <div className="w-full bg-[#0B3A63] text-white py-14 shadow-lg mb-24">
+        <div className="max-w-5xl mx-auto px-6 text-center">
+          <h3 className="text-2xl font-semibold mb-4">
+            Cryptographically Secure. Independently Verifiable.
           </h3>
+          <p className="text-base opacity-90 leading-relaxed max-w-3xl mx-auto">
+            Every attestation includes a unique verification ID and SHA-256 integrity hash.
+            Any institution can validate the document offline using standard tools.
+          </p>
+        </div>
+      </div>
 
-          <ul className="space-y-4 text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-            <li>
-              <strong className="text-[#0B3A63]">1. Immutable record:</strong>  
-              Every generated attestation contains a cryptographic hash that uniquely represents
-              the file’s content. Any modification invalidates verification.
+      {/* MAIN CONTENT AREA */}
+      <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
+
+        {/* LEFT PANEL — VERIFICATION STEPS */}
+        <div className="md:col-span-2 bg-[#F8FAFC] dark:bg-gray-800 p-10 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
+          <h4 className="text-2xl font-bold text-[#0B3A63] mb-8">
+            Verification Procedure
+          </h4>
+
+          <div className="space-y-8">
+
+            {/* STEP 1 */}
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 flex items-center justify-center rounded-full bg-[#47B39C]/20 text-[#47B39C] font-bold text-lg">
+                1
+              </div>
+              <div>
+                <h5 className="text-lg font-semibold text-[#0B3A63]">
+                  Extract hash & metadata
+                </h5>
+                <p className="text-gray-600 dark:text-gray-300 text-sm mt-1">
+                  The attestation PDF or JSON file contains a verification block with:
+                  <br/>• SHA-256 hash  
+                  <br/>• verification ID  
+                  <br/>• timestamp  
+                  <br/>• methodology reference  
+                </p>
+              </div>
+            </div>
+
+            {/* STEP 2 */}
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 flex items-center justify-center rounded-full bg-[#47B39C]/20 text-[#47B39C] font-bold text-lg">
+                2
+              </div>
+              <div>
+                <h5 className="text-lg font-semibold text-[#0B3A63]">
+                  Compute local hash
+                </h5>
+                <p className="text-gray-600 dark:text-gray-300 text-sm mt-1">
+                  Use any standard tool (OpenSSL, Linux checksum, PowerShell, online hash calculator)
+                  to compute the document’s SHA-256 fingerprint locally.
+                </p>
+              </div>
+            </div>
+
+            {/* STEP 3 */}
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 flex items-center justify-center rounded-full bg-[#47B39C]/20 text-[#47B39C] font-bold text-lg">
+                3
+              </div>
+              <div>
+                <h5 className="text-lg font-semibold text-[#0B3A63]">
+                  Compare results
+                </h5>
+                <p className="text-gray-600 dark:text-gray-300 text-sm mt-1">
+                  If the locally computed hash matches the hash printed in the attestation,
+                  the document is confirmed authentic and unaltered.
+                </p>
+              </div>
+            </div>
+
+            {/* STEP 4 */}
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 flex items-center justify-center rounded-full bg-[#47B39C]/20 text-[#47B39C] font-bold text-lg">
+                4
+              </div>
+              <div>
+                <h5 className="text-lg font-semibold text-[#0B3A63]">
+                  Validate timestamps & issuer
+                </h5>
+                <p className="text-gray-600 dark:text-gray-300 text-sm mt-1">
+                  Each file includes a generation timestamp and issuer signature metadata,
+                  ensuring that the report was produced by our certified generation engine.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        {/* RIGHT PANEL — COMPLIANCE */}
+        <div className="bg-white dark:bg-gray-800 p-8 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
+          <h4 className="text-xl font-bold text-[#0B3A63] mb-6">
+            Compliance Standards
+          </h4>
+
+          <ul className="space-y-5 text-sm text-gray-700 dark:text-gray-300">
+
+            <li className="border-l-4 border-[#47B39C] pl-4">
+              <span className="font-semibold text-[#0B3A63]">SHA-256 integrity hashing</span><br/>
+              Ensures the document cannot be modified without detection.
             </li>
-            <li>
-              <strong className="text-[#0B3A63]">2. Offline verification:</strong>  
-              A third-party may verify authenticity even without contacting Certif-Scope servers,
-              ensuring long-term trust and independence.
+
+            <li className="border-l-4 border-[#47B39C] pl-4">
+              <span className="font-semibold text-[#0B3A63]">ISO-aligned methodology structure</span><br/>
+              Report format follows international reporting patterns for auditability.
             </li>
-            <li>
-              <strong className="text-[#0B3A63]">3. Unique identifier:</strong>  
-              Each document contains a globally unique verification reference (UUID-v4) linked
-              to the attestation instance.
+
+            <li className="border-l-4 border-[#47B39C] pl-4">
+              <span className="font-semibold text-[#0B3A63]">Independent offline verification</span><br/>
+              No internet access or API call is required to validate authenticity.
             </li>
-            <li>
-              <strong className="text-[#0B3A63]">4. Transparency-first:</strong>  
-              All methods, emission factors and formulas used in calculations are documented and included
-              directly in the PDF.
+
+            <li className="border-l-4 border-[#47B39C] pl-4">
+              <span className="font-semibold text-[#0B3A63]">Tamper-proof metadata</span><br/>
+              Verification block embeds timestamp, source and emission factors version.
             </li>
+
           </ul>
         </div>
-
-        {/* RIGHT BLOCK - VERIFICATION WORKFLOW */}
-        <div className="p-8 rounded-xl bg-[#F0F7FB] dark:bg-[#0a1a28] shadow-lg border border-blue-200 dark:border-blue-900">
-
-          <h3 className="text-2xl font-semibold text-[#0B3A63] dark:text-white mb-6">
-            Verification Workflow
-          </h3>
-
-          <ol className="list-decimal list-inside space-y-4 text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-            <li>
-              User generates the attestation (PDF).
-            </li>
-            <li>
-              A cryptographic SHA-256 hash is embedded inside the document.
-            </li>
-            <li>
-              A verification URL + QR code is added for automated checks.
-            </li>
-            <li>
-              Any third-party can upload the file to the verification endpoint or perform a local hash comparison.
-            </li>
-            <li>
-              The system confirms:
-              <ul className="ml-4 mt-2 list-disc text-gray-600 dark:text-gray-400">
-                <li>document integrity (no tampering)</li>
-                <li>origin authenticity</li>
-                <li>timestamp validity</li>
-                <li>cryptographic match</li>
-              </ul>
-            </li>
-          </ol>
-
-        </div>
       </div>
 
-      {/* SECURITY BADGES */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
-
-        <div className="p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow">
-          <h4 className="text-lg font-bold text-[#0B3A63] mb-2">SHA-256 Hashing</h4>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
-            Industry-standard hashing ensures any modification becomes instantly detectable.
-          </p>
-        </div>
-
-        <div className="p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow">
-          <h4 className="text-lg font-bold text-[#0B3A63] mb-2">Tamper-proof integrity</h4>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
-            Integrity check system compares hash values and flags discrepancies immediately.
-          </p>
-        </div>
-
-        <div className="p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow">
-          <h4 className="text-lg font-bold text-[#0B3A63] mb-2">Independent Verification</h4>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
-            Auditors, banks, insurers and partners can validate authenticity without relying on Certif-Scope’s servers.
-          </p>
-        </div>
-
-      </div>
-
-      {/* CTA BOX */}
-      <div className="mt-16 p-8 rounded-2xl bg-[#0B3A63] text-white shadow-xl flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-
-        <div>
-          <h3 className="text-2xl font-bold mb-2">Verify a Certif-Scope Attestation</h3>
-          <p className="text-sm opacity-90">
-            Upload a PDF and check authenticity, integrity and timestamp in a few seconds.
-          </p>
-        </div>
-
+      {/* RETURN BUTTON */}
+      <div className="text-center mt-24">
         <a
-          href="/verify"
-          className="px-6 py-3 bg-white text-[#0B3A63] font-semibold rounded-lg shadow hover:bg-gray-100 transition"
+          href="#top"
+          className="inline-block text-sm text-gray-500 hover:text-[#0B3A63] border border-gray-300 px-4 py-2 rounded-lg transition"
         >
-          Open Verification Portal
+          Back to summary ↑
         </a>
-
       </div>
 
     </section>
   );
-              }
+}
