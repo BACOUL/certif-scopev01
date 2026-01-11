@@ -3,33 +3,38 @@
 import { useEffect, useState } from "react";
 
 export default function ScrollToTop() {
-  const [isVisible, setIsVisible] = useState(false);
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const toggleVisibility = () => {
-      setIsVisible(window.pageYOffset > 300);
+    let timeout: ReturnType<typeof setTimeout>;
+
+    const onScroll = () => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        setVisible(window.scrollY > 300);
+      }, 100);
     };
 
-    window.addEventListener("scroll", toggleVisibility);
-    return () => window.removeEventListener("scroll", toggleVisibility);
+    window.addEventListener("scroll", onScroll);
+    return () => {
+      clearTimeout(timeout);
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <div className="fixed right-8 bottom-8 z-50">
-      {isVisible && (
+    <div className="fixed right-6 bottom-6 z-50">
+      {visible && (
         <button
           onClick={scrollToTop}
-          aria-label="scroll to top"
-          className="bg-primary/80 hover:shadow-signUp flex h-10 w-10 items-center justify-center rounded-md text-white shadow-md cursor-pointer transition"
+          aria-label="Scroll to top of page"
+          className="bg-[#1FB6C1] hover:bg-[#18a8ad] text-white flex h-11 w-11 items-center justify-center rounded-full shadow-lg transition"
         >
-          <span className="mt-[6px] h-3 w-3 rotate-45 border-t border-l border-white"></span>
+          <span className="block h-3 w-3 rotate-45 border-t-2 border-l-2 border-white"></span>
         </button>
       )}
     </div>
