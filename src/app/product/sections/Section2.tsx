@@ -2,104 +2,119 @@
 
 export default function Section2() {
   return (
-    <section id="s2" className="scroll-mt-24">
-      
-      {/* HEADER */}
-      <div className="mb-12">
-        <p className="text-sm font-semibold tracking-wide text-[#0B3A63]/70 uppercase mb-2">
-          Section 2
-        </p>
+    <section
+      id="s2"
+      className="scroll-mt-24 border-b border-slate-200 dark:border-slate-700 pb-20 pt-10"
+    >
+      {/* SECTION TITLE */}
+      <h2 className="text-4xl font-extrabold text-[#0B3A63] mb-8">
+        Key Benefits Summary
+      </h2>
 
-        <h2 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] leading-tight">
-          Key Benefits Summary
-        </h2>
+      {/* INTRO TEXT */}
+      <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl leading-relaxed mb-14">
+        Certif-Scope delivers an immediate, verifiable, and fully standardized CO₂ attestation
+        built for institutions. It removes the complexity of traditional ESG audits while
+        matching the expectations of procurement, banking, insurance and due-diligence teams.
+        Every benefit is designed to reduce friction and speed up validation.
+      </p>
 
-        <p className="mt-4 max-w-3xl text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
-          Certif-Scope delivers measurable, verifiable and institution-ready climate indicators 
-          that accelerate procurement, compliance and banking onboarding. Each benefit below 
-          reflects mandatory expectations within European due-diligence processes.
-        </p>
-      </div>
-
-      {/* MAIN GRID */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        
-        {/* CARD 1 */}
-        <div className="p-8 rounded-2xl bg-[#F8FAFC] dark:bg-gray-800 shadow-md border border-gray-200 dark:border-gray-700 hover:shadow-lg transition">
-          <span className="inline-block px-3 py-1 text-xs rounded-full bg-[#0B3A63]/10 text-[#0B3A63] font-semibold mb-4">
-            Institutional-Ready
-          </span>
-
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
-            Fully standardized CO₂ documentation
-          </h3>
-
-          <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-            The attestation mirrors recognized disclosure structures used by procurement, ESG 
-            auditors and financial regulators. Banks and partners can validate the information 
-            without requesting supplementary evidence.
-          </p>
-        </div>
-
-        {/* CARD 2 */}
-        <div className="p-8 rounded-2xl bg-white dark:bg-gray-900 shadow-md border border-gray-200 dark:border-gray-700 hover:shadow-lg transition">
-          <span className="inline-block px-3 py-1 text-xs rounded-full bg-[#0B3A63]/10 text-[#0B3A63] font-semibold mb-4">
-            Instant Generation
-          </span>
-
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
-            30-second automated calculation
-          </h3>
-
-          <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-            Instead of multi-week consultant workflows, Certif-Scope produces results instantly, 
-            using transparent emission factors aligned with spend-based GHG Protocol principles.
-          </p>
-        </div>
-
-        {/* CARD 3 */}
-        <div className="p-8 rounded-2xl bg-[#F8FAFC] dark:bg-gray-800 shadow-md border border-gray-200 dark:border-gray-700 hover:shadow-lg transition">
-          <span className="inline-block px-3 py-1 text-xs rounded-full bg-[#0B3A63]/10 text-[#0B3A63] font-semibold mb-4">
-            Independent Verification
-          </span>
-
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
-            Cryptographically secured validation
-          </h3>
-
-          <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-            Every attestation includes a verification hash and lookup ID so any third party can 
-            validate integrity even without contacting Certif-Scope, ensuring long-term trust and 
-            auditability.
-          </p>
-        </div>
-      </div>
-
-      {/* EXTENDED DETAIL BLOCK */}
-      <div className="mt-16 p-10 rounded-2xl bg-white dark:bg-gray-900 shadow border border-gray-200 dark:border-gray-700">
-        <h3 className="text-2xl font-bold text-[#0B3A63] mb-4">
-          Additional operational advantages
+      {/* PREMIUM STRIP DESIGN (NEW STYLE) */}
+      <div className="bg-gradient-to-r from-[#0B3A63] to-[#0d4b89] text-white rounded-2xl p-10 mb-16 shadow-xl">
+        <h3 className="text-2xl font-semibold mb-4">
+          A stronger, faster and more reliable compliance workflow
         </h3>
-
-        <ul className="space-y-3 text-gray-700 dark:text-gray-300 leading-relaxed text-sm">
-          <li>• Accepted by procurement teams requiring environmental KPIs</li>
-          <li>• Compliant with standard ESG/CSR checklists used in EU tenders</li>
-          <li>• Transparent methodology and calculation process</li>
-          <li>• Fully reusable for banking, insurance and supplier onboarding</li>
-          <li>• Optimized for automated evaluation by digital compliance systems</li>
-        </ul>
+        <p className="text-white text-opacity-80 text-sm max-w-2xl leading-relaxed">
+          By simplifying environmental disclosure, Certif-Scope enables SMEs to meet
+          institutional demands instantly, without technical knowledge or consultancy overhead.
+        </p>
       </div>
 
-      {/* BACK TO SUMMARY */}
-      <div className="mt-12">
+      {/* BENEFITS GRID */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+
+        {/* BENEFIT 1 */}
+        <div className="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition">
+          <h4 className="text-xl font-semibold text-[#0B3A63] mb-4">
+            Instant Compliance
+          </h4>
+          <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+            Generate a standardized CO₂ attestation in under 30 seconds. Perfect for urgent
+            supplier onboarding, procurement validation or financial documentation requests.
+          </p>
+        </div>
+
+        {/* BENEFIT 2 */}
+        <div className="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition">
+          <h4 className="text-xl font-semibold text-[#0B3A63] mb-4">
+            Standardized Format
+          </h4>
+          <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+            The attestation follows a recognized institutional template: identity details,
+            emissions estimate, methodology overview, factors used, verification ID and cryptographic hash.
+          </p>
+        </div>
+
+        {/* BENEFIT 3 */}
+        <div className="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition">
+          <h4 className="text-xl font-semibold text-[#0B3A63] mb-4">
+            Independent Verification
+          </h4>
+          <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+            Third parties can validate authenticity using the embedded hash and identifier—
+            without needing to contact Certif-Scope. This ensures trust and transparency.
+          </p>
+        </div>
+
+      </div>
+
+      {/* SECOND GRID — DIFFERENT VISUAL STYLE */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-14">
+
+        {/* BENEFIT 4 */}
+        <div className="p-8 bg-[#f8fafc] dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-xl shadow hover:shadow-lg transition">
+          <h4 className="text-xl font-semibold text-[#0B3A63] mb-4">
+            Cost-Effective
+          </h4>
+          <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+            Avoid the financial burden of consultants and ESG audits. Certif-Scope is designed
+            for SMEs needing affordable, compliant documentation.
+          </p>
+        </div>
+
+        {/* BENEFIT 5 */}
+        <div className="p-8 bg-[#f8fafc] dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-xl shadow hover:shadow-lg transition">
+          <h4 className="text-xl font-semibold text-[#0B3A63] mb-4">
+            Europe-Wide Acceptance
+          </h4>
+          <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+            Compliant with evaluation standards used across Europe for suppliers and partners.
+            Ensures smoother onboarding and reduced rejection rates.
+          </p>
+        </div>
+
+        {/* BENEFIT 6 */}
+        <div className="p-8 bg-[#f8fafc] dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-xl shadow hover:shadow-lg transition">
+          <h4 className="text-xl font-semibold text-[#0B3A63] mb-4">
+            Transparent Methodology
+          </h4>
+          <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+            Based on documented and recognized emission factors. Each step is visible in the
+            attestation for full traceability and institutional auditability.
+          </p>
+        </div>
+
+      </div>
+
+      {/* PREMIUM BACK BUTTON */}
+      <div className="mt-20 flex">
         <a
           href="#top"
-          className="text-[#0B3A63] text-sm underline hover:text-[#062745] transition"
+          className="text-[#0B3A63] text-sm underline opacity-70 hover:opacity-100 transition"
         >
           Back to summary
         </a>
       </div>
-
     </section>
   );
 }
