@@ -1,43 +1,100 @@
+"use client";
+
 export default function Section3() {
   return (
     <section id="s3" className="scroll-mt-24">
-      <h2 className="text-3xl md:text-4xl font-bold text-[#0B3A63] mb-8">
-        Why the product exists
-      </h2>
 
-      <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed max-w-3xl mb-6">
-        Across Europe, procurement processes, financial institutions, insurers and compliance
-        teams increasingly require CO₂ indicators before onboarding a supplier, approving a loan,
-        validating an insurance contract or granting public funding. Most SMEs do not have access
-        to consultants, ESG tools or the expertise required to generate audit-ready environmental
-        reports.
-      </p>
-
-      <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed max-w-3xl mb-6">
-        Traditional carbon assessments are slow, expensive and rely on complex data collection
-        workflows that are not adapted to small companies. Certif-Scope solves this gap by enabling
-        any SME to instantly produce a standardized, verifiable CO₂ attestation aligned with the
-        expectations of institutional reviewers.
-      </p>
-
-      <ul className="mt-8 space-y-4 text-gray-700 dark:text-gray-300 text-base leading-relaxed">
-        <li>• Procurement teams request CO₂ indicators before onboarding suppliers</li>
-        <li>• Banks integrate environmental risk reviews in loan assessments</li>
-        <li>• Insurers require emissions data for certain risk categories</li>
-        <li>• Public grants demand standardized environmental documentation</li>
-        <li>• SMEs lack time, budget and technical capacity to produce ESG reports</li>
-      </ul>
-
-      <div className="p-8 mt-12 rounded-xl bg-blue-50 dark:bg-gray-800 border border-blue-100 dark:border-gray-700">
-        <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
-          The gap Certif-Scope solves
-        </h3>
-        <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
-          The market needs a fast, transparent and universally understandable CO₂ indicator
-          that doesn’t require consultancy work or specialized tools and is built for the
-          administrative reality of SMEs. Certif-Scope provides exactly that: a clear PDF
-          attestation, instantly generated, and verifiable by any third-party.
+      {/* SECTION HEADER */}
+      <div className="mb-12">
+        <h2 className="text-3xl md:text-4xl font-bold text-[#0B3A63] mb-4">
+          Why the Product Exists
+        </h2>
+        <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl leading-relaxed">
+          Certif-Scope was created to solve a real and growing problem in procurement and compliance:
+          organizations increasingly require carbon documentation, yet most SMEs cannot afford ESG
+          consultants, long audits or complex carbon accounting systems. Certif-Scope provides a fast,
+          standardized, and universally accepted alternative.
         </p>
+      </div>
+
+      {/* DESIGN STYLE: HORIZONTAL INFO STRIPS WITH ICON-LEFT PANELS */}
+      <div className="space-y-10">
+
+        {/* PROBLEM 1 */}
+        <div className="flex flex-col md:flex-row items-start md:items-center bg-[#F5F7FA] border border-[#0B3A63]/15 p-6 rounded-xl shadow-sm">
+          <div className="w-14 h-14 bg-[#0B3A63] text-white text-2xl font-bold flex items-center justify-center rounded-lg mr-6 mb-4 md:mb-0">
+            1
+          </div>
+          <div>
+            <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
+              Carbon data is now requested everywhere
+            </h3>
+            <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+              Tenders, procurement onboarding, grant applications, banks, insurers, and major clients now
+              systematically request CO₂ indicators. Without them, suppliers are blocked or rejected from
+              strategic opportunities.
+            </p>
+          </div>
+        </div>
+
+        {/* PROBLEM 2 */}
+        <div className="flex flex-col md:flex-row items-start md:items-center bg-white border border-[#0B3A63]/20 p-6 rounded-xl shadow-sm">
+          <div className="w-14 h-14 bg-[#3CAEC7] text-white text-2xl font-bold flex items-center justify-center rounded-lg mr-6 mb-4 md:mb-0">
+            2
+          </div>
+          <div>
+            <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
+              Full ESG audits are expensive and slow
+            </h3>
+            <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+              Traditional ESG audits require consultants, interviews, data extraction and several weeks of review.
+              Small companies and freelancers rarely have the budget or time for such processes.
+            </p>
+          </div>
+        </div>
+
+        {/* PROBLEM 3 */}
+        <div className="flex flex-col md:flex-row items-start md:items-center bg-[#F5F7FA] border border-[#3CAEC7]/20 p-6 rounded-xl shadow-sm">
+          <div className="w-14 h-14 bg-[#0B3A63] text-white text-2xl font-bold flex items-center justify-center rounded-lg mr-6 mb-4 md:mb-0">
+            3
+          </div>
+          <div>
+            <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
+              SMEs lack standardized reporting tools
+            </h3>
+            <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+              Many SMEs want to comply but lack a standardized, recognized format. PDF generators and manual
+              spreadsheets are rejected by auditors because they lack traceability, methodology and verification.
+            </p>
+          </div>
+        </div>
+
+        {/* PROBLEM 4 */}
+        <div className="flex flex-col md:flex-row items-start md:items-center bg-white border border-[#0B3A63]/15 p-6 rounded-xl shadow-sm">
+          <div className="w-14 h-14 bg-[#3CAEC7] text-white text-2xl font-bold flex items-center justify-center rounded-lg mr-6 mb-4 md:mb-0">
+            4
+          </div>
+          <div>
+            <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
+              Verification is almost never available
+            </h3>
+            <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+              Most existing carbon reports cannot be independently verified. Certif-Scope embeds a unique
+              verification ID and cryptographic integrity hash so institutions can confirm authenticity instantly.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      {/* TRANSITION CTA TO SECTION 4 */}
+      <div className="mt-14">
+        <a
+          href="#s4"
+          className="inline-block px-6 py-3 bg-[#0B3A63] text-white font-semibold rounded-lg shadow hover:bg-[#3CAEC7] transition"
+        >
+          Discover the solution →
+        </a>
       </div>
 
     </section>
