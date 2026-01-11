@@ -1,123 +1,73 @@
 "use client";
 
-export default function Section2() {
+export default function Section1() {
   return (
-    <section
-      id="s2"
-      className="scroll-mt-24 pt-6 pb-24 border-b border-gray-200 dark:border-gray-800"
-    >
-      {/* TITLE BLOCK */}
-      <div className="text-center mb-14">
-        <p className="uppercase tracking-widest text-xs font-semibold text-[#0B3A63]/60">
-          Section 2
-        </p>
+    <section id="s1" className="scroll-mt-24">
+      {/* HEADER */}
+      <h2 className="text-4xl font-extrabold text-[#0B3A63] mb-6">
+        Product Overview
+      </h2>
 
-        <h2 className="text-4xl font-extrabold text-[#0B3A63] mt-3">
-          Key Benefits Summary
-        </h2>
+      {/* SUBTITLE */}
+      <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl leading-relaxed mb-10">
+        Certif-Scope enables small and medium organisations to instantly generate
+        a standardized, institution-ready CO₂ attestation aligned with GHG
+        Protocol principles. The attestation is accepted by procurement,
+        compliance, banking and due-diligence workflows across Europe.
+      </p>
 
-        <p className="mt-4 text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
-          The Certif-Scope attestation is engineered for institutional acceptance,
-          designed to eliminate friction, accelerate compliance, and provide a unified,
-          review-ready CO₂ indicator across procurement, banking, insurance and regulatory workflows.
-        </p>
-      </div>
+      {/* FEATURES GRID */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-      {/* FEATURE ROW — NEW DESIGN (ICON GRID + GRADIENT ACCENTS) */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-12">
-
-        {/* BENEFIT 1 */}
-        <div className="relative p-8 rounded-2xl bg-gradient-to-b from-white to-[#E9F2FA] dark:from-gray-900 dark:to-gray-800 shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all">
-          <div className="absolute -top-5 left-5 bg-[#0B3A63] text-white w-10 h-10 rounded-xl flex items-center justify-center text-lg font-bold shadow-lg">
-            1
-          </div>
-
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-4 mt-6">
-            Instantly Available
+        {/* CARD 1 */}
+        <div className="p-7 rounded-xl bg-white dark:bg-gray-800 shadow-sm border border-[#e5e9ec] relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#0B3A63] to-[#47B39C]" />
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
+            Designed for Institutional Workflows
           </h3>
-
-          <p className="text-gray-700 dark:text-gray-400 leading-relaxed text-sm">
-            Generate a fully structured attestation in under 30 seconds. Designed for
-            urgent procurement reviews, supplier validations, grant applications and  
-            financial onboarding where delays are unacceptable.
+          <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+            Structured exactly according to procurement, banking and compliance
+            requirements — ensuring immediate acceptance with zero revisions.
           </p>
         </div>
 
-        {/* BENEFIT 2 */}
-        <div className="relative p-8 rounded-2xl bg-white dark:bg-gray-900 shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all">
-          <div className="absolute -top-5 left-5 bg-[#0B3A63] text-white w-10 h-10 rounded-xl flex items-center justify-center text-lg font-bold shadow-lg">
-            2
-          </div>
-
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-4 mt-6">
-            Standardized & Review-Ready
+        {/* CARD 2 */}
+        <div className="p-7 rounded-xl bg-white dark:bg-gray-800 shadow-sm border border-[#e5e9ec] relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#47B39C] to-[#4CC4CF]" />
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
+            30-Second Generation
           </h3>
-
-          <p className="text-gray-700 dark:text-gray-400 leading-relaxed text-sm">
-            Built around institutional ESG workflows. Every attestation follows a strict  
-            structure: company identity, methodology, emission factors, computations,
-            verification ID and signature reference — readable by any compliance officer.
+          <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+            No consultants. No spreadsheets. Enter expenses and instantly obtain
+            a verified attestation formatted for institutional review.
           </p>
         </div>
 
-        {/* BENEFIT 3 */}
-        <div className="relative p-8 rounded-2xl bg-gradient-to-b from-[#E9F2FA] to-white dark:from-gray-800 dark:to-gray-900 shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all">
-          <div className="absolute -top-5 left-5 bg-[#0B3A63] text-white w-10 h-10 rounded-xl flex items-center justify-center text-lg font-bold shadow-lg">
-            3
-          </div>
-
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-4 mt-6">
-            Fully Verifiable
+        {/* CARD 3 */}
+        <div className="p-7 rounded-xl bg-white dark:bg-gray-800 shadow-sm border border-[#e5e9ec] relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#0B3A63] to-[#4CC4CF]" />
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
+            Independent Verification
           </h3>
-
-          <p className="text-gray-700 dark:text-gray-400 leading-relaxed text-sm">
-            Each PDF includes an independent cryptographic hash and verification ID that
-            allows third parties — banks, insurers, auditors — to authenticate validity
-            without needing to contact Certif-Scope.
+          <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+            Every attestation includes a unique verification ID and
+            cryptographic hash — allowing banks, auditors or partners to
+            validate authenticity instantly.
           </p>
         </div>
 
       </div>
 
-      {/* SECOND FEATURE ROW — WITH CHECKMARKS */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-16">
-
-        <div className="p-8 rounded-2xl bg-white dark:bg-gray-900 shadow-lg border border-gray-200 dark:border-gray-700">
-          <h4 className="text-[#0B3A63] font-semibold text-lg mb-3">Cost-Effective</h4>
-          <ul className="text-sm text-gray-700 dark:text-gray-400 space-y-2">
-            <li>• No consultant fees</li>
-            <li>• No audit scheduling delays</li>
-            <li>• Affordable flat pricing</li>
-          </ul>
-        </div>
-
-        <div className="p-8 rounded-2xl bg-[#E9F2FA] dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700">
-          <h4 className="text-[#0B3A63] font-semibold text-lg mb-3">Europe-wide Acceptance</h4>
-          <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-2">
-            <li>• Compatible with EU procurement norms</li>
-            <li>• Accepted by financial institutions</li>
-            <li>• Adapted for ESG disclosure forms</li>
-          </ul>
-        </div>
-
-        <div className="p-8 rounded-2xl bg-white dark:bg-gray-900 shadow-lg border border-gray-200 dark:border-gray-700">
-          <h4 className="text-[#0B3A63] font-semibold text-lg mb-3">Transparent Methodology</h4>
-          <ul className="text-sm text-gray-700 dark:text-gray-400 space-y-2">
-            <li>• Documented emission factors</li>
-            <li>• Spend-based GHG Protocol alignment</li>
-            <li>• Clear and traceable calculations</li>
-          </ul>
-        </div>
-
-      </div>
+      {/* BOTTOM SEPARATOR */}
+      <div className="w-full mt-16 mb-8 h-px bg-gradient-to-r from-transparent via-[#47B39C] to-transparent opacity-60"></div>
 
       {/* RETURN BUTTON */}
-      <div className="mt-20 flex justify-end">
+      <div className="flex justify-end mt-6">
         <a
           href="#top"
-          className="text-sm text-[#0B3A63]/80 hover:text-[#0B3A63] underline underline-offset-4 transition-colors"
+          className="text-sm text-[#0B3A63] hover:text-[#47B39C] transition-colors duration-200 underline-offset-4 hover:underline"
         >
-          Return to summary
+          Return to Summary
         </a>
       </div>
     </section>
