@@ -5,127 +5,101 @@ export default function Section2() {
     <section id="s2" className="scroll-mt-24">
 
       {/* TITLE */}
-      <h2 className="text-3xl md:text-4xl font-bold text-[#0B3A63] mb-8">
-        Key Benefits Summary
-      </h2>
+      <div className="text-center mb-16">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63]">
+          Résumé des bénéfices clés
+        </h2>
+        <p className="text-lg text-gray-700 dark:text-gray-300 mt-4 max-w-3xl mx-auto">
+          Les entreprises ont besoin d’une preuve carbone fiable, immédiate et institutionnellement reconnue. 
+          Certif-Scope regroupe en un seul document les exigences des banques, des services achats, des assureurs 
+          et des auditeurs pour fluidifier les validations et réduire les rejets.
+        </p>
+      </div>
 
-      {/* INTRO PARAGRAPH */}
-      <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl leading-relaxed mb-12">
-        Certif-Scope allows organizations, suppliers, and SMEs to instantly produce a fully
-        standardized CO₂ attestation accepted by procurement, banking and compliance teams
-        across Europe. Below is a clear breakdown of the six primary benefits that make
-        Certif-Scope the fastest and most institution-ready carbon attestation solution.
-      </p>
+      {/* BENEFITS GRID */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
 
-      {/* GRID LAYOUT IN A DIFFERENT DESIGN: ICON-LEFT CARDS */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-
-        {/* BENEFIT 1 */}
-        <div className="flex items-start space-x-4 p-6 bg-[#F5F7FA] border border-[#0B3A63]/15 rounded-xl shadow-sm">
-          <div className="w-12 h-12 rounded-full bg-[#0B3A63] flex items-center justify-center text-white text-xl font-bold">
-            1
-          </div>
-          <div>
-            <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
-              Immediate Availability
-            </h3>
-            <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-              Generate a verifiable attestation in less than 30 seconds. Ideal for urgent
-              requests, vendor onboarding, tender applications and bank due-diligence.
-            </p>
-          </div>
+        {/* CARD 1 */}
+        <div className="bg-[#F8FAFC] dark:bg-gray-900 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700">
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
+            Attestation immédiate
+          </h3>
+          <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-sm">
+            Obtenez un document officiel en moins de 30 secondes. Aucun délai, aucune intervention humaine,
+            aucun rendez-vous. Idéal pour répondre rapidement à un appel d’offres ou à une demande client urgente.
+          </p>
         </div>
 
-        {/* BENEFIT 2 */}
-        <div className="flex items-start space-x-4 p-6 bg-[#F5F7FA] border border-[#0B3A63]/15 rounded-xl shadow-sm">
-          <div className="w-12 h-12 rounded-full bg-[#3CAEC7] flex items-center justify-center text-white text-xl font-bold">
-            2
-          </div>
-          <div>
-            <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
-              Standardized & Review-Ready
-            </h3>
-            <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-              Structured explicitly for institutional review. Includes methodology, factors,
-              verification ID, and emissions breakdown in a universally readable format.
-            </p>
-          </div>
+        {/* CARD 2 */}
+        <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700">
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
+            Format institutionnel
+          </h3>
+          <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-sm">
+            Le document reprend la structure attendue par les banques, acheteurs et organismes publics : 
+            identité complète, méthodologie, facteurs d’émission utilisés, résultat global et sections de vérification.
+          </p>
         </div>
 
-        {/* BENEFIT 3 */}
-        <div className="flex items-start space-x-4 p-6 bg-white border border-[#0B3A63]/15 rounded-xl shadow-sm">
-          <div className="w-12 h-12 rounded-full bg-[#0B3A63] flex items-center justify-center text-white text-xl font-bold">
-            3
-          </div>
-          <div>
-            <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
-              Independent Verification
-            </h3>
-            <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-              Each attestation contains a unique verification code + cryptographic
-              integrity hash allowing third-parties to validate authenticity instantly.
-            </p>
-          </div>
-        </div>
-
-        {/* BENEFIT 4 */}
-        <div className="flex items-start space-x-4 p-6 bg-white border border-[#3CAEC7]/20 rounded-xl shadow-sm">
-          <div className="w-12 h-12 rounded-full bg-[#3CAEC7] flex items-center justify-center text-white text-xl font-bold">
-            4
-          </div>
-          <div>
-            <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
-              Cost-Effective & Scalable
-            </h3>
-            <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-              Removes the need for consultants, ESG audits or manual spreadsheets.
-              Low-cost, fast, standardized, and suitable for suppliers of any size.
-            </p>
-          </div>
-        </div>
-
-        {/* BENEFIT 5 */}
-        <div className="flex items-start space-x-4 p-6 bg-[#F5F7FA] border border-[#0B3A63]/15 rounded-xl shadow-sm">
-          <div className="w-12 h-12 rounded-full bg-[#0B3A63] flex items-center justify-center text-white text-xl font-bold">
-            5
-          </div>
-          <div>
-            <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
-              Accepted Across Europe
-            </h3>
-            <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-              Meets expectations of European procurement offices, banks, insurers,
-              public institutions and compliance auditors, ensuring minimal friction.
-            </p>
-          </div>
-        </div>
-
-        {/* BENEFIT 6 */}
-        <div className="flex items-start space-x-4 p-6 bg-[#F5F7FA] border border-[#0B3A63]/15 rounded-xl shadow-sm">
-          <div className="w-12 h-12 rounded-full bg-[#3CAEC7] flex items-center justify-center text-white text-xl font-bold">
-            6
-          </div>
-          <div>
-            <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
-              Transparent Methodology
-            </h3>
-            <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-              Each attestation includes complete documentation of calculations,
-              emission factors, assumptions and methodology, ensuring full clarity.
-            </p>
-          </div>
+        {/* CARD 3 */}
+        <div className="bg-[#F8FAFC] dark:bg-gray-900 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700">
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
+            Vérification indépendante
+          </h3>
+          <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-sm">
+            Chaque attestation inclut un identifiant unique et une empreinte cryptographique permettant 
+            une authentification indépendante, même hors ligne. Aucun contact avec Certif-Scope n’est requis.
+          </p>
         </div>
       </div>
 
-      {/* CTA */}
-      <div className="mt-14">
+      {/* SECOND ROW */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-14">
+
+        {/* CARD 4 */}
+        <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700">
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
+            Coût maîtrisé et scalable
+          </h3>
+          <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-sm">
+            Une attestation unique et réutilisable, générée automatiquement. Pas de frais cachés, pas 
+            d’abonnement obligatoire, aucun cabinet externe nécessaire. Adapté PME, TPE, startups et indépendants.
+          </p>
+        </div>
+
+        {/* CARD 5 */}
+        <div className="bg-[#F8FAFC] dark:bg-gray-900 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700">
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
+            Acceptée dans toute l’Europe
+          </h3>
+          <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-sm">
+            Le format respecte rigoureusement les attentes des institutions européennes, réduisant drastiquement 
+            les refus ou les demandes de documents complémentaires.
+          </p>
+        </div>
+
+        {/* CARD 6 */}
+        <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700">
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
+            Méthodologie transparente
+          </h3>
+          <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-sm">
+            Basée sur des facteurs d’émission reconnus et une approche "spend-based" claire. Chaque étape 
+            du calcul est décrite directement dans l’attestation afin d’assurer une lecture facile et un contrôle simple.
+          </p>
+        </div>
+      </div>
+
+      {/* RETURN BUTTON */}
+      <div className="mt-16 text-center">
         <a
-          href="#s3"
-          className="inline-block px-6 py-3 bg-[#3CAEC7] text-white font-semibold rounded-lg shadow hover:bg-[#0B3A63] transition"
+          href="#top"
+          className="inline-block px-8 py-3 rounded-lg text-white font-semibold bg-[#0B3A63] hover:bg-[#062945] transition"
         >
-          Why the product exists →
+          Retour au sommaire
         </a>
       </div>
+
     </section>
   );
 }
