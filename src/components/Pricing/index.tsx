@@ -1,40 +1,55 @@
-"use client";
+import Breadcrumb from "@/components/Common/Breadcrumb";
 
-export default function Pricing() {
+export default function PricingPage() {
   return (
-    <section className="w-full bg-white py-24">
-      <div className="max-w-4xl mx-auto px-6 text-center mb-14">
-        <h2 className="text-3xl md:text-4xl font-bold text-[#0F172A] mb-3">
-          One Simple Price
-        </h2>
-        <p className="text-[#475569] text-base md:text-lg max-w-xl mx-auto">
-          Instant carbon attestation. No subscription. No hidden fees.
-        </p>
-      </div>
+    <>
+      <Breadcrumb
+        pageName="Pricing"
+        description="Simple and transparent fixed pricing. No subscription, no hidden fees."
+      />
 
-      <div className="max-w-md mx-auto bg-[#F8FAFC] rounded-2xl shadow-xl p-10 border border-slate-200">
-        <div className="text-center mb-8">
-          <div className="text-5xl font-bold text-[#0F172A]">49€</div>
-          <div className="text-[#475569] text-sm mt-1">One-time payment per attestation</div>
+      <section className="py-20 bg-white dark:bg-gray-900">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+
+          <h2 className="text-3xl font-bold text-[#0B3A63] mb-6">
+            One-time attestation pricing
+          </h2>
+
+          <p className="text-gray-700 dark:text-gray-300 mb-10 leading-relaxed">
+            Certif-Scope provides instant, verifiable CO₂ attestations suitable for
+            procurement, banking and compliance workflows. Pricing is fixed per document.
+          </p>
+
+          {/* Pricing card */}
+          <div className="bg-white dark:bg-gray-800 shadow-lg rounded-xl p-10 border border-gray-200 dark:border-gray-700">
+            <h3 className="text-2xl font-semibold mb-4">Standard Attestation</h3>
+
+            <p className="text-5xl font-bold text-primary mb-3">49€</p>
+
+            <p className="text-gray-600 dark:text-gray-300 mb-6">
+              One certified CO₂ attestation • Instant PDF generation • Verification URL + QR code • Hash-secured integrity
+            </p>
+
+            <ul className="text-left mx-auto max-w-md space-y-3 text-gray-700 dark:text-gray-300">
+              <li>• Instant CO₂ estimation</li>
+              <li>• Institutional PDF format</li>
+              <li>• Unique attestation ID</li>
+              <li>• Cryptographic hash for authenticity</li>
+              <li>• QR code verification link</li>
+              <li>• Permanent read-only access</li>
+            </ul>
+
+            <button className="mt-10 px-8 py-3 bg-primary text-white rounded-lg hover:opacity-90 transition">
+              Generate Attestation
+            </button>
+          </div>
+
+          {/* Additional info */}
+          <p className="text-gray-600 dark:text-gray-300 mt-10 text-sm">
+            No subscription. Pay only when you generate an attestation.
+          </p>
         </div>
-
-        <ul className="text-[#1E293B] text-base space-y-4 mb-10">
-          <li>• Instant CO₂ estimation</li>
-          <li>• Standardized PDF attestation</li>
-          <li>• QR code + verification link included</li>
-          <li>• Accepted by banks & logistics partners</li>
-          <li>• Email support included</li>
-        </ul>
-
-        <div className="text-center">
-          <a
-            href="#"
-            className="inline-block bg-[#0F172A] text-white text-base font-semibold px-8 py-4 rounded-xl hover:bg-[#1E293B] transition"
-          >
-            Get Your Attestation
-          </a>
-        </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
