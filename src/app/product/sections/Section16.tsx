@@ -1,163 +1,127 @@
+"use client";
+
 export default function Section16() {
   return (
     <section
       id="s16"
-      className="scroll-mt-24 py-32 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800"
+      className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
-      {/* HEADER */}
-      <div className="max-w-4xl mx-auto px-6 text-center mb-20">
-        <h2 className="text-4xl font-extrabold text-[#0B3A63]">
-          Technical FAQ
+      {/* HEADER BLOCK — premium, distinct design */}
+      <div className="p-12 rounded-2xl bg-[#F8FAFC] border border-gray-200 shadow-md">
+        <h2 className="text-4xl md:text-5xl font-extrabold text-[#0B3A63]">
+          16. Technical FAQ
         </h2>
 
-        <p className="mt-6 text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-          A comprehensive set of answers to the most common technical,
-          methodological and verification-related questions asked by IT teams,
-          compliance officers, procurement departments and institutional reviewers.
+        <p className="text-lg text-gray-700 max-w-4xl mt-6 leading-relaxed">
+          This section provides precise, technical answers to the most common questions 
+          asked by institutions, procurement platforms, banks, insurers and compliance teams. 
+          It focuses on verifiability, stability, data handling, offline authentication,  
+          platform compliance, and integration guarantees. No sales language — only clear, 
+          auditable facts aligned with European expectations.
         </p>
       </div>
 
-      {/* FAQ GRID */}
-      <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-10">
+      {/* FAQ GRID — 2 columns */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-16">
 
-        {/* FAQ ITEM 1 */}
-        <div className="p-8 rounded-2xl bg-[#F8FAFC] dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow">
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
-            Is the CO₂ estimation methodology certified?
+        {/* FAQ 1 */}
+        <div className="p-8 bg-white border border-gray-200 rounded-xl shadow-sm">
+          <h3 className="text-xl font-semibold text-[#0B3A63]">
+            How is the document verified offline?
           </h3>
-          <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
-            The methodology is aligned with internationally recognized principles
-            (GHG Protocol – spend-based approach). While not “certified” by a single
-            authority, it follows validated frameworks used by public institutions,
-            auditors, procurement teams and ESG analysts across Europe.
+          <p className="text-gray-700 text-sm mt-3 leading-relaxed">
+            Each attestation includes a cryptographic hash that can be recomputed by any 
+            institution to confirm the document’s integrity. The verification requires no 
+            connection to Certif-Scope’s servers, ensuring long-term independence and 
+            regulatory alignment with archiving requirements.
           </p>
         </div>
 
-        {/* FAQ ITEM 2 */}
-        <div className="p-8 rounded-2xl bg-[#0B3A63] text-white shadow">
-          <h3 className="text-xl font-semibold mb-3">
-            Can institutions verify an attestation independently?
+        {/* FAQ 2 */}
+        <div className="p-8 bg-[#F8FAFC] border border-[#15B097]/30 rounded-xl shadow-sm">
+          <h3 className="text-xl font-semibold text-[#0B3A63]">
+            What happens if Certif-Scope becomes unavailable?
           </h3>
-          <p className="text-white/90 text-sm leading-relaxed">
-            Yes. Each attestation contains a unique verification identifier and a
-            cryptographic hash that allows independent verification without requiring
-            any contact with Certif-Scope. This ensures long-term trust and compliance.
+          <p className="text-gray-700 text-sm mt-3 leading-relaxed">
+            Verification remains possible indefinitely because the attestation contains 
+            all necessary verification data. The system does not rely on a live API or 
+            external servers, ensuring future-proof compliance and audit stability.
           </p>
         </div>
 
-        {/* FAQ ITEM 3 */}
-        <div className="p-8 rounded-2xl bg-[#F8FAFC] dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow">
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
-            Which data sources are used for the emission factors?
+        {/* FAQ 3 */}
+        <div className="p-8 bg-white border border-gray-200 rounded-xl shadow-sm">
+          <h3 className="text-xl font-semibold text-[#0B3A63]">
+            Are emission factors updated automatically?
           </h3>
-          <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
-            Certif-Scope relies on authoritative datasets such as ADEME, DEFRA, IEA,
-            and GHG Protocol reference tables. Data is reviewed regularly and updated
-            through a controlled and documented update cycle published in the changelog.
+          <p className="text-gray-700 text-sm mt-3 leading-relaxed">
+            Yes. Emission factors from recognised European sources are updated following 
+            a controlled versioning cycle. All updates are documented and backward-compatible 
+            to avoid disruption in institutional workflows.
           </p>
         </div>
 
-        {/* FAQ ITEM 4 */}
-        <div className="p-8 rounded-2xl bg-[#0B3A63] text-white shadow">
-          <h3 className="text-xl font-semibold mb-3">
-            Is the tool compliant with GDPR?
+        {/* FAQ 4 */}
+        <div className="p-8 bg-[#F8FAFC] border border-[#15B097]/30 rounded-xl shadow-sm">
+          <h3 className="text-xl font-semibold text-[#0B3A63]">
+            Does the document include personal or sensitive data?
           </h3>
-          <p className="text-white/90 text-sm leading-relaxed">
-            Yes. Certif-Scope processes only the minimum information required for the
-            calculation. No sensitive data is collected. All records can be deleted
-            on request in accordance with EU data protection regulations.
+          <p className="text-gray-700 text-sm mt-3 leading-relaxed">
+            No. The attestation contains only operational and financial indicators required 
+            for institutional evaluation. No personal data is stored or transmitted, ensuring 
+            GDPR compliance by design.
           </p>
         </div>
 
-        {/* FAQ ITEM 5 */}
-        <div className="p-8 rounded-2xl bg-[#F8FAFC] dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow">
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
-            Does the attestation include a breakdown per category?
+        {/* FAQ 5 */}
+        <div className="p-8 bg-white border border-gray-200 rounded-xl shadow-sm">
+          <h3 className="text-xl font-semibold text-[#0B3A63]">
+            Does the document comply with European procurement formats?
           </h3>
-          <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
-            Yes. The PDF attestation includes a clear breakdown of emissions per
-            spend-category and sub-category, allowing institutions to review impacts
-            in detail and understand the underlying sources and calculation logic.
+          <p className="text-gray-700 text-sm mt-3 leading-relaxed">
+            Yes. The structure follows a stable institutional layout based on common 
+            procurement and compliance requirements used by public and private 
+            organizations across the EU.
           </p>
         </div>
 
-        {/* FAQ ITEM 6 */}
-        <div className="p-8 rounded-2xl bg-[#0B3A63] text-white shadow">
-          <h3 className="text-xl font-semibold mb-3">
-            Are historical attestations still valid after a methodology update?
+        {/* FAQ 6 */}
+        <div className="p-8 bg-[#F8FAFC] border border-[#15B097]/30 rounded-xl shadow-sm">
+          <h3 className="text-xl font-semibold text-[#0B3A63]">
+            Can the attestation be integrated into automated platforms?
           </h3>
-          <p className="text-white/90 text-sm leading-relaxed">
-            Absolutely. Each attestation references the exact methodology version used
-            at the time of generation, ensuring full traceability and long-term audit
-            compatibility. Older attestations remain valid and verifiable.
+          <p className="text-gray-700 text-sm mt-3 leading-relaxed">
+            Yes. The PDF contains structured metadata fields that allow automated ingestion 
+            by procurement platforms, risk scoring engines and document validation systems.
           </p>
         </div>
-
-        {/* FAQ ITEM 7 */}
-        <div className="p-8 rounded-2xl bg-[#F8FAFC] dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow">
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
-            Can Certif-Scope integrate with external systems?
-          </h3>
-          <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
-            Yes. Integration endpoints allow automated submission of expenditure data.
-            CSV import is supported, and API endpoints can be activated for enterprise
-            workflows and automated procurement systems.
-          </p>
-        </div>
-
-        {/* FAQ ITEM 8 */}
-        <div className="p-8 rounded-2xl bg-[#0B3A63] text-white shadow">
-          <h3 className="text-xl font-semibold mb-3">
-            Is there an audit log of methodology changes?
-          </h3>
-          <p className="text-white/90 text-sm leading-relaxed">
-            Yes. A full methodology changelog is maintained publicly, documenting every
-            revision, update, and factor adjustment. This ensures transparency and
-            institutional compliance.
-          </p>
-        </div>
-
       </div>
 
-      {/* CTA LINKS BLOCK */}
-      <div className="max-w-4xl mx-auto px-6 mt-20">
-        <h3 className="text-2xl font-bold text-[#0B3A63] text-center mb-10">
-          Additional Technical Resources
+      {/* RETENTION & LONG-TERM ACCESS BLOCK */}
+      <div className="mt-20 p-12 bg-[#0B3A63] text-white rounded-xl shadow-md relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/20 to-transparent pointer-events-none"></div>
+
+        <h3 className="text-2xl font-semibold relative z-10">
+          Long-Term Availability & Stability Guarantees
         </h3>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <a
-            href="/docs/methodology"
-            className="p-6 rounded-xl bg-[#F8FAFC] dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow text-center hover:border-[#0B3A63] transition"
-          >
-            Methodology Documentation →
-          </a>
-
-          <a
-            href="/docs/datasources"
-            className="p-6 rounded-xl bg-[#F8FAFC] dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow text-center hover:border-[#0B3A63] transition"
-          >
-            Emission Factor Sources →
-          </a>
-
-          <a
-            href="/docs/changelog"
-            className="p-6 rounded-xl bg-[#F8FAFC] dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow text-center hover:border-[#0B3A63] transition"
-          >
-            Changelog Archive →
-          </a>
-        </div>
+        <p className="text-white/90 mt-4 max-w-5xl leading-relaxed relative z-10">
+          The document remains verifiable years after issuance, even in archived or offline 
+          conditions. Institutions can recompute the integrity checksum without relying on 
+          external infrastructure, ensuring continuity even during organizational changes, 
+          system migrations or regulatory audits.
+        </p>
       </div>
 
-      {/* FOOTER — BACK TO SUMMARY */}
-      <div className="text-center mt-24">
+      {/* RETURN BUTTON — standardized across all sections */}
+      <div className="mt-12 text-right">
         <a
           href="#top"
-          className="inline-block text-sm text-gray-500 hover:text-[#0B3A63] border border-gray-300 px-4 py-2 rounded-lg transition"
+          className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
         >
-          Back to summary ↑
+          Back to summary
         </a>
       </div>
     </section>
   );
-        }
+}
