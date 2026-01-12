@@ -12,6 +12,7 @@ export default function Section4() {
         <h2 className="text-4xl font-extrabold text-[#0B3A63] mb-4">
           Solution Provided
         </h2>
+
         <p className="text-lg text-gray-700 max-w-3xl">
           Certif-Scope delivers a fast, standardized, and independently verifiable CO₂
           attestation built specifically for institutional acceptance. The system transforms
@@ -20,7 +21,7 @@ export default function Section4() {
         </p>
       </div>
 
-      {/* MAIN GRID LAYOUT — 3 COLUMNS */}
+      {/* MAIN GRID LAYOUT */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-12">
 
         {/* COLUMN 1 — DATA INPUT */}
@@ -28,6 +29,7 @@ export default function Section4() {
           <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
             1. Structured Data Input
           </h3>
+
           <p className="text-gray-700 leading-relaxed mb-4">
             The user enters simplified financial activity and operational expenses. No
             technical expertise is required, and no ESG consultant is needed.
@@ -41,14 +43,14 @@ export default function Section4() {
           </ul>
         </div>
 
-        {/* COLUMN 2 — AUTOMATED ENGINE */}
+        {/* COLUMN 2 — ENGINE */}
         <div className="p-8 rounded-xl shadow-lg bg-[#0B3A63] text-white relative overflow-hidden">
-          {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#15B097] to-transparent opacity-25"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-[#15B097] to-transparent opacity-30"></div>
 
           <h3 className="text-2xl font-semibold mb-3 relative z-10">
             2. Automated Calculation Engine
           </h3>
+
           <p className="text-white/90 leading-relaxed mb-4 relative z-10">
             The system applies recognized European emission factors and a transparent
             spend-based methodology. Calculations are deterministic, standardized and
@@ -59,7 +61,7 @@ export default function Section4() {
             <li>• Verified emission factors database</li>
             <li>• Spend-based GHG Protocol alignment</li>
             <li>• Automatic category assignment</li>
-            <li>• Real-time generation (< 30 seconds)</li>
+            <li>• Real-time generation in under 30 seconds</li>
           </ul>
         </div>
 
@@ -68,6 +70,7 @@ export default function Section4() {
           <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
             3. Instant Verified Output
           </h3>
+
           <p className="text-gray-700 leading-relaxed mb-4">
             The final attestation is produced as a standardized PDF including a cryptographic
             hash and verification ID that any third-party can authenticate independently.
@@ -126,6 +129,7 @@ export default function Section4() {
         <h4 className="text-2xl font-semibold mb-3">
           Designed for European compliance and institutional acceptance
         </h4>
+
         <p className="text-white/90 max-w-3xl">
           Certif-Scope reduces friction, accelerates onboarding and replaces expensive 
           sustainability audits with a fast, verifiable and standardized solution compatible 
@@ -133,11 +137,11 @@ export default function Section4() {
         </p>
       </div>
 
-      {/* RETURN BUTTON */}
-      <div className="mt-12 text-right">
+      {/* RETURN BUTTON — uniform design */}
+      <div className="mt-12 flex justify-end">
         <a
           href="#top"
-          className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
+          className="inline-block text-xs px-4 py-2 rounded-md border border-[#15B097] text-[#15B097] hover:bg-[#15B097] hover:text-white transition-colors"
         >
           Back to summary
         </a>
@@ -145,4 +149,4 @@ export default function Section4() {
 
     </section>
   );
-      }
+}
