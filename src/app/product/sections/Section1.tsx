@@ -7,91 +7,104 @@ export default function Section1() {
       className="scroll-mt-24 border-b border-gray-200 pb-20"
     >
 
-      {/* HEADER — PREMIUM INSTITUTIONAL DESIGN */}
+      {/* HEADER — Premium institutional */}
       <div className="relative p-12 rounded-2xl bg-[#F8FAFC] border border-gray-200 shadow-lg overflow-hidden">
 
-        {/* Accent gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/15 to-[#0B3A63]/10 pointer-events-none"></div>
+        {/* Gradient accent */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/10 to-[#0B3A63]/5 pointer-events-none"></div>
 
-        {/* Title — Must follow exact naming convention */}
         <h2 className="text-4xl md:text-5xl font-extrabold text-[#0B3A63] relative z-10">
-          1. Product Overview
+          1. Product Overview — Institutional-Grade CO₂ Attestation
         </h2>
 
-        {/* Institutional introduction */}
-        <p className="text-lg text-gray-700 max-w-3xl mt-6 leading-relaxed relative z-10">
-          Certif-Scope provides an instant, standardized, and independently verifiable
-          CO₂ attestation designed for European procurement, financial institutions,
-          insurance underwriting, grant applications, and due diligence workflows.
-          The output follows strict institutional structures aligned with EU expectations
-          and includes a cryptographically verifiable identifier compatible with offline validation.
+        <p className="text-lg text-gray-700 max-w-4xl mt-6 leading-relaxed relative z-10">
+          Certif-Scope generates a standardized, verifiable, and compliance-ready CO₂ attestation
+          for SMEs across Europe.  
+          It aligns with EU procurement frameworks (Directive 2014/24/EU), satisfies climate-related
+          disclosure expectations under the CSRD and ESRS E1 thematic requirements, and follows
+          internationally recognized calculation guidelines (GHG Protocol – spend-based,
+          ISO 14064-1, ISO 14083).  
+          The attestation includes a SHA-256 cryptographic integrity seal, an offline-verifiable
+          identifier, and a multilingual structure suitable for cross-European submission (EN, FR, DE,
+          ES, IT).
         </p>
-
-        {/* Regulatory references (short contextual form) */}
-        <div className="mt-6 text-sm text-gray-600 bg-white/60 p-4 rounded-lg border border-gray-200 max-w-3xl relative z-10">
-          <p className="mb-1 font-semibold text-[#0B3A63]">Relevant regulatory frameworks:</p>
-          <ul className="list-disc ml-5 space-y-1">
-            <li>CSRD Directive 2022/2464 — institutional transparency obligations</li>
-            <li>ESRS E1 — climate-related disclosure alignment</li>
-            <li>GHG Protocol Corporate Standard — spend-based CO₂ estimation principles</li>
-            <li>ISO 14064-1 — organizational GHG quantification requirements (high-level)</li>
-          </ul>
-        </div>
       </div>
 
-      {/* VALUE GRID — DISTINCT SECTION DESIGN */}
+      {/* 3-COLUMN GRID — distinct design */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-14">
 
         {/* CARD 1 */}
-        <div className="p-8 bg-white rounded-xl shadow-md border border-gray-200 hover:shadow-xl transition">
+        <div className="p-8 bg-white rounded-xl shadow-md border border-gray-200 transition hover:shadow-lg">
           <div className="text-[#15B097] text-4xl font-bold mb-3">01</div>
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">Institution-Ready Format</h3>
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
+            Built on Recognized Standards
+          </h3>
           <p className="text-gray-600 text-sm leading-relaxed">
-            Structured to match procurement, banking and audit requirements:
-            company identifiers, activity categorisation, summary indicators,
-            and verification metadata designed for cross-border acceptance.
+            Aligned with GHG Protocol (spend-based approach), ISO 14064-1 (organizational
+            quantification), ISO 14083 (transport), and draws emission factors from ADEME Base
+            Carbone®, DEFRA UK, and IPCC 2021 Guidelines.  
+            Ensures international methodological consistency.
           </p>
         </div>
 
         {/* CARD 2 */}
-        <div className="p-8 bg-[#F8FAFC] rounded-xl shadow-md border border-[#15B097]/40 hover:shadow-xl transition">
+        <div className="p-8 bg-[#F8FAFC] rounded-xl shadow-md border border-[#15B097]/30 transition hover:shadow-lg">
           <div className="text-[#15B097] text-4xl font-bold mb-3">02</div>
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">Delivered in Under 30 Seconds</h3>
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
+            Delivered in Under 30 Seconds
+          </h3>
           <p className="text-gray-600 text-sm leading-relaxed">
-            Input annual spend once → receive a fully formatted, multilingual
-            and verification-ready PDF instantly. No consultant involvement and
-            no iterative validation cycles.
+            Automated computation pipeline using validated emission factors + deterministic
+            calculation rules.  
+            Produces an institution-grade PDF instantly, including activity categories, totals,
+            methodology summary, and verification metadata.
           </p>
         </div>
 
         {/* CARD 3 */}
-        <div className="p-8 bg-white rounded-xl shadow-md border border-gray-200 hover:shadow-xl transition">
+        <div className="p-8 bg-white rounded-xl shadow-md border border-gray-200 transition hover:shadow-lg">
           <div className="text-[#15B097] text-4xl font-bold mb-3">03</div>
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">Independent Verification</h3>
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
+            Independent Verification Capability
+          </h3>
           <p className="text-gray-600 text-sm leading-relaxed">
-            Each attestation includes a cryptographic integrity hash and a unique
-            verification identifier allowing third parties — banks, auditors,
-            insurers — to authenticate the file offline without relying on
-            Certif-Scope servers.
+            Each attestation embeds a SHA-256 hash and a structured integrity block enabling
+            offline validation by procurement teams, banks, insurers or auditors — without
+            dependence on Certif-Scope servers.  
+            This satisfies non-repudiation and audit-trail expectations.
           </p>
         </div>
+
       </div>
 
-      {/* EXPLANATION STRIP — UNIQUE DESIGN FOR SECTION 1 */}
-      <div className="mt-16 bg-[#0B3A63] text-white p-10 rounded-xl shadow-lg relative overflow-hidden">
+      {/* COMPLIANCE STRIP — regulatory depth */}
+      <div className="mt-16 bg-[#0B3A63] text-white p-10 rounded-xl shadow-md relative overflow-hidden">
+
         <div className="absolute inset-0 bg-gradient-to-br from-[#15B097] to-transparent opacity-20"></div>
 
-        <h4 className="text-2xl font-bold mb-3 relative z-10">Institutional Context</h4>
-        <p className="text-white/90 max-w-4xl leading-relaxed relative z-10">
-          European procurement and financial scoring increasingly require verifiable environmental
-          indicators. Without standardized CO₂ documentation, SMEs face onboarding delays,
-          rejected applications, and additional compliance burdens. Certif-Scope eliminates
-          the bottleneck by delivering a structured, multilingual and verification-ready document
-          that aligns with cross-European institutional expectations.
+        <h4 className="text-2xl font-bold relative z-10">Regulatory Relevance</h4>
+
+        <p className="mt-3 text-white/90 max-w-4xl leading-relaxed relative z-10">
+          Certif-Scope addresses concrete institutional requirements:
+          <br /><br />
+          • **CSRD – Corporate Sustainability Reporting Directive**: SMEs interacting with CSRD-regulated
+          entities must provide climate indicators to customers and partners.  
+          <br />
+          • **ESRS E1 Climate Standard**: Requires Scope-related information at supplier and contractor level.  
+          <br />
+          • **EU Public Procurement (Directive 2014/24/EU)**: Allows environmental criteria and CO₂ scoring
+          as part of award decisions.  
+          <br />
+          • **EBA Guidelines for Banks**: Environmental risk metrics are part of creditworthiness
+          assessment processes.  
+          <br /><br />
+          Certif-Scope gives SMEs a fast, standardized and verifiable way to meet these rapidly expanding
+          obligations.
         </p>
+
       </div>
 
-      {/* RETURN BUTTON — identical across all sections */}
+      {/* RETURN BUTTON — universal identity */}
       <div className="mt-12 text-right">
         <a
           href="#top"
@@ -103,4 +116,4 @@ export default function Section1() {
 
     </section>
   );
-      }
+}
