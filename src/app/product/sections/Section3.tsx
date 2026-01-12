@@ -7,111 +7,93 @@ export default function Section3() {
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
 
-      {/* HEADER BLOCK — unique dual-column layout */}
-      <div className="p-12 rounded-2xl bg-[#0B3A63] text-white shadow-lg grid grid-cols-1 md:grid-cols-2 gap-12">
-
-        {/* LEFT COLUMN */}
-        <div>
-          <h2 className="text-4xl font-extrabold mb-6">
-            Section 3 — Why the Product Exists
-          </h2>
-
-          <p className="text-white/90 text-lg leading-relaxed max-w-3xl">
-            Certif-Scope was created to remove the operational and financial barriers faced
-            by SMEs when institutions request CO₂ indicators. Traditional carbon reporting
-            tools are costly, slow, and constructed for large corporations. European banks,
-            procurement teams and insurers increasingly require standardized documentation
-            during onboarding, and SMEs lack the resources to respond quickly.
-          </p>
-        </div>
-
-        {/* RIGHT COLUMN — ICON PANEL */}
-        <div className="grid grid-cols-2 gap-6">
-
-          <div className="p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20">
-            <h4 className="text-lg font-semibold">Procurement</h4>
-            <p className="text-white/80 text-sm mt-2">
-              Suppliers must provide CO₂ indicators before being approved.
-            </p>
-          </div>
-
-          <div className="p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20">
-            <h4 className="text-lg font-semibold">Banking</h4>
-            <p className="text-white/80 text-sm mt-2">
-              Environmental scoring influences risk assessment and loan approval.
-            </p>
-          </div>
-
-          <div className="p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20">
-            <h4 className="text-lg font-semibold">Insurance</h4>
-            <p className="text-white/80 text-sm mt-2">
-              Sustainability indicators impact eligibility and pricing.
-            </p>
-          </div>
-
-          <div className="p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20">
-            <h4 className="text-lg font-semibold">Public Funding</h4>
-            <p className="text-white/80 text-sm mt-2">
-              Grants increasingly require fast, standardized CO₂ disclosure.
-            </p>
-          </div>
-        </div>
+      {/* HEADER BLOCK */}
+      <div className="bg-[#0B3A63] text-white p-12 rounded-2xl shadow-md">
+        <h2 className="text-4xl font-extrabold mb-4">
+          Section 3 — Why the Product Exists
+        </h2>
+        <p className="text-white/90 text-lg leading-relaxed max-w-4xl">
+          European institutions increasingly require standardized CO₂ indicators from suppliers,
+          applicants, subcontractors and service providers. SMEs face a structural barrier:
+          traditional carbon assessments are slow, expensive, and designed for large organizations.
+          Certif-Scope exists to close this gap with an instant, standardized, and institution-ready
+          attestation.
+        </p>
       </div>
 
-      {/* PAIN POINTS — 3-column institutional layout */}
-      <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-10">
+      {/* 4-COLUMN GRID — redesigned for clarity & mobile */}
+      <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
-        <div className="p-8 bg-white rounded-xl shadow-md border border-gray-200">
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
-            Slow & Complex Processes
-          </h3>
-          <p className="text-gray-600 text-sm leading-relaxed">
-            SMEs often wait weeks for consultants to compile CO₂ documents. Institutions 
-            expect submissions within 24–72 hours — Certif-Scope delivers instantly.
+        <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-sm text-center">
+          <h4 className="text-lg font-semibold text-[#0B3A63] mb-2">Procurement</h4>
+          <p className="text-gray-700 text-sm leading-relaxed">
+            Buyers now request CO₂ indicators before approving suppliers.
           </p>
         </div>
 
-        <div className="p-8 bg-[#F8FAFC] rounded-xl shadow-md border border-[#15B097]/30">
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
-            High Cost Barriers
-          </h3>
-          <p className="text-gray-600 text-sm leading-relaxed">
-            Carbon accounting services are expensive and designed for large companies. 
-            Certif-Scope democratizes access by removing consulting and audit fees.
+        <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-sm text-center">
+          <h4 className="text-lg font-semibold text-[#0B3A63] mb-2">Banking</h4>
+          <p className="text-gray-700 text-sm leading-relaxed">
+            Environmental scoring directly impacts risk rating and financing.
           </p>
         </div>
 
-        <div className="p-8 bg-white rounded-xl shadow-md border border-gray-200">
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
-            Lack of Standardization
-          </h3>
-          <p className="text-gray-600 text-sm leading-relaxed">
-            Documents vary widely between providers, leading to rejections. Certif-Scope 
-            produces harmonized, predictable output that institutions can interpret easily.
+        <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-sm text-center">
+          <h4 className="text-lg font-semibold text-[#0B3A63] mb-2">Insurance</h4>
+          <p className="text-gray-700 text-sm leading-relaxed">
+            Sustainability indicators influence eligibility and premium levels.
+          </p>
+        </div>
+
+        <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-sm text-center">
+          <h4 className="text-lg font-semibold text-[#0B3A63] mb-2">Public Funding</h4>
+          <p className="text-gray-700 text-sm leading-relaxed">
+            Grants increasingly require fast, standardized CO₂ disclosure.
           </p>
         </div>
       </div>
 
-      {/* INSTITUTIONAL CONTEXT BLOCK — large explanatory section */}
-      <div className="mt-20 p-12 bg-[#F8FAFC] border border-gray-200 rounded-xl shadow-sm">
+      {/* PAIN POINTS SECTION */}
+      <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-10">
+
+        <div className="p-8 bg-[#F8FAFC] border border-gray-200 rounded-xl shadow-sm">
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">Slow Processes</h3>
+          <p className="text-gray-700 text-sm leading-relaxed">
+            SMEs typically wait weeks for consultants, while institutions require delivery
+            within 24–72 hours. Certif-Scope eliminates this delay.
+          </p>
+        </div>
+
+        <div className="p-8 bg-[#F8FAFC] border border-gray-200 rounded-xl shadow-sm">
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">High Costs</h3>
+          <p className="text-gray-700 text-sm leading-relaxed">
+            Traditional carbon audits are expensive and inaccessible. Certif-Scope makes
+            compliance affordable for all SMEs.
+          </p>
+        </div>
+
+        <div className="p-8 bg-[#F8FAFC] border border-gray-200 rounded-xl shadow-sm">
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">No Standardization</h3>
+          <p className="text-gray-700 text-sm leading-relaxed">
+            Institutions reject inconsistent reports. Certif-Scope delivers a single,
+            predictable and accepted structure.
+          </p>
+        </div>
+      </div>
+
+      {/* CONTEXT SECTION */}
+      <div className="mt-20 p-10 bg-[#15B097]/10 border border-[#15B097]/40 rounded-xl">
         <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
-          European Institutions Now Expect CO₂ Indicators by Default
+          Why a Standard Was Needed
         </h3>
-
         <p className="text-gray-700 leading-relaxed max-w-4xl">
-          Across Europe, suppliers, applicants, contractors and service providers are routinely 
-          asked for environmental indicators in order to complete risk assessments, 
-          procurement validation, insurance modeling or public-grant eligibility.  
-        </p>
-
-        <p className="text-gray-700 leading-relaxed max-w-4xl mt-4">
-          The challenge: most SMEs do not have internal ESG teams or budget for consulting. 
-          Certif-Scope exists to remove this friction and ensure any business can meet 
-          institutional requirements quickly, clearly and affordably.
+          Europe lacks a unified, fast and affordable way for SMEs to provide credible CO₂
+          information. Certif-Scope fills this operational gap with a standardized document
+          format and cryptographic verification that institutions can trust.
         </p>
       </div>
 
-      {/* RETURN BUTTON — identical across all sections */}
+      {/* RETURN BUTTON (universal style) */}
       <div className="mt-12 text-right">
         <a
           href="#top"
