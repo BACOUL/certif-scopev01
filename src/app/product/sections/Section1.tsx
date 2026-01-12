@@ -17,11 +17,11 @@ export default function Section1() {
         </h2>
 
         <p className="text-lg text-gray-700 max-w-3xl mt-6 leading-relaxed relative z-10">
-          Certif-Scope provides SMEs across Europe with an instant, standardized and verifiable
-          CO₂ attestation formatted specifically for procurement, banking, investment, insurance
-          and compliance workflows. The output follows a strict institutional structure, includes 
-          a cryptographically verifiable identifier, and is optimized for multilingual acceptance 
-          (EN, FR, DE, ES, IT).
+          Certif-Scope provides SMEs across Europe with an instant, standardized and 
+          verifiable CO₂ attestation formatted specifically for procurement, banking, 
+          investment, insurance and compliance workflows. The output includes a 
+          cryptographically verifiable identifier and is optimized for multilingual 
+          acceptance across EN, FR, DE, ES and IT.
         </p>
       </div>
 
@@ -31,31 +31,37 @@ export default function Section1() {
         {/* CARD 1 */}
         <div className="p-8 bg-white rounded-xl shadow-md border border-gray-200 hover:shadow-lg transition">
           <div className="text-[#15B097] text-4xl font-bold mb-3">01</div>
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">Institution-Ready Format</h3>
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
+            Institutional-Ready Format
+          </h3>
           <p className="text-gray-600 text-sm leading-relaxed">
-            Structured according to expectations of procurement, finance and ESG teams: 
-            entity details, category breakdown, results summary, verification code, 
-            and audit consistency indicators.
+            Structured exactly for procurement and ESG teams: entity identifiers, 
+            categories, results summary, verification code, and audit-friendly formatting.
           </p>
         </div>
 
         {/* CARD 2 */}
         <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/30 shadow-sm hover:shadow-md transition">
           <div className="text-[#15B097] text-4xl font-bold mb-3">02</div>
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">Delivered in <30 Seconds</h3>
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
+            Delivered in &lt;30 Seconds
+          </h3>
           <p className="text-gray-600 text-sm leading-relaxed">
-            Users input annual spend categories and immediately receive a verified PDF.  
-            No consultants, no waiting periods, no multi-week ESG reporting cycles.
+            Input annual spend categories and instantly download a verified PDF. 
+            No consultants, no waiting periods, no multi-week ESG audit cycles.
           </p>
         </div>
 
         {/* CARD 3 */}
         <div className="p-8 bg-white rounded-xl shadow-md border border-gray-200 hover:shadow-lg transition">
           <div className="text-[#15B097] text-4xl font-bold mb-3">03</div>
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">Independent Verification</h3>
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
+            Independent Verification
+          </h3>
           <p className="text-gray-600 text-sm leading-relaxed">
-            Each attestation contains a cryptographic integrity seal + a unique verification 
-            identifier, enabling third parties to authenticate the PDF without relying on servers.
+            Each attestation includes a cryptographic integrity seal and a unique 
+            verification ID enabling third-party validation fully offline without 
+            relying on Certif-Scope servers.
           </p>
         </div>
 
@@ -65,17 +71,19 @@ export default function Section1() {
       <div className="mt-16 bg-[#0B3A63] text-white p-10 rounded-xl shadow-md relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#15B097] to-transparent opacity-20"></div>
 
-        <h4 className="text-2xl font-bold relative z-10">Why This Matters</h4>
+        <h4 className="text-2xl font-bold relative z-10">
+          Why This Section Matters
+        </h4>
 
         <p className="mt-3 text-white/90 max-w-4xl leading-relaxed relative z-10">
-          European procurement frameworks increasingly require standardized CO₂ indicators for 
-          operational risk assessment, vendor screening and financial scoring. Certif-Scope eliminates 
-          friction by providing a fast, reliable and audit-ready document widely accepted across 
-          the EU procurement ecosystem.
+          European procurement frameworks increasingly require standardized CO₂ indicators 
+          for risk assessment, vendor evaluation and sustainability scoring. Certif-Scope 
+          eliminates friction by providing a fast, reliable and audit-compatible document 
+          accepted across the EU institutional ecosystem.
         </p>
       </div>
 
-      {/* RETURN BUTTON — IDENTICAL (globally enforced) */}
+      {/* RETURN BUTTON — IDENTICAL ACROSS ALL SECTIONS */}
       <div className="mt-12 text-right">
         <a
           href="#top"
@@ -84,6 +92,7 @@ export default function Section1() {
           Back to summary
         </a>
       </div>
+
     </section>
   );
-      }
+}
