@@ -6,89 +6,79 @@ export default function Section1() {
       id="s1"
       className="scroll-mt-24 border-b border-gray-200 pb-20"
     >
-      {/* HEADER TITLE EXACT — RULE 1 */}
-      <div className="mb-10">
-        <h2 className="text-sm md:text-base font-semibold tracking-wide text-[#0B3A63]/70 uppercase">
-          Product Overview
-        </h2>
-      </div>
+      {/* TITLE — UNIFORM RULE ACROSS ALL SECTIONS */}
+      <h2 className="text-4xl font-extrabold text-[#0B3A63] mb-8">
+        1 — Product Overview
+      </h2>
 
-      {/* HERO BLOCK - premium layout */}
-      <div className="bg-[#F8FAFC] p-12 rounded-2xl shadow-sm border border-gray-100">
-        <h1 className="text-4xl font-extrabold text-[#0B3A63] leading-tight mb-6">
-          Instant Institutional-Grade CO₂ Attestation for European SMEs
-        </h1>
+      {/* PREMIUM INTRO BLOCK */}
+      <div className="bg-[#F8FAFC] p-12 rounded-2xl shadow-md border border-gray-100">
+        <h3 className="text-3xl font-bold text-[#0B3A63] mb-6">
+          Instant, Standardized and Verifiable CO₂ Attestation
+        </h3>
 
         <p className="text-lg text-gray-700 max-w-3xl leading-relaxed">
-          Certif-Scope enables businesses to instantly generate a clear,
-          standardized, and verifiable CO₂ attestation designed for procurement,
-          banking, insurance, investment onboarding, and compliance workflows.
-          The output follows a rigorous structure recognized by European
-          institutions and includes a cryptographic verification signature that
-          can be independently checked offline.
+          Certif-Scope provides a fast, standardized CO₂ attestation designed for
+          procurement, banking, insurance, compliance evaluations and onboarding
+          workflows across Europe. The output is institution-ready, formatted consistently,
+          and supported by independent cryptographic verification.
         </p>
       </div>
 
-      {/* 3 PREMIUM CARDS */}
+      {/* THREE VALUE PILLARS — DISTINCTIVE DESIGN */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-14">
 
-        {/* Card 1 */}
-        <div className="p-8 bg-white rounded-xl shadow-lg border border-gray-200">
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
-            Institutional Structure
-          </h3>
-          <p className="text-gray-600 text-sm leading-relaxed">
-            Includes all mandatory elements expected in procurement and ESG risk
-            reviews: company identifiers, categorised activity scope, summary
-            indicators, verification ID, and compliance-ready formatting.
+        {/* Pillar 1 */}
+        <div className="p-8 bg-white rounded-xl shadow-lg border border-[#0B3A63]/20">
+          <h4 className="text-xl font-semibold text-[#0B3A63] mb-3">
+            Institution-Ready Formatting
+          </h4>
+          <p className="text-gray-700 text-sm leading-relaxed">
+            The attestation follows a structured, consistent layout adapted for
+            procurement reviews, compliance checks and third-party validation.
           </p>
         </div>
 
-        {/* Card 2 */}
-        <div className="p-8 bg-white rounded-xl shadow-lg border border-gray-200">
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
-            Ready in Under 30 Seconds
-          </h3>
-          <p className="text-gray-600 text-sm leading-relaxed">
-            Upload or enter yearly spend data and download a verified PDF
-            instantly. No consultants, no multi-week audits, no back-and-forth
-            validation loops.
+        {/* Pillar 2 */}
+        <div className="p-8 bg-[#F8FAFC] rounded-xl shadow-lg border border-[#15B097]/30">
+          <h4 className="text-xl font-semibold text-[#0B3A63] mb-3">
+            Generated in Less Than 30 Seconds
+          </h4>
+          <p className="text-gray-700 text-sm leading-relaxed">
+            A streamlined input process allows any SME to produce a validated CO₂
+            attestation instantly — without consultants or complex reporting tools.
           </p>
         </div>
 
-        {/* Card 3 */}
-        <div className="p-8 bg-white rounded-xl shadow-lg border border-gray-200">
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
-            Independently Verifiable
-          </h3>
-          <p className="text-gray-600 text-sm leading-relaxed">
-            Every attestation includes a cryptographic integrity seal, unique
-            verification identifier, and offline validation path. Institutions
-            can authenticate the file without relying on Certif-Scope servers.
+        {/* Pillar 3 */}
+        <div className="p-8 bg-white rounded-xl shadow-lg border border-[#0B3A63]/20">
+          <h4 className="text-xl font-semibold text-[#0B3A63] mb-3">
+            Verifiable by Any Institution
+          </h4>
+          <p className="text-gray-700 text-sm leading-relaxed">
+            Each document includes an integrity seal and verification reference,
+            enabling secure offline authentication by third parties.
           </p>
         </div>
 
       </div>
 
-      {/* INSIGHT STRIP — UNIQUE DESIGN */}
-      <div className="mt-16 bg-[#0B3A63] text-white p-10 rounded-xl shadow-md relative overflow-hidden">
-        
-        <div className="absolute inset-0 bg-gradient-to-br from-[#15B097] to-transparent opacity-25"></div>
+      {/* INFORMATION STRIP — UNIQUE TO THIS SECTION */}
+      <div className="mt-16 p-10 bg-[#0B3A63] text-white rounded-xl shadow-md relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#15B097] to-transparent opacity-20"></div>
 
-        <h4 className="text-xl font-bold mb-4 relative z-10">
-          Why This Section Matters
+        <h4 className="text-2xl font-bold mb-4 relative z-10">
+          Built for Institutional Acceptance Across Europe
         </h4>
         <p className="text-white/90 max-w-4xl leading-relaxed relative z-10">
-          European procurement and financial institutions require transparent,
-          reliable, and standardized environmental indicators for risk scoring,
-          onboarding, due diligence, and supplier verification. Certif-Scope
-          solves a regulatory and operational bottleneck by providing a fast,
-          replicable, and institution-compatible attestation without complex
-          ESG consulting or long audits.
+          Certif-Scope removes friction in procurement and onboarding processes by
+          delivering a standardized document that is easy to evaluate, compare and
+          authenticate. It solves a practical need: provide SMEs with the ability to
+          submit compliant, professional CO₂ information without costly ESG audits.
         </p>
       </div>
 
-      {/* RETURN BUTTON — IDENTICAL ACROSS ALL SECTIONS */}
+      {/* RETURN BUTTON — IDENTICAL IN ALL SECTIONS */}
       <div className="mt-12 text-right">
         <a
           href="#top"
