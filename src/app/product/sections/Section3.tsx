@@ -7,72 +7,88 @@ export default function Section3() {
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
 
-      {/* HEADER — DESIGN DIFFÉRENT + TON INSTITUTIONNEL */}
-      <div className="relative p-12 rounded-2xl bg-[#0B3A63] text-white shadow-xl overflow-hidden">
+      {/* HEADER BLOCK — institutional dark layout */}
+      <div className="relative p-12 rounded-2xl bg-[#0B3A63] text-white shadow-lg overflow-hidden">
 
-        {/* accent overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/40 via-transparent to-[#0B3A63]/20 pointer-events-none"></div>
+        {/* Accent gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/30 to-transparent opacity-20"></div>
 
         <h2 className="text-4xl md:text-5xl font-extrabold relative z-10">
-          3. Why the Product Exists
+          3. Why the Product Exists — Regulatory & Operational Need
         </h2>
 
-        <p className="text-lg text-white/90 max-w-3xl mt-6 leading-relaxed relative z-10">
-          Certif-Scope exists to solve a critical operational gap across Europe: institutions now 
-          require standardized CO₂ indicators from suppliers, applicants, contractors and beneficiaries,
-          but SMEs lack access to fast, affordable and verifiable solutions. Traditional ESG audits 
-          are slow, expensive and inconsistent, while online calculators are not institution-ready.
+        <p className="text-lg text-white/90 mt-6 max-w-4xl leading-relaxed relative z-10">
+          Across Europe, SMEs increasingly face mandatory requests for standardized CO₂ indicators 
+          during procurement, financial onboarding and compliance screenings.  
+          Directive 2014/24/EU (public procurement), CSRD obligations (Corporate Sustainability Reporting 
+          Directive), ESRS E1 climate disclosures, and financial supervision requirements 
+          (EBA/ECB climate-risk guidelines) all push institutions to verify environmental performance.  
+          Most SMEs cannot produce this documentation at the required level of structure, speed, or credibility.
         </p>
       </div>
 
-      {/* CORE PROBLEMS — GRID WITH DISTINCT VISUAL STRUCTURE */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-14">
+      {/* 3 PAIN POINTS — different layout from section 1 & 2 */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-16">
 
-        {/* PROBLEM 1 */}
-        <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-md hover:shadow-lg transition">
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">A growing regulatory burden</h3>
+        {/* PAIN POINT 1 */}
+        <div className="p-8 bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition">
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
+            1. Institutional Pressure Intensifies
+          </h3>
           <p className="text-gray-700 text-sm leading-relaxed">
-            CSRD and ESRS frameworks introduce mandatory CO₂ indicators for thousands of companies. 
-            SMEs must respond as suppliers, subcontractors, or partners in regulated value chains—
-            even if they are not themselves directly subject to CSRD.
+            Banks apply climate-risk scoring under EBA/ECB guidelines.  
+            Public buyers enforce sustainability checks under Directive 2014/24/EU.  
+            Large corporations require CO₂ indicators from suppliers due to CSRD reporting obligations.
           </p>
         </div>
 
-        {/* PROBLEM 2 */}
-        <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/30 shadow-md hover:shadow-lg transition">
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">Lack of standardized documentation</h3>
+        {/* PAIN POINT 2 */}
+        <div className="p-8 bg-[#F8FAFC] border border-[#15B097]/30 rounded-xl shadow-sm hover:shadow-md transition">
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
+            2. Traditional Methods Are Too Slow & Expensive
+          </h3>
           <p className="text-gray-700 text-sm leading-relaxed">
-            Institutions across Europe reject spreadsheets, manually produced reports and 
-            inconsistent formats. They require uniform structures that enable fast review,
-            comparability and traceability.
+            Carbon audits cost thousands of euros and require multi-week data collection, consultant time, 
+            and manual validation. SMEs often need documentation within 24–72 hours for tenders or bank onboarding.
           </p>
         </div>
 
-        {/* PROBLEM 3 */}
-        <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-md hover:shadow-lg transition">
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">Verification bottlenecks</h3>
+        {/* PAIN POINT 3 */}
+        <div className="p-8 bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition">
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
+            3. Lack of Standardization Causes Rejections
+          </h3>
           <p className="text-gray-700 text-sm leading-relaxed">
-            Most CO₂ documents cannot be verified externally. Certif-Scope provides an 
-            independently verifiable cryptographic signature that satisfies institutional 
-            integrity requirements without needing a live backend.
+            Most CO₂ documents vary in format, terminology and methodology.  
+            Institutions reject incomplete reports, unclear assumptions, or missing verification elements.  
+            Certif-Scope provides uniform structure aligned with ESRS E1 and GHG Protocol formatting logic.
           </p>
         </div>
-
       </div>
 
-      {/* IMPACT BLOCK — INSTITUTIONAL FOCUS */}
-      <div className="mt-20 p-10 bg-[#F8FAFC] rounded-xl border border-[#15B097]/40 shadow-md">
-        <h3 className="text-2xl font-bold text-[#0B3A63] mb-4">The European Context Driving the Need</h3>
+      {/* EXPLANATION STRIP — using green theme to differentiate */}
+      <div className="mt-20 p-10 rounded-xl bg-[#15B097]/10 border border-[#15B097]/40 shadow-sm">
+        <h4 className="text-2xl font-semibold text-[#0B3A63] mb-3">
+          Why the Market Demands a Standardized Attestation
+        </h4>
+
         <p className="text-gray-700 max-w-4xl leading-relaxed">
-          Banks, insurers, private investors and public contracting authorities now integrate 
-          environmental risk indicators directly into onboarding and scoring workflows. 
-          Institutions impose these requirements because of EU-level guidance and supervisory 
-          expectations. Certif-Scope provides SMEs with a compliant way to deliver these indicators 
-          instantly, without undergoing full-scale environmental audits.
+          SMEs increasingly participate in cross-European supply chains and tender processes.  
+          To reduce litigation risk and ensure consistent evaluation, auditors and compliance 
+          teams prefer structured, verifiable documents aligned with recognized standards 
+          (GHG Protocol, ISO 14064-1).  
+          Certif-Scope bridges the gap by transforming minimal inputs into a standardized 
+          attestation that satisfies institutional expectations.
+        </p>
+
+        <p className="text-gray-700 max-w-4xl mt-4 leading-relaxed">
+          The goal is not to replace full audits, but to provide a legitimate, traceable and 
+          verifiable CO₂ indicator suitable for procurement, KYC/ESG reviews, funding applications, 
+          supplier onboarding, and eligibility screening — without the barriers of traditional consulting.
         </p>
       </div>
 
-      {/* RETURN BUTTON — IDENTIQUE ACROSS ALL SECTIONS */}
+      {/* RETURN BUTTON — universal style */}
       <div className="mt-12 text-right">
         <a
           href="#top"
