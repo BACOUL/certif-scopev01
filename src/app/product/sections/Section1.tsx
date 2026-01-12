@@ -15,29 +15,43 @@ export default function Section1() {
         </h2>
 
         <p className="text-lg text-gray-700 max-w-3xl mt-6 leading-relaxed relative z-10">
-          Certif-Scope provides an instant, standardized, and verifiable CO₂ attestation
-          formatted for procurement, banking, insurance, investment onboarding, and compliance
-          frameworks across Europe. It aligns with recognized European and international
-          guidelines governing environmental disclosure formats, including elements also found
-          in CSRD (EU 2022/2464), ESRS E1 climate-related disclosure structure, and GHG
-          Protocol spend-based approaches.
+          Certif-Scope generates a standardized CO₂ attestation aligned with the core
+          disclosure structure referenced in the EU Corporate Sustainability Reporting
+          Directive (CSRD – Regulation EU 2022/2464), the ESRS E1 climate framework,
+          and the GHG Protocol “spend-based” calculation pathway. These three pillars
+          shape how European institutions expect environmental indicators to be presented
+          during procurement, banking risk assessment, insurance eligibility, and
+          investment onboarding processes.
         </p>
+
+        {/* Verified external references */}
+        <div className="mt-6 text-sm text-gray-600 underline space-y-1">
+          <a href="https://eur-lex.europa.eu/eli/reg/2022/2464" target="_blank" rel="noopener noreferrer">
+            CSRD – EU Regulation 2022/2464 (EUR-Lex)
+          </a><br />
+          <a href="https://efrag.org/lab3" target="_blank" rel="noopener noreferrer">
+            ESRS E1 – Climate Standard (EFRAG)
+          </a><br />
+          <a href="https://ghgprotocol.org/standards/scope-3-standard" target="_blank" rel="noopener noreferrer">
+            GHG Protocol – Scope 3 / Spend-Based Method
+          </a>
+        </div>
       </div>
 
       {/* 3-Column Grid – Unique design */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-14">
-        
+
         {/* CARD 1 */}
         <div className="p-8 bg-white rounded-xl shadow-md border border-gray-200 hover:shadow-lg transition">
           <div className="text-[#15B097] text-4xl font-bold mb-3">01</div>
           <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
-            Institutional Format
+            Institution-Ready Formatting
           </h3>
           <p className="text-gray-600 text-sm leading-relaxed">
-            Includes the standardized elements expected by institutions under European
-            documentation practices: company identifiers, categorized spending structure,
-            emissions results, verification identifier, and summary consistent with
-            disclosure logic used in ESRS E1. 
+            The attestation follows a structure coherent with ESRS E1 (data categories,
+            activity segmentation, results summary, and scope alignment). While Certif-Scope
+            is not a CSRD-reporting tool, its structure mirrors institutional expectations
+            derived from these frameworks, allowing immediate operational acceptance.
           </p>
         </div>
 
@@ -48,9 +62,10 @@ export default function Section1() {
             Delivered in Under 30 Seconds
           </h3>
           <p className="text-gray-600 text-sm leading-relaxed">
-            The system transforms annual spend data into an attestation based on the
-            spend-based method referenced in the GHG Protocol guidelines. The output is
-            formatted instantly, eliminating delays associated with traditional ESG audits.
+            Calculation relies on the officially recognized spend-based pathway defined by
+            the GHG Protocol, suitable for SMEs lacking detailed activity data. This method
+            is endorsed in official guidance as a practical, good-faith estimate when more
+            granular data is unavailable.
           </p>
         </div>
 
@@ -61,13 +76,12 @@ export default function Section1() {
             Independent Verification
           </h3>
           <p className="text-gray-600 text-sm leading-relaxed">
-            Each attestation includes a cryptographic hash and a verification identifier,
-            enabling offline integrity checks. This approach mirrors transparency principles
-            recommended in ISO 14064-1 (quantification & reporting), ensuring data integrity
-            without relying on Certif-Scope servers.
+            The attestation incorporates a cryptographic integrity hash consistent with
+            transparency principles described in ISO 14064-1:2018 (quantification and
+            reporting) and integrity practices recommended in ISO 14083:2023. This enables
+            third-party verification without requiring Certif-Scope servers.
           </p>
         </div>
-
       </div>
 
       {/* Explanation Strip */}
@@ -77,11 +91,10 @@ export default function Section1() {
         <h4 className="text-2xl font-bold relative z-10">Why This Matters</h4>
 
         <p className="mt-3 text-white/90 max-w-4xl leading-relaxed relative z-10">
-          European organizations increasingly require standardized CO₂ documentation for
-          supplier onboarding, risk assessment, and compliance workflows. Certif-Scope
-          provides SMEs with an accessible, reproducible, and verifiable alternative to
-          multi-week ESG reporting processes, aligning with the institutional expectations
-          shaped by CSRD, ESRS, GHG Protocol, ISO 14064-1 and European procurement norms.
+          Procurement teams, insurers, banks and public agencies increasingly require
+          CO₂ indicators in line with EU sustainability principles. Certif-Scope allows
+          SMEs to provide fast, structured and verifiable documentation aligned with the
+          reference frameworks shaping institutional expectations across the EU.
         </p>
       </div>
 
@@ -94,7 +107,6 @@ export default function Section1() {
           Back to summary
         </a>
       </div>
-
     </section>
   );
-}
+        }
