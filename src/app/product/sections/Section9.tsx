@@ -7,110 +7,112 @@ export default function Section9() {
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
 
-      {/* HEADER */}
-      <div className="bg-[#F8FAFC] p-10 rounded-2xl shadow-sm border border-gray-100 mb-14">
-        <h2 className="text-4xl font-extrabold text-[#0B3A63] mb-4">
-          Sample PDF Attestation
-        </h2>
-        <p className="text-lg text-gray-700 max-w-3xl">
-          Below is an example of the standardized Certif-Scope CO₂ attestation format.
-          It demonstrates exactly how institutions such as banks, procurement teams,
-          insurers and compliance departments will receive and review your document.
-        </p>
-      </div>
+      {/* TITLE — institutional & consistent */}
+      <h2 className="text-4xl font-extrabold text-[#0B3A63] mb-12">
+        9 — Sample PDF Preview
+      </h2>
 
-      {/* PREVIEW MOCKUP BLOCK */}
-      <div className="flex justify-center">
-        <div className="bg-white shadow-xl rounded-2xl border border-gray-200 overflow-hidden max-w-4xl">
-          <img
-            src="/images/sample-attestation.jpg"
-            alt="Sample Certif-Scope PDF Attestation"
-            className="w-full object-cover"
-          />
-        </div>
-      </div>
+      {/* UNIQUE DESIGN: CENTERED MOCKUP + RIGHT INFO PANEL */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
 
-      {/* TECHNICAL BREAKDOWN GRID */}
-      <div className="mt-14 grid grid-cols-1 md:grid-cols-2 gap-10">
+        {/* LEFT — DOCUMENT MOCKUP */}
+        <div className="bg-white rounded-2xl shadow-xl border border-gray-200 p-8 relative overflow-hidden">
 
-        {/* LEFT BLOCK */}
-        <div className="p-8 bg-white border border-gray-200 rounded-xl shadow-md">
-          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
+          {/* Decorative accent */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/10 to-transparent pointer-events-none"></div>
+
+          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-6">
             Document Structure Overview
           </h3>
 
-          <ul className="space-y-3 text-gray-700 text-sm leading-relaxed">
-            <li>• Summary of emissions (Scope 1, 2, 3)</li>
-            <li>• Emission chart visualization</li>
-            <li>• Attestation period & reporting date</li>
-            <li>• Verification ID & integrity hash</li>
-            <li>• Methodology and emission factors</li>
-            <li>• Issuing authority and compliance notes</li>
-          </ul>
+          <p className="text-gray-700 leading-relaxed mb-8">
+            Certif-Scope produces a standardized CO₂ attestation in PDF format,
+            structured according to institutional expectations and designed for 
+            direct submission in procurement, banking, and compliance workflows.
+          </p>
 
-          <p className="mt-4 text-sm text-[#0B3A63] underline">
-            <a
-              href="https://ghgprotocol.org/standards"
-              target="_blank"
-            >
-              Learn more about the GHG Protocol standards
-            </a>
+          {/* FAKE PDF PREVIEW BOX */}
+          <div className="bg-[#F8FAFC] border border-gray-300 rounded-xl shadow-inner p-6">
+            <div className="aspect-[3/4] w-full border border-gray-300 rounded-md bg-white flex items-center justify-center text-gray-400 text-sm">
+              PDF Preview Placeholder  
+              {/* replace with an <Image /> later if needed */}
+            </div>
+          </div>
+
+          {/* INFO NOTE BELOW PREVIEW */}
+          <p className="text-gray-500 text-xs mt-4">
+            This visual preview is illustrative. The final PDF includes structured fields,
+            identifiers, and formatting matching European institutional requirements.
           </p>
         </div>
 
-        {/* RIGHT BLOCK */}
-        <div className="p-8 bg-[#0B3A63] text-white border border-[#15B097] rounded-xl shadow-xl relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/30 to-transparent"></div>
+        {/* RIGHT — DETAILED PDF CONTENT BREAKDOWN */}
+        <div className="space-y-10">
 
-          <h3 className="text-2xl font-semibold mb-4 relative z-10">
-            How Institutions Verify the Document
-          </h3>
+          {/* BLOCK 1 */}
+          <div className="p-8 bg-[#0B3A63] text-white rounded-xl shadow-lg relative overflow-hidden">
 
-          <p className="text-white/90 text-sm leading-relaxed relative z-10">
-            The verification workflow is fully transparent and designed for compliance
-            examiners who need deterministic validation without relying on Certif-Scope.
-          </p>
+            <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/40 to-transparent opacity-50"></div>
 
-          <ol className="list-decimal ml-5 mt-4 space-y-3 text-sm text-white/90 relative z-10">
-            <li>Open PDF and extract verification metadata</li>
-            <li>Recompute SHA-256 hash from the PDF content</li>
-            <li>Compare computed hash with embedded reference hash</li>
-            <li>Validate timestamp and scope classification</li>
-            <li>Confirm alignment with GHG Protocol methodology</li>
-          </ol>
+            <div className="relative z-10">
+              <h3 className="text-2xl font-bold mb-4">
+                Key Sections Included in the PDF
+              </h3>
 
-          <p className="mt-4 text-sm underline relative z-10">
-            <a
-              href="https://www.iso.org/standard/82504.html"
-              target="_blank"
-            >
-              ISO verification guidelines — ISO 22301
-            </a>
-          </p>
+              <ul className="space-y-3 text-white/90 text-sm">
+                <li>• Business identification & activity classification</li>
+                <li>• Summary of annual spending categories</li>
+                <li>• CO₂ indicators clearly structured for ESG review</li>
+                <li>• Verification ID & cryptographic integrity stamp</li>
+                <li>• Document timestamp & unique trace reference</li>
+              </ul>
+            </div>
+
+          </div>
+
+          {/* BLOCK 2 */}
+          <div className="p-8 bg-[#F8FAFC] border border-[#15B097]/30 rounded-xl shadow-lg">
+            <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
+              Why Institutions Accept This Format
+            </h3>
+            <p className="text-gray-700 leading-relaxed">
+              The document uses standardized terminology, consistent formatting,
+              and clarity suitable for automated review systems used by 
+              procurement teams, insurers, and financial institutions.
+              It avoids presentation ambiguity and ensures compatibility 
+              with compliance checklists.
+            </p>
+          </div>
+
+          {/* BLOCK 3 */}
+          <div className="p-8 bg-white border border-gray-200 rounded-xl shadow-md">
+            <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
+              Cross-Platform Compatibility
+            </h3>
+            <ul className="text-gray-700 space-y-2 text-sm">
+              <li>• PDF/A-compatible structure for long-term archiving</li>
+              <li>• Works on all devices (laptop, mobile, tablet)</li>
+              <li>• No external software required to validate integrity</li>
+            </ul>
+          </div>
+
         </div>
-
       </div>
 
-      {/* DOWNLOAD CTA */}
-      <div className="mt-20 bg-[#F8FAFC] p-10 rounded-xl border border-gray-200 shadow-sm">
+      {/* BOTTOM STRIP — reassurance message */}
+      <div className="mt-20 p-10 bg-[#F8FAFC] border border-gray-200 rounded-xl shadow-sm">
         <h4 className="text-2xl font-semibold text-[#0B3A63] mb-3">
-          Download a Sample Attestation
+          Designed for European Compliance Frameworks
         </h4>
-        <p className="text-gray-700 max-w-3xl mb-6">
-          Download a full PDF sample to review structure, layout and verification fields.
-          This is the exact file format that institutions receive.
+        <p className="text-gray-700 max-w-4xl leading-relaxed">
+          The PDF format aligns with institutional expectations across Europe,
+          ensuring clarity, reviewability, and durability. It facilitates rapid
+          onboarding, reduces friction in procurement processes, and provides
+          a reliable CO₂ indicator compatible with ESG scoring systems.
         </p>
-
-        <a
-          href="/sample/certif-scope-attestation.pdf"
-          target="_blank"
-          className="inline-block px-6 py-3 rounded-lg bg-[#0B3A63] text-white hover:bg-[#15B097] transition-colors text-sm font-medium"
-        >
-          Download PDF Sample
-        </a>
       </div>
 
-      {/* RETURN BUTTON — IDENTICAL ACROSS ALL SECTIONS */}
+      {/* RETURN BUTTON — universal & identical */}
       <div className="mt-12 text-right">
         <a
           href="#top"
