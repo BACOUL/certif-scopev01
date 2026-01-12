@@ -1,3 +1,4 @@
+
 "use client";
 
 export default function Section9() {
@@ -7,112 +8,101 @@ export default function Section9() {
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
 
-      {/* TITLE — institutional & consistent */}
-      <h2 className="text-4xl font-extrabold text-[#0B3A63] mb-12">
-        9 — Sample PDF Preview
-      </h2>
+      {/* HEADER BLOCK — exclusive layout */}
+      <div className="p-12 rounded-2xl bg-[#F8FAFC] border border-[#15B097]/30 shadow-md">
 
-      {/* UNIQUE DESIGN: CENTERED MOCKUP + RIGHT INFO PANEL */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
+        <h2 className="text-4xl md:text-5xl font-extrabold text-[#0B3A63]">
+          9. Sample PDF Output (Structure Overview)
+        </h2>
 
-        {/* LEFT — DOCUMENT MOCKUP */}
-        <div className="bg-white rounded-2xl shadow-xl border border-gray-200 p-8 relative overflow-hidden">
-
-          {/* Decorative accent */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/10 to-transparent pointer-events-none"></div>
-
-          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-6">
-            Document Structure Overview
-          </h3>
-
-          <p className="text-gray-700 leading-relaxed mb-8">
-            Certif-Scope produces a standardized CO₂ attestation in PDF format,
-            structured according to institutional expectations and designed for 
-            direct submission in procurement, banking, and compliance workflows.
-          </p>
-
-          {/* FAKE PDF PREVIEW BOX */}
-          <div className="bg-[#F8FAFC] border border-gray-300 rounded-xl shadow-inner p-6">
-            <div className="aspect-[3/4] w-full border border-gray-300 rounded-md bg-white flex items-center justify-center text-gray-400 text-sm">
-              PDF Preview Placeholder  
-              {/* replace with an <Image /> later if needed */}
-            </div>
-          </div>
-
-          {/* INFO NOTE BELOW PREVIEW */}
-          <p className="text-gray-500 text-xs mt-4">
-            This visual preview is illustrative. The final PDF includes structured fields,
-            identifiers, and formatting matching European institutional requirements.
-          </p>
-        </div>
-
-        {/* RIGHT — DETAILED PDF CONTENT BREAKDOWN */}
-        <div className="space-y-10">
-
-          {/* BLOCK 1 */}
-          <div className="p-8 bg-[#0B3A63] text-white rounded-xl shadow-lg relative overflow-hidden">
-
-            <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/40 to-transparent opacity-50"></div>
-
-            <div className="relative z-10">
-              <h3 className="text-2xl font-bold mb-4">
-                Key Sections Included in the PDF
-              </h3>
-
-              <ul className="space-y-3 text-white/90 text-sm">
-                <li>• Business identification & activity classification</li>
-                <li>• Summary of annual spending categories</li>
-                <li>• CO₂ indicators clearly structured for ESG review</li>
-                <li>• Verification ID & cryptographic integrity stamp</li>
-                <li>• Document timestamp & unique trace reference</li>
-              </ul>
-            </div>
-
-          </div>
-
-          {/* BLOCK 2 */}
-          <div className="p-8 bg-[#F8FAFC] border border-[#15B097]/30 rounded-xl shadow-lg">
-            <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
-              Why Institutions Accept This Format
-            </h3>
-            <p className="text-gray-700 leading-relaxed">
-              The document uses standardized terminology, consistent formatting,
-              and clarity suitable for automated review systems used by 
-              procurement teams, insurers, and financial institutions.
-              It avoids presentation ambiguity and ensures compatibility 
-              with compliance checklists.
-            </p>
-          </div>
-
-          {/* BLOCK 3 */}
-          <div className="p-8 bg-white border border-gray-200 rounded-xl shadow-md">
-            <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
-              Cross-Platform Compatibility
-            </h3>
-            <ul className="text-gray-700 space-y-2 text-sm">
-              <li>• PDF/A-compatible structure for long-term archiving</li>
-              <li>• Works on all devices (laptop, mobile, tablet)</li>
-              <li>• No external software required to validate integrity</li>
-            </ul>
-          </div>
-
-        </div>
-      </div>
-
-      {/* BOTTOM STRIP — reassurance message */}
-      <div className="mt-20 p-10 bg-[#F8FAFC] border border-gray-200 rounded-xl shadow-sm">
-        <h4 className="text-2xl font-semibold text-[#0B3A63] mb-3">
-          Designed for European Compliance Frameworks
-        </h4>
-        <p className="text-gray-700 max-w-4xl leading-relaxed">
-          The PDF format aligns with institutional expectations across Europe,
-          ensuring clarity, reviewability, and durability. It facilitates rapid
-          onboarding, reduces friction in procurement processes, and provides
-          a reliable CO₂ indicator compatible with ESG scoring systems.
+        <p className="text-lg text-gray-700 max-w-4xl mt-6 leading-relaxed">
+          This section provides a detailed overview of the structure, layout and verification 
+          elements included in every generated PDF. The attestation follows a standardized, 
+          institution-ready format compatible with procurement, banking, insurance and 
+          compliance workflows across Europe.
         </p>
       </div>
 
-      {/* RETURN BUTTON — universal & identical */}
+      {/* 3-COLUMN GRID — PDF structure */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-16">
+
+        {/* BLOCK 1 – Header structure */}
+        <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg transition">
+          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
+            Document Header
+          </h3>
+
+          <p className="text-gray-700 text-sm leading-relaxed">
+            The top section of the PDF contains all mandatory identification elements required 
+            by institutional reviewers.
+          </p>
+
+          <ul className="mt-3 text-gray-700 text-sm space-y-1">
+            <li>• Entity name & registration number</li>
+            <li>• Reporting year and scope definition</li>
+            <li>• Contact & declaration fields</li>
+            <li>• Timestamp of generation</li>
+          </ul>
+        </div>
+
+        {/* BLOCK 2 – Results structure */}
+        <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/30 shadow-sm">
+          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
+            Results Summary
+          </h3>
+
+          <p className="text-gray-700 text-sm leading-relaxed">
+            Results are displayed in a structured table format aligned with institutional 
+            expectations for readability and comparability.
+          </p>
+
+          <ul className="mt-3 text-gray-700 text-sm space-y-1">
+            <li>• Total CO₂ equivalent (tCO₂e)</li>
+            <li>• Category breakdown</li>
+            <li>• Emission factor reference tags</li>
+            <li>• Deterministic calculation note</li>
+          </ul>
+        </div>
+
+        {/* BLOCK 3 – Verification elements */}
+        <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg transition">
+          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
+            Verification Elements
+          </h3>
+
+          <p className="text-gray-700 text-sm leading-relaxed">
+            Each PDF includes independent validation components allowing external parties 
+            to confirm authenticity without contacting Certif-Scope.
+          </p>
+
+          <ul className="mt-3 text-gray-700 text-sm space-y-1">
+            <li>• Cryptographic integrity hash</li>
+            <li>• Unique verification identifier</li>
+            <li>• Offline authenticity validation path</li>
+            <li>• QR code pointing to public verification page</li>
+          </ul>
+        </div>
+
+      </div>
+
+      {/* INFO STRIP — unique minimalism */}
+      <div className="mt-20 bg-[#0B3A63] text-white p-10 rounded-xl shadow-md relative overflow-hidden">
+        
+        <div className="absolute inset-0 bg-gradient-to-br from-[#15B097] to-transparent opacity-20"></div>
+
+        <h3 className="text-2xl font-semibold relative z-10">
+          Why the PDF Format Is Universally Accepted
+        </h3>
+
+        <p className="mt-3 text-white/90 max-w-4xl leading-relaxed relative z-10">
+          The attestation uses a fixed, reproducible layout aligned with the review practices of  
+          European institutions. It includes structured identifiers, standard terminology,  
+          deterministic formatting, and integrity metadata, ensuring smooth integration in 
+          onboarding, due diligence and compliance documentation flows.
+        </p>
+      </div>
+
+      {/* RETURN BUTTON — identical across sections */}
       <div className="mt-12 text-right">
         <a
           href="#top"
