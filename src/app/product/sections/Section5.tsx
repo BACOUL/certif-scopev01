@@ -1,3 +1,4 @@
+
 "use client";
 
 export default function Section5() {
@@ -21,6 +22,17 @@ export default function Section5() {
           banking, insurance, public funding and due diligence procedures. The standardized CO₂
           attestation provides an immediate compliance signal for stakeholders who need verifiable,
           consistent and interpretable information.
+        </p>
+
+        <p className="mt-4 text-sm text-gray-600 relative z-10">
+          Classification reference for CO₂ indicators follows the structure defined by the 
+          <a 
+            href="https://ghgprotocol.org/scope-1-2-3"
+            target="_blank"
+            className="underline text-[#0B3A63]"
+          >
+            GHG Protocol Scope 1 / 2 / 3 framework
+          </a>.
         </p>
       </div>
 
