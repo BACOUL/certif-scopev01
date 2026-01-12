@@ -1,135 +1,107 @@
+"use client";
+
 export default function Section14() {
   return (
     <section
       id="s14"
-      className="scroll-mt-24 py-32 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800"
+      className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
-      {/* HEADER */}
-      <div className="max-w-4xl mx-auto px-6 text-center mb-20">
-        <h2 className="text-4xl font-extrabold text-[#0B3A63]">
-          Industry-Specific Use Cases
+      {/* HEADER BLOCK — clean institutional white design */}
+      <div className="p-12 rounded-2xl bg-white border border-gray-200 shadow-md">
+        <h2 className="text-4xl md:text-5xl font-extrabold text-[#0B3A63]">
+          14. Document Structure & Institutional-Ready Formatting
         </h2>
 
-        <p className="mt-6 text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-          The Certif-Scope attestation is designed to meet compliance expectations of diverse
-          industries across Europe. Whether used for procurement, banking approvals, insurance
-          underwriting, marketplace onboarding, or ESG reporting, the standardized CO₂ footprint
-          format accelerates decision-making and ensures universal acceptance.
+        <p className="text-lg text-gray-700 max-w-4xl mt-6 leading-relaxed">
+          Certif-Scope provides a standardized CO₂ attestation designed to be compatible 
+          with administrative, procurement, banking and insurance document review systems. 
+          This section explains the internal layout of the attestation — without detailing 
+          regulatory methodology — and focuses on clarity, consistency and institutional 
+          readability.
         </p>
       </div>
 
-      {/* INDUSTRY GRID */}
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
+      {/* 3-COLUMN LAYOUT — unique structure for Section 14 */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-16">
 
-        {/* INDUSTRY 1 */}
-        <div className="p-10 rounded-3xl bg-[#F8FAFC] dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700">
-          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
-            Construction & Real Estate
+        {/* BLOCK 1 */}
+        <div className="p-8 bg-[#F8FAFC] rounded-xl shadow-sm border border-[#15B097]/30">
+          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
+            Consistent Block Order
           </h3>
-          <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-5">
-            Banks, insurers, and municipalities require environmental indicators for project approval.
-            Certif-Scope provides a recognized CO₂ summary used during building permits, renovation
-            grants, and supplier onboarding.
+          <p className="text-gray-700 text-sm leading-relaxed">
+            All attestations follow the exact same block sequence to ensure readability 
+            and compatibility with institutional workflows requiring predictable structure.
           </p>
-          <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-400">
-            <li>• Loan applications & due diligence</li>
-            <li>• Procurement of construction suppliers</li>
-            <li>• Real estate portfolio sustainability scoring</li>
+          <ul className="text-gray-700 text-sm space-y-2 mt-4">
+            <li>• Entity identification</li>
+            <li>• Categorized activity data</li>
+            <li>• Summary indicators</li>
+            <li>• Verification information</li>
           </ul>
         </div>
 
-        {/* INDUSTRY 2 */}
-        <div className="p-10 rounded-3xl bg-[#0B3A63] text-white shadow-lg">
-          <h3 className="text-2xl font-semibold mb-4">
-            Retail, E-commerce & Marketplaces
+        {/* BLOCK 2 */}
+        <div className="p-8 bg-white rounded-xl shadow-md border border-gray-200">
+          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
+            Machine-Readable Fields
           </h3>
-          <p className="text-white/90 text-sm leading-relaxed mb-5">
-            Many online marketplaces require a CO₂ indicator during merchant registration.
-            Certif-Scope provides a standardized attestation that platforms can verify instantly
-            through embedded cryptographic signatures and QR codes.
+          <p className="text-gray-700 text-sm leading-relaxed">
+            Key fields are formatted in a way that supports automated processing by 
+            internal systems such as procurement portals, financial scoring tools or 
+            eligibility platforms.
           </p>
-          <ul className="space-y-2 text-sm">
-            <li className="flex gap-3">
-              <span className="w-3 h-3 rounded-full bg-[#47B39C] mt-1"></span>
-              Seller environmental compliance validation
-            </li>
-            <li className="flex gap-3">
-              <span className="w-3 h-3 rounded-full bg-[#47B39C] mt-1"></span>
-              Trusted documentation for cross-border operations
-            </li>
-            <li className="flex gap-3">
-              <span className="w-3 h-3 rounded-full bg-[#47B39C] mt-1"></span>
-              Automatic legitimacy for suppliers
-            </li>
+          <ul className="text-gray-700 text-sm space-y-2 mt-4">
+            <li>• Standardized field labels</li>
+            <li>• Uniform field placement</li>
+            <li>• Consistent naming syntax</li>
           </ul>
         </div>
 
-        {/* INDUSTRY 3 */}
-        <div className="p-10 rounded-3xl bg-[#F8FAFC] dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700">
-          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
-            Manufacturing & Industrial Sectors
+        {/* BLOCK 3 */}
+        <div className="p-8 bg-[#F8FAFC] rounded-xl shadow-sm border border-[#15B097]/30">
+          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
+            Clear Visual Hierarchy
           </h3>
-          <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-5">
-            Manufacturers often need a verifiable emissions summary to qualify for supplier networks,
-            government incentives, or compliance scoring systems.
+          <p className="text-gray-700 text-sm leading-relaxed">
+            The attestation uses typographic hierarchy and spacing standards to ensure 
+            fast reading by human reviewers and automated extraction tools.
           </p>
-          <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-400">
-            <li>• Qualification for industrial tenders</li>
-            <li>• Supplier scoring & ESG audits</li>
-            <li>• Compliance with cross-border procurement</li>
+          <ul className="text-gray-700 text-sm space-y-2 mt-4">
+            <li>• Defined header hierarchy</li>
+            <li>• Strategic whitespace usage</li>
+            <li>• Consistent grid system</li>
           </ul>
         </div>
-
       </div>
 
-      {/* SECOND ROW */}
-      <div className="max-w-7xl mx-auto px-6 mt-20 grid grid-cols-1 md:grid-cols-2 gap-12">
+      {/* DEEP EXPLANATION BLOCK */}
+      <div className="mt-20 p-12 bg-[#0B3A63] text-white rounded-xl shadow-md relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/25 to-transparent pointer-events-none"></div>
 
-        {/* BLOCK 4 */}
-        <div className="p-10 rounded-3xl bg-white dark:bg-gray-800 shadow border border-gray-200 dark:border-gray-700">
-          <h3 className="text-2xl font-bold text-[#0B3A63] mb-4">
-            Banking, Finance & Insurance
-          </h3>
-          <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed mb-5">
-            Financial institutions analyze CO₂ indicators during risk evaluation and sustainability
-            scoring. Certif-Scope provides a document that integrates seamlessly into loan
-            applications, underwriting processes, and portfolio management.
-          </p>
-          <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-            <li>• Risk scoring & sustainability checks</li>
-            <li>• Loan applications & subsidies</li>
-            <li>• Insurance underwriting validation</li>
-          </ul>
-        </div>
+        <h3 className="text-2xl font-semibold relative z-10">
+          Why Formatting Matters in Institutional Review
+        </h3>
 
-        {/* BLOCK 5 */}
-        <div className="p-10 rounded-3xl bg-[#0B3A63] text-white shadow-lg">
-          <h3 className="text-2xl font-bold mb-4">
-            Public Sector & Institutions
-          </h3>
-          <p className="text-white/90 text-sm leading-relaxed mb-5">
-            Municipalities, public agencies and European programs increasingly require environmental
-            disclosures for grants, subsidies, and project approvals. Certif-Scope provides a
-            standardized, verifiable format aligned with administrative processes.
-          </p>
-          <ul className="space-y-3 text-sm">
-            <li>• Eligibility for public funding</li>
-            <li>• Supplier registration & validation</li>
-            <li>• Administrative compliance submissions</li>
-          </ul>
-        </div>
-
+        <p className="mt-4 text-white/90 max-w-5xl leading-relaxed relative z-10">
+          Administrative and financial institutions prioritize document consistency because 
+          inconsistent formatting leads to rejections, manual reprocessing and additional 
+          verification requests. Certif-Scope removes ambiguity by ensuring that every 
+          attestation follows a strict layout, making it immediately compatible with the 
+          workflows used for procurement, eligibility assessment, ESG screening and risk 
+          analysis across Europe.
+        </p>
       </div>
 
-      {/* FOOTER — BACK TO SUMMARY */}
-      <div className="text-center mt-24">
+      {/* RETURN BUTTON — identical across all sections */}
+      <div className="mt-12 text-right">
         <a
           href="#top"
-          className="inline-block text-sm text-gray-500 hover:text-[#0B3A63] border border-gray-300 px-4 py-2 rounded-lg transition"
+          className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
         >
-          Back to summary ↑
+          Back to summary
         </a>
       </div>
     </section>
   );
-        }
+          }
