@@ -7,143 +7,96 @@ export default function Section2() {
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
 
-      {/* UNIQUE HEADER LAYOUT — horizontal split */}
-      <div className="bg-white rounded-2xl shadow-md border border-gray-100 p-10 flex flex-col md:flex-row gap-10">
-
-        {/* LEFT TEXT AREA */}
-        <div className="flex-1">
-          <h2 className="text-4xl font-extrabold text-[#0B3A63] leading-tight mb-4">
-            Section 2 — Key Benefits Summary
-          </h2>
-
-          <p className="text-lg text-gray-700 max-w-3xl leading-relaxed">
-            Certif-Scope offers a unique combination of speed, institutional acceptance,
-            standardized formatting and independent verification. The platform gives 
-            SMEs a ready-to-submit CO₂ attestation without the delays or costs usually 
-            associated with sustainability reporting. Each benefit is designed to answer 
-            a specific need expressed by banks, procurement teams, insurers, investors 
-            and compliance officers across Europe.
-          </p>
-        </div>
-
-        {/* RIGHT SIDE VISUAL PANEL */}
-        <div className="flex-1 grid grid-cols-1 gap-4">
-          <div className="bg-[#0B3A63] text-white p-6 rounded-xl shadow-md">
-            <h3 className="text-lg font-semibold">Procurement-ready</h3>
-            <p className="text-white/85 text-sm mt-1">
-              Fully structured for supplier onboarding workflows.
-            </p>
-          </div>
-
-          <div className="bg-[#15B097] text-white p-6 rounded-xl shadow-md">
-            <h3 className="text-lg font-semibold">Risk-scoring compatible</h3>
-            <p className="text-white/85 text-sm mt-1">
-              Integrates seamlessly into banking and insurance evaluation.
-            </p>
-          </div>
-
-          <div className="bg-[#F8FAFC] p-6 rounded-xl shadow-md border border-gray-200">
-            <h3 className="text-lg font-semibold text-[#0B3A63]">Instant availability</h3>
-            <p className="text-gray-700 text-sm mt-1">
-              Generated in less than 30 seconds — no consultant required.
-            </p>
-          </div>
-        </div>
-
-      </div>
-
-      {/* BENEFIT GRID — 6 detailed institutional benefits */}
-      <div className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-10">
-
-        <div className="p-8 bg-[#F8FAFC] rounded-xl border border-gray-200 shadow-sm">
-          <h3 className="text-xl font-semibold text-[#0B3A63]">
-            1. Standardized and Consistent
-          </h3>
-          <p className="text-gray-700 text-sm mt-3 leading-relaxed">
-            Certif-Scope ensures identical formatting, terminology and structure across 
-            all attestations, reducing the risk of rejection from procurement or compliance 
-            reviewers who expect clear, consistent documentation.
-          </p>
-        </div>
-
-        <div className="p-8 bg-white rounded-xl border border-[#15B097]/30 shadow-sm">
-          <h3 className="text-xl font-semibold text-[#0B3A63]">
-            2. Independent Verification Capability
-          </h3>
-          <p className="text-gray-700 text-sm mt-3 leading-relaxed">
-            Each document includes a cryptographic integrity seal and a unique verification ID. 
-            Institutions authenticate authenticity without requiring access to Certif-Scope servers.
-          </p>
-        </div>
-
-        <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-sm">
-          <h3 className="text-xl font-semibold text-[#0B3A63]">
-            3. Institutionally Meaningful Indicators
-          </h3>
-          <p className="text-gray-700 text-sm mt-3 leading-relaxed">
-            Indicators are presented in a structure aligned with typical European workflows 
-            (procurement, banking, risk scoring, insurance, grant eligibility), ensuring 
-            operational relevance.
-          </p>
-        </div>
-
-        <div className="p-8 bg-[#F8FAFC] rounded-xl border border-gray-200 shadow-sm">
-          <h3 className="text-xl font-semibold text-[#0B3A63]">
-            4. Zero Operational Friction
-          </h3>
-          <p className="text-gray-700 text-sm mt-3 leading-relaxed">
-            No multi-week validation, no consultation cycles and no external dependencies. 
-            Users enter data and instantly obtain the final document.
-          </p>
-        </div>
-
-        <div class="p-8 bg-white rounded-xl border border-gray-200 shadow-sm">
-          <h3 className="text-xl font-semibold text-[#0B3A63]">
-            5. Designed for Cross-European Acceptance
-          </h3>
-          <p className="text-gray-700 text-sm mt-3 leading-relaxed">
-            Language-neutral structure, clear fields and universal terminology support 
-            usage across EU states and multilingual review teams.
-          </p>
-        </div>
-
-        <div className="p-8 bg-[#15B097]/10 rounded-xl border border-[#15B097]/40 shadow-sm">
-          <h3 className="text-xl font-semibold text-[#0B3A63]">
-            6. Perfectly Scalable
-          </h3>
-          <p className="text-gray-700 text-sm mt-3 leading-relaxed">
-            Suitable for one-time submissions or recurring monthly/annual updates without 
-            the need for external professionals or increasing costs.
-          </p>
-        </div>
-
-      </div>
-
-      {/* ANALYST INSIGHT BLOCK — unique to this section */}
-      <div className="mt-20 bg-[#0B3A63] text-white p-10 rounded-xl shadow-lg relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#15B097] to-transparent opacity-20"></div>
-
-        <h4 className="text-xl font-bold mb-4 relative z-10">
-          Institutional Assessment Insight
-        </h4>
-        <p className="text-white/90 max-w-4xl leading-relaxed relative z-10">
-          Reviewers prefer documents that are immediate to understand, consistent across 
-          suppliers and require no clarification. Certif-Scope eliminates subjective variations 
-          and provides a format that aligns with compliance, procurement, legal and risk-analysis 
-          workflows in large organizations.
+      {/* HEADER BLOCK — premium visual identity */}
+      <div className="p-10 rounded-2xl bg-[#F8FAFC] border border-gray-200 shadow-sm">
+        <h2 className="text-4xl font-extrabold text-[#0B3A63] mb-4">
+          Section 2 — Key Benefits Summary
+        </h2>
+        <p className="text-lg text-gray-700 max-w-4xl leading-relaxed">
+          Certif-Scope delivers a fast, standardized and independently verifiable CO₂ attestation 
+          specially designed for institutional processes across Europe. This section highlights 
+          the advantages that directly impact procurement onboarding, banking risk assessment, 
+          insurance eligibility and public-sector funding workflows.
         </p>
-
-        <a
-          href="https://commission.europa.eu/legal-notice_en"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline text-white/80 text-sm mt-4 inline-block relative z-10"
-        >
-          EU institutional guidance →
-        </a>
       </div>
 
-      {/* RETURN BUTTON — IDENTICAL ACROSS ALL SECTIONS */}
+      {/* BENEFITS GRID — distinct design */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-14">
+
+        {/* Benefit 1 */}
+        <div className="p-8 bg-white rounded-xl shadow-lg border border-gray-200">
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
+            Fast & Fully Automated
+          </h3>
+          <p className="text-gray-600 text-sm leading-relaxed">
+            Generate a complete, review-ready CO₂ attestation in under 30 seconds. Ideal when 
+            institutions request urgent documentation for compliance or onboarding.
+          </p>
+        </div>
+
+        {/* Benefit 2 */}
+        <div className="p-8 bg-[#F8FAFC] rounded-xl shadow-lg border border-[#15B097]/30">
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
+            Standardized & Predictable Format
+          </h3>
+          <p className="text-gray-600 text-sm leading-relaxed">
+            Institutions receive clearly structured information: company identifiers, 
+            sector classification, spend overview, emission indicators and verification ID.
+          </p>
+        </div>
+
+        {/* Benefit 3 */}
+        <div className="p-8 bg-white rounded-xl shadow-lg border border-gray-200">
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
+            Independently Verifiable
+          </h3>
+          <p className="text-gray-600 text-sm leading-relaxed">
+            Each attestation includes a cryptographic verification hash. Banks, insurers and 
+            public agencies can validate authenticity without contacting Certif-Scope.
+          </p>
+        </div>
+      </div>
+
+      {/* SECOND BENEFIT ROW — new layout to avoid repetition */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-14">
+
+        <div className="p-8 rounded-xl bg-[#0B3A63] text-white shadow-lg relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#15B097] to-transparent opacity-20"></div>
+          <h3 className="text-xl font-semibold relative z-10">
+            Designed for European Institutional Use
+          </h3>
+          <p className="text-white/90 text-sm leading-relaxed mt-3 relative z-10">
+            Certif-Scope is structured to match procurement, risk analysis and public-funding 
+            evaluation formats used across the EU. Clear fields, harmonised terminology, 
+            multilingual compatibility and no ambiguous data points.
+          </p>
+        </div>
+
+        <div className="p-8 bg-white rounded-xl shadow-lg border border-gray-200">
+          <h3 className="text-xl font-semibold text-[#0B3A63]">
+            Scalable for Repeated Use
+          </h3>
+          <p className="text-gray-600 text-sm leading-relaxed mt-3">
+            Generate updated attestations whenever needed — during supplier onboarding, loan 
+            renewals, ESG reviews, or public-grant applications. No consultancy fees.
+          </p>
+        </div>
+
+      </div>
+
+      {/* INFO STRIP — institutional tone */}
+      <div className="mt-20 p-10 rounded-xl bg-[#F8FAFC] border border-gray-200 shadow-sm">
+        <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
+          Designed for Cross-Border Acceptance
+        </h3>
+        <p className="text-gray-700 max-w-4xl leading-relaxed">
+          The structure is intentionally language-neutral and compatible with multilingual review 
+          teams across Europe. Each field is labelled and standardized so procurement, banking and 
+          compliance teams can interpret the document without any industry-specific knowledge.
+        </p>
+      </div>
+
+      {/* RETURN BUTTON — identical across all sections */}
       <div className="mt-12 text-right">
         <a
           href="#top"
