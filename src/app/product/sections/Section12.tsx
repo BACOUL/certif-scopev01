@@ -1,141 +1,109 @@
+"use client";
+
 export default function Section12() {
   return (
     <section
       id="s12"
-      className="scroll-mt-24 py-32 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800"
+      className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
-      {/* HEADER */}
-      <div className="max-w-4xl mx-auto px-6 text-center mb-20">
-        <h2 className="text-4xl font-extrabold text-[#0B3A63]">
-          Data Privacy & GDPR Compliance
+      {/* HEADER BLOCK — unique institutional design */}
+      <div className="rounded-2xl p-12 bg-[#0B3A63] text-white shadow-lg relative overflow-hidden">
+
+        {/* Soft overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/20 to-transparent pointer-events-none"></div>
+
+        <h2 className="text-4xl md:text-5xl font-extrabold relative z-10">
+          12. Institutional Acceptance Scenarios
         </h2>
 
-        <p className="mt-6 text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-          Certif-Scope implements a strict privacy-by-design approach: minimal data collection,
-          no storage of sensitive information, encrypted processing, and full compliance with the
-          General Data Protection Regulation (GDPR). The system ensures that companies retain full
-          control over their financial data while still being able to generate verifiable carbon
-          indicators instantly.
+        <p className="text-lg text-white/90 max-w-4xl mt-6 leading-relaxed relative z-10">
+          Certif-Scope is designed to match the structure, expectations and review patterns used by 
+          European institutions when evaluating CO₂ documentation. This section outlines how the 
+          attestation integrates into real operational workflows without replacing existing ESG 
+          frameworks, audits or regulatory reporting obligations.
         </p>
       </div>
 
-      {/* LAYOUT: 3 COLUMNS */}
-      <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10">
+      {/* 3-SCENARIO GRID */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-16">
 
-        {/* CARD 1 */}
-        <div className="p-8 rounded-2xl bg-[#F8FAFC] dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm">
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-4">
-            1. Minimal Data Processing
+        {/* Scenario 1 */}
+        <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-md">
+          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
+            Procurement Screening
           </h3>
-          <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
-            Certif-Scope does not collect more information than necessary. Only high-level
-            financial inputs are processed for emission estimation. No transactional, personal
-            or document-level data is captured or retained.
+          <p className="text-gray-700 text-sm leading-relaxed mb-4">
+            Large buyers increasingly request environmental indicators during supplier onboarding.  
+            Certif-Scope provides a standardized, verifiable CO₂ figure that matches the format 
+            typically included in prequalification files.
           </p>
-        </div>
-
-        {/* CARD 2 */}
-        <div className="p-8 rounded-2xl bg-[#F8FAFC] dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm">
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-4">
-            2. No Long-Term Storage
-          </h3>
-          <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
-            Input data is processed temporarily and discarded after generating the attestation.
-            Certif-Scope does not store, synchronize, or reuse user-submitted information.
-            The user retains full control of the output file.
-          </p>
-        </div>
-
-        {/* CARD 3 */}
-        <div className="p-8 rounded-2xl bg-[#F8FAFC] dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm">
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-4">
-            3. Encrypted Transmission
-          </h3>
-          <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
-            All communications between the client and the platform are encrypted using TLS 1.3.
-            No unencrypted data is transmitted at any time, ensuring compliance with GDPR
-            Article 32 on secure processing.
-          </p>
-        </div>
-
-      </div>
-
-      {/* 2ND ROW */}
-      <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-10 mt-16">
-
-        {/* LEFT BLOCK */}
-        <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-10 shadow">
-          <h3 className="text-2xl font-bold text-[#0B3A63] mb-6">
-            Data Ownership & User Rights
-          </h3>
-
-          <ul className="space-y-4 text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-            <li className="flex gap-3">
-              <span className="w-3 h-3 bg-[#47B39C] rounded-full mt-1"></span>
-              Users retain full ownership of all submitted and generated data.
-            </li>
-
-            <li className="flex gap-3">
-              <span className="w-3 h-3 bg-[#47B39C] rounded-full mt-1"></span>
-              No profile creation or account storage is required.
-            </li>
-
-            <li className="flex gap-3">
-              <span className="w-3 h-3 bg-[#47B39C] rounded-full mt-1"></span>
-              No data is used for analytics, tracking, or behavioral profiling.
-            </li>
-
-            <li className="flex gap-3">
-              <span className="w-3 h-3 bg-[#47B39C] rounded-full mt-1"></span>
-              Users may request deletion of any residual logs under GDPR Art. 17.
-            </li>
+          <ul className="text-gray-700 text-sm space-y-2">
+            <li>• Immediate alignment with typical procurement checklists</li>
+            <li>• Simple integration into vendor documentation packages</li>
+            <li>• Removes delays linked to ESG pre-screening</li>
           </ul>
         </div>
 
-        {/* RIGHT BLOCK */}
-        <div className="bg-[#0B3A63] text-white rounded-2xl p-10 shadow-xl">
-          <h3 className="text-2xl font-bold mb-6">GDPR Compliance Framework</h3>
-
-          <p className="text-sm leading-relaxed text-white/90 mb-6">
-            Certif-Scope aligns its processes with key GDPR requirements, including data minimization,
-            purpose limitation, user consent, and transparency obligations.
+        {/* Scenario 2 */}
+        <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/30 shadow-sm">
+          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
+            Banking and Lending Workflows
+          </h3>
+          <p className="text-gray-700 text-sm leading-relaxed mb-4">
+            Banks use CO₂ indicators for risk scoring and credit evaluation.  
+            Certif-Scope supports these workflows by providing a clear, structured and 
+            tamper-proof document that is easy to archive and validate.
           </p>
-
-          <ul className="space-y-4 text-sm">
-            <li className="flex gap-3">
-              <span className="w-3 h-3 bg-[#47B39C] rounded-full mt-1"></span>
-              GDPR Art. 5 — Data minimization & purpose limitation.
-            </li>
-            <li className="flex gap-3">
-              <span className="w-3 h-3 bg-[#47B39C] rounded-full mt-1"></span>
-              GDPR Art. 6 — Lawful basis for processing (consent).
-            </li>
-            <li className="flex gap-3">
-              <span className="w-3 h-3 bg-[#47B39C] rounded-full mt-1"></span>
-              GDPR Art. 12 — Transparency of processing.
-            </li>
-            <li className="flex gap-3">
-              <span className="w-3 h-3 bg-[#47B39C] rounded-full mt-1"></span>
-              GDPR Art. 32 — Secure processing & encryption.
-            </li>
+          <ul className="text-gray-700 text-sm space-y-2">
+            <li>• Compatible with standard credit risk documentation flows</li>
+            <li>• Third-party verification without server dependency</li>
+            <li>• High trust thanks to cryptographic integrity</li>
           </ul>
-
-          <p className="text-xs text-white/80 mt-6">
-            Certif-Scope does not sell, share, or exchange any user information for commercial purposes.
-          </p>
         </div>
 
+        {/* Scenario 3 */}
+        <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-md">
+          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
+            Insurance Eligibility and Compliance
+          </h3>
+          <p className="text-gray-700 text-sm leading-relaxed mb-4">
+            Insurers frequently request an environmental indicator when evaluating 
+            eligibility or underwriting risks. Certif-Scope offers a standardized 
+            format compatible with internal validation controls.
+          </p>
+          <ul className="text-gray-700 text-sm space-y-2">
+            <li>• Works with internal due-diligence structures</li>
+            <li>• Trusted format for cross-department reviews</li>
+            <li>• Consistent structure for long-term documentation</li>
+          </ul>
+        </div>
       </div>
 
-      {/* FOOTER — BACK TO SUMMARY */}
-      <div className="text-center mt-24">
+      {/* INSTITUTIONAL PANEL — deep explanation */}
+      <div className="mt-20 p-12 rounded-xl bg-[#F8FAFC] border border-gray-200 shadow-md">
+        <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
+          Why Institutions Accept the Attestation Structure
+        </h3>
+
+        <p className="text-gray-700 max-w-5xl leading-relaxed">
+          Certif-Scope follows formatting conventions widely used in European due-diligence workflows: 
+          clear entity identifiers, a standardized results section, a transparent methodology reference, 
+          and a cryptographic verification signature. The attestation is not positioned as a regulatory 
+          report or a certification, but as a structured, verifiable supporting document compatible with 
+          procurement, banking, insurance and grant processes.
+        </p>
+      </div>
+
+      {/* RETURN BUTTON — Identical across all sections */}
+      <div className="mt-12 text-right">
         <a
           href="#top"
-          className="inline-block text-sm text-gray-500 hover:text-[#0B3A63] border border-gray-300 px-4 py-2 rounded-lg transition"
+          className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
         >
-          Back to summary ↑
+          Back to summary
         </a>
       </div>
+
     </section>
   );
-                }
+}
