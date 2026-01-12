@@ -1,118 +1,101 @@
+"use client";
+
 export default function Section11() {
   return (
     <section
       id="s11"
-      className="scroll-mt-24 py-32 bg-[#F8FAFC] dark:bg-gray-900"
+      className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
-      {/* HEADER */}
-      <div className="max-w-4xl mx-auto px-6 text-center mb-20">
-        <h2 className="text-4xl font-extrabold text-[#0B3A63]">
-          Methodological Limitations & Transparency Statement
+      {/* HEADER BLOCK — Institutional, unique design */}
+      <div className="rounded-2xl p-12 bg-[#F8FAFC] border border-gray-200 shadow-lg relative overflow-hidden">
+        
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0B3A63]/8 to-[#15B097]/10 pointer-events-none"></div>
+
+        <h2 className="text-4xl md:text-5xl font-extrabold text-[#0B3A63] relative z-10">
+          11. Role of Cryptographic Integrity
         </h2>
 
-        <p className="mt-6 text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-          Certif-Scope prioritizes transparency and institutional clarity by explicitly stating the
-          methodological boundaries of the spend-based carbon estimation approach. These limitations
-          do not reduce the usefulness of the attestation but ensure that stakeholders interpret it
-          correctly, according to international reporting standards.
+        <p className="text-lg text-gray-700 max-w-4xl mt-6 leading-relaxed relative z-10">
+          Certif-Scope embeds a cryptographic integrity mechanism to ensure that each attestation 
+          remains tamper-proof, uniquely identifiable and independently verifiable by third parties. 
+          This protects institutions from document falsification, ensures that results are stable 
+          over time, and allows offline verification without relying on Certif-Scope servers.
         </p>
       </div>
 
-      {/* MAIN LAYOUT */}
-      <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-14">
+      {/* DUAL-COLUMN BLOCK */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-16">
 
-        {/* LEFT SIDE — LIMITATION GROUPS */}
-        <div className="space-y-10">
+        {/* LEFT — Purpose of cryptographic integrity */}
+        <div className="p-10 bg-white rounded-xl border border-gray-200 shadow-md">
+          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
+            Why Cryptographic Integrity is Required
+          </h3>
 
-          {/* LIMITATION BLOCK 1 */}
-          <div className="p-8 rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm">
-            <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
-              1. Spend-Based Model Simplification
-            </h3>
-            <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-              The spend-based methodology estimates emissions from financial expenditure rather than
-              from physical measures (liters, kWh, kilometers, kilograms). This allows rapid estimation,
-              but cannot match the absolute precision of an engineering-grade assessment.
-            </p>
-          </div>
-
-          {/* LIMITATION BLOCK 2 */}
-          <div className="p-8 rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm">
-            <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
-              2. Sector Factor Aggregation
-            </h3>
-            <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-              Emission factors used in economic input-output models are aggregated at sector level.
-              This means variability within specific products or sub-sectors is averaged into a
-              single macro-factor, which may under- or over-estimate specific cases.
-            </p>
-          </div>
-
-          {/* LIMITATION BLOCK 3 */}
-          <div className="p-8 rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm">
-            <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
-              3. Lack of Operational Granularity
-            </h3>
-            <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-              The approach does not measure detailed operational activities, such as internal logistics
-              routes, equipment performance, energy mix variations or real-time consumption. Companies
-              requiring deeper analysis should complement the attestation with operational data audits.
-            </p>
-          </div>
-
-        </div>
-
-        {/* RIGHT SIDE — HIGHLIGHT PANEL */}
-        <aside className="bg-[#0B3A63] text-white p-10 rounded-2xl shadow-xl space-y-8">
-
-          <h4 className="text-2xl font-bold">Interpretation Guidance</h4>
-
-          <p className="text-sm text-white/90 leading-relaxed">
-            Certif-Scope ensures clarity by explicitly defining what the attestation does and does not
-            represent. This prevents misuse in regulatory contexts and maintains strict compliance with
-            international reporting recommendations from the GHG Protocol and European ESG guidelines.
+          <p className="text-gray-700 text-sm leading-relaxed mb-4">
+            Institutions routinely reject carbon documentation that lacks verifiable integrity 
+            markers, due to the risk of manipulation or selective editing.  
+            Certif-Scope addresses this problem using a stable, automatic cryptographic seal that:
           </p>
 
-          <ul className="text-sm space-y-4">
-            <li className="flex gap-3">
-              <span className="block w-3 h-3 rounded-full bg-[#47B39C] mt-1"></span>
-              Not a replacement for engineering-grade physical footprint analysis.
-            </li>
-
-            <li className="flex gap-3">
-              <span className="block w-3 h-3 rounded-full bg-[#47B39C] mt-1"></span>
-              Not suitable for regulatory greenhouse gas inventory declarations.
-            </li>
-
-            <li className="flex gap-3">
-              <span className="block w-3 h-3 rounded-full bg-[#47B39C] mt-1"></span>
-              Intended for procurement, banking and compliance screening.
-            </li>
-
-            <li className="flex gap-3">
-              <span className="block w-3 h-3 rounded-full bg-[#47B39C] mt-1"></span>
-              Provides estimated emissions aligned with spend-based GHG methodologies.
-            </li>
+          <ul className="text-gray-700 text-sm space-y-2">
+            <li>• Detects any change made after generation</li>
+            <li>• Links each attestation to a unique verification identity</li>
+            <li>• Allows verification without a live server</li>
+            <li>• Ensures persistent confidence during audits</li>
           </ul>
+        </div>
 
-          <div className="pt-6 border-t border-white/20 text-xs text-white/80">
-            Full transparency ensures stronger institutional trust and reduces friction during due diligence.
-          </div>
+        {/* RIGHT — Use cases in institutional workflows */}
+        <div className="p-10 bg-[#F8FAFC] rounded-xl border border-[#15B097]/30 shadow-sm">
+          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
+            Institutional Use Cases
+          </h3>
 
-        </aside>
+          <p className="text-gray-700 text-sm leading-relaxed mb-4">
+            A cryptographically sealed CO₂ attestation eliminates uncertainty in 
+            processes where document authenticity directly impacts risk, compliance 
+            or eligibility:
+          </p>
 
+          <ul className="text-gray-700 text-sm space-y-2">
+            <li>• Procurement screening of suppliers</li>
+            <li>• Banking onboarding and risk evaluation</li>
+            <li>• Insurance eligibility and underwriting checks</li>
+            <li>• Public grant applications requiring CO₂ documentation</li>
+          </ul>
+        </div>
       </div>
 
-      {/* FOOTER — BACK TO SUMMARY */}
-      <div className="text-center mt-24">
+      {/* EXPLANATORY STRIP — High-trust institutional tone */}
+      <div className="mt-20 p-12 rounded-xl bg-[#0B3A63] text-white shadow-lg relative overflow-hidden">
+        
+        <div className="absolute inset-0 bg-gradient-to-br from-[#15B097] to-transparent opacity-20"></div>
+
+        <h3 className="text-2xl font-semibold relative z-10">
+          Guarantees for Long-Term Document Stability
+        </h3>
+
+        <p className="text-white/90 max-w-5xl mt-4 leading-relaxed relative z-10">
+          Cryptographic integrity ensures that a Certif-Scope attestation can be trusted years 
+          after its creation, even if internal verification procedures change or if institutional 
+          workflows evolve.  
+          The attestation remains verifiable offline thanks to a deterministic integrity value, 
+          ensuring that institutions can authenticate documents independent of external systems 
+          or future service availability.
+        </p>
+      </div>
+
+      {/* RETURN BUTTON — identical across all sections */}
+      <div className="mt-12 text-right">
         <a
           href="#top"
-          className="inline-block text-sm text-gray-500 hover:text-[#0B3A63] border border-gray-300 px-4 py-2 rounded-lg transition"
+          className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
         >
-          Back to summary ↑
+          Back to summary
         </a>
       </div>
-
     </section>
   );
-            }
+}
