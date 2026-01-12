@@ -6,140 +6,126 @@ export default function Section6() {
       id="s6"
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
+      {/* HEADER BLOCK */}
+      <div className="relative p-12 rounded-2xl bg-[#0B3A63] text-white shadow-xl overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/30 to-transparent opacity-40"></div>
 
-      {/* HEADER — Premium institutional layout */}
-      <div className="relative p-12 rounded-2xl bg-white shadow-lg border border-[#0B3A63]/25">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/10 to-[#0B3A63]/10 pointer-events-none"></div>
-
-        <h2 className="text-4xl md:text-5xl font-extrabold text-[#0B3A63] relative z-10">
-          6. How It Works
+        <h2 className="text-4xl md:text-5xl font-extrabold relative z-10">
+          6. How Certif-Scope Works
         </h2>
 
-        <p className="text-lg text-gray-700 max-w-4xl mt-6 leading-relaxed relative z-10">
-          Certif-Scope transforms basic financial data into a standardized, institution-ready
-          CO₂ attestation using a compliant, automated, and verifiable workflow. The entire
-          process is designed to meet the expectations of procurement departments, banks,
-          insurers, investors, and public authorities across the European Union.
+        <p className="text-white/90 max-w-4xl mt-6 leading-relaxed relative z-10">
+          Certif-Scope converts annual business spend data into a standardized CO₂ attestation 
+          using a deterministic calculation engine aligned with widely recognized European 
+          methodological frameworks. The full workflow is automated, reproducible and formatted 
+          for institutional acceptance across procurement, banking, insurance and investment due diligence.
         </p>
       </div>
 
+      {/* TIMELINE — PREMIUM, CLEAR, ACCESSIBLE */}
+      <div className="relative mt-20 pl-10">
 
-      {/* 5-STEP PROCESS — redesigned without overlapping markers */}
-      <div className="mt-20 space-y-14">
+        {/* Vertical Line */}
+        <div className="absolute top-0 left-4 w-1 h-full bg-[#15B097]/30 rounded-full"></div>
 
         {/* STEP 1 */}
-        <div className="flex items-start gap-6">
-          <div className="w-12 h-12 rounded-full bg-[#15B097] text-white flex items-center justify-center text-xl font-bold shadow-md">
-            1
-          </div>
-          <div className="flex-1">
-            <h3 className="text-2xl font-semibold text-[#0B3A63]">
-              Provide Business Inputs
-            </h3>
-            <p className="text-gray-700 mt-3 max-w-3xl">
-              Users enter essential financial activity indicators (annual expenses by category).
-              No technical or environmental expertise is required. Data entry is validated
-              in real time to reduce errors and maintain GDPR-compliant handling.
-            </p>
-            <ul className="list-disc list-inside text-sm text-gray-700 mt-3 space-y-1">
-              <li>Annual spend categories</li>
-              <li>Optional sector adjustments</li>
-              <li>Built-in validation rules</li>
-            </ul>
-          </div>
+        <div className="relative mb-16">
+          <div className="absolute -left-1 top-1.5 w-6 h-6 bg-[#15B097] rounded-full shadow-md"></div>
+          <h3 className="text-2xl font-bold text-[#0B3A63]">Step 1 — Input Business Data</h3>
+          <p className="text-gray-700 mt-3 max-w-3xl">
+            The user enters simplified yearly expenditure categories. Data validation routines ensure 
+            consistency and prevent incorrect category assignment. No carbon expertise is required.
+          </p>
+
+          <ul className="mt-3 text-gray-700 text-sm space-y-1">
+            <li>• Annual spend by operational category</li>
+            <li>• Secure input validation (syntax + logic)</li>
+            <li>• GDPR-compliant handling of sensitive financial data</li>
+          </ul>
         </div>
 
         {/* STEP 2 */}
-        <div className="flex items-start gap-6">
-          <div className="w-12 h-12 rounded-full bg-[#0B3A63] text-white flex items-center justify-center text-xl font-bold shadow-md">
-            2
-          </div>
-          <div className="flex-1">
-            <h3 className="text-2xl font-semibold text-[#0B3A63]">
-              Automated Emission Calculation
-            </h3>
-            <p className="text-gray-700 mt-3 max-w-3xl">
-              Certif-Scope applies verified European emissions factors and deterministic
-              classification rules. Results are computed instantly using a model aligned with
-              widely recognized frameworks to ensure reproducibility and consistency.
-            </p>
-            <ul className="list-disc list-inside text-sm text-gray-700 mt-3 space-y-1">
-              <li>Uses verified emission factor databases</li>
-              <li>Automatic category assignment</li>
-              <li>Instant processing (< 30 seconds)</li>
-            </ul>
-          </div>
+        <div className="relative mb-16">
+          <div className="absolute -left-1 top-1.5 w-6 h-6 bg-[#15B097] rounded-full shadow-md"></div>
+          <h3 className="text-2xl font-bold text-[#0B3A63]">Step 2 — Automatic Category Mapping</h3>
+          <p className="text-gray-700 mt-3 max-w-3xl">
+            Certif-Scope maps each expense line to the corresponding emissions category using 
+            standardized reference classifications (compatible with the European NACE structure).
+          </p>
+
+          <ul className="mt-3 text-gray-700 text-sm space-y-1">
+            <li>• Deterministic category assignment</li>
+            <li>• Multi-sector compatibility</li>
+            <li>• Reproducible output for audit trails</li>
+          </ul>
         </div>
 
         {/* STEP 3 */}
-        <div className="flex items-start gap-6">
-          <div className="w-12 h-12 rounded-full bg-[#15B097] text-white flex items-center justify-center text-xl font-bold shadow-md">
-            3
-          </div>
-          <div className="flex-1">
-            <h3 className="text-2xl font-semibold text-[#0B3A63]">
-              Generate CO₂ Attestation
-            </h3>
-            <p className="text-gray-700 mt-3 max-w-3xl">
-              A professional PDF is produced instantly, containing all required fields:
-              company identifiers, methodology summary, category breakdown, indicators,
-              verification code, and timestamp.
-            </p>
-            <ul className="list-disc list-inside text-sm text-gray-700 mt-3 space-y-1">
-              <li>PDF structured for institutional review</li>
-              <li>Clear category breakdown</li>
-              <li>Multilingual-ready formatting</li>
-            </ul>
-          </div>
+        <div className="relative mb-16">
+          <div className="absolute -left-1 top-1.5 w-6 h-6 bg-[#15B097] rounded-full shadow-md"></div>
+          <h3 className="text-2xl font-bold text-[#0B3A63]">Step 3 — Emission Calculation Engine</h3>
+          <p className="text-gray-700 mt-3 max-w-3xl">
+            The engine applies spend-based emission factors sourced from established European 
+            institutions. Calculations follow deterministic formulas ensuring consistent results 
+            across repeated evaluations.
+          </p>
+
+          <ul className="mt-3 text-gray-700 text-sm space-y-1">
+            <li>• Uses verified emission factor databases</li>
+            <li>• Deterministic calculation logic</li>
+            <li>• Instant processing (under 30 seconds)</li>
+          </ul>
         </div>
 
         {/* STEP 4 */}
-        <div className="flex items-start gap-6">
-          <div className="w-12 h-12 rounded-full bg-[#0B3A63] text-white flex items-center justify-center text-xl font-bold shadow-md">
-            4
-          </div>
-          <div className="flex-1">
-            <h3 className="text-2xl font-semibold text-[#0B3A63]">
-              Cryptographic Verification Seal
-            </h3>
-            <p className="text-gray-700 mt-3 max-w-3xl">
-              Each document includes a cryptographic hash and unique verification ID. Any
-              institution can authenticate the file without contacting Certif-Scope, ensuring
-              independence and transparency.
-            </p>
-            <ul className="list-disc list-inside text-sm text-gray-700 mt-3 space-y-1">
-              <li>Offline verification capability</li>
-              <li>Tamper-evident integrity check</li>
-              <li>Universally interpretable output</li>
-            </ul>
-          </div>
+        <div className="relative mb-16">
+          <div className="absolute -left-1 top-1.5 w-6 h-6 bg-[#15B097] rounded-full shadow-md"></div>
+          <h3 className="text-2xl font-bold text-[#0B3A63]">Step 4 — Attestation Generation</h3>
+          <p className="text-gray-700 mt-3 max-w-3xl">
+            A structured PDF is created including emission totals, classification summary, 
+            organization metadata and contextualized interpretation elements formatted according 
+            to European institutional expectations.
+          </p>
+
+          <ul className="mt-3 text-gray-700 text-sm space-y-1">
+            <li>• Standardized PDF structure</li>
+            <li>• Clear category breakdown</li>
+            <li>• Professional institutional formatting</li>
+          </ul>
         </div>
 
         {/* STEP 5 */}
-        <div className="flex items-start gap-6">
-          <div className="w-12 h-12 rounded-full bg-[#15B097] text-white flex items-center justify-center text-xl font-bold shadow-md">
-            5
-          </div>
-          <div className="flex-1">
-            <h3 className="text-2xl font-semibold text-[#0B3A63]">
-              Institutional Use
-            </h3>
-            <p className="text-gray-700 mt-3 max-w-3xl">
-              The attestation can be submitted directly to banks, insurers, procurement teams,
-              public authorities, and investors. It provides an immediate compliance response
-              aligned with common European screening workflows.
-            </p>
-            <ul className="list-disc list-inside text-sm text-gray-700 mt-3 space-y-1">
-              <li>Valid for procurement onboarding</li>
-              <li>Recognized in ESG screening</li>
-              <li>Supports grant and subsidy applications</li>
-            </ul>
-          </div>
+        <div className="relative mb-16">
+          <div className="absolute -left-1 top-1.5 w-6 h-6 bg-[#15B097] rounded-full shadow-md"></div>
+          <h3 className="text-2xl font-bold text-[#0B3A63]">Step 5 — Integrity & Verification Seal</h3>
+          <p className="text-gray-700 mt-3 max-w-3xl">
+            The PDF incorporates a cryptographically generated verification identifier that allows 
+            external entities to validate authenticity without relying on Certif-Scope’s infrastructure.
+          </p>
+
+          <ul className="mt-3 text-gray-700 text-sm space-y-1">
+            <li>• Cryptographic integrity signature</li>
+            <li>• Offline verification capability</li>
+            <li>• Institutional trust and traceability</li>
+          </ul>
         </div>
+
       </div>
 
+      {/* FINAL INFORMATION BLOCK */}
+      <div className="mt-20 p-10 bg-[#F8FAFC] border border-[#15B097] rounded-xl shadow-sm">
+        <h4 className="text-2xl font-semibold text-[#0B3A63] mb-3">
+          Automated, Reproducible, and Institution-Ready
+        </h4>
+        <p className="text-gray-700 max-w-4xl leading-relaxed">
+          Certif-Scope eliminates the need for consultants or multi-week audits by providing a 
+          reproducible, verifiable and standardized attestation aligned with the expectations of 
+          European procurement and financial institutions. The workflow is designed for compliance, 
+          operational clarity and cross-border acceptance.
+        </p>
+      </div>
 
-      {/* RETURN BUTTON — identical across sections */}
+      {/* RETURN BUTTON — IDENTICAL ACROSS ALL SECTIONS */}
       <div className="mt-12 text-right">
         <a
           href="#top"
@@ -148,7 +134,6 @@ export default function Section6() {
           Back to summary
         </a>
       </div>
-
     </section>
   );
-      }
+}
