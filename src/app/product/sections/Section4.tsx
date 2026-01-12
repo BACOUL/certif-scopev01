@@ -16,39 +16,38 @@ export default function Section4() {
         </h2>
 
         <p className="text-lg text-gray-700 max-w-4xl mt-6 leading-relaxed relative z-10">
-          Certif-Scope delivers a standardized, verifiable and institution-ready CO₂ attestation
-          designed to address procurement, banking, insurance and investment compliance
-          expectations across Europe. It transforms basic financial activity data into a
-          consistent, audit-compatible output aligned with CSRD/ESRS context while remaining
-          simple enough for SMEs. Verification is cryptographically secured and compatible with
-          offline validation by third-parties.
+          Certif-Scope structures, computes and formats CO₂ indicators in a reproducible way
+          based on verifiable public datasets and recognized methodological principles.
+          The entire process is deterministic, transparent, and compatible with institutional
+          due-diligence workflows. Output integrity is guaranteed through a SHA-256 hash
+          allowing offline verification without relying on platform availability.
         </p>
       </div>
 
 
-      {/* 3-STEP VALUE FRAMEWORK — DISTINCT DESIGN */}
+      {/* 3-STEP FRAMEWORK — CLEAR INPUT → ENGINE → OUTPUT PROCESS */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-16">
 
-        {/* BLOCK 1 */}
+        {/* STEP 1 — INPUT */}
         <div className="p-10 bg-white rounded-xl border border-gray-200 shadow-md hover:shadow-lg transition">
           <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
             Step 1 — Structured Input Layer
           </h3>
           <p className="text-gray-700 text-sm leading-relaxed">
-            Users provide annual expenditure categories and optional sector adjustments.
-            Inputs follow classifications compatible with GHG Protocol spend-based logic,
-            ensuring data can be interpreted uniformly by institutions.
+            Users provide annual expenditures per category. Inputs follow classifications
+            compatible with the spend-based method described by the 
+            <a href="https://ghgprotocol.org" target="_blank" className="text-[#0B3A63] underline"> GHG Protocol</a>.
           </p>
 
           <ul className="mt-4 space-y-2 text-gray-700 text-sm">
-            <li>• Annual spend per relevant operational category</li>
+            <li>• Annual spend per operational category</li>
             <li>• Optional industry modifiers (transport, retail, services, etc.)</li>
-            <li>• Automatic data validation and error detection</li>
-            <li>• GDPR-compliant, no permanent storage</li>
+            <li>• Automatic input structure validation</li>
+            <li>• GDPR-compliant (no permanent storage)</li>
           </ul>
         </div>
 
-        {/* BLOCK 2 */}
+        {/* STEP 2 — ENGINE */}
         <div className="p-10 bg-[#0B3A63] text-white rounded-xl shadow-lg relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/40 to-transparent opacity-30"></div>
 
@@ -57,35 +56,35 @@ export default function Section4() {
           </h3>
 
           <p className="text-white/90 text-sm leading-relaxed relative z-10">
-            The system applies recognised European emission factor sources and spend-based
-            conversion logic validated against GHG Protocol references. The entire calculation
-            chain is deterministic and reproducible, ensuring institutional trust.
+            The calculation engine applies emission factors from verified public databases
+            and performs deterministic conversions based on spend → CO₂ logic. No hidden
+            modelling or inferential estimation is used.
           </p>
 
           <ul className="mt-4 space-y-2 text-white/90 text-sm relative z-10">
-            <li>• Validated emission factors from ADEME / DEFRA / IPCC</li>
-            <li>• Reproducible spend-to-CO₂ methodology</li>
-            <li>• Instant computation without human intervention</li>
-            <li>• No unverifiable or modelled assumptions</li>
+            <li>• ADEME Base Carbone (official French database)</li>
+            <li>• DEFRA UK emission factors</li>
+            <li>• IPCC AR5 / AR6 conversion parameters</li>
+            <li>• Deterministic, reproducible computation chain</li>
           </ul>
         </div>
 
-        {/* BLOCK 3 */}
+        {/* STEP 3 — OUTPUT */}
         <div className="p-10 bg-white rounded-xl border border-gray-200 shadow-md hover:shadow-lg transition">
           <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
             Step 3 — Standardized Output for Institutions
           </h3>
 
           <p className="text-gray-700 text-sm leading-relaxed">
-            The system generates a structured PDF attestation with clear indicators, emission
-            factors summary, methodology framing, and a verifiable cryptographic seal. This
-            makes the document compatible with ESG due diligence workflows.
+            The generated PDF includes clear indicators, reference datasets, boundary
+            definitions, and a cryptographic verification seal. This makes the document
+            suitable for procurement screening, banking risk assessment and compliance workflows.
           </p>
 
           <ul className="mt-4 space-y-2 text-gray-700 text-sm">
-            <li>• Professional, consistent formatting</li>
-            <li>• Unique verification identifier</li>
-            <li>• Cryptographic integrity hash</li>
+            <li>• Structured indicator presentation (consistent layout)</li>
+            <li>• SHA-256 integrity hash for offline verification</li>
+            <li>• Unique verification identifier embedded in PDF</li>
             <li>• Multilingual acceptance (EN/FR/DE/ES/IT)</li>
           </ul>
         </div>
@@ -99,32 +98,41 @@ export default function Section4() {
         </h3>
 
         <p className="text-gray-700 text-sm max-w-4xl leading-relaxed">
-          The Certif-Scope output mirrors the structure and expectations described in
-          European regulatory and technical references, without claiming to replace full
-          CSRD/ESRS reporting. It provides the minimum reliable information needed by
-          procurement and finance teams to classify supplier climate exposure.
+          Certif-Scope follows verified methodologies and integrates structural elements
+          aligned with institutional expectations without replacing CSRD/ESRS reporting.
+          It offers the minimum reliable dataset required for supplier classification.
         </p>
 
         <ul className="mt-4 space-y-2 text-gray-700 text-sm leading-relaxed">
           <li>
-            • Consistency aligns with <a href="https://www.efrag.org" target="_blank" className="text-[#0B3A63] underline">ESRS E1 data requirements</a>,
-            especially for value-chain GHG screening.
+            • Compatibility with 
+            <a href="https://www.efrag.org" target="_blank" className="text-[#0B3A63] underline">
+              ESRS E1 requirements
+            </a> for upstream GHG screening.
           </li>
           <li>
-            • Emission factors sourced from verifiable datasets (ADEME Base Carbone, DEFRA,
-            IPCC AR5/AR6).
+            • Emission factors from 
+            <a href="https://www.bilans-ges.ademe.fr" target="_blank" className="text-[#0B3A63] underline">
+              ADEME Base Carbone
+            </a>,  
+            <a href="https://www.gov.uk/government/collections/government-conversion-factors-for-company-reporting" target="_blank" className="text-[#0B3A63] underline">
+              DEFRA UK
+            </a>,  
+            <a href="https://www.ipcc.ch/report/ar6/wg3/" target="_blank" className="text-[#0B3A63] underline">
+              IPCC AR6
+            </a>.
           </li>
           <li>
-            • Clear boundary explanation avoids misleading claims (not a full Scope 3 audit).
+            • Boundary clarification consistent with ISO 14064-1 transparency principles.
           </li>
           <li>
-            • Verification hash enables offline integrity checks for audit trails.
+            • SHA-256 cryptographic hash enabling offline verification integrity.
           </li>
         </ul>
       </div>
 
 
-      {/* RETURN BUTTON — STRICTLY IDENTICAL ACROSS ALL SECTIONS */}
+      {/* RETURN BUTTON — IDENTICAL ACROSS ALL SECTIONS */}
       <div className="mt-12 text-right">
         <a
           href="#top"
