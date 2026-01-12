@@ -1,136 +1,102 @@
+"use client";
+
 export default function Section13() {
   return (
     <section
       id="s13"
-      className="scroll-mt-24 py-32 bg-[#F8FAFC] dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800"
+      className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
-      {/* HEADER */}
-      <div className="max-w-4xl mx-auto px-6 text-center mb-20">
-        <h2 className="text-4xl font-extrabold text-[#0B3A63]">
-          Integrations & Compatibility
+      {/* HEADER BLOCK — dark institutional unique design */}
+      <div className="p-12 rounded-2xl bg-[#0B3A63] text-white shadow-lg relative overflow-hidden">
+
+        <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/25 to-transparent pointer-events-none"></div>
+
+        <h2 className="text-4xl md:text-5xl font-extrabold relative z-10">
+          13. Data Integrity & Anti-Tampering Guarantees
         </h2>
 
-        <p className="mt-6 text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-          Certif-Scope has been designed for seamless integration into procurement pipelines,
-          risk evaluation workflows, accounting tools, and enterprise dashboards. The generated
-          attestation is universally compatible with systems used across banks, insurers, and
-          corporate compliance departments, ensuring immediate adoption without technical friction.
+        <p className="text-lg text-white/90 max-w-4xl mt-6 leading-relaxed relative z-10">
+          Certif-Scope ensures that the generated attestation cannot be altered without detection.
+          This section explains the structural safeguards included in the final PDF, focusing on
+          traceability, integrity, consistent formatting, and institutional validation compatibility.
+          No regulatory methodology is detailed here, as it is covered in the dedicated pages.
         </p>
       </div>
 
-      {/* GRID ROW */}
-      <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10">
+      {/* 3-column institutional grid */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-16">
 
-        {/* BOX 1 */}
-        <div className="p-8 bg-white dark:bg-gray-800 rounded-2xl shadow border border-gray-200 dark:border-gray-700">
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
-            Direct File Compatibility
+        {/* Card 1 */}
+        <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-md">
+          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
+            Cryptographic Integrity Seal
           </h3>
-          <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
-            The attestation PDF can be uploaded to any procurement platform, banking portal,
-            insurance onboarding system, or ESG evaluation interface without requiring a specific
-            plugin or account.
+          <p className="text-gray-700 text-sm leading-relaxed">
+            Each attestation includes a cryptographic signature designed to detect any file
+            modification. Institutions can confirm authenticity without external dependencies.
           </p>
-          <ul className="mt-4 space-y-2 text-sm text-gray-600 dark:text-gray-400">
-            <li>• Standard PDF/A-1b format</li>
-            <li>• Machine-readable metadata</li>
-            <li>• Embedded verification QR code</li>
+          <ul className="text-gray-700 text-sm space-y-2 mt-4">
+            <li>• Tamper-evident PDF structure</li>
+            <li>• Unique integrity hash embedded</li>
+            <li>• Validation possible fully offline</li>
           </ul>
         </div>
 
-        {/* BOX 2 */}
-        <div className="p-8 bg-white dark:bg-gray-800 rounded-2xl shadow border border-gray-200 dark:border-gray-700">
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
-            Compatible with Major Platforms
+        {/* Card 2 */}
+        <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/30 shadow-sm">
+          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
+            Consistent Output Structure
           </h3>
-          <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
-            Accepted by systems used in finance, compliance, procurement and marketplace validation.
-            Designed to remove friction and accelerate onboarding decisions.
+          <p className="text-gray-700 text-sm leading-relaxed">
+            The document layout follows a fixed structure: identity block, results block,
+            methodology pointer, and verification information. This facilitates institutional review
+            and automated document processing.
           </p>
-          <ul className="mt-4 space-y-2 text-sm text-gray-600 dark:text-gray-400">
-            <li>• SAP Ariba</li>
-            <li>• Oracle Procurement Cloud</li>
-            <li>• Coupa Supplier Portal</li>
-            <li>• Banking review channels</li>
-            <li>• ESG & compliance scoring tools</li>
+          <ul className="text-gray-700 text-sm space-y-2 mt-4">
+            <li>• Standardized positioning of all fields</li>
+            <li>• Machine-readable identifiers</li>
+            <li>• Uniform layout across all attestations</li>
           </ul>
         </div>
 
-        {/* BOX 3 */}
-        <div className="p-8 bg-white dark:bg-gray-800 rounded-2xl shadow border border-gray-200 dark:border-gray-700">
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
-            API Export & Automation
+        {/* Card 3 */}
+        <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-md">
+          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
+            Immutable Verification Metadata
           </h3>
-          <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
-            Certif-Scope can be integrated into automated workflows using simple file-output logic.
-            Export the PDF directly into internal systems or attach it automatically during supplier
-            onboarding.
+          <p className="text-gray-700 text-sm leading-relaxed">
+            The verification code embedded in the PDF includes fixed metadata identifying the
+            generation parameters and protecting against unauthorized alterations or reformatting.
           </p>
-          <ul className="mt-4 space-y-2 text-sm text-gray-600 dark:text-gray-400">
-            <li>• Automated generation</li>
-            <li>• Automated upload to portals</li>
-            <li>• Integration with ERP & dashboards</li>
+          <ul className="text-gray-700 text-sm space-y-2 mt-4">
+            <li>• Static metadata ensuring consistency</li>
+            <li>• No silent overwriting possible</li>
+            <li>• Securely encoded verification block</li>
           </ul>
         </div>
       </div>
 
-      {/* SECOND ROW — HIGHLIGHTS */}
-      <div className="max-w-6xl mx-auto px-6 mt-20 grid grid-cols-1 md:grid-cols-2 gap-10">
+      {/* DEEP EXPLANATION BLOCK */}
+      <div className="mt-20 p-12 bg-white rounded-xl border border-gray-200 shadow-md">
+        <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
+          How Integrity Enhances Institutional Trust
+        </h3>
 
-        {/* LEFT BLOCK */}
-        <div className="bg-[#0B3A63] text-white rounded-2xl p-10 shadow-xl">
-          <h3 className="text-2xl font-bold mb-6">
-            File-Level Verification Integration
-          </h3>
-          <p className="text-white/90 text-sm leading-relaxed mb-6">
-            Verification does not depend on server availability. The cryptographic hash embedded
-            inside the PDF allows auditors, banks, and partners to confirm document integrity offline.
-          </p>
-          <ul className="space-y-3 text-sm">
-            <li className="flex gap-3">
-              <span className="w-3 h-3 rounded-full bg-[#47B39C] mt-1"></span>
-              Standalone verification workflow
-            </li>
-
-            <li className="flex gap-3">
-              <span className="w-3 h-3 rounded-full bg-[#47B39C] mt-1"></span>
-              No API key or account required
-            </li>
-
-            <li className="flex gap-3">
-              <span className="w-3 h-3 rounded-full bg-[#47B39C] mt-1"></span>
-              QR code points to verification endpoint
-            </li>
-          </ul>
-        </div>
-
-        {/* RIGHT BLOCK */}
-        <div className="bg-white dark:bg-gray-800 rounded-2xl p-10 shadow border border-gray-200 dark:border-gray-700">
-          <h3 className="text-2xl font-bold text-[#0B3A63] mb-6">
-            Technical Integration Options
-          </h3>
-          <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-6">
-            Certif-Scope supports flexible integration models depending on system requirements
-            and internal IT constraints.
-          </p>
-
-          <ul className="space-y-4 text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
-            <li>• Direct PDF export automation</li>
-            <li>• SCIM / SSO optional compatibility for enterprise</li>
-            <li>• Automated emailing of attestations</li>
-            <li>• ERP dashboard embedding (iframe / pdf viewer)</li>
-            <li>• Local verification using downloadable public keys</li>
-          </ul>
-        </div>
+        <p className="text-gray-700 max-w-5xl leading-relaxed">
+          Ensuring data integrity is essential when documents circulate across procurement,
+          banking, insurance or public-sector evaluation workflows. Certif-Scope does not replace
+          regulatory reporting; instead, it provides a tamper-evident, standardized and portable
+          supporting document that fits directly into institutional due-diligence procedures.
+        </p>
       </div>
 
-      {/* FOOTER — BACK TO SUMMARY */}
-      <div className="text-center mt-24">
+      {/* RETURN BUTTON — identical across all sections */}
+      <div className="mt-12 text-right">
         <a
           href="#top"
-          className="inline-block text-sm text-gray-500 hover:text-[#0B3A63] border border-gray-300 px-4 py-2 rounded-lg transition"
+          className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
         >
-          Back to summary ↑
+          Back to summary
         </a>
       </div>
     </section>
