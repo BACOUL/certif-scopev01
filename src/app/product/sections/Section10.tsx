@@ -7,134 +7,113 @@ export default function Section10() {
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
 
-      {/* TITLE */}
-      <h2 className="text-4xl font-extrabold text-[#0B3A63] mb-12">
-        10 — Data Sources
-      </h2>
+      {/* HEADER BLOCK — Unique institutional layout */}
+      <div className="rounded-2xl p-12 bg-white border border-gray-200 shadow-lg relative overflow-hidden">
 
-      {/* UNIQUE LAYOUT — THREE-COLUMN FACT GRID */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+        {/* Gradient accent */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0B3A63]/5 to-[#15B097]/10 pointer-events-none"></div>
 
-        {/* BLOCK 1 */}
-        <div className="p-8 bg-[#F8FAFC] border border-[#0B3A63]/20 rounded-xl shadow-md">
-          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
-            Validated Emission Factors
+        <h2 className="text-4xl md:text-5xl font-extrabold text-[#0B3A63] relative z-10">
+          10. Data Sources (High-Level Overview)
+        </h2>
+
+        <p className="text-lg text-gray-700 max-w-4xl mt-6 leading-relaxed relative z-10">
+          Certif-Scope relies on stable, recognized and long-term emission factor references 
+          that are widely used in European procurement and institutional documentation.  
+          This section provides a high-level overview of the categories of data sources 
+          used for the attestation, without entering into methodological or regulatory detail.
+        </p>
+      </div>
+
+      {/* GRID — 4 key source categories */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mt-16">
+
+        {/* 1 — European Public Institutions */}
+        <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#0B3A63]/20 shadow-sm">
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
+            European Public Institutions
           </h3>
           <p className="text-gray-700 text-sm leading-relaxed">
-            Certif-Scope uses a maintained dataset of recognized factors sourced
-            from European and international reference bodies. These datasets are
-            curated for stability, transparency, and cross-country comparability.
+            Includes publicly available datasets published by major EU bodies.  
+            These sources ensure stability, transparency and cross-border recognition.
           </p>
-
-          <ul className="mt-4 text-gray-700 text-sm space-y-2">
-            <li>• Government-published baseline indicators</li>
-            <li>• Sector-level intensity factors</li>
-            <li>• Publicly validated data repositories</li>
+          <ul className="mt-3 text-sm text-gray-700 space-y-1">
+            <li>• EU environmental reporting repositories</li>
+            <li>• Public emissions registers</li>
+            <li>• Structured categories by sector</li>
           </ul>
         </div>
 
-        {/* BLOCK 2 */}
-        <div className="p-8 bg-white border border-gray-200 rounded-xl shadow-md">
-          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
-            Cross-European Market Data
+        {/* 2 — National Environmental Agencies */}
+        <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-md hover:shadow-lg transition">
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
+            National Environmental Agencies
           </h3>
           <p className="text-gray-700 text-sm leading-relaxed">
-            Financial activity categories rely on harmonized European market
-            segmentation, enabling consistent interpretation across procurement
-            offices, banks, and institutional reviewers in different countries.
+            Multiple European national agencies publish validated emission factor libraries 
+            used in procurement documentation and ESG declarations.
           </p>
-
-          <ul className="mt-4 text-gray-700 text-sm space-y-2">
-            <li>• Pan-European sector classifications</li>
-            <li>• Standardized economic activity codes</li>
-            <li>• Consistent categorization across borders</li>
+          <ul className="mt-3 text-sm text-gray-700 space-y-1">
+            <li>• Sector-aligned factor families</li>
+            <li>• Publicly accessible documentation</li>
+            <li>• Annual or multi-annual updates</li>
           </ul>
         </div>
 
-        {/* BLOCK 3 */}
-        <div className="p-8 bg-[#0B3A63] text-white rounded-xl shadow-lg relative overflow-hidden">
-
-          {/* Accent overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/40 to-transparent"></div>
-
-          <div className="relative z-10">
-            <h3 className="text-2xl font-semibold mb-3">
-              Verified Public References
-            </h3>
-            <p className="text-white/90 text-sm leading-relaxed">
-              Certif-Scope relies exclusively on publicly accessible sources with
-              traceable publication history, ensuring clarity for auditors and
-              institutional stakeholders.
-            </p>
-
-            <ul className="mt-4 text-white/90 text-sm space-y-2">
-              <li>• Stable public repositories</li>
-              <li>• Versioned factor updates</li>
-              <li>• Traceable publication dates</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      {/* SECOND ROW — SOURCE CATEGORIES */}
-      <div className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-12">
-
-        {/* BLOCK A */}
-        <div className="p-10 bg-[#F8FAFC] rounded-xl border border-[#15B097]/40 shadow-sm">
-          <h4 className="text-2xl font-semibold text-[#0B3A63] mb-4">
-            What Data Is NOT Used
-          </h4>
-          <p className="text-gray-700 leading-relaxed text-sm">
-            To ensure neutrality and independence, Certif-Scope does not use
-            proprietary datasets, estimations coming from private consultants,
-            or values that cannot be verified by third parties.
-          </p>
-
-          <ul className="mt-4 space-y-2 text-sm text-gray-700">
-            <li>• No private ESG consultancy datasets</li>
-            <li>• No unpublished or unverifiable sources</li>
-            <li>• No confidential or restricted databases</li>
-          </ul>
-        </div>
-
-        {/* BLOCK B */}
-        <div className="p-10 bg-white rounded-xl border border-gray-200 shadow-md">
-          <h4 className="text-2xl font-semibold text-[#0B3A63] mb-4">
-            Why These Sources Matter
-          </h4>
+        {/* 3 — International Reference Datasets */}
+        <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/30 shadow-sm">
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
+            International Reference Datasets
+          </h3>
           <p className="text-gray-700 text-sm leading-relaxed">
-            Institutions must be able to independently verify the origin and
-            credibility of every value shown in the attestation. Using only 
-            transparent, public, and traceable data ensures compatibility with
-            procurement reviews, audits, and cross-border applications.
+            Stable, internationally recognized repositories widely used in audit, risk scoring 
+            and sustainability benchmarking contexts.
           </p>
-
-          <ul className="mt-4 text-sm text-gray-700 space-y-2">
-            <li>• Reduces risk of rejection during onboarding</li>
-            <li>• Ensures durability of the attestation</li>
-            <li>• Enables independent validation by auditors</li>
+          <ul className="mt-3 text-sm text-gray-700 space-y-1">
+            <li>• Standardized classifications</li>
+            <li>• Cross-year comparability</li>
+            <li>• Long-term institutional acceptance</li>
           </ul>
         </div>
-      </div>
 
-      {/* CTA STRIP WITH PREMIUM DESIGN */}
-      <div className="mt-20 p-10 bg-[#0B3A63] text-white rounded-xl shadow-lg relative overflow-hidden">
-
-        <div className="absolute inset-0 bg-gradient-to-r from-[#15B097]/30 to-transparent"></div>
-
-        <div className="relative z-10">
-          <h4 className="text-2xl font-semibold mb-3">
-            Built for Transparency and Reviewability
-          </h4>
-          <p className="text-white/90 max-w-4xl">
-            Certif-Scope's reliance on stable, verifiable public sources ensures
-            clarity and eliminates ambiguity for institutions reviewing the CO₂
-            attestation, enabling seamless onboarding and compliance validation.
+        {/* 4 — Financial & Sectoral Concordances */}
+        <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-md hover:shadow-lg transition">
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
+            Financial & Sectoral Concordances
+          </h3>
+          <p className="text-gray-700 text-sm leading-relaxed">
+            Mapping tables linking financial expenditure categories to representative 
+            activity-based emission factors, prepared for institutional assessment workflows.
           </p>
+          <ul className="mt-3 text-sm text-gray-700 space-y-1">
+            <li>• Transparent classification logic</li>
+            <li>• Consistent with institutional review norms</li>
+            <li>• Deterministic category assignment</li>
+          </ul>
         </div>
+
       </div>
 
-      {/* RETURN BUTTON — IDENTICAL ACROSS ALL SECTIONS */}
+      {/* EXPLANATION STRIP — High-trust institutional language */}
+      <div className="mt-20 p-12 rounded-xl bg-[#0B3A63] text-white shadow-md relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#15B097] to-transparent opacity-20"></div>
+
+        <h3 className="text-2xl font-semibold relative z-10">
+          Why This Matters for Institutions
+        </h3>
+
+        <p className="text-white/90 max-w-5xl mt-4 leading-relaxed relative z-10">
+          Institutional reviewers require that environmental indicators originate from stable, 
+          recognized and reproducible data sources.  
+          Certif-Scope only uses public or internationally recognized references to ensure 
+          compatibility with procurement screening, banking due-diligence and insurance eligibility 
+          checks across multiple European jurisdictions.  
+          The stability and independence of source datasets ensures long-term acceptability even in 
+          environments where institutional validation criteria may evolve.
+        </p>
+      </div>
+
+      {/* RETURN BUTTON — identical across all sections */}
       <div className="mt-12 text-right">
         <a
           href="#top"
@@ -146,4 +125,4 @@ export default function Section10() {
 
     </section>
   );
-}
+      }
