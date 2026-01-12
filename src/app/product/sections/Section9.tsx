@@ -1,117 +1,122 @@
+"use client";
+
 export default function Section9() {
   return (
     <section
       id="s9"
-      className="scroll-mt-24 py-32 bg-[#F8FAFC] dark:bg-gray-900"
+      className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
 
-      {/* TITLE */}
-      <div className="max-w-4xl mx-auto text-center px-6 mb-20">
-        <h2 className="text-4xl font-extrabold text-[#0B3A63]">
+      {/* HEADER */}
+      <div className="bg-[#F8FAFC] p-10 rounded-2xl shadow-sm border border-gray-100 mb-14">
+        <h2 className="text-4xl font-extrabold text-[#0B3A63] mb-4">
           Sample PDF Attestation
         </h2>
-
-        <p className="mt-6 text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-          Certif-Scope provides a clean, institutional-grade PDF that includes company details,
-          methodology overview, emission factors, calculation results and a cryptographic integrity
-          block. Below is a visual representation of the final document format.
+        <p className="text-lg text-gray-700 max-w-3xl">
+          Below is an example of the standardized Certif-Scope CO₂ attestation format.
+          It demonstrates exactly how institutions such as banks, procurement teams,
+          insurers and compliance departments will receive and review your document.
         </p>
       </div>
 
-      {/* MAIN CONTENT - PREVIEW + DOCUMENT STRUCTURE */}
-      <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-14">
-
-        {/* LEFT COLUMN — PDF PREVIEW */}
-        <div className="md:col-span-2">
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
-
-            {/* PREVIEW HEADER */}
-            <div className="bg-[#0B3A63] text-white py-4 px-6">
-              <h3 className="text-lg font-semibold">
-                PDF Document Preview
-              </h3>
-            </div>
-
-            {/* PDF IMAGE MOCK */}
-            <div className="w-full h-[560px] bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-              <span className="text-gray-500 dark:text-gray-300 text-sm">
-                PDF Preview Placeholder  
-                (Upload or integrate actual preview image here)
-              </span>
-            </div>
-
-          </div>
-
-          {/* ACTION BUTTONS */}
-          <div className="flex flex-wrap gap-4 mt-8">
-
-            <a
-              href="/sample/sample-certifscope.pdf"
-              className="px-6 py-3 rounded-lg bg-[#47B39C] text-white font-semibold shadow hover:bg-[#3e9f8c] transition"
-              download
-            >
-              Download Sample PDF
-            </a>
-
-            <a
-              href="#s8"
-              className="px-6 py-3 rounded-lg bg-white dark:bg-gray-800 text-[#0B3A63] font-semibold border border-[#0B3A63] hover:bg-[#0B3A63]/10 transition"
-            >
-              View Verification Method
-            </a>
-
-          </div>
+      {/* PREVIEW MOCKUP BLOCK */}
+      <div className="flex justify-center">
+        <div className="bg-white shadow-xl rounded-2xl border border-gray-200 overflow-hidden max-w-4xl">
+          <img
+            src="/images/sample-attestation.jpg"
+            alt="Sample Certif-Scope PDF Attestation"
+            className="w-full object-cover"
+          />
         </div>
-
-        {/* RIGHT COLUMN — DOCUMENT STRUCTURE */}
-        <aside className="bg-white dark:bg-gray-800 p-10 rounded-xl border border-gray-200 dark:border-gray-700 shadow-md">
-          <h4 className="text-2xl font-bold text-[#0B3A63] mb-6">
-            Document Structure
-          </h4>
-
-          <ul className="space-y-5 text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-
-            <li className="border-l-4 border-[#47B39C] pl-4">
-              <span className="font-semibold text-[#0B3A63]">Cover page</span><br />
-              Company details, reporting year, unique verification ID.
-            </li>
-
-            <li className="border-l-4 border-[#47B39C] pl-4">
-              <span className="font-semibold text-[#0B3A63]">Methodology summary</span><br />
-              Explains the spend-based approach and emission factor sources.
-            </li>
-
-            <li className="border-l-4 border-[#47B39C] pl-4">
-              <span className="font-semibold text-[#0B3A63]">Activity breakdown</span><br />
-              Visual segmentation of emissions by category (transport, energy, purchases, etc.)
-            </li>
-
-            <li className="border-l-4 border-[#47B39C] pl-4">
-              <span className="font-semibold text-[#0B3A63]">Total emissions</span><br />
-              Consolidated CO₂ indicator with clear units and scope type.
-            </li>
-
-            <li className="border-l-4 border-[#47B39C] pl-4">
-              <span className="font-semibold text-[#0B3A63]">Emission factors used</span><br />
-              References sources and calculation parameters.
-            </li>
-
-            <li className="border-l-4 border-[#47B39C] pl-4">
-              <span className="font-semibold text-[#0B3A63]">Cryptographic verification block</span><br />
-              SHA-256 hash, timestamp, signature metadata and validation instructions.
-            </li>
-
-          </ul>
-        </aside>
       </div>
 
-      {/* RETURN TO SUMMARY BUTTON */}
-      <div className="text-center mt-24">
+      {/* TECHNICAL BREAKDOWN GRID */}
+      <div className="mt-14 grid grid-cols-1 md:grid-cols-2 gap-10">
+
+        {/* LEFT BLOCK */}
+        <div className="p-8 bg-white border border-gray-200 rounded-xl shadow-md">
+          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
+            Document Structure Overview
+          </h3>
+
+          <ul className="space-y-3 text-gray-700 text-sm leading-relaxed">
+            <li>• Summary of emissions (Scope 1, 2, 3)</li>
+            <li>• Emission chart visualization</li>
+            <li>• Attestation period & reporting date</li>
+            <li>• Verification ID & integrity hash</li>
+            <li>• Methodology and emission factors</li>
+            <li>• Issuing authority and compliance notes</li>
+          </ul>
+
+          <p className="mt-4 text-sm text-[#0B3A63] underline">
+            <a
+              href="https://ghgprotocol.org/standards"
+              target="_blank"
+            >
+              Learn more about the GHG Protocol standards
+            </a>
+          </p>
+        </div>
+
+        {/* RIGHT BLOCK */}
+        <div className="p-8 bg-[#0B3A63] text-white border border-[#15B097] rounded-xl shadow-xl relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/30 to-transparent"></div>
+
+          <h3 className="text-2xl font-semibold mb-4 relative z-10">
+            How Institutions Verify the Document
+          </h3>
+
+          <p className="text-white/90 text-sm leading-relaxed relative z-10">
+            The verification workflow is fully transparent and designed for compliance
+            examiners who need deterministic validation without relying on Certif-Scope.
+          </p>
+
+          <ol className="list-decimal ml-5 mt-4 space-y-3 text-sm text-white/90 relative z-10">
+            <li>Open PDF and extract verification metadata</li>
+            <li>Recompute SHA-256 hash from the PDF content</li>
+            <li>Compare computed hash with embedded reference hash</li>
+            <li>Validate timestamp and scope classification</li>
+            <li>Confirm alignment with GHG Protocol methodology</li>
+          </ol>
+
+          <p className="mt-4 text-sm underline relative z-10">
+            <a
+              href="https://www.iso.org/standard/82504.html"
+              target="_blank"
+            >
+              ISO verification guidelines — ISO 22301
+            </a>
+          </p>
+        </div>
+
+      </div>
+
+      {/* DOWNLOAD CTA */}
+      <div className="mt-20 bg-[#F8FAFC] p-10 rounded-xl border border-gray-200 shadow-sm">
+        <h4 className="text-2xl font-semibold text-[#0B3A63] mb-3">
+          Download a Sample Attestation
+        </h4>
+        <p className="text-gray-700 max-w-3xl mb-6">
+          Download a full PDF sample to review structure, layout and verification fields.
+          This is the exact file format that institutions receive.
+        </p>
+
+        <a
+          href="/sample/certif-scope-attestation.pdf"
+          target="_blank"
+          className="inline-block px-6 py-3 rounded-lg bg-[#0B3A63] text-white hover:bg-[#15B097] transition-colors text-sm font-medium"
+        >
+          Download PDF Sample
+        </a>
+      </div>
+
+      {/* RETURN BUTTON — IDENTICAL ACROSS ALL SECTIONS */}
+      <div className="mt-12 text-right">
         <a
           href="#top"
-          className="inline-block text-sm text-gray-500 hover:text-[#0B3A63] border border-gray-300 px-4 py-2 rounded-lg transition"
+          className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
         >
-          Back to summary ↑
+          Back to summary
         </a>
       </div>
 
