@@ -7,117 +7,96 @@ export default function Section2() {
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
 
-      {/* HEADER — unique design block */}
-      <div className="relative p-12 rounded-2xl bg-white border border-gray-200 shadow-md overflow-hidden">
+      {/* HEADER BLOCK – Unique, serious, institutional layout */}
+      <div className="rounded-2xl p-12 bg-[#0B3A63] text-white shadow-lg relative overflow-hidden">
 
-        {/* Accent gradient */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#15B097]/10 to-[#0B3A63]/5"></div>
+        {/* Accent Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/30 to-transparent pointer-events-none"></div>
 
-        <h2 className="text-4xl md:text-5xl font-extrabold text-[#0B3A63] relative z-10">
-          2. Key Benefits Summary — Why Institutions Accept It
+        <h2 className="text-4xl md:text-5xl font-extrabold relative z-10">
+          2. Problem Statement
         </h2>
 
-        <p className="text-lg text-gray-700 mt-6 max-w-4xl leading-relaxed relative z-10">
-          Certif-Scope is engineered for fast, credible, and standardized climate-related reporting 
-          aligned with mandatory European regulatory expectations.  
-          Benefits directly support procurement evaluation (Directive 2014/24/EU), banking risk frameworks (EBA Guidelines), 
-          and sustainability disclosure obligations (CSRD, ESRS E1).  
-          Each output follows a reproducible modeling approach derived from the GHG Protocol (spend-based method), 
-          ISO 14064-1 principles, and widely recognized emission factor sources (ADEME, DEFRA, IPCC).
+        <p className="text-white/90 text-lg max-w-4xl mt-6 leading-relaxed relative z-10">
+          Across Europe, SMEs are increasingly required to provide CO₂ indicators to banks,
+          procurement departments, insurers, investors and public institutions. However,
+          existing environmental reporting processes are slow, expensive, inconsistent
+          and frequently rejected due to non-standard formats. This creates operational
+          bottlenecks that Certif-Scope directly resolves with a standardized, verifiable,
+          institution-ready output.
         </p>
       </div>
 
-      {/* 6 BENEFITS GRID — premium layout */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-16">
 
-        {/* BENEFIT 1 */}
-        <div className="p-8 bg-[#F8FAFC] border border-[#15B097]/30 rounded-xl shadow-sm hover:shadow-md transition">
+      {/* 3-Column Block — Institutional & Analytical */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+
+        {/* PROBLEM 1 */}
+        <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-md">
           <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
-            1. Standardized Across Europe
+            1. Absence of Standardization
           </h3>
           <p className="text-gray-700 text-sm leading-relaxed">
-            Structured using regulatory terminology aligned with CSRD / ESRS E1 taxonomy, 
-            ensuring compatibility with cross-border procurement and ESG evaluation procedures.  
-            Institutions recognize the format immediately, reducing the chance of rejection.
+            European institutions expect structured and comparable environmental metrics.
+            Without harmonized presentation, many SMEs’ documents are rejected. 
+            This reflects the broader problem identified in ESRS E1 and CSRD: non-standard
+            disclosures hinder verification and comparability.
           </p>
         </div>
 
-        {/* BENEFIT 2 */}
-        <div className="p-8 bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition">
+        {/* PROBLEM 2 */}
+        <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/30 shadow-sm">
           <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
-            2. Fast Delivery (Under 30 Seconds)
+            2. Excessive Cost & Slow Delivery
           </h3>
           <p className="text-gray-700 text-sm leading-relaxed">
-            Fully automated calculation pipeline.  
-            Uses deterministic models and validated emission factors to produce an attestation instantly —  
-            essential for tenders with tight deadlines or banking onboarding procedures.
+            Traditional ESG reporting can take weeks and cost thousands of euros. Procurement
+            and banking teams often require documentation within tight deadlines (24–72 hours),
+            creating an accessibility barrier for SMEs.
           </p>
         </div>
 
-        {/* BENEFIT 3 */}
-        <div className="p-8 bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition">
+        {/* PROBLEM 3 */}
+        <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-md">
           <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
-            3. Independent Verification (Offline)
+            3. Lack of Clear Verification Mechanisms
           </h3>
           <p className="text-gray-700 text-sm leading-relaxed">
-            The document includes a SHA-256 integrity hash and verifiable metadata.  
-            Third parties can authenticate authenticity without external servers, 
-            satisfying audit-trail and non-repudiation requirements.
+            Many CO₂ reports do not include verifiable identifiers or integrity mechanisms.
+            This contradicts the transparency principles found in ISO 14064-1 (quantification
+            and reporting of GHG emissions). Institutions prefer documents that can be validated
+            independently, without relying on trust.
           </p>
         </div>
 
-        {/* BENEFIT 4 */}
-        <div className="p-8 bg-[#F8FAFC] border border-[#15B097]/30 rounded-xl shadow-sm hover:shadow-md transition">
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
-            4. Recognized Emission Factor Sources
-          </h3>
-          <p className="text-gray-700 text-sm leading-relaxed">
-            Based on official datasets including ADEME Base Carbone® (France), 
-            DEFRA (United Kingdom), and IPCC 2021 world averages.  
-            Ensures methodological transparency and international credibility.
-          </p>
-        </div>
-
-        {/* BENEFIT 5 */}
-        <div className="p-8 bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition">
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
-            5. Built for Procurement & Banking Workflows
-          </h3>
-          <p className="text-gray-700 text-sm leading-relaxed">
-            Includes fields expected in institutional reviews: entity identifiers, activity classification, 
-            Scope indicators, methodology summary, verification block, and timestamp.  
-            Saves weeks of back-and-forth validation during due diligence.
-          </p>
-        </div>
-
-        {/* BENEFIT 6 */}
-        <div className="p-8 bg-[#F8FAFC] border border-[#15B097]/30 rounded-xl shadow-sm hover:shadow-md transition">
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
-            6. Multilingual Compatibility
-          </h3>
-          <p className="text-gray-700 text-sm leading-relaxed">
-            Designed with simple, clear English structure easily translatable into French, German, Spanish and Italian.  
-            Essential for EU tenders and international procurement chains.
-          </p>
-        </div>
       </div>
 
-      {/* INFO STRIP — credibility block */}
-      <div className="mt-20 bg-[#0B3A63] text-white p-10 rounded-xl shadow-md relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#15B097] to-transparent opacity-20"></div>
 
-        <h4 className="text-2xl font-bold relative z-10">
-          Why Institutions Trust Certif-Scope
-        </h4>
+      {/* INSTITUTIONAL CONTEXT STRIP */}
+      <div className="mt-20 p-10 rounded-xl bg-[#F8FAFC] border border-[#0B3A63]/20 shadow-sm">
 
-        <p className="mt-3 text-white/90 max-w-4xl leading-relaxed relative z-10">
-          The attestation complies with formal expectations from EU regulators and sectoral authorities.  
-          It simplifies climate-related documentation for SMEs and enables banks, insurers, public buyers, 
-          and large corporations to integrate environmental indicators into structured evaluation workflows.
+        <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
+          Institutional Context Across Europe
+        </h3>
+
+        <p className="text-gray-700 leading-relaxed max-w-4xl">
+          Banks, insurers and procurement departments increasingly request CO₂ indicators
+          to comply with internal risk frameworks, ESG due diligence processes and regulatory
+          expectations. While SMEs are not directly subject to CSRD or full ESRS reporting,
+          larger companies are — and they cascade these requirements to suppliers to satisfy
+          Scope 3 screening obligations.  
         </p>
+
+        <ul className="mt-6 space-y-2 text-gray-700 text-sm">
+          <li>• CSRD (2022/2464) requires large companies to assess environmental risks</li>
+          <li>• ESRS E1 requires climate impact assessment including upstream suppliers</li>
+          <li>• Banks integrate CO₂ indicators into risk scoring frameworks</li>
+          <li>• Public tenders increasingly require standardized sustainability metrics</li>
+        </ul>
       </div>
 
-      {/* RETURN BUTTON — identical across sections */}
+
+      {/* RETURN BUTTON — UNIVERSAL & IDENTICAL */}
       <div className="mt-12 text-right">
         <a
           href="#top"
@@ -129,4 +108,4 @@ export default function Section2() {
 
     </section>
   );
-      }
+}
