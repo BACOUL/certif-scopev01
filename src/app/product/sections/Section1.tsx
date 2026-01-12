@@ -6,79 +6,91 @@ export default function Section1() {
       id="s1"
       className="scroll-mt-24 border-b border-gray-200 pb-20"
     >
-      {/* TITLE — UNIFORM RULE ACROSS ALL SECTIONS */}
-      <h2 className="text-4xl font-extrabold text-[#0B3A63] mb-8">
-        1 — Product Overview
-      </h2>
-
-      {/* PREMIUM INTRO BLOCK */}
+      {/* HERO SECTION - premium, institutional */}
       <div className="bg-[#F8FAFC] p-12 rounded-2xl shadow-md border border-gray-100">
-        <h3 className="text-3xl font-bold text-[#0B3A63] mb-6">
-          Instant, Standardized and Verifiable CO₂ Attestation
-        </h3>
+        <h2 className="text-4xl font-extrabold text-[#0B3A63] leading-tight mb-6">
+          Section 1 — Product Overview
+        </h2>
 
         <p className="text-lg text-gray-700 max-w-3xl leading-relaxed">
-          Certif-Scope provides a fast, standardized CO₂ attestation designed for
-          procurement, banking, insurance, compliance evaluations and onboarding
-          workflows across Europe. The output is institution-ready, formatted consistently,
-          and supported by independent cryptographic verification.
+          Certif-Scope provides a fast, standardized and verifiable CO₂ attestation 
+          tailored for procurement teams, banks, insurers, investors and public-sector 
+          evaluators across Europe. The attestation uses a clear institutional structure, 
+          is generated within seconds and can be independently verified using a 
+          cryptographic integrity signature — without relying on Certif-Scope’s servers.
         </p>
       </div>
 
-      {/* THREE VALUE PILLARS — DISTINCTIVE DESIGN */}
+      {/* PREMIUM 3-COLUMN PROOF GRID */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-14">
 
-        {/* Pillar 1 */}
         <div className="p-8 bg-white rounded-xl shadow-lg border border-[#0B3A63]/20">
-          <h4 className="text-xl font-semibold text-[#0B3A63] mb-3">
-            Institution-Ready Formatting
-          </h4>
-          <p className="text-gray-700 text-sm leading-relaxed">
-            The attestation follows a structured, consistent layout adapted for
-            procurement reviews, compliance checks and third-party validation.
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
+            Built for Institutions
+          </h3>
+          <p className="text-gray-600 text-sm leading-relaxed">
+            Standardized fields, clear terminology, verification identifier, 
+            company details and structured layout aligned with European 
+            onboarding and due-diligence processes.
           </p>
         </div>
 
-        {/* Pillar 2 */}
         <div className="p-8 bg-[#F8FAFC] rounded-xl shadow-lg border border-[#15B097]/30">
-          <h4 className="text-xl font-semibold text-[#0B3A63] mb-3">
-            Generated in Less Than 30 Seconds
-          </h4>
-          <p className="text-gray-700 text-sm leading-relaxed">
-            A streamlined input process allows any SME to produce a validated CO₂
-            attestation instantly — without consultants or complex reporting tools.
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
+            Delivered in Under 30 Seconds
+          </h3>
+          <p className="text-gray-600 text-sm leading-relaxed">
+            Rapid generation from yearly spend data. No consultants, no audits, 
+            no delays. The attestation is ready to submit immediately.
           </p>
         </div>
 
-        {/* Pillar 3 */}
         <div className="p-8 bg-white rounded-xl shadow-lg border border-[#0B3A63]/20">
-          <h4 className="text-xl font-semibold text-[#0B3A63] mb-3">
-            Verifiable by Any Institution
-          </h4>
-          <p className="text-gray-700 text-sm leading-relaxed">
-            Each document includes an integrity seal and verification reference,
-            enabling secure offline authentication by third parties.
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
+            Independently Verifiable
+          </h3>
+          <p className="text-gray-600 text-sm leading-relaxed">
+            Includes a unique verification ID and cryptographic hash. 
+            Third parties authenticate authenticity without contacting Certif-Scope.
           </p>
         </div>
 
       </div>
 
-      {/* INFORMATION STRIP — UNIQUE TO THIS SECTION */}
-      <div className="mt-16 p-10 bg-[#0B3A63] text-white rounded-xl shadow-md relative overflow-hidden">
+      {/* INSTITUTIONAL INSIGHT STRIP */}
+      <div className="mt-16 bg-[#0B3A63] text-white p-10 rounded-xl shadow-lg relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#15B097] to-transparent opacity-20"></div>
 
-        <h4 className="text-2xl font-bold mb-4 relative z-10">
-          Built for Institutional Acceptance Across Europe
+        <h4 className="text-xl font-bold mb-4 relative z-10">
+          Institutional Reviewer Perspective
         </h4>
         <p className="text-white/90 max-w-4xl leading-relaxed relative z-10">
-          Certif-Scope removes friction in procurement and onboarding processes by
-          delivering a standardized document that is easy to evaluate, compare and
-          authenticate. It solves a practical need: provide SMEs with the ability to
-          submit compliant, professional CO₂ information without costly ESG audits.
+          European procurement and financial institutions increasingly require 
+          standardized environmental indicators for onboarding, risk scoring and 
+          eligibility checks. Certif-Scope provides a fast, consistent and verifiable 
+          document that aligns with operational expectations — avoiding delays, 
+          rejections or repeated requests for clarification.
+        </p>
+
+        {/* Optional official link */}
+        <a
+          href="https://single-market-economy.ec.europa.eu/index_en"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline text-white/80 text-sm mt-4 inline-block relative z-10"
+        >
+          Official EU Single Market Information →
+        </a>
+      </div>
+
+      {/* CTA BLOCK (DISCREET) */}
+      <div className="mt-12 p-6 bg-[#F8FAFC] rounded-lg border border-gray-200 shadow-sm">
+        <p className="text-gray-700 text-sm">
+          Ready to generate your verified attestation? You can do it instantly using the form on the homepage.
         </p>
       </div>
 
-      {/* RETURN BUTTON — IDENTICAL IN ALL SECTIONS */}
+      {/* RETURN BUTTON — IDENTICAL ACROSS ALL SECTIONS */}
       <div className="mt-12 text-right">
         <a
           href="#top"
@@ -87,7 +99,6 @@ export default function Section1() {
           Back to summary
         </a>
       </div>
-
     </section>
   );
 }
