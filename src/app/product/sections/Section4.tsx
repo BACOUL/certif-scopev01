@@ -7,120 +7,124 @@ export default function Section4() {
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
 
-      {/* HEADER – distinct design */}
-      <div className="relative bg-[#F8FAFC] border border-gray-200 p-12 rounded-2xl shadow-lg">
-        <div className="absolute inset-0 bg-gradient-to-r from-[#15B097]/15 to-transparent pointer-events-none"></div>
+      {/* HEADER — Unique institutional layout */}
+      <div className="relative p-12 rounded-2xl bg-[#F8FAFC] border border-[#0B3A63]/20 shadow-md">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/10 to-transparent"></div>
 
         <h2 className="text-4xl md:text-5xl font-extrabold text-[#0B3A63] relative z-10">
           4. Solution Provided
         </h2>
 
         <p className="text-lg text-gray-700 max-w-4xl mt-6 leading-relaxed relative z-10">
-          Certif-Scope delivers a complete, standardized and verifiable CO₂ attestation 
-          generated automatically from annual expenditure inputs. The solution is built 
-          to match institutional expectations across procurement, banking, insurance, 
-          investment onboarding and ESG compliance workflows. The output is immediate, 
-          multilingual-ready and formatted for seamless third-party review.
+          Certif-Scope delivers a standardized, verifiable and institution-ready CO₂ attestation
+          designed to address procurement, banking, insurance and investment compliance
+          expectations across Europe. It transforms basic financial activity data into a
+          consistent, audit-compatible output aligned with CSRD/ESRS context while remaining
+          simple enough for SMEs. Verification is cryptographically secured and compatible with
+          offline validation by third-parties.
         </p>
       </div>
 
-      {/* 3-COLUMN SOLUTION WORKFLOW */}
+
+      {/* 3-STEP VALUE FRAMEWORK — DISTINCT DESIGN */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-16">
 
-        {/* STEP 1 */}
-        <div className="p-8 bg-white rounded-xl shadow-md border border-gray-200 hover:shadow-lg transition">
-          <div className="text-[#15B097] font-bold text-4xl mb-4">01</div>
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
-            Structured Input Interface
+        {/* BLOCK 1 */}
+        <div className="p-10 bg-white rounded-xl border border-gray-200 shadow-md hover:shadow-lg transition">
+          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
+            Step 1 — Structured Input Layer
           </h3>
           <p className="text-gray-700 text-sm leading-relaxed">
-            Users enter annual spend data across standardized categories. Automatic validation 
-            prevents errors, ensures numerical consistency and minimises compliance risk.
+            Users provide annual expenditure categories and optional sector adjustments.
+            Inputs follow classifications compatible with GHG Protocol spend-based logic,
+            ensuring data can be interpreted uniformly by institutions.
           </p>
-          <ul className="mt-3 text-sm text-gray-700 space-y-1">
-            <li>• Categorised expenditure fields</li>
-            <li>• GDPR-compliant processing</li>
-            <li>• Error and anomaly detection</li>
+
+          <ul className="mt-4 space-y-2 text-gray-700 text-sm">
+            <li>• Annual spend per relevant operational category</li>
+            <li>• Optional industry modifiers (transport, retail, services, etc.)</li>
+            <li>• Automatic data validation and error detection</li>
+            <li>• GDPR-compliant, no permanent storage</li>
           </ul>
         </div>
 
-        {/* STEP 2 */}
-        <div className="p-8 bg-[#0B3A63] text-white rounded-xl shadow-md relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/30 opacity-30"></div>
+        {/* BLOCK 2 */}
+        <div className="p-10 bg-[#0B3A63] text-white rounded-xl shadow-lg relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/40 to-transparent opacity-30"></div>
 
-          <div className="text-white font-bold text-4xl mb-4 relative z-10">02</div>
-          <h3 className="text-xl font-semibold mb-2 relative z-10">
-            Automated Processing Engine
+          <h3 className="text-2xl font-semibold mb-3 relative z-10">
+            Step 2 — Automated Calculation Engine
           </h3>
+
           <p className="text-white/90 text-sm leading-relaxed relative z-10">
-            A deterministic algorithm converts spend data into standardized CO₂ results using 
-            verified emission factors and predefined institutional reporting logic.
+            The system applies recognised European emission factor sources and spend-based
+            conversion logic validated against GHG Protocol references. The entire calculation
+            chain is deterministic and reproducible, ensuring institutional trust.
           </p>
-          <ul className="mt-3 text-sm text-white/90 space-y-1 relative z-10">
-            <li>• Deterministic & reproducible logic</li>
-            <li>• Instant metadata structuring</li>
-            <li>• Fully automated, no manual steps</li>
+
+          <ul className="mt-4 space-y-2 text-white/90 text-sm relative z-10">
+            <li>• Validated emission factors from ADEME / DEFRA / IPCC</li>
+            <li>• Reproducible spend-to-CO₂ methodology</li>
+            <li>• Instant computation without human intervention</li>
+            <li>• No unverifiable or modelled assumptions</li>
           </ul>
         </div>
 
-        {/* STEP 3 */}
-        <div className="p-8 bg-[#F8FAFC] rounded-xl shadow-md border border-[#15B097]/30 hover:shadow-lg transition">
-          <div className="text-[#15B097] font-bold text-4xl mb-4">03</div>
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
-            Institution-Ready Output
+        {/* BLOCK 3 */}
+        <div className="p-10 bg-white rounded-xl border border-gray-200 shadow-md hover:shadow-lg transition">
+          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
+            Step 3 — Standardized Output for Institutions
           </h3>
+
           <p className="text-gray-700 text-sm leading-relaxed">
-            A professionally formatted PDF is generated instantly. It includes verification 
-            identifiers, structural consistency markers and multilingual sections.
+            The system generates a structured PDF attestation with clear indicators, emission
+            factors summary, methodology framing, and a verifiable cryptographic seal. This
+            makes the document compatible with ESG due diligence workflows.
           </p>
-          <ul className="mt-3 text-sm text-gray-700 space-y-1">
-            <li>• Standardized PDF structure</li>
-            <li>• Unique verification code</li>
-            <li>• Cryptographic integrity seal</li>
+
+          <ul className="mt-4 space-y-2 text-gray-700 text-sm">
+            <li>• Professional, consistent formatting</li>
+            <li>• Unique verification identifier</li>
+            <li>• Cryptographic integrity hash</li>
+            <li>• Multilingual acceptance (EN/FR/DE/ES/IT)</li>
           </ul>
         </div>
       </div>
 
-      {/* ADDITIONAL VALUE BLOCK – unique design for this section */}
-      <div className="mt-20 p-10 bg-white border border-gray-200 rounded-xl shadow-md">
+
+      {/* INSTITUTIONAL JUSTIFICATION BLOCK */}
+      <div className="mt-20 p-10 bg-[#F8FAFC] rounded-xl border border-[#15B097]/30 shadow-sm">
         <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
-          Core Functional Advantages
+          Why This Solution Is Accepted by Institutions
         </h3>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-6">
+        <p className="text-gray-700 text-sm max-w-4xl leading-relaxed">
+          The Certif-Scope output mirrors the structure and expectations described in
+          European regulatory and technical references, without claiming to replace full
+          CSRD/ESRS reporting. It provides the minimum reliable information needed by
+          procurement and finance teams to classify supplier climate exposure.
+        </p>
 
-          <div className="p-6 bg-[#F8FAFC] border border-[#0B3A63]/20 rounded-lg">
-            <h4 className="font-semibold text-[#0B3A63]">Multilingual Output (EN/FR/DE/ES/IT)</h4>
-            <p className="text-gray-700 text-sm mt-2">
-              Designed for pan-European procurement, ensuring immediate compatibility internationally.
-            </p>
-          </div>
-
-          <div className="p-6 bg-[#F8FAFC] border border-[#15B097]/20 rounded-lg">
-            <h4 className="font-semibold text-[#0B3A63]">Consistent Institutional Formatting</h4>
-            <p className="text-gray-700 text-sm mt-2">
-              Ensures compliance reviewers instantly recognize structure and terminology.
-            </p>
-          </div>
-
-          <div className="p-6 bg-[#F8FAFC] border border-[#0B3A63]/20 rounded-lg">
-            <h4 className="font-semibold text-[#0B3A63]">Audit-Friendly Verification Model</h4>
-            <p className="text-gray-700 text-sm mt-2">
-              Cryptographic signature enables third-party validation without contacting Certif-Scope.
-            </p>
-          </div>
-
-          <div className="p-6 bg-[#F8FAFC] border border-[#15B097]/20 rounded-lg">
-            <h4 className="font-semibold text-[#0B3A63]">Zero Consultancy Dependency</h4>
-            <p className="text-gray-700 text-sm mt-2">
-              Eliminates delays, high costs and manual processing traditionally associated with ESG reporting.
-            </p>
-          </div>
-
-        </div>
+        <ul className="mt-4 space-y-2 text-gray-700 text-sm leading-relaxed">
+          <li>
+            • Consistency aligns with <a href="https://www.efrag.org" target="_blank" className="text-[#0B3A63] underline">ESRS E1 data requirements</a>,
+            especially for value-chain GHG screening.
+          </li>
+          <li>
+            • Emission factors sourced from verifiable datasets (ADEME Base Carbone, DEFRA,
+            IPCC AR5/AR6).
+          </li>
+          <li>
+            • Clear boundary explanation avoids misleading claims (not a full Scope 3 audit).
+          </li>
+          <li>
+            • Verification hash enables offline integrity checks for audit trails.
+          </li>
+        </ul>
       </div>
 
-      {/* RETURN BUTTON — identical across all sections */}
+
+      {/* RETURN BUTTON — STRICTLY IDENTICAL ACROSS ALL SECTIONS */}
       <div className="mt-12 text-right">
         <a
           href="#top"
@@ -132,4 +136,4 @@ export default function Section4() {
 
     </section>
   );
-      }
+}
