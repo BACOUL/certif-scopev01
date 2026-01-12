@@ -1,140 +1,133 @@
+"use client";
+
 export default function Section10() {
   return (
     <section
       id="s10"
-      className="scroll-mt-24 py-32 bg-white dark:bg-gray-900"
+      className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
-      {/* HEADER */}
-      <div className="max-w-4xl mx-auto px-6 text-center mb-20">
-        <h2 className="text-4xl font-extrabold text-[#0B3A63]">
-          Data Sources & Methodological Foundations
-        </h2>
 
-        <p className="mt-6 text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-          Certif-Scope relies on internationally recognized emission factor libraries and validated
-          calculation models. Every dataset is publicly documented, version-controlled and traceable,
-          ensuring transparency, repeatability and institutional acceptance.
+      {/* HEADER */}
+      <div className="bg-[#F8FAFC] p-10 rounded-2xl shadow-sm border border-gray-100 mb-14">
+        <h2 className="text-4xl font-extrabold text-[#0B3A63] mb-4">
+          Data Sources Used in the Calculation
+        </h2>
+        <p className="text-lg text-gray-700 max-w-3xl">
+          Certif-Scope relies on authoritative and internationally recognized datasets 
+          to ensure accuracy, transparency, and institutional credibility. All emission factors 
+          are derived from standardized European methodologies and continuously monitored 
+          for updates.
         </p>
       </div>
 
-      {/* MAIN GRID */}
-      <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-12">
+      {/* 2-COLUMN GRID WITH PREMIUM DESIGN */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
 
-        {/* LEFT COLUMN — DATASET OVERVIEW */}
-        <div className="lg:col-span-2 space-y-10">
+        {/* COLUMN 1 */}
+        <div className="p-8 bg-white border border-gray-200 rounded-xl shadow-md">
+          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
+            Primary Data Sources
+          </h3>
 
-          {/* BLOCK 1 */}
-          <div className="p-8 rounded-2xl border border-gray-200 dark:border-gray-700 bg-[#F8FAFC] dark:bg-gray-800 shadow-sm">
-            <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
-              Emission Factors Databases
-            </h3>
-            <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed mb-6">
-              Certif-Scope uses standardised emission factor datasets aligned with the GHG Protocol.
-              These sources provide sector-specific factors for energy, transport, materials, goods
-              and services. Factors are updated regularly to reflect methodological improvements and
-              changes in economic input-output models.
-            </p>
+          <ul className="space-y-4 text-gray-700 text-sm leading-relaxed">
+            <li>
+              <span className="font-semibold text-[#0B3A63]">• European Environment Agency (EEA):</span><br />
+              Official emission factors for energy, transportation and waste streams.
+            </li>
 
-            <ul className="space-y-3 text-sm text-gray-600 dark:text-gray-400">
-              <li className="flex gap-2">
-                <span className="block w-2 h-2 rounded-full bg-[#47B39C] mt-2"></span>
-                <span><strong>ADEME Base Carbone®</strong> — France’s official emission factor database.</span>
-              </li>
+            <li>
+              <span className="font-semibold text-[#0B3A63]">• IPCC Emission Factor Database:</span><br />
+              Global datasets validated by the Intergovernmental Panel on Climate Change.
+            </li>
 
-              <li className="flex gap-2">
-                <span className="block w-2 h-2 rounded-full bg-[#47B39C] mt-2"></span>
-                <span><strong>DEFRA / BEIS UK Factors</strong> — widely used in European compliance frameworks.</span>
-              </li>
+            <li>
+              <span className="font-semibold text-[#0B3A63]">• Eurostat Sectoral Spend Indicators:</span><br />
+              Harmonized data for sector-based approximations of SME activity.
+            </li>
 
-              <li className="flex gap-2">
-                <span className="block w-2 h-2 rounded-full bg-[#47B39C] mt-2"></span>
-                <span><strong>EEIO / Input-Output Models</strong> — spend-based macro-economic correlation models.</span>
-              </li>
-            </ul>
-          </div>
+            <li>
+              <span className="font-semibold text-[#0B3A63]">• GHG Protocol:</span><br />
+              Spend-based calculation methodology and standardized reporting requirements.
+            </li>
+          </ul>
 
-          {/* BLOCK 2 */}
-          <div className="p-8 rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm">
-            <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
-              Methodology Alignment
-            </h3>
-
-            <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed mb-6">
-              The calculation process follows the <strong>GHG Protocol Corporate Standard</strong>,
-              specifically the spend-based and purchase-based estimation models. This allows SMEs to
-              produce a reliable, comparable indicator without requiring granular physical data.
-            </p>
-
-            <ul className="space-y-3 text-sm text-gray-600 dark:text-gray-400">
-              <li>• GHG Protocol — Corporate Standard</li>
-              <li>• GHG Protocol — Scope 3 Categories</li>
-              <li>• ISO-14064 methodological alignment</li>
-              <li>• European taxonomy ESG disclosure expectations</li>
-            </ul>
-          </div>
-
-          {/* BLOCK 3 */}
-          <div className="p-8 rounded-2xl border border-gray-200 dark:border-gray-700 bg-[#F8FAFC] dark:bg-gray-800 shadow-sm">
-            <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
-              Calculation Structure
-            </h3>
-
-            <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-              Emissions are estimated by multiplying financial expenditure by the corresponding
-              sector-based emission factor. This enables rapid calculation while maintaining a stable
-              correlation with recognised environmental reporting standards.
-            </p>
-          </div>
-
+          <p className="mt-4 text-sm underline text-[#0B3A63]">
+            <a target="_blank" href="https://www.eea.europa.eu/data-and-maps">
+              European Environment Agency datasets →
+            </a>
+          </p>
         </div>
 
-        {/* RIGHT COLUMN — VERSIONING PANEL */}
-        <aside className="bg-[#0B3A63] text-white p-10 rounded-2xl shadow-xl">
-          <h4 className="text-2xl font-bold mb-6">
-            Versioning & Transparency
-          </h4>
+        {/* COLUMN 2 */}
+        <div className="p-8 bg-[#0B3A63] text-white border border-[#15B097] rounded-xl shadow-xl relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/25 to-transparent"></div>
 
-          <p className="text-sm text-white/90 leading-relaxed mb-8">
-            All emission factors and calculation rules used by Certif-Scope are version-controlled.
-            Each attestation includes a reference to the exact data version used, ensuring full audit
-            traceability and backwards compatibility.
+          <h3 className="text-2xl font-semibold mb-4 relative z-10">
+            How Certif-Scope Uses These Data
+          </h3>
+
+          <p className="text-white/90 text-sm leading-relaxed relative z-10">
+            All external datasets are processed through a deterministic engine that aligns 
+            spending categories with the closest corresponding emission factors. The goal is to 
+            provide a transparent, reproducible and verifiable calculation method suitable 
+            for institutional audits.
           </p>
 
-          <div className="space-y-5 text-sm">
-            <div>
-              <span className="font-semibold">Current methodology version:</span><br />
-              v1.0 — January 2026
-            </div>
+          <ul className="space-y-3 mt-4 text-sm text-white/90 relative z-10">
+            <li>• Automatic category matching with EEA and IPCC factors</li>
+            <li>• Verified annual updates when agencies publish new data</li>
+            <li>• Sector normalization for SME-level financial structures</li>
+            <li>• Clear documentation included in the attestation PDF</li>
+          </ul>
 
-            <div>
-              <span className="font-semibold">Public repository:</span><br />
-              <a
-                href="#"
-                className="underline text-[#47B39C] hover:text-[#3d9c87]"
-              >
-                View methodology archive
-              </a>
-            </div>
-
-            <div>
-              <span className="font-semibold">Next update:</span><br />
-              Q3 2026 — Data refresh + additional sector factors
-            </div>
-          </div>
-        </aside>
+          <p className="mt-4 underline text-sm relative z-10">
+            <a target="_blank" href="https://ghgprotocol.org/standards">
+              GHG Protocol official documentation →
+            </a>
+          </p>
+        </div>
 
       </div>
 
-      {/* BACK TO SUMMARY */}
-      <div className="text-center mt-24">
+      {/* FEATURE BLOCK */}
+      <div className="mt-20 p-10 bg-[#F8FAFC] border border-gray-200 rounded-xl shadow-sm">
+        <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
+          Update Frequency & Data Integrity
+        </h3>
+
+        <p className="text-gray-700 max-w-4xl leading-relaxed mb-6">
+          Certif-Scope monitors source datasets on a recurring basis and applies updates 
+          automatically. Each attestation includes metadata specifying the version of the 
+          emission factors and the date of the last data refresh for complete transparency.
+        </p>
+
+        <ul className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-gray-700">
+          <li className="p-4 bg-white border border-gray-200 rounded-lg shadow-sm">
+            • Annual review of European Environment Agency data
+          </li>
+          <li className="p-4 bg-white border border-gray-200 rounded-lg shadow-sm">
+            • Automatic detection of updated IPCC datasets
+          </li>
+          <li className="p-4 bg-white border border-gray-200 rounded-lg shadow-sm">
+            • Verification of emission factor consistency across sources
+          </li>
+          <li className="p-4 bg-white border border-gray-200 rounded-lg shadow-sm">
+            • Transparent version tags included in PDF metadata
+          </li>
+        </ul>
+
+      </div>
+
+      {/* RETURN BUTTON — IDENTICAL ACROSS ALL SECTIONS */}
+      <div className="mt-12 text-right">
         <a
           href="#top"
-          className="inline-block text-sm text-gray-500 hover:text-[#0B3A63] border border-gray-300 px-4 py-2 rounded-lg transition"
+          className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
         >
-          Back to summary ↑
+          Back to summary
         </a>
       </div>
 
     </section>
   );
-}
+      }
