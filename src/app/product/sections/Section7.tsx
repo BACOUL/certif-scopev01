@@ -7,115 +7,114 @@ export default function Section7() {
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
 
-      {/* SECTION TITLE — consistent format */}
-      <h2 className="text-4xl font-extrabold text-[#0B3A63] mb-12">
-        7 — Value Proposition
-      </h2>
+      {/* HEADER BLOCK — unique design */}
+      <div className="bg-[#F8FAFC] p-12 rounded-2xl shadow-sm border border-gray-200">
+        <h2 className="text-4xl font-extrabold text-[#0B3A63] leading-tight">
+          Section 7 — Verification & Integrity Assurance
+        </h2>
 
-      {/* UNIQUE DESIGN: Two-column institutional grid with visual hierarchy */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-
-        {/* LEFT COLUMN — key institutional benefits */}
-        <div className="space-y-10">
-
-          {/* CARD 1 */}
-          <div className="bg-[#F8FAFC] border border-gray-200 rounded-2xl p-10 shadow-sm">
-            <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
-              Instant Institutional Acceptance
-            </h3>
-            <p className="text-gray-700 leading-relaxed">
-              Certif-Scope produces a fully standardized CO₂ attestation matching the
-              expectations of European procurement teams, banking analysts, insurance
-              underwriters and public funding evaluators. The format is clear,
-              structured and directly usable in onboarding workflows.
-            </p>
-          </div>
-
-          {/* CARD 2 */}
-          <div className="bg-white border border-[#15B097]/30 rounded-2xl p-10 shadow-md">
-            <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
-              Zero Consultant Dependency
-            </h3>
-            <p className="text-gray-700 leading-relaxed">
-              No ESG consultants, no multi-week audits. SMEs can generate their attestation
-              autonomously in under 30 seconds, reducing cost, delays and operational friction.
-            </p>
-          </div>
-
-          {/* CARD 3 */}
-          <div className="bg-[#F8FAFC] border border-gray-200 rounded-2xl p-10 shadow-sm">
-            <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
-              Transparent & Reproducible Output
-            </h3>
-            <p className="text-gray-700 leading-relaxed">
-              Every document follows a deterministic structure, ensuring transparency
-              and reproducibility. This makes institutional review faster, easier and
-              fully aligned with European data expectations.
-            </p>
-          </div>
-
-        </div>
-
-        {/* RIGHT COLUMN — vertical benefit panel with visual emphasis */}
-        <div className="bg-[#0B3A63] text-white rounded-2xl p-12 shadow-lg relative overflow-hidden">
-
-          {/* Accent gradient */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/40 to-transparent opacity-40"></div>
-
-          <div className="relative z-10 space-y-8">
-
-            <h3 className="text-3xl font-bold">
-              Why It Delivers More Value Than Traditional Methods
-            </h3>
-
-            <p className="text-white/90 leading-relaxed max-w-xl">
-              Traditional approaches rely on manual audits, fragmented data formats,
-              consultant interpretation and subjective reporting styles. Certif-Scope
-              replaces all of this with a clear, automated and standardized structure
-              compatible across industries and countries.
-            </p>
-
-            <ul className="space-y-4 text-white/90 text-lg">
-              <li className="flex gap-3">
-                <span className="w-3 h-3 rounded-full bg-[#15B097] mt-2"></span>
-                Eliminates formatting inconsistencies
-              </li>
-              <li className="flex gap-3">
-                <span className="w-3 h-3 rounded-full bg-[#15B097] mt-2"></span>
-                Reduces administrative workload
-              </li>
-              <li className="flex gap-3">
-                <span className="w-3 h-3 rounded-full bg-[#15B097] mt-2"></span>
-                Improves institutional trust & clarity
-              </li>
-              <li className="flex gap-3">
-                <span className="w-3 h-3 rounded-full bg-[#15B097] mt-2"></span>
-                Fully digital, reproducible and audit-friendly
-              </li>
-            </ul>
-
-          </div>
-
-        </div>
-      </div>
-
-      {/* HIGHLIGHT STRIP */}
-      <div className="mt-20 p-10 bg-[#15B097]/10 border border-[#15B097]/40 rounded-xl shadow-sm">
-        <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
-          Proven Efficiency for Real Operational Workflows
-        </h3>
-        <p className="text-gray-700 max-w-4xl leading-relaxed">
-          Certif-Scope reduces friction, accelerates procurement onboarding, supports 
-          banking risk analysis, simplifies insurance eligibility processes and ensures 
-          uniform documentation for public funding applications.  
+        <p className="text-lg text-gray-700 max-w-4xl mt-6 leading-relaxed">
+          Certif-Scope ensures that each generated attestation can be independently verified 
+          without relying on platform availability. This aligns with institutional expectations 
+          for document integrity, authenticity, and long-term accessibility across European 
+          procurement, banking and regulatory workflows.
         </p>
       </div>
 
-      {/* RETURN BUTTON — IDENTICAL ACROSS ALL SECTIONS */}
+      {/* 3-COLUMN GRID — unique layout */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-16">
+
+        {/* CARD 1 */}
+        <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-md">
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
+            1. Independent Verification Path
+          </h3>
+          <p className="text-gray-700 text-sm leading-relaxed">
+            Each attestation includes a unique verification identifier and cryptographic hash. 
+            Institutions can validate authenticity without interacting with Certif-Scope systems, 
+            ensuring reliability during audits or platform downtimes.
+          </p>
+        </div>
+
+        {/* CARD 2 */}
+        <div className="p-8 bg-[#0B3A63] text-white rounded-xl border border-[#0B3A63] shadow-md">
+          <h3 className="text-xl font-semibold mb-3">
+            2. Long-Term Document Integrity
+          </h3>
+          <p className="text-white/90 text-sm leading-relaxed">
+            The verification system is designed to remain functional even if the issuer ceases 
+            operations. This ensures long-term usability of generated attestations across 
+            procurement cycles, audits and compliance checks.
+          </p>
+        </div>
+
+        {/* CARD 3 */}
+        <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-md">
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
+            3. Chain-of-Integrity Controls
+          </h3>
+          <p className="text-gray-700 text-sm leading-relaxed">
+            The cryptographic signature ensures that the attestation has not been modified. 
+            Any alteration breaks the verification match, allowing instant detection of 
+            manipulations or tampering attempts.
+          </p>
+        </div>
+
+      </div>
+
+      {/* FEATURE STRIP — strong institutional tone */}
+      <div className="mt-20 bg-[#15B097]/10 border border-[#15B097]/40 p-10 rounded-xl shadow-sm">
+        <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
+          Institutional Reliability Standards
+        </h3>
+        <p className="text-gray-700 max-w-4xl leading-relaxed">
+          Verification must remain possible at all times, regardless of platform status or 
+          business continuity events. Certif-Scope follows a no-dependency principle similar to 
+          archival and notarization systems, ensuring documents can be trusted long after 
+          issuance. This is critical for grant programs, bank lending procedures and 
+          cross-border procurement where verifiable, tamper-proof records are mandatory.
+        </p>
+      </div>
+
+      {/* INLINE FEATURE LIST — unique style for Section 7 */}
+      <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <div className="p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
+          <h4 className="font-semibold text-[#0B3A63]">Offline Check Capability</h4>
+          <p className="text-gray-700 text-sm mt-2">
+            Institutions can confirm authenticity without internet connectivity or platform access.
+          </p>
+        </div>
+
+        <div className="p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
+          <h4 className="font-semibold text-[#0B3A63]">Tamper-Resistant Structure</h4>
+          <p className="text-gray-700 text-sm mt-2">
+            Any modification to the document invalidates the cryptographic signature instantly.
+          </p>
+        </div>
+
+        <div className="p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
+          <h4 className="font-semibold text-[#0B3A63]">Long-Term Accessibility</h4>
+          <p className="text-gray-700 text-sm mt-2">
+            Verification remains possible even if Certif-Scope services are no longer active.
+          </p>
+        </div>
+
+        <div className="p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
+          <h4 className="font-semibold text-[#0B3A63]">Third-Party Audit Friendly</h4>
+          <p className="text-gray-700 text-sm mt-2">
+            Institutions can validate attestations independently during risk analysis and audits.
+          </p>
+        </div>
+
+      </div>
+
+      {/* RETURN BUTTON — identical across all sections */}
       <div className="mt-12 text-right">
         <a
           href="#top"
-          className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
+          className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63] 
+                     text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
         >
           Back to summary
         </a>
@@ -123,4 +122,4 @@ export default function Section7() {
 
     </section>
   );
-}
+            }
