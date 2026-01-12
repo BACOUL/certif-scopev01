@@ -6,6 +6,13 @@ export default function Section1() {
       id="s1"
       className="scroll-mt-24 border-b border-gray-200 pb-20"
     >
+      {/* HEADER TITLE EXACT — RULE 1 */}
+      <div className="mb-10">
+        <h2 className="text-sm md:text-base font-semibold tracking-wide text-[#0B3A63]/70 uppercase">
+          Product Overview
+        </h2>
+      </div>
+
       {/* HERO BLOCK - premium layout */}
       <div className="bg-[#F8FAFC] p-12 rounded-2xl shadow-sm border border-gray-100">
         <h1 className="text-4xl font-extrabold text-[#0B3A63] leading-tight mb-6">
@@ -22,7 +29,7 @@ export default function Section1() {
         </p>
       </div>
 
-      {/* 3 PREMIUM VALUE CARDS */}
+      {/* 3 PREMIUM CARDS */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-14">
 
         {/* Card 1 */}
@@ -63,9 +70,9 @@ export default function Section1() {
 
       </div>
 
-      {/* EXPLANATORY STRIP - distinct design */}
+      {/* INSIGHT STRIP — UNIQUE DESIGN */}
       <div className="mt-16 bg-[#0B3A63] text-white p-10 rounded-xl shadow-md relative overflow-hidden">
-        {/* Accent stripe */}
+        
         <div className="absolute inset-0 bg-gradient-to-br from-[#15B097] to-transparent opacity-25"></div>
 
         <h4 className="text-xl font-bold mb-4 relative z-10">
@@ -81,7 +88,7 @@ export default function Section1() {
         </p>
       </div>
 
-      {/* DISCREET RETURN BUTTON - universal style (Rule applied) */}
+      {/* RETURN BUTTON — IDENTICAL ACROSS ALL SECTIONS */}
       <div className="mt-12 text-right">
         <a
           href="#top"
@@ -90,6 +97,7 @@ export default function Section1() {
           Back to summary
         </a>
       </div>
+
     </section>
   );
-        }
+}
