@@ -7,117 +7,129 @@ export default function Section12() {
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
 
-      {/* HEADER — Premium institutional design */}
-      <div className="relative p-12 rounded-2xl bg-[#F8FAFC] border border-[#0B3A63]/25 shadow-lg overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/10 to-transparent pointer-events-none"></div>
-
-        <h2 className="text-4xl md:text-5xl font-extrabold text-[#0B3A63] relative z-10">
+      {/* HEADER — Data Privacy & GDPR */}
+      <div className="p-12 rounded-2xl bg-[#F8FAFC] border border-[#15B097]/30 shadow-md">
+        <h2 className="text-4xl md:text-5xl font-extrabold text-[#0B3A63]">
           12. Data Privacy & GDPR Compliance
         </h2>
 
-        <p className="text-lg text-gray-700 max-w-4xl mt-6 leading-relaxed relative z-10">
-          Certif-Scope implements strict data minimisation, privacy-by-design and privacy-by-default
-          principles as defined under Regulation (EU) 2016/679 (GDPR). Only the minimum information 
-          required for CO₂ estimation is processed, and no user data is stored, retained or profiled. 
-          The workflow guarantees full compliance across European jurisdictions without creating 
-          long-term exposure or retention risks.
+        <p className="text-lg text-gray-700 max-w-4xl mt-6 leading-relaxed">
+          Certif-Scope operates under strict GDPR principles: data minimisation, stateless
+          processing, no retention of personal information, and no transfer to third parties.
+          Only anonymous numerical expenditure values are processed, solely for generating
+          a CO₂ indicator. No user identity, IP address, session metadata or behavioural
+          information is stored.
+        </p>
+
+        <p className="text-gray-700 text-sm mt-4 max-w-4xl leading-relaxed">
+          Certif-Scope does not use cookies, analytics trackers, advertising scripts or
+          fingerprinting technologies. No profiling or automated decision-making is applied.
         </p>
       </div>
 
-      {/* GDPR COMPLIANCE GRID */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-16">
 
-        {/* BLOCK 1 — Data Minimisation */}
-        <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-md">
-          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">Data Minimisation</h3>
-          <p className="text-gray-700 text-sm leading-relaxed">
-            Only essential expenditure-category data is processed. No names, emails, IP addresses, 
-            behavioural data or identifiers are collected. This aligns with Article 5(1)(c) GDPR and 
-            eliminates unnecessary processing.
-          </p>
-          <ul className="mt-3 text-sm text-gray-700 space-y-1">
-            <li>• No personal identifiers</li>
-            <li>• No tracking technologies</li>
-            <li>• No hidden metadata extraction</li>
-          </ul>
-        </div>
 
-        {/* BLOCK 2 — No Storage Policy */}
-        <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/40 shadow-sm">
-          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">No Storage Policy</h3>
-          <p className="text-gray-700 text-sm leading-relaxed">
-            Data is processed temporarily in memory solely for generating the attestation PDF. 
-            Once the output is delivered, all temporary structures are purged. No logs or 
-            backups persist — ensuring the system remains outside GDPR retention obligations.
-          </p>
-          <ul className="mt-3 text-sm text-gray-700 space-y-1">
-            <li>• No database</li>
-            <li>• No server logs</li>
-            <li>• No backups or archives</li>
-          </ul>
-        </div>
+      {/* BLOCK — Legal Basis */}
+      <div className="mt-20 p-10 bg-white rounded-xl border border-gray-200 shadow-md">
+        <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
+          Legal Basis for Processing (GDPR Articles 5 & 6)
+        </h3>
 
-        {/* BLOCK 3 — Privacy by Design */}
-        <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-md">
-          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">Privacy-by-Design</h3>
-          <p className="text-gray-700 text-sm leading-relaxed">
-            Certif-Scope incorporates the principles of Article 25 GDPR by ensuring that the 
-            platform is technically incapable of retaining or re-identifying users. All calculations 
-            use ephemeral, non-linkable input structures.
-          </p>
-          <ul className="mt-3 text-sm text-gray-700 space-y-1">
-            <li>• Ephemeral processing</li>
-            <li>• No re-identification risk</li>
-            <li>• No cross-session correlation</li>
-          </ul>
-        </div>
-
-      </div>
-
-      {/* OFFICIAL REFERENCES — Required by rule 11 */}
-      <div className="mt-20 p-10 rounded-xl bg-white border border-gray-200 shadow-sm">
-        <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">Official Regulatory References</h3>
-
-        <ul className="text-gray-700 text-sm space-y-2 leading-relaxed">
+        <ul className="text-sm text-gray-700 space-y-3 leading-relaxed">
           <li>
-            • <a href="https://eur-lex.europa.eu/eli/reg/2016/679/oj" target="_blank" className="underline text-[#0B3A63]">GDPR – Regulation (EU) 2016/679</a>  
-            — Legal basis, data minimisation, privacy-by-design.
+            • <strong>Consent — GDPR Art. 6(1)(a):</strong> the user voluntarily provides
+            expenditure values to generate a CO₂ indicator.  
           </li>
+
           <li>
-            • <a href="https://edpb.europa.eu" target="_blank" className="underline text-[#0B3A63]">EDPB – European Data Protection Board</a>  
-            — Guidelines on data processing, consent, legitimate interest.
+            • <strong>Legitimate Interest — GDPR Art. 6(1)(f):</strong> institutions (banks,
+            insurers, procurement) require standardized environmental indicators for
+            due-diligence, screening and risk evaluation.  
           </li>
+
           <li>
-            • <a href="https://www.cnil.fr" target="_blank" className="underline text-[#0B3A63]">CNIL – France</a>  
-            — Public guidance on minimisation and retention.
-          </li>
-          <li>
-            • <a href="https://edps.europa.eu" target="_blank" className="underline text-[#0B3A63]">EDPS – European Data Protection Supervisor</a>  
-            — Trusted interpretations for EU institutions.
+            • <strong>Data Minimisation — GDPR Art. 5:</strong> only numerical values are
+            processed; no identity, contact details, IP addresses or usage analytics are stored.  
           </li>
         </ul>
       </div>
 
-      {/* SCHEMA — Input → Process → Purge → Output */}
-      <div className="mt-20 p-10 bg-[#0B3A63] text-white rounded-xl shadow-md relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#15B097] to-transparent opacity-20"></div>
 
-        <h3 className="text-2xl font-semibold relative z-10">Privacy Workflow (Technical Overview)</h3>
 
-        <ul className="text-white/90 text-sm mt-4 space-y-2 leading-relaxed relative z-10">
-          <li>1. **Input** — User enters annual spend data (non-PII)</li>
-          <li>2. **Processing** — Calculation performed entirely in volatile memory</li>
-          <li>3. **Purge** — Memory wiped once PDF is generated</li>
-          <li>4. **Output-Only** — Only the attestation PDF is delivered to the user</li>
+      {/* BLOCK — No Tracking / No Cookies */}
+      <div className="mt-20 p-10 bg-[#0B3A63] text-white rounded-xl shadow-md">
+        <h3 className="text-2xl font-semibold mb-4">
+          No Cookies, No Tracking, No Analytics
+        </h3>
+
+        <ul className="text-sm text-white/85 space-y-2 leading-relaxed">
+          <li>• No analytics (Google Analytics, Matomo, Mixpanel)</li>
+          <li>• No tracking pixels (Facebook Pixel, LinkedIn Insight)</li>
+          <li>• No session tracking or behavioural profiling</li>
+          <li>• No advertising or marketing cookies</li>
+          <li>• No fingerprinting, no device profiling</li>
         </ul>
 
-        <p className="mt-4 text-white/80 text-sm relative z-10">
-          This architecture ensures zero retention, zero profiling and zero re-identification 
-          risk, providing maximal GDPR alignment without requiring additional user disclosure.
+        <p className="mt-4 text-xs text-white/70">
+          As no optional or tracking cookies are used, a cookie banner is not required under GDPR and ePrivacy Directive.
         </p>
       </div>
 
-      {/* RETURN BUTTON — identical across all sections */}
+
+
+      {/* BLOCK — Stateless Processing */}
+      <div className="mt-20 p-10 bg-[#F8FAFC] border border-[#15B097]/40 rounded-xl shadow-sm">
+        <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
+          Stateless Processing Architecture
+        </h3>
+
+        <p className="text-gray-700 text-sm max-w-4xl leading-relaxed">
+          No persistent storage is used. Inputs exist only in memory during processing and are
+          immediately discarded after generating the PDF. No logs, no backups, no databases and
+          no servers retain user data. This architecture eliminates typical GDPR exposure points
+          such as breaches, retention risks and unauthorized reuse.
+        </p>
+      </div>
+
+
+
+      {/* BLOCK — No Third Parties */}
+      <div className="mt-20 p-10 bg-white rounded-xl border border-gray-200 shadow-md">
+        <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
+          No Third-Party Data Transfers
+        </h3>
+
+        <p className="text-gray-700 text-sm max-w-4xl leading-relaxed">
+          Data is never shared with third parties. No cloud storage providers receive user data.
+          No international transfers occur under GDPR Chapter V. The processing is fully contained
+          within a stateless, ephemeral execution environment.
+        </p>
+      </div>
+
+
+
+      {/* BLOCK — User Rights */}
+      <div className="mt-20 p-10 bg-[#F8FAFC] border border-[#15B097]/40 rounded-xl shadow-sm">
+        <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
+          User Rights Under GDPR
+        </h3>
+
+        <ul className="text-sm text-gray-700 space-y-2 leading-relaxed">
+          <li>• Right of access (Art. 15)</li>
+          <li>• Right to rectification (Art. 16)</li>
+          <li>• Right to erasure — not applicable because no data is stored</li>
+          <li>• Right to restrict processing (Art. 18)</li>
+          <li>• Right to object (Art. 21)</li>
+        </ul>
+
+        <p className="mt-3 text-xs text-gray-600">
+          Most rights do not apply because data is never stored, processed continuously or retained.
+        </p>
+      </div>
+
+
+
+      {/* RETURN BUTTON */}
       <div className="mt-12 text-right">
         <a
           href="#top"
@@ -126,6 +138,7 @@ export default function Section12() {
           Back to summary
         </a>
       </div>
+
     </section>
   );
       }
