@@ -21,7 +21,6 @@ export default function ProductPage() {
   return (
     <div className="max-w-7xl mx-auto px-6 pt-24 pb-24">
 
-      {/* FULL-WIDTH SUMMARY AT TOP */}
       <div className="w-full p-8 mb-24 bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-200 dark:border-gray-700">
         <h2 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-6">
           Product Overview — Sections
@@ -47,7 +46,6 @@ export default function ProductPage() {
         </ul>
       </div>
 
-      {/* MAIN CONTENT — SECTIONS */}
       <div className="space-y-24">
         <Section1 />
         <Section2 />
