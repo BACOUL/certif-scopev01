@@ -119,8 +119,15 @@ export default function Section5() {
             The structured PDF can be submitted directly to national or EU administrative portals.
           </p>
           <p className="mt-2 text-xs text-gray-600">
-            Reference: <a href="https://cinea.ec.europa.eu" target="_blank" className="underline text-[#0B3A63]">EU CINEA Funding Guidelines</a>
-          </a>
+            Reference:{" "}
+            <a
+              href="https://cinea.ec.europa.eu"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline text-[#0B3A63]"
+            >
+              EU CINEA Funding Guidelines
+            </a>
           </p>
         </div>
 
@@ -158,4 +165,4 @@ export default function Section5() {
 
     </section>
   );
-          }
+}
