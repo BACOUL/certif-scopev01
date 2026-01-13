@@ -21,10 +21,10 @@ export default function HowItWorks() {
               1
             </div>
             <h3 className="mt-6 text-lg font-semibold text-[#0B3A63]">
-              Enter financial data
+              Enter categorized spending
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Provide annual spending (€) across predefined categories. No physical activity data (kWh, litres, km) required or accepted.
+              Provide annual spending (€) across predefined categories. No physical activity data (kWh, litres, km) is used or accepted.
             </p>
           </div>
 
@@ -34,10 +34,10 @@ export default function HowItWorks() {
               2
             </div>
             <h3 className="mt-6 text-lg font-semibold text-[#0B3A63]">
-              Automated calculation
+              Automated estimation
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              CO₂e values are estimated using spend-based factors aligned with GHG Protocol Scope 3 Category 1 guidance.
+              CO₂e values are estimated using spend-based factors inspired by GHG Protocol Scope 3 Category 1 guidance — not a full Scope 3 calculation.
             </p>
           </div>
 
@@ -47,10 +47,10 @@ export default function HowItWorks() {
               3
             </div>
             <h3 className="mt-6 text-lg font-semibold text-[#0B3A63]">
-              Download indicative report
+              Download indicative output
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Receive a standardized PDF with estimated indicators and a unique verification ID — suitable for supplier screening and procurement workflows.
+              Receive a standardized PDF with estimated indicators and a unique verification ID. Suitable for supplier screening and procurement ESG pre-assessment — not a regulatory emissions inventory.
             </p>
           </div>
 
