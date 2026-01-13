@@ -93,7 +93,7 @@ export default function Section2() {
           </h3>
           <p className="mt-3 text-gray-700 text-sm leading-relaxed">
             The attestation is formatted for acceptance in English, French, German,
-            Spanish and Italian, covering >80% of EU procurement languages.
+            Spanish and Italian, covering &gt;80% of EU procurement languages.
           </p>
         </div>
 
@@ -127,4 +127,4 @@ export default function Section2() {
 
     </section>
   );
-}
+          }
