@@ -8,9 +8,10 @@ export default function ProblemSolution() {
         </h2>
 
         <p className="mt-6 text-lg md:text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-          Certif-Scope provides a unified, instantly generated and integrity-verifiable CO₂e estimation
-          based exclusively on spend-based methodology (inspired by GHG Protocol Scope 3 Category 1 guidance).
-          Not a CSRD/ESRS report. Designed for supplier screening and financial pre-assessment contexts.
+          Certif-Scope provides an instantly generated, standardized and integrity-verifiable CO₂e estimation
+          based exclusively on spend-based methodology. Uses financial spending (€) only — no physical activity data.
+          Indicative estimation, not a CSRD/ESRS report and not an audited Scope 1/2/3 inventory. Designed for
+          supplier screening and financial ESG pre-assessment contexts.
         </p>
 
         <div className="mt-10 flex flex-wrap justify-center gap-8 text-center">
@@ -19,12 +20,12 @@ export default function ProblemSolution() {
             <p className="text-sm text-gray-600 dark:text-gray-400">Average generation time</p>
           </div>
           <div>
-            <p className="text-3xl font-bold text-[#1FB6C1]">99.7%</p>
-            <p className="text-sm text-gray-600 dark:text-gray-400">High screening compatibility</p>
+            <p className="text-3xl font-bold text-[#1FB6C1]">High fit</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">Commonly accepted for screening</p>
           </div>
           <div>
             <p className="text-3xl font-bold text-[#1FB6C1]">Spend-Based</p>
-            <p className="text-sm text-gray-600 dark:text-gray-400">GHG Scope 3 Category 1 guidance</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">Financial-only input</p>
           </div>
         </div>
 
@@ -38,7 +39,8 @@ export default function ProblemSolution() {
             </svg>
             <h3 className="text-xl font-semibold text-[#0B3A63] dark:text-white">Immediate generation</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 max-w-xs">
-              Obtain a standardized spend-based CO₂e estimation in seconds — no consultants or physical activity data required.
+              Obtain a spend-based CO₂e estimation in seconds — fully automated. No physical activity data,
+              no consultants, no questionnaires.
             </p>
           </div>
 
@@ -48,7 +50,8 @@ export default function ProblemSolution() {
             </svg>
             <h3 className="text-xl font-semibold text-[#0B3A63] dark:text-white">Verification-ready format</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 max-w-xs">
-              Structured output with versioned emission factors and integrated integrity hash — reproducible and transparent for internal reviews.
+              Structured output with version-controlled emission factors and deterministic calculation.
+              Enables consistent reproduction for internal checks.
             </p>
           </div>
 
@@ -58,7 +61,8 @@ export default function ProblemSolution() {
             </svg>
             <h3 className="text-xl font-semibold text-[#0B3A63] dark:text-white">Integrity-verifiable</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 max-w-xs">
-              Each indicative estimate includes a unique verification ID and hash for simple integrity checks — used in procurement and financial pre-assessment workflows.
+              Includes a unique verification ID and a cryptographic integrity hash. Enables independent validation
+              without external databases. Suitable for supplier screening and financial pre-assessment workflows.
             </p>
           </div>
 
