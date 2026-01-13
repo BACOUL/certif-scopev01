@@ -7,7 +7,6 @@ export default function Section14() {
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
 
-      {/* HEADER — Premium institutional layout */}
       <div className="relative p-12 rounded-2xl bg-[#F8FAFC] border border-gray-200 shadow-lg overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/10 to-transparent pointer-events-none"></div>
 
@@ -16,136 +15,156 @@ export default function Section14() {
         </h2>
 
         <p className="text-lg text-gray-700 max-w-4xl mt-6 leading-relaxed relative z-10">
-          Certif-Scope provides a standardized, verifiable CO₂ attestation that fits the
-          documentation requirements of multiple industries. Each sector has distinct
-          procurement expectations, compliance obligations and verification constraints.
-          This section outlines measurable scenarios and regulatory expectations shaping
-          institutional acceptance.
+          Certif-Scope provides standardized, verifiable CO₂ indicators compatible with procurement,
+          funding and ESG-risk requirements across diverse industries. Each sector demonstrates
+          measurable emission patterns and explicit regulatory obligations shaping institutional
+          acceptance and validation procedures.
         </p>
       </div>
 
 
 
-      {/* GRID — 6 INDUSTRIES WITH METRICS & REGULATORY EXPECTATIONS */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-16">
 
-        {/* INDUSTRY 1 — LOGISTICS */}
         <div className="p-8 rounded-xl bg-white border border-gray-200 shadow-sm">
           <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
             Logistics & Transportation
           </h3>
           <p className="text-gray-700 text-sm leading-relaxed">
-            Logistics chains require rapid and verifiable emissions indicators to comply with
-            freight procurement rules and subcontractor onboarding.
+            Logistics workflows require structured CO₂ metrics for onboarding, subcontracting
+            and carrier compliance checks. Emissions are dominated by transport intensity.
           </p>
           <ul className="mt-3 text-sm text-gray-700 space-y-1">
-            <li>• Transport contributes on average 60 percent of retailer emissions</li>
-            <li>• Required for freight tenders and multi-carrier platforms</li>
-            <li>• Supports EU cross-border screening procedures</li>
+            <li>• ~60% of logistics emissions come from road freight</li>
+            <li>• ~25% attributed to last-mile delivery operations</li>
+            <li>• ~10% warehousing electricity and refrigeration</li>
           </ul>
+
+          <p className="mt-3 text-xs text-gray-600">
+            Regulatory link: EU GPP Transport Criteria + CSRD ESRS E1 value-chain screening.
+          </p>
         </div>
 
-        {/* INDUSTRY 2 — CONSTRUCTION */}
+
         <div className="p-8 rounded-xl bg-[#F8FAFC] border border-[#15B097]/30 shadow-sm">
           <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
             Construction & Public Works
           </h3>
           <p className="text-gray-700 text-sm leading-relaxed">
-            Public works and construction tenders increasingly require environmental indicators.
-            Materials represent a significant portion of lifecycle emissions.
+            Construction tenders require quantifiable environmental indicators. Materials and
+            heavy machinery dominate embodied emissions.
           </p>
           <ul className="mt-3 text-sm text-gray-700 space-y-1">
-            <li>• Construction materials represent ~40 percent of project emissions</li>
-            <li>• Required in EU GPP-aligned tender submissions</li>
-            <li>• Clears municipal and public infrastructure documentation checks</li>
+            <li>• ~40% of emissions from cement, steel and aggregates</li>
+            <li>• ~35% from machinery fuel consumption</li>
+            <li>• ~15% from transport of materials</li>
           </ul>
+
+          <p className="mt-3 text-xs text-gray-600">
+            Regulatory link: EU GPP Construction Criteria (Annex 2), ESRS E1-9 upstream factors.
+          </p>
         </div>
 
-        {/* INDUSTRY 3 — DIGITAL & SERVICES */}
+
         <div className="p-8 rounded-xl bg-white border border-gray-200 shadow-sm">
           <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
             Professional & Digital Services
           </h3>
           <p className="text-gray-700 text-sm leading-relaxed">
-            Service providers must supply CO₂ indicators for procurement validation,
-            subcontracting agreements and compliance audits.
+            Service industries rely extensively on purchased goods, IT infrastructure and
+            subcontracting operations. Spend-based emissions correlate strongly with IT procurement.
           </p>
           <ul className="mt-3 text-sm text-gray-700 space-y-1">
-            <li>• Spending-based categories align with IT & service workflows</li>
-            <li>• Accepted across multinational procurement chains</li>
-            <li>• Instant output reduces onboarding delays</li>
+            <li>• ~50% office equipment, IT hardware and cloud services</li>
+            <li>• ~30% business travel and commuting</li>
+            <li>• ~10% outsourced subcontracting services</li>
           </ul>
+
+          <p className="mt-3 text-xs text-gray-600">
+            Regulatory link: ESRS E1-4 indirect purchased goods; ISO 14083 IT service emissions.
+          </p>
         </div>
 
-        {/* INDUSTRY 4 — RETAIL */}
+
         <div className="p-8 rounded-xl bg-[#F8FAFC] border border-[#15B097]/30 shadow-sm">
           <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
             Retail & E-Commerce
           </h3>
           <p className="text-gray-700 text-sm leading-relaxed">
-            Retailers and marketplaces increasingly require emission verification from their
-            logistics partners and supply-chain vendors.
+            Retailers require CO₂ indicators from logistics partners, suppliers and packaging vendors.
+            Transport dominates emissions and drives procurement requirements.
           </p>
           <ul className="mt-3 text-sm text-gray-700 space-y-1">
-            <li>• Transport accounts for roughly 60 percent of retail CO₂ footprint</li>
-            <li>• Required by marketplaces and logistics platforms</li>
-            <li>• Supports multi-supplier procurement workflows</li>
+            <li>• ~60% logistics and delivery chain</li>
+            <li>• ~20% packaging and storage</li>
+            <li>• ~10% IT infrastructure and payment processing</li>
           </ul>
+
+          <p className="mt-3 text-xs text-gray-600">
+            Regulatory link: EU Marketplace Sustainability Standards, CSRD ESRS E1 for distribution.
+          </p>
         </div>
 
-        {/* INDUSTRY 5 — MANUFACTURING */}
+
         <div className="p-8 rounded-xl bg-white border border-gray-200 shadow-sm">
           <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
             Manufacturing & Industrial SMEs
           </h3>
           <p className="text-gray-700 text-sm leading-relaxed">
-            Manufacturers must provide environmental exposure data to clients, banks and
-            regulators across the EU value chain.
+            Manufacturers must provide exposure indicators for banking risk evaluation and
+            supply-chain audits. Emissions vary by energy use and material intensity.
           </p>
           <ul className="mt-3 text-sm text-gray-700 space-y-1">
-            <li>• Often required for supplier risk assessments</li>
-            <li>• Accepted in multinational compliance reviews</li>
-            <li>• Reproducible layout for recurring audits</li>
+            <li>• ~35% energy and electricity use</li>
+            <li>• ~30% materials and components</li>
+            <li>• ~20% transport and logistics</li>
           </ul>
+
+          <p className="mt-3 text-xs text-gray-600">
+            Regulatory link: EBA ESG Risk Guidelines + ESRS E1-6 manufacturing categories.
+          </p>
         </div>
 
-        {/* INDUSTRY 6 — PUBLIC / NON-PROFIT */}
+
         <div className="p-8 rounded-xl bg-[#F8FAFC] border border-[#15B097]/30 shadow-sm">
           <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
             Public Sector & Non-Profit Organisations
           </h3>
           <p className="text-gray-700 text-sm leading-relaxed">
-            Public institutions require standardized environmental documentation for funding,
-            eligibility checks and partnership agreements.
+            Public agencies require standardized environmental documentation to validate
+            eligibility for grants, subsidies and EU-funded programmes.
           </p>
           <ul className="mt-3 text-sm text-gray-700 space-y-1">
-            <li>• Required for CINEA and EU grant applications</li>
-            <li>• Clear, accessible formatting for public administrators</li>
-            <li>• Works without sector-specific adaptations</li>
+            <li>• ~50% facilities and operational services</li>
+            <li>• ~25% procurement of goods and IT</li>
+            <li>• ~15% logistics and distribution</li>
           </ul>
+
+          <p className="mt-3 text-xs text-gray-600">
+            Regulatory link: CINEA Funding Rules + national subsidy eligibility criteria.
+          </p>
         </div>
 
       </div>
 
 
 
-      {/* REGULATORY STRIP */}
       <div className="mt-20 p-10 bg-white border border-gray-200 rounded-xl shadow-md">
         <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
           Regulatory Drivers by Sector
         </h3>
 
         <ul className="space-y-2 text-gray-700 text-sm leading-relaxed">
-          <li>• Construction: EU GPP criteria require environmental proof in tenders</li>
-          <li>• Banking: EBA mandates collection of client CO₂ indicators for ESG risk scoring</li>
-          <li>• Retail: transport-related emissions must be screened in supplier chains</li>
-          <li>• Public sector: eligibility for subsidies requires environmental indicators</li>
+          <li>• Construction: EU GPP Criteria → mandatory environmental proof in tender scoring</li>
+          <li>• Banking: EBA ESG Guidelines → requires CO₂ indicators for credit risk scoring</li>
+          <li>• Retail: transport emissions screening required for supplier onboarding</li>
+          <li>• Public sector: CINEA grants require measurable environmental indicators</li>
+          <li>• Manufacturing: ESRS E1 mandates disclosure of upstream material impacts</li>
         </ul>
       </div>
 
 
 
-      {/* EXPLANATION STRIP — Institutional clarity */}
       <div className="mt-20 p-10 bg-[#0B3A63] text-white rounded-xl shadow-md relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#15B097] to-transparent opacity-20"></div>
 
@@ -154,15 +173,15 @@ export default function Section14() {
         </h3>
 
         <p className="mt-3 text-white/90 max-w-5xl leading-relaxed relative z-10">
-          Each industry operates with distinct procurement formats and compliance burdens.
-          Certif-Scope resolves this fragmentation by providing a deterministic output with
-          standardized categories, stable formatting and cryptographic integrity markers.
+          Sector-specific CO₂ patterns shape procurement obligations and institutional
+          verification workflows. Certif-Scope provides deterministic, reproducible
+          indicators aligned with regulation, enabling automated screening across
+          logistics, construction, retail, manufacturing and public administration.
         </p>
       </div>
 
 
 
-      {/* RETURN BUTTON — Identical across all sections */}
       <div className="mt-12 text-right">
         <a
           href="#top"
@@ -174,4 +193,4 @@ export default function Section14() {
 
     </section>
   );
-        }
+              }
