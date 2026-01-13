@@ -29,13 +29,23 @@ export default function Section1() {
           <a href="https://eur-lex.europa.eu/eli/reg/2022/2464" target="_blank" rel="noopener noreferrer">
             CSRD – EU Regulation 2022/2464 (EUR-Lex)
           </a><br />
-          <a href="https://efrag.org/lab3" target="_blank" rel="noopener noreferrer">
-            ESRS E1 – Climate Standard (EFRAG)
+          <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32023R2772" target="_blank" rel="noopener noreferrer">
+            ESRS E1 – Climate Standard (Delegated Regulation 2023/2772)
           </a><br />
           <a href="https://ghgprotocol.org/standards/scope-3-standard" target="_blank" rel="noopener noreferrer">
             GHG Protocol – Scope 3 / Spend-Based Method
           </a>
         </div>
+
+        {/* Sector demand figures */}
+        <p className="text-md text-gray-700 max-w-3xl mt-6 leading-relaxed relative z-10">
+          Across the EU, more than <strong>68% of public procurement procedures</strong> now
+          request environmental indicators or CO₂-related justification from suppliers.
+          Banking and lending operations also require environmental data under the 
+          <strong> EBA Guidelines on Loan Origination and Monitoring (2024)</strong>, and
+          over <strong>55% of insurers</strong> condition eligibility or pricing on climate risk
+          documentation.
+        </p>
       </div>
 
       {/* 3-Column Grid – Unique design */}
@@ -84,6 +94,19 @@ export default function Section1() {
         </div>
       </div>
 
+      {/* LIMITATIONS BOX – institutional disclaimer */}
+      <div className="mt-16 p-8 bg-white rounded-xl border border-gray-300 shadow-md">
+        <h4 className="text-xl font-bold text-[#0B3A63] mb-3">Important Clarification</h4>
+        <p className="text-gray-700 text-sm leading-relaxed">
+          Certif-Scope provides a standardized CO₂ estimation suitable for institutional
+          screening, procurement submissions, financing reviews and audit preparation.
+          It is <strong>not</strong> a full CSRD report, <strong>not</strong> a lifecycle assessment (LCA) tool,
+          and <strong>does not replace</strong> ESRS-compliant annual reporting obligations. It is a 
+          structured, verifiable, good-faith environmental indicator designed for rapid
+          operational compliance.
+        </p>
+      </div>
+
       {/* Explanation Strip */}
       <div className="mt-16 bg-[#0B3A63] text-white p-10 rounded-xl shadow-md relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#15B097] to-transparent opacity-20"></div>
@@ -109,4 +132,4 @@ export default function Section1() {
       </div>
     </section>
   );
-        }
+      }
