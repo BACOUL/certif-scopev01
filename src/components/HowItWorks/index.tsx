@@ -8,8 +8,8 @@ export default function HowItWorks() {
         </h2>
 
         <p className="mt-4 text-center text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
-          Certif-Scope transforms your annual spending into a clean, ready-to-send CO₂e document.
-          No technical skills. No consultants. No long questionnaires.
+          Certif-Scope turns simple annual spending (€) into a clean, ready-to-send CO₂e document.
+          Instant. Reproducible. Spend-based only. No expertise or consultants needed.
         </p>
 
         <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto my-14"></div>
@@ -25,8 +25,9 @@ export default function HowItWorks() {
               Enter your spending (€)
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Add your annual expenses in a few predefined categories.
-              No physical data (kWh, km, litres) and no specialized knowledge required.
+              Add your annual expenses in a few predefined categories. 
+              No physical metrics, no kWh, km or litres required. 
+              Results depend entirely on your financial inputs.
             </p>
           </div>
 
@@ -39,8 +40,9 @@ export default function HowItWorks() {
               Automatic calculation
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Certif-Scope applies a spend-based method inspired by Scope 3 Category 1 principles.
-              Fully automatic. No waiting. Not a CSRD/ESRS report.
+              A spend-based estimation method aligned with Scope 3 Category 1 principles is applied.
+              Deterministic calculation with version-controlled factors. 
+              Not a CSRD/ESRS report and not an audited inventory.
             </p>
           </div>
 
@@ -53,18 +55,19 @@ export default function HowItWorks() {
               Download your document
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              You receive a clear PDF with CO₂e indicators and a verification code.
-              Perfect for suppliers, clients, banks or ESG pre-assessment.
+              Receive a standardized PDF with your CO₂e indicators, category breakdown 
+              and a unique verification ID.  
+              Perfect for supplier screening, procurement onboarding and ESG pre-assessment.
             </p>
           </div>
 
         </div>
 
         <p className="mt-12 text-center text-sm text-gray-500 dark:text-gray-400">
-          Average time to complete : under 30 seconds.
+          Full process completed in under 30 seconds on average.
         </p>
 
       </div>
     </section>
   );
-}
+        }
