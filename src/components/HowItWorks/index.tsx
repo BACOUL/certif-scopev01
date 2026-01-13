@@ -4,12 +4,12 @@ export default function HowItWorks() {
       <div className="max-w-6xl mx-auto px-6">
 
         <h2 className="text-3xl md:text-4xl font-extrabold text-center text-[#0B3A63]">
-          How Certif-Scope Works
+          How It Works — From Spending to a CO₂e Document in 60 Seconds
         </h2>
 
         <p className="mt-4 text-center text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
-          A streamlined, spend-based process that produces transparent and reproducible 
-          CO₂e estimations instantly — using deterministic factors and version-controlled datasets.
+          Certif-Scope transforms your annual spending into a clean, ready-to-send CO₂e document.
+          No technical skills. No consultants. No long questionnaires.
         </p>
 
         <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto my-14"></div>
@@ -22,11 +22,11 @@ export default function HowItWorks() {
               1
             </div>
             <h3 className="mt-6 text-lg font-semibold text-[#0B3A63]">
-              Enter categorized spending
+              Enter your spending (€)
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Provide annual spending (€) across predefined categories. No physical activity data 
-              (kWh, litres, km) is used or accepted. Results depend entirely on user-provided values.
+              Add your annual expenses in a few predefined categories.
+              No physical data (kWh, km, litres) and no specialized knowledge required.
             </p>
           </div>
 
@@ -36,12 +36,11 @@ export default function HowItWorks() {
               2
             </div>
             <h3 className="mt-6 text-lg font-semibold text-[#0B3A63]">
-              Automated estimation
+              Automatic calculation
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              CO₂e values are calculated using spend-based factors aligned with GHG Protocol 
-              Scope 3 Category 1 estimation principles. Deterministic calculation with version-controlled 
-              emission factors. Not a CSRD/ESRS report or audited emissions inventory.
+              Certif-Scope applies a spend-based method inspired by Scope 3 Category 1 principles.
+              Fully automatic. No waiting. Not a CSRD/ESRS report.
             </p>
           </div>
 
@@ -51,22 +50,21 @@ export default function HowItWorks() {
               3
             </div>
             <h3 className="mt-6 text-lg font-semibold text-[#0B3A63]">
-              Download indicative output
+              Download your document
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Receive a standardized PDF including estimated CO₂e indicators, category breakdown, 
-              dataset version, and a unique verification ID. Suitable for supplier screening and 
-              procurement ESG pre-assessment — not for regulatory filings.
+              You receive a clear PDF with CO₂e indicators and a verification code.
+              Perfect for suppliers, clients, banks or ESG pre-assessment.
             </p>
           </div>
 
         </div>
 
         <p className="mt-12 text-center text-sm text-gray-500 dark:text-gray-400">
-          Full process completed in under 30 seconds on average.
+          Average time to complete : under 30 seconds.
         </p>
 
       </div>
     </section>
   );
-      }
+}
