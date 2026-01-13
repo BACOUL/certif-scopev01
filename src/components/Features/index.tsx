@@ -8,7 +8,8 @@ export default function Features() {
         </h2>
 
         <p className="text-center mt-4 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed text-lg">
-          Designed for fast, standardized and verifiable CO₂e information — based exclusively on spend-based methodology.
+          Designed for fast, standardized and verifiable CO₂e information — 
+          based exclusively on spend-based methodology and deterministic calculation.
         </p>
 
         <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto my-14"></div>
@@ -25,7 +26,7 @@ export default function Features() {
             <div>
               <h3 className="text-lg font-semibold text-[#0B3A63]">Standardized Output</h3>
               <p className="text-gray-600 dark:text-gray-300 mt-2 leading-relaxed text-sm">
-                Consistent institution-friendly format for supplier screening and procurement workflows.
+                A consistent institution-friendly format designed for supplier screening and procurement documentation.
               </p>
             </div>
           </div>
@@ -40,7 +41,7 @@ export default function Features() {
             <div>
               <h3 className="text-lg font-semibold text-[#0B3A63]">Instant Generation</h3>
               <p className="text-gray-600 dark:text-gray-300 mt-2 leading-relaxed text-sm">
-                CO₂e estimation generated in seconds — no physical data, no consultants, no delays.
+                CO₂e estimation produced in seconds — no physical data, no consultants, no delays.
               </p>
             </div>
           </div>
@@ -55,7 +56,7 @@ export default function Features() {
             <div>
               <h3 className="text-lg font-semibold text-[#0B3A63]">Spend-Based Logic</h3>
               <p className="text-gray-600 dark:text-gray-300 mt-2 leading-relaxed text-sm">
-                Based on GHG Protocol Scope 3 Category 1 spend-based estimation principles — transparent and reproducible.
+                Built on GHG Protocol Scope 3 Category 1 spend-based methodology with version-controlled emission factors.
               </p>
             </div>
           </div>
@@ -70,7 +71,7 @@ export default function Features() {
             <div>
               <h3 className="text-lg font-semibold text-[#0B3A63]">Verifiable Identifier</h3>
               <p className="text-gray-600 dark:text-gray-300 mt-2 leading-relaxed text-sm">
-                Each attestation includes a unique verification ID for integrity checks and internal validation.
+                Each attestation contains a unique verification ID supporting offline integrity checks and internal validation workflows.
               </p>
             </div>
           </div>
