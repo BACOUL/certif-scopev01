@@ -3,20 +3,16 @@ export default function Features() {
     <section className="py-24 bg-[#F8FAFC] dark:bg-gray-900">
       <div className="max-w-6xl mx-auto px-6">
 
-        {/* TITLE */}
         <h2 className="text-3xl md:text-4xl font-extrabold text-center text-[#0B3A63]">
           Core Capabilities
         </h2>
 
-        {/* SUBTEXT */}
         <p className="text-center mt-4 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed text-lg">
-          Built to meet institutional expectations for CO₂ disclosure — fast, standardized, verifiable.
+          Designed for fast, standardized and verifiable CO₂e information — based exclusively on spend-based methodology.
         </p>
 
-        {/* SEPARATOR */}
         <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto my-14"></div>
 
-        {/* FEATURES GRID */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-14">
 
           {/* FEATURE 1 */}
@@ -29,7 +25,7 @@ export default function Features() {
             <div>
               <h3 className="text-lg font-semibold text-[#0B3A63]">Standardized Output</h3>
               <p className="text-gray-600 dark:text-gray-300 mt-2 leading-relaxed text-sm">
-                Consistent institutional format aligned with reporting and procurement workflows.
+                Consistent institution-friendly format for supplier screening and procurement workflows.
               </p>
             </div>
           </div>
@@ -44,7 +40,7 @@ export default function Features() {
             <div>
               <h3 className="text-lg font-semibold text-[#0B3A63]">Instant Generation</h3>
               <p className="text-gray-600 dark:text-gray-300 mt-2 leading-relaxed text-sm">
-                PDF output produced in seconds — eliminating delays and manual processing.
+                CO₂e estimation generated in seconds — no physical data, no consultants, no delays.
               </p>
             </div>
           </div>
@@ -57,9 +53,9 @@ export default function Features() {
               </svg>
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-[#0B3A63]">GHG Protocol Logic</h3>
+              <h3 className="text-lg font-semibold text-[#0B3A63]">Spend-Based Logic</h3>
               <p className="text-gray-600 dark:text-gray-300 mt-2 leading-relaxed text-sm">
-                Methodological consistency based on widely accepted estimation principles.
+                Based on GHG Protocol Scope 3 Category 1 spend-based estimation principles — transparent and reproducible.
               </p>
             </div>
           </div>
@@ -74,7 +70,7 @@ export default function Features() {
             <div>
               <h3 className="text-lg font-semibold text-[#0B3A63]">Verifiable Identifier</h3>
               <p className="text-gray-600 dark:text-gray-300 mt-2 leading-relaxed text-sm">
-                Each attestation includes a unique verification ID for cross-checking and audits.
+                Each attestation includes a unique verification ID for integrity checks and internal validation.
               </p>
             </div>
           </div>
@@ -83,4 +79,4 @@ export default function Features() {
       </div>
     </section>
   );
-              }
+      }
