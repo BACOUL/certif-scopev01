@@ -8,7 +8,8 @@ export default function HowItWorks() {
         </h2>
 
         <p className="mt-4 text-center text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
-          A streamlined, spend-based process designed to deliver transparent and reproducible CO₂e estimations instantly.
+          A streamlined, spend-based process that produces transparent and reproducible 
+          CO₂e estimations instantly — using deterministic factors and version-controlled datasets.
         </p>
 
         <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto my-14"></div>
@@ -24,7 +25,8 @@ export default function HowItWorks() {
               Enter categorized spending
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Provide annual spending (€) across predefined categories. No physical activity data (kWh, litres, km) is used or accepted.
+              Provide annual spending (€) across predefined categories. No physical activity data 
+              (kWh, litres, km) is used or accepted. Results depend entirely on user-provided values.
             </p>
           </div>
 
@@ -37,7 +39,9 @@ export default function HowItWorks() {
               Automated estimation
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              CO₂e values are estimated using spend-based factors inspired by GHG Protocol Scope 3 Category 1 guidance — not a full Scope 3 calculation.
+              CO₂e values are calculated using spend-based factors aligned with GHG Protocol 
+              Scope 3 Category 1 estimation principles. Deterministic calculation with version-controlled 
+              emission factors. Not a CSRD/ESRS report or audited emissions inventory.
             </p>
           </div>
 
@@ -50,7 +54,9 @@ export default function HowItWorks() {
               Download indicative output
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Receive a standardized PDF with estimated indicators and a unique verification ID. Suitable for supplier screening and procurement ESG pre-assessment — not a regulatory emissions inventory.
+              Receive a standardized PDF including estimated CO₂e indicators, category breakdown, 
+              dataset version, and a unique verification ID. Suitable for supplier screening and 
+              procurement ESG pre-assessment — not for regulatory filings.
             </p>
           </div>
 
@@ -63,4 +69,4 @@ export default function HowItWorks() {
       </div>
     </section>
   );
-}
+      }
