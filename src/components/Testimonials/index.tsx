@@ -4,19 +4,19 @@ export default function Testimonials() {
   const items = [
     {
       initials: "MR",
-      text: "Useful for quickly providing indicative CO₂e information during supplier onboarding.",
+      text: "Useful for quickly providing indicative spend-based CO₂e information during supplier onboarding.",
       author: "Mark Reynolds",
       role: "Construction — United Kingdom",
     },
     {
       initials: "ID",
-      text: "Clear and easy-to-read spend-based format that made communication with partners simpler.",
+      text: "Clear and easy-to-read format that simplified communication with procurement teams.",
       author: "Isabel Duarte",
       role: "Online Retail — Portugal",
     },
     {
       initials: "DM",
-      text: "Provided a consistent spend-based CO₂e estimation without requiring additional external data.",
+      text: "Provided a consistent indicative CO₂e estimation without requiring physical data or consultancy support.",
       author: "Daniel Moretti",
       role: "Consulting — Italy",
     },
@@ -29,7 +29,8 @@ export default function Testimonials() {
           Feedback from European Businesses
         </h2>
         <p className="text-[#475569] text-base md:text-lg max-w-xl mx-auto">
-          How organizations use Certif-Scope to share consistent, spend-based CO₂e information in screening workflows.
+          Real-world usage of Certif-Scope for sharing consistent, indicative and spend-based CO₂e information
+          in supplier screening and ESG pre-assessment workflows. Not a regulatory emissions report.
         </p>
       </div>
 
@@ -39,7 +40,10 @@ export default function Testimonials() {
             key={idx}
             className="bg-white rounded-xl shadow-lg border border-gray-100 p-6 flex flex-col h-full"
           >
-            <div className="w-14 h-14 rounded-full bg-[#1FB6C1] flex items-center justify-center text-xl font-bold text-white mb-4">
+            <div
+              className="w-14 h-14 rounded-full bg-[#0B3A63] flex items-center justify-center text-xl font-bold text-white mb-4"
+              aria-label={`Initials of ${item.author}`}
+            >
               {item.initials}
             </div>
 
@@ -56,7 +60,7 @@ export default function Testimonials() {
       </div>
 
       <div className="mt-10 text-center text-sm text-[#64748B]">
-        Feedback reflects experience with the indicative spend-based estimation process.
+        Feedback refers to the indicative, spend-based estimation process — not audited emissions reporting.
       </div>
 
       <div className="mt-4 text-center">
