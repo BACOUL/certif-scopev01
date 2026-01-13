@@ -4,12 +4,12 @@ export default function Features() {
       <div className="max-w-6xl mx-auto px-6">
 
         <h2 className="text-3xl md:text-4xl font-extrabold text-center text-[#0B3A63]">
-          Core Capabilities
+          What You Get with Certif-Scope
         </h2>
 
         <p className="text-center mt-4 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed text-lg">
-          Designed for fast, standardized and reproducible CO₂e indicators — 
-          based exclusively on spend-based methodology and deterministic calculation.
+          A simple, fast and professional way to answer CO₂e requests from clients, banks or partners.
+          No jargon. No extra work. Just enter your spending — download your document.
         </p>
 
         <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto my-14"></div>
@@ -24,10 +24,10 @@ export default function Features() {
               </svg>
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-[#0B3A63]">Standardized Output</h3>
+              <h3 className="text-lg font-semibold text-[#0B3A63]">Professional PDF (ready to send)</h3>
               <p className="text-gray-600 dark:text-gray-300 mt-2 leading-relaxed text-sm">
-                A consistent institution-friendly format suitable for supplier onboarding, procurement
-                documentation and internal ESG pre-assessment workflows.
+                A clean and clear document your clients understand immediately.
+                No need to prepare explanations or additional files.
               </p>
             </div>
           </div>
@@ -40,9 +40,10 @@ export default function Features() {
               </svg>
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-[#0B3A63]">Instant Generation</h3>
+              <h3 className="text-lg font-semibold text-[#0B3A63]">Created in under 60 seconds</h3>
               <p className="text-gray-600 dark:text-gray-300 mt-2 leading-relaxed text-sm">
-                CO₂e indicators computed in seconds — no physical data, no consultants, no audits and no delays.
+                Enter your annual spending (€) → download your CO₂e document instantly.
+                No technical skills, no consultants, no waiting.
               </p>
             </div>
           </div>
@@ -55,10 +56,10 @@ export default function Features() {
               </svg>
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-[#0B3A63]">Spend-Based Methodology</h3>
+              <h3 className="text-lg font-semibold text-[#0B3A63]">Simple spending-based method</h3>
               <p className="text-gray-600 dark:text-gray-300 mt-2 leading-relaxed text-sm">
-                Deterministic calculation based solely on annual spending, using version-controlled 
-                emission factors aligned with Scope 3 Category 1 (GHG Protocol).
+                No physical activity data (kWh, km, litres). No complex reporting.
+                Just your annual expenses, category by category.
               </p>
             </div>
           </div>
@@ -71,10 +72,10 @@ export default function Features() {
               </svg>
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-[#0B3A63]">Verification ID</h3>
+              <h3 className="text-lg font-semibold text-[#0B3A63]">Unique Verification ID</h3>
               <p className="text-gray-600 dark:text-gray-300 mt-2 leading-relaxed text-sm">
-                Each generated output contains a unique verification identifier supporting offline 
-                integrity checks and document traceability.
+                Each PDF includes a verification code your clients can check in seconds.
+                Helps prove authenticity and avoid document tampering.
               </p>
             </div>
           </div>
@@ -83,4 +84,4 @@ export default function Features() {
       </div>
     </section>
   );
-      }
+                }
