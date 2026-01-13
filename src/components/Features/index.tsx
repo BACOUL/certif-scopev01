@@ -8,15 +8,16 @@ export default function Features() {
         </h2>
 
         <p className="text-center mt-4 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed text-lg">
-          A simple, fast and professional way to answer CO₂e requests from clients, banks or partners.
-          No jargon. No extra work. Just enter your spending — download your document.
+          Everything you need to answer CO₂e requests quickly and professionally —
+          without consultants, spreadsheets or technical knowledge. 
+          Enter your spending, download your document, send it. Done.
         </p>
 
         <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto my-14"></div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-14">
 
-          {/* FEATURE 1 */}
+          {/* FEATURE 1 — PDF */}
           <div className="flex items-start gap-5">
             <div className="h-12 w-12 flex items-center justify-center rounded-xl bg-[#1FB6C1]/10 text-[#1FB6C1] flex-shrink-0">
               <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -24,15 +25,17 @@ export default function Features() {
               </svg>
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-[#0B3A63]">Professional PDF (ready to send)</h3>
+              <h3 className="text-lg font-semibold text-[#0B3A63]">
+                Professional PDF (ready to send)
+              </h3>
               <p className="text-gray-600 dark:text-gray-300 mt-2 leading-relaxed text-sm">
-                A clean and clear document your clients understand immediately.
-                No need to prepare explanations or additional files.
+                A clear and polished CO₂e document your clients, banks or partners understand instantly.
+                No need for explanations or extra files — it’s ready to send as is.
               </p>
             </div>
           </div>
 
-          {/* FEATURE 2 */}
+          {/* FEATURE 2 — SPEED */}
           <div className="flex items-start gap-5">
             <div className="h-12 w-12 flex items-center justify-center rounded-xl bg-[#1FB6C1]/10 text-[#1FB6C1] flex-shrink-0">
               <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -40,15 +43,17 @@ export default function Features() {
               </svg>
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-[#0B3A63]">Created in under 60 seconds</h3>
+              <h3 className="text-lg font-semibold text-[#0B3A63]">
+                Created in under 60 seconds
+              </h3>
               <p className="text-gray-600 dark:text-gray-300 mt-2 leading-relaxed text-sm">
-                Enter your annual spending (€) → download your CO₂e document instantly.
-                No technical skills, no consultants, no waiting.
+                Enter your annual spending (€) → download your CO₂e document. 
+                No technical knowledge, no consultants, no delays.
               </p>
             </div>
           </div>
 
-          {/* FEATURE 3 */}
+          {/* FEATURE 3 — METHOD */}
           <div className="flex items-start gap-5">
             <div className="h-12 w-12 flex items-center justify-center rounded-xl bg-[#1FB6C1]/10 text-[#1FB6C1] flex-shrink-0">
               <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -56,15 +61,18 @@ export default function Features() {
               </svg>
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-[#0B3A63]">Simple spending-based method</h3>
+              <h3 className="text-lg font-semibold text-[#0B3A63]">
+                Simple spending-based method
+              </h3>
               <p className="text-gray-600 dark:text-gray-300 mt-2 leading-relaxed text-sm">
-                No physical activity data (kWh, km, litres). No complex reporting.
-                Just your annual expenses, category by category.
+                No complex metrics (kWh, km, litres). 
+                No Scope 1 or Scope 2. 
+                Just a simple spend-based approach you can complete in minutes.
               </p>
             </div>
           </div>
 
-          {/* FEATURE 4 */}
+          {/* FEATURE 4 — VERIFICATION */}
           <div className="flex items-start gap-5">
             <div className="h-12 w-12 flex items-center justify-center rounded-xl bg-[#1FB6C1]/10 text-[#1FB6C1] flex-shrink-0">
               <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -72,10 +80,12 @@ export default function Features() {
               </svg>
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-[#0B3A63]">Unique Verification ID</h3>
+              <h3 className="text-lg font-semibold text-[#0B3A63]">
+                Unique Verification ID
+              </h3>
               <p className="text-gray-600 dark:text-gray-300 mt-2 leading-relaxed text-sm">
-                Each PDF includes a verification code your clients can check in seconds.
-                Helps prove authenticity and avoid document tampering.
+                Every PDF includes a verification code your clients can check instantly online.
+                Adds credibility and prevents document tampering.
               </p>
             </div>
           </div>
