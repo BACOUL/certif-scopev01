@@ -8,12 +8,12 @@ export default function Section8() {
     >
       {/* HEADER BLOCK — Unique premium security design */}
       <div className="relative p-12 rounded-2xl bg-[#0B3A63] text-white shadow-xl overflow-hidden">
-        
+
         {/* Security gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/25 to-transparent opacity-40"></div>
 
         <h2 className="text-4xl md:text-5xl font-extrabold relative z-10">
-          8. Security & Independent Verification
+          8. Security & Verification
         </h2>
 
         <p className="text-white/90 max-w-4xl mt-6 leading-relaxed relative z-10">
@@ -102,4 +102,4 @@ export default function Section8() {
 
     </section>
   );
-}
+          }
