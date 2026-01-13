@@ -83,7 +83,7 @@ export default function Header() {
               <div
                 className={`${
                   dropdown ? "block" : "hidden"
-                } absolute lg:absolute left-0 mt-2 w-48 bg-white dark:bg-gray-900 shadow-lg rounded-lg border border-gray-200 dark:border-gray-700 p-3 z-50`}
+                } absolute left-0 mt-2 w-48 bg-white dark:bg-gray-900 shadow-lg rounded-lg border border-gray-200 dark:border-gray-700 p-3 z-50`}
               >
                 <Link
                   href="/product"
@@ -105,6 +105,13 @@ export default function Header() {
                   className="block py-2 px-3 rounded hover:bg-gray-100 dark:hover:bg-gray-800 text-sm"
                 >
                   Regulations
+                </Link>
+                <Link
+                  href="/product/limitations"
+                  onClick={closeAll}
+                  className="block py-2 px-3 rounded hover:bg-gray-100 dark:hover:bg-gray-800 text-sm"
+                >
+                  Limitations
                 </Link>
               </div>
             </li>
@@ -129,7 +136,7 @@ export default function Header() {
                   pathname === "/verify" ? "text-[#1FB6C1]" : "text-gray-800 dark:text-gray-200"
                 }`}
               >
-                Verify
+                Verify ID
               </Link>
             </li>
 
@@ -139,7 +146,7 @@ export default function Header() {
                 href="/assessment"
                 className="bg-[#1FB6C1] text-white font-semibold px-6 py-3 rounded-lg shadow hover:opacity-90 transition"
               >
-                Generate Attestation
+                Generate CO₂e Estimate
               </Link>
             </li>
 
@@ -149,4 +156,4 @@ export default function Header() {
       </div>
     </header>
   );
-}
+              }
