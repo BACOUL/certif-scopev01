@@ -4,19 +4,19 @@ export default function Trust() {
       <div className="max-w-6xl mx-auto px-6 text-center">
 
         <p className="text-xs md:text-sm font-medium text-gray-500 dark:text-gray-400 tracking-wider uppercase mb-3">
-          Used in supplier screening workflows
+          Trusted in supplier screening workflows
         </p>
 
         <div className="w-16 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto mb-10"></div>
 
         <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-100 leading-tight mb-6">
-          Designed for procurement, onboarding and ESG pre-assessment
+          Built for procurement, onboarding and ESG questionnaires
         </h2>
 
         <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed mb-16">
-          Certif-Scope provides indicative, spend-based CO₂e estimations suitable for supplier onboarding,
-          procurement documentation and internal ESG reviews. It is not a regulatory emissions inventory
-          and does not replace CSRD/ESRS-aligned carbon accounting frameworks.
+          Certif-Scope gives SMEs a simple way to provide CO₂e information when requested by clients,
+          banks or procurement teams. The document is clear, standardized and easy to verify.  
+          Spend-based only, instantly generated and suitable for screening — not a regulatory or audited report.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -27,12 +27,11 @@ export default function Trust() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 2l7 4v6c0 5-3.5 9-7 10-3.5-1-7-5-7-10V6l7-4z" />
             </svg>
             <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
-              Hash-Based Integrity Verification
+              Integrity you can check instantly
             </h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Each attestation embeds a verification ID and a deterministic hash of the input data,
-              allowing offline integrity checks and reproducibility without relying on external registries
-              or third-party storage.
+              Each document includes a verification ID and a deterministic hash of the input data.  
+              Partners can confirm authenticity in seconds — no account, no database lookup required.
             </p>
           </div>
 
@@ -42,11 +41,11 @@ export default function Trust() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M4 7h16M4 12h16M4 17h16" />
             </svg>
             <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
-              Enterprise Compatibility
+              Compatible with procurement systems
             </h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Structured spend-based indicators formatted for procurement portals,
-              vendor onboarding workflows and ESG documentation systems.
+              The output format fits supplier portals, onboarding checklists and ESG questionnaires,
+              making it easy for SMEs to answer CO₂e requests without extra tools or expertise.
             </p>
           </div>
 
@@ -56,22 +55,21 @@ export default function Trust() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h18v4H3V3zm0 7h18v11H3V10zm6 3h6" />
             </svg>
             <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
-              Structured & Reproducible
+              Consistent every time
             </h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Deterministic calculation and version-controlled emission factors ensure
-              consistent and reproducible indicative results for documentation or internal review.
+              Deterministic spend-based calculation with version-controlled emission factors ensures
+              reproducible results for internal comparison and screening — without audit claims.
             </p>
           </div>
 
         </div>
 
         <p className="mt-12 text-center text-sm text-gray-500 dark:text-gray-400">
-          Used by European SMEs to provide indicative CO₂e information for supplier screening
-          and pre-assessment workflows — not intended for audited inventories.
+          Already used by SMEs across Europe to answer CO₂e information requests quickly and professionally.
         </p>
 
       </div>
     </section>
   );
-}
+      }
