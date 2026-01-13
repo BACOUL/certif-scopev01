@@ -11,20 +11,20 @@ export default function FAQ() {
 
   const items = [
     {
-      q: "Is the attestation used by banks and partners?",
-      a: "Certif-Scope is commonly used in procurement, onboarding and internal banking workflows for providing spend-based CO₂e information. It remains a non-regulatory, indicative document."
+      q: "Do clients, banks or partners accept the document?",
+      a: "Yes — Certif-Scope is used in procurement portals, onboarding processes and ESG questionnaires to provide indicative spend-based CO₂e information. It is not a regulatory or audited report, but it satisfies most screening requests that only require a clear and consistent document."
     },
     {
-      q: "How fast is the attestation generated?",
-      a: "The process generally takes less than 60 seconds once the spending data is entered."
+      q: "How long does it take to generate the document?",
+      a: "Most documents are generated in 30–60 seconds once annual spending data is entered. No waiting, no consultants, no back-and-forth with clients."
     },
     {
-      q: "What does the attestation include?",
-      a: "A standardized PDF with estimated CO₂e indicators, dataset version, a verification QR code, a verification link, a unique ID, timestamp and an integrity hash."
+      q: "What exactly do I receive?",
+      a: "You receive a clean, ready-to-send PDF including CO₂e indicators, a breakdown of your spending categories, the dataset version used, a timestamp, a unique verification ID, and an integrity hash that clients can check in seconds."
     },
     {
-      q: "How does the verification system work?",
-      a: "Anyone can scan the QR code or manually enter the verification ID to check the integrity of the attestation. No login or account is required."
+      q: "How does the verification work?",
+      a: "Your clients can scan the QR code or enter the verification ID on our site to check authenticity. No account, no login and no technical knowledge required."
     }
   ];
 
@@ -59,4 +59,4 @@ export default function FAQ() {
       </div>
     </section>
   );
-              }
+      }
