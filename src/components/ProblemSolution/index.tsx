@@ -8,10 +8,9 @@ export default function ProblemSolution() {
         </h2>
 
         <p className="mt-6 text-lg md:text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-          Certif-Scope provides a unified, instantly generated and independently verifiable 
-          CO₂e estimation based exclusively on spend-based methodology (inspired by GHG Protocol 
-          Scope 3 Category 1 guidance). Not a CSRD/ESRS report. Suitable for supplier screening, 
-          banking and procurement ESG pre-assessment.
+          Certif-Scope provides a unified, instantly generated and integrity-verifiable CO₂e estimation
+          based exclusively on spend-based methodology (inspired by GHG Protocol Scope 3 Category 1 guidance).
+          Not a CSRD/ESRS report. Designed for supplier screening and financial pre-assessment contexts.
         </p>
 
         <div className="mt-10 flex flex-wrap justify-center gap-8 text-center">
@@ -21,7 +20,7 @@ export default function ProblemSolution() {
           </div>
           <div>
             <p className="text-3xl font-bold text-[#1FB6C1]">99.7%</p>
-            <p className="text-sm text-gray-600 dark:text-gray-400">Supplier screening acceptance</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">High screening compatibility</p>
           </div>
           <div>
             <p className="text-3xl font-bold text-[#1FB6C1]">Spend-Based</p>
@@ -49,7 +48,7 @@ export default function ProblemSolution() {
             </svg>
             <h3 className="text-xl font-semibold text-[#0B3A63] dark:text-white">Verification-ready format</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 max-w-xs">
-              Structured output with versioned emission factors and integrated hash — reproducible and transparent for internal reviews.
+              Structured output with versioned emission factors and integrated integrity hash — reproducible and transparent for internal reviews.
             </p>
           </div>
 
@@ -57,9 +56,9 @@ export default function ProblemSolution() {
             <svg className="h-14 w-14 text-[#0B3A63]" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 11.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm8.485-4.243l-4.95-4.95a1 1 0 00-1.414 0L4.343 12.586a1 1 0 000 1.414l4.95 4.95a1 1 0 001.414 0l9.778-9.778a1 1 0 000-1.414z" />
             </svg>
-            <h3 className="text-xl font-semibold text-[#0B3A63] dark:text-white">Independently verifiable</h3>
+            <h3 className="text-xl font-semibold text-[#0B3A63] dark:text-white">Integrity-verifiable</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 max-w-xs">
-              Each indicative CO₂e estimate includes a unique verification ID that allows quick integrity checks — commonly used by procurement and banking pre-assessment teams.
+              Each indicative estimate includes a unique verification ID and hash for simple integrity checks — used in procurement and financial pre-assessment workflows.
             </p>
           </div>
 
@@ -75,4 +74,4 @@ export default function ProblemSolution() {
       </div>
     </section>
   );
-              }
+}
