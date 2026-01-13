@@ -6,30 +6,27 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-white to-[#F3FBFC] -z-10"></div>
 
       <p className="text-sm md:text-base font-semibold tracking-wide text-[#0B3A63]/70 mb-3 uppercase">
-        Indicative CO₂e Estimate (Spend-Based)
+        Simple CO₂e document for clients and partners
       </p>
 
-      <h1 className="text-[2.2rem] md:text-[3.2rem] font-extrabold text-[#0B3A63] leading-tight tracking-tight">
-        Instant Spend-Based CO₂e Estimation
+      <h1 className="text-[2.3rem] md:text-[3.4rem] font-extrabold text-[#0B3A63] leading-tight tracking-tight">
+        Get Your CO₂e Document in 60 Seconds
         <br />
-        <span className="text-[#1FB6C1] text-[2.3rem] md:text-[3.2rem]">
-          for SMEs
+        <span className="text-[#1FB6C1] text-[2.4rem] md:text-[3.4rem]">
+          No expertise required
         </span>
       </h1>
 
       <p className="text-base md:text-lg text-[#475569] max-w-2xl mx-auto mt-6 leading-relaxed">
-        Generate an indicative, transparent and reproducible CO₂e estimation 
-        based exclusively on financial spending (€). Not a CSRD/ESRS report. 
-        No Scope 1 or Scope 2 calculations. Spend-based methodology only.
-        Suitable for supplier screening, onboarding and procurement ESG 
-        pre-assessment — not for audited emissions inventories. 
-        Results depend on user-provided spending data.
+        Answer CO₂e requests from clients, banks or partners instantly. 
+        Enter your annual spending (€) and download a clear, ready-to-send document. 
+        No consultants, no complex data, no waiting. 
       </p>
 
       <div className="flex justify-center mt-12">
         <Image
           src="/hero-attestation.webp"
-          alt="Certif-Scope spend-based CO₂e estimation preview"
+          alt="Preview of the CO₂e document"
           width={900}
           height={600}
           priority
@@ -43,22 +40,22 @@ export default function Hero() {
           href="#assessment"
           className="bg-[#1FB6C1] hover:bg-[#17a2a8] transition text-white font-semibold px-12 py-4 rounded-xl shadow-md text-base md:text-lg"
         >
-          Generate Indicative Estimate
+          Generate CO₂e Document
         </a>
 
         <a
-          href="/verify"
+          href="/sample-pdf"
           className="bg-[#0B3A63] hover:bg-[#083253] transition text-white font-semibold px-12 py-4 rounded-xl shadow-md text-base md:text-lg"
         >
-          Verify ID
+          View Example
         </a>
       </div>
 
       <a
-        href="/sample-pdf"
+        href="/verify"
         className="text-sm underline text-[#1FB6C1] font-medium block mt-8"
       >
-        View sample document
+        Verify an existing document
       </a>
     </section>
   );
