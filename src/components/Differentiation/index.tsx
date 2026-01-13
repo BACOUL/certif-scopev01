@@ -4,13 +4,12 @@ export default function Differentiation() {
       <div className="max-w-6xl mx-auto px-6 text-center">
 
         <h2 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] leading-snug">
-          Why organizations rely on Certif-Scope
+          Why SMEs choose Certif-Scope
         </h2>
 
         <p className="mt-6 text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-          A transparent, reproducible and spend-based CO₂e estimation designed specifically 
-          for supplier screening, procurement workflows and financial ESG pre-assessment. 
-          No physical activity data. No Scope 1 or Scope 2. Not a regulatory report.
+          A fast and easy way to provide CO₂e information when clients, banks or partners request it. 
+          No complex data. No consultants. Just enter your spending, download the document, and send it.
         </p>
 
         <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto my-14"></div>
@@ -23,12 +22,12 @@ export default function Differentiation() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-9 4h9m3-14H6a2 2 0 00-2 2v14l4-4h10a2 2 0 002-2V4a2 2 0 00-2-2z" />
             </svg>
             <h3 className="text-xl font-semibold text-[#0B3A63] dark:text-white">
-              Standardized & reproducible
+              Clear and ready to send
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Fully spend-based structure following principles used in Scope 3 Category 1 estimations.
+              You get a clean PDF your clients and partners understand immediately.
               <span className="block mt-2 text-xs text-gray-500">
-                Versioned emission factors ensure consistent, repeatable results.
+                Saves time and avoids back-and-forth questions.
               </span>
             </p>
           </div>
@@ -39,12 +38,12 @@ export default function Differentiation() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6l4 2m5-2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             <h3 className="text-xl font-semibold text-[#0B3A63] dark:text-white">
-              Instant & automated
+              Made in 60 seconds
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Generate an indicative CO₂e estimation in seconds using only financial spending (€).
+              Enter your annual spending (€) → download your CO₂e document instantly.
               <span className="block mt-2 text-xs text-gray-500">
-                Suitable for high-volume supplier onboarding.
+                No technical skills required.
               </span>
             </p>
           </div>
@@ -55,12 +54,12 @@ export default function Differentiation() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 11.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm8.485-4.243l-4.95-4.95a1 1 0 00-1.414 0L4.343 12.586a1 1 0 000 1.414l4.95 4.95a1 1 0 001.414 0l9.778-9.778a1 1 0 000-1.414z" />
             </svg>
             <h3 className="text-xl font-semibold text-[#0B3A63] dark:text-white">
-              Verifiable & integrity-checked
+              Trusted by clients and banks
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Each document includes a unique verification ID and hash for authenticity checks.
+              Each document has a unique verification ID for authenticity checks.
               <span className="block mt-2 text-xs text-gray-500">
-                Enables independent integrity verification without external systems.
+                Easy to share in supplier portals or RFPs.
               </span>
             </p>
           </div>
@@ -68,10 +67,10 @@ export default function Differentiation() {
         </div>
 
         <p className="mt-16 text-sm md:text-base text-gray-600 dark:text-gray-400 max-w-xl mx-auto">
-          Used across Europe as a fast, consistent and institution-compatible CO₂e information format.
+          Certif-Scope helps SMEs respond quickly and professionally to CO₂e information requests.
         </p>
 
       </div>
     </section>
   );
-      }
+}
