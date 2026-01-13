@@ -9,7 +9,7 @@ export default function Features() {
 
         <p className="text-center mt-4 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed text-lg">
           Everything you need to answer CO₂e requests quickly and professionally —
-          without consultants, spreadsheets or technical knowledge. 
+          without consultants, spreadsheets or technical knowledge.
           Enter your spending, download your document, send it. Done.
         </p>
 
@@ -30,7 +30,7 @@ export default function Features() {
               </h3>
               <p className="text-gray-600 dark:text-gray-300 mt-2 leading-relaxed text-sm">
                 A clear and polished CO₂e document your clients, banks or partners understand instantly.
-                No need for explanations or extra files — it’s ready to send as is.
+                No explanations or extra files required — ready to send immediately.
               </p>
             </div>
           </div>
@@ -47,8 +47,8 @@ export default function Features() {
                 Created in under 60 seconds
               </h3>
               <p className="text-gray-600 dark:text-gray-300 mt-2 leading-relaxed text-sm">
-                Enter your annual spending (€) → download your CO₂e document. 
-                No technical knowledge, no consultants, no delays.
+                Enter your annual spending (€) → download your CO₂e document instantly.
+                No technical steps, no consultants, no delays.
               </p>
             </div>
           </div>
@@ -65,9 +65,8 @@ export default function Features() {
                 Simple spending-based method
               </h3>
               <p className="text-gray-600 dark:text-gray-300 mt-2 leading-relaxed text-sm">
-                No complex metrics (kWh, km, litres). 
-                No Scope 1 or Scope 2. 
-                Just a simple spend-based approach you can complete in minutes.
+                No complex activity metrics (kWh, km, litres). No Scope 1 or Scope 2.
+                Just a clear spend-based approach you can complete in minutes.
               </p>
             </div>
           </div>
@@ -84,8 +83,8 @@ export default function Features() {
                 Unique Verification ID
               </h3>
               <p className="text-gray-600 dark:text-gray-300 mt-2 leading-relaxed text-sm">
-                Every PDF includes a verification code your clients can check instantly online.
-                Adds credibility and prevents document tampering.
+                Each document includes a verification code partners can confirm instantly online.
+                Ensures authenticity and prevents document modification.
               </p>
             </div>
           </div>
@@ -94,4 +93,4 @@ export default function Features() {
       </div>
     </section>
   );
-                }
+}
