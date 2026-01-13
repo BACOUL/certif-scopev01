@@ -7,8 +7,8 @@ export default function Section4() {
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
 
-      {/* HEADER — Unique institutional layout */}
-      <div className="relative p-12 rounded-2xl bg-[#F8FAFC] border border-[#0B3A63]/20 shadow-md">
+      {/* HEADER — Institutional, structured */}
+      <div className="relative p-12 rounded-2xl bg-[#F8FAFC] border border-[#0B3A63]/20 shadow-md overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/10 to-transparent"></div>
 
         <h2 className="text-4xl md:text-5xl font-extrabold text-[#0B3A63] relative z-10">
@@ -16,116 +16,158 @@ export default function Section4() {
         </h2>
 
         <p className="text-lg text-gray-700 max-w-4xl mt-6 leading-relaxed relative z-10">
-          Certif-Scope delivers a deterministic, reproducible and verifiable CO₂ indicator
-          based strictly on recognized methodological frameworks and validated public
-          emission-factor databases. Data processing follows a transparent pipeline that
-          ensures institutional acceptance and full offline verifiability.
+          Certif-Scope implements a deterministic and verifiable CO₂ indicator generation process 
+          based on recognized methodologies. It relies on three independent functional layers:
+          input normalization, standardized calculation engine, and cryptographically verifiable output.
         </p>
 
-        {/* REFERENCES — standards reconnus */}
+        {/* REFERENCES — Official standards */}
         <div className="mt-6 text-sm text-gray-600 underline space-y-1 relative z-10">
           <a href="https://ghgprotocol.org/standards" target="_blank" rel="noopener noreferrer">
-            GHG Protocol — Corporate & Scope 3 Standards
+            GHG Protocol – Corporate & Scope 3 Standards
           </a><br />
           <a href="https://www.iso.org/standard/66453.html" target="_blank" rel="noopener noreferrer">
-            ISO 14064-1 — Principles of transparency, accuracy, consistency
+            ISO 14064-1 – Transparency, accuracy, consistency
           </a><br />
           <a href="https://www.ipcc.ch/report/ar6/" target="_blank" rel="noopener noreferrer">
-            IPCC AR6 — Emission conversion parameters
+            IPCC AR6 – Climate conversion parameters
           </a><br />
           <a href="https://www.bilans-ges.ademe.fr" target="_blank" rel="noopener noreferrer">
-            ADEME Base Carbone — Official emission factors
+            ADEME Base Carbone – Official emission factor repository
           </a>
         </div>
       </div>
 
 
-      {/* 3-STEP PROCESS — clarified and tightened */}
+      {/* 3-BRICK STRUCTURE — Explicit and non-ambiguous */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-16">
 
-        {/* STEP 1 — INPUT */}
+        {/* BRIQUE 1 */}
         <div className="p-10 bg-white rounded-xl border border-gray-200 shadow-md hover:shadow-lg transition">
           <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
-            Step 1 — Input Structuring
+            Layer 1 — Input Normalization
           </h3>
           <p className="text-gray-700 text-sm leading-relaxed">
-            Annual expenditures are classified into standardized categories aligned with
-            the spend-based pathway defined by the GHG Protocol. Input validation prevents
-            inconsistent structures to ensure full determinism.
+            User-provided expenditure data is validated and mapped into standardized categories 
+            compatible with GHG Protocol spend-based pathways. All inputs are checked for structure, 
+            format consistency and completeness prior to processing.
           </p>
 
-          <ul className="mt-4 space-y-2 text-gray-700 text-sm leading-relaxed">
-            <li>• Annual spend per operational category</li>
-            <li>• Optional sector modifiers</li>
+          <ul className="mt-4 space-y-2 text-gray-700 text-sm">
+            <li>• Classification of expenditures</li>
+            <li>• Deterministic mapping table</li>
             <li>• Automatic input validation</li>
-            <li>• No data stored (GDPR minimal processing)</li>
+            <li>• No data persistence (stateless)</li>
           </ul>
         </div>
 
-        {/* STEP 2 — ENGINE */}
+        {/* BRIQUE 2 */}
         <div className="p-10 bg-[#0B3A63] text-white rounded-xl shadow-lg relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/40 to-transparent opacity-30"></div>
 
           <h3 className="text-2xl font-semibold mb-3 relative z-10">
-            Step 2 — Calculation Engine
+            Layer 2 — Standardized Calculation Engine
           </h3>
 
           <p className="text-white/90 text-sm leading-relaxed relative z-10">
-            The engine applies official emission factors and deterministic multipliers.
-            No AI inference, no statistical modelling, no estimation beyond validated factors.
+            The engine applies emission factors from validated sources and deterministic multipliers. 
+            Calculations follow established spend-based formulas with no AI inference, no machine 
+            learning and no approximations beyond official datasets.
           </p>
 
           <ul className="mt-4 space-y-2 text-white/90 text-sm relative z-10">
-            <li>• ADEME Base Carbone (official France)</li>
-            <li>• DEFRA UK factors (international reference)</li>
-            <li>• IPCC AR5/AR6 CO₂e conversion rules</li>
-            <li>• Deterministic computation chain</li>
+            <li>• ADEME Base Carbone</li>
+            <li>• DEFRA UK GHG Conversion Factors</li>
+            <li>• IPCC AR6 CO₂e global warming potentials</li>
+            <li>• Fixed formula: expenditure × factor</li>
           </ul>
         </div>
 
-        {/* STEP 3 — OUTPUT */}
+        {/* BRIQUE 3 */}
         <div className="p-10 bg-white rounded-xl border border-gray-200 shadow-md hover:shadow-lg transition">
           <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
-            Step 3 — Standardized Output
+            Layer 3 — Cryptographically Verifiable Output
           </h3>
 
           <p className="text-gray-700 text-sm leading-relaxed">
-            The final PDF includes standardized indicator formatting, dataset references,
-            boundary definitions and a full cryptographic signature for independent verification.
+            Output consists of a standardized PDF including all calculation details, references, 
+            boundaries and a cryptographic integrity seal. Verification is entirely offline and 
+            does not require any Certif-Scope service availability.
           </p>
 
-          <ul className="mt-4 space-y-2 text-gray-700 text-sm leading-relaxed">
-            <li>• Predefined institutional layout</li>
-            <li>• Boundary definitions aligned with ISO 14064-1</li>
-            <li>• References to all emission-factor datasets</li>
-            <li>• Embedded cryptographic integrity seal</li>
+          <ul className="mt-4 space-y-2 text-gray-700 text-sm">
+            <li>• Standardized institutional layout</li>
+            <li>• Dataset references and boundaries</li>
+            <li>• Embedded SHA-256 integrity seal</li>
+            <li>• Independent offline verification</li>
           </ul>
         </div>
       </div>
 
 
-      {/* CRYPTOGRAPHIC PROOF BLOCK — expanded + clean */}
-      <div className="mt-20 p-10 bg-[#F8FAFC] rounded-xl border border-[#15B097]/30 shadow-sm">
+
+      {/* SCHEMA — DATA → NORMALIZATION → MAPPING → CALCULATION → PDF */}
+      <div className="mt-20 p-10 bg-[#F8FAFC] border border-[#15B097]/30 rounded-xl shadow-sm">
+        <h3 className="text-2xl font-semibold text-[#0B3A63] mb-6">
+          End-to-End Processing Schema
+        </h3>
+
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-6 text-center">
+
+          <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-sm">
+            <p className="font-semibold text-[#0B3A63]">1. Data</p>
+            <p className="text-xs text-gray-600 mt-2">Expenditures entered by user</p>
+          </div>
+
+          <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-sm">
+            <p className="font-semibold text-[#0B3A63]">2. Normalization</p>
+            <p className="text-xs text-gray-600 mt-2">Structural validation</p>
+          </div>
+
+          <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-sm">
+            <p className="font-semibold text-[#0B3A63]">3. Mapping</p>
+            <p className="text-xs text-gray-600 mt-2">Deterministic category assignment</p>
+          </div>
+
+          <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-sm">
+            <p className="font-semibold text-[#0B3A63]">4. Calculation</p>
+            <p className="text-xs text-gray-600 mt-2">Official emission-factor application</p>
+          </div>
+
+          <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-sm">
+            <p className="font-semibold text-[#0B3A63]">5. PDF Output</p>
+            <p className="text-xs text-gray-600 mt-2">Standardized & verifiable</p>
+          </div>
+
+        </div>
+      </div>
+
+
+
+
+      {/* CRYPTOGRAPHIC BLOCK — Highly specific */}
+      <div className="mt-20 p-10 bg-[#F8FAFC] rounded-xl border border-[#0B3A63]/25 shadow-sm">
         <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
           Cryptographic Verification & Integrity
         </h3>
 
         <p className="text-gray-700 text-sm max-w-4xl leading-relaxed">
-          Each generated document includes a SHA-256 integrity hash calculated over the full
-          structured output JSON before PDF formatting. This allows offline verification by
-          any third party without relying on Certif-Scope servers.
+          Certif-Scope embeds a SHA-256 integrity hash computed from the complete structured 
+          dataset before rendering. This ensures reproducibility and allows auditors, banks, 
+          procurement authorities or insurers to verify authenticity without contacting any server.
         </p>
 
         <ul className="mt-4 space-y-2 text-sm text-gray-700 leading-relaxed">
-          <li>• Hash algorithm: SHA-256 (FIPS 180-4)</li>
-          <li>• Hash scope: full structured dataset before rendering</li>
-          <li>• Verification: offline, stateless, reproducible</li>
-          <li>• Identifier: embedded checksum + public verification instructions</li>
+          <li>• Algorithm: SHA-256 (FIPS 180-4)</li>
+          <li>• Scope: Full JSON dataset prior to PDF</li>
+          <li>• Verification: Offline recomputation</li>
+          <li>• Trust model: No server dependency</li>
         </ul>
       </div>
 
 
-      {/* RETURN BUTTON — Identical across ALL sections */}
+
+      {/* RETURN BUTTON */}
       <div className="mt-12 text-right">
         <a
           href="#top"
