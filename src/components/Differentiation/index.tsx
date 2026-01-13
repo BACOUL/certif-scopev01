@@ -4,13 +4,13 @@ export default function Differentiation() {
       <div className="max-w-6xl mx-auto px-6 text-center">
 
         <h2 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] leading-snug">
-          Why leading teams choose Certif-Scope
+          Why organizations rely on Certif-Scope
         </h2>
 
         <p className="mt-6 text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-          A transparent and reproducible CO₂e estimation designed for supplier screening,
-          procurement processes and financial ESG pre-assessment — based exclusively on 
-          spend-based methodology.
+          A transparent, reproducible and spend-based CO₂e estimation designed specifically 
+          for supplier screening, procurement workflows and financial ESG pre-assessment. 
+          No physical activity data. No Scope 1 or Scope 2. Not a regulatory report.
         </p>
 
         <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto my-14"></div>
@@ -23,12 +23,12 @@ export default function Differentiation() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-9 4h9m3-14H6a2 2 0 00-2 2v14l4-4h10a2 2 0 002-2V4a2 2 0 00-2-2z" />
             </svg>
             <h3 className="text-xl font-semibold text-[#0B3A63] dark:text-white">
-              Standardized by design
+              Standardized & reproducible
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              A consistent spend-based format aligned with GHG Protocol Scope 3 Category 1 guidance.
+              Fully spend-based structure following principles used in Scope 3 Category 1 estimations.
               <span className="block mt-2 text-xs text-gray-500">
-                Ensures reproducible results with version-controlled emission factors.
+                Versioned emission factors ensure consistent, repeatable results.
               </span>
             </p>
           </div>
@@ -42,9 +42,9 @@ export default function Differentiation() {
               Instant & automated
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Generate a structured CO₂e estimation in seconds — no physical activity data required.
+              Generate an indicative CO₂e estimation in seconds using only financial spending (€).
               <span className="block mt-2 text-xs text-gray-500">
-                Ideal for large-scale supplier screening or onboarding.
+                Suitable for high-volume supplier onboarding.
               </span>
             </p>
           </div>
@@ -55,13 +55,12 @@ export default function Differentiation() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 11.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm8.485-4.243l-4.95-4.95a1 1 0 00-1.414 0L4.343 12.586a1 1 0 000 1.414l4.95 4.95a1 1 0 001.414 0l9.778-9.778a1 1 0 000-1.414z" />
             </svg>
             <h3 className="text-xl font-semibold text-[#0B3A63] dark:text-white">
-              Verifiable & institution-friendly
+              Verifiable & integrity-checked
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Each attestation includes a unique verification ID enabling offline integrity checks — 
-              commonly used for procurement and financial pre-assessment.
+              Each document includes a unique verification ID and hash for authenticity checks.
               <span className="block mt-2 text-xs text-gray-500">
-                Supports independent verification of authenticity.
+                Enables independent integrity verification without external systems.
               </span>
             </p>
           </div>
@@ -69,10 +68,10 @@ export default function Differentiation() {
         </div>
 
         <p className="mt-16 text-sm md:text-base text-gray-600 dark:text-gray-400 max-w-xl mx-auto">
-          Used in multiple European markets as a fast and standardized CO₂e information format for suppliers.
+          Used across Europe as a fast, consistent and institution-compatible CO₂e information format.
         </p>
 
       </div>
     </section>
   );
-}
+      }
