@@ -7,21 +7,20 @@ export default function AttestationPreview() {
       <div className="max-w-6xl mx-auto px-6 text-center">
 
         <p className="text-xs md:text-sm font-medium text-gray-500 dark:text-gray-400 tracking-wider uppercase mb-3">
-          Spend-based CO₂e estimation
+          Example CO₂e Document (Spend-Based)
         </p>
 
         <div className="w-16 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto mb-8"></div>
 
         <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-100 leading-tight mb-6">
-          Preview of the Indicative CO₂e Document
+          What Your CO₂e Document Looks Like
         </h2>
 
         <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed mb-16">
-          A transparent and reproducible spend-based CO₂e document including estimated indicators, 
-          category breakdown, emission-factor dataset version, verification hash and unique ID.  
-          Deterministic calculation using version-controlled factors.  
-          Designed for supplier onboarding, procurement documentation and ESG pre-assessment — 
-          not intended for audited inventories or regulatory reporting.
+          A clean, professional and easy-to-read CO₂e document you can send directly to clients,
+          banks or procurement teams. Includes your estimated indicators, spending breakdown
+          and a verification code they can check instantly.  
+          Simple format. Clear results. No technical explanation required.
         </p>
 
         <div className="flex justify-center">
