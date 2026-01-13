@@ -1,81 +1,119 @@
-# Startup - Free Next.js Startup Website Template
+# Certif-Scope - Official README (English Version)
 
-Startup is a free, open-source, and premium-quality [**Next.js startup website template**](https://nextjstemplates.com/templates/startup) that comes with everything you need to launch a startup, business, or SaaS website, including all essential sections, components, and pages.
+1. DESCRIPTION
 
-If you're looking for a high-quality and visually appealing, feature-rich Next.js Template for your next startup, SaaS, or business website, this is the perfect choice and starting point for you!
+Certif-Scope generates an indicative CO2e attestation based exclusively on a company’s annual financial spending (€). The methodology is spend-based, recognized only for GHG Protocol Scope 3 Category 1 (Purchased Goods and Services). Certif-Scope does not calculate: Scope 1, Scope 2, full Scope 3, physical emissions, CSRD/ESRS regulatory inventories, or environmental audits. The output is non-regulatory, indicative, and fully dependent on user-provided financial data.
 
-### ✨ Key Features
+2. PURPOSE AND SCOPE
 
-- Crafted for Startup and SaaS Business
-- Next.js and Tailwind CSS
-- All Essential Business Sections and Pages
-- High-quality and Clean Design
-- Dark and Light Version
-- TypeScript Support
-and Much More ...
+Certif-Scope provides a standardized CO2e indicator that is deterministic, reproducible, cryptographically verifiable, and compliant with GDPR (no data storage). It is designed for indicative institutional use such as banking, insurance, public procurement, ESG pre-screening, accounting firms, and SMEs. It does not replace a regulatory carbon footprint or CSRD/ESRS disclosure.
 
-### 🙌 Detailed comparison between the Free and Pro versions of Startup
+3. METHODOLOGY
 
-| Feature             | Free | Pro |
-|---------------------|------------|----------|
-| Next.js Landing Page             | ✅ Yes      | ✅ Yes      |
-| All The Integrations - Auth, DB, Payments, Blog and many more ...             | ❌ No      | ✅ Yes |
-| Homepage Variations             | 1      | 2 |
-| Additional SaaS Pages and Components             | ❌ No      | ✅ Yes |
-| Functional Blog with Sanity       | ❌ No      | ✅ Yes |
-| Use with Commercial Projects            | ✅ Yes      | ✅ Yes      |
-| Lifetime Free Updates             | ✅ Yes      | ✅ Yes |
-| Email Support       | ❌ No         | ✅ Yes       |
-| Community Support         | ✅ Yes         | ✅ Yes       |
+Official formula:
+CO2e = Spending(€) × EmissionFactor(kgCO2e/€)
 
-### [🔥 Get Startup Pro](https://nextjstemplates.com/templates/saas-starter-startup)
+Emission factors:
+- Sector-level macroeconomic EEIO factors
+- Expressed in kgCO2e per euro spent
+- Versioned MAJOR.MINOR.PATCH
+- No combustion factors (no kWh, liters, km, tons)
 
-[![Startup Pro](https://raw.githubusercontent.com/NextJSTemplates/startup-nextjs/main/startup-pro.webp)](https://nextjstemplates.com/templates/saas-starter-startup)
+Allowed inputs:
+- Annual spending (€) distributed across predefined categories such as IT, transport, professional services, energy (invoice € only), travel, office supplies, marketing, subcontracting, waste (€)
 
-Startup Pro - Expertly crafted for fully-functional, high-performing SaaS startup websites. Comes with with Authentication, Database, Blog, and all the essential integrations necessary for SaaS business sites.
+Forbidden inputs:
+- kWh
+- liters
+- km
+- tons
+- physical activity data
+- direct fuel/energy usage
+- Scope 1 and Scope 2 calculations
+- full Scope 3 inventory
 
-- [🚀 View Free Demo](https://startup.nextjstemplates.com/)
+4. WORKFLOW
 
-- [🚀 View Pro Demo](https://startup-pro.nextjstemplates.com/)
+1. User selects the year of analysis
+2. User enters spending amounts per category (€)
+3. Certif-Scope applies sector emission factors
+4. The system calculates total and category-level CO2e
+5. An attestation is generated including:
+- total estimated CO2e
+- category breakdown
+- spending inputs
+- emission factor values
+- dataset version
+- cryptographic hash
+- timestamp
+- attestation ID
+- mandatory legal disclaimer
 
-- [📦 Download](https://nextjstemplates.com/templates/startup)
+5. ATTESTATION STRUCTURE (PDF/JSON)
 
-- [🔥 Get Pro](https://nextjstemplates.com/templates/saas-starter-startup)
+Indicators:
+- Total CO2e estimate
+- CO2e per category
+- Spending per category
 
-- [🔌 Documentation](https://nextjstemplates.com/docs)
+Metadata:
+- Dataset version
+- Timestamp
+- Unique attestation ID
+- SHA-256 hash
 
-### ⚡ Deploy Now
+Mandatory disclaimer:
+This attestation provides an indicative CO2e estimate based solely on spend-based methodology. It is not a regulatory carbon report and must not be used for CSRD/ESRS disclosure. The user is fully responsible for the accuracy of financial data provided.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FNextJSTemplates%2Fstartup-nextjs)
+6. SECURITY AND VERIFICATION
 
-[![Deploy with Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/NextJSTemplates/startup-nextjs)
+Certif-Scope ensures:
+- Digital signature or SHA-256 cryptographic hash
+- Offline verification capability
+- PDF/A stable format
+- No user data stored
+- No personal data collected
+- No external transmission of inputs
 
-### 📄 License
+7. COMPLIANCE
 
-Startup is 100% free and open-source, feel free to use with your personal and commercial projects.
+Certif-Scope aligns with:
+- GHG Protocol (spend-based method for Scope 3 Category 1)
+- ISO 14064-1 principles (transparency, consistency, reproducibility)
+- GDPR (no data retention)
 
-### 💜 Support
+Certif-Scope is not:
+- a CSRD/ESRS reporting tool
+- a certified carbon footprint
+- a physical emissions inventory
+- a Scope 1/2 calculator
 
-If you like the template, please star this repository to inspire the team to create more stuff like this and reach more users like you!
+8. LIMITATIONS
 
-### ✨ Explore and Download - Free [Next.js Templates](https://nextjstemplates.com)
+- Indicative results only
+- Based solely on financial spending
+- Do not represent actual physical emissions
+- Accuracy depends entirely on user input
+- Not suitable for regulatory reporting
+- Not an audit or certification of emissions
 
-### Update Log
+9. PRICING MODEL
 
-**03 December 2025**
+- Fixed price per attestation
+- No subscription
+- No data storage
+- Instant calculation
 
-- Upgrade to Next.js 16
-- Fixed video modal issue
+10. TARGET USERS
 
-**10 April 2025**
+- SMEs
+- Accounting firms
+- Banks (ESG screening)
+- Insurance companies
+- Public institutions
+- ESG consultants
+- Due diligence workflows
 
-- Fix peer deps issue with Next.js 15
-- Upgrade to tailwind v4
-- Refactored blog cards for handling edge cases(text ellipsis on bio, keeping author details at the bottom etc.)
-- Re-wrote blog details page with icons separation, fallback author image and better markup.
-- Fixed duplicate key errors on homepage.
-- Separated icons on theme-switcher button, and refactored scroll-to-top button.
+CONCLUSION
 
-**29 Jan 2025**
-
-- Upgraded to Next.js 15
+Certif-Scope generates indicative CO2e attestations based exclusively on financial spending, without Scope 1/2, without physical data, and without regulatory applicability. The method is transparent, reproducible, secure, and aligned with GHG Protocol spend-based guidance for Scope 3 Category 1.
