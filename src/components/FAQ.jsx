@@ -11,20 +11,20 @@ export default function FAQ() {
 
   const items = [
     {
-      q: "Is the attestation accepted by banks and partners?",
-      a: "Yes. The standardized PDF includes a verification link, QR code and unique verification ID used in procurement, onboarding and finance workflows."
+      q: "Is the attestation used by banks and partners?",
+      a: "Certif-Scope is commonly used in procurement, onboarding and internal banking workflows for providing spend-based CO₂e information. It remains a non-regulatory, indicative document."
     },
     {
       q: "How fast is the attestation generated?",
-      a: "The process takes under 60 seconds after you enter your spending data."
+      a: "The process generally takes less than 60 seconds once the spending data is entered."
     },
     {
       q: "What does the attestation include?",
-      a: "A standardized PDF with CO₂ estimation, verification QR code, verification link, unique ID, timestamp and antifraud hash."
+      a: "A standardized PDF with estimated CO₂e indicators, dataset version, a verification QR code, a verification link, a unique ID, timestamp and an integrity hash."
     },
     {
       q: "How does the verification system work?",
-      a: "Anyone can scan the QR code or enter the verification ID to confirm authenticity instantly—no login required."
+      a: "Anyone can scan the QR code or manually enter the verification ID to check the integrity of the attestation. No login or account is required."
     }
   ];
 
@@ -38,41 +38,25 @@ export default function FAQ() {
 
         <div className="space-y-4">
           {items.map((item, i) => (
-            <div key={i} className="border border-slate-200 rounded-xl">
+            <div key={i} className="border border-gray-200 rounded-lg">
               <button
                 onClick={() => toggle(i)}
-                className="w-full flex items-center justify-between px-6 py-4 text-left"
+                className="w-full text-left px-6 py-4 flex justify-between items-center"
               >
-                <span className="text-lg font-semibold text-[#0F172A]">
-                  {item.q}
-                </span>
-                <span className="text-2xl text-[#0F172A]">
-                  {open === i ? "−" : "+"}
-                </span>
+                <span className="font-medium text-[#0F172A]">{item.q}</span>
+                <span>{open === i ? "−" : "+"}</span>
               </button>
 
               {open === i && (
-                <div className="px-6 pb-4">
-                  <p className="text-[#475569] text-base leading-relaxed">
-                    {item.a}
-                  </p>
+                <div className="px-6 pb-4 text-gray-600 text-sm leading-relaxed">
+                  {item.a}
                 </div>
               )}
             </div>
           ))}
         </div>
 
-        {/* CTA final */}
-        <div className="text-center mt-16">
-          <a
-            href="#"
-            className="inline-block bg-[#0F172A] text-white text-base font-semibold px-10 py-4 rounded-xl hover:bg-[#1E293B] transition"
-          >
-            Get Your Attestation
-          </a>
-        </div>
-
       </div>
     </section>
   );
-}
+              }
