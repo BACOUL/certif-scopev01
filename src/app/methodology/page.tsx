@@ -1,120 +1,74 @@
-import Breadcrumb from "@/components/Common/Breadcrumb";
+"use client";
+
+import Section1 from "./sections/Section1";
+import Section2 from "./sections/Section2";
+import Section3 from "./sections/Section3";
+import Section4 from "./sections/Section4";
+import Section5 from "./sections/Section5";
+import Section6 from "./sections/Section6";
+import Section7 from "./sections/Section7";
+import Section8 from "./sections/Section8";
+import Section9 from "./sections/Section9";
+import Section10 from "./sections/Section10";
+import Section11 from "./sections/Section11";
+import Section12 from "./sections/Section12";
 
 export default function MethodologyPage() {
   return (
-    <>
-      <Breadcrumb
-        pageName="Methodology"
-        description="Understanding how Certif-Scope calculates CO₂ estimates using the spend-based approach aligned with the GHG Protocol."
-      />
+    <div className="max-w-7xl mx-auto px-6 pt-24 pb-24">
 
-      {/* SECTION — Intro */}
-      <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="max-w-5xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-[#0B3A63] mb-6">
-            Methodological foundation
-          </h2>
+      {/* INTRODUCTION */}
+      <div className="w-full mb-12">
+        <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-4">
+          Certif-Scope Methodology Overview
+        </h1>
 
-          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-            Certif-Scope uses a standardized spend-based methodology derived from the
-            Greenhouse Gas Protocol (Corporate Standard). This approach estimates
-            emissions by multiplying financial expenditure by category-specific
-            emission factors.
-          </p>
-        </div>
-      </section>
+        <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+          This page presents the full scientific and technical methodology behind Certif-Scope.
+          It explains the spend-based model, datasets, conversion logic, validation rules,
+          versioning system, determinism, and verification protocols used to generate
+          reproducible CO₂ estimations aligned with EU institutional expectations.
+        </p>
+      </div>
 
-      {/* SECTION — How spend-based works */}
-      <section className="py-20 bg-[#F8FAFC] dark:bg-gray-800">
-        <div className="max-w-5xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-[#0B3A63] mb-6">
-            How the spend-based model works
-          </h2>
+      {/* SOMMAIRE */}
+      <div className="w-full p-8 mb-24 bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-200 dark:border-gray-700">
+        <h2 className="text-2xl md:text-3xl font-bold text-[#0B3A63] mb-6">
+          Methodology Sections
+        </h2>
 
-          <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-10">
-            The spend-based model estimates emissions by associating each euro spent
-            with an average CO₂ emission factor for that economic category. This makes
-            the method accessible, fast and compatible with companies that do not yet
-            track physical activity data.
-          </p>
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-gray-700 dark:text-gray-300 text-base leading-relaxed">
+          <li><a href="#s1" className="underline">1. Scope & Purpose</a></li>
+          <li><a href="#s2">2. Standards & Regulatory Alignment</a></li>
+          <li><a href="#s3">3. Spend-Based Model Definition</a></li>
+          <li><a href="#s4">4. Category Mapping Logic</a></li>
+          <li><a href="#s5">5. Emission Factor Sources</a></li>
+          <li><a href="#s6">6. Calculation Formula & Parameters</a></li>
+          <li><a href="#s7">7. Input Validation Rules</a></li>
+          <li><a href="#s8">8. Deterministic Output Guarantees</a></li>
+          <li><a href="#s9">9. Update Cycles & Version Control</a></li>
+          <li><a href="#s10">10. Structural Limitations</a></li>
+          <li><a href="#s11">11. Legal Boundaries</a></li>
+          <li><a href="#s12">12. Verification Protocol</a></li>
+        </ul>
+      </div>
 
-          <ul className="space-y-4 text-gray-700 dark:text-gray-300">
-            <li>• User enters annual spending per category</li>
-            <li>• Each category has an associated emission factor (kg CO₂e / €)</li>
-            <li>• Emissions = Spending × Emission Factor</li>
-            <li>• Totals are aggregated to produce a footprint estimate</li>
-          </ul>
-        </div>
-      </section>
+      {/* SECTIONS */}
+      <div className="space-y-24">
+        <Section1 />
+        <Section2 />
+        <Section3 />
+        <Section4 />
+        <Section5 />
+        <Section6 />
+        <Section7 />
+        <Section8 />
+        <Section9 />
+        <Section10 />
+        <Section11 />
+        <Section12 />
+      </div>
 
-      {/* SECTION — Categories */}
-      <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="max-w-5xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-[#0B3A63] mb-6">
-            Categories covered
-          </h2>
-
-          <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-10">
-            Certif-Scope uses commonly accepted economic categories that align with
-            GHG Protocol scope guidance and widely referenced input-output models.
-          </p>
-
-          <ul className="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-700 dark:text-gray-300">
-            <li>• Energy and utilities</li>
-            <li>• Office operations</li>
-            <li>• IT equipment and services</li>
-            <li>• Transportation & logistics</li>
-            <li>• Professional services</li>
-            <li>• Marketing & media</li>
-            <li>• Construction / maintenance</li>
-            <li>• Other purchased goods and services</li>
-          </ul>
-        </div>
-      </section>
-
-      {/* SECTION — Emission factors */}
-      <section className="py-20 bg-[#F8FAFC] dark:bg-gray-800">
-        <div className="max-w-5xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-[#0B3A63] mb-6">
-            Emission factors
-          </h2>
-
-          <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-10">
-            Emission factors are sourced from recognized models combining national
-            environmental accounts and economic input-output databases. These provide
-            average CO₂ intensities per euro of expenditure for each sector.
-          </p>
-
-          <ul className="space-y-4 text-gray-700 dark:text-gray-300">
-            <li>• Based on environmental extended input-output (EEIO) frameworks</li>
-            <li>• Aggregated per economic sector</li>
-            <li>• Updated regularly according to latest published averages</li>
-            <li>• Converted to kg CO₂e / € for spend-based calculation</li>
-          </ul>
-        </div>
-      </section>
-
-      {/* SECTION — Limitations */}
-      <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="max-w-5xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-[#0B3A63] mb-6">
-            Methodological limitations
-          </h2>
-
-          <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-            Like all spend-based calculations, this approach has inherent
-            limitations. It prioritizes accessibility and consistency over precision.
-          </p>
-
-          <ul className="space-y-3 text-gray-700 dark:text-gray-300">
-            <li>• Estimates do not reflect supplier-specific carbon performance</li>
-            <li>• Emission factors are averages, not direct measurements</li>
-            <li>• No verification of accounting records by Certif-Scope</li>
-            <li>• Not suitable for regulated carbon reporting requiring audits</li>
-            <li>• Best used as an indicative footprint or screening indicator</li>
-          </ul>
-        </div>
-      </section>
-    </>
+    </div>
   );
 }
