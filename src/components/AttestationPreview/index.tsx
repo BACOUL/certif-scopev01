@@ -13,21 +13,22 @@ export default function AttestationPreview() {
         <div className="w-16 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto mb-8"></div>
 
         <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-100 leading-tight mb-6">
-          Preview of the Indicative CO₂e Attestation
+          Preview of the Indicative CO₂e Document
         </h2>
 
         <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed mb-16">
-          A clear, standardized and reproducible spend-based document including estimated CO₂e indicators,
-          category breakdown, dataset version, verification hash and unique ID.
-          Fully deterministic with version-controlled emission factors. 
-          Suitable for supplier onboarding, procurement documentation and ESG pre-assessment.
+          A transparent and reproducible spend-based CO₂e document including estimated indicators, 
+          category breakdown, emission-factor dataset version, verification hash and unique ID.  
+          Deterministic calculation using version-controlled factors.  
+          Designed for supplier onboarding, procurement documentation and ESG pre-assessment — 
+          not intended for audited inventories or regulatory reporting.
         </p>
 
         <div className="flex justify-center">
           <div className="relative w-full max-w-[600px]">
             <Image
               src="/preview.webp"
-              alt="Certif-Scope Attestation Preview"
+              alt="Certif-Scope indicative CO₂e estimation preview"
               width={1200}
               height={800}
               loading="lazy"
