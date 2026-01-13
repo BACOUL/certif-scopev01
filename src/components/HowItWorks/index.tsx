@@ -3,20 +3,16 @@ export default function HowItWorks() {
     <section className="py-24 bg-[#F8FAFC] dark:bg-gray-900">
       <div className="max-w-6xl mx-auto px-6">
 
-        {/* TITLE */}
         <h2 className="text-3xl md:text-4xl font-extrabold text-center text-[#0B3A63]">
           How Certif-Scope Works
         </h2>
 
-        {/* SUBTEXT */}
         <p className="mt-4 text-center text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
-          A streamlined, audit-ready process designed to deliver standardized CO₂ attestation instantly.
+          A streamlined, spend-based process designed to deliver transparent and reproducible CO₂e estimations instantly.
         </p>
 
-        {/* SEPARATOR */}
         <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto my-14"></div>
 
-        {/* STEPS GRID */}
         <div className="grid md:grid-cols-3 gap-14">
 
           {/* STEP 1 */}
@@ -25,10 +21,10 @@ export default function HowItWorks() {
               1
             </div>
             <h3 className="mt-6 text-lg font-semibold text-[#0B3A63]">
-              Provide business data
+              Enter financial data
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Spend-based or activity-based inputs used to compute your estimated carbon footprint.
+              Provide annual spending (€) across predefined categories. No physical activity data (kWh, litres, km) required or accepted.
             </p>
           </div>
 
@@ -41,7 +37,7 @@ export default function HowItWorks() {
               Automated calculation
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Emissions automatically estimated using standardized logic aligned with GHG Protocol.
+              CO₂e values are estimated using spend-based factors aligned with GHG Protocol Scope 3 Category 1 guidance.
             </p>
           </div>
 
@@ -51,16 +47,15 @@ export default function HowItWorks() {
               3
             </div>
             <h3 className="mt-6 text-lg font-semibold text-[#0B3A63]">
-              Receive certified output
+              Download indicative report
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Download the standardized PDF including indicators and verification ID usable in procurement and finance.
+              Receive a standardized PDF with estimated indicators and a unique verification ID — suitable for supplier screening and procurement workflows.
             </p>
           </div>
 
         </div>
 
-        {/* CTA TEXT */}
         <p className="mt-12 text-center text-sm text-gray-500 dark:text-gray-400">
           Full process completed in under 30 seconds on average.
         </p>
@@ -68,4 +63,4 @@ export default function HowItWorks() {
       </div>
     </section>
   );
-        }
+}
