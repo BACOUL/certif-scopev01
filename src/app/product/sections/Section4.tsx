@@ -78,8 +78,8 @@ export default function Section4() {
           <ul className="mt-4 space-y-2 text-white/90 text-sm relative z-10">
             <li>• ADEME Base Carbone</li>
             <li>• DEFRA UK GHG Conversion Factors</li>
-            <li>• IPCC AR6 CO₂e global warming potentials</li>
-            <li>• Fixed formula: expenditure × factor</li>
+            <li>• IPCC AR6 warming potentials</li>
+            <li>• Formula: expenditure × emission factor</li>
           </ul>
         </div>
 
@@ -105,7 +105,6 @@ export default function Section4() {
       </div>
 
 
-
       {/* SCHEMA — DATA → NORMALIZATION → MAPPING → CALCULATION → PDF */}
       <div className="mt-20 p-10 bg-[#F8FAFC] border border-[#15B097]/30 rounded-xl shadow-sm">
         <h3 className="text-2xl font-semibold text-[#0B3A63] mb-6">
@@ -126,26 +125,68 @@ export default function Section4() {
 
           <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-sm">
             <p className="font-semibold text-[#0B3A63]">3. Mapping</p>
-            <p className="text-xs text-gray-600 mt-2">Deterministic category assignment</p>
+            <p className="text-xs text-gray-600 mt-2">Deterministic category matching</p>
           </div>
 
           <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-sm">
             <p className="font-semibold text-[#0B3A63]">4. Calculation</p>
-            <p className="text-xs text-gray-600 mt-2">Official emission-factor application</p>
+            <p className="text-xs text-gray-600 mt-2">Emission factor × expenditure</p>
           </div>
 
           <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-sm">
             <p className="font-semibold text-[#0B3A63]">5. PDF Output</p>
-            <p className="text-xs text-gray-600 mt-2">Standardized & verifiable</p>
+            <p className="text-xs text-gray-600 mt-2">Deterministic & verifiable</p>
           </div>
 
         </div>
       </div>
 
 
+      {/* EXAMPLES OF REAL MAPPING — Added */}
+      <div className="mt-20 p-10 bg-white rounded-xl border border-gray-200 shadow-md">
+        <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
+          Real Examples of Category Mapping
+        </h3>
+
+        <p className="text-gray-700 text-sm max-w-4xl leading-relaxed mb-6">
+          Certif-Scope relies on deterministic, pre-validated mapping rules. Below are 
+          concrete examples showing how raw expenditure inputs are transformed into 
+          standardized emission categories.
+        </p>
+
+        <table className="w-full text-sm text-left border-collapse">
+          <thead>
+            <tr className="bg-[#0B3A63] text-white">
+              <th className="p-3 border border-gray-300">User Input</th>
+              <th className="p-3 border border-gray-300">Detected Category</th>
+              <th className="p-3 border border-gray-300">Emission Factor Source</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr className="bg-[#F8FAFC]">
+              <td className="p-3 border border-gray-300">Transport services – 4 500 €</td>
+              <td className="p-3 border border-gray-300">Logistics / Freight</td>
+              <td className="p-3 border border-gray-300">Base Carbone 2024.2</td>
+            </tr>
+
+            <tr>
+              <td className="p-3 border border-gray-300">IT equipment – 12 000 €</td>
+              <td className="p-3 border border-gray-300">Purchased Goods – Electronics</td>
+              <td className="p-3 border border-gray-300">DEFRA 2024</td>
+            </tr>
+
+            <tr className="bg-[#F8FAFC]">
+              <td className="p-3 border border-gray-300">Marketing agency – 9 800 €</td>
+              <td className="p-3 border border-gray-300">Professional Services</td>
+              <td className="p-3 border border-gray-300">Base Carbone 2024.2</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
 
-      {/* CRYPTOGRAPHIC BLOCK — Highly specific */}
+      {/* CRYPTOGRAPHIC BLOCK */}
       <div className="mt-20 p-10 bg-[#F8FAFC] rounded-xl border border-[#0B3A63]/25 shadow-sm">
         <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
           Cryptographic Verification & Integrity
@@ -159,12 +200,11 @@ export default function Section4() {
 
         <ul className="mt-4 space-y-2 text-sm text-gray-700 leading-relaxed">
           <li>• Algorithm: SHA-256 (FIPS 180-4)</li>
-          <li>• Scope: Full JSON dataset prior to PDF</li>
+          <li>• Scope: Full dataset prior to PDF generation</li>
           <li>• Verification: Offline recomputation</li>
           <li>• Trust model: No server dependency</li>
         </ul>
       </div>
-
 
 
       {/* RETURN BUTTON */}
@@ -179,4 +219,4 @@ export default function Section4() {
 
     </section>
   );
-            }
+          }
