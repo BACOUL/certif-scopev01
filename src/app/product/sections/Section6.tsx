@@ -7,7 +7,6 @@ export default function Section6() {
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
 
-      {/* HEADER — Distinct premium layout */}
       <div className="relative p-12 rounded-2xl bg-[#0B3A63] text-white shadow-xl overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/30 to-transparent opacity-40"></div>
 
@@ -21,30 +20,41 @@ export default function Section6() {
           and cryptographic verification. The workflow is reproducible, auditable and aligned
           with procurement, banking, insurance and institutional screening practices across Europe.
         </p>
+
+        <div className="mt-6 text-sm text-white/80 underline space-y-1 relative z-10">
+          <a href="https://www.bilans-ges.ademe.fr" target="_blank" rel="noopener noreferrer">
+            ADEME Base Carbone (official emission factors)
+          </a><br />
+          <a href="https://www.gov.uk/government/collections/government-conversion-factors-for-company-reporting" target="_blank" rel="noopener noreferrer">
+            DEFRA UK GHG Conversion Factors
+          </a><br />
+          <a href="https://www.ipcc.ch/report/ar6/" target="_blank" rel="noopener noreferrer">
+            IPCC AR6 Climate Parameters
+          </a><br />
+          <a href="https://nacev2.com" target="_blank" rel="noopener noreferrer">
+            NACE Classification System
+          </a>
+        </div>
       </div>
 
 
-      {/* SCHEMA — Input → Mapping → EF Lookup → Formula → PDF + Hash */}
       <div className="mt-16 p-8 bg-[#F8FAFC] border border-[#15B097]/40 rounded-xl shadow-sm">
-        <pre className="text-sm text-[#0B3A63] leading-relaxed whitespace-pre-wrap">
-{`[User Inputs]
-       ↓
+        <pre className="text-sm md:text-base font-mono text-[#0B3A63] leading-relaxed whitespace-pre-wrap text-center">
+{`[User Input]
+        ↓
 [Category Mapping Table — NACE-compatible]
-       ↓
+        ↓
 [Emission Factor Lookup — ADEME / DEFRA / IPCC]
-       ↓
-CO₂e = Spend (€) × EF (kgCO₂e/€)
-       ↓
+        ↓
+CO₂e = Spend (€) × EF (kgCO₂e / €)
+        ↓
 [Standardized PDF + SHA-256 Hash]`}
         </pre>
       </div>
 
 
-
-      {/* WORKFLOW GRID — 5 technical blocks */}
       <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mt-20">
 
-        {/* STEP 1 — INPUT CAPTURE */}
         <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-md">
           <h3 className="text-xl font-bold text-[#0B3A63]">1. Input Capture</h3>
           <p className="text-gray-700 text-sm mt-3 leading-relaxed">
@@ -62,7 +72,6 @@ CO₂e = Spend (€) × EF (kgCO₂e/€)
         </div>
 
 
-        {/* STEP 2 — CATEGORY MAPPING */}
         <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/40 shadow-md">
           <h3 className="text-xl font-bold text-[#0B3A63]">2. Category Mapping</h3>
           <p className="text-gray-700 text-sm mt-3 leading-relaxed">
@@ -79,7 +88,6 @@ CO₂e = Spend (€) × EF (kgCO₂e/€)
         </div>
 
 
-        {/* STEP 3 — EMISSION FACTOR LOOKUP */}
         <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-md">
           <h3 className="text-xl font-bold text-[#0B3A63]">3. Emission Factor Retrieval</h3>
           <p className="text-gray-700 text-sm mt-3 leading-relaxed">
@@ -96,7 +104,6 @@ CO₂e = Spend (€) × EF (kgCO₂e/€)
         </div>
 
 
-        {/* STEP 4 — DETERMINISTIC FORMULA */}
         <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/40 shadow-md">
           <h3 className="text-xl font-bold text-[#0B3A63]">4. Deterministic Calculation Engine</h3>
           <p className="text-gray-700 text-sm mt-3 leading-relaxed">
@@ -113,7 +120,6 @@ CO₂e = Spend (€) × EF (kgCO₂e/€)
         </div>
 
 
-        {/* STEP 5 — PDF + HASH */}
         <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-md">
           <h3 className="text-xl font-bold text-[#0B3A63]">5. PDF Generation & Hash Verification</h3>
           <p className="text-gray-700 text-sm mt-3 leading-relaxed">
@@ -134,8 +140,6 @@ CO₂e = Spend (€) × EF (kgCO₂e/€)
       </div>
 
 
-
-      {/* OFFLINE VERIFICATION EXAMPLES */}
       <div className="mt-20 p-8 bg-white border border-gray-200 rounded-xl shadow-md">
         <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
           Offline Verification — SHA-256 Commands
@@ -149,21 +153,21 @@ CO₂e = Spend (€) × EF (kgCO₂e/€)
 
           <div>
             <p className="font-semibold text-[#0B3A63] mb-1">macOS / Linux:</p>
-            <pre className="bg-[#F8FAFC] p-3 rounded border border-gray-200">
+            <pre className="bg-[#F8FAFC] p-3 rounded border border-gray-200 overflow-x-auto font-mono text-xs">
 sha256sum certif-scope-report.pdf
             </pre>
           </div>
 
           <div>
             <p className="font-semibold text-[#0B3A63] mb-1">Windows (PowerShell):</p>
-            <pre className="bg-[#F8FAFC] p-3 rounded border border-gray-200">
+            <pre className="bg-[#F8FAFC] p-3 rounded border border-gray-200 overflow-x-auto font-mono text-xs">
 Get-FileHash .\certif-scope-report.pdf -Algorithm SHA256
             </pre>
           </div>
 
           <div>
             <p className="font-semibold text-[#0B3A63] mb-1">Node.js (institution backend check):</p>
-            <pre className="bg-[#F8FAFC] p-3 rounded border border-gray-200">
+            <pre className="bg-[#F8FAFC] p-3 rounded border border-gray-200 overflow-x-auto font-mono text-xs">
 node -e "const fs=require('fs');const c=fs.readFileSync('certif-scope.pdf');console.log(require('crypto').createHash('sha256').update(c).digest('hex'))"
             </pre>
           </div>
@@ -172,8 +176,6 @@ node -e "const fs=require('fs');const c=fs.readFileSync('certif-scope.pdf');cons
       </div>
 
 
-
-      {/* LIMITATIONS BLOCK */}
       <div className="mt-20 p-10 bg-[#F8FAFC] border border-[#15B097]/40 rounded-xl shadow-sm">
         <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
           Model Limitations
@@ -189,8 +191,6 @@ node -e "const fs=require('fs');const c=fs.readFileSync('certif-scope.pdf');cons
       </div>
 
 
-
-      {/* RETURN BUTTON */}
       <div className="mt-12 text-right">
         <a
           href="#top"
@@ -201,4 +201,4 @@ node -e "const fs=require('fs');const c=fs.readFileSync('certif-scope.pdf');cons
       </div>
     </section>
   );
-        }
+      }
