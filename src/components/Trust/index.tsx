@@ -14,9 +14,10 @@ export default function Trust() {
         </h2>
 
         <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed mb-16">
-          Certif-Scope gives SMEs a simple way to provide CO₂e information when requested by clients,
-          banks or procurement teams. The document is clear, standardized and easy to verify.  
-          Spend-based only, instantly generated and suitable for screening — not a regulatory or audited report.
+          Certif-Scope provides SMEs with a fast, structured and verifiable way to share CO₂e information 
+          when requested by clients, suppliers or banks. The output is clear, standardized and includes 
+          a verification code, making it easy to validate in procurement systems. 
+          Spend-based only, instantly generated — not a regulatory or audited report.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -27,11 +28,11 @@ export default function Trust() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 2l7 4v6c0 5-3.5 9-7 10-3.5-1-7-5-7-10V6l7-4z" />
             </svg>
             <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
-              Integrity you can check instantly
+              Instant integrity verification
             </h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Each document includes a verification ID and a deterministic hash of the input data.  
-              Partners can confirm authenticity in seconds — no account, no database lookup required.
+              Each document includes a verification ID and a deterministic hash.  
+              Partners confirm authenticity in seconds — no login, no database, no account required.
             </p>
           </div>
 
@@ -41,11 +42,11 @@ export default function Trust() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M4 7h16M4 12h16M4 17h16" />
             </svg>
             <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
-              Compatible with procurement systems
+              Ready for procurement systems
             </h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              The output format fits supplier portals, onboarding checklists and ESG questionnaires,
-              making it easy for SMEs to answer CO₂e requests without extra tools or expertise.
+              The structured PDF fits supplier portals, RFP requirements and onboarding checklists.  
+              Designed to reduce friction for SMEs providing CO₂e information.
             </p>
           </div>
 
@@ -55,21 +56,21 @@ export default function Trust() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h18v4H3V3zm0 7h18v11H3V10zm6 3h6" />
             </svg>
             <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
-              Consistent every time
+              Consistent and reproducible
             </h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Deterministic spend-based calculation with version-controlled emission factors ensures
-              reproducible results for internal comparison and screening — without audit claims.
+              Deterministic spend-based calculation with version-controlled emission factors.  
+              Produces identical results from the same inputs — ideal for internal review or screening.
             </p>
           </div>
 
         </div>
 
         <p className="mt-12 text-center text-sm text-gray-500 dark:text-gray-400">
-          Already used by SMEs across Europe to answer CO₂e information requests quickly and professionally.
+          Used by SMEs across Europe to answer CO₂e information requests quickly and professionally.
         </p>
 
       </div>
     </section>
   );
-      }
+}
