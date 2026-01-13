@@ -91,7 +91,7 @@ export default function Header() {
                   role="menuitem"
                   className="block py-2 px-3 rounded hover:bg-gray-100 dark:hover:bg-gray-800 text-sm"
                 >
-                  What You Receive
+                  What You Receive (Instant & Verified)
                 </Link>
 
                 <Link
@@ -109,7 +109,7 @@ export default function Header() {
                   role="menuitem"
                   className="block py-2 px-3 rounded hover:bg-gray-100 dark:hover:bg-gray-800 text-sm"
                 >
-                  Compliance & Limitations
+                  Compliance & Scope
                 </Link>
               </div>
             </li>
@@ -146,7 +146,7 @@ export default function Header() {
                 href="/assessment"
                 className="bg-[#1FB6C1] text-white font-semibold px-6 py-3 rounded-lg shadow hover:opacity-90 transition"
               >
-                Generate My CO₂e Document
+                Generate CO₂e Document Now
               </Link>
             </li>
 
@@ -156,4 +156,4 @@ export default function Header() {
       </div>
     </header>
   );
-                }
+          }
