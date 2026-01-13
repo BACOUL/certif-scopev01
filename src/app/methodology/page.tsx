@@ -1,17 +1,17 @@
 "use client";
 
-import Section1 from "./sections/Section1";
-import Section2 from "./sections/Section2";
-import Section3 from "./sections/Section3";
-import Section4 from "./sections/Section4";
-import Section5 from "./sections/Section5";
-import Section6 from "./sections/Section6";
-import Section7 from "./sections/Section7";
-import Section8 from "./sections/Section8";
-import Section9 from "./sections/Section9";
-import Section10 from "./sections/Section10";
-import Section11 from "./sections/Section11";
-import Section12 from "./sections/Section12";
+import Section1 from "./Section1";
+import Section2 from "./Section2";
+import Section3 from "./Section3";
+import Section4 from "./Section4";
+import Section5 from "./Section5";
+import Section6 from "./Section6";
+import Section7 from "./Section7";
+import Section8 from "./Section8";
+import Section9 from "./Section9";
+import Section10 from "./Section10";
+import Section11 from "./Section11";
+import Section12 from "./Section12";
 
 export default function MethodologyPage() {
   return (
@@ -24,10 +24,10 @@ export default function MethodologyPage() {
         </h1>
 
         <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-          This page presents the full scientific and technical methodology behind Certif-Scope.
-          It explains the spend-based model, datasets, conversion logic, validation rules,
-          versioning system, determinism, and verification protocols used to generate
-          reproducible CO₂ estimations aligned with EU institutional expectations.
+          This page describes the full technical and scientific methodology powering Certif-Scope.
+          It details the input structure, the spend-based model, emission factor sources,
+          validation rules, deterministic output guarantees, regulatory alignment,
+          versioning system, and verification protocol.
         </p>
       </div>
 
