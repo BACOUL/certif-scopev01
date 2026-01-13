@@ -15,9 +15,9 @@ export default function Footer() {
               Certif-Scope
             </h2>
             <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
-              Quick and simple CO₂e estimation for SMEs using spend-based data.  
-              A clean, standardized document you can share with clients, suppliers or banks
-              during onboarding or ESG questionnaires.
+              The simplest way for SMEs to provide CO₂e information when clients, suppliers or banks request it.  
+              Created in under 60 seconds using spend-based data.  
+              A clear document ready to send — no expertise required.
             </p>
           </div>
 
@@ -61,8 +61,14 @@ export default function Footer() {
 
         </div>
 
+        {/* TRUST LINE */}
+        <div className="mt-10 text-center text-xs text-gray-500 dark:text-gray-400">
+          Certif-Scope uses a transparent spend-based approach and provides a non-regulatory CO₂e document.  
+          Results depend on user-provided data.
+        </div>
+
         {/* COPYRIGHT */}
-        <div className="mt-12 border-t border-gray-200 dark:border-gray-700 pt-6 text-center">
+        <div className="mt-6 border-t border-gray-200 dark:border-gray-700 pt-6 text-center">
           <p className="text-sm text-gray-500 dark:text-gray-400">
             © {new Date().getFullYear()} Certif-Scope. All rights reserved.
           </p>
@@ -71,4 +77,4 @@ export default function Footer() {
       </div>
     </footer>
   );
-      }
+            }
