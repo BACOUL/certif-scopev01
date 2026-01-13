@@ -54,19 +54,20 @@ export default function MethodologyPage() {
       </div>
 
       {/* SECTIONS */}
+
       <div className="space-y-24">
-        <Section1 />
-        <Section2 />
-        <Section3 />
-        <Section4 />
-        <Section5 />
-        <Section6 />
-        <Section7 />
-        <Section8 />
-        <Section9 />
-        <Section10 />
-        <Section11 />
-        <Section12 />
+        <div id="s1"><Section1 /></div>
+        <div id="s2"><Section2 /></div>
+        <div id="s3"><Section3 /></div>
+        <div id="s4"><Section4 /></div>
+        <div id="s5"><Section5 /></div>
+        <div id="s6"><Section6 /></div>
+        <div id="s7"><Section7 /></div>
+        <div id="s8"><Section8 /></div>
+        <div id="s9"><Section9 /></div>
+        <div id="s10"><Section10 /></div>
+        <div id="s11"><Section11 /></div>
+        <div id="s12"><Section12 /></div>
       </div>
 
     </div>
