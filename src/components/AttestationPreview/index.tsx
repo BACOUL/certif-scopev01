@@ -18,7 +18,8 @@ export default function AttestationPreview() {
 
         <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed mb-16">
           A clear, standardized and reproducible spend-based document including estimated CO₂e indicators,
-          category breakdown, dataset version, verification hash and unique ID. 
+          category breakdown, dataset version, verification hash and unique ID.
+          Fully deterministic with version-controlled emission factors. 
           Suitable for supplier onboarding, procurement documentation and ESG pre-assessment.
         </p>
 
