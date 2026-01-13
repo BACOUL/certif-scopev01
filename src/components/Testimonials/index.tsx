@@ -4,19 +4,19 @@ export default function Testimonials() {
   const items = [
     {
       initials: "MR",
-      text: "We were asked for CO₂e information by a major client and had no idea where to start. Certif-Scope gave us a clean document in minutes. Exactly what they needed for onboarding.",
+      text: "A large client requested CO₂e information for onboarding and we had no method or data. Certif-Scope generated a clean, clear document in minutes. It matched exactly what they needed for their procurement checks.",
       author: "Mark Reynolds",
       role: "Construction — United Kingdom",
     },
     {
       initials: "ID",
-      text: "For procurement workflows, the format is perfect. Simple numbers, clear layout and a verification code our partners can check instantly.",
+      text: "The format is ideal for procurement workflows. Simple indicators, structured layout and a verification code our partners can check instantly. It saved hours of manual preparation.",
       author: "Isabel Duarte",
       role: "Online Retail — Portugal",
     },
     {
       initials: "DM",
-      text: "Our clients often request CO₂e figures but don’t provide a method. Certif-Scope allowed us to respond quickly without consultants or complex data collection.",
+      text: "Many clients ask for CO₂e numbers but never specify the methodology. Certif-Scope allowed us to answer quickly and consistently without consultants or complex data collection.",
       author: "Daniel Moretti",
       role: "Consulting — Italy",
     },
@@ -29,8 +29,8 @@ export default function Testimonials() {
           What European Businesses Say
         </h2>
         <p className="text-[#475569] text-base md:text-lg max-w-xl mx-auto">
-          Real feedback from SMEs using Certif-Scope to answer CO₂e requests quickly and professionally.
-          Easy to share, spend-based and ready for procurement or onboarding. 
+          SMEs across Europe use Certif-Scope to respond quickly, clearly and consistently to CO₂e requests
+          during onboarding, procurement or ESG questionnaires. Instant, spend-based and easy to share.
           Not a regulatory emissions report.
         </p>
       </div>
@@ -74,4 +74,4 @@ export default function Testimonials() {
       </div>
     </section>
   );
-}
+        }
