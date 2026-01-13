@@ -10,11 +10,11 @@ export default function Trust() {
         <div className="w-16 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto mb-10"></div>
 
         <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-100 leading-tight mb-6">
-          Trusted for procurement, onboarding and ESG pre-assessment
+          Designed for procurement, onboarding and ESG pre-assessment
         </h2>
 
         <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed mb-16">
-          Certif-Scope provides independently verifiable, spend-based CO₂e estimations suitable for supplier onboarding, 
+          Certif-Scope provides spend-based CO₂e estimations suitable for supplier onboarding, 
           procurement documentation and internal ESG reviews. Not a regulatory report.
         </p>
 
@@ -24,9 +24,9 @@ export default function Trust() {
             <svg className="h-12 w-12 text-[#0B3A63] dark:text-gray-300 mb-4" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 2l7 4v6c0 5-3.5 9-7 10-3.5-1-7-5-7-10V6l7-4z" />
             </svg>
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">Independent Verification</h3>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">Integrity Verification</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Each attestation embeds a tamper-proof verification ID allowing offline integrity checks without relying on Certif-Scope.
+              Each attestation includes a verification ID and hash allowing authenticity checks based on the embedded data.
             </p>
           </div>
 
@@ -46,14 +46,14 @@ export default function Trust() {
             </svg>
             <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">Structured & Reproducible</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Versioned emission factors and deterministic calculation ensure consistent, reproducible output for long-term documentation.
+              Versioned emission factors and deterministic spend-based calculation ensure consistent and reproducible results.
             </p>
           </div>
 
         </div>
 
         <p className="mt-12 text-center text-sm text-gray-500 dark:text-gray-400">
-          Commonly used in procurement and ESG pre-assessment workflows across Europe.
+          Used by various companies in Europe for supplier screening and ESG pre-assessment.
         </p>
 
       </div>
