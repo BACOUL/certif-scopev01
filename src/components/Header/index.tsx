@@ -39,9 +39,15 @@ export default function Header() {
           aria-controls="main-navigation"
           className="lg:hidden w-10 h-10 flex flex-col justify-center items-center"
         >
-          <span className={`h-[3px] w-7 bg-gray-900 dark:bg-gray-100 rounded transition-transform duration-300 ${open ? "rotate-45 translate-y-1" : ""}`} />
-          <span className={`h-[3px] w-7 bg-gray-900 dark:bg-gray-100 rounded my-1 transition-opacity duration-300 ${open ? "opacity-0" : "opacity-100"}`} />
-          <span className={`h-[3px] w-7 bg-gray-900 dark:bg-gray-100 rounded transition-transform duration-300 ${open ? "-rotate-45 -translate-y-1" : ""}`} />
+          <span className={`h-[3px] w-7 bg-gray-900 dark:bg-gray-100 rounded transition-transform duration-300 ${
+            open ? "rotate-45 translate-y-1" : ""
+          }`} />
+          <span className={`h-[3px] w-7 bg-gray-900 dark:bg-gray-100 rounded my-1 transition-opacity duration-300 ${
+            open ? "opacity-0" : "opacity-100"
+          }`} />
+          <span className={`h-[3px] w-7 bg-gray-900 dark:bg-gray-100 rounded transition-transform duration-300 ${
+            open ? "-rotate-45 -translate-y-1" : ""
+          }`} />
         </button>
 
         {/* NAVIGATION */}
@@ -55,6 +61,7 @@ export default function Header() {
         >
           <ul className="flex flex-col lg:flex-row gap-4 lg:gap-8">
 
+            {/* HOME */}
             <li>
               <Link
                 href="/"
@@ -67,23 +74,22 @@ export default function Header() {
               </Link>
             </li>
 
-            {/* PRODUCT DROPDOWN */}
+            {/* ATTESTATION DROPDOWN */}
             <li className="relative">
               <button
                 onClick={() => setDropdown(!dropdown)}
-                className="flex items-center gap-1 text-base font-medium text-gray-800 dark:text-gray-200 hover:text-[#1FB6C1] transition lg:hover:text-[#1FB6C1]"
+                aria-haspopup="true"
+                aria-expanded={dropdown}
+                className="flex items-center gap-1 text-base font-medium text-gray-800 dark:text-gray-200 hover:text-[#1FB6C1] transition"
               >
-                Product
+                Attestation
                 <span className={`transition-transform ${dropdown ? "rotate-180" : ""}`}>
                   ▼
                 </span>
               </button>
 
-              {/* DROPDOWN MENU */}
               <div
-                className={`${
-                  dropdown ? "block" : "hidden"
-                } absolute left-0 mt-2 w-48 bg-white dark:bg-gray-900 shadow-lg rounded-lg border border-gray-200 dark:border-gray-700 p-3 z-50`}
+                className={`${dropdown ? "block" : "hidden"} absolute left-0 mt-2 w-48 bg-white dark:bg-gray-900 shadow-lg rounded-lg border border-gray-200 dark:border-gray-700 p-3 z-50`}
               >
                 <Link
                   href="/product"
@@ -92,6 +98,7 @@ export default function Header() {
                 >
                   Overview
                 </Link>
+
                 <Link
                   href="/product/methodology"
                   onClick={closeAll}
@@ -99,6 +106,7 @@ export default function Header() {
                 >
                   Methodology
                 </Link>
+
                 <Link
                   href="/product/regulations"
                   onClick={closeAll}
@@ -106,16 +114,10 @@ export default function Header() {
                 >
                   Regulations
                 </Link>
-                <Link
-                  href="/product/limitations"
-                  onClick={closeAll}
-                  className="block py-2 px-3 rounded hover:bg-gray-100 dark:hover:bg-gray-800 text-sm"
-                >
-                  Limitations
-                </Link>
               </div>
             </li>
 
+            {/* PRICING */}
             <li>
               <Link
                 href="/pricing"
@@ -128,6 +130,7 @@ export default function Header() {
               </Link>
             </li>
 
+            {/* VERIFY */}
             <li>
               <Link
                 href="/verify"
@@ -146,7 +149,7 @@ export default function Header() {
                 href="/assessment"
                 className="bg-[#1FB6C1] text-white font-semibold px-6 py-3 rounded-lg shadow hover:opacity-90 transition"
               >
-                Generate CO₂e Estimate
+                Generate Attestation
               </Link>
             </li>
 
@@ -156,4 +159,4 @@ export default function Header() {
       </div>
     </header>
   );
-              }
+            }
