@@ -6,21 +6,21 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-white to-[#F3FBFC] -z-10"></div>
 
       <p className="text-sm md:text-base font-semibold tracking-wide text-[#0B3A63]/70 mb-3 uppercase">
-        Europe’s first instant platform for verifiable spend-based CO₂e documents
+        Europe’s first instant CO₂e Attestation platform for SMEs
       </p>
 
       <h1 className="text-[2.3rem] md:text-[3.4rem] font-extrabold text-[#0B3A63] leading-tight tracking-tight">
-        Provide CO₂e Information in 60 Seconds
+        Generate a CO₂e Attestation in 60 Seconds
         <br />
         <span className="text-[#1FB6C1] text-[2.4rem] md:text-[3.4rem]">
-          No experts. No consultants. No delays.
+          No consultants. No audits. No waiting.
         </span>
       </h1>
 
       <p className="text-base md:text-lg text-[#475569] max-w-2xl mx-auto mt-6 leading-relaxed">
-        Designed for SMEs facing CO₂e requests from clients, procurement teams or banks. 
-        Enter your yearly spending (€) → instantly download a standardized, verifiable document.  
-        Spend-based methodology only — not a regulatory report.
+        Enter your yearly spending (€) and instantly download a standardized, 
+        verifiable CO₂e Attestation ready to send to clients, banks or procurement teams.  
+        Spend-based methodology only — not a regulatory CSRD/ESRS report.
       </p>
 
       <p className="text-sm text-[#0B3A63]/80 font-medium mt-4">
@@ -30,7 +30,7 @@ export default function Hero() {
       <div className="flex justify-center mt-12">
         <Image
           src="/hero-attestation.webp"
-          alt="Preview of the CO₂e document"
+          alt="Preview of the CO₂e Attestation"
           width={900}
           height={600}
           priority
@@ -44,14 +44,14 @@ export default function Hero() {
           href="#assessment"
           className="bg-[#1FB6C1] hover:bg-[#17a2a8] transition text-white font-semibold px-12 py-4 rounded-xl shadow-md text-base md:text-lg"
         >
-          Generate CO₂e Document
+          Generate CO₂e Attestation
         </a>
 
         <a
           href="/sample-pdf"
           className="bg-[#0B3A63] hover:bg-[#083253] transition text-white font-semibold px-12 py-4 rounded-xl shadow-md text-base md:text-lg"
         >
-          View Example
+          View Sample
         </a>
       </div>
 
@@ -59,7 +59,7 @@ export default function Hero() {
         href="/verify"
         className="text-sm underline text-[#1FB6C1] font-medium block mt-8"
       >
-        Verify an existing document
+        Verify an Attestation ID
       </a>
     </section>
   );
