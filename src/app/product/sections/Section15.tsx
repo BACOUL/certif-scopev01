@@ -6,96 +6,139 @@ export default function Section15() {
       id="s15"
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
-      {/* HEADER BLOCK — premium white layout */}
-      <div className="p-12 rounded-2xl bg-white border border-gray-200 shadow-md">
-        <h2 className="text-4xl md:text-5xl font-extrabold text-[#0B3A63]">
-          15. Maintenance & Update Policy
+
+      {/* HEADER — unique layout, neutral institutional tone */}
+      <div className="p-12 rounded-2xl bg-white border border-gray-200 shadow-lg relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0B3A63]/10 to-[#15B097]/10 pointer-events-none"></div>
+
+        <h2 className="text-4xl md:text-5xl font-extrabold text-[#0B3A63] relative z-10">
+          15. Maintenance & Updates
         </h2>
 
-        <p className="text-lg text-gray-700 max-w-4xl mt-6 leading-relaxed">
-          Certif-Scope ensures long-term operational stability through a structured update
-          policy covering document formatting, database integrity, platform security and
-          change-control documentation. Updates are incremental, versioned, and communicated
-          transparently to maintain strict institutional consistency and prevent disruption
-          in procurement, banking or compliance workflows.
+        <p className="text-lg text-gray-700 max-w-4xl mt-6 leading-relaxed relative z-10">
+          Certif-Scope follows a controlled update policy designed to maintain stability,
+          institutional compatibility and long-term reproducibility. Every modification
+          is versioned, documented and validated through internal checks to ensure that
+          procurement platforms, banking review systems and compliance processes are never disrupted.
         </p>
       </div>
 
-      {/* THREE-COLUMN GRID */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-16">
+      {/* 4-COLUMN GRID — Unique layout for this section */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mt-16">
 
         {/* BLOCK 1 */}
-        <div className="p-8 bg-[#F8FAFC] rounded-xl shadow-sm border border-[#15B097]/30">
-          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
-            Controlled Versioning
+        <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#0B3A63]/20 shadow-sm">
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
+            Stable Document Structure
           </h3>
           <p className="text-gray-700 text-sm leading-relaxed">
-            A strict versioning system ensures that institutions always understand which
-            version of the document structure or data logic is being used.
+            The formatting, field placement and metadata layout of the attestation remain stable
+            across updates to avoid inconsistencies in automated ingestion systems.
           </p>
-          <ul className="mt-4 text-sm text-gray-700 space-y-2">
-            <li>• Semantic versioning applied</li>
-            <li>• Change-log maintained</li>
-            <li>• Backward compatibility preserved</li>
+          <ul className="mt-3 text-sm text-gray-600 space-y-2">
+            <li>• No disruptive layout changes</li>
+            <li>• Fixed field positions</li>
+            <li>• Predictable output formatting</li>
           </ul>
         </div>
 
         {/* BLOCK 2 */}
         <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-md">
-          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
-            Continuous Integrity Checks
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
+            Controlled Versioning
           </h3>
           <p className="text-gray-700 text-sm leading-relaxed">
-            Data consistency and platform stability are monitored systematically to prevent
-            structural variations that could cause institutional rejections.
+            All updates follow semantic versioning. Institutions can always identify which
+            computation logic and formatting rules were used during generation.
           </p>
-          <ul className="mt-4 text-sm text-gray-700 space-y-2">
-            <li>• Automated consistency scans</li>
-            <li>• Internal validation rules maintained</li>
-            <li>• Document layout checked before release</li>
+          <ul className="mt-3 text-sm text-gray-600 space-y-2">
+            <li>• Semantic versioning (MAJOR.MINOR.PATCH)</li>
+            <li>• Public version number embedded in PDF</li>
+            <li>• Change-log available for comparison</li>
           </ul>
         </div>
 
         {/* BLOCK 3 */}
-        <div className="p-8 bg-[#F8FAFC] rounded-xl shadow-sm border border-[#15B097]/30">
-          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
-            Institutional Stability
+        <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/30 shadow-sm">
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
+            Integrity & Consistency Checks
           </h3>
           <p className="text-gray-700 text-sm leading-relaxed">
-            Formatting and field placement remain stable across versions to avoid disruptions
-            in automated procurement platforms or document ingestion systems.
+            Every release undergoes automated validation routines to ensure that output remains
+            deterministic and reproducible.
           </p>
-          <ul className="mt-4 text-sm text-gray-700 space-y-2">
-            <li>• Minimal-impact update strategy</li>
-            <li>• Predictable field placement</li>
-            <li>• No structural experimentation</li>
+          <ul className="mt-3 text-sm text-gray-600 space-y-2">
+            <li>• Automated consistency scans</li>
+            <li>• Validation against reference datasets</li>
+            <li>• Logical integrity controls</li>
+          </ul>
+        </div>
+
+        {/* BLOCK 4 */}
+        <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-md">
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
+            Multi-Year Stability Guarantee
+          </h3>
+          <p className="text-gray-700 text-sm leading-relaxed">
+            Updates prioritize stability over new features. Breaking changes are explicitly avoided
+            unless mandated by regulatory evolution.
+          </p>
+          <ul className="mt-3 text-sm text-gray-600 space-y-2">
+            <li>• Stable long-term structure</li>
+            <li>• Backward compatibility preserved</li>
+            <li>• Zero-impact maintenance policy</li>
           </ul>
         </div>
       </div>
 
-      {/* DEEP TECHNICAL EXPLANATION */}
-      <div className="mt-20 p-12 bg-[#0B3A63] text-white rounded-xl shadow-md relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/25 to-transparent pointer-events-none"></div>
-
-        <h3 className="text-2xl font-semibold relative z-10">
-          Update Lifecycle & Change Control
+      {/* WORKFLOW DIAGRAM — required by the 29 rules */}
+      <div className="mt-20 p-12 bg-[#F8FAFC] border border-[#0B3A63]/20 rounded-xl shadow-sm">
+        <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
+          Update Lifecycle (Input → Validation → Release → Freeze)
         </h3>
 
-        <p className="mt-4 text-white/90 max-w-5xl leading-relaxed relative z-10">
-          Updates follow a documented lifecycle including internal validation, controlled rollout,
-          version tagging and impact assessment. Stability takes priority over new features. 
-          Every adjustment is evaluated to ensure uninterrupted compatibility with administrative 
-          systems and institutional review processes.
-        </p>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-sm text-gray-700">
 
-        <ul className="mt-6 text-white/85 text-sm space-y-2 relative z-10">
-          <li>• Internal validation before deployment</li>
-          <li>• Document formatting locked except for mandatory improvements</li>
-          <li>• Impact assessment against procurement & financial workflows</li>
-        </ul>
+          <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-sm">
+            <h4 className="font-semibold text-[#0B3A63] mb-2">1. Input</h4>
+            <p>Internal proposals or mandatory compliance adjustments identified.</p>
+          </div>
+
+          <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-sm">
+            <h4 className="font-semibold text-[#0B3A63] mb-2">2. Validation</h4>
+            <p>Automated and manual checks ensure stability, accuracy and reproducibility.</p>
+          </div>
+
+          <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-sm">
+            <h4 className="font-semibold text-[#0B3A63] mb-2">3. Release</h4>
+            <p>New version tagged, documented and integrated without breaking existing workflows.</p>
+          </div>
+
+          <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-sm">
+            <h4 className="font-semibold text-[#0B3A63] mb-2">4. Freeze</h4>
+            <p>Output locked for stability; no experimental changes allowed post-release.</p>
+          </div>
+
+        </div>
       </div>
 
-      {/* RETURN BUTTON — strictly identical to all sections */}
+      {/* INSTITUTIONAL RELEVANCE BLOCK */}
+      <div className="mt-20 p-12 bg-[#0B3A63] text-white rounded-xl shadow-md relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/30 to-transparent"></div>
+
+        <h3 className="text-2xl font-semibold relative z-10">
+          Why Maintenance Stability Is Critical for Institutions
+        </h3>
+
+        <p className="text-white/90 max-w-5xl mt-4 leading-relaxed relative z-10">
+          Procurement platforms, banking risk systems and insurance underwriting processes
+          rely on predictable field placement and consistent output structure. Certif-Scope
+          guarantees that formatting, logic and identifiers remain unchanged across versions,
+          ensuring that institution workflows remain uninterrupted over time.
+        </p>
+      </div>
+
+      {/* RETURN BUTTON */}
       <div className="mt-12 text-right">
         <a
           href="#top"
@@ -104,6 +147,7 @@ export default function Section15() {
           Back to summary
         </a>
       </div>
+
     </section>
   );
-          }
+        }
