@@ -17,13 +17,12 @@ export default function Section7() {
 
         <p className="text-lg text-gray-700 max-w-4xl mt-6 leading-relaxed relative z-10">
           Certif-Scope provides a structured, standardized and verifiable CO₂ indicator aligned 
-          with European procurement norms, ESG risk criteria used by banks, insurer underwriting 
-          practices, investor due-diligence expectations and public funding requirements. 
-          It eliminates format inconsistencies, lack of comparability and unverifiable PDF files 
-          typically submitted by SMEs.
+          with European procurement norms, ESG risk models used by banks, insurer underwriting 
+          practices, investor due-diligence requirements and public funding eligibility criteria. 
+          It eliminates inconsistencies, unverifiable PDF files and non-comparable formats typically 
+          submitted by SMEs.
         </p>
       </div>
-
 
 
       {/* VALUE GRID — 4 institutional pillars */}
@@ -35,12 +34,12 @@ export default function Section7() {
             Alignment with EU Public Procurement
           </h3>
           <p className="text-gray-600 text-sm leading-relaxed">
-            Certif-Scope formats CO₂ indicators according to the structure expected in EU Green 
-            Public Procurement procedures. This supports supplier validation in construction, 
-            logistics, facility management and IT service tenders.
+            Certif-Scope formats CO₂ indicators according to EU Green Public Procurement (GPP) 
+            requirements. This supports supplier validation in construction, logistics, facility 
+            management and IT tenders.
           </p>
           <p className="mt-2 text-xs text-gray-500">
-            Reference: EU GPP Criteria (European Commission)
+            Reference: European Commission — EU GPP Criteria
           </p>
         </div>
 
@@ -50,9 +49,9 @@ export default function Section7() {
             Integration into Banking ESG Risk Models
           </h3>
           <p className="text-gray-600 text-sm leading-relaxed">
-            Banks use environmental indicators in sustainability risk scoring models. 
-            Certif-Scope delivers a standardized screening metric aligned with EBA ESG Guidelines 
-            to support loan applications and refinancing.
+            Banks request environmental indicators for ESG risk scoring. Certif-Scope provides 
+            a standardized input aligned with EBA ESG Guidelines to support loan applications 
+            and refinancing.
           </p>
           <p className="mt-2 text-xs text-gray-500">
             Reference: EBA Guidelines on ESG Risk (EBA/2022/01)
@@ -62,38 +61,37 @@ export default function Section7() {
         {/* Pillar 3 — Investment */}
         <div className="p-8 bg-white rounded-xl shadow-md border border-gray-200">
           <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
-            Compliance with SFDR & EU Taxonomy Screening
+            Compliance with SFDR & EU Taxonomy
           </h3>
           <p className="text-gray-600 text-sm leading-relaxed">
-            Investors governed by SFDR and EU Taxonomy require climate indicators from 
-            suppliers and portfolio companies. Certif-Scope produces the structured data 
-            needed for pre-investment ESG screening.
+            Investors subject to SFDR and the EU Taxonomy require climate indicators from 
+            suppliers and portfolio companies. Certif-Scope provides structured data for 
+            pre-investment ESG screening.
           </p>
           <p className="mt-2 text-xs text-gray-500">
-            Reference: SFDR (EU 2019/2088) & EU Taxonomy Regulation
+            Reference: SFDR (EU 2019/2088), EU Taxonomy
           </p>
         </div>
 
         {/* Pillar 4 — Insurers */}
         <div className="p-8 bg-[#F8FAFC] rounded-xl shadow-md border border-[#15B097]/30">
           <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
-            Structural Verifiability for Insurers & Auditors
+            Verifiability for Insurers & Auditors
           </h3>
           <p className="text-gray-600 text-sm leading-relaxed">
-            Insurers and auditors require verifiable indicators. The embedded SHA-256 hash 
-            enables offline authenticity validation consistent with ISO 14064-1 transparency 
-            principles.
+            Insurers and auditors need verifiable indicators. The embedded SHA-256 checksum 
+            enables offline authenticity validation, ensuring traceability aligned with 
+            ISO 14064-1 verification principles.
           </p>
           <p className="mt-2 text-xs text-gray-500">
-            Reference: ISO 14064-1:2018 Verification Principles
+            Reference: ISO 14064-1:2018
           </p>
         </div>
 
       </div>
 
 
-
-      {/* COMPARISON TABLE — clear, institutional, non-marketing */}
+      {/* COMPARISON TABLE */}
       <div className="mt-20 p-10 bg-white border border-gray-200 rounded-xl shadow-md">
 
         <h3 className="text-2xl font-bold text-[#0B3A63] mb-6">
@@ -112,28 +110,32 @@ export default function Section7() {
             <tbody>
               <tr className="border-b">
                 <td className="p-4">Delivery Time</td>
-                <td className="p-4">Instant (< 30 sec)</td>
+                <td className="p-4">Instant (&lt; 30 sec)</td>
                 <td className="p-4">2–8 weeks</td>
               </tr>
+
               <tr className="border-b">
                 <td className="p-4">Cost</td>
                 <td className="p-4">49 €</td>
                 <td className="p-4">1 500–12 000 €</td>
               </tr>
+
               <tr className="border-b">
                 <td className="p-4">Standardization</td>
                 <td className="p-4">Fully standardized</td>
-                <td className="p-4">Variable and non-comparable</td>
+                <td className="p-4">Variable, consultant-dependent</td>
               </tr>
+
               <tr className="border-b">
                 <td className="p-4">Verification</td>
-                <td className="p-4">SHA-256 cryptographic integrity</td>
-                <td className="p-4">No cryptographic verification</td>
+                <td className="p-4">SHA-256 integrity seal</td>
+                <td className="p-4">No cryptographic validation</td>
               </tr>
+
               <tr>
                 <td className="p-4">Institutional Acceptance</td>
                 <td className="p-4">Aligned with EU GPP, EBA, SFDR</td>
-                <td className="p-4">Depends on provider, not standardized</td>
+                <td className="p-4">No standardized framework</td>
               </tr>
             </tbody>
           </table>
@@ -141,35 +143,23 @@ export default function Section7() {
       </div>
 
 
-
-      {/* USE CASES — concrete examples */}
+      {/* USE CASES */}
       <div className="mt-20 p-10 bg-[#F8FAFC] border border-[#15B097]/40 rounded-xl shadow-sm">
         <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
           Concrete Institutional Use Cases
         </h3>
 
         <ul className="text-gray-700 text-sm space-y-2 leading-relaxed">
-          <li>
-            • <strong>Bank loan application:</strong> banks request CO₂ indicators for sustainability risk scoring.
-          </li>
-          <li>
-            • <strong>Public tender submission:</strong> EU GPP requires structured environmental evaluation fields.
-          </li>
-          <li>
-            • <strong>Investor onboarding:</strong> VC/PE funds ask for climate metrics under SFDR Article 8/9.
-          </li>
-          <li>
-            • <strong>Supplier validation:</strong> Procurement teams classify environmental exposure per supplier.
-          </li>
-          <li>
-            • <strong>Insurance underwriting:</strong> insurers analyze environmental exposure for risk pricing.
-          </li>
+          <li>• <strong>Bank loan application:</strong> ESG risk scoring requires standardized CO₂ data.</li>
+          <li>• <strong>Public tender submission:</strong> EU GPP requires comparable environmental fields.</li>
+          <li>• <strong>Investor onboarding:</strong> SFDR Article 8/9 requires documented climate indicators.</li>
+          <li>• <strong>Supplier validation:</strong> procurement teams classify environmental exposure.</li>
+          <li>• <strong>Insurance underwriting:</strong> risk pricing includes environmental exposure factors.</li>
         </ul>
       </div>
 
 
-
-      {/* RETURN BUTTON — identical */}
+      {/* RETURN BUTTON */}
       <div className="mt-12 text-right">
         <a
           href="#top"
@@ -181,4 +171,4 @@ export default function Section7() {
 
     </section>
   );
-            }
+        }
