@@ -15,9 +15,9 @@ export default function Footer() {
               Certif-Scope
             </h2>
             <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
-              The simplest way for SMEs to provide CO₂e information when clients, suppliers or banks request it.  
-              Created in under 60 seconds using spend-based data.  
-              A clear document ready to send — no expertise required.
+              Europe’s first platform for instant spend-based CO₂e documents.  
+              Designed for SMEs needing to answer CO₂ requests fast and professionally.  
+              Created in under 60 seconds — clear, simple, ready to send.
             </p>
           </div>
 
@@ -43,7 +43,7 @@ export default function Footer() {
             </h3>
             <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
               <li><Link href="/sample-pdf" className="hover:text-[#1FB6C1]">Sample PDF</Link></li>
-              <li><Link href="/api" className="hover:text-[#1FB6C1]">API Reference</Link></li>
+              <li><Link href="/api" className="hover:text-[#1FB6C1]">API Reference (optional)</Link></li>
             </ul>
           </div>
 
@@ -63,8 +63,8 @@ export default function Footer() {
 
         {/* TRUST LINE */}
         <div className="mt-10 text-center text-xs text-gray-500 dark:text-gray-400">
-          Certif-Scope uses a transparent spend-based approach and provides a non-regulatory CO₂e document.  
-          Results depend on user-provided data.
+          Certif-Scope provides an indicative, spend-based CO₂e document.  
+          Not a regulatory emissions report. Results depend on user-provided data.
         </div>
 
         {/* COPYRIGHT */}
@@ -77,4 +77,4 @@ export default function Footer() {
       </div>
     </footer>
   );
-            }
+              }
