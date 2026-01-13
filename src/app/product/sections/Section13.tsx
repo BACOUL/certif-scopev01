@@ -6,91 +6,117 @@ export default function Section13() {
       id="s13"
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
-      {/* HEADER BLOCK — dark institutional unique design */}
-      <div className="p-12 rounded-2xl bg-[#0B3A63] text-white shadow-lg relative overflow-hidden">
 
-        <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/25 to-transparent pointer-events-none"></div>
+      {/* HEADER — Premium institutional design */}
+      <div className="relative p-12 rounded-2xl bg-[#F8FAFC] border border-[#0B3A63]/20 shadow-lg overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0B3A63]/10 to-[#15B097]/10 pointer-events-none"></div>
 
-        <h2 className="text-4xl md:text-5xl font-extrabold relative z-10">
-          13. Data Integrity & Anti-Tampering Guarantees
+        <h2 className="text-4xl md:text-5xl font-extrabold text-[#0B3A63] relative z-10">
+          13. Integrations
         </h2>
 
-        <p className="text-lg text-white/90 max-w-4xl mt-6 leading-relaxed relative z-10">
-          Certif-Scope ensures that the generated attestation cannot be altered without detection.
-          This section explains the structural safeguards included in the final PDF, focusing on
-          traceability, integrity, consistent formatting, and institutional validation compatibility.
-          No regulatory methodology is detailed here, as it is covered in the dedicated pages.
+        <p className="text-lg text-gray-700 max-w-4xl mt-6 leading-relaxed relative z-10">
+          Certif-Scope provides a standardized, institution-ready PDF output compatible with
+          procurement portals, banking ESG reviews, insurance underwriting workflows and 
+          investment due-diligence systems across the EU. Each integration pathway relies on 
+          deterministic formatting, predictable metadata zones and a verifiable integrity seal, 
+          ensuring immediate ingestion by automated or semi-automated review processes.
+        </p>
+
+        <p className="mt-4 text-sm text-gray-600 relative z-10">
+          Compatibility is aligned with European institutional documentation practices referenced 
+          in EU Green Public Procurement (GPP), EBA ESG Risk Management Guidelines, ESMA Sustainable 
+          Finance Disclosure processes, and CINEA funding submission workflows.
         </p>
       </div>
 
-      {/* 3-column institutional grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-16">
+      {/* GRID — 4 integration families */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mt-16">
 
-        {/* Card 1 */}
-        <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-md">
-          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
-            Cryptographic Integrity Seal
+        {/* BLOCK 1 — Procurement Portals */}
+        <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-md hover:shadow-lg transition">
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
+            Procurement Platforms
           </h3>
           <p className="text-gray-700 text-sm leading-relaxed">
-            Each attestation includes a cryptographic signature designed to detect any file
-            modification. Institutions can confirm authenticity without external dependencies.
+            Designed for compatibility with European procurement systems where suppliers must
+            upload standardized CO₂ indicators as part of vendor onboarding or tender submission.
           </p>
-          <ul className="text-gray-700 text-sm space-y-2 mt-4">
-            <li>• Tamper-evident PDF structure</li>
-            <li>• Unique integrity hash embedded</li>
-            <li>• Validation possible fully offline</li>
+          <ul className="mt-3 text-gray-700 text-sm space-y-1">
+            <li>• Compatible PDF structure and metadata</li>
+            <li>• Easy ingestion by eProc platforms</li>
+            <li>• GPP-aligned formatting for screening</li>
           </ul>
         </div>
 
-        {/* Card 2 */}
-        <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/30 shadow-sm">
-          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
-            Consistent Output Structure
+        {/* BLOCK 2 — Banking ESG Reviews */}
+        <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/40 shadow-md">
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
+            Banking & ESG Risk Systems
           </h3>
           <p className="text-gray-700 text-sm leading-relaxed">
-            The document layout follows a fixed structure: identity block, results block,
-            methodology pointer, and verification information. This facilitates institutional review
-            and automated document processing.
+            Banks can incorporate the attestation into ESG scoring workflows used for credit 
+            risk assessments, refinancing reviews or sustainable finance qualification.
           </p>
-          <ul className="text-gray-700 text-sm space-y-2 mt-4">
-            <li>• Standardized positioning of all fields</li>
-            <li>• Machine-readable identifiers</li>
-            <li>• Uniform layout across all attestations</li>
+          <ul className="mt-3 text-gray-700 text-sm space-y-1">
+            <li>• Fixed layout for automated extraction</li>
+            <li>• Clear CO₂ indicator field zoning</li>
+            <li>• Conforms to EBA ESG review structures</li>
           </ul>
         </div>
 
-        {/* Card 3 */}
-        <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-md">
-          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
-            Immutable Verification Metadata
+        {/* BLOCK 3 — Insurance Underwriting */}
+        <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-md hover:shadow-lg transition">
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
+            Insurance Underwriting
           </h3>
           <p className="text-gray-700 text-sm leading-relaxed">
-            The verification code embedded in the PDF includes fixed metadata identifying the
-            generation parameters and protecting against unauthorized alterations or reformatting.
+            Insurers can integrate the standard PDF format in pre-underwriting documentation 
+            for transport, industrial, logistics and infrastructure exposures.
           </p>
-          <ul className="text-gray-700 text-sm space-y-2 mt-4">
-            <li>• Static metadata ensuring consistency</li>
-            <li>• No silent overwriting possible</li>
-            <li>• Securely encoded verification block</li>
+          <ul className="mt-3 text-gray-700 text-sm space-y-1">
+            <li>• Consistent formatting for risk files</li>
+            <li>• Integrity seal for authenticity checks</li>
+            <li>• Compatible with environmental screening</li>
           </ul>
         </div>
+
+        {/* BLOCK 4 — Public Funding & Grants */}
+        <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/40 shadow-md">
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
+            Public Funding Submissions
+          </h3>
+          <p className="text-gray-700 text-sm leading-relaxed">
+            Many European funding and subsidy schemes require environmental indicators as 
+            part of eligibility checks. Certif-Scope provides ready-to-deposit PDF output.
+          </p>
+          <ul className="mt-3 text-gray-700 text-sm space-y-1">
+            <li>• Acceptable by CINEA and EU subsidy portals</li>
+            <li>• Fixed classification zones for validation</li>
+            <li>• No proprietary format dependencies</li>
+          </ul>
+        </div>
+
       </div>
 
-      {/* DEEP EXPLANATION BLOCK */}
-      <div className="mt-20 p-12 bg-white rounded-xl border border-gray-200 shadow-md">
-        <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
-          How Integrity Enhances Institutional Trust
+      {/* EXPLANATION STRIP — institutional clarity */}
+      <div className="mt-20 p-12 bg-[#0B3A63] text-white rounded-xl shadow-lg relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#15B097] to-transparent opacity-20"></div>
+
+        <h3 className="text-2xl font-semibold relative z-10">
+          Why These Integrations Work Automatically
         </h3>
 
-        <p className="text-gray-700 max-w-5xl leading-relaxed">
-          Ensuring data integrity is essential when documents circulate across procurement,
-          banking, insurance or public-sector evaluation workflows. Certif-Scope does not replace
-          regulatory reporting; instead, it provides a tamper-evident, standardized and portable
-          supporting document that fits directly into institutional due-diligence procedures.
+        <p className="mt-3 text-white/90 max-w-5xl leading-relaxed relative z-10">
+          Certif-Scope uses a predictable structure that institutional systems can process 
+          without manual interpretation. The PDF follows fixed zoning for identification 
+          fields, CO₂ indicators, classification data and verification elements.  
+          Automated portals can parse, extract or validate these fields consistently, reducing 
+          friction during procurement screening, ESG risk analysis or public-grant evaluation.
         </p>
       </div>
 
-      {/* RETURN BUTTON — identical across all sections */}
+      {/* RETURN BUTTON — Identical across sections */}
       <div className="mt-12 text-right">
         <a
           href="#top"
@@ -99,6 +125,7 @@ export default function Section13() {
           Back to summary
         </a>
       </div>
+
     </section>
   );
 }
