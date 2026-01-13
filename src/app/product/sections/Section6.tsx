@@ -57,7 +57,7 @@ CO₂e = Spend (€) × EF (kgCO₂e/€)
             <li>• Logical coherence checks across categories</li>
           </ul>
           <p className="text-gray-700 text-sm mt-3">
-            <strong>Example:</strong> €12,400 entered in “Transport Services” is validated, structured and prepared for mapping.
+            <strong>Example:</strong> €12,400 in “Transport Services” is validated and prepared for mapping.
           </p>
         </div>
 
@@ -83,15 +83,15 @@ CO₂e = Spend (€) × EF (kgCO₂e/€)
         <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-md">
           <h3 className="text-xl font-bold text-[#0B3A63]">3. Emission Factor Retrieval</h3>
           <p className="text-gray-700 text-sm mt-3 leading-relaxed">
-            Certif-Scope retrieves emission factors from public, verifiable datasets:
+            Certif-Scope retrieves emission factors from public, versioned datasets:
           </p>
           <ul className="mt-3 text-gray-700 text-sm space-y-1">
-            <li>• ADEME Base Carbone 2024.x</li>
+            <li>• ADEME Base Carbone 2024.2</li>
             <li>• DEFRA 2023 UK factors</li>
             <li>• IPCC AR6 GWP100 parameters</li>
           </ul>
           <p className="text-gray-700 text-sm mt-3">
-            <strong>Example:</strong> Electricity factors pulled in kgCO₂e/kWh, harmonized to €/kWh when required.
+            <strong>Example:</strong> Electricity factors in kgCO₂e/kWh normalized to €/kWh.
           </p>
         </div>
 
@@ -108,7 +108,7 @@ CO₂e = Spend (€) × EF (kgCO₂e/€)
           </div>
 
           <p className="text-gray-700 text-sm mt-3 leading-relaxed">
-            <strong>Example:</strong> €5,100 × 0.32 kgCO₂e/€ = 1,632 kgCO₂e.
+            <strong>Example:</strong> €5,100 × 0.32 = 1,632 kgCO₂e.
           </p>
         </div>
 
@@ -121,13 +121,13 @@ CO₂e = Spend (€) × EF (kgCO₂e/€)
           </p>
           <ul className="mt-3 text-gray-700 text-sm space-y-1">
             <li>• Emission totals & category breakdown</li>
-            <li>• Source dataset references</li>
+            <li>• Dataset references & boundaries</li>
             <li>• Embedded SHA-256 verification hash</li>
-            <li>• Offline verification instructions</li>
+            <li>• Offline verification method</li>
           </ul>
 
           <p className="text-gray-700 text-sm mt-3">
-            <strong>Example:</strong> Auditors compute <code>sha256(pdf)</code> and compare with metadata.
+            <strong>Example:</strong> Auditors recompute <code>sha256(pdf)</code> locally and compare outputs.
           </p>
         </div>
 
@@ -135,61 +135,62 @@ CO₂e = Spend (€) × EF (kgCO₂e/€)
 
 
 
-      {/* BOUNDARIES & EXCLUSIONS */}
-      <div className="mt-20 p-10 bg-white border border-gray-200 rounded-xl shadow-md">
-        <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
-          Methodological Boundaries & Exclusions
+      {/* OFFLINE VERIFICATION EXAMPLES */}
+      <div className="mt-20 p-8 bg-white border border-gray-200 rounded-xl shadow-md">
+        <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
+          Offline Verification — SHA-256 Commands
         </h3>
 
-        <ul className="text-gray-700 text-sm leading-relaxed space-y-2">
-          <li>• Spend-based estimation only (no direct measurement)</li>
-          <li>• No Scope 1 or Scope 2 measured data</li>
-          <li>• No activity-level primary data required</li>
-          <li>• No LCA (Life Cycle Assessment) included</li>
-          <li>• No uncertainty analysis provided</li>
-          <li>• Results intended for screening, not full CSRD reporting</li>
-        </ul>
+        <p className="text-gray-700 text-sm mb-4">
+          Any auditor or institution can verify the PDF by recomputing the SHA-256 hash locally.
+        </p>
+
+        <div className="space-y-4 text-sm text-gray-700">
+
+          <div>
+            <p className="font-semibold text-[#0B3A63] mb-1">macOS / Linux:</p>
+            <pre className="bg-[#F8FAFC] p-3 rounded border border-gray-200">
+sha256sum certif-scope-report.pdf
+            </pre>
+          </div>
+
+          <div>
+            <p className="font-semibold text-[#0B3A63] mb-1">Windows (PowerShell):</p>
+            <pre className="bg-[#F8FAFC] p-3 rounded border border-gray-200">
+Get-FileHash .\certif-scope-report.pdf -Algorithm SHA256
+            </pre>
+          </div>
+
+          <div>
+            <p className="font-semibold text-[#0B3A63] mb-1">Node.js (institution backend check):</p>
+            <pre className="bg-[#F8FAFC] p-3 rounded border border-gray-200">
+node -e "const fs=require('fs');const c=fs.readFileSync('certif-scope.pdf');console.log(require('crypto').createHash('sha256').update(c).digest('hex'))"
+            </pre>
+          </div>
+
+        </div>
       </div>
 
 
 
       {/* LIMITATIONS BLOCK */}
-      <div className="mt-10 p-10 bg-[#F8FAFC] border border-[#15B097]/40 rounded-xl shadow-sm">
+      <div className="mt-20 p-10 bg-[#F8FAFC] border border-[#15B097]/40 rounded-xl shadow-sm">
         <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
           Model Limitations
         </h3>
 
         <ul className="text-gray-700 text-sm leading-relaxed space-y-2">
-          <li>• Dependent on emission factor dataset updates</li>
-          <li>• Sector averages may differ from real operations</li>
-          <li>• Not a substitute for activity-based carbon accounting</li>
+          <li>• Depends entirely on emission factor dataset updates</li>
+          <li>• Reflects sector averages, not operational reality</li>
           <li>• Not suitable for full ESRS E1 or CSRD disclosures</li>
-          <li>• Designed for institutional screening and due diligence only</li>
+          <li>• Not equivalent to audited carbon accounting</li>
+          <li>• Intended for institutional screening, not legal reporting</li>
         </ul>
       </div>
 
 
 
-      {/* REGULATORY ALIGNMENT */}
-      <div className="mt-16 p-10 bg-[#0B3A63] text-white rounded-xl shadow-md relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/20 to-transparent pointer-events-none"></div>
-
-        <h3 className="text-2xl font-semibold relative z-10">
-          Regulatory & Institutional Alignment
-        </h3>
-
-        <ul className="mt-4 text-white/90 text-sm leading-relaxed space-y-2 relative z-10">
-          <li>• Aligned with GHG Protocol spend-based calculation method</li>
-          <li>• Compatible with ESRS E1 value-chain screening expectations</li>
-          <li>• Supports CSRD Article 19a / 29a upstream data requirements</li>
-          <li>• Suitable for EU Green Public Procurement (GPP) initial screening</li>
-          <li>• Acceptable for banking ESG risk scoring (EBA Guidelines)</li>
-        </ul>
-      </div>
-
-
-
-      {/* RETURN BUTTON — identical */}
+      {/* RETURN BUTTON */}
       <div className="mt-12 text-right">
         <a
           href="#top"
