@@ -31,7 +31,7 @@ export default function Header() {
           />
         </Link>
 
-        {/* MOBILE MENU BUTTON */}
+        {/* MOBILE MENU */}
         <button
           onClick={() => setOpen(!open)}
           aria-label={open ? "Close menu" : "Open menu"}
@@ -44,7 +44,7 @@ export default function Header() {
           <span className={`h-[3px] w-7 bg-gray-900 dark:bg-gray-100 rounded transition-transform duration-300 ${open ? "-rotate-45 -translate-y-1" : ""}`} />
         </button>
 
-        {/* NAVIGATION */}
+        {/* MENU */}
         <nav
           id="main-navigation"
           role="navigation"
@@ -77,13 +77,13 @@ export default function Header() {
                 aria-expanded={dropdown}
                 className="flex items-center gap-1 text-base font-medium text-gray-800 dark:text-gray-200 hover:text-[#1FB6C1] transition"
               >
-                CO₂e Attestation
+                CO₂e Document
                 <span className={`transition-transform ${dropdown ? "rotate-180" : ""}`}>▼</span>
               </button>
 
               <div
                 role="menu"
-                className={`${dropdown ? "block" : "hidden"} absolute left-0 mt-2 w-48 bg-white dark:bg-gray-900 shadow-lg rounded-lg border border-gray-200 dark:border-gray-700 p-3 z-50`}
+                className={`${dropdown ? "block" : "hidden"} absolute left-0 mt-2 w-56 bg-white dark:bg-gray-900 shadow-lg rounded-lg border border-gray-200 dark:border-gray-700 p-3 z-50`}
               >
                 <Link
                   href="/product"
@@ -91,7 +91,7 @@ export default function Header() {
                   role="menuitem"
                   className="block py-2 px-3 rounded hover:bg-gray-100 dark:hover:bg-gray-800 text-sm"
                 >
-                  What it is
+                  What You Receive
                 </Link>
 
                 <Link
@@ -100,7 +100,7 @@ export default function Header() {
                   role="menuitem"
                   className="block py-2 px-3 rounded hover:bg-gray-100 dark:hover:bg-gray-800 text-sm"
                 >
-                  How it works
+                  How It’s Generated
                 </Link>
 
                 <Link
@@ -109,7 +109,7 @@ export default function Header() {
                   role="menuitem"
                   className="block py-2 px-3 rounded hover:bg-gray-100 dark:hover:bg-gray-800 text-sm"
                 >
-                  Compliance
+                  Compliance & Limitations
                 </Link>
               </div>
             </li>
@@ -146,7 +146,7 @@ export default function Header() {
                 href="/assessment"
                 className="bg-[#1FB6C1] text-white font-semibold px-6 py-3 rounded-lg shadow hover:opacity-90 transition"
               >
-                Create Your CO₂e Attestation
+                Generate My CO₂e Document
               </Link>
             </li>
 
