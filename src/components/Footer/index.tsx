@@ -15,9 +15,9 @@ export default function Footer() {
               Certif-Scope
             </h2>
             <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
-              Instant spend-based CO₂e estimation for SMEs. 
-              Non-regulatory, no Scope 1 or Scope 2, and not a CSRD/ESRS report. 
-              Designed for supplier screening and financial pre-assessment.
+              Quick and simple CO₂e estimation for SMEs using spend-based data.  
+              A clean, standardized document you can share with clients, suppliers or banks
+              during onboarding or ESG questionnaires.
             </p>
           </div>
 
@@ -71,4 +71,4 @@ export default function Footer() {
       </div>
     </footer>
   );
-                    }
+      }
