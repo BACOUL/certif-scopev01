@@ -14,8 +14,9 @@ export default function Trust() {
         </h2>
 
         <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed mb-16">
-          Certif-Scope provides spend-based CO₂e estimations suitable for supplier onboarding, 
-          procurement documentation and internal ESG reviews. Not a regulatory report.
+          Certif-Scope provides spend-based CO₂e estimations suitable for supplier onboarding,
+          procurement documentation and internal ESG reviews. Not a regulatory report and not
+          intended to replace regulated carbon accounting frameworks.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -24,9 +25,9 @@ export default function Trust() {
             <svg className="h-12 w-12 text-[#0B3A63] dark:text-gray-300 mb-4" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 2l7 4v6c0 5-3.5 9-7 10-3.5-1-7-5-7-10V6l7-4z" />
             </svg>
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">Integrity Verification</h3>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">Hash-Based Integrity Check</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Each attestation includes a verification ID and hash allowing authenticity checks based on the embedded data.
+              Each attestation includes a verification ID and integrity hash allowing simple, data-based checks without relying on external validation.
             </p>
           </div>
 
@@ -36,7 +37,7 @@ export default function Trust() {
             </svg>
             <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">Enterprise Compatibility</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Structured indicators designed to fit vendor onboarding, procurement documentation and internal ESG processes.
+              Structured spend-based indicators designed to fit vendor onboarding, procurement documentation and internal ESG processes.
             </p>
           </div>
 
@@ -46,14 +47,14 @@ export default function Trust() {
             </svg>
             <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">Structured & Reproducible</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Versioned emission factors and deterministic spend-based calculation ensure consistent and reproducible results.
+              Versioned emission factors and deterministic spend-based calculation ensure consistent and reproducible results for documentation purposes.
             </p>
           </div>
 
         </div>
 
         <p className="mt-12 text-center text-sm text-gray-500 dark:text-gray-400">
-          Used by various companies in Europe for supplier screening and ESG pre-assessment.
+          Used by companies across Europe for providing indicative CO₂e information in supplier screening and pre-assessment workflows.
         </p>
 
       </div>
