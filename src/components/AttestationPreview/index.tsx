@@ -7,20 +7,20 @@ export default function AttestationPreview() {
       <div className="max-w-6xl mx-auto px-6 text-center">
 
         <p className="text-xs md:text-sm font-medium text-gray-500 dark:text-gray-400 tracking-wider uppercase mb-3">
-          Example CO₂e Document (Instant • Spend-Based)
+          Example CO₂e Document (Instant • Spend-Based • SME-Friendly)
         </p>
 
         <div className="w-16 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto mb-8"></div>
 
         <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-100 leading-tight mb-6">
-          The Document You Can Send Immediately to Clients
+          The Document You Can Send Immediately to Clients or Banks
         </h2>
 
         <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed mb-16">
-          This is the exact format your clients and partners receive: clean, professional and 
-          instantly understandable. It summarizes your spend-based CO₂e indicators, 
-          shows the breakdown by category and includes a verification code for quick validation.  
-          No jargon. No technical knowledge needed. Just a simple document that answers the request.
+          This is the exact format your clients and partners receive. A clean and professional PDF
+          that summarizes your spend-based CO₂e indicators, includes a category breakdown and
+          provides a verification ID for quick validation.  
+          No jargon. No technical explanations. A simple document that answers the request instantly.
         </p>
 
         <div className="flex justify-center">
@@ -37,7 +37,7 @@ export default function AttestationPreview() {
           </div>
         </div>
 
-        <div className="mt-12">
+        <div className="mt-12 flex flex-col items-center">
           <a
             href="/sample-attestation.pdf"
             target="_blank"
@@ -46,6 +46,10 @@ export default function AttestationPreview() {
           >
             Download sample PDF
           </a>
+
+          <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">
+            Same format used by SMEs across Europe for supplier and banking requests.
+          </p>
         </div>
 
       </div>
