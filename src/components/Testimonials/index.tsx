@@ -37,9 +37,9 @@ export default function Testimonials() {
         {items.map((item, idx) => (
           <div
             key={idx}
-            className="bg-white rounded-xl shadow-lg shadow-slate-200/70 p-6 flex flex-col h-full"
+            className="bg-white rounded-xl shadow-lg border border-gray-100 p-6 flex flex-col h-full"
           >
-            <div className="w-14 h-14 rounded-full bg-gradient-to-br from-blue-500 to-teal-500 flex items-center justify-center text-xl font-bold text-white mb-4">
+            <div className="w-14 h-14 rounded-full bg-[#1FB6C1] flex items-center justify-center text-xl font-bold text-white mb-4">
               {item.initials}
             </div>
 
@@ -56,13 +56,13 @@ export default function Testimonials() {
       </div>
 
       <div className="mt-10 text-center text-sm text-[#64748B]">
-        User feedback based on real usage
+        User feedback reflects experience with the spend-based estimation process.
       </div>
 
       <div className="mt-4 text-center">
         <a
           href="/sample-pdf"
-          className="text-[#0F172A] underline text-base hover:text-[#1E293B] transition"
+          className="text-[#0B3A63] underline text-base hover:text-[#1FB6C1] transition"
         >
           View an attestation example →
         </a>
