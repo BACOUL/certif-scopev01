@@ -7,115 +7,143 @@ export default function Section11() {
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
 
-      {/* HEADER — institutional SME positioning */}
+      {/* HEADER — Methodological Limitations */}
       <div className="p-12 rounded-2xl bg-[#F8FAFC] border border-[#15B097]/30 shadow-md">
         <h2 className="text-4xl md:text-5xl font-extrabold text-[#0B3A63]">
-          11. SME Advantages (Practical, Immediate, Low Overhead)
+          11. Methodological Limitations (Required Transparency)
         </h2>
 
         <p className="text-lg text-gray-700 max-w-4xl mt-6 leading-relaxed">
-          Certif-Scope provides small and medium enterprises with a standardized and 
-          institution-ready carbon attestation without requiring specialist knowledge, 
-          internal reporting tools or complex software. The format is compatible with 
-          CSRD-aligned documentation requests from procurement, banks and insurers. 
-          The attestation does not replace detailed CSRD reports or ISO 14064 audits 
-          and does not attempt to model operational emissions.
+          This section outlines the inherent constraints of the spend-based calculation
+          model used by Certif-Scope. The approach follows the GHG Protocol categorisation
+          rules and aligns with ESRS E1 requirements, but it does not represent
+          operational measurements or activity-level emissions. These limitations must be
+          considered by institutions, auditors and reviewers.
         </p>
       </div>
 
 
-      {/* GRID — 4 benefits for SMEs */}
+      {/* GRID — 4 methodological limitations */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mt-16">
 
-        {/* 1 — No infrastructure required */}
+        {/* 1 — Sector averages only */}
         <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-sm">
           <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
-            No Technical Infrastructure
+            Sector-Average Emission Factors
           </h3>
           <p className="text-gray-700 text-sm leading-relaxed">
-            SMEs can generate a compliant attestation without setting up internal systems 
-            or managing integrations. No persistent data storage or operational tracking 
-            is required.
+            Calculations rely on sector averages and do not model company-specific energy
+            use, fuel mix, supply chain or operational activities.
           </p>
           <ul className="mt-3 text-gray-700 text-sm space-y-1">
-            <li>• No IT deployment</li>
-            <li>• No compliance tooling needed</li>
-            <li>• No internal data retention</li>
+            <li>
+              • GHG Protocol reference:{" "}
+              <a
+                href="https://ghgprotocol.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline text-[#0B3A63] hover:text-[#15B097]"
+              >
+                https://ghgprotocol.org
+              </a>
+            </li>
           </ul>
         </div>
 
-        {/* 2 — Immediate institutional compatibility */}
+        {/* 2 — No operational factors */}
         <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/30 shadow-sm">
           <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
-            Ready for Institutional Requests
+            No Operational or Activity Data
           </h3>
           <p className="text-gray-700 text-sm leading-relaxed">
-            The output follows European review practices for due diligence, procurement 
-            and banking. Compatibility refers strictly to structure and verification 
-            metadata. Institutions may request additional documents depending on context.
+            The model does not incorporate physical data such as kWh, litres, tonnage,
+            mileage or process emissions, which are required for full CSRD or ISO reporting.
           </p>
           <ul className="mt-3 text-gray-700 text-sm space-y-1">
-            <li>• Standardized terminology</li>
-            <li>• Consistent formatting</li>
-            <li>• Embedded verification metadata</li>
+            <li>
+              • ESRS E1 reference:{" "}
+              <a
+                href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32023R2772"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline text-[#0B3A63] hover:text-[#15B097]"
+              >
+                ESRS E1 Regulation
+              </a>
+            </li>
           </ul>
         </div>
 
-        {/* 3 — Minimal input effort */}
+        {/* 3 — Dependent on dataset quality */}
         <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-sm">
           <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
-            Minimal Required Inputs
+            Dependency on Public Dataset Quality
           </h3>
           <p className="text-gray-700 text-sm leading-relaxed">
-            Only essential financial and categorical data is required. No granular 
-            operational data, supplier surveys or site-level measurements are demanded.
+            Results reflect the scope and update frequency of public datasets such as
+            ADEME, DEFRA, IPCC and Eurostat. Variations exist across countries and cycles.
           </p>
           <ul className="mt-3 text-gray-700 text-sm space-y-1">
-            <li>• Financial amount</li>
-            <li>• Category selection</li>
-            <li>• Reporting period</li>
+            <li>
+              • ADEME Base Carbone:{" "}
+              <a
+                href="https://www.bilans-ges.ademe.fr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline text-[#0B3A63] hover:text-[#15B097]"
+              >
+                https://www.bilans-ges.ademe.fr
+              </a>
+            </li>
           </ul>
         </div>
 
-        {/* 4 — Predictable and reproducible */}
+        {/* 4 — Estimate, not audit */}
         <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/30 shadow-sm">
           <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
-            Predictable Outputs
+            Estimation, Not an Audit
           </h3>
           <p className="text-gray-700 text-sm leading-relaxed">
-            Values can be reproduced by external reviewers using identical dataset versions. 
-            Results are based on sector-average emission factors using the spend-based 
-            method, not operational measurements. Outputs represent standardized estimates, 
-            not audited carbon footprints.
+            Outputs are standardized estimates based on financial amounts and sector
+            categories. They do not constitute a verified audit or assurance-level
+            engagement under ISO 14064-1.
           </p>
           <ul className="mt-3 text-gray-700 text-sm space-y-1">
-            <li>• Stable emission-factor versions</li>
-            <li>• Offline verification</li>
-            <li>• Deterministic calculation</li>
+            <li>
+              • ISO 14064-1 reference:{" "}
+              <a
+                href="https://www.iso.org/standard/66453.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline text-[#0B3A63] hover:text-[#15B097]"
+              >
+                ISO documentation
+              </a>
+            </li>
           </ul>
         </div>
 
       </div>
 
 
-      {/* INFO STRIP — SME institutional context */}
+      {/* INFO STRIP — context */}
       <div className="mt-20 bg-[#0B3A63] text-white p-10 rounded-xl shadow-md relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#15B097] to-transparent opacity-20"></div>
 
-        <h3 className="text-2xl font-semibold relative z-10">Why SMEs Benefit Immediately</h3>
+        <h3 className="text-2xl font-semibold relative z-10">
+          Regulatory Context of These Limitations
+        </h3>
 
         <p className="mt-3 text-white/90 max-w-4xl leading-relaxed relative z-10">
-          European institutions increasingly request standardized environmental 
-          information from suppliers, even when those suppliers are not directly 
-          subject to CSRD. Certif-Scope enables SMEs to respond with a structured, 
-          reproducible document aligned with recognized datasets and transparent 
-          methodology while clearly indicating the scope and inherent limitations 
-          of a spend-based estimation approach.
+          Spend-based GHG estimation is recognized for screening purposes but must be
+          distinguished from full operational reporting. European procurement, banks and
+          insurers may accept this format for initial evaluation but can request additional
+          documents for completeness depending on regulatory context and risk level.
         </p>
       </div>
 
 
-      {/* RETURN BUTTON — consistent across all sections */}
+      {/* RETURN BUTTON */}
       <div className="mt-12 text-right">
         <a
           href="#top"
