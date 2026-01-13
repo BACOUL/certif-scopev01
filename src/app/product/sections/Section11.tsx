@@ -6,88 +6,116 @@ export default function Section11() {
       id="s11"
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
-      {/* HEADER BLOCK — Institutional, unique design */}
-      <div className="rounded-2xl p-12 bg-[#F8FAFC] border border-gray-200 shadow-lg relative overflow-hidden">
-        
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0B3A63]/8 to-[#15B097]/10 pointer-events-none"></div>
 
-        <h2 className="text-4xl md:text-5xl font-extrabold text-[#0B3A63] relative z-10">
-          11. Role of Cryptographic Integrity
+      {/* HEADER — institutional SME positioning */}
+      <div className="p-12 rounded-2xl bg-[#F8FAFC] border border-[#15B097]/30 shadow-md">
+        <h2 className="text-4xl md:text-5xl font-extrabold text-[#0B3A63]">
+          11. SME Advantages (Practical, Immediate, Low Overhead)
         </h2>
 
-        <p className="text-lg text-gray-700 max-w-4xl mt-6 leading-relaxed relative z-10">
-          Certif-Scope embeds a cryptographic integrity mechanism to ensure that each attestation 
-          remains tamper-proof, uniquely identifiable and independently verifiable by third parties. 
-          This protects institutions from document falsification, ensures that results are stable 
-          over time, and allows offline verification without relying on Certif-Scope servers.
+        <p className="text-lg text-gray-700 max-w-4xl mt-6 leading-relaxed">
+          Certif-Scope provides small and medium enterprises with a standardized and 
+          institution-ready carbon attestation without requiring specialist knowledge, 
+          internal reporting tools or complex software. The format is compatible with 
+          CSRD-aligned documentation requests from procurement, banks and insurers. 
+          The attestation does not replace detailed CSRD reports or ISO 14064 audits 
+          and does not attempt to model operational emissions.
         </p>
       </div>
 
-      {/* DUAL-COLUMN BLOCK */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-16">
 
-        {/* LEFT — Purpose of cryptographic integrity */}
-        <div className="p-10 bg-white rounded-xl border border-gray-200 shadow-md">
-          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
-            Why Cryptographic Integrity is Required
+      {/* GRID — 4 benefits for SMEs */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mt-16">
+
+        {/* 1 — No infrastructure required */}
+        <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-sm">
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
+            No Technical Infrastructure
           </h3>
-
-          <p className="text-gray-700 text-sm leading-relaxed mb-4">
-            Institutions routinely reject carbon documentation that lacks verifiable integrity 
-            markers, due to the risk of manipulation or selective editing.  
-            Certif-Scope addresses this problem using a stable, automatic cryptographic seal that:
+          <p className="text-gray-700 text-sm leading-relaxed">
+            SMEs can generate a compliant attestation without setting up internal systems 
+            or managing integrations. No persistent data storage or operational tracking 
+            is required.
           </p>
-
-          <ul className="text-gray-700 text-sm space-y-2">
-            <li>• Detects any change made after generation</li>
-            <li>• Links each attestation to a unique verification identity</li>
-            <li>• Allows verification without a live server</li>
-            <li>• Ensures persistent confidence during audits</li>
+          <ul className="mt-3 text-gray-700 text-sm space-y-1">
+            <li>• No IT deployment</li>
+            <li>• No compliance tooling needed</li>
+            <li>• No internal data retention</li>
           </ul>
         </div>
 
-        {/* RIGHT — Use cases in institutional workflows */}
-        <div className="p-10 bg-[#F8FAFC] rounded-xl border border-[#15B097]/30 shadow-sm">
-          <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
-            Institutional Use Cases
+        {/* 2 — Immediate institutional compatibility */}
+        <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/30 shadow-sm">
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
+            Ready for Institutional Requests
           </h3>
-
-          <p className="text-gray-700 text-sm leading-relaxed mb-4">
-            A cryptographically sealed CO₂ attestation eliminates uncertainty in 
-            processes where document authenticity directly impacts risk, compliance 
-            or eligibility:
+          <p className="text-gray-700 text-sm leading-relaxed">
+            The output follows European review practices for due diligence, procurement 
+            and banking. Compatibility refers strictly to structure and verification 
+            metadata. Institutions may request additional documents depending on context.
           </p>
-
-          <ul className="text-gray-700 text-sm space-y-2">
-            <li>• Procurement screening of suppliers</li>
-            <li>• Banking onboarding and risk evaluation</li>
-            <li>• Insurance eligibility and underwriting checks</li>
-            <li>• Public grant applications requiring CO₂ documentation</li>
+          <ul className="mt-3 text-gray-700 text-sm space-y-1">
+            <li>• Standardized terminology</li>
+            <li>• Consistent formatting</li>
+            <li>• Embedded verification metadata</li>
           </ul>
         </div>
+
+        {/* 3 — Minimal input effort */}
+        <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-sm">
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
+            Minimal Required Inputs
+          </h3>
+          <p className="text-gray-700 text-sm leading-relaxed">
+            Only essential financial and categorical data is required. No granular 
+            operational data, supplier surveys or site-level measurements are demanded.
+          </p>
+          <ul className="mt-3 text-gray-700 text-sm space-y-1">
+            <li>• Financial amount</li>
+            <li>• Category selection</li>
+            <li>• Reporting period</li>
+          </ul>
+        </div>
+
+        {/* 4 — Predictable and reproducible */}
+        <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/30 shadow-sm">
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
+            Predictable Outputs
+          </h3>
+          <p className="text-gray-700 text-sm leading-relaxed">
+            Values can be reproduced by external reviewers using identical dataset versions. 
+            Results are based on sector-average emission factors using the spend-based 
+            method, not operational measurements. Outputs represent standardized estimates, 
+            not audited carbon footprints.
+          </p>
+          <ul className="mt-3 text-gray-700 text-sm space-y-1">
+            <li>• Stable emission-factor versions</li>
+            <li>• Offline verification</li>
+            <li>• Deterministic calculation</li>
+          </ul>
+        </div>
+
       </div>
 
-      {/* EXPLANATORY STRIP — High-trust institutional tone */}
-      <div className="mt-20 p-12 rounded-xl bg-[#0B3A63] text-white shadow-lg relative overflow-hidden">
-        
+
+      {/* INFO STRIP — SME institutional context */}
+      <div className="mt-20 bg-[#0B3A63] text-white p-10 rounded-xl shadow-md relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#15B097] to-transparent opacity-20"></div>
 
-        <h3 className="text-2xl font-semibold relative z-10">
-          Guarantees for Long-Term Document Stability
-        </h3>
+        <h3 className="text-2xl font-semibold relative z-10">Why SMEs Benefit Immediately</h3>
 
-        <p className="text-white/90 max-w-5xl mt-4 leading-relaxed relative z-10">
-          Cryptographic integrity ensures that a Certif-Scope attestation can be trusted years 
-          after its creation, even if internal verification procedures change or if institutional 
-          workflows evolve.  
-          The attestation remains verifiable offline thanks to a deterministic integrity value, 
-          ensuring that institutions can authenticate documents independent of external systems 
-          or future service availability.
+        <p className="mt-3 text-white/90 max-w-4xl leading-relaxed relative z-10">
+          European institutions increasingly request standardized environmental 
+          information from suppliers, even when those suppliers are not directly 
+          subject to CSRD. Certif-Scope enables SMEs to respond with a structured, 
+          reproducible document aligned with recognized datasets and transparent 
+          methodology while clearly indicating the scope and inherent limitations 
+          of a spend-based estimation approach.
         </p>
       </div>
 
-      {/* RETURN BUTTON — identical across all sections */}
+
+      {/* RETURN BUTTON — consistent across all sections */}
       <div className="mt-12 text-right">
         <a
           href="#top"
@@ -96,6 +124,7 @@ export default function Section11() {
           Back to summary
         </a>
       </div>
+
     </section>
   );
 }
