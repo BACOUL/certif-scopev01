@@ -6,7 +6,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-white to-[#F3FBFC] -z-10"></div>
 
       <p className="text-sm md:text-base font-semibold tracking-wide text-[#0B3A63]/70 mb-3 uppercase">
-        Indicative CO₂e Attestation (Spend-Based)
+        Indicative CO₂e Estimation (Spend-Based)
       </p>
 
       <h1 className="text-[2.2rem] md:text-[3.2rem] font-extrabold text-[#0B3A63] leading-tight tracking-tight">
@@ -18,17 +18,16 @@ export default function Hero() {
       </h1>
 
       <p className="text-base md:text-lg text-[#475569] max-w-2xl mx-auto mt-6 leading-relaxed">
-        Generate a transparent, standardized and non-regulatory CO₂e estimation 
-        based exclusively on financial spending (€). Not a CSRD/ESRS report. 
-        No Scope 1 or Scope 2 calculations. Spend-based estimation only. 
-        Suitable for supplier screening, banking and procurement ESG pre-assessment —
-        not intended for audited emissions inventories.
+        Generate a transparent and standardized CO₂e estimation based exclusively on financial 
+        spending (€). Not a CSRD/ESRS report. No Scope 1 or Scope 2 calculations. Spend-based 
+        methodology only. Suitable for supplier screening, banking and procurement ESG 
+        pre-assessment — not for audited emissions inventories.
       </p>
 
       <div className="flex justify-center mt-12">
         <Image
           src="/hero-attestation.webp"
-          alt="Certif-Scope CO₂e estimation preview"
+          alt="Certif-Scope spend-based CO₂e estimation preview"
           width={900}
           height={600}
           priority
