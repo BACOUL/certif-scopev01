@@ -15,8 +15,8 @@ export default function Footer() {
               Certif-Scope
             </h2>
             <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
-              Instant certified CO₂ attestation for SMEs.  
-              Simple, verifiable and compliant with procurement and banking workflows.
+              Instant indicative CO₂e estimation for SMEs. 
+              Transparent, spend-based and suitable for supplier screening and financial pre-assessment.
             </p>
           </div>
 
