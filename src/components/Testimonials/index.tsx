@@ -4,19 +4,19 @@ export default function Testimonials() {
   const items = [
     {
       initials: "MR",
-      text: "Helpful for quickly providing CO₂e information during supplier onboarding.",
+      text: "Useful for quickly providing indicative CO₂e information during supplier onboarding.",
       author: "Mark Reynolds",
       role: "Construction — United Kingdom",
     },
     {
       initials: "ID",
-      text: "Clear and easy-to-use format that simplified communication with our partners.",
+      text: "Clear and easy-to-read spend-based format that made communication with partners simpler.",
       author: "Isabel Duarte",
       role: "Online Retail — Portugal",
     },
     {
       initials: "DM",
-      text: "Gave us a standardized CO₂e estimation without needing consultants or complex data.",
+      text: "Provided a consistent spend-based CO₂e estimation without requiring additional external data.",
       author: "Daniel Moretti",
       role: "Consulting — Italy",
     },
@@ -29,7 +29,7 @@ export default function Testimonials() {
           Feedback from European Businesses
         </h2>
         <p className="text-[#475569] text-base md:text-lg max-w-xl mx-auto">
-          How professionals use Certif-Scope for fast and standardized spend-based CO₂e estimations.
+          How organizations use Certif-Scope to share consistent, spend-based CO₂e information in screening workflows.
         </p>
       </div>
 
@@ -56,7 +56,7 @@ export default function Testimonials() {
       </div>
 
       <div className="mt-10 text-center text-sm text-[#64748B]">
-        User feedback reflects experience with the spend-based estimation process.
+        Feedback reflects experience with the indicative spend-based estimation process.
       </div>
 
       <div className="mt-4 text-center">
