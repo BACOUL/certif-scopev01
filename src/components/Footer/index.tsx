@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer className="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 pt-14 pb-10">
       <div className="max-w-7xl mx-auto px-6">
-        
+
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
 
           {/* BRANDING */}
@@ -15,8 +15,9 @@ export default function Footer() {
               Certif-Scope
             </h2>
             <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
-              Instant indicative CO₂e estimation for SMEs. 
-              Transparent, spend-based and suitable for supplier screening and financial pre-assessment.
+              Instant spend-based CO₂e estimation for SMEs. 
+              Non-regulatory, no Scope 1 or Scope 2, and not a CSRD/ESRS report. 
+              Designed for supplier screening and financial pre-assessment.
             </p>
           </div>
 
@@ -29,8 +30,9 @@ export default function Footer() {
               <li><Link href="/product" className="hover:text-[#1FB6C1]">Overview</Link></li>
               <li><Link href="/product/methodology" className="hover:text-[#1FB6C1]">Methodology</Link></li>
               <li><Link href="/product/regulations" className="hover:text-[#1FB6C1]">Regulations</Link></li>
+              <li><Link href="/product/limitations" className="hover:text-[#1FB6C1]">Limitations</Link></li>
               <li><Link href="/pricing" className="hover:text-[#1FB6C1]">Pricing</Link></li>
-              <li><Link href="/verify" className="hover:text-[#1FB6C1]">Verify Attestation</Link></li>
+              <li><Link href="/verify" className="hover:text-[#1FB6C1]">Verify ID</Link></li>
             </ul>
           </div>
 
@@ -69,4 +71,4 @@ export default function Footer() {
       </div>
     </footer>
   );
-}
+                    }
