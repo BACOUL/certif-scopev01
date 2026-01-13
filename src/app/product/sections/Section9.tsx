@@ -23,7 +23,7 @@ export default function Section9() {
       </div>
 
 
-      {/* PDF PREVIEW — miniature image linking to real PDF */}
+      {/* PDF PREVIEW — real capture with watermark */}
       <div className="mt-12 flex justify-center">
         <a
           href="/samples/certif-scope-sample.pdf"
@@ -32,9 +32,9 @@ export default function Section9() {
           className="group"
         >
           <img
-            src="/samples/pdf-sample.jpg"
-            alt="Preview of the official Certif-Scope PDF attestation"
-            className="w-64 rounded-xl border border-gray-300 shadow-md group-hover:shadow-xl transition"
+            src="/samples/pdf-sample-watermarked.jpg"
+            alt="Preview of the official Certif-Scope PDF attestation (watermarked)"
+            className="w-72 rounded-xl border border-gray-300 shadow-md group-hover:shadow-xl transition"
           />
           <p className="text-center text-sm mt-3 text-[#0B3A63] underline group-hover:text-[#15B097]">
             View real PDF sample
@@ -57,7 +57,7 @@ export default function Section9() {
             <li>• Entity name & legal registration</li>
             <li>• Reporting year & scope definition</li>
             <li>• Declaration and contact fields</li>
-            <li>• Timestamp of generation (UTC)</li>
+            <li>• Timestamp of generation (UTC, ISO-8601)</li>
           </ul>
         </div>
 
@@ -72,7 +72,7 @@ export default function Section9() {
             <li>• Total CO₂ equivalent (tCO₂e)</li>
             <li>• Category-level breakdown</li>
             <li>• References to emission-factor datasets</li>
-            <li>• Note on deterministic computation</li>
+            <li>• Deterministic, reproducible calculation methodology</li>
           </ul>
         </div>
 
@@ -85,12 +85,53 @@ export default function Section9() {
           </p>
           <ul className="mt-3 text-gray-700 text-sm space-y-1">
             <li>• Cryptographic integrity hash (SHA-256)</li>
-            <li>• Unique verification identifier</li>
+            <li>• Unique verification identifier (UUID v4)</li>
             <li>• Offline validation instructions</li>
-            <li>• QR code to public verification page</li>
+            <li>• Embedded XMP metadata + QR code to optional verification page</li>
           </ul>
         </div>
 
+      </div>
+
+
+      {/* METADATA BLOCK — FULL TECHNICAL DETAILS */}
+      <div className="mt-20 p-10 bg-white border border-gray-200 rounded-xl shadow-sm">
+        <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
+          Embedded Metadata Included in Every PDF
+        </h3>
+
+        <p className="text-gray-700 leading-relaxed max-w-4xl">
+          Each document contains verifiable metadata embedded directly in the PDF/A and
+          XMP layers. This ensures permanent auditability, long-term archival
+          compatibility and independent offline validation without any reliance on an
+          external server.
+        </p>
+
+        <ul className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-gray-700">
+          <li className="p-4 bg-[#F8FAFC] rounded-lg border border-[#15B097]/20">
+            <strong>SHA-256 Hash:</strong>
+            <br />
+            Stored in the metadata and printed in the footer.
+          </li>
+
+          <li className="p-4 bg-[#F8FAFC] rounded-lg border border-[#15B097]/20">
+            <strong>UUID v4:</strong>
+            <br />
+            Unique immutable identifier generated at creation.
+          </li>
+
+          <li className="p-4 bg-[#F8FAFC] rounded-lg border border-[#15B097]/20">
+            <strong>ISO Timestamp:</strong>
+            <br />
+            ISO-8601 compliant (e.g., 2026-01-10T14:22:33Z).
+          </li>
+
+          <li className="p-4 bg-[#F8FAFC] rounded-lg border border-[#15B097]/20">
+            <strong>Emission Factors Source:</strong>
+            <br />
+            Base Carbone — Version 2024.2
+          </li>
+        </ul>
       </div>
 
 
@@ -119,4 +160,4 @@ export default function Section9() {
 
     </section>
   );
-      }
+          }
