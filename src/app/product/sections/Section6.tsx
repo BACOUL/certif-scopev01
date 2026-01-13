@@ -7,6 +7,7 @@ export default function Section6() {
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
 
+      {/* HEADER — Distinct premium layout */}
       <div className="relative p-12 rounded-2xl bg-[#0B3A63] text-white shadow-xl overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/30 to-transparent opacity-40"></div>
 
@@ -15,124 +16,180 @@ export default function Section6() {
         </h2>
 
         <p className="text-white/90 max-w-4xl mt-6 leading-relaxed relative z-10">
-          Certif-Scope transforms annual expenditure data into a verifiable CO₂ indicator using 
-          deterministic conversion logic based on official emission-factor datasets and structured 
-          classification rules. The workflow does not rely on estimates or hidden assumptions: 
-          every step is reproducible and traceable by procurement teams, banks, insurers and auditors.
+          Certif-Scope converts annual expenditure data into a standardized CO₂ indicator
+          using deterministic formulas, structured categorization, official emission factors,
+          and cryptographic verification. The workflow is reproducible, auditable and aligned
+          with procurement, banking, insurance and institutional screening practices across Europe.
         </p>
       </div>
 
 
-      {/* WORKFLOW — 5 BLOCKS WITH TECHNICAL DETAIL */}
+      {/* SCHEMA — Input → Mapping → EF Lookup → Formula → PDF + Hash */}
+      <div className="mt-16 p-8 bg-[#F8FAFC] border border-[#15B097]/40 rounded-xl shadow-sm">
+        <pre className="text-sm text-[#0B3A63] leading-relaxed whitespace-pre-wrap">
+{`[User Inputs]
+       ↓
+[Category Mapping Table — NACE-compatible]
+       ↓
+[Emission Factor Lookup — ADEME / DEFRA / IPCC]
+       ↓
+CO₂e = Spend (€) × EF (kgCO₂e/€)
+       ↓
+[Standardized PDF + SHA-256 Hash]`}
+        </pre>
+      </div>
+
+
+
+      {/* WORKFLOW GRID — 5 technical blocks */}
       <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mt-20">
 
-        {/* STEP 1 */}
+        {/* STEP 1 — INPUT CAPTURE */}
         <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-md">
           <h3 className="text-xl font-bold text-[#0B3A63]">1. Input Capture</h3>
           <p className="text-gray-700 text-sm mt-3 leading-relaxed">
-            The user provides annual spend per category. Before processing, the system 
-            performs strict validation checks:
+            The user enters annual spend per category. The system applies strict validation:
           </p>
           <ul className="mt-3 text-gray-700 text-sm space-y-1">
-            <li>• Numeric validation (no negative or malformed values)</li>
-            <li>• Category cross-checking against allowed list</li>
-            <li>• Automatic detection of missing required fields</li>
+            <li>• Syntax validation of numeric values</li>
+            <li>• Detection of negative or malformed numbers</li>
+            <li>• Verification of required category presence</li>
+            <li>• Logical coherence checks across categories</li>
           </ul>
           <p className="text-gray-700 text-sm mt-3">
-            Example: an SME entering €12,400 in “Transport Services” triggers a direct mapping 
-            to the transport-related emission factors.
+            <strong>Example:</strong> €12,400 entered in “Transport Services” is validated, structured and prepared for mapping.
           </p>
         </div>
 
-        {/* STEP 2 */}
+
+        {/* STEP 2 — CATEGORY MAPPING */}
         <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/40 shadow-md">
-          <h3 className="text-xl font-bold text-[#0B3A63]">2. Category Standardization</h3>
+          <h3 className="text-xl font-bold text-[#0B3A63]">2. Category Mapping</h3>
           <p className="text-gray-700 text-sm mt-3 leading-relaxed">
-            Certif-Scope converts inputs into standardized categories aligned with the 
-            GHG Protocol spend-based model and compatible with NACE-class structures.
+            Inputs are mapped to standardized categories aligned with:
           </p>
           <ul className="mt-3 text-gray-700 text-sm space-y-1">
-            <li>• Deterministic mapping table (no AI inference)</li>
-            <li>• One-to-one category assignment rules</li>
-            <li>• Automatic rejection of ambiguous categories</li>
+            <li>• GHG Protocol — Spend-Based Pathway</li>
+            <li>• NACE-compatible sector structure</li>
+            <li>• Deterministic one-to-one mapping</li>
           </ul>
           <p className="text-gray-700 text-sm mt-3">
-            Example: “Office supplies” is mapped to “Purchased Goods – Emission Factor 3.1”.
+            <strong>Example:</strong> “Office supplies” → “Purchased Goods – EF Class 3.1”.
           </p>
         </div>
 
-        {/* STEP 3 */}
+
+        {/* STEP 3 — EMISSION FACTOR LOOKUP */}
         <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-md">
           <h3 className="text-xl font-bold text-[#0B3A63]">3. Emission Factor Retrieval</h3>
           <p className="text-gray-700 text-sm mt-3 leading-relaxed">
-            The system fetches the appropriate emission factors from verifiable public datasets:
+            Certif-Scope retrieves emission factors from public, verifiable datasets:
           </p>
           <ul className="mt-3 text-gray-700 text-sm space-y-1">
-            <li>• ADEME Base Carbone (France)</li>
-            <li>• DEFRA UK (Government GHG Conversion Factors)</li>
-            <li>• IPCC AR6 (Global Warming Potential 100y)</li>
+            <li>• ADEME Base Carbone 2024.x</li>
+            <li>• DEFRA 2023 UK factors</li>
+            <li>• IPCC AR6 GWP100 parameters</li>
           </ul>
           <p className="text-gray-700 text-sm mt-3">
-            Example: For €1,000 of “Electricity EU mix,” the system retrieves the factor 
-            expressed in kgCO₂e/kWh after currency harmonization.
+            <strong>Example:</strong> Electricity factors pulled in kgCO₂e/kWh, harmonized to €/kWh when required.
           </p>
         </div>
 
-        {/* STEP 4 */}
+
+        {/* STEP 4 — DETERMINISTIC FORMULA */}
         <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/40 shadow-md">
           <h3 className="text-xl font-bold text-[#0B3A63]">4. Deterministic Calculation Engine</h3>
           <p className="text-gray-700 text-sm mt-3 leading-relaxed">
-            Each category follows a strict formula, based on the GHG Protocol spend-based method:
+            A strict formula is applied with no interpretation or machine learning:
           </p>
-          <p className="mt-2 p-3 bg-white border text-gray-700 text-xs rounded-md leading-relaxed">
-            CO₂e = Expenditure (€) × Emission Factor (kgCO₂e / €)
-          </p>
-          <ul className="mt-3 text-gray-700 text-sm space-y-1">
-            <li>• No AI estimation or subjective interpretation</li>
-            <li>• No proprietary weighting</li>
-            <li>• Same inputs = same outputs, always</li>
-          </ul>
-          <p className="text-gray-700 text-sm mt-3">
-            Example: €5,100 in fuel logistics × 0.32 kgCO₂e/€ = 1,632 kgCO₂e.
-          </p>
-        </div>
 
-        {/* STEP 5 */}
-        <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-md">
-          <h3 className="text-xl font-bold text-[#0B3A63]">5. PDF Generation + Verification Seal</h3>
+          <div className="mt-3 p-3 bg-white border rounded-md text-gray-700 text-xs">
+            CO₂e = Spend (€) × Emission Factor (kgCO₂e / €)
+          </div>
+
           <p className="text-gray-700 text-sm mt-3 leading-relaxed">
-            Once the calculation is complete, a standardized PDF is produced with clear 
-            indicators, data source references, and a cryptographic verification seal:
+            <strong>Example:</strong> €5,100 × 0.32 kgCO₂e/€ = 1,632 kgCO₂e.
+          </p>
+        </div>
+
+
+        {/* STEP 5 — PDF + HASH */}
+        <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-md">
+          <h3 className="text-xl font-bold text-[#0B3A63]">5. PDF Generation & Hash Verification</h3>
+          <p className="text-gray-700 text-sm mt-3 leading-relaxed">
+            A standardized PDF is generated containing:
           </p>
           <ul className="mt-3 text-gray-700 text-sm space-y-1">
-            <li>• SHA-256 hash of the final document</li>
-            <li>• Embedded verification signature inside the PDF metadata</li>
-            <li>• Offline verification instructions included</li>
+            <li>• Emission totals & category breakdown</li>
+            <li>• Source dataset references</li>
+            <li>• Embedded SHA-256 verification hash</li>
+            <li>• Offline verification instructions</li>
           </ul>
 
-          <p className="mt-3 text-gray-700 text-sm">
-            Example: Auditors can recompute the hash locally and compare it to the embedded 
-            value to confirm authenticity without contacting Certif-Scope servers.
+          <p className="text-gray-700 text-sm mt-3">
+            <strong>Example:</strong> Auditors compute <code>sha256(pdf)</code> and compare with metadata.
           </p>
         </div>
 
       </div>
 
 
-      {/* FINAL SUMMARY */}
-      <div className="mt-20 p-10 bg-[#F8FAFC] border border-[#15B097] rounded-xl shadow-sm">
+
+      {/* BOUNDARIES & EXCLUSIONS */}
+      <div className="mt-20 p-10 bg-white border border-gray-200 rounded-xl shadow-md">
         <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
-          Why This Workflow Is Accepted by Institutions
+          Methodological Boundaries & Exclusions
         </h3>
-        <p className="text-gray-700 max-w-4xl leading-relaxed">
-          This workflow mirrors European institutional expectations: deterministic inputs, 
-          standardized classification, official emission factors, transparent formulas, 
-          and cryptographic verification. The result is an auditable CO₂ indicator suitable 
-          for procurement checks, banking risk scoring, insurance underwriting and ESG due 
-          diligence screening.
-        </p>
+
+        <ul className="text-gray-700 text-sm leading-relaxed space-y-2">
+          <li>• Spend-based estimation only (no direct measurement)</li>
+          <li>• No Scope 1 or Scope 2 measured data</li>
+          <li>• No activity-level primary data required</li>
+          <li>• No LCA (Life Cycle Assessment) included</li>
+          <li>• No uncertainty analysis provided</li>
+          <li>• Results intended for screening, not full CSRD reporting</li>
+        </ul>
       </div>
 
+
+
+      {/* LIMITATIONS BLOCK */}
+      <div className="mt-10 p-10 bg-[#F8FAFC] border border-[#15B097]/40 rounded-xl shadow-sm">
+        <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
+          Model Limitations
+        </h3>
+
+        <ul className="text-gray-700 text-sm leading-relaxed space-y-2">
+          <li>• Dependent on emission factor dataset updates</li>
+          <li>• Sector averages may differ from real operations</li>
+          <li>• Not a substitute for activity-based carbon accounting</li>
+          <li>• Not suitable for full ESRS E1 or CSRD disclosures</li>
+          <li>• Designed for institutional screening and due diligence only</li>
+        </ul>
+      </div>
+
+
+
+      {/* REGULATORY ALIGNMENT */}
+      <div className="mt-16 p-10 bg-[#0B3A63] text-white rounded-xl shadow-md relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/20 to-transparent pointer-events-none"></div>
+
+        <h3 className="text-2xl font-semibold relative z-10">
+          Regulatory & Institutional Alignment
+        </h3>
+
+        <ul className="mt-4 text-white/90 text-sm leading-relaxed space-y-2 relative z-10">
+          <li>• Aligned with GHG Protocol spend-based calculation method</li>
+          <li>• Compatible with ESRS E1 value-chain screening expectations</li>
+          <li>• Supports CSRD Article 19a / 29a upstream data requirements</li>
+          <li>• Suitable for EU Green Public Procurement (GPP) initial screening</li>
+          <li>• Acceptable for banking ESG risk scoring (EBA Guidelines)</li>
+        </ul>
+      </div>
+
+
+
+      {/* RETURN BUTTON — identical */}
       <div className="mt-12 text-right">
         <a
           href="#top"
@@ -141,7 +198,6 @@ export default function Section6() {
           Back to summary
         </a>
       </div>
-
     </section>
   );
-            }
+        }
