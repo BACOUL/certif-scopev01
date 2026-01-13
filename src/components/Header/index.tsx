@@ -39,20 +39,15 @@ export default function Header() {
           aria-controls="main-navigation"
           className="lg:hidden w-10 h-10 flex flex-col justify-center items-center"
         >
-          <span className={`h-[3px] w-7 bg-gray-900 dark:bg-gray-100 rounded transition-transform duration-300 ${
-            open ? "rotate-45 translate-y-1" : ""
-          }`} />
-          <span className={`h-[3px] w-7 bg-gray-900 dark:bg-gray-100 rounded my-1 transition-opacity duration-300 ${
-            open ? "opacity-0" : "opacity-100"
-          }`} />
-          <span className={`h-[3px] w-7 bg-gray-900 dark:bg-gray-100 rounded transition-transform duration-300 ${
-            open ? "-rotate-45 -translate-y-1" : ""
-          }`} />
+          <span className={`h-[3px] w-7 bg-gray-900 dark:bg-gray-100 rounded transition-transform duration-300 ${open ? "rotate-45 translate-y-1" : ""}`} />
+          <span className={`h-[3px] w-7 bg-gray-900 dark:bg-gray-100 rounded my-1 transition-opacity duration-300 ${open ? "opacity-0" : "opacity-100"}`} />
+          <span className={`h-[3px] w-7 bg-gray-900 dark:bg-gray-100 rounded transition-transform duration-300 ${open ? "-rotate-45 -translate-y-1" : ""}`} />
         </button>
 
         {/* NAVIGATION */}
         <nav
           id="main-navigation"
+          role="navigation"
           className={`absolute lg:static top-full right-6 lg:right-auto mt-3 lg:mt-0 w-[260px] lg:w-auto bg-white dark:bg-gray-900 rounded-xl shadow-lg lg:shadow-none border dark:border-none p-5 lg:p-0 transition-all duration-200 ${
             open
               ? "opacity-100 visible pointer-events-auto"
@@ -74,7 +69,7 @@ export default function Header() {
               </Link>
             </li>
 
-            {/* ATTESTATION DROPDOWN */}
+            {/* CO2E ESTIMATE DROPDOWN */}
             <li className="relative">
               <button
                 onClick={() => setDropdown(!dropdown)}
@@ -82,18 +77,18 @@ export default function Header() {
                 aria-expanded={dropdown}
                 className="flex items-center gap-1 text-base font-medium text-gray-800 dark:text-gray-200 hover:text-[#1FB6C1] transition"
               >
-                Attestation
-                <span className={`transition-transform ${dropdown ? "rotate-180" : ""}`}>
-                  ▼
-                </span>
+                CO₂e Estimate
+                <span className={`transition-transform ${dropdown ? "rotate-180" : ""}`}>▼</span>
               </button>
 
               <div
+                role="menu"
                 className={`${dropdown ? "block" : "hidden"} absolute left-0 mt-2 w-48 bg-white dark:bg-gray-900 shadow-lg rounded-lg border border-gray-200 dark:border-gray-700 p-3 z-50`}
               >
                 <Link
                   href="/product"
                   onClick={closeAll}
+                  role="menuitem"
                   className="block py-2 px-3 rounded hover:bg-gray-100 dark:hover:bg-gray-800 text-sm"
                 >
                   Overview
@@ -102,6 +97,7 @@ export default function Header() {
                 <Link
                   href="/product/methodology"
                   onClick={closeAll}
+                  role="menuitem"
                   className="block py-2 px-3 rounded hover:bg-gray-100 dark:hover:bg-gray-800 text-sm"
                 >
                   Methodology
@@ -110,6 +106,7 @@ export default function Header() {
                 <Link
                   href="/product/regulations"
                   onClick={closeAll}
+                  role="menuitem"
                   className="block py-2 px-3 rounded hover:bg-gray-100 dark:hover:bg-gray-800 text-sm"
                 >
                   Regulations
@@ -149,7 +146,7 @@ export default function Header() {
                 href="/assessment"
                 className="bg-[#1FB6C1] text-white font-semibold px-6 py-3 rounded-lg shadow hover:opacity-90 transition"
               >
-                Generate Attestation
+                Generate CO₂e Estimate
               </Link>
             </li>
 
