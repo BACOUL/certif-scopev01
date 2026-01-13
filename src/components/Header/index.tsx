@@ -69,7 +69,7 @@ export default function Header() {
               </Link>
             </li>
 
-            {/* CO2E ESTIMATE DROPDOWN */}
+            {/* ATTESTATION MENU */}
             <li className="relative">
               <button
                 onClick={() => setDropdown(!dropdown)}
@@ -77,7 +77,7 @@ export default function Header() {
                 aria-expanded={dropdown}
                 className="flex items-center gap-1 text-base font-medium text-gray-800 dark:text-gray-200 hover:text-[#1FB6C1] transition"
               >
-                CO₂e Estimate
+                CO₂e Attestation
                 <span className={`transition-transform ${dropdown ? "rotate-180" : ""}`}>▼</span>
               </button>
 
@@ -91,7 +91,7 @@ export default function Header() {
                   role="menuitem"
                   className="block py-2 px-3 rounded hover:bg-gray-100 dark:hover:bg-gray-800 text-sm"
                 >
-                  Overview
+                  What it is
                 </Link>
 
                 <Link
@@ -100,7 +100,7 @@ export default function Header() {
                   role="menuitem"
                   className="block py-2 px-3 rounded hover:bg-gray-100 dark:hover:bg-gray-800 text-sm"
                 >
-                  Methodology
+                  How it works
                 </Link>
 
                 <Link
@@ -109,7 +109,7 @@ export default function Header() {
                   role="menuitem"
                   className="block py-2 px-3 rounded hover:bg-gray-100 dark:hover:bg-gray-800 text-sm"
                 >
-                  Regulations
+                  Compliance
                 </Link>
               </div>
             </li>
@@ -136,7 +136,7 @@ export default function Header() {
                   pathname === "/verify" ? "text-[#1FB6C1]" : "text-gray-800 dark:text-gray-200"
                 }`}
               >
-                Verify ID
+                Verify a Document
               </Link>
             </li>
 
@@ -146,7 +146,7 @@ export default function Header() {
                 href="/assessment"
                 className="bg-[#1FB6C1] text-white font-semibold px-6 py-3 rounded-lg shadow hover:opacity-90 transition"
               >
-                Generate CO₂e Estimate
+                Create Your CO₂e Attestation
               </Link>
             </li>
 
@@ -156,4 +156,4 @@ export default function Header() {
       </div>
     </header>
   );
-            }
+                }
