@@ -16,23 +16,29 @@ const menuData: Menu[] = [
   {
     id: 2,
     title: "Methodology",
-    path: "/methodology",
+    path: "/product/methodology",
     newTab: false,
   },
   {
     id: 3,
     title: "Regulations",
-    path: "/regulations",
+    path: "/product/regulations",
     newTab: false,
   },
   {
     id: 4,
-    title: "Verify",
-    path: "/verify",
+    title: "Limitations",
+    path: "/product/limitations",
     newTab: false,
   },
   {
     id: 5,
+    title: "Verify ID",
+    path: "/verify",
+    newTab: false,
+  },
+  {
+    id: 6,
     title: "Pricing",
     path: "/pricing",
     newTab: false,
