@@ -6,21 +6,21 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-white to-[#F3FBFC] -z-10"></div>
 
       <p className="text-sm md:text-base font-semibold tracking-wide text-[#0B3A63]/70 mb-3 uppercase">
-        Simple CO₂e document for clients and partners
+        Europe’s first instant spend-based CO₂e document
       </p>
 
       <h1 className="text-[2.3rem] md:text-[3.4rem] font-extrabold text-[#0B3A63] leading-tight tracking-tight">
-        Get Your CO₂e Document in 60 Seconds
+        Provide CO₂e Information in 60 Seconds
         <br />
         <span className="text-[#1FB6C1] text-[2.4rem] md:text-[3.4rem]">
-          No expertise required
+          No experts. No audits. No delays.
         </span>
       </h1>
 
       <p className="text-base md:text-lg text-[#475569] max-w-2xl mx-auto mt-6 leading-relaxed">
-        Answer CO₂e requests from clients, banks or partners instantly. 
-        Enter your annual spending (€) and download a clear, ready-to-send document. 
-        No consultants, no complex data, no waiting. 
+        Designed for SMEs that must answer CO₂e requests from clients, buyers or banks. 
+        Enter your annual spending (€) and instantly download a clear, verifiable document. 
+        Spend-based methodology only. Not a regulatory report.
       </p>
 
       <div className="flex justify-center mt-12">
