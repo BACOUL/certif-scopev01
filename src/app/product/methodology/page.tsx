@@ -1,3 +1,5 @@
+"use client";
+
 import Section1 from "./sections/Section1";
 import Section2 from "./sections/Section2";
 import Section3 from "./sections/Section3";
@@ -29,7 +31,7 @@ export default function MethodologyPage() {
         </p>
       </div>
 
-      {/* SOMMAIRE */}
+      {/* SECTIONS LIST */}
       <div className="w-full p-8 mb-24 bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-200 dark:border-gray-700">
         <h2 className="text-2xl md:text-3xl font-bold text-[#0B3A63] mb-6">
           Methodology Sections
@@ -51,7 +53,7 @@ export default function MethodologyPage() {
         </ul>
       </div>
 
-      {/* SECTIONS */}
+      {/* RENDER SECTIONS */}
       <div className="space-y-24">
         <div id="s1"><Section1 /></div>
         <div id="s2"><Section2 /></div>
