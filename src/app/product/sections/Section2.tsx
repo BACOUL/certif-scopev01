@@ -2,12 +2,9 @@
 
 export default function Section2() {
   return (
-    <section
-      id="s2"
-      className="scroll-mt-24 border-b border-gray-200 pb-24"
-    >
+    <section id="s2" className="scroll-mt-24 border-b border-gray-200 pb-24">
 
-      {/* HEADER BLOCK – Institutional, premium, unique */}
+      {/* HEADER */}
       <div className="relative rounded-2xl p-12 bg-[#0B3A63] text-white shadow-lg overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/40 to-transparent pointer-events-none"></div>
 
@@ -16,119 +13,93 @@ export default function Section2() {
         </h2>
 
         <p className="text-white/90 text-lg max-w-4xl mt-6 leading-relaxed relative z-10">
-          Certif-Scope enables SMEs to provide verifiable, structured and institution-ready CO₂
-          indicators without lengthy ESG reporting. Each benefit targets a specific requirement 
-          observed in European procurement workflows, EBA banking rules, insurer documentation 
-          requests and ESRS-compliant internal audits.
+          Certif-Scope provides SMEs with a fast, structured and verifiable way to answer 
+          CO₂e information requests from clients, procurement teams, lenders or insurers. 
+          The document is standardized, easy to read and includes an integrity-based 
+          verification ID — ideal when only an indicative spend-based value is required.
         </p>
       </div>
 
 
-      {/* QUANTITATIVE BENCHMARK STRIP – added */}
-      <div className="mt-12 p-8 rounded-xl bg-white border border-gray-200 shadow-sm">
-        <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
-          Quantified Impact from Internal Benchmarks
-        </h3>
-
-        <ul className="text-gray-700 text-sm space-y-2 leading-relaxed">
-          <li>• <strong>80% reduction</strong> in validation time across 50+ procurement test cases.</li>
-          <li>• <strong>94% acceptance rate</strong> in ESRS-compatible supplier screening workflows.</li>
-          <li>• <strong>90% cost reduction</strong> compared to ESG consultant-based carbon assessments.</li>
-          <li>• <strong>100% offline verification</strong> validated by banking and audit reviewers.</li>
-        </ul>
-      </div>
-
-
-      {/* BENEFITS GRID — 6 blocks */}
+      {/* BENEFITS GRID */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-16">
 
-        {/* BENEFIT 1 */}
         <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-md">
           <h3 className="text-2xl font-semibold text-[#0B3A63]">
-            1. Immediate Institutional Compatibility
+            1. Instant Generation
           </h3>
           <p className="mt-3 text-gray-700 text-sm leading-relaxed">
-            Document structure aligns with validation logic used in EU public tenders, EBA ESG scoring 
-            and insurer underwriting. Internal tests indicate a <strong>94% match</strong> with the 
-            requirements found in ESRS-compatible procurement documentation.
+            The document is created in less than a minute. No consultants, no physical 
+            activity data and no technical expertise required — only annual spending (€).
           </p>
         </div>
 
-        {/* BENEFIT 2 */}
         <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/40 shadow-md">
           <h3 className="text-2xl font-semibold text-[#0B3A63]">
-            2. Fast Delivery Under 30 Seconds
+            2. Ready for Procurement Use
           </h3>
           <p className="mt-3 text-gray-700 text-sm leading-relaxed">
-            The attestation is generated instantly using deterministic emissions logic. Procurement 
-            teams observed an average <strong>80% time reduction</strong> during document review 
-            compared to non-standardized CO₂ declarations.
+            Output is structured in a way commonly requested in supplier onboarding, 
+            RFP submissions and ESG questionnaires, making it easy to include in 
+            documentation packages.
           </p>
         </div>
 
-        {/* BENEFIT 3 */}
         <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-md">
           <h3 className="text-2xl font-semibold text-[#0B3A63]">
-            3. Cryptographically Verifiable Integrity
+            3. Verifiable Integrity
           </h3>
           <p className="mt-3 text-gray-700 text-sm leading-relaxed">
-            Each PDF embeds a SHA-256 hash allowing offline verification. Banks and auditors can 
-            recalculate the hash and confirm integrity without any server dependency — validated in 
-            <strong>100% of internal verification tests</strong>.
+            Each PDF includes a deterministic integrity hash and a verification ID. 
+            Partners can confirm authenticity instantly, including offline validation.
           </p>
         </div>
 
-        {/* BENEFIT 4 */}
         <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/40 shadow-md">
           <h3 className="text-2xl font-semibold text-[#0B3A63]">
-            4. Standardized & Comparable Output
+            4. Fully Deterministic Calculation
           </h3>
           <p className="mt-3 text-gray-700 text-sm leading-relaxed">
-            Output format is stable, consistent and machine-readable, enabling automated comparison 
-            of multiple suppliers. Tests with procurement software confirm <strong>near-zero manual 
-            interpretation</strong> required.
+            The same inputs always produce the same result. Values are computed 
+            through a transparent spend-based formula using version-controlled 
+            emission factors.
           </p>
         </div>
 
-        {/* BENEFIT 5 */}
         <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-md">
           <h3 className="text-2xl font-semibold text-[#0B3A63]">
-            5. No Carbon Expertise Required
+            5. No ESG Expertise Required
           </h3>
           <p className="mt-3 text-gray-700 text-sm leading-relaxed">
-            SMEs can generate a compliant CO₂ indicator without ESG consultants. Cost reduction 
-            measured at <strong>up to 90%</strong> in 30+ benchmarked scenarios versus consultant-based 
-            estimations.
+            SMEs without sustainability staff can generate a consistent and structured 
+            CO₂e indicator that answers the majority of non-regulatory institutional requests.
           </p>
         </div>
 
-        {/* BENEFIT 6 */}
         <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/40 shadow-md">
           <h3 className="text-2xl font-semibold text-[#0B3A63]">
-            6. Multilingual Acceptance Across the EU
+            6. Multilingual and Easy to Share
           </h3>
           <p className="mt-3 text-gray-700 text-sm leading-relaxed">
-            The attestation layout is compatible with institutional usage in English, French, 
-            German, Spanish and Italian — covering more than <strong>80% of EU procurement 
-            workflows</strong> during cross-border pilot testing.
+            The document is clear and readable in English, French, German, Spanish and Italian, 
+            enabling cross-border usability within European supply chains.
           </p>
         </div>
 
       </div>
 
 
-      {/* INSTITUTIONAL CONTEXT STRIP */}
+      {/* CLARIFICATION STRIP */}
       <div className="mt-20 p-10 rounded-xl bg-[#F8FAFC] border border-[#0B3A63]/25 shadow-sm">
         <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
-          Why These Benefits Matter for Institutions
+          Important Clarification
         </h3>
 
         <p className="text-gray-700 max-w-4xl leading-relaxed">
-          European institutions require comparable, verifiable and structured climate indicators 
-          for procurement classification, ESG risk scoring and supplier screening. Certif-Scope 
-          meets these technical needs without replacing full CSRD/ESRS reporting.  
-          Consolidated benchmarks show an <strong>80% reduction in review workload</strong> and 
-          consistent <strong>EBA-ready compatibility</strong> for banking risk assessments.
+          Certif-Scope does not replace CSRD/ESRS reporting, audited carbon inventories or 
+          lifecycle assessments. It provides an indicative, spend-based CO₂e figure suitable 
+          for preliminary screening, procurement documentation and institutional requests 
+          where a simplified and verifiable indicator is sufficient.
         </p>
       </div>
 
