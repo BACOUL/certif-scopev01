@@ -9,15 +9,16 @@ export default function Footer() {
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
 
-          {/* BRANDING */}
+          {/* BRANDING / PURPOSE */}
           <div>
             <h2 className="text-xl font-bold text-[#0B3A63] dark:text-gray-100 mb-4">
               Certif-Scope
             </h2>
 
             <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
-              Spend-based CO₂e Attestation designed for procurement, banking and institutional
-              screening workflows. Instant generation, clear formatting, and verifiable integrity.
+              Instant spend-based CO₂e Attestation built for procurement, financial and
+              institutional screening. Standardized format, verifiable integrity and
+              consistent presentation across suppliers in Europe.
             </p>
           </div>
 
@@ -64,11 +65,12 @@ export default function Footer() {
 
         </div>
 
-        {/* DISCLAIMER */}
+        {/* LEGAL DISCLAIMER — Clear, concise, non-marchand, pas répétitif */}
         <div className="mt-10 text-center text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
-          Certif-Scope provides an indicative, spend-based CO₂e Attestation for informational
-          and screening use. It is not a CSRD/ESRS report, an audited emissions inventory, or
-          a substitute for regulatory disclosures. Values depend on user-provided spending data.
+          Certif-Scope produces an indicative, spend-based CO₂e Attestation for informational
+          and screening purposes. It is not a CSRD/ESRS disclosure, not an audited emissions
+          inventory and not intended to replace regulatory reporting obligations. Results
+          depend entirely on user-provided spending data.
         </div>
 
         {/* COPYRIGHT */}
@@ -81,4 +83,4 @@ export default function Footer() {
       </div>
     </footer>
   );
-              }
+          }
