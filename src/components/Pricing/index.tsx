@@ -8,9 +8,9 @@ export default function Pricing() {
         </h2>
 
         <p className="mt-4 text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
-          A single payment for a complete, standardized CO₂e Attestation.  
-          No subscriptions. No ongoing fees. No consultants.  
-          Instant generation from your annual spending (€).
+          A single payment for a standardized, spend-based CO₂e Attestation designed 
+          for procurement, banking and ESG screening workflows. 
+          No subscription. No hidden fees. Instant generation.
         </p>
 
         <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto my-14"></div>
@@ -28,7 +28,7 @@ export default function Pricing() {
           <p className="text-sm text-gray-600 dark:text-gray-400 mb-10 leading-relaxed">
             One-time purchase.  
             Immediate download.  
-            Indicative spend-based estimation — not a regulatory emissions report.
+            Spend-based indicative CO₂e estimation — not a regulatory emissions report.
           </p>
 
           <a
@@ -49,8 +49,15 @@ export default function Pricing() {
           </ul>
         </div>
 
+        <a
+          href="/sample-pdf"
+          className="text-sm text-[#0B3A63] hover:text-[#1FB6C1] underline mt-8 inline-block"
+        >
+          View sample document →
+        </a>
+
         <p className="mt-10 text-xs text-gray-500 dark:text-gray-400">
-          Indicative CO₂e estimation based solely on spending (€).  
+          Spend-based CO₂e estimation based solely on annual expenses. 
           Not a CSRD/ESRS report or audited emissions inventory.
         </p>
 
