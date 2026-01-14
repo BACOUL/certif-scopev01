@@ -2,11 +2,9 @@
 
 export default function Section1() {
   return (
-    <section
-      id="s1"
-      className="scroll-mt-24 border-b border-gray-200 pb-20"
-    >
-      {/* HEADER – premium institutional style */}
+    <section id="s1" className="scroll-mt-24 border-b border-gray-200 pb-20">
+
+      {/* HEADER */}
       <div className="relative p-12 rounded-2xl bg-[#F8FAFC] border border-gray-200 shadow-lg overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/10 to-[#0B3A63]/5 pointer-events-none"></div>
 
@@ -15,53 +13,36 @@ export default function Section1() {
         </h2>
 
         <p className="text-lg text-gray-700 max-w-3xl mt-6 leading-relaxed relative z-10">
-          Certif-Scope generates a standardized CO₂ attestation aligned with the core
-          disclosure structure referenced in the EU Corporate Sustainability Reporting
-          Directive (CSRD – Regulation EU 2022/2464), the ESRS E1 climate framework,
-          and the GHG Protocol “spend-based” calculation pathway. These three pillars
-          shape how European institutions expect environmental indicators to be presented
-          during procurement, banking risk assessment, insurance eligibility, and
-          investment onboarding processes.
+          Certif-Scope provides SMEs with a fast and structured way to deliver CO₂e information 
+          when clients, buyers or banks request it. Instead of complex reporting 
+          or audits, the platform generates a clear and standardized CO₂e Attestation
+          using only annual spending (€). This spend-based method is practical for 
+          organisations that do not track physical activity data and need 
+          an immediate, verifiable document.
         </p>
 
-        {/* Verified external references */}
-        <div className="mt-6 text-sm text-gray-600 underline space-y-1">
-          <a href="https://eur-lex.europa.eu/eli/reg/2022/2464" target="_blank" rel="noopener noreferrer">
-            CSRD – EU Regulation 2022/2464 (EUR-Lex)
-          </a><br />
-          <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32023R2772" target="_blank" rel="noopener noreferrer">
-            ESRS E1 – Climate Standard (Delegated Regulation 2023/2772)
-          </a><br />
-          <a href="https://ghgprotocol.org/standards/scope-3-standard" target="_blank" rel="noopener noreferrer">
-            GHG Protocol – Scope 3 / Spend-Based Method
-          </a>
-        </div>
-
-        {/* Sector demand figures */}
         <p className="text-md text-gray-700 max-w-3xl mt-6 leading-relaxed relative z-10">
-          Across the EU, more than <strong>68% of public procurement procedures</strong> now
-          request environmental indicators or CO₂-related justification from suppliers.
-          Banking and lending operations also require environmental data under the 
-          <strong> EBA Guidelines on Loan Origination and Monitoring (2024)</strong>, and
-          over <strong>55% of insurers</strong> condition eligibility or pricing on climate risk
-          documentation.
+          The output format is designed to fit procurement workflows, supplier portals, 
+          onboarding documentation and banking pre-assessments. The document 
+          includes key indicators, a category breakdown and a unique verification ID 
+          based on a deterministic integrity hash, allowing partners to confirm authenticity 
+          instantly without requiring stored data.
         </p>
       </div>
 
-      {/* 3-Column Grid – Unique design */}
+      {/* 3-COLUMN GRID */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-14">
 
         {/* CARD 1 */}
         <div className="p-8 bg-white rounded-xl shadow-md border border-gray-200 hover:shadow-lg transition">
           <div className="text-[#15B097] text-4xl font-bold mb-3">01</div>
           <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
-            Institution-Ready Formatting
+            Clear, Standardized Output
           </h3>
           <p className="text-gray-600 text-sm leading-relaxed">
-            The attestation follows a structure coherent with ESRS E1 (data categories,
-            activity segmentation, results summary, and scope alignment). While Certif-Scope
-            is not a CSRD-reporting tool, its structure mirrors institutional expectations
-            derived from these frameworks, allowing immediate operational acceptance.
+            Each Attestation follows a simple and consistent format that matches what 
+            procurement teams typically request: indicators, segmentation by 
+            spending category and a summary suitable for evaluation.
           </p>
         </div>
 
@@ -69,13 +50,12 @@ export default function Section1() {
         <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/30 shadow-sm hover:shadow-md transition">
           <div className="text-[#15B097] text-4xl font-bold mb-3">02</div>
           <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
-            Delivered in Under 30 Seconds
+            Instant Calculation
           </h3>
           <p className="text-gray-600 text-sm leading-relaxed">
-            Calculation relies on the officially recognized spend-based pathway defined by
-            the GHG Protocol, suitable for SMEs lacking detailed activity data. This method
-            is endorsed in official guidance as a practical, good-faith estimate when more
-            granular data is unavailable.
+            Based on the spend-based calculation pathway from the GHG Protocol, the 
+            method converts expenses into indicative CO₂e values in seconds—ideal 
+            for SMEs without physical data or internal sustainability staff.
           </p>
         </div>
 
@@ -83,45 +63,43 @@ export default function Section1() {
         <div className="p-8 bg-white rounded-xl shadow-md border border-gray-200 hover:shadow-lg transition">
           <div className="text-[#15B097] text-4xl font-bold mb-3">03</div>
           <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
-            Independent Verification
+            Verifiable Authenticity
           </h3>
           <p className="text-gray-600 text-sm leading-relaxed">
-            The attestation incorporates a cryptographic integrity hash consistent with
-            transparency principles described in ISO 14064-1:2018 (quantification and
-            reporting) and integrity practices recommended in ISO 14083:2023. This enables
-            third-party verification without requiring Certif-Scope servers.
+            Every Attestation includes a cryptographic hash and a verification ID. 
+            Partners can confirm integrity instantly by checking the ID online, 
+            with no login and no stored data required.
           </p>
         </div>
       </div>
 
-      {/* LIMITATIONS BOX – institutional disclaimer */}
+      {/* LIMITATION BOX */}
       <div className="mt-16 p-8 bg-white rounded-xl border border-gray-300 shadow-md">
         <h4 className="text-xl font-bold text-[#0B3A63] mb-3">Important Clarification</h4>
         <p className="text-gray-700 text-sm leading-relaxed">
-          Certif-Scope provides a standardized CO₂ estimation suitable for institutional
-          screening, procurement submissions, financing reviews and audit preparation.
-          It is <strong>not</strong> a full CSRD report, <strong>not</strong> a lifecycle assessment (LCA) tool,
-          and <strong>does not replace</strong> ESRS-compliant annual reporting obligations. It is a 
-          structured, verifiable, good-faith environmental indicator designed for rapid
-          operational compliance.
+          Certif-Scope does not produce regulatory reporting (CSRD/ESRS), audited 
+          greenhouse gas inventories or lifecycle assessments. It generates an 
+          indicative, spend-based CO₂e document suitable for screening, 
+          procurement and pre-assessment workflows where a simple and verifiable 
+          indicator is required.
         </p>
       </div>
 
-      {/* Explanation Strip */}
+      {/* HIGHLIGHT BOX */}
       <div className="mt-16 bg-[#0B3A63] text-white p-10 rounded-xl shadow-md relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#15B097] to-transparent opacity-20"></div>
 
         <h4 className="text-2xl font-bold relative z-10">Why This Matters</h4>
 
         <p className="mt-3 text-white/90 max-w-4xl leading-relaxed relative z-10">
-          Procurement teams, insurers, banks and public agencies increasingly require
-          CO₂ indicators in line with EU sustainability principles. Certif-Scope allows
-          SMEs to provide fast, structured and verifiable documentation aligned with the
-          reference frameworks shaping institutional expectations across the EU.
+          Across Europe, SMEs are increasingly required to provide CO₂e information 
+          during onboarding, procurement, insurance or financing procedures. 
+          Certif-Scope enables them to answer these requests immediately, 
+          using a reliable, consistent and verification-ready document.
         </p>
       </div>
 
-      {/* RETURN BUTTON – identical across ALL sections */}
+      {/* RETURN BUTTON */}
       <div className="mt-12 text-right">
         <a
           href="#top"
