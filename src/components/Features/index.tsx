@@ -3,18 +3,20 @@ export default function Features() {
     <section className="py-24 bg-[#F8FAFC] dark:bg-gray-900">
       <div className="max-w-6xl mx-auto px-6">
 
+        {/* TITLE */}
         <h2 className="text-3xl md:text-4xl font-extrabold text-center text-[#0B3A63]">
           What You Get with Certif-Scope
         </h2>
 
+        {/* INTRO */}
         <p className="text-center mt-4 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed text-lg">
-          Everything you need to answer CO₂e requests quickly and professionally —
-          without consultants, spreadsheets or technical knowledge.
-          Enter your spending, download your document, send it. Done.
+          Everything required to respond to CO₂e information requests professionally and consistently —
+          with no consultants, no reporting complexity and no physical activity data.
         </p>
 
-        <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto my-14"></div>
+        <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto my-14" />
 
+        {/* GRID */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-14">
 
           {/* FEATURE 1 — PDF */}
@@ -24,13 +26,15 @@ export default function Features() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4" />
               </svg>
             </div>
+
             <div>
               <h3 className="text-lg font-semibold text-[#0B3A63]">
                 Professional PDF (ready to send)
               </h3>
               <p className="text-gray-600 dark:text-gray-300 mt-2 leading-relaxed text-sm">
-                A clear and polished CO₂e document your clients, banks or partners understand instantly.
-                No explanations or extra files required — ready to send immediately.
+                A polished and standardized CO₂e Attestation formatted for procurement portals,
+                onboarding workflows and banking requests.  
+                Clear structure. Immediate readability.
               </p>
             </div>
           </div>
@@ -42,13 +46,14 @@ export default function Features() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6l4 2" />
               </svg>
             </div>
+
             <div>
               <h3 className="text-lg font-semibold text-[#0B3A63]">
-                Created in under 60 seconds
+                Instant generation
               </h3>
               <p className="text-gray-600 dark:text-gray-300 mt-2 leading-relaxed text-sm">
-                Enter your annual spending (€) → download your CO₂e document instantly.
-                No technical steps, no consultants, no delays.
+                Enter annual spending (€) and receive your CO₂e Attestation immediately.
+                No manual calculations. No waiting times. No expert intervention.
               </p>
             </div>
           </div>
@@ -60,13 +65,14 @@ export default function Features() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
               </svg>
             </div>
+
             <div>
               <h3 className="text-lg font-semibold text-[#0B3A63]">
-                Simple spending-based method
+                Simple spend-based methodology
               </h3>
               <p className="text-gray-600 dark:text-gray-300 mt-2 leading-relaxed text-sm">
-                No complex activity metrics (kWh, km, litres). No Scope 1 or Scope 2.
-                Just a clear spend-based approach you can complete in minutes.
+                No kWh, no km, no litres. No Scope 1 or Scope 2.  
+                A clear spend-based calculation suitable for screening — not a regulatory emission report.
               </p>
             </div>
           </div>
@@ -78,13 +84,14 @@ export default function Features() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
               </svg>
             </div>
+
             <div>
               <h3 className="text-lg font-semibold text-[#0B3A63]">
-                Unique Verification ID
+                Verification ID + integrity hash
               </h3>
               <p className="text-gray-600 dark:text-gray-300 mt-2 leading-relaxed text-sm">
-                Each document includes a verification code partners can confirm instantly online.
-                Ensures authenticity and prevents document modification.
+                Each PDF includes a unique verification ID and a deterministic hash of the input data.
+                Partners can confirm authenticity in seconds without accounts or logins.
               </p>
             </div>
           </div>
