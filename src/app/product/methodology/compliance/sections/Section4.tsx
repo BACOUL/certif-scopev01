@@ -34,3 +34,66 @@ export default function Section4() {
         </p>
 
         <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300 max-w-5xl leading-relaxed">
+          <li>• CSRD (Corporate Sustainability Reporting Directive)</li>
+          <li>• ESRS (European Sustainability Reporting Standards)</li>
+          <li>• EU Taxonomy mandatory disclosures</li>
+          <li>• ISO 14064-1 certified inventories</li>
+          <li>• ISO 14083 logistics accounting</li>
+          <li>• Supplier-specific carbon declarations</li>
+        </ul>
+      </div>
+
+
+      {/* BLOCK — Misuse Prevention */}
+      <div className="mt-16 p-10 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-2xl shadow">
+        <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
+          Misuse Prevention Rules
+        </h3>
+
+        <p className="text-sm text-gray-700 dark:text-gray-300 max-w-5xl leading-relaxed mb-4">
+          To prevent incorrect interpretation or misleading communication, the following
+          restrictions apply unconditionally:
+        </p>
+
+        <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300 max-w-5xl leading-relaxed">
+          <li>• Outputs cannot be labelled as “audited” or “certified”.</li>
+          <li>• Results cannot be expressed as Scope 1 or Scope 2 emissions.</li>
+          <li>• No equivalence can be claimed with regulatory filings.</li>
+          <li>• No use in green claims or marketing claims.</li>
+          <li>• No merging with supplier-specific primary data.</li>
+        </ul>
+      </div>
+
+
+      {/* BLOCK — Responsibility Clarification */}
+      <div className="mt-16 p-10 bg-[#0B3A63] text-white border border-[#0B3A63] rounded-2xl shadow-lg">
+        <h3 className="text-2xl font-semibold mb-4">
+          Responsibility Clarification
+        </h3>
+
+        <p className="text-white/90 max-w-5xl leading-relaxed mb-4">
+          Certif-Scope does not validate, audit or correct user-provided financial data.
+          Responsibility for input accuracy remains fully with the user or institution.
+        </p>
+
+        <ul className="space-y-2 text-sm text-white/90 max-w-5xl leading-relaxed">
+          <li>• No liability for inaccurate, incomplete or misleading inputs.</li>
+          <li>• No responsibility for third-party interpretations.</li>
+          <li>• No obligation to align with future regulatory updates.</li>
+        </ul>
+      </div>
+
+
+      {/* RETURN BUTTON */}
+      <div className="mt-12 text-right">
+        <a
+          href="#top"
+          className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
+        >
+          Back to summary
+        </a>
+      </div>
+
+    </section>
+  );
+}
