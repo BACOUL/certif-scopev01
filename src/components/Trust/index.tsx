@@ -17,9 +17,9 @@ export default function Trust() {
 
         {/* INTRO */}
         <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed mb-16">
-          Certif-Scope ensures every Attestation follows a uniform structure, applies stable
-          emission factor sources and embeds verifiable metadata. Designed for reviewers who
-          require clarity, reproducibility and a consistent basis for comparison across suppliers.
+          Certif-Scope ensures that every CO₂e Attestation uses a uniform structure, stable
+          emission factor references and embedded verification metadata. Designed to give
+          reviewers clarity, reproducibility and a consistent basis for comparison across suppliers.
         </p>
 
         {/* PILLARS */}
@@ -27,7 +27,7 @@ export default function Trust() {
 
           {/* INTEGRITY */}
           <div className="flex flex-col items-center text-center transition-transform duration-200 hover:-translate-y-1">
-            <svg className="h-12 w-12 text-[#0B3A63] dark:text-gray-200 mb-4" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+            <svg aria-hidden="true" className="h-12 w-12 text-[#0B3A63] dark:text-gray-200 mb-4" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 2l7 4v6c0 5-3.5 9-7 10-3.5-1-7-5-7-10V6l7-4z" />
             </svg>
             <h3 className="text-lg font-semibold text-[#0B3A63] dark:text-gray-100 mb-2">
@@ -35,35 +35,35 @@ export default function Trust() {
             </h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
               Each Attestation includes a dedicated verification ID and deterministic hash.
-              Authenticity can be checked externally, instantly, without credentials or accounts.
+              Authenticity can be confirmed externally in seconds — without accounts or logins.
             </p>
           </div>
 
           {/* STRUCTURE */}
           <div className="flex flex-col items-center text-center transition-transform duration-200 hover:-translate-y-1">
-            <svg className="h-12 w-12 text-[#0B3A63] dark:text-gray-200 mb-4" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+            <svg aria-hidden="true" className="h-12 w-12 text-[#0B3A63] dark:text-gray-200 mb-4" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M4 7h16M4 12h16M4 17h16" />
             </svg>
             <h3 className="text-lg font-semibold text-[#0B3A63] dark:text-gray-100 mb-2">
               Reviewer-aligned structure
             </h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Inputs, methodology and outputs are organised to match procurement and ESG
-              screening practices, reducing follow-up requests and interpretation errors.
+              Inputs, calculations and outputs follow a standardised layout aligned with procurement,
+              banking and ESG workflows — reducing back-and-forth and interpretation errors.
             </p>
           </div>
 
           {/* CONSISTENCY */}
           <div className="flex flex-col items-center text-center transition-transform duration-200 hover:-translate-y-1">
-            <svg className="h-12 w-12 text-[#0B3A63] dark:text-gray-200 mb-4" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+            <svg aria-hidden="true" className="h-12 w-12 text-[#0B3A63] dark:text-gray-200 mb-4" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h18v4H3V3zm0 7h18v11H3V10zm6 3h6" />
             </svg>
             <h3 className="text-lg font-semibold text-[#0B3A63] dark:text-gray-100 mb-2">
               Consistent and reproducible
             </h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Using version-controlled emission factors, the same inputs always produce the same
-              CO₂e output. A predictable and auditable process for compliance teams.
+              Version-controlled emission factors ensure the same inputs always produce the same
+              CO₂e result. A stable and auditable basis for institutional decision-making.
             </p>
           </div>
 
@@ -77,4 +77,4 @@ export default function Trust() {
       </div>
     </section>
   );
-}
+          }
