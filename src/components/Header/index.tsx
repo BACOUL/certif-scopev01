@@ -19,17 +19,19 @@ export default function Header() {
     <header className="fixed top-0 w-full z-50 bg-white/95 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 h-16 flex items-center">
       <div className="max-w-7xl mx-auto w-full px-4 flex items-center justify-between">
 
+        {/* LOGO */}
         <Link href="/" onClick={closeAll} aria-label="Home">
           <Image
             src="/logo.png"
             alt="Certif-Scope Logo"
-            width={180}
-            height={55}
+            width={200}
+            height={60}
             priority
             className="w-40 md:w-48 h-auto"
           />
         </Link>
 
+        {/* MOBILE BURGER */}
         <button
           onClick={() => setOpen(!open)}
           className="lg:hidden w-10 h-10 flex flex-col justify-center items-center"
@@ -41,7 +43,9 @@ export default function Header() {
           <span className={`h-[3px] w-7 bg-gray-900 dark:bg-gray-200 rounded transition-all ${open ? "-rotate-45 -translate-y-1" : ""}`} />
         </button>
 
+        {/* NAVIGATION */}
         <nav
+          id="main-nav"
           className={`absolute lg:static top-16 right-4 w-[260px] lg:w-auto bg-white dark:bg-gray-900 rounded-xl shadow-lg lg:shadow-none border border-gray-200 dark:border-gray-700 p-5 lg:p-0 transition-all duration-200 ${
             open
               ? "opacity-100 visible pointer-events-auto"
@@ -50,6 +54,7 @@ export default function Header() {
         >
           <ul className="flex flex-col lg:flex-row gap-4 lg:gap-8">
 
+            {/* HOME */}
             <li>
               <Link
                 href="/"
@@ -62,10 +67,13 @@ export default function Header() {
               </Link>
             </li>
 
+            {/* PRODUCT DROPDOWN */}
             <li className="relative">
               <button
                 onClick={() => setDropdown(!dropdown)}
                 className="flex items-center gap-1 font-medium text-gray-800 dark:text-gray-200"
+                aria-haspopup="true"
+                aria-expanded={dropdown}
               >
                 CO₂e Attestation
                 <span className={`transition-transform ${dropdown ? "rotate-180" : ""}`}>▼</span>
@@ -86,6 +94,7 @@ export default function Header() {
               </div>
             </li>
 
+            {/* PRICING */}
             <li>
               <Link
                 href="/pricing"
@@ -98,6 +107,7 @@ export default function Header() {
               </Link>
             </li>
 
+            {/* VERIFY */}
             <li>
               <Link
                 href="/verify"
@@ -115,4 +125,4 @@ export default function Header() {
       </div>
     </header>
   );
-                  }
+          }
