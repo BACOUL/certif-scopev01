@@ -14,10 +14,11 @@ export default function Footer() {
             <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
               Certif-Scope
             </h2>
+
             <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
-              Europe’s first platform for instant spend-based CO₂e documents.  
-              Designed for SMEs needing to answer CO₂ requests fast and professionally.  
-              Created in under 60 seconds — clear, simple, ready to send.
+              Europe’s first platform for instant, verifiable spend-based CO₂e attestations.
+              Built for SMEs needing to respond quickly to client, banking or procurement requests.
+              Clear, standardized, and ready to send immediately.
             </p>
           </div>
 
@@ -26,13 +27,14 @@ export default function Footer() {
             <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
               Product
             </h3>
+
             <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
               <li><Link href="/product" className="hover:text-[#1FB6C1]">Overview</Link></li>
               <li><Link href="/product/methodology" className="hover:text-[#1FB6C1]">Methodology</Link></li>
               <li><Link href="/product/regulations" className="hover:text-[#1FB6C1]">Regulations</Link></li>
               <li><Link href="/product/limitations" className="hover:text-[#1FB6C1]">Limitations</Link></li>
               <li><Link href="/pricing" className="hover:text-[#1FB6C1]">Pricing</Link></li>
-              <li><Link href="/verify" className="hover:text-[#1FB6C1]">Verify ID</Link></li>
+              <li><Link href="/verify" className="hover:text-[#1FB6C1]">Verify Attestation</Link></li>
             </ul>
           </div>
 
@@ -41,9 +43,10 @@ export default function Footer() {
             <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
               Documentation
             </h3>
+
             <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
-              <li><Link href="/sample-pdf" className="hover:text-[#1FB6C1]">Sample PDF</Link></li>
-              <li><Link href="/api" className="hover:text-[#1FB6C1]">API Reference (optional)</Link></li>
+              <li><Link href="/sample-pdf" className="hover:text-[#1FB6C1]">Sample Attestation</Link></li>
+              <li><Link href="/api" className="hover:text-[#1FB6C1]">API (optional)</Link></li>
             </ul>
           </div>
 
@@ -52,6 +55,7 @@ export default function Footer() {
             <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
               Legal
             </h3>
+
             <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
               <li><Link href="/legal" className="hover:text-[#1FB6C1]">Legal Notice</Link></li>
               <li><Link href="/privacy" className="hover:text-[#1FB6C1]">Privacy Policy</Link></li>
@@ -61,10 +65,10 @@ export default function Footer() {
 
         </div>
 
-        {/* TRUST LINE */}
+        {/* TRUST DISCLAIMER */}
         <div className="mt-10 text-center text-xs text-gray-500 dark:text-gray-400">
-          Certif-Scope provides an indicative, spend-based CO₂e document.  
-          Not a regulatory emissions report. Results depend on user-provided data.
+          Certif-Scope provides an indicative, spend-based CO₂e attestation for screening and informational use. 
+          It is not a regulatory emissions report. Results depend on user-provided spending data.
         </div>
 
         {/* COPYRIGHT */}
@@ -77,4 +81,4 @@ export default function Footer() {
       </div>
     </footer>
   );
-              }
+}
