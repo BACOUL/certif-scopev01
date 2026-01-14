@@ -1,3 +1,4 @@
+
 "use client";
 
 export default function Section5() {
@@ -7,88 +8,95 @@ export default function Section5() {
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
 
-      {/* HEADER — institutional, unique scope */}
+      {/* HEADER */}
       <div className="p-12 bg-[#F8FAFC] border border-gray-200 rounded-2xl shadow-md">
         <h2 className="text-4xl md:text-5xl font-extrabold text-[#0B3A63]">
           5. Input Normalisation Rules
         </h2>
 
         <p className="text-lg text-gray-700 max-w-4xl mt-6 leading-relaxed">
-          This section defines the standardisation constraints applied to user-provided
-          financial data before computation. Inputs must follow strict formatting and
-          structural conventions to ensure deterministic mapping, reproducibility and
-          audit alignment. No inference, extrapolation or automated reclassification is
-          performed on user entries.
+          This section formalises the constraints applied to expenditure inputs before
+          CO₂e computation. The spend-based engine requires strictly formatted, numeric
+          values to ensure deterministic results, audit reproducibility and institutional
+          comparability. No inference, correction, currency conversion or estimation is
+          ever performed.
         </p>
       </div>
 
 
-      {/* BLOCK — REQUIRED STRUCTURE */}
+      {/* REQUIRED INPUT FORMAT */}
       <div className="mt-16 p-10 bg-white border border-gray-200 rounded-xl shadow-md">
         <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
           Required Input Structure
         </h3>
 
-        <ul className="space-y-2 text-gray-700 text-sm leading-relaxed">
-          <li>• Inputs must be provided as annual expenditure per category</li>
-          <li>• Numerical values must be expressed in euros (EUR) only</li>
-          <li>• No currency conversion is performed by the system</li>
-          <li>• Each value corresponds to a single predefined category</li>
-          <li>• No aggregation of categories is allowed at the input stage</li>
+        <ul className="space-y-2 text-gray-700 text-sm">
+          <li>• Annual expenditure per category</li>
+          <li>• Numeric values only (float or integer)</li>
+          <li>• Currency strictly in euros (EUR)</li>
+          <li>• One value = one category, no multi-assignment</li>
+          <li>• Missing categories default to zero (no extrapolation)</li>
         </ul>
       </div>
 
 
-      {/* BLOCK — VALIDATION RULES */}
-      <div className="mt-20 p-10 bg-[#F8FAFC] border border-[#15B097]/30 rounded-xl shadow-sm">
+      {/* HARD VALIDATION RULES */}
+      <div className="mt-16 p-10 bg-[#F8FAFC] border border-gray-200 rounded-xl shadow-sm">
         <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
-          Validation Constraints
+          Hard Validation Rules (Non-Negotiable)
         </h3>
 
-        <ul className="space-y-2 text-gray-700 text-sm leading-relaxed">
-          <li>• Values must be non-negative</li>
-          <li>• Values must be provided with a maximum precision of two decimals</li>
-          <li>• Missing values default to zero (no estimation applied)</li>
-          <li>• Incorrect formats trigger a validation error without fallback</li>
-          <li>• No automated corrections (rounding is performed only at output stage)</li>
+        <ul className="space-y-2 text-sm text-gray-700">
+          <li>• Negative values rejected</li>
+          <li>• Non-numeric characters rejected</li>
+          <li>• Empty strings treated as zero</li>
+          <li>• Infinity / NaN stops computation</li>
+          <li>• Mixed currency formats rejected</li>
+          <li>• Thousands separators ignored, not interpreted</li>
         </ul>
+
+        <p className="mt-4 text-gray-700 text-sm leading-relaxed max-w-4xl">
+          These rules guarantee that institutional users can reproduce the exact same input
+          validation steps without ambiguity or hidden assumptions.
+        </p>
       </div>
 
 
-      {/* BLOCK — NON-PERMITTED INPUT OPERATIONS */}
-      <div className="mt-20 p-10 bg-white border border-gray-200 rounded-xl shadow-md">
+      {/* NO-INFERENCE POLICY */}
+      <div className="mt-16 p-10 bg-white border border-gray-200 rounded-xl shadow-md">
         <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
-          Prohibited Input Transformations
+          No-Inference, No-Estimation Policy
         </h3>
 
-        <p className="text-gray-700 text-sm leading-relaxed mb-4">
-          To preserve reproducibility and eliminate ambiguity, the following operations
-          are explicitly not performed during input normalisation:
+        <p className="text-gray-700 text-sm max-w-4xl leading-relaxed">
+          Certif-Scope never attempts to guess, interpret or infer missing values. No
+          AI, machine learning, smoothing, predictive fill or statistical estimation is
+          used at any stage. If data is not provided, its contribution is zero.
         </p>
 
-        <ul className="space-y-2 text-gray-700 text-sm leading-relaxed">
-          <li>• No proportional allocation between multiple categories</li>
-          <li>• No smoothing, averaging or statistical redistribution</li>
-          <li>• No vendor-based categorisation (function-based only)</li>
-          <li>• No inference from incomplete data</li>
-          <li>• No multi-year extrapolation</li>
+        <ul className="mt-4 space-y-2 text-sm text-gray-700">
+          <li>• No supplier-based assumptions</li>
+          <li>• No sector-average inflation of missing values</li>
+          <li>• No interpolation or curve fitting</li>
+          <li>• No historical extrapolation</li>
         </ul>
       </div>
 
 
-      {/* BLOCK — WHY THESE RULES EXIST */}
-      <div className="mt-20 p-10 bg-[#0B3A63] text-white rounded-xl shadow-md relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/20 to-transparent opacity-20"></div>
+      {/* AUDIT REPRODUCIBILITY */}
+      <div className="mt-16 p-10 bg-[#0B3A63] text-white rounded-xl shadow-md">
+        <h3 className="text-2xl font-semibold mb-4">Audit Reproducibility</h3>
 
-        <h3 className="text-2xl font-semibold relative z-10">
-          Rationale for Strict Input Normalisation
-        </h3>
+        <ul className="text-sm text-white/90 space-y-2 leading-relaxed">
+          <li>• Input validation can be repeated exactly by auditors</li>
+          <li>• No hidden transformations or corrections</li>
+          <li>• No implicit unit changes or conversions</li>
+          <li>• Deterministic behaviour guaranteed across versions</li>
+        </ul>
 
-        <p className="mt-4 text-white/90 max-w-5xl leading-relaxed relative z-10">
-          These constraints ensure that results are deterministic, auditable and invariant
-          across users, institutions or repeated submissions. Input standardisation prevents
-          ambiguity in category mapping, avoids inconsistent data preparation practices and 
-          maintains strict alignment with spend-based principles.
+        <p className="mt-4 text-white/80 text-sm max-w-4xl leading-relaxed">
+          These constraints ensure compliance with GHG Protocol spend-based principles
+          and institutional audit requirements.
         </p>
       </div>
 
@@ -105,4 +113,4 @@ export default function Section5() {
 
     </section>
   );
-}
+      }
