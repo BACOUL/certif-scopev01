@@ -16,8 +16,8 @@ export default function Header() {
   };
 
   return (
-    <header className="fixed top-0 w-full z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200/40 dark:border-gray-700/40">
-      <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+    <header className="fixed top-0 w-full z-50 h-20 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200/40 dark:border-gray-700/40">
+      <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
 
         {/* LOGO */}
         <Link href="/" aria-label="Certif-Scope Home" onClick={closeAll}>
@@ -48,7 +48,7 @@ export default function Header() {
         <nav
           id="main-navigation"
           role="navigation"
-          className={`absolute lg:static top-full right-6 lg:right-auto mt-3 lg:mt-0 w-[260px] lg:w-auto bg-white dark:bg-gray-900 rounded-xl shadow-lg lg:shadow-none border dark:border-none p-5 lg:p-0 transition-all duration-200 ${
+          className={`absolute lg:static top-20 right-6 lg:right-auto w-[260px] lg:w-auto bg-white dark:bg-gray-900 rounded-xl shadow-lg lg:shadow-none border dark:border-none p-5 lg:p-0 transition-all duration-200 ${
             open
               ? "opacity-100 visible pointer-events-auto"
               : "opacity-0 invisible pointer-events-none lg:opacity-100 lg:visible lg:pointer-events-auto"
