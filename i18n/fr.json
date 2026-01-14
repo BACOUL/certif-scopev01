@@ -1,0 +1,25 @@
+{
+  "faq.title": "Questions fréquentes",
+  "faq.disclaimer": "Estimation indicative basée sur les dépenses. Pas un rapport CSRD/ESRS, non audité, ne remplace pas un inventaire complet des émissions.",
+
+  "faq.q0": "Les clients, banques ou acheteurs acceptent-ils le document ?",
+  "faq.a0": "Oui. Certif-Scope est utilisé pour l’onboarding fournisseurs, les contrôles d’achats et les vérifications ESG lorsqu’une valeur indicative CO₂e est demandée. Ce n’est pas un rapport audité, mais un format standardisé que les auditeurs peuvent comparer facilement.",
+
+  "faq.q1": "Combien de temps faut-il pour générer le document ?",
+  "faq.a1": "Une fois les dépenses annuelles saisies, l’attestation est générée en moins d’une minute. Aucun consultant, aucun délai et aucun calcul manuel.",
+
+  "faq.q2": "Que vais-je recevoir exactement ?",
+  "faq.a2": "Un PDF structuré incluant les indicateurs CO₂e, le détail par catégories, la version du dataset, l’horodatage, un identifiant de vérification et un hash d’intégrité déterministe.",
+
+  "faq.q3": "Comment fonctionne la vérification ?",
+  "faq.a3": "La vérification est déterministe et ne dépend d’aucune base de données stockée. Les partenaires scannent le QR code ou saisissent l’ID pour confirmer l’authenticité.",
+
+  "faq.q4": "Quelle méthodologie est utilisée ?",
+  "faq.a4": "Une méthode simple basée sur les dépenses, alignée avec le Scope 3 Catégorie 1. Seules les dépenses financières (€) sont utilisées. Ce n’est pas un rapport CSRD/ESRS.",
+
+  "faq.q5": "Mes données sont-elles stockées ?",
+  "faq.a5": "Non. Les données sont traitées uniquement lors de la génération et ne sont jamais conservées. La vérification repose sur une intégrité cryptographique intégrée dans le document.",
+
+  "faq.q6": "Quelles sont les limites ?",
+  "faq.a6": "C’est une estimation indicative basée sur les dépenses. Non auditée, non CSRD/ESRS, ne couvre pas les Scopes 1 et 2."
+}
