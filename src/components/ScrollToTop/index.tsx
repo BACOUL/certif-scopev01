@@ -10,21 +10,27 @@ export default function ScrollToTop() {
       setVisible(window.scrollY > 300);
     };
 
-    const onScroll = () => requestAnimationFrame(handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   return (
     <div className="fixed right-6 bottom-6 z-50">
       <button
         onClick={scrollToTop}
+        title="Scroll to top"
         aria-label="Scroll to top"
+        role="button"
         className={`
           bg-[#1FB6C1] hover:bg-[#18A8AD] text-white 
           flex h-12 w-12 items-center justify-center
@@ -35,6 +41,8 @@ export default function ScrollToTop() {
           ${visible ? "opacity-100" : "opacity-0 pointer-events-none"}
         `}
       >
+        <span className="sr-only">Return to top of page</span>
+
         <svg
           aria-hidden="true"
           width="20"
