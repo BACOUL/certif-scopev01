@@ -15,7 +15,7 @@ import Section12 from "./sections/Section12";
 
 export default function MethodologyPage() {
   return (
-    <div className="max-w-7xl mx-auto px-6 pt-32 md:pt-24 pb-24">
+    <div className="max-w-7xl mx-auto px-6 pt-8 pb-24">
 
       {/* INTRODUCTION */}
       <div className="mb-12">
@@ -69,4 +69,4 @@ export default function MethodologyPage() {
 
     </div>
   );
-            }
+}
