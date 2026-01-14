@@ -5,21 +5,22 @@ export default function ProblemSolution() {
 
         {/* TITLE */}
         <h2 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] leading-snug">
-          SMEs face CO₂e requests every day — but lack a simple, practical way to respond.
+          SMEs are asked for CO₂e figures — but lack a simple, verifiable way to deliver them.
         </h2>
 
         {/* PROBLEM */}
         <p className="mt-6 text-lg md:text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-          Buyers, banks and insurers increasingly ask suppliers for CO₂e information, yet traditional
-          reporting requires detailed activity data, audits and specialised expertise. Most SMEs 
-          cannot generate this data on demand, creating delays, friction and repeated follow-up requests.
+          Buyers, banks and insurers increasingly request CO₂e information during onboarding and 
+          risk assessments. Traditional reporting requires detailed activity data, audits and 
+          specialist expertise. Most SMEs cannot provide this on demand, causing delays, friction 
+          and repetitive back-and-forth with reviewers. Not a regulatory report and not audited.
         </p>
 
         {/* SOLUTION */}
         <p className="mt-6 text-lg md:text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-          Certif-Scope offers a realistic alternative: a clear, structured CO₂e Attestation generated 
-          directly from annual spending (€). A consistent format that fits procurement checks, ESG 
-          questionnaires and onboarding processes — without consultants or technical reporting.
+          Certif-Scope provides a clear alternative: a standardized, spend-based CO₂e Attestation 
+          generated directly from annual expenses. Fully structured, comparable across suppliers, 
+          and verifiable instantly — without consultants, surveys or technical reporting workflows.
         </p>
 
         {/* SEPARATOR */}
@@ -33,10 +34,10 @@ export default function ProblemSolution() {
             <svg className="h-14 w-14 text-[#0B3A63]" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6l4 2m5-2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            <h3 className="text-xl font-semibold text-[#0B3A63] dark:text-white">Built for real institutional workflows</h3>
+            <h3 className="text-xl font-semibold text-[#0B3A63] dark:text-white">Aligned with real workflows</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 max-w-xs">
-              A format aligned with what procurement teams, banks and insurers routinely request
-              during supplier onboarding and risk assessments.
+              Designed around procurement, credit risk and insurance screening processes that 
+              routinely request quick, indicative CO₂e values from SMEs.
             </p>
           </div>
 
@@ -47,8 +48,8 @@ export default function ProblemSolution() {
             </svg>
             <h3 className="text-xl font-semibold text-[#0B3A63] dark:text-white">Transparent spend-based method</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 max-w-xs">
-              A straightforward calculation grounded in financial inputs and stable emission
-              factor sources. No physical activity data or technical modelling required.
+              Uses only annual spending (€) with stable emission factor sources. No operational 
+              data, no modelling and no complexity — easy for SMEs to complete.
             </p>
           </div>
 
@@ -57,10 +58,10 @@ export default function ProblemSolution() {
             <svg className="h-14 w-14 text-[#0B3A63]" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 11.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm8.485-4.243l-4.95-4.95a1 1 0 00-1.414 0L4.343 12.586a1 1 0 000 1.414l4.95 4.95a1 1 0 001.414 0l9.778-9.778a1 1 0 000-1.414z" />
             </svg>
-            <h3 className="text-xl font-semibold text-[#0B3A63] dark:text-white">Consistent across all suppliers</h3>
+            <h3 className="text-xl font-semibold text-[#0B3A63] dark:text-white">Consistent across suppliers</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 max-w-xs">
-              Every Attestation follows the same structure, making reviews faster and enabling
-              easy comparison across multiple vendors or applicants.
+              Same structure, same layout, same calculation basis. Enables fast comparison across 
+              multiple vendors — reducing review time and eliminating ambiguity.
             </p>
           </div>
 
@@ -74,7 +75,14 @@ export default function ProblemSolution() {
           View sample document →
         </a>
 
+        <a
+          href="#how-it-works"
+          className="block mt-4 text-xs text-[#0B3A63] hover:text-[#1FB6C1] underline"
+        >
+          See how it’s generated →
+        </a>
+
       </div>
     </section>
   );
-              }
+        }
