@@ -5,21 +5,21 @@ export default function ProblemSolution() {
 
         {/* TITLE */}
         <h2 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] leading-snug">
-          SMEs are increasingly asked for CO₂e evidence — without a simple or consistent way to provide it.
+          SMEs face CO₂e requests every day — but lack a simple, practical way to respond.
         </h2>
 
         {/* PROBLEM */}
         <p className="mt-6 text-lg md:text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-          Traditional CO₂e reporting requires physical activity data, technical modelling, 
-          consultants and long questionnaires. Small businesses rarely have the time, tools or 
-          expertise to produce these documents when banks, insurers or buyers request them.
+          Buyers, banks and insurers increasingly ask suppliers for CO₂e information, yet traditional
+          reporting requires detailed activity data, audits and specialised expertise. Most SMEs 
+          cannot generate this data on demand, creating delays, friction and repeated follow-up requests.
         </p>
 
         {/* SOLUTION */}
         <p className="mt-6 text-lg md:text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-          Certif-Scope provides a practical alternative: a single, structured CO₂e Attestation 
-          generated from annual spending (€). A consistent document that fits procurement checks, 
-          risk assessments and onboarding workflows — without engaging auditors or consultants.
+          Certif-Scope offers a realistic alternative: a clear, structured CO₂e Attestation generated 
+          directly from annual spending (€). A consistent format that fits procurement checks, ESG 
+          questionnaires and onboarding processes — without consultants or technical reporting.
         </p>
 
         {/* SEPARATOR */}
@@ -28,36 +28,39 @@ export default function ProblemSolution() {
         {/* THREE INSTITUTIONAL POINTS */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-14">
 
+          {/* POINT 1 */}
           <div className="flex flex-col items-center gap-4">
             <svg className="h-14 w-14 text-[#0B3A63]" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6l4 2m5-2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            <h3 className="text-xl font-semibold text-[#0B3A63] dark:text-white">Designed for real workflows</h3>
+            <h3 className="text-xl font-semibold text-[#0B3A63] dark:text-white">Built for real institutional workflows</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 max-w-xs">
-              The document format matches what procurement teams, banks and insurers request during 
-              supplier onboarding and ESG screening.
+              A format aligned with what procurement teams, banks and insurers routinely request
+              during supplier onboarding and risk assessments.
             </p>
           </div>
 
+          {/* POINT 2 */}
           <div className="flex flex-col items-center gap-4">
             <svg className="h-14 w-14 text-[#0B3A63]" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-9 4h9m3-14H6a2 2 0 00-2 2v14l4-4h10a2 2 0 002-2V4a2 2 0 00-2-2z" />
             </svg>
-            <h3 className="text-xl font-semibold text-[#0B3A63] dark:text-white">Clear methodology</h3>
+            <h3 className="text-xl font-semibold text-[#0B3A63] dark:text-white">Transparent spend-based method</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 max-w-xs">
-              Based on a spend-based model aligned with widely-used estimation practices and 
-              transparent emission factor sources.
+              A straightforward calculation grounded in financial inputs and stable emission
+              factor sources. No physical activity data or technical modelling required.
             </p>
           </div>
 
+          {/* POINT 3 */}
           <div className="flex flex-col items-center gap-4">
             <svg className="h-14 w-14 text-[#0B3A63]" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 11.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm8.485-4.243l-4.95-4.95a1 1 0 00-1.414 0L4.343 12.586a1 1 0 000 1.414l4.95 4.95a1 1 0 001.414 0l9.778-9.778a1 1 0 000-1.414z" />
             </svg>
-            <h3 className="text-xl font-semibold text-[#0B3A63] dark:text-white">Consistent & comparable</h3>
+            <h3 className="text-xl font-semibold text-[#0B3A63] dark:text-white">Consistent across all suppliers</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 max-w-xs">
-              Every Attestation follows the same structure, ensuring comparability across suppliers 
-              and easier evaluation for institutional reviewers.
+              Every Attestation follows the same structure, making reviews faster and enabling
+              easy comparison across multiple vendors or applicants.
             </p>
           </div>
 
@@ -74,4 +77,4 @@ export default function ProblemSolution() {
       </div>
     </section>
   );
-}
+              }
