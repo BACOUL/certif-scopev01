@@ -20,7 +20,7 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
 
         {/* LOGO */}
-        <Link href="/" onClick={closeAll} aria-label="Certif-Scope Home">
+        <Link href="/" aria-label="Certif-Scope Home" onClick={closeAll}>
           <Image
             src="/logo.png"
             alt="Certif-Scope Logo"
@@ -31,7 +31,7 @@ export default function Header() {
           />
         </Link>
 
-        {/* MOBILE MENU */}
+        {/* MOBILE TOGGLE */}
         <button
           onClick={() => setOpen(!open)}
           aria-label={open ? "Close menu" : "Open menu"}
@@ -44,7 +44,7 @@ export default function Header() {
           <span className={`h-[3px] w-7 bg-gray-900 dark:bg-gray-100 rounded transition-transform duration-300 ${open ? "-rotate-45 -translate-y-1" : ""}`} />
         </button>
 
-        {/* MENU */}
+        {/* NAVIGATION */}
         <nav
           id="main-navigation"
           role="navigation"
@@ -69,7 +69,7 @@ export default function Header() {
               </Link>
             </li>
 
-            {/* ATTESTATION MENU */}
+            {/* DROPDOWN PRODUCT */}
             <li className="relative">
               <button
                 onClick={() => setDropdown(!dropdown)}
@@ -77,7 +77,7 @@ export default function Header() {
                 aria-expanded={dropdown}
                 className="flex items-center gap-1 text-base font-medium text-gray-800 dark:text-gray-200 hover:text-[#1FB6C1] transition"
               >
-                CO₂e Document
+                CO₂e Attestation
                 <span className={`transition-transform ${dropdown ? "rotate-180" : ""}`}>▼</span>
               </button>
 
@@ -87,29 +87,29 @@ export default function Header() {
               >
                 <Link
                   href="/product"
-                  onClick={closeAll}
                   role="menuitem"
+                  onClick={closeAll}
                   className="block py-2 px-3 rounded hover:bg-gray-100 dark:hover:bg-gray-800 text-sm"
                 >
-                  What You Receive (Instant & Verified)
+                  What You Receive (Instant & Verifiable)
                 </Link>
 
                 <Link
                   href="/product/methodology"
-                  onClick={closeAll}
                   role="menuitem"
+                  onClick={closeAll}
                   className="block py-2 px-3 rounded hover:bg-gray-100 dark:hover:bg-gray-800 text-sm"
                 >
-                  How It’s Generated
+                  How It’s Generated (Spend-Based)
                 </Link>
 
                 <Link
                   href="/product/regulations"
-                  onClick={closeAll}
                   role="menuitem"
+                  onClick={closeAll}
                   className="block py-2 px-3 rounded hover:bg-gray-100 dark:hover:bg-gray-800 text-sm"
                 >
-                  Compliance & Scope
+                  Compliance, Scope & Legal Limits
                 </Link>
               </div>
             </li>
@@ -136,17 +136,17 @@ export default function Header() {
                   pathname === "/verify" ? "text-[#1FB6C1]" : "text-gray-800 dark:text-gray-200"
                 }`}
               >
-                Verify a Document
+                Verify Attestation
               </Link>
             </li>
 
-            {/* CTA */}
+            {/* MAIN CTA */}
             <li className="hidden lg:block">
               <Link
                 href="/assessment"
                 className="bg-[#1FB6C1] text-white font-semibold px-6 py-3 rounded-lg shadow hover:opacity-90 transition"
               >
-                Generate CO₂e Document Now
+                Generate Attestation
               </Link>
             </li>
 
