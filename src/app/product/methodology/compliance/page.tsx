@@ -13,7 +13,7 @@ import Section10 from "./sections/Section10";
 
 export default function ComplianceLegalPage() {
   return (
-    <div className="max-w-7xl mx-auto px-6 pt-24 pb-24">
+    <div className="max-w-7xl mx-auto px-6 mt-20 pb-24">
 
       {/* INTRODUCTION */}
       <div className="mb-12">
@@ -22,9 +22,9 @@ export default function ComplianceLegalPage() {
         </h1>
 
         <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-          Full legal, regulatory and compliance framework: legal boundaries, 
-          CSRD/ESRS positioning, GDPR conformity, liability, permitted use cases, 
-          prohibited use cases, data governance, versioning stability and 
+          Full legal, regulatory and compliance framework: legal boundaries,
+          CSRD/ESRS positioning, GDPR conformity, liability, permitted use cases,
+          prohibited use cases, data governance, versioning stability and
           institutional compliance guarantees.
         </p>
       </div>
@@ -36,7 +36,6 @@ export default function ComplianceLegalPage() {
         </h2>
 
         <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-gray-700 dark:text-gray-300 text-base">
-
           <li><a href="#s1" className="underline hover:text-[#0B3A63]">1. Legal Scope & Boundaries</a></li>
           <li><a href="#s2" className="underline hover:text-[#0B3A63]">2. Regulatory Positioning</a></li>
           <li><a href="#s3" className="underline hover:text-[#0B3A63]">3. Nature of the Output</a></li>
@@ -47,7 +46,6 @@ export default function ComplianceLegalPage() {
           <li><a href="#s8" className="underline hover:text-[#0B3A63]">8. User Input Limitations & Data Integrity</a></li>
           <li><a href="#s9" className="underline hover:text-[#0B3A63]">9. Emission Factor Stability & Backward Compatibility</a></li>
           <li><a href="#s10" className="underline hover:text-[#0B3A63]">10. Legal Disclaimer & Interpretation Rules</a></li>
-
         </ul>
       </div>
 
@@ -67,4 +65,4 @@ export default function ComplianceLegalPage() {
 
     </div>
   );
-        }
+      }
