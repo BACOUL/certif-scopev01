@@ -10,25 +10,25 @@ export default function Hero() {
         Europe’s first platform for instant, verifiable CO₂e attestations
       </p>
 
-      {/* MAIN TITLE — Strong Institutional */}
+      {/* MAIN TITLE — Strong & Clear */}
       <h1 className="text-[2rem] md:text-[3.2rem] font-extrabold text-[#0B3A63] leading-snug tracking-tight">
         Your CO₂e Attestation. Ready in Seconds.
         <br />
         <span className="text-[#1FB6C1]">
-          Standardized. Verification-Ready. Accepted Across Europe.
+          Accepted Across Europe.
         </span>
       </h1>
 
-      {/* DESCRIPTION */}
+      {/* DESCRIPTION — No repetition, new information */}
       <p className="text-base md:text-lg text-[#475569] max-w-2xl mx-auto mt-5 leading-relaxed">
-        Certif-Scope transforms your annual spending (€) into a standardized, verifiable CO₂e
-        Attestation suitable for procurement teams, banking checks, regulatory questionnaires
-        and supplier onboarding. Fully spend-based — no physical data required.
+        Certif-Scope converts your annual spending (€) into a clear, compliant CO₂e
+        Attestation recognised by procurement teams, banks, insurers and public
+        institutions. A single document designed for European compliance workflows.
       </p>
 
-      {/* SUBTEXT */}
+      {/* SUBTEXT — Unique reinforcement */}
       <p className="text-sm text-[#0B3A63]/80 font-medium mt-3">
-        A compliant document your partners can verify instantly.
+        A document your partners can verify instantly.
       </p>
 
       {/* IMAGE */}
@@ -73,4 +73,4 @@ export default function Hero() {
 
     </section>
   );
-}
+        }
