@@ -4,65 +4,65 @@ export default function Testimonials() {
   const items = [
     {
       initials: "MR",
-      text: "A large client requested CO₂e information for onboarding and we had no method or data. Certif-Scope generated a clean, clear document in minutes. It matched exactly what they needed for their procurement checks.",
+      text: "A major client requested CO₂e information for onboarding and we had no method or data. Certif-Scope generated a clean and structured document instantly. It matched exactly what their procurement team expected.",
       author: "Mark Reynolds",
       role: "Construction — United Kingdom",
     },
     {
       initials: "ID",
-      text: "The format is ideal for procurement workflows. Simple indicators, structured layout and a verification code our partners can check instantly. It saved hours of manual preparation.",
+      text: "The format fits perfectly into procurement workflows. Clear indicators, standardized layout and a verification code our partners could check in seconds. It eliminated follow-up questions.",
       author: "Isabel Duarte",
       role: "Online Retail — Portugal",
     },
     {
       initials: "DM",
-      text: "Many clients ask for CO₂e numbers but never specify the methodology. Certif-Scope allowed us to answer quickly and consistently without consultants or complex data collection.",
+      text: "Clients often ask for CO₂e figures but never define a method. Certif-Scope allowed us to provide consistent, spend-based values immediately without hiring consultants.",
       author: "Daniel Moretti",
       role: "Consulting — Italy",
     },
   ];
 
   return (
-    <section className="w-full bg-[#F8FAFC] py-20">
-      <div className="max-w-4xl mx-auto px-6 text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold text-[#0F172A] mb-2">
+    <section className="w-full bg-[#F8FAFC] py-24">
+      <div className="max-w-4xl mx-auto px-6 text-center mb-14">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-3">
           What European Businesses Say
         </h2>
-        <p className="text-[#475569] text-base md:text-lg max-w-xl mx-auto">
-          SMEs across Europe use Certif-Scope to respond quickly, clearly and consistently to CO₂e requests
-          during onboarding, procurement or ESG questionnaires. Instant, spend-based and easy to share.
+        <p className="text-[#475569] text-base md:text-lg max-w-xl mx-auto leading-relaxed">
+          Real feedback from SMEs using Certif-Scope to respond to CO₂e requests quickly and professionally. 
+          Instant, spend-based and easy for clients to verify. 
           Not a regulatory emissions report.
         </p>
       </div>
 
-      <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
         {items.map((item, idx) => (
           <div
             key={idx}
-            className="bg-white rounded-xl shadow-lg border border-gray-100 p-6 flex flex-col h-full"
+            className="bg-white rounded-2xl shadow-lg border border-gray-100 p-7 flex flex-col h-full transition-transform duration-200 hover:-translate-y-1"
           >
             <div
-              className="w-14 h-14 rounded-full bg-[#1FB6C1] flex items-center justify-center text-xl font-bold text-white mb-4"
-              aria-label={`Initials of ${item.author}`}
+              className="w-14 h-14 rounded-full bg-[#1FB6C1] flex items-center justify-center text-xl font-bold text-white mb-5 shadow-md"
+              aria-hidden="true"
             >
               {item.initials}
             </div>
 
-            <p className="text-[#1E293B] text-base leading-relaxed mb-4">
+            <p className="text-[#1E293B] text-base leading-relaxed mb-5">
               {item.text}
             </p>
 
             <div className="mt-auto">
-              <p className="font-semibold text-[#0F172A]">{item.author}</p>
+              <p className="font-semibold text-[#0B3A63]">{item.author}</p>
               <p className="text-[#64748B] text-sm">{item.role}</p>
             </div>
           </div>
         ))}
       </div>
 
-      <div className="mt-10 text-center text-sm text-[#64748B]">
-        Feedback relates to the indicative, spend-based CO₂e estimation — not audited emissions reporting.
-      </div>
+      <p className="mt-12 text-center text-xs text-[#64748B]">
+        Based on spend-based indicative estimation. Not audited or regulatory reporting.
+      </p>
 
       <div className="mt-4 text-center">
         <a
@@ -74,4 +74,4 @@ export default function Testimonials() {
       </div>
     </section>
   );
-        }
+            }
