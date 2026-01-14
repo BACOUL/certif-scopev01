@@ -9,31 +9,31 @@ export default function FAQ() {
   const items = [
     {
       q: "Do clients, banks or procurement teams accept the document?",
-      a: "Yes. Certif-Scope is commonly used in supplier onboarding, procurement portals and ESG questionnaires when companies request indicative CO₂e information. It is not a regulatory or audited emissions report, but it satisfies most screening workflows that only require a clear, structured and verifiable document."
+      a: "Yes. Certif-Scope is frequently used in supplier onboarding, procurement checks and ESG questionnaires that require indicative CO₂e information. It is not an audited or regulatory emissions report, but it meets most screening workflows where a clear, structured and verifiable document is sufficient."
     },
     {
       q: "How long does it take to generate the document?",
-      a: "Documents are typically generated in 30–60 seconds once annual spending data is entered. No consultants, no waiting and no complex forms."
+      a: "Once annual spending data is entered, the CO₂e Attestation is generated in 30–60 seconds. No waiting periods, consultants or manual calculations."
     },
     {
       q: "What exactly do I receive?",
-      a: "A ready-to-send PDF including CO₂e indicators, category breakdown, dataset version, timestamp, a unique verification ID and an integrity hash. Partners can verify authenticity in seconds using the QR code or ID."
+      a: "You receive a ready-to-send PDF including CO₂e indicators, category breakdown, dataset version, timestamp, a unique verification ID and an integrity hash. Partners can confirm authenticity instantly via QR code or ID lookup."
     },
     {
       q: "How does the verification work?",
-      a: "Your partners can scan the QR code or manually enter the verification ID to check integrity. No login, no account and no external database lookup are required—verification is deterministic and based on the embedded hash."
+      a: "Verification is deterministic. Partners scan the QR code or enter the verification ID to confirm document integrity. No login, no account and no stored database lookups are required."
     },
     {
       q: "What methodology does Certif-Scope use?",
-      a: "Certif-Scope uses a spend-based approach aligned with Scope 3 Category 1 estimation principles. Calculations are deterministic and rely exclusively on financial spending (€). No physical activity data is used (kWh, km, litres), and this is not a CSRD/ESRS-compliant audit."
+      a: "Certif-Scope uses a spend-based estimation method aligned with the principles of Scope 3 Category 1. Only financial spending (€) is used — no kWh, km or litres. It is not a CSRD/ESRS-compliant audit and does not replace a full carbon inventory."
     },
     {
       q: "Is my data stored?",
-      a: "Only the minimum required data is processed to generate the PDF. We do not store physical activity data because none is used. Verification works without keeping your data on our servers, as the integrity hash allows offline validation."
+      a: "Only the minimum required information is processed at generation time. Verification works offline through the embedded hash, so we do not need to store your spending data on our servers."
     },
     {
       q: "What are the limitations of the document?",
-      a: "The document is an indicative, spend-based estimation. It is not an audited inventory, not a Scope 1/2 calculation and not a CSRD/ESRS report. Results depend entirely on the spending data you provide."
+      a: "This is an indicative, spend-based CO₂e estimation. It is not a Scope 1/2 calculation, not an audited inventory and not a regulatory emissions report. Accuracy depends entirely on the spending data provided by the user."
     }
   ];
 
@@ -53,7 +53,7 @@ export default function FAQ() {
                 className="w-full text-left px-6 py-4 flex justify-between items-center"
               >
                 <span className="font-medium text-[#0F172A]">{item.q}</span>
-                <span>{open === i ? "−" : "+"}</span>
+                <span className="text-xl">{open === i ? "−" : "+"}</span>
               </button>
 
               {open === i && (
@@ -68,4 +68,4 @@ export default function FAQ() {
       </div>
     </section>
   );
-              }
+            }
