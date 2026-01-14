@@ -1,22 +1,37 @@
 export default function HowItWorks() {
   return (
-    <section className="py-24 bg-[#F8FAFC] dark:bg-gray-900">
+    <section
+      id="how-it-works"
+      data-section="how-it-works"
+      className="py-24 bg-[#F8FAFC] dark:bg-gray-900"
+    >
       <div className="max-w-6xl mx-auto px-6">
 
-        <h2 className="text-3xl md:text-4xl font-extrabold text-center text-[#0B3A63]">
+        {/* TITLE — H2 unique + optimisé */}
+        <h2
+          className="text-3xl md:text-4xl font-extrabold text-center text-[#0B3A63]"
+          data-i18n="howitworks.title"
+        >
           How It Works
         </h2>
 
-        <p className="mt-4 text-center text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
-          A clear three-step process that converts annual spending (€) into a standardized CO₂e
-          Attestation suitable for procurement, banking and ESG screening.
+        {/* INTRO — unique, non répétitif */}
+        <p
+          className="mt-4 text-center text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed"
+          data-i18n="howitworks.intro"
+        >
+          A clear, three-step process converting annual spending (€) into a standardized CO₂e
+          Attestation aligned with procurement, banking and ESG screening workflows.
         </p>
 
+        {/* SEPARATOR */}
         <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto my-14" />
 
+        {/* 3 STEPS GRID */}
         <div className="grid md:grid-cols-3 gap-14">
 
-          <div className="text-center px-4">
+          {/* STEP 1 */}
+          <div className="text-center px-4" data-i18n="howitworks.step1">
             <div className="h-14 w-14 mx-auto rounded-full bg-[#1FB6C1] text-white flex items-center justify-center text-xl font-bold shadow-md">
               1
             </div>
@@ -24,12 +39,13 @@ export default function HowItWorks() {
               Enter annual spending
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Provide yearly expenses across predefined categories. No operational data required —
-              only the financial inputs all SMEs already have.
+              Provide yearly expenses across predefined categories. Only financial inputs — no
+              operational data (kWh, km, litres) and no supporting documents required.
             </p>
           </div>
 
-          <div className="text-center px-4">
+          {/* STEP 2 */}
+          <div className="text-center px-4" data-i18n="howitworks.step2">
             <div className="h-14 w-14 mx-auto rounded-full bg-[#1FB6C1] text-white flex items-center justify-center text-xl font-bold shadow-md">
               2
             </div>
@@ -38,11 +54,12 @@ export default function HowItWorks() {
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
               A deterministic spend-based formula applies stable, version-controlled emission
-              factors to generate consistent CO₂e indicators.
+              factors to produce consistent CO₂e indicators that can be reviewed and compared.
             </p>
           </div>
 
-          <div className="text-center px-4">
+          {/* STEP 3 */}
+          <div className="text-center px-4" data-i18n="howitworks.step3">
             <div className="h-14 w-14 mx-auto rounded-full bg-[#1FB6C1] text-white flex items-center justify-center text-xl font-bold shadow-md">
               3
             </div>
@@ -50,18 +67,22 @@ export default function HowItWorks() {
               Download your Attestation
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Instantly obtain a structured PDF including totals, category breakdown, methodology
-              outline and verification metadata — ready for submission.
+              Instantly receive a structured PDF including total CO₂e, category breakdown,
+              methodology summary and verification metadata — ready to share with any reviewer.
             </p>
           </div>
 
         </div>
 
-        <p className="mt-12 text-center text-sm text-gray-500 dark:text-gray-400">
-          Full process completed in under one minute.
+        {/* FOOTER LINE — unique, concis */}
+        <p
+          className="mt-12 text-center text-sm text-gray-500 dark:text-gray-400"
+          data-i18n="howitworks.footer"
+        >
+          The complete process typically takes under one minute.
         </p>
 
       </div>
     </section>
   );
-}
+      }
