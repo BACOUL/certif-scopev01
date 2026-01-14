@@ -1,73 +1,62 @@
-export default function HowItWorks() {
+export default function Pricing() {
   return (
-    <section className="py-24 bg-[#F8FAFC] dark:bg-gray-900">
-      <div className="max-w-6xl mx-auto px-6">
+    <section className="py-24 bg-white dark:bg-gray-900">
+      <div className="max-w-6xl mx-auto px-6 text-center">
 
-        <h2 className="text-3xl md:text-4xl font-extrabold text-center text-[#0B3A63]">
-          How It Works — From Spending (€) to a Verifiable CO₂e Attestation
+        {/* TITLE */}
+        <h2 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63]">
+          Simple Pricing. One Document. One Price.
         </h2>
 
-        <p className="mt-4 text-center text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
-          Certif-Scope transforms simple annual spending into a standardized CO₂e Attestation that 
-          clients, banks and procurement teams can verify instantly. No consultants. No activity data. 
-          No reporting complexity.
+        <p className="mt-4 text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
+          A single, transparent price for a complete CO₂e Attestation.  
+          No subscriptions, no hidden fees, no consultants.  
+          Pay once — generate instantly.
         </p>
 
         <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto my-14"></div>
 
-        <div className="grid md:grid-cols-3 gap-14">
+        {/* CARD */}
+        <div className="max-w-md mx-auto bg-[#F8FAFC] dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-xl p-10">
 
-          {/* STEP 1 */}
-          <div className="text-center px-4">
-            <div className="h-14 w-14 mx-auto rounded-full bg-[#1FB6C1] text-white flex items-center justify-center text-xl font-bold shadow-md">
-              1
-            </div>
-            <h3 className="mt-6 text-lg font-semibold text-[#0B3A63]">
-              Enter your annual spending
-            </h3>
-            <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Add expenses across predefined categories. No physical activity metrics (kWh, km, litres).
-              Results depend entirely on your financial inputs, making the process accessible and fast.
-            </p>
-          </div>
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-4">
+            CO₂e Attestation — Instant Generation
+          </h3>
 
-          {/* STEP 2 */}
-          <div className="text-center px-4">
-            <div className="h-14 w-14 mx-auto rounded-full bg-[#1FB6C1] text-white flex items-center justify-center text-xl font-bold shadow-md">
-              2
-            </div>
-            <h3 className="mt-6 text-lg font-semibold text-[#0B3A63]">
-              Automatic spend-based calculation
-            </h3>
-            <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              A deterministic method inspired by Scope 3 Category 1 principles is applied using 
-              version-controlled emission factor datasets. Indicative only — not a CSRD/ESRS report 
-              and not an audited inventory.
-            </p>
-          </div>
+          <p className="text-5xl font-extrabold text-[#1FB6C1] mb-2">
+            49€
+          </p>
 
-          {/* STEP 3 */}
-          <div className="text-center px-4">
-            <div className="h-14 w-14 mx-auto rounded-full bg-[#1FB6C1] text-white flex items-center justify-center text-xl font-bold shadow-md">
-              3
-            </div>
-            <h3 className="mt-6 text-lg font-semibold text-[#0B3A63]">
-              Download your CO₂e Attestation
-            </h3>
-            <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Instantly receive a standardized PDF including CO₂e indicators, category breakdown, 
-              dataset version and a unique verification ID. Suitable for procurement, supplier onboarding 
-              and banking requests.
-            </p>
-          </div>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-10 leading-relaxed">
+            One-time payment.  
+            Immediate download.  
+            Indicative spend-based CO₂e estimation — not a regulatory emissions report.
+          </p>
 
+          <a
+            href="/assessment"
+            className="w-full block bg-[#1FB6C1] hover:bg-[#17a2a8] text-white font-semibold py-4 rounded-xl transition shadow-md"
+          >
+            Generate CO₂e Attestation
+          </a>
+
+          <ul className="mt-10 space-y-3 text-gray-700 dark:text-gray-300 text-sm leading-relaxed text-left">
+            <li>• Professional PDF, ready to send</li>
+            <li>• CO₂e indicators + category breakdown</li>
+            <li>• Version-controlled dataset information</li>
+            <li>• Timestamp + unique verification ID</li>
+            <li>• Integrity hash for offline validation</li>
+            <li>• No data storage — privacy by design</li>
+          </ul>
         </div>
 
-        <p className="mt-12 text-center text-sm text-gray-500 dark:text-gray-400">
-          Average real-world completion time: under 30 seconds.
+        {/* LEGAL LINE */}
+        <p className="mt-10 text-xs text-gray-500 dark:text-gray-400">
+          Indicative spend-based CO₂e estimation. Not a CSRD/ESRS report.  
+          Results depend on the data you provide.
         </p>
 
       </div>
     </section>
   );
-    }
+}
