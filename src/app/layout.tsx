@@ -1,21 +1,25 @@
-import ClientLayout from "./client-layout";
-import "../styles/index.css";
+"use client";
 
-export const metadata = {
-  title: "Certif-Scope – Instant Carbon Attestation",
-  description:
-    "Generate a standardized, compliant carbon footprint attestation in seconds — aligned with GHG Protocol and accepted by procurement and banking workflows.",
-  icons: {
-    icon: "/favicon.png",
-  },
-};
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import ScrollToTop from "@/components/ScrollToTop";
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function ClientLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body>
-        <ClientLayout>{children}</ClientLayout>
-      </body>
-    </html>
+    <>
+      {/* FIXED HEADER */}
+      <Header />
+
+      {/* MAIN CONTENT WITH SAFE TOP PADDING */}
+      <main className="pt-24 md:pt-28 min-h-screen overflow-x-hidden">
+        {children}
+      </main>
+
+      {/* FOOTER */}
+      <Footer />
+
+      {/* FLOATING SCROLL-TO-TOP BUTTON */}
+      <ScrollToTop />
+    </>
   );
 }
