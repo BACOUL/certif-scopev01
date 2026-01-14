@@ -1,0 +1,25 @@
+{
+  "faq.title": "Häufig gestellte Fragen",
+  "faq.disclaimer": "Ausgabenbasierte Schätzung. Kein CSRD/ESRS-Bericht, nicht geprüft und kein Ersatz für eine vollständige Emissionsbilanz.",
+
+  "faq.q0": "Akzeptieren Kunden, Banken oder Einkaufsteams das Dokument?",
+  "faq.a0": "Ja. Certif-Scope wird in Onboarding-, Beschaffungs- und ESG-Prüfprozessen verwendet, wenn ein indikatives CO₂e-Wert benötigt wird. Es ist kein geprüfter Bericht, aber ein standardisiertes, vergleichbares Format.",
+
+  "faq.q1": "Wie lange dauert die Erstellung des Dokuments?",
+  "faq.a1": "Sobald die Jahresausgaben eingegeben sind, wird die Bescheinigung in weniger als einer Minute erstellt.",
+
+  "faq.q2": "Was genau erhalte ich?",
+  "faq.a2": "Ein strukturiertes PDF mit CO₂e-Werten, Kategorienaufschlüsselung, Datensatzversion, Zeitstempel, Verifizierungs-ID und deterministischem Integritäts-Hash.",
+
+  "faq.q3": "Wie funktioniert die Verifizierung?",
+  "faq.a3": "Deterministisch, ohne gespeicherte Datenbank. Über QR-Code oder ID können Prüfer die Echtheit sofort bestätigen.",
+
+  "faq.q4": "Welche Methodik wird verwendet?",
+  "faq.a4": "Ein ausgabenbasierter Ansatz gemäß Scope 3 Kategorie 1. Keine physische Aktivitätsdaten. Nicht CSRD/ESRS-konform.",
+
+  "faq.q5": "Werden meine Daten gespeichert?",
+  "faq.a5": "Nein. Daten werden nicht gespeichert; die Verifizierung basiert auf eingebetteter kryptografischer Integrität.",
+
+  "faq.q6": "Was sind die Einschränkungen?",
+  "faq.a6": "Indikative Schätzung. Kein Audit, keine Scopes 1 und 2, nicht für offizielle CSRD/ESRS-Berichte geeignet."
+}
