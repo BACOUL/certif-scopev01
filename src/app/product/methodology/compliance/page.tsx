@@ -13,7 +13,7 @@ import Section10 from "./sections/Section10";
 
 export default function ComplianceLegalPage() {
   return (
-    <div className="max-w-7xl mx-auto px-6 pt-8 pb-24">
+    <div className="max-w-7xl mx-auto px-6 pt-24 pb-24">
 
       {/* INTRODUCTION */}
       <div className="mb-12">
@@ -67,5 +67,4 @@ export default function ComplianceLegalPage() {
 
     </div>
   );
-}
-
+        }
