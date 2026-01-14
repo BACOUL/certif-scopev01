@@ -1,0 +1,25 @@
+{
+  "faq.title": "Preguntas frecuentes",
+  "faq.disclaimer": "Estimación indicativa basada en el gasto. No es un informe CSRD/ESRS, no está auditado y no sustituye un inventario completo de emisiones.",
+
+  "faq.q0": "¿Aceptan el documento los clientes, bancos o equipos de compras?",
+      "faq.a0": "Sí. Certif-Scope se utiliza en procesos de onboarding, compras y revisión ESG cuando se requiere un valor CO₂e indicativo. No es un informe auditado, pero ofrece un formato estandarizado y comparable.",
+
+  "faq.q1": "¿Cuánto tarda en generarse el documento?",
+  "faq.a1": "Una vez introducido el gasto anual, la atestación se genera en menos de un minuto.",
+
+  "faq.q2": "¿Qué recibo exactamente?",
+  "faq.a2": "Un PDF estructurado con indicadores CO₂e, desglose por categorías, versión del dataset, sello de tiempo, ID de verificación y hash de integridad.",
+
+  "faq.q3": "¿Cómo funciona la verificación?",
+  "faq.a3": "Es determinista y no necesita base de datos. Se valida por QR o mediante el ID de verificación.",
+
+  "faq.q4": "¿Qué metodología se utiliza?",
+  "faq.a4": "Un método basado en gasto conforme al Scope 3 Categoría 1. No sustituye un informe CSRD/ESRS.",
+
+  "faq.q5": "¿Se almacenan mis datos?",
+  "faq.a5": "No. Los datos no se guardan; la verificación usa integridad criptográfica.",
+
+  "faq.q6": "¿Cuáles son las limitaciones?",
+  "faq.a6": "Estimación indicativa, no auditada, sin Scopes 1 y 2."
+}
