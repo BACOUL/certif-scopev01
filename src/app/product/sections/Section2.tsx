@@ -2,17 +2,30 @@
 
 export default function Section2() {
   return (
-    <section id="s2" className="scroll-mt-24 border-b border-gray-200 pb-24">
+    <section
+      id="s2"
+      className="scroll-mt-24 border-b border-gray-200 pb-24"
+      data-section="s2"
+    >
 
       {/* HEADER */}
       <div className="relative rounded-2xl p-12 bg-[#0B3A63] text-white shadow-lg overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/40 to-transparent pointer-events-none"></div>
+        <div
+          className="absolute inset-0 bg-gradient-to-br from-[#15B097]/40 to-transparent pointer-events-none"
+          aria-hidden="true"
+        ></div>
 
-        <h2 className="text-4xl md:text-5xl font-extrabold relative z-10">
-          2. Key Benefits Summary
+        <h2
+          className="text-4xl md:text-5xl font-extrabold relative z-10"
+          data-i18n="s2.title"
+        >
+          Key Benefits Summary
         </h2>
 
-        <p className="text-white/90 text-lg max-w-4xl mt-6 leading-relaxed relative z-10">
+        <p
+          className="text-white/90 text-lg max-w-4xl mt-6 leading-relaxed relative z-10"
+          data-i18n="s2.intro"
+        >
           Certif-Scope provides SMEs with a fast, structured and verifiable way to answer 
           CO₂e information requests from clients, procurement teams, lenders or insurers. 
           The document is standardized, easy to read and includes an integrity-based 
@@ -20,67 +33,84 @@ export default function Section2() {
         </p>
       </div>
 
-
       {/* BENEFITS GRID */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-16">
 
-        <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-md">
-          <h3 className="text-2xl font-semibold text-[#0B3A63]">
-            1. Instant Generation
+        <div
+          className="p-8 bg-white rounded-xl border border-gray-200 shadow-md"
+          data-i18n="s2.benefit1.block"
+        >
+          <h3 className="text-2xl font-semibold text-[#0B3A63]" data-i18n="s2.benefit1.title">
+            Instant Generation
           </h3>
-          <p className="mt-3 text-gray-700 text-sm leading-relaxed">
+          <p className="mt-3 text-gray-700 text-sm leading-relaxed" data-i18n="s2.benefit1.text">
             The document is created in less than a minute. No consultants, no physical 
             activity data and no technical expertise required — only annual spending (€).
           </p>
         </div>
 
-        <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/40 shadow-md">
-          <h3 className="text-2xl font-semibold text-[#0B3A63]">
-            2. Ready for Procurement Use
+        <div
+          className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/40 shadow-md"
+          data-i18n="s2.benefit2.block"
+        >
+          <h3 className="text-2xl font-semibold text-[#0B3A63]" data-i18n="s2.benefit2.title">
+            Ready for Procurement Use
           </h3>
-          <p className="mt-3 text-gray-700 text-sm leading-relaxed">
+          <p className="mt-3 text-gray-700 text-sm leading-relaxed" data-i18n="s2.benefit2.text">
             Output is structured in a way commonly requested in supplier onboarding, 
             RFP submissions and ESG questionnaires, making it easy to include in 
             documentation packages.
           </p>
         </div>
 
-        <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-md">
-          <h3 className="text-2xl font-semibold text-[#0B3A63]">
-            3. Verifiable Integrity
+        <div
+          className="p-8 bg-white rounded-xl border border-gray-200 shadow-md"
+          data-i18n="s2.benefit3.block"
+        >
+          <h3 className="text-2xl font-semibold text-[#0B3A63]" data-i18n="s2.benefit3.title">
+            Verifiable Integrity
           </h3>
-          <p className="mt-3 text-gray-700 text-sm leading-relaxed">
+          <p className="mt-3 text-gray-700 text-sm leading-relaxed" data-i18n="s2.benefit3.text">
             Each PDF includes a deterministic integrity hash and a verification ID. 
             Partners can confirm authenticity instantly, including offline validation.
           </p>
         </div>
 
-        <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/40 shadow-md">
-          <h3 className="text-2xl font-semibold text-[#0B3A63]">
-            4. Fully Deterministic Calculation
+        <div
+          className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/40 shadow-md"
+          data-i18n="s2.benefit4.block"
+        >
+          <h3 className="text-2xl font-semibold text-[#0B3A63]" data-i18n="s2.benefit4.title">
+            Fully Deterministic Calculation
           </h3>
-          <p className="mt-3 text-gray-700 text-sm leading-relaxed">
+          <p className="mt-3 text-gray-700 text-sm leading-relaxed" data-i18n="s2.benefit4.text">
             The same inputs always produce the same result. Values are computed 
             through a transparent spend-based formula using version-controlled 
             emission factors.
           </p>
         </div>
 
-        <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-md">
-          <h3 className="text-2xl font-semibold text-[#0B3A63]">
-            5. No ESG Expertise Required
+        <div
+          className="p-8 bg-white rounded-xl border border-gray-200 shadow-md"
+          data-i18n="s2.benefit5.block"
+        >
+          <h3 className="text-2xl font-semibold text-[#0B3A63]" data-i18n="s2.benefit5.title">
+            No ESG Expertise Required
           </h3>
-          <p className="mt-3 text-gray-700 text-sm leading-relaxed">
+          <p className="mt-3 text-gray-700 text-sm leading-relaxed" data-i18n="s2.benefit5.text">
             SMEs without sustainability staff can generate a consistent and structured 
             CO₂e indicator that answers the majority of non-regulatory institutional requests.
           </p>
         </div>
 
-        <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/40 shadow-md">
-          <h3 className="text-2xl font-semibold text-[#0B3A63]">
-            6. Multilingual and Easy to Share
+        <div
+          className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/40 shadow-md"
+          data-i18n="s2.benefit6.block"
+        >
+          <h3 className="text-2xl font-semibold text-[#0B3A63]" data-i18n="s2.benefit6.title">
+            Multilingual and Easy to Share
           </h3>
-          <p className="mt-3 text-gray-700 text-sm leading-relaxed">
+          <p className="mt-3 text-gray-700 text-sm leading-relaxed" data-i18n="s2.benefit6.text">
             The document is clear and readable in English, French, German, Spanish and Italian, 
             enabling cross-border usability within European supply chains.
           </p>
@@ -88,14 +118,16 @@ export default function Section2() {
 
       </div>
 
-
-      {/* CLARIFICATION STRIP */}
-      <div className="mt-20 p-10 rounded-xl bg-[#F8FAFC] border border-[#0B3A63]/25 shadow-sm">
-        <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
+      {/* CLARIFICATION */}
+      <div
+        className="mt-20 p-10 rounded-xl bg-[#F8FAFC] border border-[#0B3A63]/25 shadow-sm"
+        data-i18n="s2.clarification.block"
+      >
+        <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4" data-i18n="s2.clarification.title">
           Important Clarification
         </h3>
 
-        <p className="text-gray-700 max-w-4xl leading-relaxed">
+        <p className="text-gray-700 max-w-4xl leading-relaxed" data-i18n="s2.clarification.text">
           Certif-Scope does not replace CSRD/ESRS reporting, audited carbon inventories or 
           lifecycle assessments. It provides an indicative, spend-based CO₂e figure suitable 
           for preliminary screening, procurement documentation and institutional requests 
@@ -103,11 +135,11 @@ export default function Section2() {
         </p>
       </div>
 
-
       {/* RETURN BUTTON */}
       <div className="mt-12 text-right">
         <a
           href="#top"
+          data-i18n="s2.return"
           className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
         >
           Back to summary
@@ -116,4 +148,4 @@ export default function Section2() {
 
     </section>
   );
-}
+          }
