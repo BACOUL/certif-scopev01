@@ -15,10 +15,10 @@ import Section12 from "./sections/Section12";
 
 export default function MethodologyPage() {
   return (
-    <div className="max-w-7xl mx-auto px-6 pt-24 pb-24">
+    <div className="max-w-7xl mx-auto px-6 pt-24 pb-24 relative z-0">
 
       {/* INTRODUCTION */}
-      <div className="w-full mb-12">
+      <div className="w-full mb-12 relative z-0">
         <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-4">
           Certif-Scope Methodology Overview
         </h1>
@@ -32,7 +32,7 @@ export default function MethodologyPage() {
       </div>
 
       {/* SECTIONS LIST */}
-      <div className="w-full p-8 mb-24 bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-200 dark:border-gray-700">
+      <div className="w-full p-8 mb-24 bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-200 dark:border-gray-700 relative z-0">
         <h2 className="text-2xl md:text-3xl font-bold text-[#0B3A63] mb-6">
           Methodology Sections
         </h2>
@@ -54,7 +54,7 @@ export default function MethodologyPage() {
       </div>
 
       {/* RENDER SECTIONS */}
-      <div className="space-y-24">
+      <div className="space-y-24 relative z-0">
         <div id="s1"><Section1 /></div>
         <div id="s2"><Section2 /></div>
         <div id="s3"><Section3 /></div>
