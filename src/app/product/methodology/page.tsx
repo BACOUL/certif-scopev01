@@ -15,9 +15,8 @@ import Section12 from "./sections/Section12";
 
 export default function MethodologyPage() {
   return (
-    <div className="max-w-7xl mx-auto px-6 pt-24 pb-24">
+    <div className="max-w-7xl mx-auto px-6 mt-20 pb-24">
 
-      {/* INTRODUCTION */}
       <div className="mb-12">
         <h1 className="text-4xl font-extrabold text-[#0B3A63] mb-4">
           Certif-Scope Methodology Overview
@@ -25,12 +24,10 @@ export default function MethodologyPage() {
 
         <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
           Full scientific methodology: spend-based model, emission factors, validation
-          rules, deterministic outputs, regulatory alignment, versioning, and
-          verification protocol.
+          rules, deterministic outputs, regulatory alignment, versioning, and verification protocol.
         </p>
       </div>
 
-      {/* SECTIONS LIST */}
       <div className="p-8 mb-24 bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-200 dark:border-gray-700">
         <h2 className="text-3xl font-bold text-[#0B3A63] mb-6">
           Methodology Sections
@@ -52,7 +49,6 @@ export default function MethodologyPage() {
         </ul>
       </div>
 
-      {/* CONTENT SECTIONS */}
       <div className="space-y-24">
         <div id="s1"><Section1 /></div>
         <div id="s2"><Section2 /></div>
