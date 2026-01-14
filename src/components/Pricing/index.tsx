@@ -4,12 +4,13 @@ export default function HowItWorks() {
       <div className="max-w-6xl mx-auto px-6">
 
         <h2 className="text-3xl md:text-4xl font-extrabold text-center text-[#0B3A63]">
-          How It Works — From Spending to a CO₂e Document in 60 Seconds
+          How It Works — From Spending (€) to a Verifiable CO₂e Attestation
         </h2>
 
         <p className="mt-4 text-center text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
-          Certif-Scope converts simple annual spending (€) into a clean, verifiable and ready-to-send CO₂e document. 
-          Instant results. No consultants. No physical metrics. No expertise required.
+          Certif-Scope transforms simple annual spending into a standardized CO₂e Attestation that 
+          clients, banks and procurement teams can verify instantly. No consultants. No activity data. 
+          No reporting complexity.
         </p>
 
         <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto my-14"></div>
@@ -22,11 +23,11 @@ export default function HowItWorks() {
               1
             </div>
             <h3 className="mt-6 text-lg font-semibold text-[#0B3A63]">
-              Enter your spending (€)
+              Enter your annual spending
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Add annual expenses across predefined categories. No kWh, km or litres required. 
-              Results depend entirely on your financial inputs.
+              Add expenses across predefined categories. No physical activity metrics (kWh, km, litres).
+              Results depend entirely on your financial inputs, making the process accessible and fast.
             </p>
           </div>
 
@@ -36,11 +37,12 @@ export default function HowItWorks() {
               2
             </div>
             <h3 className="mt-6 text-lg font-semibold text-[#0B3A63]">
-              Automatic calculation
+              Automatic spend-based calculation
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              A deterministic spend-based method aligned with Scope 3 Category 1 principles is applied. 
-              Uses version-controlled emission-factor datasets. Indicative only — not a CSRD/ESRS report.
+              A deterministic method inspired by Scope 3 Category 1 principles is applied using 
+              version-controlled emission factor datasets. Indicative only — not a CSRD/ESRS report 
+              and not an audited inventory.
             </p>
           </div>
 
@@ -50,18 +52,19 @@ export default function HowItWorks() {
               3
             </div>
             <h3 className="mt-6 text-lg font-semibold text-[#0B3A63]">
-              Download your document
+              Download your CO₂e Attestation
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Receive a standardized PDF with CO₂e indicators, category breakdown and a unique verification ID. 
-              Ideal for procurement, supplier onboarding, banking requests or ESG pre-assessment.
+              Instantly receive a standardized PDF including CO₂e indicators, category breakdown, 
+              dataset version and a unique verification ID. Suitable for procurement, supplier onboarding 
+              and banking requests.
             </p>
           </div>
 
         </div>
 
         <p className="mt-12 text-center text-sm text-gray-500 dark:text-gray-400">
-          Average completion time: under 30 seconds.
+          Average real-world completion time: under 30 seconds.
         </p>
 
       </div>
