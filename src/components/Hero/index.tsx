@@ -43,15 +43,18 @@ export default function Hero() {
         />
       </div>
 
-      {/* CTA BUTTONS */}
+      {/* CTA BUTTONS — INVERTED ORDER */}
       <div className="flex flex-col md:flex-row justify-center gap-6 mt-10">
+
+        {/* VERIFY FIRST */}
         <a
-          href="#assessment"
+          href="/verify"
           className="bg-[#1FB6C1] hover:bg-[#17a2a8] transition text-white font-semibold px-12 py-4 rounded-xl shadow-md"
         >
-          Get My CO₂e Attestation
+          Verify an Attestation
         </a>
 
+        {/* VIEW SECOND */}
         <a
           href="/sample-pdf"
           className="bg-[#0B3A63] hover:bg-[#083253] transition text-white font-semibold px-12 py-4 rounded-xl shadow-md"
@@ -62,10 +65,10 @@ export default function Hero() {
 
       {/* LINK BELOW */}
       <a
-        href="/verify"
+        href="#assessment"
         className="text-sm underline text-[#1FB6C1] font-medium block mt-8"
       >
-        Verify an Attestation
+        Get My CO₂e Attestation
       </a>
     </section>
   );
