@@ -6,16 +6,34 @@
 @tailwind components;
 @tailwind utilities;
 
-/* === GLOBAL === */
+/* === GLOBAL RESET === */
+
+/* Empêche tout débordement horizontal sur mobile */
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden !important;
+  padding: 0;
+  margin: 0;
+}
+
+/* Empêche les éléments enfants de forcer un débordement */
+*, ::before, ::after {
+  box-sizing: border-box;
+  max-width: 100%;
+  border-color: #e5e7eb;
+}
+
+/* Fix flex / grid overflow */
+.flex, .grid {
+  min-width: 0;
+}
+
+/* Définit la police et le fond */
 body {
   font-family: "Inter", sans-serif;
   background-color: #F8FAFC;
   color: #1E293B;
-}
-
-/* === BORDER FIX === */
-*, ::before, ::after {
-  border-color: #e5e7eb;
 }
 
 /* === CUSTOM BUTTON === */
@@ -45,4 +63,17 @@ body {
   padding-top: 6px;
   padding-bottom: 6px;
   transition: padding 0.2s ease;
+}
+
+/* Prevent images from breaking layout */
+img, svg, video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Prevent code blocks / long links from overflowing */
+pre, code {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  max-width: 100%;
 }
