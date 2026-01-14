@@ -12,79 +12,59 @@ import Section9 from "./sections/Section9";
 import Section10 from "./sections/Section10";
 import Section11 from "./sections/Section11";
 import Section12 from "./sections/Section12";
-import Section13 from "./sections/Section13";
-import Section14 from "./sections/Section14";
-import Section15 from "./sections/Section15";
-import Section16 from "./sections/Section16";
 
-export default function ProductPage() {
+export default function MethodologyPage() {
   return (
-    <div className="max-w-7xl mx-auto px-6 pt-32 md:pt-24 pb-24">
-
-      {/* TOP ANCHOR */}
-      <div id="top"></div>
+    <div className="max-w-7xl mx-auto px-6 pt-28 md:pt-24 pb-24">
 
       {/* INTRODUCTION */}
-      <div className="w-full mb-12">
-        <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-4">
-          Certif-Scope Product Overview
+      <div className="mb-12">
+        <h1 className="text-4xl font-extrabold text-[#0B3A63] mb-4">
+          Certif-Scope Methodology Overview
         </h1>
 
         <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-          This page provides a structured, complete presentation of Certif-Scope.
-          Each section explains one key element: purpose, benefits, use cases,
-          methodology, verification, privacy, integrations, and technical details.
-          Everything is organised for procurement teams, auditors, and compliance workflows.
+          Full scientific methodology: spend-based model, emission factors, validation
+          rules, deterministic outputs, regulatory alignment, versioning, and verification protocol.
         </p>
       </div>
 
-      {/* SOMMAIRE / SECTIONS */}
-      <nav
-        aria-label="Product page table of contents"
-        className="w-full p-8 mb-24 bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-200 dark:border-gray-700"
-      >
-        <h2 className="text-2xl md:text-3xl font-bold text-[#0B3A63] mb-6">
-          Sections
+      {/* SECTIONS LIST */}
+      <div className="p-8 mb-24 bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-200 dark:border-gray-700">
+        <h2 className="text-3xl font-bold text-[#0B3A63] mb-6">
+          Methodology Sections
         </h2>
 
-        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-gray-700 dark:text-gray-300 text-base leading-relaxed">
-          <li><a href="#s1" className="underline hover:text-[#0B3A63]">1. Product Overview</a></li>
-          <li><a href="#s2" className="underline hover:text-[#0B3A63]">2. Key Benefits Summary</a></li>
-          <li><a href="#s3" className="underline hover:text-[#0B3A63]">3. Why the product exists</a></li>
-          <li><a href="#s4" className="underline hover:text-[#0B3A63]">4. Solution provided</a></li>
-          <li><a href="#s5" className="underline hover:text-[#0B3A63]">5. Use cases</a></li>
-          <li><a href="#s6" className="underline hover:text-[#0B3A63]">6. How it works</a></li>
-          <li><a href="#s7" className="underline hover:text-[#0B3A63]">7. Value proposition</a></li>
-          <li><a href="#s8" className="underline hover:text-[#0B3A63]">8. Security & Verification</a></li>
-          <li><a href="#s9" className="underline hover:text-[#0B3A63]">9. Sample PDF</a></li>
-          <li><a href="#s10" className="underline hover:text-[#0B3A63]">10. Data Sources</a></li>
-          <li><a href="#s11" className="underline hover:text-[#0B3A63]">11. Methodological limitations</a></li>
-          <li><a href="#s12" className="underline hover:text-[#0B3A63]">12. Data privacy</a></li>
-          <li><a href="#s13" className="underline hover:text-[#0B3A63]">13. Integrations</a></li>
-          <li><a href="#s14" className="underline hover:text-[#0B3A63]">14. Industry-specific uses</a></li>
-          <li><a href="#s15" className="underline hover:text-[#0B3A63]">15. Maintenance & Updates</a></li>
-          <li><a href="#s16" className="underline hover:text-[#0B3A63]">16. Technical FAQ</a></li>
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-gray-700 dark:text-gray-300 text-base">
+          <li><a href="#s1" className="underline hover:text-[#0B3A63]">1. Scope & Purpose</a></li>
+          <li><a href="#s2" className="underline hover:text-[#0B3A63]">2. Standards & Regulatory Alignment</a></li>
+          <li><a href="#s3" className="underline hover:text-[#0B3A63]">3. Spend-Based Model Definition</a></li>
+          <li><a href="#s4" className="underline hover:text-[#0B3A63]">4. Category Mapping Logic</a></li>
+          <li><a href="#s5" className="underline hover:text-[#0B3A63]">5. Emission Factor Sources</a></li>
+          <li><a href="#s6" className="underline hover:text-[#0B3A63]">6. Calculation Formula & Parameters</a></li>
+          <li><a href="#s7" className="underline hover:text-[#0B3A63]">7. Input Validation Rules</a></li>
+          <li><a href="#s8" className="underline hover:text-[#0B3A63]">8. Deterministic Output Guarantees</a></li>
+          <li><a href="#s9" className="underline hover:text-[#0B3A63]">9. Update Cycles & Version Control</a></li>
+          <li><a href="#s10" className="underline hover:text-[#0B3A63]">10. Structural Limitations</a></li>
+          <li><a href="#s11" className="underline hover:text-[#0B3A63]">11. Legal Boundaries</a></li>
+          <li><a href="#s12" className="underline hover:text-[#0B3A63]">12. Verification Protocol</a></li>
         </ul>
-      </nav>
+      </div>
 
-      {/* SECTIONS */}
+      {/* CONTENT SECTIONS */}
       <div className="space-y-24">
-        <Section1 />
-        <Section2 />
-        <Section3 />
-        <Section4 />
-        <Section5 />
-        <Section6 />
-        <Section7 />
-        <Section8 />
-        <Section9 />
-        <Section10 />
-        <Section11 />
-        <Section12 />
-        <Section13 />
-        <Section14 />
-        <Section15 />
-        <Section16 />
+        <div id="s1"><Section1 /></div>
+        <div id="s2"><Section2 /></div>
+        <div id="s3"><Section3 /></div>
+        <div id="s4"><Section4 /></div>
+        <div id="s5"><Section5 /></div>
+        <div id="s6"><Section6 /></div>
+        <div id="s7"><Section7 /></div>
+        <div id="s8"><Section8 /></div>
+        <div id="s9"><Section9 /></div>
+        <div id="s10"><Section10 /></div>
+        <div id="s11"><Section11 /></div>
+        <div id="s12"><Section12 /></div>
       </div>
 
     </div>
