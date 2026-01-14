@@ -15,46 +15,41 @@ import Section12 from "./sections/Section12";
 
 export default function MethodologyPage() {
   return (
-    <div className="max-w-7xl mx-auto px-6 pt-24 pb-24 relative z-0">
+    <div className="max-w-7xl mx-auto px-6 pt-24 pb-24">
 
-      {/* INTRODUCTION */}
-      <div className="w-full mb-12 relative z-0">
-        <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-4">
+      <div className="mb-12">
+        <h1 className="text-4xl font-extrabold text-[#0B3A63] mb-4">
           Certif-Scope Methodology Overview
         </h1>
 
-        <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-          This page describes the full technical and scientific methodology powering Certif-Scope.
-          It details the input structure, the spend-based model, emission factor sources,
-          validation rules, deterministic output guarantees, regulatory alignment,
-          versioning system, and verification protocol.
+        <p className="text-lg text-gray-700">
+          Full scientific methodology: spend-based model, emission factors, validation
+          rules, deterministic outputs, regulatory alignment, versioning, and verification protocol.
         </p>
       </div>
 
-      {/* SECTIONS LIST */}
-      <div className="w-full p-8 mb-24 bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-200 dark:border-gray-700 relative z-0">
-        <h2 className="text-2xl md:text-3xl font-bold text-[#0B3A63] mb-6">
+      <div className="p-8 mb-24 bg-white rounded-xl shadow border border-gray-200">
+        <h2 className="text-3xl font-bold text-[#0B3A63] mb-6">
           Methodology Sections
         </h2>
 
-        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-gray-700 dark:text-gray-300 text-base leading-relaxed">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-gray-700">
           <li><a href="#s1" className="underline">1. Scope & Purpose</a></li>
-          <li><a href="#s2">2. Standards & Regulatory Alignment</a></li>
-          <li><a href="#s3">3. Spend-Based Model Definition</a></li>
-          <li><a href="#s4">4. Category Mapping Logic</a></li>
-          <li><a href="#s5">5. Emission Factor Sources</a></li>
-          <li><a href="#s6">6. Calculation Formula & Parameters</a></li>
-          <li><a href="#s7">7. Input Validation Rules</a></li>
-          <li><a href="#s8">8. Deterministic Output Guarantees</a></li>
-          <li><a href="#s9">9. Update Cycles & Version Control</a></li>
-          <li><a href="#s10">10. Structural Limitations</a></li>
-          <li><a href="#s11">11. Legal Boundaries</a></li>
-          <li><a href="#s12">12. Verification Protocol</a></li>
+          <li><a href="#s2" className="underline">2. Standards & Regulatory Alignment</a></li>
+          <li><a href="#s3" className="underline">3. Spend-Based Model Definition</a></li>
+          <li><a href="#s4" className="underline">4. Category Mapping Logic</a></li>
+          <li><a href="#s5" className="underline">5. Emission Factor Sources</a></li>
+          <li><a href="#s6" className="underline">6. Calculation Formula & Parameters</a></li>
+          <li><a href="#s7" className="underline">7. Input Validation Rules</a></li>
+          <li><a href="#s8" className="underline">8. Deterministic Output Guarantees</a></li>
+          <li><a href="#s9" className="underline">9. Update Cycles & Version Control</a></li>
+          <li><a href="#s10" className="underline">10. Structural Limitations</a></li>
+          <li><a href="#s11" className="underline">11. Legal Boundaries</a></li>
+          <li><a href="#s12" className="underline">12. Verification Protocol</a></li>
         </ul>
       </div>
 
-      {/* RENDER SECTIONS */}
-      <div className="space-y-24 relative z-0">
+      <div className="space-y-24">
         <div id="s1"><Section1 /></div>
         <div id="s2"><Section2 /></div>
         <div id="s3"><Section3 /></div>
