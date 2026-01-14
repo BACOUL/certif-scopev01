@@ -15,7 +15,7 @@ import Section12 from "./sections/Section12";
 
 export default function MethodologyPage() {
   return (
-    <div className="max-w-7xl mx-auto px-6 pt-8 pb-24">
+    <div className="max-w-7xl mx-auto px-6 pt-24 pb-24">
 
       {/* INTRODUCTION */}
       <div className="mb-12">
@@ -25,7 +25,8 @@ export default function MethodologyPage() {
 
         <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
           Full scientific methodology: spend-based model, emission factors, validation
-          rules, deterministic outputs, regulatory alignment, versioning, and verification protocol.
+          rules, deterministic outputs, regulatory alignment, versioning, and
+          verification protocol.
         </p>
       </div>
 
