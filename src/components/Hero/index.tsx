@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="relative max-w-6xl mx-auto px-6 pt-8 pb-16 text-center">
+    <section className="relative max-w-6xl mx-auto px-6 pt-24 pb-16 text-center">
       <div className="absolute inset-0 bg-gradient-to-b from-white to-[#F3FBFC] -z-10" />
 
       {/* SUBTITLE */}
@@ -32,7 +32,7 @@ export default function Hero() {
       </p>
 
       {/* IMAGE */}
-      <div className="flex justify-center mt-10">
+      <div className="flex justify-center mt-14">
         <Image
           src="/hero-attestation.webp"
           alt="CO₂e Attestation Preview"
@@ -72,4 +72,4 @@ export default function Hero() {
       </a>
     </section>
   );
-}
+        }
