@@ -19,7 +19,7 @@ import Section16 from "./sections/Section16";
 
 export default function ProductPage() {
   return (
-    <div className="max-w-7xl mx-auto px-6 pt-24 pb-24">
+    <div className="max-w-7xl mx-auto px-6 pt-32 md:pt-24 pb-24">
 
       {/* TOP ANCHOR */}
       <div id="top"></div>
@@ -89,4 +89,4 @@ export default function ProductPage() {
 
     </div>
   );
-        }
+}
