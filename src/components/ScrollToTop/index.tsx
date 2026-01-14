@@ -7,14 +7,10 @@ export default function ScrollToTop() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const shouldShow = window.scrollY > 300;
-      setVisible(prev => (prev !== shouldShow ? shouldShow : prev));
+      setVisible(window.scrollY > 300);
     };
 
-    // Use RAF for smoother updates
-    const onScroll = () => {
-      requestAnimationFrame(handleScroll);
-    };
+    const onScroll = () => requestAnimationFrame(handleScroll);
 
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
@@ -28,12 +24,28 @@ export default function ScrollToTop() {
     <div className="fixed right-6 bottom-6 z-50">
       <button
         onClick={scrollToTop}
-        aria-label="Scroll to top of page"
-        className={`bg-[#1FB6C1] hover:bg-[#18a8ad] text-white flex h-11 w-11 
-          items-center justify-center rounded-full shadow-lg transition
-          transition-opacity duration-300 ${visible ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+        aria-label="Scroll to top"
+        className={`
+          bg-[#1FB6C1] hover:bg-[#18A8AD] text-white 
+          flex h-12 w-12 items-center justify-center
+          rounded-full shadow-lg shadow-[#1FB6C1]/30
+          transition-opacity duration-300 ease-out
+          focus-visible:outline focus-visible:outline-2
+          focus-visible:outline-offset-2 focus-visible:outline-[#1FB6C1]
+          ${visible ? "opacity-100" : "opacity-0 pointer-events-none"}
+        `}
       >
-        <span className="block h-3 w-3 rotate-45 border-t-2 border-l-2 border-white"></span>
+        <svg
+          aria-hidden="true"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          className="stroke-white"
+          fill="none"
+          strokeWidth="2"
+        >
+          <path d="M12 19V5M5 12l7-7 7 7" />
+        </svg>
       </button>
     </div>
   );
