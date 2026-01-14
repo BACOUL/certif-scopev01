@@ -16,10 +16,10 @@ export default function Header() {
   };
 
   return (
-    <header className="fixed top-0 w-full z-50 bg-white/95 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 h-20">
+    <header className="fixed top-0 w-full z-50 bg-white/95 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 h-16 py-3">
       <div className="max-w-7xl mx-auto px-4 h-full flex items-center justify-between">
 
-        {/* LOGO — upgraded size */}
+        {/* LOGO */}
         <Link href="/" aria-label="Home" onClick={closeAll}>
           <Image
             src="/logo.png"
@@ -46,7 +46,7 @@ export default function Header() {
         {/* NAVIGATION */}
         <nav
           id="main-navigation"
-          className={`absolute lg:static top-20 right-4 w-[260px] lg:w-auto bg-white dark:bg-gray-900 rounded-xl shadow-lg lg:shadow-none border border-gray-200 dark:border-gray-700 p-5 lg:p-0 transition-all duration-200 ${
+          className={`absolute lg:static top-16 right-4 w-[260px] lg:w-auto bg-white dark:bg-gray-900 rounded-xl shadow-lg lg:shadow-none border border-gray-200 dark:border-gray-700 p-5 lg:p-0 transition-all duration-200 ${
             open
               ? "opacity-100 visible pointer-events-auto"
               : "opacity-0 invisible pointer-events-none lg:opacity-100 lg:visible lg:pointer-events-auto"
@@ -89,7 +89,7 @@ export default function Header() {
               <Link
                 href="/pricing"
                 onClick={closeAll}
-                className={`${pathname === "/pricing" ? "text-[#1FB6C1]" : "text-gray-800 dark:text-gray-200"} font-medium`}
+                className={`${pathname === "/pricing" ? "text-[#1FB6C1]" : "text-gray-804 dark:text-gray-200"} font-medium`}
               >
                 Pricing
               </Link>
@@ -111,4 +111,4 @@ export default function Header() {
       </div>
     </header>
   );
-          }
+}
