@@ -11,20 +11,19 @@ export default function Footer() {
 
           {/* BRANDING */}
           <div>
-            <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+            <h2 className="text-xl font-bold text-[#0B3A63] dark:text-gray-100 mb-4">
               Certif-Scope
             </h2>
 
             <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
-              Europe’s first platform for instant, verifiable spend-based CO₂e attestations.
-              Built for SMEs needing to respond quickly to client, banking or procurement requests.
-              Clear, standardized, and ready to send immediately.
+              Spend-based CO₂e Attestation designed for procurement, banking and institutional
+              screening workflows. Instant generation, clear formatting, and verifiable integrity.
             </p>
           </div>
 
-          {/* PRODUCT */}
+          {/* PRODUCT LINKS */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
+            <h3 className="text-lg font-semibold text-[#0B3A63] dark:text-gray-100 mb-4">
               Product
             </h3>
 
@@ -40,7 +39,7 @@ export default function Footer() {
 
           {/* DOCUMENTATION */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
+            <h3 className="text-lg font-semibold text-[#0B3A63] dark:text-gray-100 mb-4">
               Documentation
             </h3>
 
@@ -52,7 +51,7 @@ export default function Footer() {
 
           {/* LEGAL */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
+            <h3 className="text-lg font-semibold text-[#0B3A63] dark:text-gray-100 mb-4">
               Legal
             </h3>
 
@@ -65,10 +64,11 @@ export default function Footer() {
 
         </div>
 
-        {/* TRUST DISCLAIMER */}
-        <div className="mt-10 text-center text-xs text-gray-500 dark:text-gray-400">
-          Certif-Scope provides an indicative, spend-based CO₂e attestation for screening and informational use. 
-          It is not a regulatory emissions report. Results depend on user-provided spending data.
+        {/* DISCLAIMER */}
+        <div className="mt-10 text-center text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
+          Certif-Scope provides an indicative, spend-based CO₂e Attestation for informational
+          and screening use. It is not a CSRD/ESRS report, an audited emissions inventory, or
+          a substitute for regulatory disclosures. Values depend on user-provided spending data.
         </div>
 
         {/* COPYRIGHT */}
@@ -81,4 +81,4 @@ export default function Footer() {
       </div>
     </footer>
   );
-}
+              }
