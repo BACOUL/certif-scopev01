@@ -1,0 +1,25 @@
+{
+  "faq.title": "Frequently Asked Questions",
+  "faq.disclaimer": "Spend-based indicative calculation only. Not a CSRD/ESRS-compliant report, not audited, and not a substitute for a full emissions inventory.",
+
+  "faq.q0": "Do clients, banks or procurement teams accept the document?",
+  "faq.a0": "Yes. Certif-Scope is used across onboarding, procurement checks and ESG screening when indicative CO₂e information is required. It is not an audited or regulatory emissions report, but a standardized structure that reviewers can compare consistently.",
+
+  "faq.q1": "How long does it take to generate the document?",
+  "faq.a1": "Once annual spending (€) is entered, the Attestation is generated in under one minute. No consultants, no delays, and no manual calculations.",
+
+  "faq.q2": "What exactly do I receive?",
+  "faq.a2": "A structured PDF including CO₂e indicators, category breakdown, dataset version, timestamp, verification ID and a deterministic integrity hash. Designed for procurement and ESG workflows.",
+
+  "faq.q3": "How does the verification work?",
+  "faq.a3": "Verification is deterministic and does not require any stored database. Reviewers scan the QR code or enter the verification ID to confirm authenticity. No login or backend lookup is needed.",
+
+  "faq.q4": "What methodology is used?",
+  "faq.a4": "A transparent spend-based calculation aligned with Scope 3 Category 1 principles. Only financial spending (€) is used. Not CSRD/ESRS-compliant and not intended to replace a full emissions inventory.",
+
+  "faq.q5": "Is my data stored?",
+  "faq.a5": "No. Inputs are processed during generation and never retained. Verification relies on embedded cryptographic integrity, ensuring privacy without storing any spending data.",
+
+  "faq.q6": "What are the limitations?",
+  "faq.a6": "This is an indicative spend-based estimation. Not audited, not CSRD/ESRS-compliant, no Scope 1 or 2, and depends entirely on the spending data provided by the user."
+}
