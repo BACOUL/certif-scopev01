@@ -5,21 +5,21 @@ export default function Trust() {
 
         {/* TAGLINE */}
         <p className="text-xs md:text-sm font-medium text-gray-500 dark:text-gray-400 tracking-wider uppercase mb-3">
-          Trusted in procurement and supplier screening workflows
+          Reliability for procurement, banking and ESG screening
         </p>
 
         <div className="w-16 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto mb-10"></div>
 
         {/* TITLE */}
         <h2 className="text-2xl md:text-3xl font-extrabold text-[#0B3A63] dark:text-gray-100 leading-tight mb-6">
-          Built for onboarding, procurement checks and ESG questionnaires
+          Built for institutional validation and external checks
         </h2>
 
         {/* INTRO */}
         <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed mb-16">
-          Certif-Scope provides SMEs with a fast and verifiable way to respond to CO₂e information requests. 
-          The output is structured, consistent and includes a verification ID that partners can confirm instantly. 
-          Fully spend-based and instantly generated — without claiming regulatory or audited reporting.
+          Certif-Scope ensures that every Attestation follows a consistent structure, uses 
+          stable emission factors and includes verifiable metadata. The format is designed 
+          for reviewers who require clarity, comparability and reproducibility across suppliers.
         </p>
 
         {/* 3 PILLARS */}
@@ -31,11 +31,11 @@ export default function Trust() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 2l7 4v6c0 5-3.5 9-7 10-3.5-1-7-5-7-10V6l7-4z" />
             </svg>
             <h3 className="text-lg font-semibold text-[#0B3A63] dark:text-gray-100 mb-2">
-              Instant integrity verification
+              Verifiable integrity
             </h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Each document includes a verification ID and deterministic hash.  
-              Partners can confirm authenticity in seconds — no login or account required.
+              Each Attestation includes a unique verification ID and deterministic hash. 
+              Reviewers can confirm authenticity instantly via external verification — no login required.
             </p>
           </div>
 
@@ -45,11 +45,11 @@ export default function Trust() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M4 7h16M4 12h16M4 17h16" />
             </svg>
             <h3 className="text-lg font-semibold text-[#0B3A63] dark:text-gray-100 mb-2">
-              Compatible with procurement systems
+              Structured for institutional reviews
             </h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              The standardized PDF fits supplier portals, RFP requirements and onboarding checklists.  
-              Reduces friction and avoids repeated data requests.
+              The layout is aligned with procurement and ESG screening practices, allowing 
+              evaluators to review inputs, methodology and outputs without ambiguity.
             </p>
           </div>
 
@@ -59,11 +59,11 @@ export default function Trust() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h18v4H3V3zm0 7h18v11H3V10zm6 3h6" />
             </svg>
             <h3 className="text-lg font-semibold text-[#0B3A63] dark:text-gray-100 mb-2">
-              Deterministic and reproducible
+              Consistent & reproducible
             </h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Version-controlled emission factors and deterministic calculation ensure identical results  
-              from the same inputs — ideal for internal reviews or screening.
+              Version-controlled emission factors and a deterministic calculation engine ensure 
+              the same inputs always lead to the same CO₂e output — essential for audits and internal controls.
             </p>
           </div>
 
@@ -71,7 +71,7 @@ export default function Trust() {
 
         {/* FOOTNOTE */}
         <p className="mt-12 text-center text-xs text-gray-500 dark:text-gray-400">
-          Spend-based indicative document. Not a regulatory or audited emissions report.
+          Indicative, spend-based document. Not a CSRD/ESRS report or audited emissions inventory.
         </p>
 
       </div>
