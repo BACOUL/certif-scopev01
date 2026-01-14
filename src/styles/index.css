@@ -6,6 +6,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* === HEADER OFFSET FIX FOR ANCHORS === */
+html {
+  scroll-padding-top: 6rem; /* 96px pour header fixe */
+}
+
 /* === GLOBAL RESET === */
 
 /* Empêche tout débordement horizontal sur mobile */
