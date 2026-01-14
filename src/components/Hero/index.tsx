@@ -10,7 +10,7 @@ export default function Hero() {
         Europe’s first platform for instant, verifiable CO₂e attestations
       </p>
 
-      {/* MAIN TITLE — Clear, Strong, Institutional */}
+      {/* MAIN TITLE — Strong Institutional */}
       <h1 className="text-[2rem] md:text-[3.2rem] font-extrabold text-[#0B3A63] leading-snug tracking-tight">
         Your CO₂e Attestation. Ready in Seconds.
         <br />
@@ -19,14 +19,14 @@ export default function Hero() {
         </span>
       </h1>
 
-      {/* DESCRIPTION — Clear, formal wording */}
+      {/* DESCRIPTION */}
       <p className="text-base md:text-lg text-[#475569] max-w-2xl mx-auto mt-5 leading-relaxed">
         Certif-Scope transforms your annual spending (€) into a standardized, verifiable CO₂e
         Attestation suitable for procurement teams, banking checks, regulatory questionnaires
         and supplier onboarding. Fully spend-based — no physical data required.
       </p>
 
-      {/* SUBTEXT — Reassurance */}
+      {/* SUBTEXT */}
       <p className="text-sm text-[#0B3A63]/80 font-medium mt-3">
         A compliant document your partners can verify instantly.
       </p>
@@ -43,33 +43,34 @@ export default function Hero() {
         />
       </div>
 
-      {/* CTA BUTTONS — INVERTED ORDER */}
+      {/* CTA BUTTONS — CORRECT ORDER */}
       <div className="flex flex-col md:flex-row justify-center gap-6 mt-10">
 
-        {/* VERIFY FIRST */}
+        {/* GET FIRST — MAIN ACTION */}
+        <a
+          href="#assessment"
+          className="bg-[#1FB6C1] hover:bg-[#17a2a8] transition text-white font-semibold px-12 py-4 rounded-xl shadow-md text-center"
+        >
+          Get My CO₂e Attestation
+        </a>
+
+        {/* VERIFY SECOND */}
         <a
           href="/verify"
-          className="bg-[#1FB6C1] hover:bg-[#17a2a8] transition text-white font-semibold px-12 py-4 rounded-xl shadow-md"
+          className="bg-[#0B3A63] hover:bg-[#083253] transition text-white font-semibold px-12 py-4 rounded-xl shadow-md text-center"
         >
           Verify an Attestation
         </a>
 
-        {/* VIEW SECOND */}
+        {/* VIEW THIRD */}
         <a
           href="/sample-pdf"
-          className="bg-[#0B3A63] hover:bg-[#083253] transition text-white font-semibold px-12 py-4 rounded-xl shadow-md"
+          className="bg-white border border-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition text-[#0B3A63] font-semibold px-12 py-4 rounded-xl shadow-md text-center"
         >
           View Sample Attestation
         </a>
       </div>
 
-      {/* LINK BELOW */}
-      <a
-        href="#assessment"
-        className="text-sm underline text-[#1FB6C1] font-medium block mt-8"
-      >
-        Get My CO₂e Attestation
-      </a>
     </section>
   );
-        }
+}
