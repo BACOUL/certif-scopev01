@@ -21,6 +21,9 @@ export default function ProductPage() {
   return (
     <div className="max-w-7xl mx-auto px-6 pt-24 pb-24">
 
+      {/* TOP ANCHOR */}
+      <div id="top"></div>
+
       {/* INTRODUCTION */}
       <div className="w-full mb-12">
         <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-4">
@@ -36,30 +39,33 @@ export default function ProductPage() {
       </div>
 
       {/* SOMMAIRE / SECTIONS */}
-      <div className="w-full p-8 mb-24 bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-200 dark:border-gray-700">
+      <nav
+        aria-label="Product page table of contents"
+        className="w-full p-8 mb-24 bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-200 dark:border-gray-700"
+      >
         <h2 className="text-2xl md:text-3xl font-bold text-[#0B3A63] mb-6">
           Sections
         </h2>
 
         <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-gray-700 dark:text-gray-300 text-base leading-relaxed">
-          <li><a href="#s1" className="underline">1. Product Overview</a></li>
-          <li><a href="#s2">2. Key Benefits Summary</a></li>
-          <li><a href="#s3">3. Why the product exists</a></li>
-          <li><a href="#s4">4. Solution provided</a></li>
-          <li><a href="#s5">5. Use cases</a></li>
-          <li><a href="#s6">6. How it works</a></li>
-          <li><a href="#s7">7. Value proposition</a></li>
-          <li><a href="#s8">8. Security & Verification</a></li>
-          <li><a href="#s9">9. Sample PDF</a></li>
-          <li><a href="#s10">10. Data Sources</a></li>
-          <li><a href="#s11">11. Methodological limitations</a></li>
-          <li><a href="#s12">12. Data privacy</a></li>
-          <li><a href="#s13">13. Integrations</a></li>
-          <li><a href="#s14">14. Industry-specific uses</a></li>
-          <li><a href="#s15">15. Maintenance & Updates</a></li>
-          <li><a href="#s16">16. Technical FAQ</a></li>
+          <li><a href="#s1" className="underline hover:text-[#0B3A63]">1. Product Overview</a></li>
+          <li><a href="#s2" className="underline hover:text-[#0B3A63]">2. Key Benefits Summary</a></li>
+          <li><a href="#s3" className="underline hover:text-[#0B3A63]">3. Why the product exists</a></li>
+          <li><a href="#s4" className="underline hover:text-[#0B3A63]">4. Solution provided</a></li>
+          <li><a href="#s5" className="underline hover:text-[#0B3A63]">5. Use cases</a></li>
+          <li><a href="#s6" className="underline hover:text-[#0B3A63]">6. How it works</a></li>
+          <li><a href="#s7" className="underline hover:text-[#0B3A63]">7. Value proposition</a></li>
+          <li><a href="#s8" className="underline hover:text-[#0B3A63]">8. Security & Verification</a></li>
+          <li><a href="#s9" className="underline hover:text-[#0B3A63]">9. Sample PDF</a></li>
+          <li><a href="#s10" className="underline hover:text-[#0B3A63]">10. Data Sources</a></li>
+          <li><a href="#s11" className="underline hover:text-[#0B3A63]">11. Methodological limitations</a></li>
+          <li><a href="#s12" className="underline hover:text-[#0B3A63]">12. Data privacy</a></li>
+          <li><a href="#s13" className="underline hover:text-[#0B3A63]">13. Integrations</a></li>
+          <li><a href="#s14" className="underline hover:text-[#0B3A63]">14. Industry-specific uses</a></li>
+          <li><a href="#s15" className="underline hover:text-[#0B3A63]">15. Maintenance & Updates</a></li>
+          <li><a href="#s16" className="underline hover:text-[#0B3A63]">16. Technical FAQ</a></li>
         </ul>
-      </div>
+      </nav>
 
       {/* SECTIONS */}
       <div className="space-y-24">
@@ -83,4 +89,4 @@ export default function ProductPage() {
 
     </div>
   );
-}
+        }
