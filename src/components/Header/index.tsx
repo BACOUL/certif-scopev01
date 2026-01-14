@@ -19,15 +19,15 @@ export default function Header() {
     <header className="fixed top-0 w-full z-50 bg-white/95 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 h-20">
       <div className="max-w-7xl mx-auto px-4 h-full flex items-center justify-between">
 
-        {/* LOGO */}
+        {/* LOGO — upgraded size */}
         <Link href="/" aria-label="Home" onClick={closeAll}>
           <Image
             src="/logo.png"
             alt="Certif-Scope Logo"
-            width={130}
-            height={40}
+            width={200}
+            height={60}
             priority
-            className="h-auto w-[130px]"
+            className="h-auto w-40 md:w-48"
           />
         </Link>
 
@@ -111,4 +111,4 @@ export default function Header() {
       </div>
     </header>
   );
-}
+          }
