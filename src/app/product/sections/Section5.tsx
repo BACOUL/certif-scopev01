@@ -4,116 +4,142 @@ export default function Section5() {
   return (
     <section
       id="s5"
+      data-section="s5"
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
 
       {/* HEADER */}
       <div className="relative p-12 rounded-2xl bg-white shadow-lg border border-[#0B3A63]/25">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0B3A63]/10 to-[#15B097]/10 pointer-events-none"></div>
+        <div
+          className="absolute inset-0 bg-gradient-to-br from-[#0B3A63]/10 to-[#15B097]/10 pointer-events-none"
+          aria-hidden="true"
+        ></div>
 
-        <h2 className="text-4xl md:text-5xl font-extrabold text-[#0B3A63] relative z-10">
-          5. Use Cases
+        <h2
+          className="text-4xl md:text-5xl font-extrabold text-[#0B3A63] relative z-10"
+          data-i18n="s5.title"
+        >
+          Use Cases
         </h2>
 
-        <p className="text-lg text-gray-700 max-w-4xl mt-6 leading-relaxed relative z-10">
-          Certif-Scope is designed specifically for operational workflows where SMEs must provide 
-          indicative, structured and verifiable CO₂ information. The output is not a full emissions 
-          report, but an institutional-ready document aligned with how buyers, banks and insurers 
-          request high-level climate indicators.
+        <p
+          className="text-lg text-gray-700 max-w-4xl mt-6 leading-relaxed relative z-10"
+          data-i18n="s5.intro"
+        >
+          Certif-Scope is designed for operational workflows where SMEs must deliver clear,
+          structured and verifiable CO₂e indicators. It provides an institutional-ready document
+          used for procurement, banking, insurance and due-diligence screening — not a regulatory
+          CSRD/ESRS report or audited emissions inventory.
         </p>
       </div>
-
 
       {/* GRID OF 6 USE CASES */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-16">
 
         {/* USE CASE 1 */}
-        <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/40 shadow-sm hover:shadow-md transition">
-          <h3 className="text-2xl font-semibold text-[#0B3A63]">
-            1. Procurement & Vendor Onboarding
+        <div
+          className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/40 shadow-sm hover:shadow-md transition"
+          data-i18n="s5.usecase1.block"
+        >
+          <h3 className="text-2xl font-semibold text-[#0B3A63]" data-i18n="s5.usecase1.title">
+            Procurement & Vendor Onboarding
           </h3>
-          <p className="mt-3 text-gray-700 text-sm leading-relaxed">
-            Many European tenders request simple CO₂ indicators from suppliers. These requests often 
-            follow internal or sector-based criteria rather than full CSRD reporting obligations.
+          <p className="mt-3 text-gray-700 text-sm leading-relaxed" data-i18n="s5.usecase1.text1">
+            European procurement workflows often require suppliers to provide basic CO₂e indicators,
+            even when full regulatory reporting is not required.
           </p>
-          <p className="mt-3 text-gray-700 text-sm leading-relaxed">
-            Certif-Scope provides a structured, consistent PDF that fits procurement workflows requiring 
-            indicative climate information without detailed activity data.
+          <p className="mt-3 text-gray-700 text-sm leading-relaxed" data-i18n="s5.usecase1.text2">
+            Certif-Scope produces a standardized document that fits onboarding and tender
+            documentation without activity-based data.
           </p>
         </div>
 
         {/* USE CASE 2 */}
-        <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-md hover:shadow-lg transition">
-          <h3 className="text-2xl font-semibold text-[#0B3A63]">
-            2. Banking & Risk Pre-Assessment
+        <div
+          className="p-8 bg-white rounded-xl border border-gray-200 shadow-md hover:shadow-lg transition"
+          data-i18n="s5.usecase2.block"
+        >
+          <h3 className="text-2xl font-semibold text-[#0B3A63]" data-i18n="s5.usecase2.title">
+            Banking & Risk Pre-Assessment
           </h3>
-          <p className="mt-3 text-gray-700 text-sm leading-relaxed">
-            Banks increasingly request climate exposure indicators for SME borrowers as part of ESG 
-            risk screening. In many cases, high-level CO₂ figures are requested before full due diligence.
+          <p className="mt-3 text-gray-700 text-sm leading-relaxed" data-i18n="s5.usecase2.text1">
+            Banks increasingly collect simplified climate indicators for SME clients as part of ESG
+            risk screening aligned with regulatory expectations.
           </p>
-          <p className="mt-3 text-gray-700 text-sm leading-relaxed">
-            Certif-Scope offers a reproducible, verifiable document that provides the baseline indicators 
-            needed for preliminary risk scoring. It does not replace audited reporting.
+          <p className="mt-3 text-gray-700 text-sm leading-relaxed" data-i18n="s5.usecase2.text2">
+            Certif-Scope provides a reproducible and verifiable CO₂e indicator suitable for
+            preliminary assessment stages.
           </p>
         </div>
 
         {/* USE CASE 3 */}
-        <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/40 shadow-sm hover:shadow-md transition">
-          <h3 className="text-2xl font-semibold text-[#0B3A63]">
-            3. Insurance Underwriting
+        <div
+          className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/40 shadow-sm hover:shadow-md transition"
+          data-i18n="s5.usecase3.block"
+        >
+          <h3 className="text-2xl font-semibold text-[#0B3A63]" data-i18n="s5.usecase3.title">
+            Insurance Underwriting
           </h3>
-          <p className="mt-3 text-gray-700 text-sm leading-relaxed">
-            Insurers may request high-level CO₂ indicators for sectors with climate exposure. These 
-            indicators are often used for initial assessment rather than detailed inventories.
+          <p className="mt-3 text-gray-700 text-sm leading-relaxed" data-i18n="s5.usecase3.text1">
+            Insurers may request a high-level CO₂e indicator for sectors exposed to climate-related
+            risks regardless of regulatory thresholds.
           </p>
-          <p className="mt-3 text-gray-700 text-sm leading-relaxed">
-            Certif-Scope provides a clear and consistent attestation that insurers can review quickly 
-            during screening processes.
+          <p className="mt-3 text-gray-700 text-sm leading-relaxed" data-i18n="s5.usecase3.text2">
+            Certif-Scope delivers a clear and consistent attestation that supports early-stage
+            underwriting decisions.
           </p>
         </div>
 
         {/* USE CASE 4 */}
-        <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-md hover:shadow-lg transition">
-          <h3 className="text-2xl font-semibold text-[#0B3A63]">
-            4. ESG Due Diligence (Investors)
+        <div
+          className="p-8 bg-white rounded-xl border border-gray-200 shadow-md hover:shadow-lg transition"
+          data-i18n="s5.usecase4.block"
+        >
+          <h3 className="text-2xl font-semibold text-[#0B3A63]" data-i18n="s5.usecase4.title">
+            ESG Due Diligence (Investors)
           </h3>
-          <p className="mt-3 text-gray-700 text-sm leading-relaxed">
-            Investors often request indicative CO₂ figures early in the evaluation process to assess 
-            general climate exposure before any detailed analysis.
+          <p className="mt-3 text-gray-700 text-sm leading-relaxed" data-i18n="s5.usecase4.text1">
+            Investors frequently require preliminary CO₂e figures to evaluate exposure before
+            commissioning detailed ESG analysis.
           </p>
-          <p className="mt-3 text-gray-700 text-sm leading-relaxed">
-            Certif-Scope provides consistent, comparable indicators that help investors perform a first 
-            screening without requiring SMEs to produce full sustainability reports.
+          <p className="mt-3 text-gray-700 text-sm leading-relaxed" data-i18n="s5.usecase4.text2">
+            Certif-Scope provides comparable and standardized indicators for first-pass screening.
           </p>
         </div>
 
         {/* USE CASE 5 */}
-        <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/40 shadow-sm hover:shadow-md transition">
-          <h3 className="text-2xl font-semibold text-[#0B3A63]">
-            5. Public Grants & Subsidy Applications
+        <div
+          className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/40 shadow-sm hover:shadow-md transition"
+          data-i18n="s5.usecase5.block"
+        >
+          <h3 className="text-2xl font-semibold text-[#0B3A63]" data-i18n="s5.usecase5.title">
+            Public Grants & Subsidy Applications
           </h3>
-          <p className="mt-3 text-gray-700 text-sm leading-relaxed">
-            Many grant programs request a high-level CO₂ baseline as part of eligibility checks. These 
-            programs do not require full lifecycle analysis, but a structured indicator.
+          <p className="mt-3 text-gray-700 text-sm leading-relaxed" data-i18n="s5.usecase5.text1">
+            Many public programs require SMEs to submit a high-level CO₂e baseline as part of the
+            eligibility screening process.
           </p>
-          <p className="mt-3 text-gray-700 text-sm leading-relaxed">
-            Certif-Scope produces a standardized document that can be submitted during preliminary 
-            application stages.
+          <p className="mt-3 text-gray-700 text-sm leading-relaxed" data-i18n="s5.usecase5.text2">
+            Certif-Scope generates a compliant and structured indicator suitable for early
+            application phases.
           </p>
         </div>
 
         {/* USE CASE 6 */}
-        <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-md hover:shadow-lg transition">
-          <h3 className="text-2xl font-semibold text-[#0B3A63]">
-            6. Supply Chain Requests from Large Companies
+        <div
+          className="p-8 bg-white rounded-xl border border-gray-200 shadow-md hover:shadow-lg transition"
+          data-i18n="s5.usecase6.block"
+        >
+          <h3 className="text-2xl font-semibold text-[#0B3A63]" data-i18n="s5.usecase6.title">
+            Supply Chain Requests from Large Companies
           </h3>
-          <p className="mt-3 text-gray-700 text-sm leading-relaxed">
-            Large enterprises increasingly request basic CO₂ indicators from SME suppliers to comply 
-            with internal screening processes. These requests do not require audited emissions data.
+          <p className="mt-3 text-gray-700 text-sm leading-relaxed" data-i18n="s5.usecase6.text1">
+            Large companies request simplified CO₂e information from suppliers to satisfy internal
+            ESG screening processes, even when SMEs have no legal reporting obligation.
           </p>
-          <p className="mt-3 text-gray-700 text-sm leading-relaxed">
-            Certif-Scope allows SMEs to respond in under 30 seconds with a consistent, verifiable and 
-            easy-to-read document.
+          <p className="mt-3 text-gray-700 text-sm leading-relaxed" data-i18n="s5.usecase6.text2">
+            Certif-Scope enables SMEs to respond instantly with a unified, verification-ready
+            document.
           </p>
         </div>
 
@@ -123,6 +149,8 @@ export default function Section5() {
       <div className="mt-12 text-right">
         <a
           href="#top"
+          data-i18n="s5.return"
+          aria-label="Back to section summary"
           className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
         >
           Back to summary
@@ -131,4 +159,4 @@ export default function Section5() {
 
     </section>
   );
-        }
+          }
