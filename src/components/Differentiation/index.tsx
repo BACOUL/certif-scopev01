@@ -10,10 +10,9 @@ export default function Differentiation() {
 
         {/* INTRO */}
         <p className="mt-6 text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-          Certif-Scope provides a fast, simple and standardized way to deliver CO₂e information
-          when clients, banks or procurement teams request it.  
-          No consultants. No complex reporting. No physical activity data.
-          Just enter your spending (€) and download a verifiable CO₂e Attestation.
+          Certif-Scope helps small and mid-size businesses respond professionally to CO₂e requests
+          from procurement teams, banks and insurers — without consultants, audits or technical workflows.
+          A single document, consistent across all suppliers.
         </p>
 
         <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto my-14" />
@@ -26,12 +25,10 @@ export default function Differentiation() {
             <svg className="h-12 w-12 text-[#1FB6C1] mb-4" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-9 4h9m3-14H6a2 2 0 00-2 2v14l4-4h10a2 2 0 002-2V4a2 2 0 00-2-2z" />
             </svg>
-            <h3 className="text-xl font-semibold text-[#0B3A63] dark:text-white">Clear & Professional</h3>
+            <h3 className="text-xl font-semibold text-[#0B3A63] dark:text-white">Consistent format</h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              A polished and standardized PDF that partners understand immediately.
-              <span className="block mt-2 text-xs text-gray-500">
-                Reduces questions and accelerates onboarding.
-              </span>
+              Every supplier produces the same structure and layout, making comparisons easier
+              for procurement teams and institutional reviewers.
             </p>
           </div>
 
@@ -40,12 +37,10 @@ export default function Differentiation() {
             <svg className="h-12 w-12 text-[#1FB6C1] mb-4" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6l4 2m5-2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            <h3 className="text-xl font-semibold text-[#0B3A63] dark:text-white">Instant Delivery</h3>
+            <h3 className="text-xl font-semibold text-[#0B3A63] dark:text-white">Zero administrative burden</h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Generate a complete CO₂e Attestation in under a minute.
-              <span className="block mt-2 text-xs text-gray-500">
-                No expertise or manual calculations needed.
-              </span>
+              No data collection, no surveys and no back-and-forth with clients. One number
+              entered once a year — one standardized document delivered.
             </p>
           </div>
 
@@ -54,23 +49,22 @@ export default function Differentiation() {
             <svg className="h-12 w-12 text-[#1FB6C1] mb-4" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 11.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm8.485-4.243l-4.95-4.95a1 1 0 00-1.414 0L4.343 12.586a1 1 0 000 1.414l4.95 4.95a1 1 0 001.414 0l9.778-9.778a1 1 0 000-1.414z" />
             </svg>
-            <h3 className="text-xl font-semibold text-[#0B3A63] dark:text-white">Easy Verification</h3>
+            <h3 className="text-xl font-semibold text-[#0B3A63] dark:text-white">Designed for institutions</h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Each document includes a verification ID for instant integrity checks.
-              <span className="block mt-2 text-xs text-gray-500">
-                Compatible with procurement portals and ESG screenings.
-              </span>
+              Structured specifically for procurement, banking and ESG screening processes,
+              ensuring clarity for reviewers and fewer follow-up requests.
             </p>
           </div>
+
         </div>
 
         {/* FOOTER STATEMENT */}
         <p className="mt-16 text-sm md:text-base text-gray-600 dark:text-gray-400 max-w-xl mx-auto">
-          Certif-Scope enables SMEs to respond quickly, professionally and consistently
-          with a clear spend-based CO₂e Attestation partners can verify instantly.
+          Certif-Scope enables SMEs to respond professionally and consistently with a single,
+          comparable document recognised by European organizations.
         </p>
 
       </div>
     </section>
   );
-        }
+              }
