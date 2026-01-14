@@ -7,123 +7,88 @@ export default function Section12() {
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
 
-      {/* HEADER — Data Privacy & GDPR */}
+      {/* HEADER — Data Privacy */}
       <div className="p-12 rounded-2xl bg-[#F8FAFC] border border-[#15B097]/30 shadow-md">
         <h2 className="text-4xl md:text-5xl font-extrabold text-[#0B3A63]">
           12. Data Privacy & GDPR Compliance
         </h2>
 
         <p className="text-lg text-gray-700 max-w-4xl mt-6 leading-relaxed">
-          Certif-Scope operates under strict GDPR principles: data minimisation, stateless
-          processing, no retention of personal information, and no transfer to third parties.
-          Only anonymous numerical expenditure values are processed, solely for generating
-          a CO₂ indicator. No user identity, IP address, session metadata or behavioural
-          information is stored.
+          Certif-Scope processes no personal data. Only anonymous numerical expenditure values
+          are used temporarily to generate the CO₂ indicator. No names, emails, identifiers,
+          IP addresses, session logs or behavioural metadata are collected, stored or transmitted.
         </p>
 
         <p className="text-gray-700 text-sm mt-4 max-w-4xl leading-relaxed">
-          Certif-Scope does not use cookies, analytics trackers, advertising scripts or
-          fingerprinting technologies. No profiling or automated decision-making is applied.
+          Because no personal data is processed, the workflow falls outside the scope of GDPR.
+          This ensures full conformity with institutional data-handling requirements in banking,
+          insurance, procurement, ESG due-diligence and public-sector environments.
         </p>
       </div>
 
 
 
-      {/* BLOCK — Legal Basis */}
-      <div className="mt-20 p-10 bg-white rounded-xl border border-gray-200 shadow-md">
-        <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
-          Legal Basis for Processing (GDPR Articles 5 & 6)
-        </h3>
-
-        <ul className="text-sm text-gray-700 space-y-3 leading-relaxed">
-          <li>
-            • <strong>Consent — GDPR Art. 6(1)(a):</strong> the user voluntarily provides
-            expenditure values to generate a CO₂ indicator.  
-          </li>
-
-          <li>
-            • <strong>Legitimate Interest — GDPR Art. 6(1)(f):</strong> institutions (banks,
-            insurers, procurement) require standardized environmental indicators for
-            due-diligence, screening and risk evaluation.  
-          </li>
-
-          <li>
-            • <strong>Data Minimisation — GDPR Art. 5:</strong> only numerical values are
-            processed; no identity, contact details, IP addresses or usage analytics are stored.  
-          </li>
-        </ul>
-      </div>
-
-
-
-      {/* BLOCK — No Tracking / No Cookies */}
+      {/* BLOCK — ePrivacy & No Tracking */}
       <div className="mt-20 p-10 bg-[#0B3A63] text-white rounded-xl shadow-md">
         <h3 className="text-2xl font-semibold mb-4">
           No Cookies, No Tracking, No Analytics
         </h3>
 
         <ul className="text-sm text-white/85 space-y-2 leading-relaxed">
-          <li>• No analytics (Google Analytics, Matomo, Mixpanel)</li>
-          <li>• No tracking pixels (Facebook Pixel, LinkedIn Insight)</li>
-          <li>• No session tracking or behavioural profiling</li>
+          <li>• No analytics tools or tracking scripts</li>
           <li>• No advertising or marketing cookies</li>
-          <li>• No fingerprinting, no device profiling</li>
+          <li>• No fingerprinting or device identification</li>
+          <li>• No session tracking or behavioural profiling</li>
+          <li>• No personal data entered, collected or retained</li>
         </ul>
 
         <p className="mt-4 text-xs text-white/70">
-          As no optional or tracking cookies are used, a cookie banner is not required under GDPR and ePrivacy Directive.
+          Compliant with GDPR and ePrivacy Directive: no tracking, no storage, no cookies.
         </p>
       </div>
 
 
 
-      {/* BLOCK — Stateless Processing */}
+      {/* BLOCK — Stateless Architecture */}
       <div className="mt-20 p-10 bg-[#F8FAFC] border border-[#15B097]/40 rounded-xl shadow-sm">
         <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
           Stateless Processing Architecture
         </h3>
 
         <p className="text-gray-700 text-sm max-w-4xl leading-relaxed">
-          No persistent storage is used. Inputs exist only in memory during processing and are
-          immediately discarded after generating the PDF. No logs, no backups, no databases and
-          no servers retain user data. This architecture eliminates typical GDPR exposure points
-          such as breaches, retention risks and unauthorized reuse.
+          Processing occurs in a fully ephemeral execution environment. Inputs exist only in
+          memory during computation and are discarded immediately after generating the PDF.
+          No databases, logs, backups or cloud storage retain any user information.
         </p>
       </div>
 
 
 
-      {/* BLOCK — No Third Parties */}
+      {/* BLOCK — No Third-Party Transfers */}
       <div className="mt-20 p-10 bg-white rounded-xl border border-gray-200 shadow-md">
         <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
           No Third-Party Data Transfers
         </h3>
 
         <p className="text-gray-700 text-sm max-w-4xl leading-relaxed">
-          Data is never shared with third parties. No cloud storage providers receive user data.
-          No international transfers occur under GDPR Chapter V. The processing is fully contained
-          within a stateless, ephemeral execution environment.
+          No data is transmitted to third parties. No cloud provider receives user inputs.
+          No international transfers occur under GDPR Chapter V. Processing remains fully
+          contained and isolated within the execution environment.
         </p>
       </div>
 
 
 
-      {/* BLOCK — User Rights */}
+      {/* BLOCK — GDPR Rights Not Applicable */}
       <div className="mt-20 p-10 bg-[#F8FAFC] border border-[#15B097]/40 rounded-xl shadow-sm">
         <h3 className="text-2xl font-semibold text-[#0B3A63] mb-3">
-          User Rights Under GDPR
+          GDPR Data Subject Rights (Not Applicable)
         </h3>
 
-        <ul className="text-sm text-gray-700 space-y-2 leading-relaxed">
-          <li>• Right of access (Art. 15)</li>
-          <li>• Right to rectification (Art. 16)</li>
-          <li>• Right to erasure — not applicable because no data is stored</li>
-          <li>• Right to restrict processing (Art. 18)</li>
-          <li>• Right to object (Art. 21)</li>
-        </ul>
-
-        <p className="mt-3 text-xs text-gray-600">
-          Most rights do not apply because data is never stored, processed continuously or retained.
+        <p className="text-gray-700 text-sm max-w-4xl leading-relaxed">
+          GDPR data subject rights (access, rectification, erasure, portability, restriction,
+          objection) do not apply because Certif-Scope does not process, store or retain any
+          personal data. No information exists that could identify a user or be retrieved.
         </p>
       </div>
 
