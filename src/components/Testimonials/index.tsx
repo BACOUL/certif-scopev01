@@ -4,19 +4,19 @@ export default function Testimonials() {
   const items = [
     {
       initials: "MR",
-      text: "A key client requested CO₂e information for onboarding and we had no data or defined method. Certif-Scope delivered a structured document instantly and aligned perfectly with their procurement checklist.",
+      text: "A key client requested CO₂e information for onboarding and we had no defined method. Certif-Scope produced a structured, verification-ready document instantly and aligned exactly with their procurement checklist.",
       author: "Mark Reynolds",
       role: "Construction — United Kingdom",
     },
     {
       initials: "ID",
-      text: "The format fits seamlessly into supplier screening. Clear indicators, consistent layout and a verification code our partners validated in seconds. No additional explanations were required.",
+      text: "The format fits seamlessly into supplier screening. Clear indicators, consistent layout and a verification code our partners validated in seconds — no additional explanations were needed.",
       author: "Isabel Duarte",
       role: "Online Retail — Portugal",
     },
     {
       initials: "DM",
-      text: "We receive CO₂e requests often, but clients rarely specify how to calculate them. Certif-Scope gave us a reproducible, spend-based value instantly — without consultants or complex reporting.",
+      text: "We receive CO₂e requests frequently, but clients rarely specify a method. Certif-Scope provided a reproducible, spend-based value instantly — without consultants or complex carbon reporting.",
       author: "Daniel Moretti",
       role: "Consulting — Italy",
     },
@@ -28,8 +28,10 @@ export default function Testimonials() {
         <h2 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-3">
           What European Businesses Say
         </h2>
-        <p className="text-[#475569] text-base md:text-lg max-w-xl mx-auto leading-relaxed">
-          Feedback from SMEs across Europe using Certif-Scope to deliver clear, consistent and instantly verifiable CO₂e Attestations without consultants or technical reporting.
+        <p className="text-[#475569] dark:text-gray-300 text-base md:text-lg max-w-xl mx-auto leading-relaxed">
+          Independent feedback from SMEs across Europe using Certif-Scope to deliver 
+          structured, consistent and instantly verifiable CO₂e Attestations for procurement, 
+          banking and insurance workflows — without consultants or technical reporting.
         </p>
       </div>
 
@@ -50,7 +52,7 @@ export default function Testimonials() {
             </p>
 
             <div className="mt-auto">
-              <p className="font-semibold text-[#0B3A63] dark:text-white">{item.author}</p>
+              <p className="font-semibold text-[#0B3A63] dark:text-gray-100">{item.author}</p>
               <p className="text-[#64748B] dark:text-gray-400 text-sm">{item.role}</p>
             </div>
           </div>
@@ -58,7 +60,7 @@ export default function Testimonials() {
       </div>
 
       <p className="mt-12 text-center text-xs text-[#64748B] dark:text-gray-400">
-        Indicative spend-based estimation. Not a regulatory or audited emissions report.
+        Indicative, spend-based estimation. Not a regulatory or audited emissions report.
       </p>
 
       <div className="mt-4 text-center">
@@ -68,7 +70,14 @@ export default function Testimonials() {
         >
           View an example document →
         </a>
+
+        <a
+          href="#how-it-works"
+          className="block mt-3 text-xs text-[#0B3A63] dark:text-gray-300 underline hover:text-[#1FB6C1] transition"
+        >
+          How it works →
+        </a>
       </div>
     </section>
   );
-}
+      }
