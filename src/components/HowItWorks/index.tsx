@@ -10,8 +10,8 @@ export default function HowItWorks() {
 
         {/* INTRO */}
         <p className="mt-4 text-center text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
-          A simple three-step process that converts your annual spending (€) into a clear and
-          consistent CO₂e Attestation suitable for procurement, banking and ESG screening workflows.
+          Three clear steps to transform your annual spending (€) into a structured CO₂e Attestation
+          that reviewers can assess quickly and consistently.
         </p>
 
         <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto my-14"></div>
@@ -25,11 +25,11 @@ export default function HowItWorks() {
               1
             </div>
             <h3 className="mt-6 text-lg font-semibold text-[#0B3A63]">
-              Enter your annual spending
+              Provide your yearly expenses
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Provide your total annual expenses across predefined categories. No operational data
-              (kWh, km, litres) is required — only financial inputs.
+              Enter annual spending across predefined categories. No operational data 
+              such as kWh, km or litres — only financial inputs that every SME already has.
             </p>
           </div>
 
@@ -39,11 +39,11 @@ export default function HowItWorks() {
               2
             </div>
             <h3 className="mt-6 text-lg font-semibold text-[#0B3A63]">
-              Automated calculation
+              Automatic calculation
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Certif-Scope applies a transparent spend-based formula using stable, version-controlled
-              emission factors to generate CO₂e outputs consistently.
+              A transparent, spend-based formula applies version-controlled emission factors
+              to generate CO₂e indicators in a reproducible way.
             </p>
           </div>
 
@@ -53,11 +53,11 @@ export default function HowItWorks() {
               3
             </div>
             <h3 className="mt-6 text-lg font-semibold text-[#0B3A63]">
-              Download your Attestation
+              Download the Attestation
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Receive a structured PDF including CO₂e totals, category breakdown, methodology
-              overview and verification details — ready for immediate submission.
+              Instantly receive a consistent PDF including totals, category breakdown, methodology
+              summary and verification details — ready for procurement or ESG checks.
             </p>
           </div>
 
@@ -65,10 +65,10 @@ export default function HowItWorks() {
 
         {/* FOOTER LINE */}
         <p className="mt-12 text-center text-sm text-gray-500 dark:text-gray-400">
-          Average completion time: under 30 seconds.
+          Typically completed in under one minute.
         </p>
 
       </div>
     </section>
   );
-}
+          }
