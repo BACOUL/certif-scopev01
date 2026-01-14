@@ -1,0 +1,25 @@
+{
+  "faq.title": "Domande frequenti",
+  "faq.disclaimer": "Stima indicativa basata sulla spesa. Non è un rapporto CSRD/ESRS, non è verificato e non sostituisce un inventario completo delle emissioni.",
+
+  "faq.q0": "I clienti, le banche o gli uffici acquisti accettano il documento?",
+  "faq.a0": "Sì. Certif-Scope è utilizzato nei processi di onboarding, procurement e screening ESG. Non è un rapporto verificato, ma un formato standardizzato e confrontabile.",
+
+  "faq.q1": "Quanto tempo richiede la generazione del documento?",
+  "faq.a1": "Una volta inserite le spese annuali, l'attestato viene generato in meno di un minuto.",
+
+  "faq.q2": "Cosa ricevo esattamente?",
+  "faq.a2": "Un PDF strutturato con valori CO₂e, suddivisione per categoria, versione del dataset, timestamp, ID di verifica e hash di integrità.",
+
+  "faq.q3": "Come funziona la verifica?",
+  "faq.a3": "Verifica deterministica senza database. Il revisore usa il QR o l’ID.",
+
+  "faq.q4": "Qual è la metodologia utilizzata?",
+  "faq.a4": "Metodo basato sulle spese conforme a Scope 3 Categoria 1. Non valido per CSRD/ESRS.",
+
+  "faq.q5": "I miei dati vengono memorizzati?",
+  "faq.a5": "No. Nessun dato viene conservato. La verifica usa integrità crittografica integrata.",
+
+  "faq.q6": "Quali sono i limiti?",
+  "faq.a6": "Stima indicativa, non verificata, senza Scopes 1 e 2."
+}
