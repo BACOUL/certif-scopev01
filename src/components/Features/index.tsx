@@ -10,8 +10,8 @@ export default function Features() {
 
         {/* INTRO */}
         <p className="text-center mt-4 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed text-lg">
-          Everything required to respond to CO₂e information requests professionally and consistently —
-          with no consultants, no reporting complexity and no physical activity data.
+          A clear, structured CO₂e Attestation designed for procurement, banking and ESG screening.
+          The document follows a consistent formatting standard across all suppliers.
         </p>
 
         <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto my-14" />
@@ -19,7 +19,7 @@ export default function Features() {
         {/* GRID */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-14">
 
-          {/* FEATURE 1 — PDF */}
+          {/* FEATURE 1 — SUMMARY PAGE */}
           <div className="flex items-start gap-5">
             <div className="h-12 w-12 flex items-center justify-center rounded-xl bg-[#1FB6C1]/10 text-[#1FB6C1] flex-shrink-0">
               <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -29,36 +29,16 @@ export default function Features() {
 
             <div>
               <h3 className="text-lg font-semibold text-[#0B3A63]">
-                Professional PDF (ready to send)
+                Summary page (CO₂e total)
               </h3>
               <p className="text-gray-600 dark:text-gray-300 mt-2 leading-relaxed text-sm">
-                A polished and standardized CO₂e Attestation formatted for procurement portals,
-                onboarding workflows and banking requests.  
-                Clear structure. Immediate readability.
+                Clear presentation of the calculated CO₂e total based on annual spending (€),
+                with date, scope boundaries and a standardized layout for reviewers.
               </p>
             </div>
           </div>
 
-          {/* FEATURE 2 — SPEED */}
-          <div className="flex items-start gap-5">
-            <div className="h-12 w-12 flex items-center justify-center rounded-xl bg-[#1FB6C1]/10 text-[#1FB6C1] flex-shrink-0">
-              <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6l4 2" />
-              </svg>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-semibold text-[#0B3A63]">
-                Instant generation
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300 mt-2 leading-relaxed text-sm">
-                Enter annual spending (€) and receive your CO₂e Attestation immediately.
-                No manual calculations. No waiting times. No expert intervention.
-              </p>
-            </div>
-          </div>
-
-          {/* FEATURE 3 — METHOD */}
+          {/* FEATURE 2 — METHODOLOGY BLOCK */}
           <div className="flex items-start gap-5">
             <div className="h-12 w-12 flex items-center justify-center rounded-xl bg-[#1FB6C1]/10 text-[#1FB6C1] flex-shrink-0">
               <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -68,16 +48,35 @@ export default function Features() {
 
             <div>
               <h3 className="text-lg font-semibold text-[#0B3A63]">
-                Simple spend-based methodology
+                Methodology breakdown
               </h3>
               <p className="text-gray-600 dark:text-gray-300 mt-2 leading-relaxed text-sm">
-                No kWh, no km, no litres. No Scope 1 or Scope 2.  
-                A clear spend-based calculation suitable for screening — not a regulatory emission report.
+                Clear explanation of the spend-based approach, calculation formula, 
+                factors used and limits of the model — written in a format procurement teams understand.
               </p>
             </div>
           </div>
 
-          {/* FEATURE 4 — VERIFICATION */}
+          {/* FEATURE 3 — EMISSION FACTOR SOURCES */}
+          <div className="flex items-start gap-5">
+            <div className="h-12 w-12 flex items-center justify-center rounded-xl bg-[#1FB6C1]/10 text-[#1FB6C1] flex-shrink-0">
+              <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6l4 2" />
+              </svg>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-semibold text-[#0B3A63]">
+                Emission factor sources
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 mt-2 leading-relaxed text-sm">
+                List of emission factor datasets used (ADEME, DEFRA, IPCC or equivalents),
+                including reference year and category mapping.
+              </p>
+            </div>
+          </div>
+
+          {/* FEATURE 4 — VERIFICATION DETAILS */}
           <div className="flex items-start gap-5">
             <div className="h-12 w-12 flex items-center justify-center rounded-xl bg-[#1FB6C1]/10 text-[#1FB6C1] flex-shrink-0">
               <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -87,11 +86,11 @@ export default function Features() {
 
             <div>
               <h3 className="text-lg font-semibold text-[#0B3A63]">
-                Verification ID + integrity hash
+                Verification & integrity block
               </h3>
               <p className="text-gray-600 dark:text-gray-300 mt-2 leading-relaxed text-sm">
-                Each PDF includes a unique verification ID and a deterministic hash of the input data.
-                Partners can confirm authenticity in seconds without accounts or logins.
+                Unique verification ID, deterministic hash of input data, timestamp, 
+                and instructions for external verification — no login required.
               </p>
             </div>
           </div>
@@ -100,4 +99,4 @@ export default function Features() {
       </div>
     </section>
   );
-}
+            }
