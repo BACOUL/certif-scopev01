@@ -10,7 +10,7 @@ export default function MethodologyLayout({
   return (
     <>
       <Header />
-      <main>{children}</main>
+      <main className="pt-28">{children}</main>
       <Footer />
       <ScrollToTop />
     </>
