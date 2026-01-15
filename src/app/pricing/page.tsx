@@ -5,15 +5,11 @@ export const metadata = {
 
 export default function PricingPage() {
   return (
-    <div
-      id="pricing-overview"
-      data-section="pricing-overview"
-      className="max-w-7xl mx-auto px-6 pt-8 pb-24"
-    >
+    <div className="max-w-7xl mx-auto px-6 pt-20 pb-24">
 
-      {/* HEADER */}
-      <div className="w-full mb-12">
-        <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-4">
+      {/* HEADER UNIFORME */}
+      <div className="mb-12">
+        <h1 className="text-4xl font-extrabold text-[#0B3A63] mb-4">
           Pricing
         </h1>
 
@@ -22,25 +18,26 @@ export default function PricingPage() {
         </p>
       </div>
 
-      {/* PRICING CONTENT */}
-      <div className="w-full p-8 mb-24 bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-200 dark:border-gray-700 text-center">
-        <h2 className="text-2xl md:text-3xl font-bold text-[#0B3A63] mb-6">
+      {/* CONTENU PRINCIPAL */}
+      <div className="max-w-4xl mx-auto text-center">
+
+        <h2 className="text-3xl font-bold text-[#0B3A63] mb-8">
           One-time attestation pricing
         </h2>
 
-        <p className="text-gray-700 dark:text-gray-300 mb-8 leading-relaxed max-w-2xl mx-auto">
+        <p className="text-gray-700 dark:text-gray-300 mb-10 leading-relaxed">
           Certif-Scope provides instant, verifiable CO₂ attestations suitable for
           procurement, banking and compliance workflows. Pricing is fixed per attestation.
         </p>
 
-        {/* PRICE CARD */}
-        <div className="bg-white dark:bg-gray-800 shadow-lg rounded-xl p-10 border border-gray-200 dark:border-gray-700 inline-block">
+        {/* CARD PRICE */}
+        <div className="bg-white dark:bg-gray-800 shadow-lg rounded-xl p-10 border border-gray-200 dark:border-gray-700">
           <h3 className="text-2xl font-semibold mb-4">Standard Attestation</h3>
 
           <p className="text-5xl font-bold text-primary mb-3">49€</p>
 
           <p className="text-gray-600 dark:text-gray-300 mb-6">
-            Certified CO₂ attestation • Instant PDF • Verification URL + QR code • Cryptographic hash integrity
+            Certified CO₂ attestation • Instant PDF • Verification URL + QR code • Cryptographic integrity
           </p>
 
           <ul className="text-left mx-auto max-w-md space-y-3 text-gray-700 dark:text-gray-300">
@@ -61,7 +58,6 @@ export default function PricingPage() {
           No subscription. Pay only when you generate an attestation.
         </p>
       </div>
-
     </div>
   );
 }
