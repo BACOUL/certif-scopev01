@@ -1,32 +1,31 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
 /node_modules
 /.pnp
 .pnp.js
 .vscode
+
 # testing
 /coverage
 
-# next.js
+# next.js build output
 /.next/
 /out/
 
-# production
+# production build
 /build
 
 # misc
 .DS_Store
 *.pem
 
-# debug
+# debug logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# local env files
+# local environment variables
 .env*.local
 
-# vercel
-- .vercel
+# vercel metadata (must be ignored)
+.vercel
