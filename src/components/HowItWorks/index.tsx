@@ -7,7 +7,7 @@ export default function HowItWorks() {
     >
       <div className="max-w-6xl mx-auto px-6">
 
-        {/* TITLE — H2 unique + optimisé */}
+        {/* TITLE */}
         <h2
           className="text-3xl md:text-4xl font-extrabold text-center text-[#0B3A63]"
           data-i18n="howitworks.title"
@@ -15,13 +15,13 @@ export default function HowItWorks() {
           How It Works
         </h2>
 
-        {/* INTRO — unique, non répétitif */}
+        {/* INTRO */}
         <p
           className="mt-4 text-center text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed"
           data-i18n="howitworks.intro"
         >
           A clear, three-step process converting annual spending (€) into a standardized CO₂e
-          Attestation aligned with procurement, banking and ESG screening workflows.
+          Attestation aligned with procurement, banking, regulatory and ESG screening workflows.
         </p>
 
         {/* SEPARATOR */}
@@ -39,8 +39,8 @@ export default function HowItWorks() {
               Enter annual spending
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Provide yearly expenses across predefined categories. Only financial inputs — no
-              operational data (kWh, km, litres) and no supporting documents required.
+              Provide yearly expenses across predefined categories. Only financial inputs — no 
+              physical activity data (kWh, km, litres) and no supporting documents required.
             </p>
           </div>
 
@@ -53,8 +53,9 @@ export default function HowItWorks() {
               Automatic calculation
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              A deterministic spend-based formula applies stable, version-controlled emission
-              factors to produce consistent CO₂e indicators that can be reviewed and compared.
+              A deterministic spend-based formula applies stable, version-controlled emission 
+              factors (GHG Protocol Category 1, ADEME, DEFRA, IPCC) to generate consistent CO₂e 
+              indicators. No Scope 1–2 accounting and no exhaustive Scope 3 assessment.
             </p>
           </div>
 
@@ -68,18 +69,30 @@ export default function HowItWorks() {
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
               Instantly receive a structured PDF including total CO₂e, category breakdown,
-              methodology summary and verification metadata — ready to share with any reviewer.
+              methodology summary, emissions-factor version ID and verifiable hash metadata.
             </p>
           </div>
 
         </div>
 
-        {/* FOOTER LINE — unique, concis */}
+        {/* SPONSORED PROGRAM BLOCK */}
+        <div className="mt-16 p-6 rounded-xl border border-slate-200 bg-slate-50 dark:bg-gray-800 dark:border-gray-700 text-slate-700 dark:text-gray-300 text-sm max-w-3xl mx-auto">
+          <p className="font-semibold text-slate-900 dark:text-white">
+            Cost coverage by enterprise programs
+          </p>
+          <p className="mt-1">
+            Some large enterprise partners sponsor the CO₂e Attestation for part or all of their 
+            supplier network. If you believe your company is part of their supply chain, you can 
+            check directly with your purchasing or ESG contact to confirm whether sponsorship is available.
+          </p>
+        </div>
+
+        {/* FOOTER LINE */}
         <p
           className="mt-12 text-center text-sm text-gray-500 dark:text-gray-400"
           data-i18n="howitworks.footer"
         >
-          The complete process typically takes under one minute.
+          The entire process typically takes less than one minute.
         </p>
 
       </div>
