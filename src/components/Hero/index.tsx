@@ -68,7 +68,7 @@ export default function Hero() {
         </a>
 
         <a
-          href="#partnership"
+          href="/partners#s1"
           className="bg-white border border-[#0B3A63] hover:bg-[#0B3A63] hover:text-white text-[#0B3A63] font-semibold px-12 py-4 rounded-xl shadow-md text-center transition"
         >
           Partner Access
