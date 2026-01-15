@@ -6,73 +6,84 @@
 @tailwind components;
 @tailwind utilities;
 
-/* === HEADER OFFSET FIX FOR ANCHORS === */
-html {
-  scroll-padding-top: 6rem;
-}
-
-/* === GLOBAL RESET === */
+/* === FIX HAUTEUR & ESPACES (Le changement important est ici) === */
 html, body {
   width: 100%;
-  max-width: 100%;
-  overflow-x: hidden !important;
-  padding: 0;
+  height: auto !important; /* On empêche de forcer une hauteur inutile */
+  min-height: 100vh;
   margin: 0;
+  padding: 0;
+  overflow-x: hidden !important;
 }
 
+/* Réduit l'espace au-dessus du contenu si tu as un menu fixe */
+html {
+  scroll-padding-top: 4rem; /* Réduit de 6rem à 4rem pour moins de vide en haut */
+}
+
+/* COMPACTER L'ESPACE VERTICAL GLOBAL */
+/* Cela réduit les marges de toutes les sections par défaut */
+section, .section {
+  padding-top: 2rem !important;    /* Moins d'espace avant le contenu */
+  padding-bottom: 2rem !important; /* Moins d'espace après le contenu */
+}
+
+/* Si tu utilises des conteneurs 'flex' qui centrent tout verticalement, on les remonte */
+.flex.items-center, .grid.items-center {
+  align-items: flex-start; /* Force le contenu à commencer en haut, pas au milieu */
+}
+/* Exception pour les boutons ou petits éléments qui doivent rester centrés */
+button.items-center, a.items-center, .btn-primary {
+  align-items: center !important;
+}
+
+/* === ALIGNEMENT & STRUCTURE === */
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #F8FAFC;
+  color: #1E293B;
+  /* On garde l'alignement gauche car c'est plus propre, mais tu peux changer ici */
+  text-align: left; 
+}
+
+/* Container : Garde la largeur sous contrôle */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
+}
+
+/* --- LE RESTE DE TON STYLE --- */
 *, ::before, ::after {
   box-sizing: border-box;
   border-color: #e5e7eb;
 }
 
-/* Apply width constraints ONLY to media */
 img, svg, video {
   max-width: 100%;
   height: auto;
+  display: block;
 }
 
-/* Flex / grid overflow fix */
-.flex, .grid {
-  min-width: 0;
-}
-
-/* Body defaults */
-body {
-  font-family: "Inter", sans-serif;
-  background-color: #F8FAFC;
-  color: #1E293B;
-}
-
-/* Button */
 .btn-primary {
   @apply bg-[#22C55E] text-white px-6 py-3 rounded-lg font-medium shadow-md hover:opacity-90 transition;
+  display: inline-flex; /* Fix pour la hauteur des boutons */
+  justify-content: center;
+  align-items: center;
 }
 
-/* Container */
-.container {
-  margin-inline: auto;
-  padding-inline: 1rem;
-  max-width: 1200px;
-}
-
-/* Soft shadows */
 .shadow-soft {
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-/* Header logo spacing */
 .header-logo {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 8px; /* Un peu plus compact */
+  padding-bottom: 8px;
 }
 
-.sticky .header-logo {
-  padding-top: 6px;
-  padding-bottom: 6px;
-  transition: padding 0.2s ease;
-}
-
-/* Prevent long code lines overflow */
 pre, code {
   white-space: pre-wrap;
   word-wrap: break-word;
