@@ -7,14 +7,18 @@ import ScrollToTop from "@/components/ScrollToTop";
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
+      {/* HEADER FIXE */}
       <Header />
 
-      {/* OFFSET EXACT POUR LE HEADER FIXE (80px) */}
-      <main className="pt-[80px]">
+      {/* OFFSET AUTOMATIQUE POUR TOUS LES ÉCRANS */}
+      <main className="pt-[90px] md:pt-[100px] lg:pt-[110px]">
         {children}
       </main>
 
+      {/* FOOTER */}
       <Footer />
+
+      {/* BOUTON SCROLL */}
       <ScrollToTop />
     </>
   );
