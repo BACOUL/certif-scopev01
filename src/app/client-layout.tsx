@@ -9,8 +9,8 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
     <>
       <Header />
 
-      {/* OFFSET AUTOMATIQUE POUR LE HEADER FIXE */}
-      <main className="pt-16 md:pt-20 lg:pt-24">
+      {/* OFFSET EXACT POUR LE HEADER FIXE (80px) */}
+      <main className="pt-[80px]">
         {children}
       </main>
 
