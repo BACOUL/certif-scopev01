@@ -41,7 +41,6 @@ body {
   font-family: "Inter", sans-serif;
   background-color: #F8FAFC;
   color: #1E293B;
-  overflow-x: clip;
 }
 
 /* Button */
@@ -51,14 +50,6 @@ body {
 
 /* Container */
 .container {
-  margin-inline: auto;
-  padding-inline: 1rem;
-  max-width: 1200px;
-}
-
-/* === GLOBAL PAGE ALIGNMENT FIX === */
-section, main, header, footer {
-  width: 100%;
   margin-inline: auto;
   padding-inline: 1rem;
   max-width: 1200px;
