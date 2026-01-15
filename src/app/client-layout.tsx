@@ -8,7 +8,12 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   return (
     <>
       <Header />
-      <main>{children}</main>
+
+      {/* Fix global du décalage pages — padding sous header fixe */}
+      <main className="pt-24">
+        {children}
+      </main>
+
       <Footer />
       <ScrollToTop />
     </>
