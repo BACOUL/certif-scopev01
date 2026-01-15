@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Pricing — Certif-Scope",
-  description: "Simple pricing for instant CO₂e attestations. No subscription. Transparent and predictable.",
+  description: "Simple pricing for instant CO₂e attestations. No subscription, no hidden fees.",
 };
 
 export default function PricingPage() {
@@ -12,7 +12,6 @@ export default function PricingPage() {
         <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-4">
           Pricing
         </h1>
-
         <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed max-w-2xl mx-auto">
           Fixed pricing per attestation. No subscription, no hidden fees, no commitment.
         </p>
@@ -21,7 +20,7 @@ export default function PricingPage() {
       {/* GRID */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
 
-        {/* SOLO OFFER */}
+        {/* SINGLE ATTESTATION */}
         <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-lg p-10 text-center">
           <h3 className="text-2xl font-bold text-[#0B3A63] mb-3">Single Attestation</h3>
 
@@ -45,7 +44,7 @@ export default function PricingPage() {
 
           <a
             href="#assessment"
-            className="bg-primary hover:bg-[#17a2a8] text-white font-semibold px-10 py-3 rounded-xl shadow-md text-center transition"
+            className="bg-[#1FB6C1] hover:bg-[#17a2a8] text-white font-semibold px-10 py-3 rounded-xl shadow-md text-center transition"
           >
             Generate Attestation
           </a>
@@ -64,9 +63,9 @@ export default function PricingPage() {
 
           <a
             href="#assessment"
-            className="bg-[#0B3A63] hover:bg-[#083253] text-white font-semibold px-10 py-3 rounded-xl shadow-md text-center transition"
+            className="bg-[#0B3A63] hover:bg-[#083253] text-white font-semibold px-10 py-3 rounded-xl shadow-md transition"
           >
-            Use Credits
+            Generate with Pack
           </a>
         </div>
 
@@ -83,9 +82,9 @@ export default function PricingPage() {
 
           <a
             href="#assessment"
-            className="bg-[#0B3A63] hover:bg-[#083253] text-white font-semibold px-10 py-3 rounded-xl shadow-md text-center transition"
+            className="bg-[#0B3A63] hover:bg-[#083253] text-white font-semibold px-10 py-3 rounded-xl shadow-md transition"
           >
-            Use Credits
+            Generate with Pack
           </a>
         </div>
 
@@ -102,13 +101,13 @@ export default function PricingPage() {
 
           <a
             href="#assessment"
-            className="bg-[#0B3A63] hover:bg-[#083253] text-white font-semibold px-10 py-3 rounded-xl shadow-md text-center transition"
+            className="bg-[#0B3A63] hover:bg-[#083253] text-white font-semibold px-10 py-3 rounded-xl shadow-md transition"
           >
-            Use Credits
+            Generate with Pack
           </a>
         </div>
 
-        {/* ENTERPRISE PACK COMING SOON */}
+        {/* ENTERPRISE COMING SOON */}
         <div className="bg-gray-100 dark:bg-gray-900 border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-xl p-10 text-center col-span-full">
           <h3 className="text-2xl font-bold text-[#0B3A63] mb-3">Enterprise & API</h3>
 
@@ -123,17 +122,15 @@ export default function PricingPage() {
             disabled
             className="px-10 py-3 rounded-xl font-semibold text-white bg-gray-400 cursor-not-allowed"
           >
-            Available Q2 2026
+            Enterprise Access — Q2 2026
           </button>
         </div>
-
       </div>
 
-      {/* FOOTER TEXT */}
+      {/* FOOTER */}
       <p className="text-gray-600 dark:text-gray-300 mt-10 text-center text-sm">
         No subscription. Pay only when you generate an attestation.
       </p>
-
     </div>
   );
 }
