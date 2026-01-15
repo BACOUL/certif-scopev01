@@ -1,5 +1,72 @@
-nav, header {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
+/* === GOOGLE FONTS === */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* === TAILWIND v4 === */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* === HEADER OFFSET FIX FOR ANCHORS === */
+html {
+  scroll-padding-top: 6rem;
+}
+
+/* === GLOBAL RESET === */
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden !important;
+  padding: 0;
+  margin: 0;
+}
+
+*, ::before, ::after {
+  box-sizing: border-box;
+  border-color: #e5e7eb;
+}
+
+img, svg, video {
+  max-width: 100%;
+  height: auto;
+}
+
+.flex, .grid {
+  min-width: 0;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #F8FAFC;
+  color: #1E293B;
+}
+
+.btn-primary {
+  @apply bg-[#22C55E] text-white px-6 py-3 rounded-lg font-medium shadow-md hover:opacity-90 transition;
+}
+
+.container {
+  margin-inline: auto;
+  padding-inline: 1rem;
+  max-width: 1200px;
+}
+
+.shadow-soft {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.header-logo {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.sticky .header-logo {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  transition: padding 0.2s ease;
+}
+
+pre, code {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  max-width: 100%;
 }
