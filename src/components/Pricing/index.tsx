@@ -5,11 +5,14 @@ export const metadata = {
 
 export default function PricingPage() {
   return (
-    <div className="max-w-7xl mx-auto px-6 pt-6 pb-24">
+    <div
+      id="pricing-page"
+      className="max-w-7xl mx-auto px-6 pt-8 pb-24"
+    >
 
-      {/* HEADER UNIFORME */}
-      <div className="mb-12">
-        <h1 className="text-4xl font-extrabold text-[#0B3A63] mb-4">
+      {/* HEADER IDENTIQUE */}
+      <div className="w-full mb-12">
+        <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-4">
           Pricing
         </h1>
 
@@ -18,10 +21,10 @@ export default function PricingPage() {
         </p>
       </div>
 
-      {/* CONTENU PRINCIPAL */}
+      {/* BODY */}
       <div className="max-w-4xl mx-auto text-center">
 
-        <h2 className="text-3xl font-bold text-[#0B3A63] mb-8">
+        <h2 className="text-2xl md:text-3xl font-bold text-[#0B3A63] mb-6">
           One-time attestation pricing
         </h2>
 
@@ -30,7 +33,7 @@ export default function PricingPage() {
           procurement, banking and compliance workflows. Pricing is fixed per attestation.
         </p>
 
-        {/* CARD PRICE */}
+        {/* PRICING CARD */}
         <div className="bg-white dark:bg-gray-800 shadow-lg rounded-xl p-10 border border-gray-200 dark:border-gray-700">
           <h3 className="text-2xl font-semibold mb-4">Standard Attestation</h3>
 
