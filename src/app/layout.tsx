@@ -51,7 +51,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Hreflang for SEO multilingual */}
         <link rel="alternate" href="https://certif-scope.com/en/" hrefLang="en" />
         <link rel="alternate" href="https://certif-scope.com/fr/" hrefLang="fr" />
         <link rel="alternate" href="https://certif-scope.com/de/" hrefLang="de" />
@@ -59,7 +58,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="alternate" href="https://certif-scope.com/it/" hrefLang="it" />
         <link rel="alternate" href="https://certif-scope.com/" hrefLang="x-default" />
 
-        {/* Structured Data — JSON-LD */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -84,9 +82,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
       <body className="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200">
         <ClientLayout>
-          <div className="pt-24">
-            {children}
-          </div>
+          {children}
         </ClientLayout>
       </body>
     </html>
