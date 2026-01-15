@@ -9,8 +9,8 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
     <>
       <Header />
 
-      {/* Ajustement dynamique pour mobile + desktop */}
-      <main className="pt-[180px] md:pt-[100px]">
+      {/* OFFSET FIX: prevents content jumping under header */}
+      <main className="pt-[110px]">
         {children}
       </main>
 
