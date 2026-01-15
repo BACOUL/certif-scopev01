@@ -6,94 +6,61 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ==========================================
-   GLOBAL LAYOUT FIXES & MOBILE OPTIMIZATION
-   ========================================== */
-
-/* Fix anchor offset for fixed header — dynamic for mobile */
+/* === HEADER OFFSET FIX FOR ANCHORS === */
 html {
-  scroll-padding-top: 4rem; /* ~64px mobile */
+  scroll-padding-top: 6rem;
 }
 
-@media (min-width: 1024px) {
-  html {
-    scroll-padding-top: 6rem; /* ~96px desktop */
-  }
-}
-
-/* Remove horizontal overflow */
+/* === GLOBAL RESET === */
 html, body {
   width: 100%;
   max-width: 100%;
   overflow-x: hidden !important;
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 
-/* Ensure layout stability */
 *, ::before, ::after {
   box-sizing: border-box;
-  max-width: 100%;
   border-color: #e5e7eb;
 }
 
+/* Apply width constraints ONLY to media */
+img, svg, video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Flex / grid overflow fix */
 .flex, .grid {
   min-width: 0;
 }
 
-/* Global font + color theme base */
+/* Body defaults */
 body {
   font-family: "Inter", sans-serif;
   background-color: #F8FAFC;
   color: #1E293B;
 }
 
-/* ==========================================
-   MEDIA ELEMENTS — Prevent layout breaking
-   ========================================== */
-
-img, svg, video {
-  max-width: 100%;
-  height: auto;
-}
-
-/* Prevent long code blocks from breaking layout */
-pre, code {
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  max-width: 100%;
-}
-
-/* ==========================================
-   BUTTONS
-   ========================================== */
-
+/* Button */
 .btn-primary {
   @apply bg-[#22C55E] text-white px-6 py-3 rounded-lg font-medium shadow-md hover:opacity-90 transition;
 }
 
-/* ==========================================
-   RESPONSIVE CONTAINER
-   ========================================== */
-
+/* Container */
 .container {
   margin-inline: auto;
   padding-inline: 1rem;
   max-width: 1200px;
 }
 
-/* ==========================================
-   SMOOTH SHADOWS
-   ========================================== */
-
+/* Soft shadows */
 .shadow-soft {
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-/* ==========================================
-   HEADER LOGO SPACING (sticky behavior)
-   ========================================== */
-
+/* Header logo spacing */
 .header-logo {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -103,4 +70,11 @@ pre, code {
   padding-top: 6px;
   padding-bottom: 6px;
   transition: padding 0.2s ease;
+}
+
+/* Prevent long code lines overflow */
+pre, code {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  max-width: 100%;
 }
