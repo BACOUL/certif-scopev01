@@ -1,144 +1,96 @@
-"use client";
-
 import Image from "next/image";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
 
-export default function Header() {
-  const pathname = usePathname();
-  const [open, setOpen] = useState(false);
-  const [dropdown, setDropdown] = useState(false);
-
-  const closeAll = () => {
-    setOpen(false);
-    setDropdown(false);
-  };
-
+export default function Hero() {
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-white border-b border-gray-200 shadow-sm">
-      <div className="max-w-7xl mx-auto h-20 px-4 flex items-center justify-between">
+    <section
+      id="hero"
+      itemScope
+      itemType="https://schema.org/WebPage"
+      className="relative max-w-6xl mx-auto px-6 pt-20 pb-16 text-center"
+    >
+      {/* BACKGROUND GRADIENT */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white to-[#F3FBFC] -z-10" />
 
-        {/* LOGO */}
-        <Link href="/" onClick={closeAll} aria-label="Home">
-          <Image
-            src="/logo.png"
-            alt="Certif-Scope"
-            width={160}
-            height={40}
-            className="h-auto"
-            priority
-          />
-        </Link>
+      {/* SUBTITLE — SEO + IA */}
+      <p
+        data-i18n="hero.subtitle"
+        className="text-xs md:text-sm font-semibold tracking-wide text-[#0B3A63]/70 mb-3 uppercase"
+      >
+        Europe’s first platform for instant, verifiable CO₂e attestations
+      </p>
 
-        {/* MOBILE MENU BUTTON */}
-        <button
-          onClick={() => setOpen(!open)}
-          aria-label="Toggle menu"
-          className="lg:hidden w-12 h-12 flex flex-col justify-center items-center"
-        >
-          <span
-            className={`h-[3px] w-8 bg-gray-800 rounded transition-all ${
-              open ? "rotate-45 translate-y-1" : ""
-            }`}
-          />
-          <span
-            className={`h-[3px] w-8 bg-gray-800 rounded my-1 transition-all ${
-              open ? "opacity-0" : "opacity-100"
-            }`}
-          />
-          <span
-            className={`h-[3px] w-8 bg-gray-800 rounded transition-all ${
-              open ? "-rotate-45 -translate-y-1" : ""
-            }`}
-          />
-        </button>
+      {/* MAIN TITLE — H1 */}
+      <h1
+        itemProp="headline"
+        data-i18n="hero.title"
+        className="text-[2rem] md:text-[3rem] font-extrabold text-[#0B3A63] leading-tight tracking-tight"
+      >
+        Generate a CO₂e Attestation in Seconds.
+        <br />
+        <span className="text-[#1FB6C1]">Standardized and accepted across Europe.</span>
+      </h1>
 
-        {/* NAVIGATION */}
-        <nav
-          className={`
-            absolute lg:static top-20 right-4 
-            bg-white border border-gray-200 rounded-xl shadow-xl 
-            p-6 w-64 lg:w-auto transition-all duration-200
-            ${open ? "opacity-100 visible" : "opacity-0 invisible"}
-            lg:opacity-100 lg:visible
-          `}
-        >
-          <ul className="flex flex-col lg:flex-row gap-5 lg:gap-10 text-gray-800">
+      {/* DESCRIPTION */}
+      <p
+        data-i18n="hero.description"
+        className="text-base md:text-lg text-[#475569] max-w-2xl mx-auto mt-5 leading-relaxed"
+      >
+        Certif-Scope converts your annual spending (€) into a standardized CO₂e Attestation
+        designed for procurement checks, banking reviews, insurers and public tenders — with
+        a clear, consistent format your partners can read instantly.
+      </p>
 
-            <li>
-              <Link
-                href="/"
-                onClick={closeAll}
-                className={pathname === "/" ? "text-primary font-semibold" : ""}
-              >
-                Home
-              </Link>
-            </li>
+      {/* SUBTEXT */}
+      <p
+        data-i18n="hero.subtext"
+        className="text-sm text-[#0B3A63]/80 font-medium mt-3"
+      >
+        A document any partner can verify in seconds.
+      </p>
 
-            {/* DROPDOWN */}
-            <li className="relative">
-              <button
-                onClick={() => setDropdown(!dropdown)}
-                className="flex items-center gap-2 font-medium"
-              >
-                CO₂e Attestation
-                <span className={`transition-transform ${dropdown ? "rotate-180" : ""}`}>▼</span>
-              </button>
-
-              <div
-                className={`
-                  ${dropdown ? "block" : "hidden"}
-                  absolute left-0 w-56 mt-3 bg-white border border-gray-200 shadow-xl rounded-xl p-4
-                  lg:absolute
-                `}
-              >
-                <Link href="/product" onClick={closeAll} className="block py-2 hover:text-primary">
-                  Overview
-                </Link>
-                <Link href="/product/methodology" onClick={closeAll} className="block py-2 hover:text-primary">
-                  Methodology
-                </Link>
-                <Link href="/product/methodology/compliance" onClick={closeAll} className="block py-2 hover:text-primary">
-                  Compliance
-                </Link>
-              </div>
-            </li>
-
-            <li>
-              <Link
-                href="/pricing"
-                onClick={closeAll}
-                className={pathname === "/pricing" ? "text-primary font-semibold" : ""}
-              >
-                Pricing
-              </Link>
-            </li>
-
-            <li>
-              <Link
-                href="/partners"
-                onClick={closeAll}
-                className={pathname === "/partners" ? "text-primary font-semibold" : ""}
-              >
-                Partnerships
-              </Link>
-            </li>
-
-            <li>
-              <Link
-                href="/verify"
-                onClick={closeAll}
-                className={pathname === "/verify" ? "text-primary font-semibold" : ""}
-              >
-                Verify Attestation
-              </Link>
-            </li>
-
-          </ul>
-        </nav>
-
+      {/* IMAGE */}
+      <div className="flex justify-center mt-12">
+        <Image
+          itemProp="image"
+          src="/hero-attestation.webp"
+          alt="Preview of an official CO₂e Attestation generated by Certif-Scope"
+          width={900}
+          height={600}
+          priority
+          className="w-full max-w-xs sm:max-w-sm md:max-w-xl rounded-2xl shadow-lg border border-slate-100"
+        />
       </div>
-    </header>
+
+      {/* CTA BUTTONS */}
+      <div className="flex flex-col md:flex-row justify-center gap-6 mt-10">
+
+        {/* PRIMARY CTA */}
+        <a
+          href="#assessment"
+          aria-label="Generate CO₂e Attestation instantly"
+          className="bg-[#1FB6C1] hover:bg-[#17a2a8] transition text-white font-semibold px-12 py-4 rounded-xl shadow-md text-center"
+        >
+          Get My CO₂e Attestation
+        </a>
+
+        {/* SECONDARY CTA */}
+        <a
+          href="/verify"
+          aria-label="Verify an existing CO₂e Attestation"
+          className="bg-[#0B3A63] hover:bg-[#083253] transition text-white font-semibold px-12 py-4 rounded-xl shadow-md text-center"
+        >
+          Verify an Attestation
+        </a>
+
+        {/* TERTIARY CTA */}
+        <a
+          href="/sample-pdf"
+          aria-label="View a sample CO₂e Attestation PDF"
+          className="bg-white border border-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition text-[#0B3A63] font-semibold px-12 py-4 rounded-xl shadow-md text-center"
+        >
+          View Sample
+        </a>
+      </div>
+    </section>
   );
 }
