@@ -33,14 +33,20 @@ const menuData: Menu[] = [
   },
   {
     id: 5,
-    title: "Verify ID",
-    path: "/verify",
+    title: "Pricing",
+    path: "/pricing",
     newTab: false,
   },
   {
     id: 6,
-    title: "Pricing",
-    path: "/pricing",
+    title: "Partnerships",
+    path: "/partnerships",
+    newTab: false,
+  },
+  {
+    id: 7,
+    title: "Verify ID",
+    path: "/verify",
     newTab: false,
   },
 ];
