@@ -8,12 +8,9 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   return (
     <>
       <Header />
-
-      {/* OFFSET FIX: prevents content jumping under header */}
-      <main className="pt-[110px]">
+      <main className="pt-20 lg:pt-24">
         {children}
       </main>
-
       <Footer />
       <ScrollToTop />
     </>
