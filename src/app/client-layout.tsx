@@ -9,8 +9,8 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
     <>
       <Header />
 
-      {/* ⚠️ IMPORTANT : padding-top pour compenser le header fixe */}
-      <main className="pt-[80px]">
+      {/* FIX ABSOLU — padding-top forcé */}
+      <main className="!pt-[100px] relative z-0">
         {children}
       </main>
 
