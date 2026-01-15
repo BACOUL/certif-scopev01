@@ -39,7 +39,7 @@ const menuData: Menu[] = [
   },
   {
     id: 6,
-    title: "Partnerships",
+    title: "partners",
     path: "/partners",
     newTab: false,
   },
