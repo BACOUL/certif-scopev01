@@ -6,7 +6,7 @@ export default function Hero() {
       id="hero"
       itemScope
       itemType="https://schema.org/WebPage"
-      className="relative max-w-6xl mx-auto px-6 pt-6 pb-20 text-center"
+      className="relative max-w-6xl mx-auto px-6 pt-28 pb-20 text-center"
     >
       {/* BACKGROUND GRADIENT */}
       <div className="absolute inset-0 bg-gradient-to-b from-white to-[#F3FBFC] -z-10" />
@@ -76,4 +76,4 @@ export default function Hero() {
       </div>
     </section>
   );
-      }
+        }
