@@ -9,8 +9,9 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
     <>
       <Header />
 
-      {/* Correct spacing for fixed header */}
-      <div className="pt-[80px]">{children}</div>
+      <div className="pt-20 md:pt-24 lg:pt-28">
+        {children}
+      </div>
 
       <Footer />
       <ScrollToTop />
