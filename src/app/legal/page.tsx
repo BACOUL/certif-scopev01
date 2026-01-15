@@ -1,84 +1,116 @@
-import Breadcrumb from "@/components/Common/Breadcrumb";
+export const metadata = {
+  title: "Legal Notice — Certif-Scope",
+  description: "Official legal information regarding Certif-Scope.",
+};
 
 export default function LegalPage() {
   return (
-    <>
-      <Breadcrumb
-        pageName="Legal Notice"
-        description="Official legal information regarding Certif-Scope."
-      />
+    <div className="max-w-7xl mx-auto px-6 pt-8 pb-24">
 
-      <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="max-w-4xl mx-auto px-6">
+      {/* HEADER UNIFORME */}
+      <div className="w-full mb-12">
+        <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-4">
+          Legal Notice
+        </h1>
 
-          {/* HEADER */}
-          <h2 className="text-2xl font-bold text-[#0B3A63] mb-6">
-            Legal Information
-          </h2>
+        <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed max-w-3xl">
+          This page provides all mandatory legal information regarding the operator,
+          publication responsibility, hosting and regulatory disclaimers for Certif-Scope.
+        </p>
+      </div>
 
-          {/* PUBLISHER */}
-          <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+      {/* CONTENT BLOCKS */}
+      <div className="max-w-4xl mx-auto space-y-12">
+
+        {/* OPERATOR */}
+        <section>
+          <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">Operator Information</h2>
+
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
             This website is operated by the individual entrepreneur:
           </p>
 
-          <ul className="text-gray-700 dark:text-gray-300 space-y-2 mb-10">
+          <ul className="text-gray-700 dark:text-gray-300 space-y-2">
             <li><strong>Name:</strong> Jeason Alexandre Bacoul</li>
             <li><strong>Company:</strong> TimeProofs</li>
             <li><strong>SIREN:</strong> 999356439</li>
             <li><strong>Address:</strong> 3 rue de l’Église de Louppy, 55000 Les Hauts-de-Chée, France</li>
-            <li><strong>Legal Form:</strong> Entrepreneur individuel</li>
+            <li><strong>Legal Status:</strong> Entrepreneur individuel</li>
             <li><strong>VAT Regime:</strong> Franchise en base (no VAT applicable)</li>
-            <li><strong>Official Contact Email:</strong> contact@certif-scope.com</li>
+            <li><strong>Contact Email:</strong> contact@certif-scope.com</li>
           </ul>
+        </section>
 
-          {/* PUBLICATION RESPONSIBLE */}
-          <h3 className="text-xl font-semibold mb-4">Publication Responsible</h3>
-          <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-10">
+        {/* PUBLICATION */}
+        <section>
+          <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">Publication Responsible</h2>
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
             The publication manager and legal representative is Jeason Alexandre Bacoul.
           </p>
+        </section>
 
-          {/* HOSTING */}
-          <h3 className="text-xl font-semibold mb-4">Hosting</h3>
-          <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-10">
-            The site is hosted by Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, USA.
+        {/* HOSTING */}
+        <section>
+          <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">Hosting Provider</h2>
+
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+            The site is hosted by:
           </p>
 
-          {/* INTELLECTUAL PROPERTY */}
-          <h3 className="text-xl font-semibold mb-4">Intellectual Property</h3>
-          <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-10">
-            All content on this website (texts, visuals, layout, icons, structure) is protected by
-            intellectual property laws. Any reproduction, distribution, modification or reuse 
-            without prior written authorization is strictly prohibited.
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed mt-2">
+            Vercel Inc.  
+            440 N Barranca Ave #4133  
+            Covina, CA 91723  
+            USA
+          </p>
+        </section>
+
+        {/* INTELLECTUAL PROPERTY */}
+        <section>
+          <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">Intellectual Property</h2>
+
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+            All content on this website (text, visuals, design, layout, code structure)
+            is protected by intellectual property laws. Any reproduction, modification
+            or redistribution without written authorization is prohibited.
+          </p>
+        </section>
+
+        {/* LIABILITY */}
+        <section>
+          <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">Liability</h2>
+
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+            Certif-Scope provides informational and digital verification services using
+            deterministic computations based on user-entered spending data.
+            The operator cannot be held responsible for:
           </p>
 
-          {/* LIABILITY */}
-          <h3 className="text-xl font-semibold mb-4">Liability</h3>
-          <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-10">
-            Certif-Scope provides informational and digital verification services using deterministic
-            calculations based on user-supplied data. The operator cannot be held responsible for:
-          </p>
-
-          <ul className="list-disc ml-6 text-gray-700 dark:text-gray-300 space-y-2 mb-10">
+          <ul className="list-disc ml-6 text-gray-700 dark:text-gray-300 space-y-2">
             <li>incorrect or incomplete data submitted by the user</li>
-            <li>misinterpretation of documents by third parties</li>
-            <li>use of the attestation outside its intended scope</li>
+            <li>misinterpretation of attestations by third parties</li>
+            <li>use outside the intended procurement/compliance scope</li>
             <li>decisions made by institutions based on the document</li>
           </ul>
 
-          {/* NOT AN AUDIT */}
-          <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-10">
-            Certif-Scope attestations are indicative estimates and are not CSRD/ESRS reports,
-            not a GHG audit and not a regulatory emissions inventory.
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed mt-4">
+            Certif-Scope attestations are indicative estimates.
+            They are not CSRD/ESRS filings, not a GHG audit and not a regulatory emissions inventory.
           </p>
+        </section>
 
-          {/* ABUSE REPORTS */}
-          <h3 className="text-xl font-semibold mb-4">Abuse Reports</h3>
+        {/* ABUSE REPORT */}
+        <section>
+          <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">Abuse & Technical Reports</h2>
+
           <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-            For any report of illegal content or technical issue, please contact:<br />
+            For any report of illegal content, data misuse or technical incident,
+            please contact:<br />
             <strong>contact@certif-scope.com</strong>
           </p>
-        </div>
-      </section>
-    </>
+        </section>
+
+      </div>
+    </div>
   );
-            }
+}
