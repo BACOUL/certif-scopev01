@@ -22,16 +22,10 @@ html, body {
   margin: 0;
 }
 
-/* Empêche les éléments enfants de forcer un débordement */
+/* RESET DE BASE — propre et safe */
 *, ::before, ::after {
   box-sizing: border-box;
-  max-width: 100%;
   border-color: #e5e7eb;
-}
-
-/* Fix flex / grid overflow */
-.flex, .grid {
-  min-width: 0;
 }
 
 /* Définit la police et le fond */
@@ -58,7 +52,7 @@ body {
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-/* === HEADER FIX === */
+/* == HEADER LOGO PADDING == */
 .header-logo {
   padding-top: 10px;
   padding-bottom: 10px;
