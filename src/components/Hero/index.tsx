@@ -6,23 +6,19 @@ export default function Hero() {
       id="hero"
       itemScope
       itemType="https://schema.org/WebPage"
-      className="relative max-w-6xl mx-auto px-6 pt-20 pb-16 text-center"
+      className="relative max-w-6xl mx-auto px-6 pt-28 pb-20 text-center"
     >
       {/* BACKGROUND GRADIENT */}
       <div className="absolute inset-0 bg-gradient-to-b from-white to-[#F3FBFC] -z-10" />
 
-      {/* SUBTITLE — SEO + IA */}
-      <p
-        data-i18n="hero.subtitle"
-        className="text-xs md:text-sm font-semibold tracking-wide text-[#0B3A63]/70 mb-3 uppercase"
-      >
+      {/* SUBTITLE */}
+      <p className="text-xs md:text-sm font-semibold tracking-wide text-[#0B3A63]/70 mb-3 uppercase">
         Europe’s first platform for instant, verifiable CO₂e attestations
       </p>
 
-      {/* MAIN TITLE — H1 */}
+      {/* MAIN TITLE */}
       <h1
         itemProp="headline"
-        data-i18n="hero.title"
         className="text-[2rem] md:text-[3rem] font-extrabold text-[#0B3A63] leading-tight tracking-tight"
       >
         Generate a CO₂e Attestation in Seconds.
@@ -31,20 +27,14 @@ export default function Hero() {
       </h1>
 
       {/* DESCRIPTION */}
-      <p
-        data-i18n="hero.description"
-        className="text-base md:text-lg text-[#475569] max-w-2xl mx-auto mt-5 leading-relaxed"
-      >
+      <p className="text-base md:text-lg text-[#475569] max-w-2xl mx-auto mt-5 leading-relaxed">
         Certif-Scope converts your annual spending (€) into a standardized CO₂e Attestation
-        designed for procurement checks, banking reviews, insurers and public tenders — with
-        a clear, consistent format your partners can read instantly.
+        designed for procurement checks, banking reviews, insurers and public tenders —
+        with a clear, consistent format your partners can read instantly.
       </p>
 
       {/* SUBTEXT */}
-      <p
-        data-i18n="hero.subtext"
-        className="text-sm text-[#0B3A63]/80 font-medium mt-3"
-      >
+      <p className="text-sm text-[#0B3A63]/80 font-medium mt-3">
         A document any partner can verify in seconds.
       </p>
 
@@ -62,31 +52,24 @@ export default function Hero() {
       </div>
 
       {/* CTA BUTTONS */}
-      <div className="flex flex-col md:flex-row justify-center gap-6 mt-10">
-
-        {/* PRIMARY CTA */}
+      <div className="flex flex-col md:flex-row justify-center gap-6 mt-12">
         <a
           href="#assessment"
-          aria-label="Generate CO₂e Attestation instantly"
-          className="bg-[#1FB6C1] hover:bg-[#17a2a8] transition text-white font-semibold px-12 py-4 rounded-xl shadow-md text-center"
+          className="bg-[#1FB6C1] hover:bg-[#17a2a8] text-white font-semibold px-12 py-4 rounded-xl shadow-md text-center transition"
         >
           Get My CO₂e Attestation
         </a>
 
-        {/* SECONDARY CTA */}
         <a
           href="/verify"
-          aria-label="Verify an existing CO₂e Attestation"
-          className="bg-[#0B3A63] hover:bg-[#083253] transition text-white font-semibold px-12 py-4 rounded-xl shadow-md text-center"
+          className="bg-[#0B3A63] hover:bg-[#083253] text-white font-semibold px-12 py-4 rounded-xl shadow-md text-center transition"
         >
           Verify an Attestation
         </a>
 
-        {/* TERTIARY CTA */}
         <a
           href="/sample-pdf"
-          aria-label="View a sample CO₂e Attestation PDF"
-          className="bg-white border border-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition text-[#0B3A63] font-semibold px-12 py-4 rounded-xl shadow-md text-center"
+          className="bg-white border border-[#0B3A63] hover:bg-[#0B3A63] hover:text-white text-[#0B3A63] font-semibold px-12 py-4 rounded-xl shadow-md text-center transition"
         >
           View Sample
         </a>
