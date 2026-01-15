@@ -16,9 +16,7 @@ export default function Header() {
   };
 
   return (
-    <header
-      className="fixed top-0 left-0 w-full z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700"
-    >
+    <header className="fixed top-0 left-0 w-full z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
 
         {/* LOGO */}
@@ -33,7 +31,7 @@ export default function Header() {
           />
         </Link>
 
-        {/* MOBILE BUTTON */}
+        {/* MOBILE MENU BUTTON */}
         <button
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
@@ -47,29 +45,29 @@ export default function Header() {
         {/* NAVIGATION */}
         <nav
           className={`
-            lg:static lg:opacity-100 lg:pointer-events-auto lg:visible
-            absolute top-16 right-4 
-            bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg shadow-lg
-            p-5 w-64 lg:w-auto transition-all duration-200
-            ${open 
-              ? "opacity-100 visible pointer-events-auto" 
-              : "opacity-0 invisible pointer-events-none"}
+            lg:static lg:flex lg:opacity-100 lg:pointer-events-auto
+            absolute top-16 right-0 w-full lg:w-auto
+            bg-white dark:bg-gray-900 border-t lg:border-none border-gray-300 dark:border-gray-700
+            shadow-lg lg:shadow-none
+            transition-all duration-200
+            ${open ? "opacity-100 visible" : "opacity-0 invisible"}
           `}
         >
-          <ul className="flex flex-col lg:flex-row gap-4 lg:gap-8">
+          <ul className="flex flex-col lg:flex-row gap-4 lg:gap-8 p-5 lg:p-0">
 
+            {/* HOME */}
             <li>
               <Link
                 href="/"
                 onClick={closeAll}
-                className={pathname === "/" ? "text-primary font-medium" : "text-gray-800 dark:text-gray-200"}
+                className={pathname === "/" ? "text-primary font-semibold" : "text-gray-800 dark:text-gray-200"}
               >
                 Home
               </Link>
             </li>
 
             {/* DROPDOWN */}
-            <li className="relative">
+            <li className="relative lg:static">
               <button
                 onClick={() => setDropdown(!dropdown)}
                 className="flex items-center gap-1 text-gray-800 dark:text-gray-200 font-medium"
@@ -78,10 +76,13 @@ export default function Header() {
                 <span className={`transition-transform ${dropdown ? "rotate-180" : ""}`}>▼</span>
               </button>
 
+              {/* DROPDOWN PANEL */}
               <div
                 className={`
                   ${dropdown ? "block" : "hidden"}
-                  absolute left-0 w-56 mt-2 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 shadow-lg rounded-lg p-3
+                  absolute lg:absolute left-0 top-full mt-2
+                  bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 
+                  shadow-lg rounded-lg w-56 p-3 z-50
                 `}
               >
                 <Link href="/product" onClick={closeAll} className="block py-2 text-sm hover:text-primary">
@@ -96,31 +97,34 @@ export default function Header() {
               </div>
             </li>
 
+            {/* PRICING */}
             <li>
               <Link
                 href="/pricing"
                 onClick={closeAll}
-                className={pathname === "/pricing" ? "text-primary font-medium" : "text-gray-800 dark:text-gray-200"}
+                className={pathname === "/pricing" ? "text-primary font-semibold" : "text-gray-800 dark:text-gray-200"}
               >
                 Pricing
               </Link>
             </li>
 
+            {/* PARTNERS */}
             <li>
               <Link
                 href="/partners"
                 onClick={closeAll}
-                className={pathname === "/partners" ? "text-primary font-medium" : "text-gray-800 dark:text-gray-200"}
+                className={pathname === "/partners" ? "text-primary font-semibold" : "text-gray-800 dark:text-gray-200"}
               >
                 Partnerships
               </Link>
             </li>
 
+            {/* VERIFY */}
             <li>
               <Link
                 href="/verify"
                 onClick={closeAll}
-                className={pathname === "/verify" ? "text-primary font-medium" : "text-gray-800 dark:text-gray-200"}
+                className={pathname === "/verify" ? "text-primary font-semibold" : "text-gray-800 dark:text-gray-200"}
               >
                 Verify Attestation
               </Link>
@@ -132,4 +136,4 @@ export default function Header() {
       </div>
     </header>
   );
-                }
+            }
