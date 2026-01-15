@@ -23,6 +23,7 @@ export default function Header() {
     >
       <div className="max-w-7xl mx-auto w-full px-4 flex items-center justify-between">
 
+        {/* LOGO */}
         <Link href="/" hrefLang="en" onClick={closeAll} aria-label="Home">
           <Image
             src="/logo.png"
@@ -34,6 +35,7 @@ export default function Header() {
           />
         </Link>
 
+        {/* MOBILE MENU BUTTON */}
         <button
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
@@ -46,6 +48,7 @@ export default function Header() {
           <span className={`h-[3px] w-7 bg-gray-900 dark:bg-gray-200 rounded transition-all ${open ? "-rotate-45 -translate-y-1" : ""}`} />
         </button>
 
+        {/* NAVIGATION */}
         <nav
           id="main-nav"
           itemScope
@@ -60,21 +63,21 @@ export default function Header() {
         >
           <ul role="menubar" className="flex flex-col lg:flex-row gap-4 lg:gap-8">
 
+            {/* HOME */}
             <li role="none">
               <Link
                 role="menuitem"
-                prefetch={true}
+                prefetch
                 href="/"
                 hrefLang="en"
                 onClick={closeAll}
-                className={`font-medium ${
-                  pathname === "/" ? "text-[#1FB6C1]" : "text-gray-800 dark:text-gray-200"
-                }`}
+                className={`font-medium ${pathname === "/" ? "text-[#1FB6C1]" : "text-gray-800 dark:text-gray-200"}`}
               >
                 Home
               </Link>
             </li>
 
+            {/* PRODUCT DROPDOWN */}
             <li role="none" className="relative">
               <button
                 onClick={() => setDropdown(!dropdown)}
@@ -92,64 +95,57 @@ export default function Header() {
                 className={`${dropdown ? "block" : "hidden"} absolute lg:static left-0 right-0 mx-auto mt-2 lg:mt-0 w-56 
                   bg-white dark:bg-gray-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 p-3`}
               >
-                <Link
-                  role="menuitem"
-                  prefetch={true}
-                  href="/product"
-                  onClick={closeAll}
-                  className="block py-2 text-sm hover:text-[#1FB6C1]"
-                >
+                <Link role="menuitem" prefetch href="/product" onClick={closeAll} className="block py-2 text-sm hover:text-[#1FB6C1]">
                   Overview — What You Receive
                 </Link>
 
-                <Link
-                  role="menuitem"
-                  prefetch={true}
-                  href="/product/methodology"
-                  onClick={closeAll}
-                  className="block py-2 text-sm hover:text-[#1FB6C1]"
-                >
+                <Link role="menuitem" prefetch href="/product/methodology" onClick={closeAll} className="block py-2 text-sm hover:text-[#1FB6C1]">
                   Methodology — How It’s Generated
                 </Link>
 
-                <Link
-                  role="menuitem"
-                  prefetch={true}
-                  href="/product/methodology/compliance"
-                  onClick={closeAll}
-                  className="block py-2 text-sm hover:text-[#1FB6C1]"
-                >
+                <Link role="menuitem" prefetch href="/product/methodology/compliance" onClick={closeAll} className="block py-2 text-sm hover:text-[#1FB6C1]">
                   Compliance — Legal Limits
                 </Link>
-
               </div>
             </li>
 
+            {/* PRICING */}
             <li role="none">
               <Link
                 role="menuitem"
-                prefetch={true}
+                prefetch
                 href="/pricing"
                 hrefLang="en"
                 onClick={closeAll}
-                className={`font-medium ${
-                  pathname === "/pricing" ? "text-[#1FB6C1]" : "text-gray-800 dark:text-gray-200"
-                }`}
+                className={`font-medium ${pathname === "/pricing" ? "text-[#1FB6C1]" : "text-gray-800 dark:text-gray-200"}`}
               >
                 Pricing
               </Link>
             </li>
 
+            {/* PARTNERSHIPS (NEW) */}
             <li role="none">
               <Link
                 role="menuitem"
-                prefetch={true}
+                prefetch
+                href="/partnerships"
+                hrefLang="en"
+                onClick={closeAll}
+                className={`font-medium ${pathname === "/partnerships" ? "text-[#1FB6C1]" : "text-gray-800 dark:text-gray-200"}`}
+              >
+                Partnerships
+              </Link>
+            </li>
+
+            {/* VERIFY */}
+            <li role="none">
+              <Link
+                role="menuitem"
+                prefetch
                 href="/verify"
                 hrefLang="en"
                 onClick={closeAll}
-                className={`font-medium ${
-                  pathname === "/verify" ? "text-[#1FB6C1]" : "text-gray-800 dark:text-gray-200"
-                }`}
+                className={`font-medium ${pathname === "/verify" ? "text-[#1FB6C1]" : "text-gray-800 dark:text-gray-200"}`}
               >
                 Verify Attestation
               </Link>
@@ -160,4 +156,4 @@ export default function Header() {
       </div>
     </header>
   );
-                }
+            }
