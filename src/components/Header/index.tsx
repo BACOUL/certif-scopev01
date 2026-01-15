@@ -24,17 +24,17 @@ export default function Header() {
         border-b border-gray-200 dark:border-gray-700
       "
     >
-      <div className="max-w-7xl mx-auto px-5 h-20 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-5 py-4 flex items-center justify-between">
 
         {/* LOGO */}
         <Link href="/" onClick={closeAll} aria-label="Home">
           <Image
             src="/logo.png"
             alt="Certif-Scope Logo"
-            width={180}
-            height={50}
+            width={150}
+            height={45}
             priority
-            className="h-auto w-40 md:w-48"
+            className="h-auto w-[150px] md:w-[180px]"
           />
         </Link>
 
@@ -52,7 +52,7 @@ export default function Header() {
         {/* NAVIGATION */}
         <nav
           className={`
-            absolute lg:static top-20 right-4 
+            absolute lg:static top-[72px] right-4 
             bg-white dark:bg-gray-900 
             border border-gray-200 dark:border-gray-700
             rounded-xl shadow-lg lg:shadow-none
@@ -85,25 +85,24 @@ export default function Header() {
                 <span className={`transition-transform ${dropdown ? "rotate-180" : ""}`}>▼</span>
               </button>
 
-              <div
-                className={`
-                  absolute left-0 mt-2 w-56 bg-white dark:bg-gray-900
+              {dropdown && (
+                <div className="
+                  absolute left-0 top-8 w-56 z-50 
+                  bg-white dark:bg-gray-900
                   border border-gray-200 dark:border-gray-700
                   rounded-lg shadow-lg p-3
-                  transition-all duration-200 z-50
-                  ${dropdown ? "block" : "hidden"}
-                `}
-              >
-                <Link href="/product" onClick={closeAll} className="block py-2 text-sm hover:text-primary">
-                  Overview
-                </Link>
-                <Link href="/product/methodology" onClick={closeAll} className="block py-2 text-sm hover:text-primary">
-                  Methodology
-                </Link>
-                <Link href="/product/methodology/compliance" onClick={closeAll} className="block py-2 text-sm hover:text-primary">
-                  Compliance
-                </Link>
-              </div>
+                ">
+                  <Link href="/product" onClick={closeAll} className="block py-2 text-sm hover:text-primary">
+                    Overview
+                  </Link>
+                  <Link href="/product/methodology" onClick={closeAll} className="block py-2 text-sm hover:text-primary">
+                    Methodology
+                  </Link>
+                  <Link href="/product/methodology/compliance" onClick={closeAll} className="block py-2 text-sm hover:text-primary">
+                    Compliance
+                  </Link>
+                </div>
+              )}
             </li>
 
             {/* PRICING */}
@@ -144,4 +143,4 @@ export default function Header() {
       </div>
     </header>
   );
-      }
+                }
