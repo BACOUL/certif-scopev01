@@ -7,7 +7,6 @@ import Features from "@/components/Features";
 import Trust from "@/components/Trust";
 import AttestationPreview from "@/components/AttestationPreview";
 import Testimonials from "@/components/Testimonials";
-import Pricing from "@/components/Pricing";
 import FAQ from "@/components/FAQ";
 
 export default function Home() {
@@ -24,7 +23,6 @@ export default function Home() {
         <Trust />
         <AttestationPreview />
         <Testimonials />
-        <Pricing />
         <FAQ />
       </main>
     </>
