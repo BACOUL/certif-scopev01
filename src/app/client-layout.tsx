@@ -8,9 +8,12 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   return (
     <>
       <Header />
-      <main className="pt-24">
+
+      {/* ⚠️ IMPORTANT : padding-top pour compenser le header fixe */}
+      <main className="pt-[80px]">
         {children}
       </main>
+
       <Footer />
       <ScrollToTop />
     </>
