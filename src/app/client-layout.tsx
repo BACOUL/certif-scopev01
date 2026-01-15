@@ -8,7 +8,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   return (
     <>
       <Header />
-      <main className="pt-20 lg:pt-24">
+      <main className="pt-24">
         {children}
       </main>
       <Footer />
