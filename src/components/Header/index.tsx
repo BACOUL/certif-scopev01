@@ -35,7 +35,7 @@ export default function Header() {
           />
         </Link>
 
-        {/* MOBILE MENU BUTTON */}
+        {/* MOBILE BUTTON */}
         <button
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
@@ -67,9 +67,7 @@ export default function Header() {
             <li role="none">
               <Link
                 role="menuitem"
-                prefetch
                 href="/"
-                hrefLang="en"
                 onClick={closeAll}
                 className={`font-medium ${pathname === "/" ? "text-[#1FB6C1]" : "text-gray-800 dark:text-gray-200"}`}
               >
@@ -95,15 +93,30 @@ export default function Header() {
                 className={`${dropdown ? "block" : "hidden"} absolute lg:static left-0 right-0 mx-auto mt-2 lg:mt-0 w-56 
                   bg-white dark:bg-gray-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 p-3`}
               >
-                <Link role="menuitem" prefetch href="/product" onClick={closeAll} className="block py-2 text-sm hover:text-[#1FB6C1]">
+                <Link
+                  role="menuitem"
+                  href="/product"
+                  onClick={closeAll}
+                  className="block py-2 text-sm hover:text-[#1FB6C1]"
+                >
                   Overview — What You Receive
                 </Link>
 
-                <Link role="menuitem" prefetch href="/product/methodology" onClick={closeAll} className="block py-2 text-sm hover:text-[#1FB6C1]">
+                <Link
+                  role="menuitem"
+                  href="/product/methodology"
+                  onClick={closeAll}
+                  className="block py-2 text-sm hover:text-[#1FB6C1]"
+                >
                   Methodology — How It’s Generated
                 </Link>
 
-                <Link role="menuitem" prefetch href="/product/methodology/compliance" onClick={closeAll} className="block py-2 text-sm hover:text-[#1FB6C1]">
+                <Link
+                  role="menuitem"
+                  href="/product/methodology/compliance"
+                  onClick={closeAll}
+                  className="block py-2 text-sm hover:text-[#1FB6C1]"
+                >
                   Compliance — Legal Limits
                 </Link>
               </div>
@@ -113,9 +126,7 @@ export default function Header() {
             <li role="none">
               <Link
                 role="menuitem"
-                prefetch
                 href="/pricing"
-                hrefLang="en"
                 onClick={closeAll}
                 className={`font-medium ${pathname === "/pricing" ? "text-[#1FB6C1]" : "text-gray-800 dark:text-gray-200"}`}
               >
@@ -123,15 +134,13 @@ export default function Header() {
               </Link>
             </li>
 
-            {/* PARTNERSHIPS (NEW) */}
+            {/* PARTNERS */}
             <li role="none">
               <Link
                 role="menuitem"
-                prefetch
-                href="/partnerships"
-                hrefLang="en"
+                href="/partners"
                 onClick={closeAll}
-                className={`font-medium ${pathname === "/partnerships" ? "text-[#1FB6C1]" : "text-gray-800 dark:text-gray-200"}`}
+                className={`font-medium ${pathname === "/partners" ? "text-[#1FB6C1]" : "text-gray-800 dark:text-gray-200"}`}
               >
                 Partnerships
               </Link>
@@ -141,9 +150,7 @@ export default function Header() {
             <li role="none">
               <Link
                 role="menuitem"
-                prefetch
                 href="/verify"
-                hrefLang="en"
                 onClick={closeAll}
                 className={`font-medium ${pathname === "/verify" ? "text-[#1FB6C1]" : "text-gray-800 dark:text-gray-200"}`}
               >
