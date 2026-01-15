@@ -116,12 +116,12 @@ export default function Header() {
               </Link>
             </li>
 
-            {/* PARTNERS */}
+            {/* PARTNERS — FIXED URL */}
             <li>
               <Link
-                href="/partnerships"
+                href="/partners"
                 onClick={closeAll}
-                className={`font-medium ${pathname === "/partnerships" ? "text-primary" : "text-gray-800 dark:text-gray-200"}`}
+                className={`font-medium ${pathname === "/partners" ? "text-primary" : "text-gray-800 dark:text-gray-200"}`}
               >
                 Partnerships
               </Link>
@@ -143,4 +143,4 @@ export default function Header() {
       </div>
     </header>
   );
-                }
+            }
