@@ -9,9 +9,10 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
     <>
       <Header />
 
-      <div className="pt-16">
+      {/* OFFSET AUTOMATIQUE POUR LE HEADER FIXE */}
+      <main className="pt-16 md:pt-20 lg:pt-24">
         {children}
-      </div>
+      </main>
 
       <Footer />
       <ScrollToTop />
