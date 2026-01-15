@@ -9,10 +9,9 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
     <>
       <Header />
 
-      {/* FIX ABSOLU — padding-top forcé */}
-      <main className="!pt-[100px] relative z-0">
+      <div style={{ paddingTop: "110px" }}>
         {children}
-      </main>
+      </div>
 
       <Footer />
       <ScrollToTop />
