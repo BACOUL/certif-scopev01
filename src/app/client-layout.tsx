@@ -9,8 +9,8 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
     <>
       <Header />
 
-      {/* Fix global du décalage pages — padding sous header fixe */}
-      <main className="pt-24">
+      {/* Ajustement dynamique pour mobile + desktop */}
+      <main className="pt-[180px] md:pt-[100px]">
         {children}
       </main>
 
