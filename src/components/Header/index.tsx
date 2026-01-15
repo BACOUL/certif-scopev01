@@ -24,7 +24,8 @@ export default function Header() {
         border-b border-gray-200 dark:border-gray-700
       "
     >
-      <div className="max-w-7xl mx-auto px-5 py-4 flex items-center justify-between">
+      {/* FULL-WIDTH HEADER */}
+      <div className="w-full px-5 py-4 flex items-center justify-between">
 
         {/* LOGO */}
         <Link href="/" onClick={closeAll} aria-label="Home">
@@ -44,9 +45,21 @@ export default function Header() {
           aria-label="Toggle menu"
           className="lg:hidden w-10 h-10 flex flex-col justify-center items-center"
         >
-          <span className={`h-[3px] w-7 bg-gray-900 dark:bg-gray-200 rounded transition-all ${open ? "rotate-45 translate-y-1" : ""}`} />
-          <span className={`h-[3px] w-7 bg-gray-900 dark:bg-gray-200 rounded my-1 transition-all ${open ? "opacity-0" : "opacity-100"}`} />
-          <span className={`h-[3px] w-7 bg-gray-900 dark:bg-gray-200 rounded transition-all ${open ? "-rotate-45 -translate-y-1" : ""}`} />
+          <span
+            className={`h-[3px] w-7 bg-gray-900 dark:bg-gray-200 rounded transition-all ${
+              open ? "rotate-45 translate-y-1" : ""
+            }`}
+          />
+          <span
+            className={`h-[3px] w-7 bg-gray-900 dark:bg-gray-200 rounded my-1 transition-all ${
+              open ? "opacity-0" : "opacity-100"
+            }`}
+          />
+          <span
+            className={`h-[3px] w-7 bg-gray-900 dark:bg-gray-200 rounded transition-all ${
+              open ? "-rotate-45 -translate-y-1" : ""
+            }`}
+          />
         </button>
 
         {/* NAVIGATION */}
@@ -69,7 +82,9 @@ export default function Header() {
               <Link
                 href="/"
                 onClick={closeAll}
-                className={`font-medium ${pathname === "/" ? "text-primary" : "text-gray-800 dark:text-gray-200"}`}
+                className={`font-medium ${
+                  pathname === "/" ? "text-primary" : "text-gray-800 dark:text-gray-200"
+                }`}
               >
                 Home
               </Link>
@@ -86,12 +101,14 @@ export default function Header() {
               </button>
 
               {dropdown && (
-                <div className="
-                  absolute left-0 top-8 w-56 z-50 
-                  bg-white dark:bg-gray-900
-                  border border-gray-200 dark:border-gray-700
-                  rounded-lg shadow-lg p-3
-                ">
+                <div
+                  className="
+                    absolute left-0 top-8 w-56 z-50 
+                    bg-white dark:bg-gray-900
+                    border border-gray-200 dark:border-gray-700
+                    rounded-lg shadow-lg p-3
+                  "
+                >
                   <Link href="/product" onClick={closeAll} className="block py-2 text-sm hover:text-primary">
                     Overview
                   </Link>
@@ -110,18 +127,22 @@ export default function Header() {
               <Link
                 href="/pricing"
                 onClick={closeAll}
-                className={`font-medium ${pathname === "/pricing" ? "text-primary" : "text-gray-800 dark:text-gray-200"}`}
+                className={`font-medium ${
+                  pathname === "/pricing" ? "text-primary" : "text-gray-800 dark:text-gray-200"
+                }`}
               >
                 Pricing
               </Link>
             </li>
 
-            {/* PARTNERS — FIXED URL */}
+            {/* PARTNERS */}
             <li>
               <Link
                 href="/partners"
                 onClick={closeAll}
-                className={`font-medium ${pathname === "/partners" ? "text-primary" : "text-gray-800 dark:text-gray-200"}`}
+                className={`font-medium ${
+                  pathname === "/partners" ? "text-primary" : "text-gray-800 dark:text-gray-200"
+                }`}
               >
                 Partnerships
               </Link>
@@ -132,7 +153,9 @@ export default function Header() {
               <Link
                 href="/verify"
                 onClick={closeAll}
-                className={`font-medium ${pathname === "/verify" ? "text-primary" : "text-gray-800 dark:text-gray-200"}`}
+                className={`font-medium ${
+                  pathname === "/verify" ? "text-primary" : "text-gray-800 dark:text-gray-200"
+                }`}
               >
                 Verify Attestation
               </Link>
@@ -143,4 +166,4 @@ export default function Header() {
       </div>
     </header>
   );
-            }
+                  }
