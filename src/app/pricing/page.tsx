@@ -5,38 +5,37 @@ export const metadata = {
 
 export default function PricingPage() {
   return (
-    <section className="pt-28 pb-24 bg-white dark:bg-gray-900">
+    <div
+      id="pricing-overview"
+      data-section="pricing-overview"
+      className="max-w-7xl mx-auto px-6 pt-8 pb-24"
+    >
 
-      {/* HEADER VISUEL — même design que les autres pages */}
-      <div className="relative w-full h-40 bg-gradient-to-br from-[#EAF3FF] to-[#F8FAFC] dark:from-gray-800 dark:to-gray-900 flex items-center">
-        <div className="max-w-7xl mx-auto px-6">
-          <h1 className="text-4xl font-extrabold text-[#0B3A63]">
-            Pricing
-          </h1>
+      {/* HEADER */}
+      <div className="w-full mb-12">
+        <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-4">
+          Pricing
+        </h1>
 
-          <p className="text-gray-700 dark:text-gray-300 mt-3 max-w-2xl">
-            Simple and transparent fixed pricing. No subscription and no hidden fees.
-          </p>
-        </div>
+        <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+          Simple and transparent fixed pricing. No subscription and no hidden fees.
+        </p>
       </div>
 
-      {/* CONTENU PRINCIPAL */}
-      <div className="max-w-4xl mx-auto px-6 mt-20 text-center">
-
-        <h2 className="text-3xl font-bold text-[#0B3A63] mb-8">
+      {/* PRICING CONTENT */}
+      <div className="w-full p-8 mb-24 bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-200 dark:border-gray-700 text-center">
+        <h2 className="text-2xl md:text-3xl font-bold text-[#0B3A63] mb-6">
           One-time attestation pricing
         </h2>
 
-        <p className="text-gray-700 dark:text-gray-300 mb-10 leading-relaxed">
+        <p className="text-gray-700 dark:text-gray-300 mb-8 leading-relaxed max-w-2xl mx-auto">
           Certif-Scope provides instant, verifiable CO₂ attestations suitable for
           procurement, banking and compliance workflows. Pricing is fixed per attestation.
         </p>
 
-        {/* CARTE DE PRIX */}
-        <div className="bg-white dark:bg-gray-800 shadow-lg rounded-xl p-10 border border-gray-200 dark:border-gray-700">
-          <h3 className="text-2xl font-semibold mb-4">
-            Standard Attestation
-          </h3>
+        {/* PRICE CARD */}
+        <div className="bg-white dark:bg-gray-800 shadow-lg rounded-xl p-10 border border-gray-200 dark:border-gray-700 inline-block">
+          <h3 className="text-2xl font-semibold mb-4">Standard Attestation</h3>
 
           <p className="text-5xl font-bold text-primary mb-3">49€</p>
 
@@ -62,6 +61,7 @@ export default function PricingPage() {
           No subscription. Pay only when you generate an attestation.
         </p>
       </div>
-    </section>
+
+    </div>
   );
 }
