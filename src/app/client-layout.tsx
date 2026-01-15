@@ -9,7 +9,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
     <>
       <Header />
 
-      <div className="pt-20 md:pt-24 lg:pt-28">
+      <div className="pt-16">
         {children}
       </div>
 
