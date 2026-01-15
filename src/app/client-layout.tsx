@@ -10,8 +10,8 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       {/* HEADER FIXE */}
       <Header />
 
-      {/* OFFSET UNIFORME POUR TOUTES LES PAGES */}
-      <main className="pt-[60px] md:pt-[70px] lg:pt-[80px]">
+      {/* OFFSET AUTOMATIQUE POUR TOUS LES ÉCRANS */}
+      <main className="pt-[90px] md:pt-[100px] lg:pt-[110px]">
         {children}
       </main>
 
