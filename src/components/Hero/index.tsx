@@ -30,7 +30,7 @@ export default function Hero() {
       <p className="text-base md:text-lg text-[#475569] max-w-2xl mx-auto mt-5 leading-relaxed">
         Certif-Scope converts your annual spending (€) into a standardized CO₂e Attestation
         designed for procurement checks, banking reviews, insurers and public tenders —
-        with a clear, consistent format your partners can read instantly.
+        with a clear, consistent format your partners can verify instantly.
       </p>
 
       {/* SUBTEXT */}
@@ -68,10 +68,10 @@ export default function Hero() {
         </a>
 
         <a
-          href="/sample-pdf"
+          href="#partnership"
           className="bg-white border border-[#0B3A63] hover:bg-[#0B3A63] hover:text-white text-[#0B3A63] font-semibold px-12 py-4 rounded-xl shadow-md text-center transition"
         >
-          View Sample
+          Partner Access
         </a>
       </div>
     </section>
