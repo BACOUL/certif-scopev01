@@ -5,7 +5,7 @@ export const metadata = {
 
 export default function PricingPage() {
   return (
-    <div className="max-w-7xl mx-auto px-6 pt-20 pb-24">
+    <div className="max-w-7xl mx-auto px-6 mt-20 pb-24">
 
       {/* HEADER UNIFORME */}
       <div className="mb-12">
