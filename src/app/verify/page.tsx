@@ -50,9 +50,7 @@ export default function VerifyPage() {
     }
 
     try {
-      // Replace with your actual verification API endpoint when ready
       const endpoint = `/api/verify?id=${finalId}&hash=${finalHash}`;
-
       const res = await fetch(endpoint);
       const data = await res.json();
 
@@ -69,17 +67,22 @@ export default function VerifyPage() {
   }
 
   return (
-    <div className="container mx-auto px-6 py-20">
-      <h1 className="text-4xl font-bold text-[#0B3A63] mb-4">
-        Verify Attestation
-      </h1>
+    <div className="max-w-7xl mx-auto px-6 pt-8 pb-24">
 
-      <p className="text-gray-600 dark:text-gray-300 mb-10 max-w-2xl">
-        Enter the Attestation ID and the corresponding SHA-256 verification hash.
-        This ensures the integrity of the document and confirms that it has not
-        been modified since issuance.
-      </p>
+      {/* HEADER */}
+      <div className="w-full mb-12">
+        <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-4">
+          Verify Attestation
+        </h1>
 
+        <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed max-w-2xl">
+          Enter the Attestation ID and the corresponding SHA-256 verification hash.
+          This ensures the integrity of the document and confirms that it has not
+          been modified since issuance.
+        </p>
+      </div>
+
+      {/* FORM */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
         <div>
           <label className="block mb-2 font-medium">Attestation ID</label>
@@ -148,4 +151,4 @@ export default function VerifyPage() {
       )}
     </div>
   );
-                                   }
+}
