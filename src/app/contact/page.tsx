@@ -1,15 +1,15 @@
 export const metadata = {
   title: "Contact — Certif-Scope",
-  description: "Contact the Certif-Scope team for integrations, partnerships or technical questions.",
+  description: "Get in touch with Certif-Scope for support, partnerships or technical questions.",
 };
 
 export default function ContactPage() {
   return (
-    <section className="max-w-7xl mx-auto px-6 pt-20 pb-24">
+    <div className="max-w-7xl mx-auto px-6 pt-8 pb-24">
 
       {/* HEADER UNIFORME */}
-      <div className="mb-12">
-        <h1 className="text-4xl font-extrabold text-[#0B3A63] mb-4">
+      <div className="w-full mb-12">
+        <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-4">
           Contact Us
         </h1>
 
@@ -19,13 +19,11 @@ export default function ContactPage() {
         </p>
       </div>
 
-      {/* CONTACT FORM */}
-      <div className="bg-white dark:bg-gray-800 shadow-lg rounded-xl p-10 border border-gray-200 dark:border-gray-700 max-w-3xl">
-        <form
-          className="space-y-6"
-          method="POST"
-          action="/api/contact"
-        >
+      {/* FORM CONTAINER */}
+      <div className="max-w-3xl mx-auto bg-white dark:bg-gray-800 shadow-lg rounded-2xl p-10 border border-gray-200 dark:border-gray-700">
+
+        <form method="POST" action="/api/contact" className="space-y-6">
+
           <div>
             <label className="block mb-2 font-semibold text-gray-700 dark:text-gray-300">
               Your Name
@@ -57,24 +55,29 @@ export default function ContactPage() {
             </label>
             <textarea
               name="message"
-              rows={5}
+              rows={6}
               required
               className="w-full p-3 border rounded-md bg-white dark:bg-gray-900 dark:border-gray-700"
-              placeholder="Write your message here..."
+              placeholder="Write your message..."
             />
           </div>
 
+          {/* CTA BUTTON IDENTIQUE À PRICING */}
           <button
             type="submit"
-            className="
-              px-8 py-4 bg-primary text-white rounded-lg 
-              font-semibold hover:opacity-90 transition
-            "
+            className="mt-4 w-full bg-[#1FB6C1] hover:bg-[#17a2a8] text-white font-semibold px-8 py-4 rounded-xl shadow-lg transition text-lg"
           >
             Send Message
           </button>
         </form>
+
       </div>
-    </section>
+
+      {/* FOOTNOTE */}
+      <p className="text-gray-600 dark:text-gray-300 mt-10 text-sm text-center">
+        Your message will be processed securely. We do not store data beyond what is required to respond.
+      </p>
+
+    </div>
   );
 }
