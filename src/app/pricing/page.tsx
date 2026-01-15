@@ -5,23 +5,34 @@ export const metadata = {
 
 export default function PricingPage() {
   return (
-    <div className="max-w-7xl mx-auto px-6 mt-20 pb-24">
+    <div
+      id="pricing"
+      data-section="pricing"
+      className="max-w-7xl mx-auto px-6 pt-8 pb-24"
+    >
 
-      {/* HEADER UNIFORME */}
-      <div className="mb-12">
-        <h1 className="text-4xl font-extrabold text-[#0B3A63] mb-4">
+      {/* HEADER — IDENTIQUE STRUCTURE */}
+      <div className="w-full mb-12">
+        <h1
+          className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-4"
+        >
           Pricing
         </h1>
 
-        <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+        <p
+          className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed"
+        >
           Simple and transparent fixed pricing. No subscription and no hidden fees.
         </p>
       </div>
 
-      {/* CONTENU PRINCIPAL */}
-      <div className="max-w-4xl mx-auto text-center">
-
-        <h2 className="text-3xl font-bold text-[#0B3A63] mb-8">
+      {/* BLOCK — IDENTIQUE AU SECTIONS TABLE OF CONTENTS */}
+      <div
+        className="w-full p-8 mb-24 bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-200 dark:border-gray-700"
+      >
+        <h2
+          className="text-2xl md:text-3xl font-bold text-[#0B3A63] mb-6"
+        >
           One-time attestation pricing
         </h2>
 
@@ -30,11 +41,15 @@ export default function PricingPage() {
           procurement, banking and compliance workflows. Pricing is fixed per attestation.
         </p>
 
-        {/* CARD PRICE */}
-        <div className="bg-white dark:bg-gray-800 shadow-lg rounded-xl p-10 border border-gray-200 dark:border-gray-700">
-          <h3 className="text-2xl font-semibold mb-4">Standard Attestation</h3>
+        {/* PRICING CARD — IDENTIQUE AU STYLE DES AUTRES SECTIONS */}
+        <div className="bg-white dark:bg-gray-800 shadow-lg rounded-xl p-10 border border-gray-200 dark:border-gray-700 text-center">
+          <h3 className="text-2xl font-semibold mb-4">
+            Standard Attestation
+          </h3>
 
-          <p className="text-5xl font-bold text-primary mb-3">49€</p>
+          <p className="text-5xl font-bold text-primary mb-3">
+            49€
+          </p>
 
           <p className="text-gray-600 dark:text-gray-300 mb-6">
             Certified CO₂ attestation • Instant PDF • Verification URL + QR code • Cryptographic integrity
@@ -53,10 +68,6 @@ export default function PricingPage() {
             Generate Attestation
           </button>
         </div>
-
-        <p className="text-gray-600 dark:text-gray-300 mt-10 text-sm">
-          No subscription. Pay only when you generate an attestation.
-        </p>
       </div>
     </div>
   );
