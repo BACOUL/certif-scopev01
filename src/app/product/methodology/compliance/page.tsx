@@ -13,10 +13,10 @@ import Section10 from "./sections/Section10";
 
 export default function ComplianceLegalPage() {
   return (
-    <div className="max-w-7xl mx-auto px-6 mt-20 pb-24">
+    <div className="max-w-7xl mx-auto px-6 pb-24">
 
       {/* INTRODUCTION */}
-      <div className="mb-12">
+      <div className="mb-12 scroll-mt-28">
         <h1 className="text-4xl font-extrabold text-[#0B3A63] mb-4">
           Compliance & Legal Limits Overview
         </h1>
@@ -30,7 +30,7 @@ export default function ComplianceLegalPage() {
       </div>
 
       {/* SECTIONS LIST */}
-      <div className="p-8 mb-24 bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-200 dark:border-gray-700">
+      <div className="p-8 mb-24 bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-200 dark:border-gray-700 scroll-mt-28">
         <h2 className="text-3xl font-bold text-[#0B3A63] mb-6">
           Compliance & Legal Sections
         </h2>
@@ -51,16 +51,47 @@ export default function ComplianceLegalPage() {
 
       {/* CONTENT SECTIONS */}
       <div className="space-y-24">
-        <div id="s1"><Section1 /></div>
-        <div id="s2"><Section2 /></div>
-        <div id="s3"><Section3 /></div>
-        <div id="s4"><Section4 /></div>
-        <div id="s5"><Section5 /></div>
-        <div id="s6"><Section6 /></div>
-        <div id="s7"><Section7 /></div>
-        <div id="s8"><Section8 /></div>
-        <div id="s9"><Section9 /></div>
-        <div id="s10"><Section10 /></div>
+
+        <div id="s1" className="scroll-mt-28">
+          <Section1 />
+        </div>
+
+        <div id="s2" className="scroll-mt-28">
+          <Section2 />
+        </div>
+
+        <div id="s3" className="scroll-mt-28">
+          <Section3 />
+        </div>
+
+        <div id="s4" className="scroll-mt-28">
+          <Section4 />
+        </div>
+
+        <div id="s5" className="scroll-mt-28">
+          <Section5 />
+        </div>
+
+        <div id="s6" className="scroll-mt-28">
+          <Section6 />
+        </div>
+
+        <div id="s7" className="scroll-mt-28">
+          <Section7 />
+        </div>
+
+        <div id="s8" className="scroll-mt-28">
+          <Section8 />
+        </div>
+
+        <div id="s9" className="scroll-mt-28">
+          <Section9 />
+        </div>
+
+        <div id="s10" className="scroll-mt-28">
+          <Section10 />
+        </div>
+
       </div>
 
     </div>
