@@ -3,117 +3,144 @@
 export default function Section6() {
   return (
     <section
-      id="s6"
-      className="scroll-mt-24 border-b border-gray-200 pb-20"
-      data-section="partners-s6"
+      id="api-coming-soon"
+      data-section="api-coming-soon"
+      className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
-
-      {/* HEADER */}
-      <div className="relative p-12 rounded-2xl bg-[#F8FAFC] border border-gray-200 shadow-lg overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/10 to-[#0B3A63]/5 pointer-events-none" />
+      {/* HEADER BLOCK — same structure as Section 1, subtle variation */}
+      <div className="relative p-12 rounded-2xl bg-[#F8FAFC] border border-[#1FB6C1]/30 shadow-[0_4px_20px_rgba(0,0,0,0.05)] overflow-hidden">
+        <div
+          className="absolute inset-0 bg-gradient-to-br from-[#1FB6C1]/10 via-[#0B3A63]/5 to-transparent pointer-events-none"
+          aria-hidden="true"
+        />
 
         <h2
-          className="text-4xl md:text-5xl font-extrabold text-[#0B3A63] relative z-10"
           data-i18n="partners.s6.title"
+          className="text-4xl md:text-5xl font-extrabold text-[#0B3A63] relative z-10"
         >
-          Pricing & Volume Packs
+          <span className="mr-2">6.</span>
+          API & High-Volume Integrations
+          <span className="ml-3 text-sm font-semibold text-[#1FB6C1] align-middle">
+            (Coming soon)
+          </span>
         </h2>
 
         <p
+          data-i18n="partners.s6.intro"
           className="text-lg text-gray-700 max-w-4xl mt-6 leading-relaxed relative z-10"
-          data-i18n="partners.s6.p1"
         >
-          Large organisations access Certif-Scope through prepaid volume packs. Each pack contains a
-          number of CO₂e attestations assignable to suppliers via API tokens. There is no subscription,
-          no renewal obligation and no usage-based billing. Partners buy capacity once and consume it
-          at their own pace.
-        </p>
-
-        <p
-          className="text-lg text-gray-700 max-w-4xl mt-6 leading-relaxed relative z-10"
-          data-i18n="partners.s6.p2"
-        >
-          Pricing is intentionally transparent and deterministic to support procurement planning,
-          public-sector purchasing, and internal budget validation. No additional fees apply, and all
-          verification mechanisms remain free and offline for suppliers and auditors.
+          Certif-Scope V1 is intentionally designed for controlled, manual generation of
+          CO₂e Attestations using partner keys. Programmatic access and large-scale
+          integrations are deliberately deferred to a future version.
         </p>
       </div>
 
-      {/* PRICING GRID */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-14">
-
-        {/* PACK 1 */}
-        <div className="p-8 bg-white rounded-xl shadow-md border border-gray-200 hover:shadow-lg transition">
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">Pack 100</h3>
-          <div className="text-3xl font-extrabold text-[#15B097] mb-2">1 990 €</div>
-          <div className="text-sm text-gray-600 mb-4">19.90 € / attestation</div>
-          <ul className="text-gray-700 text-sm space-y-2 leading-relaxed">
-            <li>100 prepaid tokens</li>
-            <li>No expiration</li>
-            <li>Ideal for regional groups & clusters</li>
-            <li>Offline verification included</li>
-          </ul>
-        </div>
-
-        {/* PACK 2 */}
-        <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/30 shadow-md hover:shadow-lg transition">
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">Pack 500</h3>
-          <div className="text-3xl font-extrabold text-[#15B097] mb-2">8 450 €</div>
-          <div className="text-sm text-gray-600 mb-4">16.90 € / attestation</div>
-          <ul className="text-gray-700 text-sm space-y-2 leading-relaxed">
-            <li>500 prepaid tokens</li>
-            <li>No expiration</li>
-            <li>Best option for national groups</li>
-            <li>Offline verification included</li>
-          </ul>
-        </div>
-
-        {/* PACK 3 */}
-        <div className="p-8 bg-white rounded-xl shadow-md border border-gray-200 hover:shadow-lg transition">
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">Pack 1 000</h3>
-          <div className="text-3xl font-extrabold text-[#15B097] mb-2">14 900 €</div>
-          <div className="text-sm text-gray-600 mb-4">14.90 € / attestation</div>
-          <ul className="text-gray-700 text-sm space-y-2 leading-relaxed">
-            <li>1 000 prepaid tokens</li>
-            <li>No expiration</li>
-            <li>For multi-entity or multisite groups</li>
-            <li>Offline verification included</li>
-          </ul>
-        </div>
-
-      </div>
-
-      {/* OPTIONAL ADD-ONS */}
-      <div className="mt-16 p-10 bg-white rounded-xl border border-gray-200 shadow-md">
-        <h3 className="text-2xl font-bold text-[#0B3A63] mb-4">
-          Optional Add-Ons
+      {/* WHAT IS NOT AVAILABLE IN V1 */}
+      <div
+        data-i18n="partners.s6.notavailable.block"
+        className="mt-20 p-10 bg-white rounded-xl border border-gray-200 shadow-md"
+      >
+        <h3
+          data-i18n="partners.s6.notavailable.title"
+          className="text-2xl font-semibold text-[#0B3A63] mb-4"
+        >
+          Not Available in Version 1
         </h3>
 
-        <p className="text-gray-700 text-sm mb-6 leading-relaxed">
-          Add-ons are optional and designed for high-volume or regulated environments needing extra assurance.
-        </p>
-
-        <ul className="text-gray-700 text-sm space-y-3 leading-relaxed">
-          <li><strong>Dedicated Public Key Rotation:</strong> 990 € / year</li>
-          <li><strong>Multi-region Token Distribution:</strong> 490 € / year</li>
-          <li><strong>Automated Vendor Onboarding UI:</strong> 1 900 € one-time</li>
-          <li><strong>Custom CSV attestation batch generation:</strong> 590 € / batch</li>
+        <ul className="space-y-3 text-sm text-gray-700 leading-relaxed max-w-4xl">
+          <li data-i18n="partners.s6.notavailable.item1">
+            • No public or private API access
+          </li>
+          <li data-i18n="partners.s6.notavailable.item2">
+            • No automated or unattended generation
+          </li>
+          <li data-i18n="partners.s6.notavailable.item3">
+            • No bulk or batch issuance
+          </li>
+          <li data-i18n="partners.s6.notavailable.item4">
+            • No system-to-system integration
+          </li>
         </ul>
       </div>
 
-      {/* COMPLIANCE BOX */}
-      <div className="mt-16 bg-[#0B3A63] text-white p-10 rounded-xl shadow-md relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#15B097] to-transparent opacity-20" />
+      {/* WHY THIS DESIGN */}
+      <div
+        data-i18n="partners.s6.why.block"
+        className="mt-20 p-10 bg-[#F8FAFC] rounded-xl border border-[#1FB6C1]/30 shadow-sm"
+      >
+        <h3
+          data-i18n="partners.s6.why.title"
+          className="text-2xl font-semibold text-[#0B3A63] mb-4"
+        >
+          Why This Design Choice
+        </h3>
 
-        <h4 className="text-2xl font-bold relative z-10">
-          Compliance & Procurement Alignment
-        </h4>
+        <p
+          data-i18n="partners.s6.why.text"
+          className="text-sm text-gray-700 leading-relaxed max-w-4xl"
+        >
+          Version 1 prioritizes compliance clarity, accountability and controlled issuance.
+          Manual generation ensures that each attestation remains attributable, verifiable
+          and aligned with institutional expectations, without uncontrolled mass production.
+        </p>
+      </div>
 
-        <p className="mt-3 text-white/90 max-w-4xl leading-relaxed relative z-10">
-          The pricing model complies with EU procurement rules: fixed unit cost, no hidden charges,
-          no user tracking, and no identifiable supplier data stored. Verification remains 100%
-          free and offline. Tokens are a purely economic instrument representing prepaid generation
-          rights, not a control or identity layer.
+      {/* WHAT WILL COME NEXT */}
+      <div
+        data-i18n="partners.s6.future.block"
+        className="mt-20 p-10 bg-white rounded-xl border border-gray-200 shadow-md"
+      >
+        <h3
+          data-i18n="partners.s6.future.title"
+          className="text-2xl font-semibold text-[#0B3A63] mb-4"
+        >
+          Planned for a Future Version
+        </h3>
+
+        <ul className="space-y-3 text-sm text-gray-700 leading-relaxed max-w-4xl">
+          <li data-i18n="partners.s6.future.item1">
+            • API access for high-volume partners
+          </li>
+          <li data-i18n="partners.s6.future.item2">
+            • Automated issuance with strict controls
+          </li>
+          <li data-i18n="partners.s6.future.item3">
+            • Usage quotas and reporting mechanisms
+          </li>
+          <li data-i18n="partners.s6.future.item4">
+            • Dedicated onboarding for large organizations
+          </li>
+        </ul>
+
+        <p
+          data-i18n="partners.s6.future.note"
+          className="mt-6 text-sm text-gray-600 leading-relaxed max-w-4xl"
+        >
+          These elements are indicative and subject to future definition. No timeline or
+          specifications are committed at this stage.
+        </p>
+      </div>
+
+      {/* SOFT CONTACT */}
+      <div
+        data-i18n="partners.s6.contact.block"
+        className="mt-20 p-10 rounded-xl bg-[#0B3A63] text-white shadow-lg relative overflow-hidden"
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-[#1FB6C1]/20 to-transparent opacity-25" />
+
+        <h3
+          data-i18n="partners.s6.contact.title"
+          className="text-2xl font-semibold mb-4 relative z-10"
+        >
+          Large-Scale Needs
+        </h3>
+
+        <p
+          data-i18n="partners.s6.contact.text"
+          className="text-white/90 text-sm leading-relaxed max-w-4xl relative z-10"
+        >
+          Organizations with large-volume or automated requirements may contact Certif-Scope
+          to discuss future integration options aligned with upcoming versions.
         </p>
       </div>
 
@@ -121,13 +148,13 @@ export default function Section6() {
       <div className="mt-12 text-right">
         <a
           href="#top"
-          className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
           data-i18n="partners.s6.return"
+          className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63] 
+                     text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
         >
           Back to summary
         </a>
       </div>
-
     </section>
   );
-            }
+}
