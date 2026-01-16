@@ -24,10 +24,8 @@ export default function Header() {
         border-b border-gray-200 dark:border-gray-700
       "
     >
-      {/* FULL-WIDTH HEADER */}
-      <div className="w-full px-5 py-4 flex items-center justify-between">
+      <div className="w-full px-5 py-2 md:py-4 flex items-center justify-between">
 
-        {/* LOGO */}
         <Link href="/" onClick={closeAll} aria-label="Home">
           <Image
             src="/logo.png"
@@ -35,15 +33,14 @@ export default function Header() {
             width={150}
             height={45}
             priority
-            className="h-auto w-[150px] md:w-[180px]"
+            className="h-auto w-[120px] md:w-[180px]"
           />
         </Link>
 
-        {/* BURGER MENU */}
         <button
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
-          className="lg:hidden w-10 h-10 flex flex-col justify-center items-center"
+          className="lg:hidden w-8 h-8 flex flex-col justify-center items-center"
         >
           <span
             className={`h-[3px] w-7 bg-gray-900 dark:bg-gray-200 rounded transition-all ${
@@ -62,10 +59,9 @@ export default function Header() {
           />
         </button>
 
-        {/* NAVIGATION */}
         <nav
           className={`
-            absolute lg:static top-[72px] right-4 
+            absolute lg:static top-[60px] right-4 
             bg-white dark:bg-gray-900 
             border border-gray-200 dark:border-gray-700
             rounded-xl shadow-lg lg:shadow-none
@@ -77,7 +73,6 @@ export default function Header() {
         >
           <ul className="flex flex-col lg:flex-row gap-4 lg:gap-10">
 
-            {/* HOME */}
             <li>
               <Link
                 href="/"
@@ -90,7 +85,6 @@ export default function Header() {
               </Link>
             </li>
 
-            {/* DROPDOWN */}
             <li className="relative">
               <button
                 onClick={() => setDropdown(!dropdown)}
@@ -122,7 +116,6 @@ export default function Header() {
               )}
             </li>
 
-            {/* PRICING */}
             <li>
               <Link
                 href="/pricing"
@@ -135,7 +128,6 @@ export default function Header() {
               </Link>
             </li>
 
-            {/* PARTNERS */}
             <li>
               <Link
                 href="/partners"
@@ -148,7 +140,6 @@ export default function Header() {
               </Link>
             </li>
 
-            {/* VERIFY */}
             <li>
               <Link
                 href="/verify"
@@ -166,4 +157,4 @@ export default function Header() {
       </div>
     </header>
   );
-                  }
+}
