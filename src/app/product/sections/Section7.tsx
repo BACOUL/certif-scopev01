@@ -3,11 +3,10 @@
 export default function Section7() {
   return (
     <section
-      id="s7"
+      id="limitations-and-fit"
+      data-section="limitations-and-fit"
       className="scroll-mt-24 border-b border-gray-200 pb-24"
-      data-section="s7"
     >
-
       {/* HEADER WITH LEFT ACCENT BAR */}
       <div className="relative p-12 rounded-2xl bg-white border border-gray-200 shadow-lg overflow-hidden">
         <div className="absolute left-0 top-0 h-full w-2 bg-[#1FB6C1]" aria-hidden="true" />
@@ -16,6 +15,7 @@ export default function Section7() {
           className="text-4xl md:text-5xl font-extrabold text-[#0B3A63] pl-6"
           data-i18n="s7.title"
         >
+          <span className="mr-2">7.</span>
           Limitations & Fit
         </h2>
 
@@ -34,7 +34,10 @@ export default function Section7() {
         className="mt-16 p-10 rounded-xl bg-[#F8FAFC] border border-[#1FB6C1]/30 shadow-sm"
         data-i18n="s7.what.block"
       >
-        <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4" data-i18n="s7.what.title">
+        <h3
+          className="text-2xl font-semibold text-[#0B3A63] mb-4"
+          data-i18n="s7.what.title"
+        >
           What the Attestation IS
         </h3>
 
@@ -168,7 +171,6 @@ export default function Section7() {
           Back to summary
         </a>
       </div>
-
     </section>
   );
-            }
+          }
