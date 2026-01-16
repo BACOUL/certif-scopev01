@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 
 export default function Header() {
@@ -15,6 +15,15 @@ export default function Header() {
     setOpen(false);
     setTimeout(() => setOpen(false), 20);
   };
+
+  useEffect(() => {
+    const handler = () => {
+      setOpen(false);
+      setDropdown(false);
+    };
+    window.addEventListener("close-mobile-menu", handler);
+    return () => window.removeEventListener("close-mobile-menu", handler);
+  }, []);
 
   return (
     <header
@@ -158,4 +167,4 @@ export default function Header() {
       </div>
     </header>
   );
-}
+            }
