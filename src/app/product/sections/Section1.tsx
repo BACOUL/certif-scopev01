@@ -5,152 +5,144 @@ export default function Section1() {
     <section
       id="s1"
       data-section="s1"
-      className="scroll-mt-24 border-b border-gray-200 pb-28"
+      className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
 
-      {/* HERO PREMIUM */}
-      <div className="relative rounded-2xl p-14 bg-[#0B3A63] text-white shadow-xl overflow-hidden">
+      {/* HEADER BLOCK */}
+      <div className="relative p-12 rounded-2xl bg-[#F8FAFC] border border-gray-200 shadow-[0_4px_20px_rgba(0,0,0,0.04)] overflow-hidden">
         <div
+          className="absolute inset-0 bg-gradient-to-br from-[#1FB6C1]/20 to-transparent pointer-events-none"
           aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-br from-[#15B097]/40 to-transparent"
         />
 
         <h2
           data-i18n="s1.title"
-          className="text-4xl md:text-5xl font-extrabold relative z-10 drop-shadow-sm"
+          className="text-4xl md:text-5xl font-extrabold text-[#0B3A63] relative z-10"
         >
           Product Overview
         </h2>
 
         <p
           data-i18n="s1.paragraph1"
-          className="text-white/90 text-lg max-w-3xl mt-6 leading-relaxed relative z-10"
+          className="text-lg text-gray-700 max-w-3xl mt-6 leading-relaxed relative z-10"
         >
-          Certif-Scope generates a standardized CO₂e Attestation using only annual spending (€),
-          enabling SMEs to answer institutional climate information requests without audits,
-          CSRD/ESRS reporting or physical activity data collection.
+          Certif-Scope generates a standardized CO₂e Attestation based exclusively on annual 
+          spending (€). It is designed for SMEs that receive CO₂-related requests from clients, 
+          procurement teams, banks or insurers, but do not have the resources for CSRD/ESRS, 
+          greenhouse gas audits, or physical activity data tracking.
         </p>
 
         <p
           data-i18n="s1.paragraph2"
-          className="text-white/80 text-md max-w-3xl mt-6 leading-relaxed relative z-10"
+          className="text-md text-gray-700 max-w-3xl mt-6 leading-relaxed relative z-10"
         >
-          The attestation includes category breakdowns, standardized formatting and a deterministic
-          verification ID based on a cryptographic hash — readable and verifiable in institutional
-          workflows across Europe.
+          The attestation is formatted for institutional workflows. It includes a clear summary, 
+          category segmentation and a deterministic verification ID based on a cryptographic hash. 
+          This allows partners to verify authenticity instantly — with or without internet access — 
+          and without requiring stored data or backend lookups.
         </p>
       </div>
 
-      {/* 3 PILLARS — MIXED STYLE */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-16">
+      {/* 3-PILLAR GRID */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
 
-        {/* CARD 1 */}
+        {/* PILLAR 1 */}
         <div
           data-i18n="s1.card1.block"
-          className="p-8 rounded-xl bg-white border-l-4 border-[#15B097] shadow-md hover:shadow-lg transition"
+          className="p-8 bg-white rounded-xl shadow-md border border-gray-200 hover:shadow-xl transition"
         >
+          <div className="text-[#1FB6C1] text-4xl font-bold mb-3">01</div>
           <h3
             data-i18n="s1.card1.title"
-            className="text-xl font-bold text-[#0B3A63] mb-3"
+            className="text-xl font-semibold text-[#0B3A63] mb-2"
           >
             Structured Output
           </h3>
-
           <p
             data-i18n="s1.card1.text"
-            className="text-gray-700 text-sm leading-relaxed"
+            className="text-gray-600 text-sm leading-relaxed"
           >
-            Standardized layout designed to align with procurement, compliance and onboarding
-            workflows requiring quick CO₂ evaluation.
+            Fixed layout, institution-friendly formatting, and consistent indicators. Ideal for 
+            procurement teams and risk assessors evaluating suppliers.
           </p>
         </div>
 
-        {/* CARD 2 */}
+        {/* PILLAR 2 */}
         <div
           data-i18n="s1.card2.block"
-          className="p-8 rounded-xl bg-[#F8FAFC] border border-[#15B097]/30 shadow-sm hover:shadow-md transition"
+          className="p-8 bg-[#F8FAFC] rounded-xl border border-[#1FB6C1]/30 shadow-md hover:shadow-xl transition"
         >
+          <div className="text-[#1FB6C1] text-4xl font-bold mb-3">02</div>
           <h3
             data-i18n="s1.card2.title"
-            className="text-xl font-bold text-[#0B3A63] mb-3"
+            className="text-xl font-semibold text-[#0B3A63] mb-2"
           >
             Instant Calculation
           </h3>
-
           <p
             data-i18n="s1.card2.text"
-            className="text-gray-700 text-sm leading-relaxed"
+            className="text-gray-600 text-sm leading-relaxed"
           >
-            Deterministic spend-based formula inspired by GHG Protocol Scope 3 Cat.1. No expertise,
-            no operational metrics — result in seconds.
+            Deterministic spend-based computation inspired by GHG Protocol Scope 3 Category 1. 
+            No consultants, no operational data needed. Result in under a minute.
           </p>
         </div>
 
-        {/* CARD 3 */}
+        {/* PILLAR 3 */}
         <div
           data-i18n="s1.card3.block"
-          className="p-8 rounded-xl bg-white border-r-4 border-[#15B097] shadow-md hover:shadow-lg transition"
+          className="p-8 bg-white rounded-xl shadow-md border border-gray-200 hover:shadow-xl transition"
         >
+          <div className="text-[#1FB6C1] text-4xl font-bold mb-3">03</div>
           <h3
             data-i18n="s1.card3.title"
-            className="text-xl font-bold text-[#0B3A63] mb-3"
+            className="text-xl font-semibold text-[#0B3A63] mb-2"
           >
             Verifiable Authenticity
           </h3>
-
           <p
             data-i18n="s1.card3.text"
-            className="text-gray-700 text-sm leading-relaxed"
+            className="text-gray-600 text-sm leading-relaxed"
           >
-            Cryptographic hash and verification ID allow offline validation without databases or
-            stored data.
+            A cryptographic hash and verification ID allow independent validation. 
+            Institutions can recompute integrity offline without relying on a central database.
           </p>
         </div>
       </div>
 
-      {/* WORKFLOW SPLIT BLOCK */}
+      {/* WORKFLOW BOX */}
       <div
         data-i18n="s1.workflow.block"
-        className="mt-20 p-10 bg-[#F8FAFC] rounded-2xl border border-[#0B3A63]/10 shadow-sm"
+        className="mt-20 p-10 rounded-xl bg-white border border-gray-300 shadow-md"
       >
         <h4
           data-i18n="s1.workflow.title"
-          className="text-2xl font-bold text-[#0B3A63] mb-6"
+          className="text-xl font-bold text-[#0B3A63] mb-4"
         >
-          How It Fits in Real Workflows
+          How the Attestation Is Used in Practice
         </h4>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-          <ul className="list-disc ml-6 space-y-3 text-gray-700 text-sm leading-relaxed">
-            <li data-i18n="s1.workflow.item1">Supplier onboarding (procurement)</li>
-            <li data-i18n="s1.workflow.item2">Bank or insurer ESG pre-assessment</li>
-            <li data-i18n="s1.workflow.item3">Public tenders requiring environmental documents</li>
-            <li data-i18n="s1.workflow.item4">Compliance for clients under CSRD</li>
-          </ul>
-
-          <div className="relative p-6 bg-white rounded-xl border border-gray-200 shadow">
-            <p className="text-[#0B3A63] text-sm font-medium mb-2">
-              Summary of workflow
-            </p>
-            <p className="text-gray-600 text-sm leading-relaxed">
-              Input (spending €) →  
-              Calculation engine →  
-              Attestation PDF →  
-              Cryptographic verification
-            </p>
-          </div>
-        </div>
+        <ul className="list-disc ml-6 text-gray-700 text-sm leading-relaxed space-y-2">
+          <li data-i18n="s1.workflow.item1">
+            supplier onboarding (procurement teams request basic CO₂ indicators)
+          </li>
+          <li data-i18n="s1.workflow.item2">
+            bank or insurer due-diligence (ESG risk pre-assessment)
+          </li>
+          <li data-i18n="s1.workflow.item3">
+            public tenders referencing environmental documentation
+          </li>
+          <li data-i18n="s1.workflow.item4">
+            partner compliance checks for larger groups subject to CSRD
+          </li>
+        </ul>
       </div>
 
-      {/* REGULATORY REFERENCES */}
+      {/* REGULATORY LINKS */}
       <div
         data-i18n="s1.regref.block"
-        className="mt-16 p-10 bg-white rounded-xl border border-[#15B097]/40 shadow-md"
+        className="mt-16 p-10 bg-[#F8FAFC] rounded-xl border border-[#1FB6C1]/25 shadow-sm"
       >
-        <div className="inline-block mb-4 px-3 py-1 text-xs font-semibold bg-[#15B097]/20 text-[#0B3A63] rounded-full">
-          EU Frameworks Reference
-        </div>
-
         <h4
           data-i18n="s1.regref.title"
           className="text-xl font-bold text-[#0B3A63] mb-3"
@@ -162,47 +154,82 @@ export default function Section1() {
           data-i18n="s1.regref.text"
           className="text-gray-700 text-sm leading-relaxed max-w-4xl"
         >
-          Large companies and financial institutions must collect climate-related supplier data.
+          Large groups and financial institutions must collect climate-related indicators from 
+          suppliers under several EU frameworks. SMEs are indirectly impacted. Key references:
         </p>
 
         <ul className="mt-4 space-y-2 text-sm text-[#0B3A63] font-medium">
           <li>
-            <a href="https://eur-lex.europa.eu/eli/reg/2022/2464" className="hover:text-[#15B097] underline">
+            <a
+              href="https://eur-lex.europa.eu/eli/reg/2022/2464"
+              target="_blank"
+              className="hover:text-[#1FB6C1] underline"
+            >
               CSRD — Regulation 2022/2464
             </a>
           </li>
           <li>
-            <a href="https://www.efrag.org/lab6" className="hover:text-[#15B097] underline">
+            <a
+              href="https://www.efrag.org/lab6"
+              target="_blank"
+              className="hover:text-[#1FB6C1] underline"
+            >
               ESRS E1 Climate Standard
             </a>
           </li>
           <li>
-            <a href="https://www.eba.europa.eu" className="hover:text-[#15B097] underline">
+            <a
+              href="https://www.eba.europa.eu"
+              target="_blank"
+              className="hover:text-[#1FB6C1] underline"
+            >
               EBA ESG Risk Guidelines
             </a>
           </li>
         </ul>
       </div>
 
+      {/* LIMITATION BOX */}
+      <div
+        data-i18n="s1.limitation.block"
+        className="mt-20 p-8 bg-white rounded-xl border border-gray-300 shadow-md"
+      >
+        <h4
+          data-i18n="s1.limitation.title"
+          className="text-xl font-bold text-[#0B3A63] mb-3"
+        >
+          Important Clarification
+        </h4>
+
+        <p
+          data-i18n="s1.limitation.text"
+          className="text-gray-700 text-sm leading-relaxed"
+        >
+          Certif-Scope does not generate CSRD/ESRS disclosures, audited carbon inventories or 
+          lifecycle assessments. It provides an indicative, spend-based CO₂e indicator for 
+          compliance screening, procurement documentation and pre-assessment workflows.
+        </p>
+      </div>
+
       {/* FINAL HIGHLIGHT */}
       <div
         data-i18n="s1.highlight.block"
-        className="mt-20 p-12 bg-[#15B097] text-white rounded-2xl shadow-xl relative overflow-hidden"
+        className="mt-20 p-12 bg-[#1FB6C1] text-white rounded-2xl shadow-xl relative overflow-hidden"
       >
         <h4
           data-i18n="s1.highlight.title"
           className="text-2xl font-bold relative z-10"
         >
-          Why This Matters
+          Why This Matters for SMEs
         </h4>
 
         <p
           data-i18n="s1.highlight.text"
           className="mt-3 text-white/90 max-w-4xl leading-relaxed relative z-10"
         >
-          SMEs across Europe increasingly receive CO₂e requests during procurement, onboarding,
-          banking or insurance processes. Certif-Scope offers a fast and standardized solution,
-          fully verifiable and institution-friendly.
+          SMEs across Europe face increasing pressure to provide CO₂ information during procurement,
+          onboarding, credit analysis or insurance evaluation. Certif-Scope provides a fast,
+          standardized and verifiable option aligned with institutional expectations.
         </p>
       </div>
 
@@ -219,4 +246,4 @@ export default function Section1() {
 
     </section>
   );
-      }
+}
