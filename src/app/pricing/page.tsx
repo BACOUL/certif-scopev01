@@ -1,5 +1,3 @@
-"use client";
-
 export const metadata = {
   title: "Pricing — Certif-Scope",
   description: "Transparent pricing for standardized CO₂e Attestations. No subscription. Validity 1 year.",
