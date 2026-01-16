@@ -61,6 +61,8 @@ export default function Testimonials() {
         {items.map((item, idx) => (
           <article
             key={idx}
+            itemScope
+            itemType="https://schema.org/Review"
             className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 p-7 flex flex-col h-full transition-transform duration-200 hover:-translate-y-1"
           >
             {/* INITIALS */}
@@ -72,14 +74,29 @@ export default function Testimonials() {
             </div>
 
             {/* TEXT */}
-            <p className="text-[#1E293B] dark:text-gray-200 text-base leading-relaxed mb-5">
+            <p
+              data-i18n={`testimonials.item.${idx}.text`}
+              itemProp="reviewBody"
+              className="text-[#1E293B] dark:text-gray-200 text-base leading-relaxed mb-5"
+            >
               {item.text}
             </p>
 
             {/* AUTHOR */}
             <footer className="mt-auto">
-              <p className="font-semibold text-[#0B3A63] dark:text-white">{item.author}</p>
-              <p className="text-[#64748B] dark:text-gray-400 text-sm">{item.role}</p>
+              <p
+                data-i18n={`testimonials.item.${idx}.author`}
+                itemProp="author"
+                className="font-semibold text-[#0B3A63] dark:text-white"
+              >
+                {item.author}
+              </p>
+              <p
+                data-i18n={`testimonials.item.${idx}.role`}
+                className="text-[#64748B] dark:text-gray-400 text-sm"
+              >
+                {item.role}
+              </p>
             </footer>
           </article>
         ))}
@@ -88,9 +105,10 @@ export default function Testimonials() {
       {/* DISCLAIMER */}
       <p
         data-i18n="testimonials.disclaimer"
-        className="mt-12 text-center text-xs text-[#64748B] dark:text-gray-400"
+        className="mt-12 text-center text-xs text-[#64748B] dark:text-gray-400 max-w-xl mx-auto leading-relaxed"
       >
-        Spend-based estimate. Not a CSRD/ESRS report.
+        Indicative spend-based estimate. Not audited, not CSRD/ESRS compliant, and not a substitute
+        for a full emissions inventory. Accuracy depends entirely on user-provided financial inputs.
       </p>
 
       {/* CTA */}
@@ -105,4 +123,4 @@ export default function Testimonials() {
       </div>
     </section>
   );
-}
+            }
