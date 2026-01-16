@@ -3,14 +3,14 @@
 export default function Section10() {
   return (
     <section
-      id="s10"
+      id="liability-framework-legal-responsibilities"
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
-
       {/* HEADER — Institutional */}
       <div className="p-12 bg-[#F8FAFC] border border-gray-300 dark:border-gray-700 dark:bg-gray-900 rounded-2xl shadow-lg relative overflow-hidden">
         <h2 className="text-4xl md:text-5xl font-extrabold text-[#0B3A63]">
-          10. Liability Framework & Legal Responsibilities
+          <span className="mr-2">10.</span>
+          Liability Framework &amp; Legal Responsibilities
         </h2>
 
         <p className="text-lg text-gray-700 dark:text-gray-300 max-w-5xl mt-6 leading-relaxed">
@@ -22,8 +22,6 @@ export default function Section10() {
           the inputs supplied by the user.
         </p>
       </div>
-
-
 
       {/* BLOCK — Legal Nature of the Attestation */}
       <div className="mt-16 p-10 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl shadow-md">
@@ -44,8 +42,6 @@ export default function Section10() {
         </ul>
       </div>
 
-
-
       {/* BLOCK — Responsibility Allocation */}
       <div className="mt-20 p-10 bg-[#F8FAFC] dark:bg-gray-900 border border-[#15B097]/30 dark:border-gray-700 rounded-xl shadow-sm">
         <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
@@ -63,8 +59,6 @@ export default function Section10() {
           <li>• No party may extend the attestation’s meaning beyond its defined scope.</li>
         </ul>
       </div>
-
-
 
       {/* BLOCK — Liability Exclusions */}
       <div className="mt-20 p-10 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl shadow-md">
@@ -86,8 +80,6 @@ export default function Section10() {
         </ul>
       </div>
 
-
-
       {/* BLOCK — Prohibited Legal Interpretations */}
       <div className="mt-20 p-10 bg-[#F8FAFC] dark:bg-gray-900 border border-[#15B097]/30 dark:border-gray-700 rounded-xl shadow-sm">
         <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
@@ -107,8 +99,6 @@ export default function Section10() {
         </ul>
       </div>
 
-
-
       {/* BLOCK — Institutional Safeguards */}
       <div className="mt-20 p-10 bg-[#0B3A63] text-white rounded-xl shadow-md relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/20 to-transparent opacity-20 pointer-events-none"></div>
@@ -124,8 +114,6 @@ export default function Section10() {
         </p>
       </div>
 
-
-
       {/* RETURN BUTTON */}
       <div className="mt-12 text-right">
         <a
@@ -135,7 +123,6 @@ export default function Section10() {
           Back to summary
         </a>
       </div>
-
     </section>
   );
       }
