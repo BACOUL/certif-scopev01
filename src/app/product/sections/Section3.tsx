@@ -3,11 +3,10 @@
 export default function Section3() {
   return (
     <section
-      id="s3"
-      data-section="s3"
+      id="why-the-product-exists"
+      data-section="why-the-product-exists"
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
-
       {/* HEADER BLOCK — same style as Section1 */}
       <div className="relative p-12 rounded-2xl bg-[#F8FAFC] border border-gray-200 shadow-[0_4px_20px_rgba(0,0,0,0.04)] overflow-hidden">
         <div
@@ -19,6 +18,7 @@ export default function Section3() {
           data-i18n="s3.title"
           className="text-4xl md:text-5xl font-extrabold text-[#0B3A63] relative z-10"
         >
+          <span className="mr-2">3.</span>
           Why the Product Exists
         </h2>
 
@@ -66,9 +66,11 @@ export default function Section3() {
           </li>
 
           <li data-i18n="s3.cascade.point4">
-            • <a href="https://environment.ec.europa.eu/topics/sustainable-production-and-consumption/green-public-procurement_en"
-                 target="_blank"
-                 className="text-[#0B3A63] hover:text-[#1FB6C1] underline">
+            • <a
+                href="https://environment.ec.europa.eu/topics/sustainable-production-and-consumption/green-public-procurement_en"
+                target="_blank"
+                className="text-[#0B3A63] hover:text-[#1FB6C1] underline"
+              >
               EU Green Public Procurement (GPP)
             </a> adds environmental indicators to public tenders.
           </li>
@@ -134,7 +136,6 @@ export default function Section3() {
           Back to summary
         </a>
       </div>
-
     </section>
   );
-}
+          }
