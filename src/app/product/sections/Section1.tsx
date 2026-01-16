@@ -9,9 +9,9 @@ export default function Section1() {
     >
 
       {/* HEADER BLOCK */}
-      <div className="relative p-12 rounded-2xl bg-[#F8FAFC] border border-gray-200 shadow-[0_4px_20px_rgba(0,0,0,0.04)] overflow-hidden">
+      <div className="relative p-12 rounded-2xl bg-[#F8FAFC] border border-gray-200 shadow-[0_4px_20px_rgba(0,0,0,0.05)] overflow-hidden">
         <div
-          className="absolute inset-0 bg-gradient-to-br from-[#1FB6C1]/20 to-transparent pointer-events-none"
+          className="absolute inset-0 bg-gradient-to-br from-[#0B3A63]/10 via-[#1FB6C1]/10 to-transparent pointer-events-none"
           aria-hidden="true"
         />
 
@@ -49,7 +49,7 @@ export default function Section1() {
         {/* PILLAR 1 */}
         <div
           data-i18n="s1.card1.block"
-          className="p-8 bg-white rounded-xl shadow-md border border-gray-200 hover:shadow-xl transition"
+          className="p-8 bg-white rounded-xl shadow-md border border-gray-200 hover:shadow-lg hover:border-[#1FB6C1]/40 transition-all duration-300"
         >
           <div className="text-[#1FB6C1] text-4xl font-bold mb-3">01</div>
           <h3
@@ -70,7 +70,7 @@ export default function Section1() {
         {/* PILLAR 2 */}
         <div
           data-i18n="s1.card2.block"
-          className="p-8 bg-[#F8FAFC] rounded-xl border border-[#1FB6C1]/30 shadow-md hover:shadow-xl transition"
+          className="p-8 bg-[#F8FAFC] rounded-xl border border-[#1FB6C1]/30 shadow-md hover:shadow-lg hover:border-[#1FB6C1]/50 transition-all duration-300"
         >
           <div className="text-[#1FB6C1] text-4xl font-bold mb-3">02</div>
           <h3
@@ -91,7 +91,7 @@ export default function Section1() {
         {/* PILLAR 3 */}
         <div
           data-i18n="s1.card3.block"
-          className="p-8 bg-white rounded-xl shadow-md border border-gray-200 hover:shadow-xl transition"
+          className="p-8 bg-white rounded-xl shadow-md border border-gray-200 hover:shadow-lg hover:border-[#1FB6C1]/40 transition-all duration-300"
         >
           <div className="text-[#1FB6C1] text-4xl font-bold mb-3">03</div>
           <h3
@@ -113,7 +113,7 @@ export default function Section1() {
       {/* WORKFLOW BOX */}
       <div
         data-i18n="s1.workflow.block"
-        className="mt-20 p-10 rounded-xl bg-white border border-gray-300 shadow-md"
+        className="mt-20 p-10 rounded-xl bg-white border border-gray-200 shadow-md"
       >
         <h4
           data-i18n="s1.workflow.title"
@@ -141,7 +141,7 @@ export default function Section1() {
       {/* REGULATORY LINKS */}
       <div
         data-i18n="s1.regref.block"
-        className="mt-16 p-10 bg-[#F8FAFC] rounded-xl border border-[#1FB6C1]/25 shadow-sm"
+        className="mt-16 p-10 bg-[#F8FAFC] rounded-xl border border-[#1FB6C1]/25 shadow"
       >
         <h4
           data-i18n="s1.regref.title"
@@ -192,7 +192,7 @@ export default function Section1() {
       {/* LIMITATION BOX */}
       <div
         data-i18n="s1.limitation.block"
-        className="mt-20 p-8 bg-white rounded-xl border border-gray-300 shadow-md"
+        className="mt-20 p-8 bg-white rounded-xl border border-gray-200 shadow-md"
       >
         <h4
           data-i18n="s1.limitation.title"
@@ -214,7 +214,7 @@ export default function Section1() {
       {/* FINAL HIGHLIGHT */}
       <div
         data-i18n="s1.highlight.block"
-        className="mt-20 p-12 bg-[#1FB6C1] text-white rounded-2xl shadow-xl relative overflow-hidden"
+        className="mt-20 p-12 bg-gradient-to-br from-[#1FB6C1] to-[#0B3A63] text-white rounded-2xl shadow-xl relative overflow-hidden"
       >
         <h4
           data-i18n="s1.highlight.title"
@@ -238,8 +238,7 @@ export default function Section1() {
         <a
           href="#top"
           data-i18n="s1.return"
-          className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg
-[#0B3A63] hover:text-white transition-colors"
+          className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
         >
           Back to summary
         </a>
@@ -247,4 +246,4 @@ export default function Section1() {
 
     </section>
   );
-}
+              }
