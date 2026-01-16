@@ -7,7 +7,7 @@ export default function Features() {
     >
       <div className="max-w-6xl mx-auto px-6">
 
-        {/* TITLE — H2 unique */}
+        {/* TITLE */}
         <h2
           className="text-3xl md:text-4xl font-extrabold text-center text-[#0B3A63]"
           data-i18n="features.title"
@@ -15,14 +15,13 @@ export default function Features() {
           What You Receive in the CO₂e Attestation
         </h2>
 
-        {/* INTRO — unique et non répétitif */}
+        {/* INTRO */}
         <p
           className="text-center mt-4 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-lg leading-relaxed"
           data-i18n="features.intro"
         >
-          A standardized spend-based CO₂e Attestation designed for procurement, banking and ESG
-          screening. Each document follows a reproducible structure aligned with institutional
-          review requirements.
+          A structured CO₂e Attestation designed for procurement, banking and ESG screening.
+          Each document follows a consistent format reviewers can understand quickly.
         </p>
 
         {/* SEPARATOR */}
@@ -52,16 +51,15 @@ export default function Features() {
 
             <div>
               <h3 className="text-lg font-semibold text-[#0B3A63]">
-                Summary sheet (CO₂e total)
+                Summary sheet
               </h3>
               <p className="text-gray-600 dark:text-gray-300 mt-2 text-sm leading-relaxed">
-                Total CO₂e indicator, reference year, boundary definition and metadata presented
-                in a uniform, institution-friendly layout enabling rapid evaluation.
+                Total CO₂e, reference year and key metadata in a clear, review-ready layout.
               </p>
             </div>
           </div>
 
-          {/* FEATURE 2 — METHODOLOGY BLOCK */}
+          {/* FEATURE 2 — METHODOLOGY OVERVIEW */}
           <div className="flex items-start gap-5" data-i18n="features.methodology">
             <div
               className="h-12 w-12 flex items-center justify-center rounded-xl bg-[#1FB6C1]/10 text-[#1FB6C1] flex-shrink-0"
@@ -84,13 +82,12 @@ export default function Features() {
                 Methodology overview
               </h3>
               <p className="text-gray-600 dark:text-gray-300 mt-2 text-sm leading-relaxed">
-                Clear explanation of the spend-based formula, category mapping rules, boundaries
-                and estimation logic. Fully aligned with procurement and ESG screening practices.
+                Concise explanation of the spend-based method, category mapping and calculation rules.
               </p>
             </div>
           </div>
 
-          {/* FEATURE 3 — EMISSION FACTOR REFERENCES */}
+          {/* FEATURE 3 — EMISSION SOURCES */}
           <div className="flex items-start gap-5" data-i18n="features.sources">
             <div
               className="h-12 w-12 flex items-center justify-center rounded-xl bg-[#1FB6C1]/10 text-[#1FB6C1] flex-shrink-0"
@@ -110,11 +107,10 @@ export default function Features() {
 
             <div>
               <h3 className="text-lg font-semibold text-[#0B3A63]">
-                Emission factor references
+                Emission sources
               </h3>
               <p className="text-gray-600 dark:text-gray-300 mt-2 text-sm leading-relaxed">
-                Full traceability: dataset names, source year, version and category alignment
-                (ADEME, DEFRA, IPCC or equivalent), enabling reproducible institutional reviews.
+                Transparent list of emission factor sources, including version and source year.
               </p>
             </div>
           </div>
@@ -139,11 +135,10 @@ export default function Features() {
 
             <div>
               <h3 className="text-lg font-semibold text-[#0B3A63]">
-                Verification & integrity block
+                Verification block
               </h3>
               <p className="text-gray-600 dark:text-gray-300 mt-2 text-sm leading-relaxed">
-                Includes verification ID, deterministic input hash, timestamp and validation
-                instructions. Can be checked offline without accounts, servers or stored data.
+                Verification ID, timestamp and integrity hash enabling fast offline validation.
               </p>
             </div>
           </div>
@@ -152,4 +147,4 @@ export default function Features() {
       </div>
     </section>
   );
-      }
+          }
