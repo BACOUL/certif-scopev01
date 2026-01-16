@@ -3,14 +3,14 @@
 export default function Section2() {
   return (
     <section
-      id="s2"
+      id="regulatory-alignment-non-equivalence"
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
-
       {/* HEADER — Legal and Regulatory Framing */}
       <div className="p-12 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-300 dark:border-gray-700 relative overflow-hidden">
         <h2 className="text-4xl md:text-5xl font-extrabold text-[#0B3A63]">
-          2. Regulatory Alignment & Non-Equivalence Statement
+          <span className="mr-2">2.</span>
+          Regulatory Alignment &amp; Non-Equivalence Statement
         </h2>
 
         <p className="text-lg text-gray-700 dark:text-gray-300 max-w-5xl mt-6 leading-relaxed">
@@ -21,8 +21,6 @@ export default function Section2() {
           legal compliance equivalence.
         </p>
       </div>
-
-
 
       {/* BLOCK — Standards Used as Reference Only */}
       <div className="mt-16 p-10 bg-[#F8FAFC] dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-2xl">
@@ -44,8 +42,6 @@ export default function Section2() {
           <li>• ADEME / DEFRA published emission intensities as accessible baselines.</li>
         </ul>
       </div>
-
-
 
       {/* BLOCK — Explicit Non-Equivalence with Regulations */}
       <div className="mt-20 p-10 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-2xl">
@@ -74,8 +70,6 @@ export default function Section2() {
         </p>
       </div>
 
-
-
       {/* BLOCK — Purpose of Alignment */}
       <div className="mt-20 p-10 bg-[#0B3A63] text-white rounded-2xl shadow-md relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/30 to-transparent opacity-20"></div>
@@ -98,8 +92,6 @@ export default function Section2() {
         </ul>
       </div>
 
-
-
       {/* BLOCK — Legal Interpretation Restrictions */}
       <div className="mt-20 p-10 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-2xl">
         <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
@@ -120,8 +112,6 @@ export default function Section2() {
         </ul>
       </div>
 
-
-
       {/* RETURN BUTTON */}
       <div className="mt-12 text-right">
         <a
@@ -131,7 +121,6 @@ export default function Section2() {
           Back to summary
         </a>
       </div>
-
     </section>
   );
-}
+      }
