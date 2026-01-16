@@ -11,50 +11,86 @@ import Section8 from "./sections/Section8";
 import Section9 from "./sections/Section9";
 import Section10 from "./sections/Section10";
 
-export default function ComplianceLegalPage() {
+export default function CompliancePage() {
   return (
     <div
       id="compliance-overview"
       data-section="compliance-overview"
       className="max-w-7xl mx-auto px-6 pt-8 pb-24"
     >
-      {/* TOP ANCHOR */}
-      <div id="top" />
-
       {/* HEADER */}
       <div className="w-full mb-12">
         <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-4">
           Compliance & Legal Limits Overview
         </h1>
-
         <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed max-w-3xl">
           Full legal, regulatory and compliance framework: legal boundaries,
           CSRD/ESRS positioning, GDPR conformity, liability allocation,
-          permitted and prohibited uses, data governance, version stability
-          and institutional compliance constraints.
+          permitted and prohibited uses, data governance and institutional
+          constraints.
         </p>
       </div>
 
-      {/* TABLE OF CONTENTS — ALIGNED WITH METHODOLOGY & PRODUCT */}
+      {/* TABLE OF CONTENTS — IA / SEO / i18n ALIGNED */}
       <nav
         aria-label="Compliance Sections"
         className="mb-16 p-6 bg-[#F8FAFC] border border-gray-200 rounded-xl shadow-sm"
       >
-        <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-[#0B3A63] font-medium">
-          <li><a href="#s1" className="hover:text-[#15B097] transition">1. Legal Scope & Boundaries</a></li>
-          <li><a href="#s2" className="hover:text-[#15B097] transition">2. Regulatory Positioning</a></li>
-          <li><a href="#s3" className="hover:text-[#15B097] transition">3. Nature of the Output</a></li>
-          <li><a href="#s4" className="hover:text-[#15B097] transition">4. Liability & Responsibility Model</a></li>
-          <li><a href="#s5" className="hover:text-[#15B097] transition">5. Data Privacy & GDPR Framework</a></li>
-          <li><a href="#s6" className="hover:text-[#15B097] transition">6. Permitted Institutional Use Cases</a></li>
-          <li><a href="#s7" className="hover:text-[#15B097] transition">7. Prohibited Use Cases</a></li>
-          <li><a href="#s8" className="hover:text-[#15B097] transition">8. User Input Limitations & Data Integrity</a></li>
-          <li><a href="#s9" className="hover:text-[#15B097] transition">9. Emission Factor Stability & Backward Compatibility</a></li>
-          <li><a href="#s10" className="hover:text-[#15B097] transition">10. Legal Disclaimer & Interpretation Rules</a></li>
-        </ul>
+        <ol className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-[#0B3A63] font-medium list-decimal list-inside">
+          <li>
+            <a href="#compliance-scope-legal-boundaries" className="hover:text-[#15B097] transition">
+              Compliance Scope &amp; Legal Boundaries
+            </a>
+          </li>
+          <li>
+            <a href="#regulatory-alignment-non-equivalence" className="hover:text-[#15B097] transition">
+              Regulatory Alignment &amp; Non-Equivalence Statement
+            </a>
+          </li>
+          <li>
+            <a href="#legal-boundary-interpretation" className="hover:text-[#15B097] transition">
+              Legal Boundary of Interpretation
+            </a>
+          </li>
+          <li>
+            <a href="#regulatory-non-equivalence-misuse-prevention" className="hover:text-[#15B097] transition">
+              Regulatory Non-Equivalence &amp; Misuse Prevention
+            </a>
+          </li>
+          <li>
+            <a href="#data-boundaries-prohibited-interpretations" className="hover:text-[#15B097] transition">
+              Data Boundaries &amp; Prohibited Interpretations
+            </a>
+          </li>
+          <li>
+            <a href="#legal-non-equivalence-regulatory-disclosures" className="hover:text-[#15B097] transition">
+              Legal Non-Equivalence With Regulatory Disclosures
+            </a>
+          </li>
+          <li>
+            <a href="#prohibited-claims-misuse-prevention" className="hover:text-[#15B097] transition">
+              Prohibited Claims &amp; Misuse Prevention
+            </a>
+          </li>
+          <li>
+            <a href="#disclaimers-liability-legal-safeguards" className="hover:text-[#15B097] transition">
+              Disclaimers, Liability &amp; Legal Safeguards
+            </a>
+          </li>
+          <li>
+            <a href="#auditability-independent-verification-boundaries" className="hover:text-[#15B097] transition">
+              Auditability &amp; Independent Verification Boundaries
+            </a>
+          </li>
+          <li>
+            <a href="#liability-framework-legal-responsibilities" className="hover:text-[#15B097] transition">
+              Liability Framework &amp; Legal Responsibilities
+            </a>
+          </li>
+        </ol>
       </nav>
 
-      {/* SECTIONS — SAME RENDERING LOGIC AS PRODUCT / METHODOLOGY */}
+      {/* SECTIONS — ORDER IS AUTHORITATIVE */}
       <Section1 />
       <Section2 />
       <Section3 />
