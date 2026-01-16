@@ -3,11 +3,10 @@
 export default function Section6() {
   return (
     <section
-      id="s6"
-      data-section="s6"
+      id="usage-scenarios"
+      data-section="usage-scenarios"
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
-
       {/* HEADER WITH ACCENT BAR */}
       <div className="relative p-12 rounded-2xl bg-white border border-gray-200 shadow-lg overflow-hidden">
         <div className="absolute left-0 top-0 h-full w-2 bg-[#1FB6C1]" aria-hidden="true" />
@@ -16,6 +15,7 @@ export default function Section6() {
           data-i18n="s6.title"
           className="text-4xl md:text-5xl font-extrabold text-[#0B3A63] pl-6"
         >
+          <span className="mr-2">6.</span>
           Usage Scenarios
         </h2>
 
@@ -32,11 +32,8 @@ export default function Section6() {
 
       {/* GRID — 4 ASYMMETRIC SCENARIOS */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 mt-20">
-
         {/* LEFT COLUMN (2 items stacked) */}
         <div className="space-y-10 lg:col-span-2">
-
-          {/* PROCUREMENT */}
           <div
             data-i18n="s6.procurement.block"
             className="p-8 bg-white rounded-xl border border-gray-200 shadow-md"
@@ -57,7 +54,6 @@ export default function Section6() {
             </p>
           </div>
 
-          {/* INSURANCE */}
           <div
             data-i18n="s6.insurance.block"
             className="p-8 bg-[#F8FAFC] rounded-xl border border-[#1FB6C1]/40 shadow-sm"
@@ -73,7 +69,7 @@ export default function Section6() {
               className="mt-3 text-sm text-gray-700 leading-relaxed"
             >
               Insurers request environmental indicators to classify clients and exposures.
-              The Attestation provides a clear, stable, reproducible value suitable for 
+              The Attestation provides a clear, stable, reproducible value suitable for
               underwriting files and renewal processes.
             </p>
           </div>
@@ -99,11 +95,13 @@ export default function Section6() {
             can integrate into credit scoring without complex ESG reporting.
           </p>
         </div>
-
       </div>
 
-      {/* SECOND GRID — PUBLIC TENDERS */}
-      <div className="mt-16 p-10 bg-white rounded-xl shadow-md border border-gray-200" data-i18n="s6.tenders.block">
+      {/* PUBLIC TENDERS */}
+      <div
+        className="mt-16 p-10 bg-white rounded-xl shadow-md border border-gray-200"
+        data-i18n="s6.tenders.block"
+      >
         <h3
           data-i18n="s6.tenders.title"
           className="text-2xl font-bold text-[#0B3A63] mb-4"
@@ -161,7 +159,6 @@ export default function Section6() {
           Back to summary
         </a>
       </div>
-
     </section>
   );
-          }
+            }
