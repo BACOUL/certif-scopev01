@@ -18,7 +18,7 @@ export default function Header() {
     setOpen(false);
   };
 
-  // Fermer via événement de ClientLayout (changement de route)
+  // Close menu when navigation event dispatched by ClientLayout
   useEffect(() => {
     const handler = () => {
       setOpen(false);
@@ -28,7 +28,7 @@ export default function Header() {
     return () => window.removeEventListener("close-mobile-menu", handler);
   }, []);
 
-  // Fermer si clic à l’extérieur du menu ou du bouton burger
+  // Close menu when clicking outside
   useEffect(() => {
     if (!open) return;
 
@@ -54,6 +54,8 @@ export default function Header() {
 
   return (
     <header
+      id="site-header"
+      role="banner"
       className="
         fixed top-0 left-0 w-full z-50 
         bg-white/95 dark:bg-gray-900/90 
@@ -63,7 +65,8 @@ export default function Header() {
     >
       <div className="w-full px-5 py-2 md:py-4 flex items-center justify-between">
 
-        <Link href="/" onClick={closeAll} aria-label="Home">
+        {/* LOGO */}
+        <Link href="/" onClick={closeAll} aria-label="Home" data-i18n="nav.home">
           <Image
             src="/logo.png"
             alt="Certif-Scope Logo"
@@ -74,10 +77,13 @@ export default function Header() {
           />
         </Link>
 
+        {/* BURGER BUTTON */}
         <button
           ref={burgerRef}
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
+          aria-expanded={open}
+          aria-controls="main-navigation"
           className="lg:hidden w-8 h-8 flex flex-col justify-center items-center"
         >
           <span
@@ -97,8 +103,11 @@ export default function Header() {
           />
         </button>
 
+        {/* NAVIGATION */}
         <nav
           ref={navRef}
+          id="main-navigation"
+          aria-label="Main navigation"
           className={`
             absolute lg:static top-[60px] right-4 
             bg-white dark:bg-gray-900 
@@ -112,10 +121,12 @@ export default function Header() {
         >
           <ul className="flex flex-col lg:flex-row gap-4 lg:gap-10">
 
+            {/* HOME */}
             <li>
               <Link
                 href="/"
                 onClick={closeAll}
+                data-i18n="nav.home"
                 className={`font-medium ${
                   pathname === "/" ? "text-primary" : "text-gray-800 dark:text-gray-200"
                 }`}
@@ -124,9 +135,14 @@ export default function Header() {
               </Link>
             </li>
 
+            {/* ATTESTATION DROPDOWN */}
             <li className="relative">
               <button
                 onClick={() => setDropdown(!dropdown)}
+                aria-haspopup="true"
+                aria-expanded={dropdown}
+                aria-controls="dropdown-attestation"
+                data-i18n="nav.attestation"
                 className="font-medium text-gray-800 dark:text-gray-200 flex items-center gap-1"
               >
                 CO₂e Attestation
@@ -135,30 +151,48 @@ export default function Header() {
 
               {dropdown && (
                 <div
+                  id="dropdown-attestation"
                   className="
-                    absolute left-0 top-8 w-56 z-50 
+                    absolute left-0 top-[55px] w-56 z-50 
                     bg-white dark:bg-gray-900
                     border border-gray-200 dark:border-gray-700
                     rounded-lg shadow-lg p-3
                   "
                 >
-                  <Link href="/product" onClick={closeAll} className="block py-2 text-sm hover:text-primary">
+                  <Link
+                    href="/product"
+                    onClick={closeAll}
+                    data-i18n="nav.overview"
+                    className="block py-2 text-sm hover:text-primary"
+                  >
                     Overview
                   </Link>
-                  <Link href="/product/methodology" onClick={closeAll} className="block py-2 text-sm hover:text-primary">
+                  <Link
+                    href="/product/methodology"
+                    onClick={closeAll}
+                    data-i18n="nav.methodology"
+                    className="block py-2 text-sm hover:text-primary"
+                  >
                     Methodology
                   </Link>
-                  <Link href="/product/methodology/compliance" onClick={closeAll} className="block py-2 text-sm hover:text-primary">
+                  <Link
+                    href="/product/methodology/compliance"
+                    onClick={closeAll}
+                    data-i18n="nav.compliance"
+                    className="block py-2 text-sm hover:text-primary"
+                  >
                     Compliance
                   </Link>
                 </div>
               )}
             </li>
 
+            {/* PRICING */}
             <li>
               <Link
                 href="/pricing"
                 onClick={closeAll}
+                data-i18n="nav.pricing"
                 className={`font-medium ${
                   pathname === "/pricing" ? "text-primary" : "text-gray-800 dark:text-gray-200"
                 }`}
@@ -167,10 +201,12 @@ export default function Header() {
               </Link>
             </li>
 
+            {/* PARTNERS */}
             <li>
               <Link
                 href="/partners"
                 onClick={closeAll}
+                data-i18n="nav.partners"
                 className={`font-medium ${
                   pathname === "/partners" ? "text-primary" : "text-gray-800 dark:text-gray-200"
                 }`}
@@ -179,10 +215,12 @@ export default function Header() {
               </Link>
             </li>
 
+            {/* VERIFY */}
             <li>
               <Link
                 href="/verify"
                 onClick={closeAll}
+                data-i18n="nav.verify"
                 className={`font-medium ${
                   pathname === "/verify" ? "text-primary" : "text-gray-800 dark:text-gray-200"
                 }`}
@@ -196,4 +234,4 @@ export default function Header() {
       </div>
     </header>
   );
-}
+  }
