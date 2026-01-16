@@ -20,68 +20,56 @@ export default function MethodologyPage() {
       data-section="methodology-overview"
       className="max-w-7xl mx-auto px-6 pt-8 pb-24"
     >
+      {/* TOP ANCHOR */}
+      <div id="top" />
 
       {/* HEADER */}
       <div className="w-full mb-12">
-        <h1
-          className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-4"
-        >
+        <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-4">
           Certif-Scope Methodology Overview
         </h1>
 
-        <p
-          className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed"
-        >
-          Full scientific methodology: spend-based model, emission factors,
-          validation rules, deterministic outputs, regulatory alignment,
-          versioning, and verification protocol.
+        <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed max-w-3xl">
+          Scientific and deterministic methodology behind the CO₂e Attestation:
+          spend-based model, emission factors, validation rules, versioning,
+          regulatory alignment and verification protocol.
         </p>
       </div>
 
-      {/* SECTIONS TABLE OF CONTENTS */}
-      <div
-        className="w-full p-8 mb-24 bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-200 dark:border-gray-700"
-        role="navigation"
+      {/* TABLE OF CONTENTS — aligned with Product */}
+      <nav
         aria-label="Methodology Sections"
+        className="mb-16 p-6 bg-[#F8FAFC] border border-gray-200 rounded-xl shadow-sm"
       >
-        <h2
-          className="text-2xl md:text-3xl font-bold text-[#0B3A63] mb-6"
-        >
-          Sections
-        </h2>
-
-        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-gray-700 dark:text-gray-300 text-base leading-relaxed">
-          <li><a href="#s1" className="underline">1. Scope & Purpose</a></li>
-          <li><a href="#s2">2. Standards & Regulatory Alignment</a></li>
-          <li><a href="#s3">3. Spend-Based Model Definition</a></li>
-          <li><a href="#s4">4. Category Mapping Logic</a></li>
-          <li><a href="#s5">5. Emission Factor Sources</a></li>
-          <li><a href="#s6">6. Calculation Formula & Parameters</a></li>
-          <li><a href="#s7">7. Input Validation Rules</a></li>
-          <li><a href="#s8">8. Deterministic Output Guarantees</a></li>
-          <li><a href="#s9">9. Update Cycles & Version Control</a></li>
-          <li><a href="#s10">10. Structural Limitations</a></li>
-          <li><a href="#s11">11. Legal Boundaries</a></li>
-          <li><a href="#s12">12. Verification Protocol</a></li>
+        <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-[#0B3A63] font-medium">
+          <li><a href="#s1" className="hover:text-[#15B097] transition">1. Scope & Purpose</a></li>
+          <li><a href="#s2" className="hover:text-[#15B097] transition">2. Standards & Regulatory Alignment</a></li>
+          <li><a href="#s3" className="hover:text-[#15B097] transition">3. Spend-Based Model Definition</a></li>
+          <li><a href="#s4" className="hover:text-[#15B097] transition">4. Category Mapping Logic</a></li>
+          <li><a href="#s5" className="hover:text-[#15B097] transition">5. Emission Factor Sources</a></li>
+          <li><a href="#s6" className="hover:text-[#15B097] transition">6. Calculation Formula & Parameters</a></li>
+          <li><a href="#s7" className="hover:text-[#15B097] transition">7. Input Validation Rules</a></li>
+          <li><a href="#s8" className="hover:text-[#15B097] transition">8. Deterministic Output Guarantees</a></li>
+          <li><a href="#s9" className="hover:text-[#15B097] transition">9. Update Cycles & Version Control</a></li>
+          <li><a href="#s10" className="hover:text-[#15B097] transition">10. Structural Limitations</a></li>
+          <li><a href="#s11" className="hover:text-[#15B097] transition">11. Legal Boundaries</a></li>
+          <li><a href="#s12" className="hover:text-[#15B097] transition">12. Verification Protocol</a></li>
         </ul>
-      </div>
+      </nav>
 
-      {/* CONTENT SECTIONS */}
-      <div className="space-y-24">
-        <div id="s1"><Section1 /></div>
-        <div id="s2"><Section2 /></div>
-        <div id="s3"><Section3 /></div>
-        <div id="s4"><Section4 /></div>
-        <div id="s5"><Section5 /></div>
-        <div id="s6"><Section6 /></div>
-        <div id="s7"><Section7 /></div>
-        <div id="s8"><Section8 /></div>
-        <div id="s9"><Section9 /></div>
-        <div id="s10"><Section10 /></div>
-        <div id="s11"><Section11 /></div>
-        <div id="s12"><Section12 /></div>
-      </div>
-
+      {/* SECTIONS — rendered exactly like Product */}
+      <Section1 />
+      <Section2 />
+      <Section3 />
+      <Section4 />
+      <Section5 />
+      <Section6 />
+      <Section7 />
+      <Section8 />
+      <Section9 />
+      <Section10 />
+      <Section11 />
+      <Section12 />
     </div>
   );
 }
