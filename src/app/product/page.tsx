@@ -15,7 +15,6 @@ export default function ProductPage() {
       data-section="product-overview"
       className="max-w-7xl mx-auto px-6 pt-8 pb-24"
     >
-
       {/* TOP ANCHOR */}
       <div id="top" />
 
@@ -37,19 +36,47 @@ export default function ProductPage() {
         </p>
       </div>
 
-      {/* TABLE OF CONTENTS */}
+      {/* TABLE OF CONTENTS — ALIGNED WITH SEMANTIC IDS */}
       <nav
         aria-label="Product Sections"
         className="mb-16 p-6 bg-[#F8FAFC] border border-gray-200 rounded-xl shadow-sm"
       >
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-[#0B3A63] font-medium">
-          <li><a href="#s1" className="hover:text-[#15B097] transition">1. Product Overview</a></li>
-          <li><a href="#s2" className="hover:text-[#15B097] transition">2. Key Benefits Summary</a></li>
-          <li><a href="#s3" className="hover:text-[#15B097] transition">3. Why the Product Exists</a></li>
-          <li><a href="#s4" className="hover:text-[#15B097] transition">4. What’s Included in the PDF</a></li>
-          <li><a href="#s5" className="hover:text-[#15B097] transition">5. Verification & Integrity</a></li>
-          <li><a href="#s6" className="hover:text-[#15B097] transition">6. Usage Scenarios</a></li>
-          <li><a href="#s7" className="hover:text-[#15B097] transition">7. Limitations & Fit</a></li>
+          <li>
+            <a href="#product-overview" className="hover:text-[#15B097] transition">
+              1. Product Overview
+            </a>
+          </li>
+          <li>
+            <a href="#key-benefits" className="hover:text-[#15B097] transition">
+              2. Key Benefits Summary
+            </a>
+          </li>
+          <li>
+            <a href="#why-the-product-exists" className="hover:text-[#15B097] transition">
+              3. Why the Product Exists
+            </a>
+          </li>
+          <li>
+            <a href="#attestation-pdf-contents" className="hover:text-[#15B097] transition">
+              4. What’s Included in the PDF
+            </a>
+          </li>
+          <li>
+            <a href="#verification-and-integrity" className="hover:text-[#15B097] transition">
+              5. Verification & Integrity
+            </a>
+          </li>
+          <li>
+            <a href="#usage-scenarios" className="hover:text-[#15B097] transition">
+              6. Usage Scenarios
+            </a>
+          </li>
+          <li>
+            <a href="#limitations-and-fit" className="hover:text-[#15B097] transition">
+              7. Limitations & Fit
+            </a>
+          </li>
         </ul>
       </nav>
 
@@ -61,7 +88,6 @@ export default function ProductPage() {
       <Section5 />
       <Section6 />
       <Section7 />
-
     </div>
   );
-            }
+}
