@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 
 export default function Header() {
@@ -10,12 +10,15 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const [dropdown, setDropdown] = useState(false);
 
+  const navRef = useRef(null);
+  const burgerRef = useRef(null);
+
   const closeAll = () => {
     setDropdown(false);
     setOpen(false);
-    setTimeout(() => setOpen(false), 20);
   };
 
+  // Fermer via événement de ClientLayout (changement de route)
   useEffect(() => {
     const handler = () => {
       setOpen(false);
@@ -24,6 +27,30 @@ export default function Header() {
     window.addEventListener("close-mobile-menu", handler);
     return () => window.removeEventListener("close-mobile-menu", handler);
   }, []);
+
+  // Fermer si clic à l’extérieur du menu ou du bouton burger
+  useEffect(() => {
+    if (!open) return;
+
+    const handleClickOutside = (event) => {
+      if (
+        navRef.current &&
+        !navRef.current.contains(event.target) &&
+        burgerRef.current &&
+        !burgerRef.current.contains(event.target)
+      ) {
+        closeAll();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
+  }, [open]);
 
   return (
     <header
@@ -48,6 +75,7 @@ export default function Header() {
         </Link>
 
         <button
+          ref={burgerRef}
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
           className="lg:hidden w-8 h-8 flex flex-col justify-center items-center"
@@ -70,6 +98,7 @@ export default function Header() {
         </button>
 
         <nav
+          ref={navRef}
           className={`
             absolute lg:static top-[60px] right-4 
             bg-white dark:bg-gray-900 
@@ -167,4 +196,4 @@ export default function Header() {
       </div>
     </header>
   );
-            }
+}
