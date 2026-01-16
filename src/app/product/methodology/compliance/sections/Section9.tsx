@@ -3,14 +3,14 @@
 export default function Section9() {
   return (
     <section
-      id="s9"
+      id="auditability-independent-verification-boundaries"
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
-
       {/* HEADER — Institutional */}
       <div className="p-12 bg-[#F8FAFC] border border-gray-300 dark:border-gray-700 dark:bg-gray-900 rounded-2xl shadow-lg relative overflow-hidden">
         <h2 className="text-4xl md:text-5xl font-extrabold text-[#0B3A63]">
-          9. Auditability & Independent Verification Boundaries
+          <span className="mr-2">9.</span>
+          Auditability &amp; Independent Verification Boundaries
         </h2>
 
         <p className="text-lg text-gray-700 dark:text-gray-300 max-w-5xl mt-6 leading-relaxed">
@@ -20,8 +20,6 @@ export default function Section9() {
           of interpretation while preventing improper use as regulatory audit evidence.
         </p>
       </div>
-
-
 
       {/* BLOCK — Verification Scope */}
       <div className="mt-16 p-10 bg-white dark:bg-gray-800 rounded-xl border border-gray-300 dark:border-gray-700 shadow-md">
@@ -43,8 +41,6 @@ export default function Section9() {
         </ul>
       </div>
 
-
-
       {/* BLOCK — Verification Boundaries */}
       <div className="mt-20 p-10 bg-[#F8FAFC] dark:bg-gray-900 rounded-xl border border-[#15B097]/30 dark:border-gray-700 shadow-sm">
         <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
@@ -62,8 +58,6 @@ export default function Section9() {
           <li>• Use the attestations as a proxy for CSRD/ESRS reporting.</li>
         </ul>
       </div>
-
-
 
       {/* BLOCK — Reproducibility Requirements */}
       <div className="mt-20 p-10 bg-white dark:bg-gray-800 rounded-xl border border-gray-300 dark:border-gray-700 shadow-md">
@@ -84,8 +78,6 @@ export default function Section9() {
         </ul>
       </div>
 
-
-
       {/* BLOCK — Explicit Verification Limits */}
       <div className="mt-20 p-10 bg-[#0B3A63] text-white rounded-xl shadow-md relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/25 to-transparent opacity-20 pointer-events-none"></div>
@@ -102,8 +94,6 @@ export default function Section9() {
         </p>
       </div>
 
-
-
       {/* BLOCK — Forbidden Verification Interpretations */}
       <div className="mt-20 p-10 bg-[#F8FAFC] dark:bg-gray-900 rounded-xl border border-[#15B097]/30 dark:border-gray-700 shadow-sm">
         <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
@@ -119,8 +109,6 @@ export default function Section9() {
         </ul>
       </div>
 
-
-
       {/* RETURN BUTTON */}
       <div className="mt-12 text-right">
         <a
@@ -130,7 +118,6 @@ export default function Section9() {
           Back to summary
         </a>
       </div>
-
     </section>
   );
       }
