@@ -8,151 +8,124 @@ export default function Section3() {
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
 
-      {/* HEADER */}
-      <div className="p-12 rounded-2xl bg-[#F8FAFC] border border-[#0B3A63]/20 shadow-md">
+      {/* BLOCK 1 — REGULATORY PRESSURE (BLUE LEFT PANEL) */}
+      <div className="relative p-12 rounded-2xl bg-[#0B3A63] text-white shadow-xl overflow-hidden">
+
+        {/* Decorative vertical accent */}
+        <div className="absolute left-0 top-0 bottom-0 w-3 bg-[#1FB6C1] opacity-90" />
+
         <h2
           data-i18n="s3.title"
-          className="text-4xl md:text-5xl font-extrabold text-[#0B3A63] mb-6"
+          className="text-4xl md:text-5xl font-extrabold mb-6 ml-6"
         >
           Why the Product Exists
         </h2>
 
         <p
           data-i18n="s3.intro"
-          className="text-lg text-gray-700 max-w-4xl leading-relaxed"
+          className="ml-6 text-white/90 text-lg max-w-4xl leading-relaxed"
         >
-          Certif-Scope addresses a growing problem: SMEs are increasingly asked to provide CO₂e
-          indicators by clients, procurement teams, financial institutions and insurers.
-          These requests originate from regulatory obligations applied to large companies,
-          which cascade down the supply chain and indirectly impact smaller suppliers.
+          SMEs are increasingly required to provide CO₂e indicators due to obligations applied
+          to large companies, financial institutions, and public procurement. These obligations
+          cascade down the supply chain, even if SMEs are not directly regulated.
         </p>
       </div>
 
-      {/* REGULATORY CASCADE */}
-      <div
-        data-i18n="s3.cascade.block"
-        className="mt-16 p-10 rounded-xl bg-white border border-gray-200 shadow-sm"
-      >
+      {/* BLOCK 2 — REGULATORY CASCADE (GREEN PANEL) */}
+      <div className="mt-20 p-12 rounded-2xl bg-[#1FB6C1] text-white shadow-lg">
+
         <h3
           data-i18n="s3.cascade.title"
-          className="text-2xl font-semibold text-[#0B3A63] mb-4"
+          className="text-3xl font-bold mb-6"
         >
           The Regulatory Cascade
         </h3>
 
         <p
           data-i18n="s3.cascade.text1"
-          className="text-gray-700 text-sm leading-relaxed max-w-4xl"
+          className="text-white/95 text-md max-w-4xl leading-relaxed"
         >
-          Large companies and financial institutions are required to disclose environmental
-          information under EU and international frameworks. To fulfill these obligations,
-          they must gather CO₂-related indicators from suppliers, regardless of the suppliers'
-          size or regulatory status.
+          Large companies and financial institutions must collect climate-related data from
+          suppliers to comply with EU regulations. This indirectly creates obligations for SMEs.
         </p>
 
-        <ul className="mt-4 space-y-2 text-gray-700 text-sm leading-relaxed">
+        <ul className="mt-6 space-y-2 text-white/95 text-md leading-relaxed">
           <li data-i18n="s3.cascade.point1">
-            • <strong>CSRD (2022/2464)</strong> obliges large companies to disclose climate-related risks and value-chain impacts.
+            • <a href="https://eur-lex.europa.eu/eli/reg/2022/2464" target="_blank" className="underline hover:text-white">
+              CSRD (2022/2464)
+            </a>{" "}
+            requires reporting on climate risks and value-chain impacts.
           </li>
 
           <li data-i18n="s3.cascade.point2">
-            • <strong>ESRS E1</strong> requires upstream supplier data when relevant to emissions reporting.
+            • <a href="https://www.efrag.org" target="_blank" className="underline hover:text-white">
+              ESRS E1
+            </a>{" "}
+            mandates upstream supplier data when relevant.
           </li>
 
           <li data-i18n="s3.cascade.point3">
-            • <strong>EBA ESG Risk Guidelines</strong> push banks to collect indicative climate indicators from clients.
+            • <a href="https://www.eba.europa.eu" target="_blank" className="underline hover:text-white">
+              EBA ESG Risk Guidelines
+            </a>{" "}
+            push banks to collect CO₂e indicators from clients.
           </li>
 
           <li data-i18n="s3.cascade.point4">
-            • <strong>EU Green Public Procurement (GPP)</strong> criteria introduce environmental metrics in public tenders.
+            • <a href="https://environment.ec.europa.eu/topics/sustainable-production-and-consumption/green-public-procurement_en" 
+                 target="_blank" className="underline hover:text-white">
+              EU Green Public Procurement (GPP)
+            </a>{" "}
+            adds environmental indicators to public tenders.
           </li>
         </ul>
 
         <p
           data-i18n="s3.cascade.text2"
-          className="text-gray-700 text-sm mt-4"
+          className="mt-6 text-white/90 text-md max-w-4xl leading-relaxed"
         >
-          As a result, SMEs regularly receive CO₂e information requests even though they are not
-          directly regulated.
+          This explains why SMEs receive CO₂e requests despite not being subject to CSRD.
         </p>
       </div>
 
-      {/* PRACTICAL EXAMPLE */}
-      <div
-        data-i18n="s3.example.block"
-        className="mt-12 p-10 rounded-xl bg-[#F8FAFC] border border-[#15B097]/30 shadow-sm"
-      >
-        <h3
-          data-i18n="s3.example.title"
-          className="text-2xl font-semibold text-[#0B3A63] mb-4"
-        >
-          Practical Example
-        </h3>
-
-        <p
-          data-i18n="s3.example.text1"
-          className="text-gray-700 text-sm leading-relaxed max-w-4xl"
-        >
-          A simple process illustrates how this cascade affects SMEs:
-        </p>
-
-        <ul className="mt-4 space-y-3 text-gray-700 text-sm leading-relaxed">
-          <li data-i18n="s3.example.step1">
-            <strong>1. A large regulated company</strong> requests CO₂-related data from suppliers for mandatory reporting.
-          </li>
-
-          <li data-i18n="s3.example.step2">
-            <strong>2. A bank</strong> asks for basic CO₂ information to complete climate risk assessments.
-          </li>
-
-          <li data-i18n="s3.example.step3">
-            <strong>3. The SME supplier</strong> must respond quickly with a clear, standardized CO₂e indicator.
-          </li>
-        </ul>
-
-        <p
-          data-i18n="s3.example.text2"
-          className="text-gray-700 text-sm mt-4"
-        >
-          Certif-Scope provides a verification-ready document that satisfies these indirect requests.
-        </p>
-      </div>
-
-      {/* MARKET GAP */}
-      <div
-        data-i18n="s3.gap.block"
-        className="mt-16 p-10 rounded-xl bg-[#0B3A63] text-white shadow-md relative overflow-hidden"
-      >
-        <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/30 to-transparent opacity-20" />
-
+      {/* BLOCK 3 — MARKET GAP (WHITE PREMIUM CARD + GRID) */}
+      <div className="mt-20 p-12 bg-white rounded-2xl shadow-lg border border-gray-200">
         <h3
           data-i18n="s3.gap.title"
-          className="text-2xl font-semibold mb-4 relative z-10"
+          className="text-3xl font-bold text-[#0B3A63] mb-8"
         >
           The Gap in the Market
         </h3>
 
         <p
           data-i18n="s3.gap.text1"
-          className="text-white/90 text-sm leading-relaxed max-w-4xl relative z-10"
+          className="text-gray-700 text-md max-w-4xl leading-relaxed mb-8"
         >
-          Existing sustainability tools target large companies and require physical activity
-          data, specialized staff and significant budgets. SMEs lack resources to comply with
-          these requests while still needing a consistent and accepted CO₂e indicator.
+          Existing sustainability platforms are designed for large enterprises and require
+          physical activity data, specialized expertise, and significant budgets. SMEs often
+          cannot meet these conditions but still need an accepted CO₂e indicator.
         </p>
 
-        <ul className="mt-4 space-y-2 text-white/90 text-sm relative z-10">
-          <li data-i18n="s3.gap.point1">• No internal ESG department</li>
-          <li data-i18n="s3.gap.point2">• Limited time and budget</li>
-          <li data-i18n="s3.gap.point3">• No standardized output format</li>
-          <li data-i18n="s3.gap.point4">• No verifiable document</li>
-        </ul>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Col 1 */}
+          <ul className="space-y-4 text-gray-700 leading-relaxed">
+            <li data-i18n="s3.gap.point1">• Lack of ESG expertise internally</li>
+            <li data-i18n="s3.gap.point2">• Time and budget constraints</li>
+          </ul>
+
+          {/* Col 2 */}
+          <ul className="space-y-4 text-gray-700 leading-relaxed">
+            <li data-i18n="s3.gap.point3">• No standardized output accepted by institutions</li>
+            <li data-i18n="s3.gap.point4">• No verifiable integrity mechanism</li>
+          </ul>
+        </div>
 
         <p
           data-i18n="s3.gap.text2"
-          className="text-white/90 text-sm mt-4 relative z-10"
+          className="mt-10 text-md text-[#0B3A63] font-medium max-w-4xl leading-relaxed"
         >
-          Certif-Scope solves this with a fast, deterministic, financial-based calculation method.
+          Certif-Scope fills this gap with a deterministic, financial-based calculation and a
+          verification-ready PDF suitable for banks, procurement, and insurance.
         </p>
       </div>
 
@@ -161,7 +134,8 @@ export default function Section3() {
         <a
           href="#top"
           data-i18n="s3.return"
-          className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
+          className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63]
+                     hover:bg-[#0B3A63] hover:text-white transition-colors"
         >
           Back to summary
         </a>
@@ -169,4 +143,4 @@ export default function Section3() {
 
     </section>
   );
-}
+            }
