@@ -3,11 +3,10 @@
 export default function Section5() {
   return (
     <section
-      id="s5"
-      data-section="s5"
+      id="verification-and-integrity"
+      data-section="verification-and-integrity"
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
-
       {/* HEADER — Institutional Blue */}
       <div className="relative p-12 rounded-2xl bg-[#0B3A63] text-white shadow-md overflow-hidden">
         <div
@@ -19,6 +18,7 @@ export default function Section5() {
           data-i18n="s5.title"
           className="text-4xl md:text-5xl font-extrabold relative z-10"
         >
+          <span className="mr-2">5.</span>
           Verification & Integrity
         </h2>
 
@@ -34,8 +34,6 @@ export default function Section5() {
 
       {/* CORE PRINCIPLES */}
       <div className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-12">
-
-        {/* BLOCK 1 */}
         <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition">
           <h3
             className="text-2xl font-semibold text-[#0B3A63]"
@@ -54,7 +52,6 @@ export default function Section5() {
           </p>
         </div>
 
-        {/* BLOCK 2 */}
         <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#1FB6C1]/20 shadow-sm hover:shadow-md transition">
           <h3
             className="text-2xl font-semibold text-[#0B3A63]"
@@ -73,7 +70,6 @@ export default function Section5() {
           </p>
         </div>
 
-        {/* BLOCK 3 */}
         <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition">
           <h3
             className="text-2xl font-semibold text-[#0B3A63]"
@@ -92,7 +88,6 @@ export default function Section5() {
           </p>
         </div>
 
-        {/* BLOCK 4 */}
         <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#1FB6C1]/20 shadow-sm hover:shadow-md transition">
           <h3
             className="text-2xl font-semibold text-[#0B3A63]"
@@ -109,7 +104,6 @@ export default function Section5() {
             recomputing the hash locally using the visible inputs and dataset version.
           </p>
         </div>
-
       </div>
 
       {/* TECHNICAL SUMMARY */}
@@ -141,7 +135,6 @@ export default function Section5() {
           Back to summary
         </a>
       </div>
-
     </section>
   );
-      }
+            }
