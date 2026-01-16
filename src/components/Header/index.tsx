@@ -73,7 +73,7 @@ export default function Header() {
             width={150}
             height={45}
             priority
-            className="h-auto w-[120px] md:w-[180px]"
+            className="h-auto w-[140px] sm:w-[150px] md:w-[180px]"
           />
         </Link>
 
@@ -234,4 +234,4 @@ export default function Header() {
       </div>
     </header>
   );
-  }
+            }
