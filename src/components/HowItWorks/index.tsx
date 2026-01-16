@@ -20,8 +20,8 @@ export default function HowItWorks() {
           className="mt-4 text-center text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed"
           data-i18n="howitworks.intro"
         >
-          A clear, three-step process converting annual spending (€) into a standardized CO₂e
-          Attestation aligned with procurement, banking, regulatory and ESG screening workflows.
+          A simple three-step process converting annual spending (€) into a standardized CO₂e
+          Attestation used in procurement, banking, insurer and ESG screening workflows.
         </p>
 
         {/* SEPARATOR */}
@@ -39,8 +39,8 @@ export default function HowItWorks() {
               Enter annual spending
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Provide yearly expenses across predefined categories. Only financial inputs — no 
-              physical activity data (kWh, km, litres) and no supporting documents required.
+              Provide yearly expenses across predefined categories. Only financial inputs are needed —
+              no activity data, no documents, no audits.
             </p>
           </div>
 
@@ -53,9 +53,8 @@ export default function HowItWorks() {
               Automatic calculation
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              A deterministic spend-based formula applies stable, version-controlled emission 
-              factors (GHG Protocol Category 1, ADEME, DEFRA, IPCC) to generate consistent CO₂e 
-              indicators. No Scope 1–2 accounting and no exhaustive Scope 3 assessment.
+              A standard spend-based formula applies stable emission factors to generate consistent
+              CO₂e indicators. The method is deterministic and versioned for traceability.
             </p>
           </div>
 
@@ -68,22 +67,21 @@ export default function HowItWorks() {
               Download your Attestation
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Instantly receive a structured PDF including total CO₂e, category breakdown,
-              methodology summary, emissions-factor version ID and verifiable hash metadata.
+              Instantly receive a structured PDF including total CO₂e, category breakdown and
+              verification metadata.
             </p>
           </div>
 
         </div>
 
-        {/* SPONSORED PROGRAM BLOCK */}
+        {/* SPONSORING BLOCK */}
         <div className="mt-16 p-6 rounded-xl border border-slate-200 bg-slate-50 dark:bg-gray-800 dark:border-gray-700 text-slate-700 dark:text-gray-300 text-sm max-w-3xl mx-auto">
           <p className="font-semibold text-slate-900 dark:text-white">
             Cost coverage by enterprise programs
           </p>
           <p className="mt-1">
-            Some large enterprise partners sponsor the CO₂e Attestation for part or all of their 
-            supplier network. If you believe your company is part of their supply chain, you can 
-            check directly with your purchasing or ESG contact to confirm whether sponsorship is available.
+            Some enterprise partners cover the cost for part or all of their suppliers. If relevant,
+            confirm with your procurement or ESG contact.
           </p>
         </div>
 
@@ -92,10 +90,10 @@ export default function HowItWorks() {
           className="mt-12 text-center text-sm text-gray-500 dark:text-gray-400"
           data-i18n="howitworks.footer"
         >
-          The entire process typically takes less than one minute.
+          The entire process takes less than one minute.
         </p>
 
       </div>
     </section>
   );
-      }
+        }
