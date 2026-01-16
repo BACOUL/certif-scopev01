@@ -21,11 +21,11 @@ export default function Section3() {
           className="text-lg text-gray-700 max-w-4xl leading-relaxed"
           data-i18n="s3.intro"
         >
-          Certif-Scope exists because many SMEs are now asked to provide CO₂e-related 
-          information by clients, banks or procurement teams. This happens even when 
-          the SME is not directly subject to CSRD obligations. Larger regulated 
-          entities must collect climate indicators across their value chain, and SMEs 
-          are increasingly involved in that upstream information flow.
+          SMEs across Europe are increasingly asked to provide CO₂e indicators by larger
+          companies, banks, insurers and public-sector buyers. This happens even when the 
+          SME is not directly regulated. The pressure comes from top-down compliance 
+          obligations imposed on larger entities that must collect climate-related data 
+          from their suppliers.
         </p>
       </div>
 
@@ -34,41 +34,44 @@ export default function Section3() {
         className="mt-16 p-10 rounded-xl bg-white border border-gray-200 shadow-sm"
         data-i18n="s3.cascade.block"
       >
-        <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4" data-i18n="s3.cascade.title">
+        <h3
+          className="text-2xl font-semibold text-[#0B3A63] mb-4"
+          data-i18n="s3.cascade.title"
+        >
           The Regulatory Cascade
         </h3>
 
-        <p className="text-gray-700 text-sm leading-relaxed max-w-4xl" data-i18n="s3.cascade.text1">
-          European sustainability rules apply primarily to large companies and 
-          financial institutions. However, these organisations must collect data 
-          from their suppliers, creating indirect requests for SMEs.
+        <p
+          className="text-gray-700 text-sm leading-relaxed max-w-4xl"
+          data-i18n="s3.cascade.text1"
+        >
+          European sustainability regulations apply first to large companies and financial 
+          institutions. These organisations must then collect environmental data from 
+          their suppliers — including SMEs — in order to complete their own mandatory
+          disclosures.
         </p>
 
         <ul className="mt-4 space-y-2 text-gray-700 text-sm leading-relaxed">
           <li data-i18n="s3.cascade.point1">
-            • Under <strong>CSRD Regulation 2022/2464</strong>, large companies must disclose 
-              climate risks and value-chain environmental impacts.
+            • <strong>CSRD (2022/2464)</strong> requires large firms to report climate impacts across their value chain.
           </li>
-
           <li data-i18n="s3.cascade.point2">
-            • <strong>ESRS E1</strong> requires them to gather emissions-related information from 
-              upstream suppliers when relevant.
+            • <strong>ESRS E1</strong> obliges them to request emissions-related information from suppliers.
           </li>
-
           <li data-i18n="s3.cascade.point3">
-            • Banks must assess climate exposure according to <strong>EBA ESG Risk Guidelines</strong>, 
-              often requiring basic indicators from clients and their suppliers.
+            • <strong>EBA ESG Risk Guidelines</strong> require banks to assess climate exposure of clients.
           </li>
-
           <li data-i18n="s3.cascade.point4">
-            • Public tenders reference <strong>Green Public Procurement (GPP)</strong> criteria, which 
-              frequently include environmental indicators.
+            • Public tenders use <strong>Green Public Procurement (GPP)</strong> criteria, often requiring CO₂ indicators.
           </li>
         </ul>
 
-        <p className="text-gray-700 text-sm mt-4" data-i18n="s3.cascade.text2">
-          This explains why SMEs increasingly receive requests for CO₂e information, even 
-          though they are not the ones directly regulated.
+        <p
+          className="text-gray-700 text-sm mt-4"
+          data-i18n="s3.cascade.text2"
+        >
+          As a result, SMEs become indirectly involved in regulatory compliance, even 
+          though they are not the entities legally bound by these frameworks.
         </p>
       </div>
 
@@ -77,31 +80,38 @@ export default function Section3() {
         className="mt-12 p-10 rounded-xl bg-[#F8FAFC] border border-[#15B097]/30 shadow-sm"
         data-i18n="s3.example.block"
       >
-        <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4" data-i18n="s3.example.title">
-          Practical Example
+        <h3
+          className="text-2xl font-semibold text-[#0B3A63] mb-4"
+          data-i18n="s3.example.title"
+        >
+          A Realistic Operational Scenario
         </h3>
 
-        <p className="text-gray-700 text-sm leading-relaxed max-w-4xl" data-i18n="s3.example.text1">
-          A simple workflow illustrates the cascade:
+        <p
+          className="text-gray-700 text-sm leading-relaxed max-w-4xl"
+          data-i18n="s3.example.text1"
+        >
+          A simplified flow illustrates the situation encountered by thousands of SMEs:
         </p>
 
         <ul className="mt-4 space-y-3 text-gray-700 text-sm leading-relaxed">
           <li data-i18n="s3.example.step1">
-            <strong>1. Large company</strong> (regulated) requests CO₂-related data from suppliers for its reporting.
+            <strong>1. A large regulated company</strong> sends a supplier questionnaire requiring CO₂ indicators.
           </li>
-
           <li data-i18n="s3.example.step2">
-            <strong>2. Bank</strong> requests indicative climate information for risk assessment.
+            <strong>2. A bank</strong> asks for an environmental indicator as part of onboarding or credit scoring.
           </li>
-
           <li data-i18n="s3.example.step3">
-            <strong>3. SME supplier</strong> must provide clear CO₂e indicators quickly to remain compliant with onboarding requirements.
+            <strong>3. The SME supplier</strong> must quickly provide a clear and standardized document.
           </li>
         </ul>
 
-        <p className="text-gray-700 text-sm mt-4" data-i18n="s3.example.text2">
-          Certif-Scope gives the SME a simple, standardized and verifiable document that 
-          satisfies these indirect requests.
+        <p
+          className="text-gray-700 text-sm mt-4"
+          data-i18n="s3.example.text2"
+        >
+          Without a simple tool, the SME faces delays, inconsistent formats and repeated
+          requests for information that it is not equipped to produce.
         </p>
       </div>
 
@@ -113,52 +123,68 @@ export default function Section3() {
         <div
           className="absolute inset-0 bg-gradient-to-br from-[#15B097]/30 to-transparent opacity-20"
           aria-hidden="true"
-        ></div>
+        />
 
-        <h3 className="text-2xl font-semibold mb-4 relative z-10" data-i18n="s3.gap.title">
+        <h3
+          className="text-2xl font-semibold mb-4 relative z-10"
+          data-i18n="s3.gap.title"
+        >
           The Gap in the Market
         </h3>
 
-        <p className="text-white/90 text-sm leading-relaxed max-w-4xl relative z-10" data-i18n="s3.gap.text1">
-          Existing ESG tools are made for large companies and require physical activity 
-          data, specialist knowledge and significant budgets. SMEs often lack:
+        <p
+          className="text-white/90 text-sm leading-relaxed max-w-4xl relative z-10"
+          data-i18n="s3.gap.text1"
+        >
+          Existing ESG and carbon accounting tools are designed for large enterprises,
+          requiring detailed activity data, specialist consultants and complex workflows.
+          SMEs typically lack:
         </p>
 
         <ul className="mt-4 space-y-2 text-white/90 text-sm relative z-10">
-          <li data-i18n="s3.gap.point1">• Time and resources to collect complex data</li>
-          <li data-i18n="s3.gap.point2">• Internal ESG expertise</li>
-          <li data-i18n="s3.gap.point3">• Consistent, accepted formats</li>
-          <li data-i18n="s3.gap.point4">• Verifiable documents</li>
+          <li data-i18n="s3.gap.point1">• the time to collect physical activity data</li>
+          <li data-i18n="s3.gap.point2">• internal sustainability expertise</li>
+          <li data-i18n="s3.gap.point3">• standardized documents accepted by institutions</li>
+          <li data-i18n="s3.gap.point4">• verifiable output matching procurement needs</li>
         </ul>
 
-        <p className="text-white/90 text-sm mt-4 relative z-10" data-i18n="s3.gap.text2">
-          Certif-Scope fills this gap with a fast, standardized and verifiable approach 
-          based exclusively on financial spending.
+        <p
+          className="text-white/90 text-sm mt-4 relative z-10"
+          data-i18n="s3.gap.text2"
+        >
+          Certif-Scope bridges this gap by offering an immediate, structured and 
+          verification-ready alternative based solely on financial spending.
         </p>
       </div>
 
-      {/* OFFICIAL SOURCES */}
+      {/* OFFICIAL REFERENCES */}
       <div
         className="mt-16 p-10 bg-[#F8FAFC] rounded-xl border border-[#15B097]/30 shadow-sm"
         data-i18n="s3.sources.block"
       >
-        <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4" data-i18n="s3.sources.title">
-          Confirmed by Official Frameworks
+        <h3
+          className="text-2xl font-semibold text-[#0B3A63] mb-4"
+          data-i18n="s3.sources.title"
+        >
+          Confirmed by Recognised Frameworks
         </h3>
 
-        <p className="text-gray-700 text-sm max-w-4xl leading-relaxed" data-i18n="s3.sources.text1">
-          These EU and international frameworks explain why SMEs receive CO₂e data requests:
+        <p
+          className="text-gray-700 text-sm max-w-4xl leading-relaxed"
+          data-i18n="s3.sources.text1"
+        >
+          These official documents explain why SMEs are repeatedly asked to provide CO₂e indicators:
         </p>
 
         <ul className="mt-4 space-y-2 text-sm text-gray-700">
           <li data-i18n="s3.sources.item1">• CSRD (2022/2464)</li>
           <li data-i18n="s3.sources.item2">• ESRS E1 Climate Standard</li>
           <li data-i18n="s3.sources.item3">• EBA ESG Risk Guidelines</li>
-          <li data-i18n="s3.sources.item4">• EU Green Public Procurement (GPP) criteria</li>
+          <li data-i18n="s3.sources.item4">• EU Green Public Procurement (GPP)</li>
         </ul>
       </div>
 
-      {/* RETURN BUTTON */}
+      {/* RETURN */}
       <div className="mt-12 text-right">
         <a
           href="#top"
@@ -171,4 +197,4 @@ export default function Section3() {
 
     </section>
   );
-        }
+}
