@@ -3,8 +3,8 @@
 export default function Section3() {
   return (
     <section
-      id="partner-usage-workflow"
-      data-section="partner-usage-workflow"
+      id="partner-key-issuance"
+      data-section="partner-key-issuance"
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
       {/* HEADER BLOCK */}
@@ -19,104 +19,108 @@ export default function Section3() {
           className="text-4xl md:text-5xl font-extrabold text-[#0B3A63] relative z-10"
         >
           <span className="mr-2">3.</span>
-          Partner Usage Workflow
+          Partner Key Issuance
         </h2>
 
         <p
           data-i18n="partners.s3.paragraph1"
-          className="text-lg text-gray-700 max-w-4xl mt-6 leading-relaxed relative z-10"
+          className="text-lg text-gray-700 max-w-3xl mt-6 leading-relaxed relative z-10"
         >
-          Certif-Scope is designed for real partner workflows where CO₂ information is
-          requested under time pressure. Partners generate attestations on demand using
-          a single access key, without onboarding end-clients, managing accounts or storing data.
+          A Partner Key is issued once a prepaid attestation pack has been successfully
+          purchased. The key grants the right to generate a defined number of CO₂e
+          Attestations, under the responsibility of a single identified partner.
+        </p>
+
+        <p
+          data-i18n="partners.s3.paragraph2"
+          className="text-md text-gray-700 max-w-3xl mt-6 leading-relaxed relative z-10"
+        >
+          Key issuance is a controlled, one-time operation. It does not create user
+          accounts, dashboards or persistent sessions, and does not require any technical
+          integration.
         </p>
       </div>
 
-      {/* 3-STEP WORKFLOW GRID */}
+      {/* ISSUANCE PRINCIPLES */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
 
-        {/* STEP 1 */}
+        {/* PRINCIPLE 1 */}
         <div
-          data-i18n="partners.s3.step1.block"
+          data-i18n="partners.s3.card1.block"
           className="p-8 bg-white rounded-xl shadow-md border border-gray-200 hover:shadow-lg hover:border-[#15B097]/40 transition-all duration-300"
         >
           <div className="text-[#15B097] text-4xl font-bold mb-3">01</div>
           <h3
-            data-i18n="partners.s3.step1.title"
+            data-i18n="partners.s3.card1.title"
             className="text-xl font-semibold text-[#0B3A63] mb-2"
           >
-            Receive a CO₂ Request
+            Issued After Payment Confirmation
           </h3>
           <p
-            data-i18n="partners.s3.step1.text"
+            data-i18n="partners.s3.card1.text"
             className="text-gray-600 text-sm leading-relaxed"
           >
-            Partners receive CO₂ indicator requests from clients, suppliers, banks,
-            insurers or procurement teams as part of onboarding, tenders or compliance checks.
+            The Partner Key is generated only after successful payment validation
+            of a prepaid attestation pack. No key exists before purchase.
           </p>
         </div>
 
-        {/* STEP 2 */}
+        {/* PRINCIPLE 2 */}
         <div
-          data-i18n="partners.s3.step2.block"
+          data-i18n="partners.s3.card2.block"
           className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/30 shadow-md hover:shadow-lg hover:border-[#15B097]/50 transition-all duration-300"
         >
           <div className="text-[#15B097] text-4xl font-bold mb-3">02</div>
           <h3
-            data-i18n="partners.s3.step2.title"
+            data-i18n="partners.s3.card2.title"
             className="text-xl font-semibold text-[#0B3A63] mb-2"
           >
-            Generate the Attestation
+            Delivered by Email
           </h3>
           <p
-            data-i18n="partners.s3.step2.text"
+            data-i18n="partners.s3.card2.text"
             className="text-gray-600 text-sm leading-relaxed"
           >
-            Using their partner access key, the attestation is generated in less than
-            one minute based on declared annual spending (€). Each generation consumes one credit.
+            The Partner Key is delivered by email to the address provided at purchase.
+            This email defines the responsible party for key usage.
           </p>
         </div>
 
-        {/* STEP 3 */}
+        {/* PRINCIPLE 3 */}
         <div
-          data-i18n="partners.s3.step3.block"
+          data-i18n="partners.s3.card3.block"
           className="p-8 bg-white rounded-xl shadow-md border border-gray-200 hover:shadow-lg hover:border-[#15B097]/40 transition-all duration-300"
         >
           <div className="text-[#15B097] text-4xl font-bold mb-3">03</div>
           <h3
-            data-i18n="partners.s3.step3.title"
+            data-i18n="partners.s3.card3.title"
             className="text-xl font-semibold text-[#0B3A63] mb-2"
           >
-            Deliver a Verifiable PDF
+            One Key, One Responsible Entity
           </h3>
           <p
-            data-i18n="partners.s3.step3.text"
+            data-i18n="partners.s3.card3.text"
             className="text-gray-600 text-sm leading-relaxed"
           >
-            The resulting PDF is delivered to the requesting party. Verification works
-            independently via embedded integrity metadata, online or offline, without any account.
+            A Partner Key is linked to a single organization and contact email.
+            It cannot be split into sub-accounts or delegated implicitly.
           </p>
         </div>
 
       </div>
 
-      {/* WORKFLOW RECAP */}
+      {/* SCOPE NOTE */}
       <div
-        data-i18n="partners.s3.recap.block"
+        data-i18n="partners.s3.note.block"
         className="mt-20 p-10 bg-white rounded-xl border border-gray-200 shadow-md"
       >
-        <h3
-          data-i18n="partners.s3.recap.title"
-          className="text-xl font-bold text-[#0B3A63] mb-4"
-        >
-          Partner Workflow in Practice
-        </h3>
-
         <p
-          data-i18n="partners.s3.recap.text"
-          className="text-gray-700 text-sm leading-relaxed"
+          data-i18n="partners.s3.note.text"
+          className="text-gray-700 text-sm leading-relaxed max-w-4xl"
         >
-          CO₂ request received → Attestation generated → PDF delivered → Independent verification.
+          The Partner Key only defines issuance and authorization rights.
+          Generation workflows, credit consumption and recovery mechanisms
+          are described in subsequent sections.
         </p>
       </div>
 
@@ -132,4 +136,4 @@ export default function Section3() {
       </div>
     </section>
   );
-}
+          }
