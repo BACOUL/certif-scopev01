@@ -36,24 +36,72 @@ export default function MethodologyPage() {
         </p>
       </div>
 
-      {/* TABLE OF CONTENTS — aligned with Product */}
+      {/* TABLE OF CONTENTS — aligned with actual section titles */}
       <nav
         aria-label="Methodology Sections"
         className="mb-16 p-6 bg-[#F8FAFC] border border-gray-200 rounded-xl shadow-sm"
       >
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-[#0B3A63] font-medium">
-          <li><a href="#s1" className="hover:text-[#15B097] transition">1. Scope & Purpose</a></li>
-          <li><a href="#s2" className="hover:text-[#15B097] transition">2. Standards & Regulatory Alignment</a></li>
-          <li><a href="#s3" className="hover:text-[#15B097] transition">3. Spend-Based Model Definition</a></li>
-          <li><a href="#s4" className="hover:text-[#15B097] transition">4. Category Mapping Logic</a></li>
-          <li><a href="#s5" className="hover:text-[#15B097] transition">5. Emission Factor Sources</a></li>
-          <li><a href="#s6" className="hover:text-[#15B097] transition">6. Calculation Formula & Parameters</a></li>
-          <li><a href="#s7" className="hover:text-[#15B097] transition">7. Input Validation Rules</a></li>
-          <li><a href="#s8" className="hover:text-[#15B097] transition">8. Deterministic Output Guarantees</a></li>
-          <li><a href="#s9" className="hover:text-[#15B097] transition">9. Update Cycles & Version Control</a></li>
-          <li><a href="#s10" className="hover:text-[#15B097] transition">10. Structural Limitations</a></li>
-          <li><a href="#s11" className="hover:text-[#15B097] transition">11. Legal Boundaries</a></li>
-          <li><a href="#s12" className="hover:text-[#15B097] transition">12. Verification Protocol</a></li>
+          <li>
+            <a href="#s1" className="hover:text-[#15B097] transition">
+              1. Scope &amp; Purpose of the Methodology
+            </a>
+          </li>
+          <li>
+            <a href="#s2" className="hover:text-[#15B097] transition">
+              2. Theoretical Foundations
+            </a>
+          </li>
+          <li>
+            <a href="#s3" className="hover:text-[#15B097] transition">
+              3. Mathematical Model
+            </a>
+          </li>
+          <li>
+            <a href="#s4" className="hover:text-[#15B097] transition">
+              4. Category Definitions &amp; Boundaries
+            </a>
+          </li>
+          <li>
+            <a href="#s5" className="hover:text-[#15B097] transition">
+              5. Input Normalisation Rules
+            </a>
+          </li>
+          <li>
+            <a href="#s6" className="hover:text-[#15B097] transition">
+              6. Transformation Pipeline
+            </a>
+          </li>
+          <li>
+            <a href="#s7" className="hover:text-[#15B097] transition">
+              7. Emission-Factor Assignment Logic
+            </a>
+          </li>
+          <li>
+            <a href="#s8" className="hover:text-[#15B097] transition">
+              8. Deterministic Output Guarantees
+            </a>
+          </li>
+          <li>
+            <a href="#s9" className="hover:text-[#15B097] transition">
+              9. Update Cycles &amp; Version Control
+            </a>
+          </li>
+          <li>
+            <a href="#s10" className="hover:text-[#15B097] transition">
+              10. Structural Limitations
+            </a>
+          </li>
+          <li>
+            <a href="#s11" className="hover:text-[#15B097] transition">
+              11. Legal Boundaries
+            </a>
+          </li>
+          <li>
+            <a href="#s12" className="hover:text-[#15B097] transition">
+              12. Verification Protocol
+            </a>
+          </li>
         </ul>
       </nav>
 
@@ -72,4 +120,4 @@ export default function MethodologyPage() {
       <Section12 />
     </div>
   );
-}
+      }
