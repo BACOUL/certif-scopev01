@@ -4,188 +4,186 @@ export default function Section2() {
   return (
     <section
       id="s2"
-      className="scroll-mt-24 border-b border-gray-200 pb-24"
       data-section="s2"
+      className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
 
       {/* HEADER */}
       <div className="relative rounded-2xl p-12 bg-[#0B3A63] text-white shadow-lg overflow-hidden">
         <div
-          className="absolute inset-0 bg-gradient-to-br from-[#15B097]/40 to-transparent pointer-events-none"
           aria-hidden="true"
+          className="absolute inset-0 bg-gradient-to-br from-[#15B097]/40 to-transparent"
         />
 
         <h2
-          className="text-4xl md:text-5xl font-extrabold relative z-10"
           data-i18n="s2.title"
+          className="text-4xl md:text-5xl font-extrabold relative z-10"
         >
           Key Benefits Summary
         </h2>
 
         <p
-          className="text-white/90 text-lg max-w-4xl mt-6 leading-relaxed relative z-10"
           data-i18n="s2.intro"
+          className="text-white/90 text-lg max-w-4xl mt-6 leading-relaxed relative z-10"
         >
-          Certif-Scope enables SMEs to provide clear, standardized and instantly verifiable 
-          CO₂e information whenever requested by procurement teams, clients, banks or insurers. 
-          This section highlights the measurable advantages for organisations without ESG staff 
-          or technical reporting capabilities.
+          Certif-Scope enables SMEs to instantly generate a structured and verifiable CO₂e 
+          Attestation using only annual spending (€). The output is standardized, 
+          procurement-ready, multilingual and includes a deterministic verification ID 
+          based on cryptographic integrity.
         </p>
       </div>
 
-      {/* GRID OF BENEFITS */}
+      {/* BENEFITS GRID */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-16">
 
         {/* BENEFIT 1 */}
         <div
-          className="p-8 bg-white rounded-xl border border-gray-200 shadow-md"
           data-i18n="s2.benefit1.block"
+          className="p-8 bg-white rounded-xl border border-gray-200 shadow-md"
         >
           <h3
-            className="text-2xl font-semibold text-[#0B3A63]"
             data-i18n="s2.benefit1.title"
+            className="text-2xl font-semibold text-[#0B3A63]"
           >
             Instant Generation
           </h3>
 
           <p
-            className="mt-3 text-gray-700 text-sm leading-relaxed"
             data-i18n="s2.benefit1.text"
+            className="mt-3 text-gray-700 text-sm leading-relaxed"
           >
-            CO₂e estimation is produced in under one minute. No consultants, no complex 
-            questionnaires and no operational data required — only annual spending (€).
+            No operational data, no consultants, no ESG expertise required. The attestation 
+            is computed in seconds using a deterministic spend-based method.
           </p>
         </div>
 
         {/* BENEFIT 2 */}
         <div
-          className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/40 shadow-md"
           data-i18n="s2.benefit2.block"
+          className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/40 shadow-md"
         >
           <h3
-            className="text-2xl font-semibold text-[#0B3A63]"
             data-i18n="s2.benefit2.title"
+            className="text-2xl font-semibold text-[#0B3A63]"
           >
             Procurement-Ready Format
           </h3>
 
           <p
-            className="mt-3 text-gray-700 text-sm leading-relaxed"
             data-i18n="s2.benefit2.text"
+            className="mt-3 text-gray-700 text-sm leading-relaxed"
           >
-            The document layout matches what procurement teams, supplier portals and 
-            internal ESG assessments expect, making the attestation easy to attach to 
-            onboarding files and RFP submissions.
+            Structured to match supplier onboarding requirements, ESG questionnaires, 
+            RFP documentation and institutional verification workflows.
           </p>
         </div>
 
         {/* BENEFIT 3 */}
         <div
-          className="p-8 bg-white rounded-xl border border-gray-200 shadow-md"
           data-i18n="s2.benefit3.block"
+          className="p-8 bg-white rounded-xl border border-gray-200 shadow-md"
         >
           <h3
-            className="text-2xl font-semibold text-[#0B3A63]"
             data-i18n="s2.benefit3.title"
+            className="text-2xl font-semibold text-[#0B3A63]"
           >
-            Verifiable Authenticity
+            Verifiable Integrity
           </h3>
 
           <p
-            className="mt-3 text-gray-700 text-sm leading-relaxed"
             data-i18n="s2.benefit3.text"
+            className="mt-3 text-gray-700 text-sm leading-relaxed"
           >
-            Each attestation includes a deterministic verification ID and cryptographic 
-            integrity hash. Partners can validate the document offline, ensuring it has 
-            not been altered.
+            Each PDF embeds a deterministic integrity hash and a verification ID. 
+            Institutions can confirm authenticity instantly — even offline.
           </p>
         </div>
 
         {/* BENEFIT 4 */}
         <div
-          className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/40 shadow-md"
           data-i18n="s2.benefit4.block"
+          className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/40 shadow-md"
         >
           <h3
-            className="text-2xl font-semibold text-[#0B3A63]"
             data-i18n="s2.benefit4.title"
+            className="text-2xl font-semibold text-[#0B3A63]"
           >
-            Deterministic & Reproducible
+            Fully Deterministic Calculation
           </h3>
 
           <p
-            className="mt-3 text-gray-700 text-sm leading-relaxed"
             data-i18n="s2.benefit4.text"
+            className="mt-3 text-gray-700 text-sm leading-relaxed"
           >
-            The same input always produces the same output. Emission factors are 
-            version-controlled, enabling institutional reproducibility and long-term 
-            verification.
+            The same spending input always produces the same result. Emission factors 
+            are version-controlled and documented in the attestation metadata.
           </p>
         </div>
 
         {/* BENEFIT 5 */}
         <div
-          className="p-8 bg-white rounded-xl border border-gray-200 shadow-md"
           data-i18n="s2.benefit5.block"
+          className="p-8 bg-white rounded-xl border border-gray-200 shadow-md"
         >
           <h3
-            className="text-2xl font-semibold text-[#0B3A63]"
             data-i18n="s2.benefit5.title"
+            className="text-2xl font-semibold text-[#0B3A63]"
           >
-            No ESG Knowledge Required
+            No ESG Expertise Required
           </h3>
 
           <p
-            className="mt-3 text-gray-700 text-sm leading-relaxed"
             data-i18n="s2.benefit5.text"
+            className="mt-3 text-gray-700 text-sm leading-relaxed"
           >
-            SMEs without sustainability teams can generate a consistent institutional-grade 
-            indicator that satisfies most non-regulatory environmental information requests.
+            SMEs can answer institutional CO₂e requests without sustainability 
+            consultants or complex carbon accounting systems.
           </p>
         </div>
 
         {/* BENEFIT 6 */}
         <div
-          className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/40 shadow-md"
           data-i18n="s2.benefit6.block"
+          className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/40 shadow-md"
         >
           <h3
-            className="text-2xl font-semibold text-[#0B3A63]"
             data-i18n="s2.benefit6.title"
+            className="text-2xl font-semibold text-[#0B3A63]"
           >
-            Multilingual & Cross-Border Ready
+            Multilingual & European-Ready
           </h3>
 
           <p
-            className="mt-3 text-gray-700 text-sm leading-relaxed"
             data-i18n="s2.benefit6.text"
+            className="mt-3 text-gray-700 text-sm leading-relaxed"
           >
-            The attestation is designed for easy translation and acceptance in English, 
-            French, German, Spanish and Italian — suitable for European supply chains.
+            Designed for cross-border workflows. Clear and readable in EN, FR, DE, ES, IT. 
+            Suitable for procurement teams, banks and insurers across the EU.
           </p>
         </div>
 
       </div>
 
-      {/* CLARIFICATION BOX */}
+      {/* CLARIFICATION */}
       <div
-        className="mt-20 p-10 rounded-xl bg-[#F8FAFC] border border-[#0B3A63]/25 shadow-sm"
         data-i18n="s2.clarification.block"
+        className="mt-20 p-10 rounded-xl bg-[#F8FAFC] border border-[#0B3A63]/25 shadow-sm"
       >
         <h3
-          className="text-2xl font-semibold text-[#0B3A63] mb-4"
           data-i18n="s2.clarification.title"
+          className="text-2xl font-semibold text-[#0B3A63] mb-4"
         >
           Important Clarification
         </h3>
 
         <p
-          className="text-gray-700 max-w-4xl leading-relaxed"
           data-i18n="s2.clarification.text"
+          className="text-gray-700 max-w-4xl leading-relaxed"
         >
-          Certif-Scope does not replace CSRD/ESRS reporting, audited GHG inventories or 
-          lifecycle assessments. It provides a standardized, spend-based CO₂e indicator 
-          suitable for screening and procurement workflows, not regulatory disclosures.
+          Certif-Scope does not replace CSRD/ESRS disclosures, audited GHG inventories 
+          or lifecycle assessments. It produces a simplified, spend-based CO₂e indicator 
+          suitable for screening, procurement documentation and institutional requests 
+          where a consistent and verifiable estimate is sufficient.
         </p>
       </div>
 
