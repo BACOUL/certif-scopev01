@@ -3,14 +3,14 @@
 export default function Section7() {
   return (
     <section
-      id="s7"
+      id="prohibited-claims-misuse-prevention"
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
-
       {/* HEADER */}
       <div className="p-12 bg-[#F8FAFC] border border-gray-300 dark:border-gray-700 dark:bg-gray-900 rounded-2xl shadow-lg">
         <h2 className="text-4xl md:text-5xl font-extrabold text-[#0B3A63]">
-          7. Prohibited Claims & Misuse Prevention
+          <span className="mr-2">7.</span>
+          Prohibited Claims &amp; Misuse Prevention
         </h2>
 
         <p className="text-lg text-gray-700 dark:text-gray-300 max-w-5xl mt-6 leading-relaxed">
@@ -20,8 +20,6 @@ export default function Section7() {
           filings, public ESG declarations or comparative performance benchmarking.
         </p>
       </div>
-
-
 
       {/* BLOCK — Forbidden Communication Uses */}
       <div className="mt-16 p-10 bg-white dark:bg-gray-800 rounded-xl border border-gray-300 dark:border-gray-700 shadow-md">
@@ -44,8 +42,6 @@ export default function Section7() {
         </ul>
       </div>
 
-
-
       {/* BLOCK — Regulatory Misuse Restrictions */}
       <div className="mt-20 p-10 bg-[#F8FAFC] dark:bg-gray-900 rounded-xl border border-[#15B097]/30 dark:border-gray-700 shadow-sm">
         <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
@@ -66,8 +62,6 @@ export default function Section7() {
         </ul>
       </div>
 
-
-
       {/* BLOCK — Legal Risk Prevention */}
       <div className="mt-20 p-10 bg-white dark:bg-gray-800 rounded-xl border border-gray-300 dark:border-gray-700 shadow-md">
         <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
@@ -87,8 +81,6 @@ export default function Section7() {
         </ul>
       </div>
 
-
-
       {/* BLOCK — Why Prohibited Claims Matter */}
       <div className="mt-20 p-10 bg-[#0B3A63] text-white rounded-xl shadow-md relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/25 to-transparent opacity-20 pointer-events-none"></div>
@@ -105,8 +97,6 @@ export default function Section7() {
         </p>
       </div>
 
-
-
       {/* RETURN BUTTON */}
       <div className="mt-12 text-right">
         <a
@@ -116,7 +106,6 @@ export default function Section7() {
           Back to summary
         </a>
       </div>
-
     </section>
   );
-    }
+        }
