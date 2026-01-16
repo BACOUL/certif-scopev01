@@ -8,159 +8,144 @@ export default function Section6() {
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
 
-      {/* HEADER */}
-      <div className="p-12 rounded-2xl bg-[#F8FAFC] border border-gray-200 shadow-lg">
+      {/* HEADER WITH ACCENT BAR */}
+      <div className="relative p-12 rounded-2xl bg-white border border-gray-200 shadow-lg overflow-hidden">
+        <div className="absolute left-0 top-0 h-full w-2 bg-[#1FB6C1]" aria-hidden="true" />
+
         <h2
-          className="text-4xl md:text-5xl font-extrabold text-[#0B3A63] mb-6"
           data-i18n="s6.title"
+          className="text-4xl md:text-5xl font-extrabold text-[#0B3A63] pl-6"
         >
           Usage Scenarios
         </h2>
 
         <p
-          className="text-lg text-gray-700 max-w-4xl leading-relaxed"
           data-i18n="s6.intro"
+          className="text-lg text-gray-700 max-w-4xl leading-relaxed mt-6 pl-6"
         >
-          The CO₂e Attestation is designed for practical, non-regulatory workflows where
-          institutions require a clear environmental indicator from SMEs. It supports
-          procurement onboarding, banking and insurance review processes, tender submissions,
-          supplier documentation and internal ESG screening.
+          The CO₂e Attestation supports real institutional workflows where SMEs must
+          provide a clear, standardized environmental indicator. It applies to procurement,
+          banking, insurance, public tenders, and ESG screening processes that require
+          verification-ready documentation.
         </p>
       </div>
 
-      {/* GRID — 4 CORE SCENARIOS */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16">
+      {/* GRID — 4 ASYMMETRIC SCENARIOS */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 mt-20">
 
-        {/* PROCUREMENT */}
-        <div
-          className="p-8 bg-white rounded-xl border border-gray-200 shadow-md"
-          data-i18n="s6.procurement.block"
-        >
-          <h3
-            className="text-2xl font-semibold text-[#0B3A63]"
-            data-i18n="s6.procurement.title"
-          >
-            Procurement & Supplier Onboarding
-          </h3>
+        {/* LEFT COLUMN (2 items stacked) */}
+        <div className="space-y-10 lg:col-span-2">
 
-          <p
-            className="mt-3 text-sm text-gray-700 leading-relaxed"
-            data-i18n="s6.procurement.text"
+          {/* PROCUREMENT */}
+          <div
+            data-i18n="s6.procurement.block"
+            className="p-8 bg-white rounded-xl border border-gray-200 shadow-md"
           >
-            Buyers often require CO₂-related indicators from suppliers as part of ESG
-            policies or internal risk scoring models. The Attestation provides a standardized,
-            verifiable indicator that can be included in supplier registration and RFP responses.
-          </p>
+            <h3
+              data-i18n="s6.procurement.title"
+              className="text-2xl font-semibold text-[#0B3A63]"
+            >
+              Procurement & Supplier Onboarding
+            </h3>
+            <p
+              data-i18n="s6.procurement.text"
+              className="mt-3 text-sm text-gray-700 leading-relaxed"
+            >
+              Procurement departments require consistent CO₂ indicators for supplier scoring.
+              The Attestation provides a standardized, verification-ready document that fits
+              onboarding and RFP requirements.
+            </p>
+          </div>
+
+          {/* INSURANCE */}
+          <div
+            data-i18n="s6.insurance.block"
+            className="p-8 bg-[#F8FAFC] rounded-xl border border-[#1FB6C1]/40 shadow-sm"
+          >
+            <h3
+              data-i18n="s6.insurance.title"
+              className="text-2xl font-semibold text-[#0B3A63]"
+            >
+              Insurance Risk & Underwriting
+            </h3>
+            <p
+              data-i18n="s6.insurance.text"
+              className="mt-3 text-sm text-gray-700 leading-relaxed"
+            >
+              Insurers request environmental indicators to classify clients and exposures.
+              The Attestation provides a clear, stable, reproducible value suitable for 
+              underwriting files and renewal processes.
+            </p>
+          </div>
         </div>
 
-        {/* BANKING */}
+        {/* RIGHT COLUMN — Banking Highlight */}
         <div
-          className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/30 shadow-sm"
           data-i18n="s6.banking.block"
+          className="p-8 rounded-xl bg-[#0B3A63] text-white shadow-lg"
         >
           <h3
-            className="text-2xl font-semibold text-[#0B3A63]"
             data-i18n="s6.banking.title"
+            className="text-2xl font-semibold mb-3"
           >
             Banking & Credit Assessment
           </h3>
-
           <p
-            className="mt-3 text-sm text-gray-700 leading-relaxed"
             data-i18n="s6.banking.text"
+            className="text-white/90 text-sm leading-relaxed"
           >
-            Financial institutions must assess environmental exposure under EU supervisory
-            guidelines. The Attestation provides a clear, stable and integrity-verified value
-            that supports credit scoring or onboarding decisions without requiring complex ESG data.
-          </p>
-        </div>
-
-        {/* INSURANCE */}
-        <div
-          className="p-8 bg-white rounded-xl border border-gray-200 shadow-md"
-          data-i18n="s6.insurance.block"
-        >
-          <h3
-            className="text-2xl font-semibold text-[#0B3A63]"
-            data-i18n="s6.insurance.title"
-          >
-            Insurance Risk & Underwriting
-          </h3>
-
-          <p
-            className="mt-3 text-sm text-gray-700 leading-relaxed"
-            data-i18n="s6.insurance.text"
-          >
-            Insurers increasingly request environmental indicators to assess risk categories.
-            The Attestation provides an indicative figure suitable for underwriting files,
-            portfolio segmentation and renewal documentation.
-          </p>
-        </div>
-
-        {/* PUBLIC TENDERS */}
-        <div
-          className="p-8 bg-[#F8FAFC] rounded-xl border border-[#15B097]/30 shadow-sm"
-          data-i18n="s6.tenders.block"
-        >
-          <h3
-            className="text-2xl font-semibold text-[#0B3A63]"
-            data-i18n="s6.tenders.title"
-          >
-            Public Tenders & Administrative Files
-          </h3>
-
-          <p
-            className="mt-3 text-sm text-gray-700 leading-relaxed"
-            data-i18n="s6.tenders.text"
-          >
-            Many European tenders require a CO₂-related indicator for eligibility or scoring.
-            The Attestation offers a consistent, readable document that simplifies filing
-            requirements for SMEs lacking formal sustainability reporting.
+            Financial institutions must assess environmental risk exposure according to EU
+            supervisory guidelines. The Attestation provides a deterministic value that banks
+            can integrate into credit scoring without complex ESG reporting.
           </p>
         </div>
 
       </div>
 
-      {/* EXTENDED SECTION — ADDITIONAL USES */}
+      {/* SECOND GRID — PUBLIC TENDERS */}
+      <div className="mt-16 p-10 bg-white rounded-xl shadow-md border border-gray-200" data-i18n="s6.tenders.block">
+        <h3
+          data-i18n="s6.tenders.title"
+          className="text-2xl font-bold text-[#0B3A63] mb-4"
+        >
+          Public Tenders & Administrative Files
+        </h3>
+        <p
+          data-i18n="s6.tenders.text"
+          className="text-sm text-gray-700 leading-relaxed max-w-4xl"
+        >
+          Many EU-level tenders require environmental indicators. The Attestation simplifies
+          the submission process by providing a readable, verifiable document suitable for
+          eligibility checks, ESG scoring, and administrative completeness.
+        </p>
+      </div>
+
+      {/* EXTENDED USE CASES */}
       <div
-        className="mt-20 p-10 bg-white rounded-xl border border-gray-200 shadow-sm"
         data-i18n="s6.extended.block"
+        className="mt-20 p-10 bg-[#F8FAFC] rounded-xl border border-[#0B3A63]/20 shadow-sm"
       >
         <h3
-          className="text-2xl font-bold text-[#0B3A63] mb-4"
           data-i18n="s6.extended.title"
+          className="text-2xl font-bold text-[#0B3A63] mb-4"
         >
           Additional Use Cases
         </h3>
 
         <ul className="space-y-3 text-sm text-gray-700 leading-relaxed max-w-4xl">
-          <li data-i18n="s6.extended.item1">
-            • Internal ESG dashboards when no physical activity data is available.
-          </li>
-
-          <li data-i18n="s6.extended.item2">
-            • Supplier communication packages for large accounts.
-          </li>
-
-          <li data-i18n="s6.extended.item3">
-            • Documentation required for partnership onboarding.
-          </li>
-
-          <li data-i18n="s6.extended.item4">
-            • Compliance screening in digital procurement platforms.
-          </li>
-
-          <li data-i18n="s6.extended.item5">
-            • Bank renewal procedures requiring updated environmental indicators.
-          </li>
+          <li data-i18n="s6.extended.item1">• Internal ESG dashboards (no physical data available)</li>
+          <li data-i18n="s6.extended.item2">• Supplier documentation packages for major accounts</li>
+          <li data-i18n="s6.extended.item3">• Partnership onboarding requirements</li>
+          <li data-i18n="s6.extended.item4">• Automated procurement platform screening</li>
+          <li data-i18n="s6.extended.item5">• Bank renewal processes requiring updated indicators</li>
         </ul>
 
         <p
-          className="mt-6 text-sm text-gray-700 leading-relaxed"
           data-i18n="s6.extended.note"
+          className="mt-6 text-sm text-gray-700 leading-relaxed"
         >
-          These use cases reflect real institutional workflows in which a standardized, verification-ready
-          CO₂e indicator is preferable to complex or unavailable ESG reporting.
+          These scenarios reflect real workflows where SMEs must supply a standardized,
+          verification-ready environmental indicator without full ESG reporting capabilities.
         </p>
       </div>
 
@@ -170,7 +155,8 @@ export default function Section6() {
           href="#top"
           aria-label="Back to section summary"
           data-i18n="s6.return"
-          className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
+          className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63]
+                     text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
         >
           Back to summary
         </a>
@@ -178,4 +164,4 @@ export default function Section6() {
 
     </section>
   );
-}
+          }
