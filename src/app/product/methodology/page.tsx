@@ -36,76 +36,76 @@ export default function MethodologyPage() {
         </p>
       </div>
 
-      {/* TABLE OF CONTENTS — aligned with actual section titles */}
+      {/* TABLE OF CONTENTS — CANONICAL & ALIGNED */}
       <nav
         aria-label="Methodology Sections"
         className="mb-16 p-6 bg-[#F8FAFC] border border-gray-200 rounded-xl shadow-sm"
       >
-        <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-[#0B3A63] font-medium">
+        <ol className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-[#0B3A63] font-medium list-decimal list-inside">
           <li>
             <a href="#s1" className="hover:text-[#15B097] transition">
-              1. Scope &amp; Purpose of the Methodology
+              Scope, Purpose and Legal Nature
             </a>
           </li>
           <li>
             <a href="#s2" className="hover:text-[#15B097] transition">
-              2. Theoretical Foundations
+              Regulatory and Standards Alignment
             </a>
           </li>
           <li>
             <a href="#s3" className="hover:text-[#15B097] transition">
-              3. Mathematical Model
+              Methodological Model Overview (Spend-Based)
             </a>
           </li>
           <li>
             <a href="#s4" className="hover:text-[#15B097] transition">
-              4. Category Definitions &amp; Boundaries
+              Data Inputs and Responsibility Boundaries
             </a>
           </li>
           <li>
             <a href="#s5" className="hover:text-[#15B097] transition">
-              5. Input Normalisation Rules
+              Emission Factors Sources and Limitations
             </a>
           </li>
           <li>
             <a href="#s6" className="hover:text-[#15B097] transition">
-              6. Transformation Pipeline
+              Calculation Engine and Transformation Pipeline
             </a>
           </li>
           <li>
             <a href="#s7" className="hover:text-[#15B097] transition">
-              7. Emission-Factor Assignment Logic
+              Output Structure and Carbon Attestation Format
             </a>
           </li>
           <li>
             <a href="#s8" className="hover:text-[#15B097] transition">
-              8. Deterministic Output Guarantees
+              Verification, Auditability and Cryptographic Proof
             </a>
           </li>
           <li>
             <a href="#s9" className="hover:text-[#15B097] transition">
-              9. Update Cycles &amp; Version Control
+              Versioning, Updates and Methodology Governance
             </a>
           </li>
           <li>
             <a href="#s10" className="hover:text-[#15B097] transition">
-              10. Structural Limitations
+              Institutional Use Cases and Acceptance Criteria
             </a>
           </li>
           <li>
             <a href="#s11" className="hover:text-[#15B097] transition">
-              11. Legal Boundaries
+              Comparison with Alternative Market Approaches
             </a>
           </li>
           <li>
             <a href="#s12" className="hover:text-[#15B097] transition">
-              12. Verification Protocol
+              Legal Limitations, Exclusions and Non-Audit Disclaimer
             </a>
           </li>
-        </ul>
+        </ol>
       </nav>
 
-      {/* SECTIONS — rendered exactly like Product */}
+      {/* SECTIONS — ORDER & IDS ARE AUTHORITATIVE */}
       <Section1 />
       <Section2 />
       <Section3 />
