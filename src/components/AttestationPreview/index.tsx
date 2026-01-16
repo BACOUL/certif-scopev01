@@ -15,7 +15,7 @@ export default function AttestationPreview() {
           data-i18n="preview.label"
           className="text-xs md:text-sm font-medium text-gray-500 dark:text-gray-400 tracking-wider uppercase mb-3"
         >
-          CO₂e Attestation Preview
+          CO₂e Attestation Preview — Standardized • Spend-Based • Verifiable
         </p>
 
         <div className="w-16 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto mb-8" />
@@ -35,7 +35,7 @@ export default function AttestationPreview() {
         >
           This is the exact standardized layout produced by Certif-Scope. It includes total CO₂e,
           category overview and verification metadata in a clean, review-ready format. Designed
-          for procurement, banking and ESG screening workflows.
+          for procurement, banking and ESG screening workflows across Europe.
         </p>
 
         {/* IMAGE */}
@@ -43,7 +43,7 @@ export default function AttestationPreview() {
           <div className="relative w-full max-w-[600px]">
             <Image
               src="/preview.webp"
-              alt="Preview of the Certif-Scope CO₂e Attestation"
+              alt="Preview of the standardized Certif-Scope CO₂e Attestation showing total CO₂e, category overview and verification metadata"
               width={1200}
               height={800}
               loading="lazy"
@@ -53,9 +53,10 @@ export default function AttestationPreview() {
           </div>
         </div>
 
-        {/* CTA + DISCLAIMER */}
+        {/* CTA + INTERNAL LINK + DISCLAIMER */}
         <div className="mt-12 flex flex-col items-center">
 
+          {/* CTA DOWNLOAD */}
           <a
             data-i18n="preview.cta"
             href="/sample.pdf"
@@ -64,6 +65,16 @@ export default function AttestationPreview() {
             Download Sample PDF
           </a>
 
+          {/* INTERNAL NAVIGATION LINK */}
+          <a
+            href="/product"
+            data-i18n="preview.methodologyLink"
+            className="mt-3 text-sm text-[#0B3A63] dark:text-gray-300 underline hover:text-[#1FB6C1]"
+          >
+            See full methodology →
+          </a>
+
+          {/* DISCLAIMER */}
           <p
             data-i18n="preview.disclaimer"
             className="mt-4 text-xs text-gray-500 dark:text-gray-400 max-w-sm leading-relaxed"
