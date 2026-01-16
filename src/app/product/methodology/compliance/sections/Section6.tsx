@@ -3,14 +3,14 @@
 export default function Section6() {
   return (
     <section
-      id="s6"
+      id="legal-non-equivalence-regulatory-disclosures"
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
-
       {/* HEADER */}
       <div className="p-12 bg-[#F8FAFC] border border-gray-300 dark:border-gray-700 dark:bg-gray-900 rounded-2xl shadow-lg">
         <h2 className="text-4xl md:text-5xl font-extrabold text-[#0B3A63]">
-          6. Legal Non-Equivalence With Regulatory Disclosures
+          <span className="mr-2">6.</span>
+          Legal Non-Equivalence With Regulatory Disclosures
         </h2>
 
         <p className="text-lg text-gray-700 dark:text-gray-300 max-w-5xl mt-6 leading-relaxed">
@@ -20,7 +20,6 @@ export default function Section6() {
           are interpreted only within authorised analytical contexts.
         </p>
       </div>
-
 
       {/* BLOCK — Key Legal Distinctions */}
       <div className="mt-16 p-10 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl shadow-md">
@@ -42,7 +41,6 @@ export default function Section6() {
         </ul>
       </div>
 
-
       {/* BLOCK — Regulatory Framework Comparison */}
       <div className="mt-20 p-10 bg-[#F8FAFC] border border-[#15B097]/30 dark:border-gray-700 rounded-xl shadow-sm">
         <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
@@ -62,7 +60,6 @@ export default function Section6() {
           <li>• EBA/Banking guidelines — risk assessments must rely on validated environmental data.</li>
         </ul>
       </div>
-
 
       {/* BLOCK — Prohibited Uses Under Law */}
       <div className="mt-20 p-10 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl shadow-md">
@@ -84,7 +81,6 @@ export default function Section6() {
         </ul>
       </div>
 
-
       {/* BLOCK — Institutional Responsibility Disclaimer */}
       <div className="mt-20 p-10 bg-[#0B3A63] text-white rounded-xl shadow-md relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/25 to-transparent opacity-20 pointer-events-none"></div>
@@ -101,7 +97,6 @@ export default function Section6() {
         </p>
       </div>
 
-
       {/* BLOCK — Why Non-Equivalence Matters */}
       <div className="mt-20 p-10 bg-[#F8FAFC] dark:bg-gray-900 border border-[#15B097]/30 dark:border-gray-700 rounded-xl shadow-sm">
         <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
@@ -115,7 +110,6 @@ export default function Section6() {
         </p>
       </div>
 
-
       {/* RETURN BUTTON */}
       <div className="mt-12 text-right">
         <a
@@ -125,7 +119,6 @@ export default function Section6() {
           Back to summary
         </a>
       </div>
-
     </section>
   );
-}
+      }
