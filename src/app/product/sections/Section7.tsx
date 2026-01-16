@@ -4,187 +4,175 @@ export default function Section7() {
   return (
     <section
       id="s7"
-      data-section="s7"
       className="scroll-mt-24 border-b border-gray-200 pb-24"
+      data-section="s7"
     >
 
       {/* HEADER */}
-      <div className="relative p-12 rounded-2xl bg-[#F8FAFC] border border-gray-200 shadow-lg overflow-hidden">
-        <div
-          className="absolute inset-0 bg-gradient-to-br from-[#0B3A63]/8 to-[#15B097]/15 pointer-events-none"
-          aria-hidden="true"
-        ></div>
-
+      <div className="p-12 rounded-2xl bg-[#F8FAFC] border border-gray-200 shadow-md">
         <h2
-          className="text-4xl md:text-5xl font-extrabold text-[#0B3A63] relative z-10"
+          className="text-4xl md:text-5xl font-extrabold text-[#0B3A63]"
           data-i18n="s7.title"
         >
-          Value Proposition
+          Limitations & Fit
         </h2>
 
         <p
-          className="text-lg text-gray-700 max-w-4xl mt-6 leading-relaxed relative z-10"
+          className="text-lg text-gray-700 max-w-4xl mt-6 leading-relaxed"
           data-i18n="s7.intro"
         >
-          Certif-Scope provides a standardized and verifiable CO₂ indicator aligned with procurement,
-          ESG preliminary screening, insurance risk assessment, investor due-diligence and public
-          funding applications. It eliminates inconsistent formats and replaces them with a unified,
-          verification-ready structure that can be reviewed quickly and independently.
+          The CO₂e Attestation is intentionally designed as a simplified and verifiable 
+          document based on financial spending only. This section clarifies the scope, 
+          limits and appropriate use cases to avoid misinterpretations.
         </p>
-
-        <div
-          className="mt-6 text-sm text-gray-600 underline space-y-1 relative z-10"
-          data-i18n="s7.references"
-        >
-          <a href="https://eur-lex.europa.eu/eli/reg/2022/2464" target="_blank" rel="noopener noreferrer">CSRD – EU 2022/2464</a><br />
-          <a href="https://efrag.org/lab3" target="_blank" rel="noopener noreferrer">ESRS E1 – Climate Standard</a><br />
-          <a href="https://www.eba.europa.eu" target="_blank" rel="noopener noreferrer">EBA ESG Risk Guidelines</a><br />
-          <a href="https://finance.ec.europa.eu/sustainable-finance/tools-and-standards/eu-taxonomy_en" target="_blank" rel="noopener noreferrer">EU Taxonomy</a><br />
-          <a href="https://eur-lex.europa.eu/eli/reg/2019/2088" target="_blank" rel="noopener noreferrer">SFDR – EU 2019/2088</a>
-        </div>
       </div>
 
-
-      {/* GRID 4 VALUES */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-16">
-
-        <div
-          className="p-8 bg-white rounded-xl shadow-md border border-gray-200"
-          data-i18n="s7.value1.block"
-        >
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3" data-i18n="s7.value1.title">
-            Compatibility with EU Public Procurement
-          </h3>
-          <p className="text-gray-600 text-sm leading-relaxed" data-i18n="s7.value1.text">
-            Provides a standardized CO₂ indicator suitable for Green Public Procurement formats in
-            infrastructure, services, logistics and IT.
-          </p>
-        </div>
-
-        <div
-          className="p-8 bg-[#F8FAFC] rounded-xl shadow-md border border-[#15B097]/30"
-          data-i18n="s7.value2.block"
-        >
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3" data-i18n="s7.value2.title">
-            Supports Banking ESG Risk Reviews
-          </h3>
-          <p className="text-gray-600 text-sm leading-relaxed" data-i18n="s7.value2.text">
-            The indicator can be used as an input for preliminary ESG risk scoring workflows under
-            European banking guidelines.
-          </p>
-        </div>
-
-        <div
-          className="p-8 bg-white rounded-xl shadow-md border border-gray-200"
-          data-i18n="s7.value3.block"
-        >
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3" data-i18n="s7.value3.title">
-            Usable for SFDR & Taxonomy Screening
-          </h3>
-          <p className="text-gray-600 text-sm leading-relaxed" data-i18n="s7.value3.text">
-            Provides indicative climate data that investment firms can use for Article 8/9 SFDR
-            screening and early-stage Taxonomy assessment.
-          </p>
-        </div>
-
-        <div
-          className="p-8 bg-[#F8FAFC] rounded-xl shadow-md border border-[#15B097]/30"
-          data-i18n="s7.value4.block"
-        >
-          <h3 className="text-xl font-semibold text-[#0B3A63] mb-3" data-i18n="s7.value4.title">
-            Verifiable for Insurers & Auditors
-          </h3>
-          <p className="text-gray-600 text-sm leading-relaxed" data-i18n="s7.value4.text">
-            The embedded SHA-256 checksum enables offline integrity validation, aligned with
-            transparency principles in ISO 14064-1.
-          </p>
-        </div>
-
-      </div>
-
-
-      {/* COMPARISON TABLE */}
+      {/* WHAT IT IS */}
       <div
-        className="mt-20 p-10 bg-white border border-gray-200 rounded-xl shadow-md"
-        data-i18n="s7.table.block"
+        className="mt-16 p-10 rounded-xl bg-white border border-gray-200 shadow-sm"
+        data-i18n="s7.what.block"
       >
-
-        <h3 className="text-2xl font-bold text-[#0B3A63] mb-6" data-i18n="s7.table.title">
-          Comparative Framework: Certif-Scope vs Traditional Methods
+        <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4" data-i18n="s7.what.title">
+          What the Attestation Is
         </h3>
 
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm text-gray-700 border-collapse">
-            <thead>
-              <tr className="bg-[#F8FAFC] border-b">
-                <th className="p-4 text-left font-semibold" data-i18n="s7.table.col1">Criterion</th>
-                <th className="p-4 text-left font-semibold" data-i18n="s7.table.col2">Certif-Scope</th>
-                <th className="p-4 text-left font-semibold" data-i18n="s7.table.col3">Consultant-Based Review</th>
-              </tr>
-            </thead>
-            <tbody>
-
-              <tr className="border-b">
-                <td className="p-4" data-i18n="s7.table.row1.col1">Delivery Time</td>
-                <td className="p-4" data-i18n="s7.table.row1.col2">&lt; 30 sec</td>
-                <td className="p-4" data-i18n="s7.table.row1.col3">2–8 weeks</td>
-              </tr>
-
-              <tr className="border-b">
-                <td className="p-4" data-i18n="s7.table.row2.col1">Cost</td>
-                <td className="p-4" data-i18n="s7.table.row2.col2">49 €</td>
-                <td className="p-4" data-i18n="s7.table.row2.col3">1 500–12 000 €</td>
-              </tr>
-
-              <tr className="border-b">
-                <td className="p-4" data-i18n="s7.table.row3.col1">Format</td>
-                <td className="p-4" data-i18n="s7.table.row3.col2">Standardized & machine-readable</td>
-                <td className="p-4" data-i18n="s7.table.row3.col3">Varies by consultant</td>
-              </tr>
-
-              <tr className="border-b">
-                <td className="p-4" data-i18n="s7.table.row4.col1">Verification</td>
-                <td className="p-4" data-i18n="s7.table.row4.col2">SHA-256 integrity hash</td>
-                <td className="p-4" data-i18n="s7.table.row4.col3">No cryptographic checks</td>
-              </tr>
-
-              <tr>
-                <td className="p-4" data-i18n="s7.table.row5.col1">Institutional Usability</td>
-                <td className="p-4" data-i18n="s7.table.row5.col2">Compatible with EU screening</td>
-                <td className="p-4" data-i18n="s7.table.row5.col3">Depends on firm method</td>
-              </tr>
-
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-
-      {/* SCORECARD */}
-      <div
-        className="mt-20 p-10 bg-[#F8FAFC] border border-[#15B097]/40 rounded-xl shadow-sm"
-        data-i18n="s7.scorecard.block"
-      >
-        <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4" data-i18n="s7.scorecard.title">
-          Institutional Scorecard Compatibility
-        </h3>
-
-        <ul className="text-gray-700 text-sm space-y-3 leading-relaxed">
-          <li data-i18n="s7.scorecard.item1">• <strong>Procurement:</strong> aligned with EU GPP request formats.</li>
-          <li data-i18n="s7.scorecard.item2">• <strong>Banking:</strong> usable for ESG risk evaluation.</li>
-          <li data-i18n="s7.scorecard.item3">• <strong>Insurance:</strong> integrity validation for underwriting.</li>
-          <li data-i18n="s7.scorecard.item4">• <strong>Investors:</strong> preliminary climate indicator.</li>
-          <li data-i18n="s7.scorecard.item5">• <strong>Public funding:</strong> structured for grant submissions.</li>
-          <li data-i18n="s7.scorecard.item6">• <strong>Legal boundaries:</strong> not a CSRD/ESRS report.</li>
-          <li data-i18n="s7.scorecard.item7">• <strong>Methodology limitations:</strong> see Section 11.</li>
+        <ul className="space-y-3 text-sm text-gray-700 leading-relaxed max-w-4xl">
+          <li data-i18n="s7.what.point1">
+            • A simplified CO₂e indicator based on annual spending (€)
+          </li>
+          <li data-i18n="s7.what.point2">
+            • Deterministic and reproducible using a fixed spend-based formula
+          </li>
+          <li data-i18n="s7.what.point3">
+            • A standardized, readable format for procurement and onboarding teams
+          </li>
+          <li data-i18n="s7.what.point4">
+            • A document with a built-in cryptographic integrity check
+          </li>
+          <li data-i18n="s7.what.point5">
+            • Suitable for preliminary screening and institutional checks
+          </li>
         </ul>
       </div>
 
+      {/* WHAT IT IS NOT */}
+      <div
+        className="mt-16 p-10 rounded-xl bg-[#0B3A63] text-white shadow-md relative overflow-hidden"
+        data-i18n="s7.not.block"
+      >
+        <div
+          className="absolute inset-0 bg-gradient-to-br from-[#15B097]/40 to-transparent opacity-20"
+          aria-hidden="true"
+        />
+
+        <h3 className="text-2xl font-semibold mb-4 relative z-10" data-i18n="s7.not.title">
+          What the Attestation Is Not
+        </h3>
+
+        <ul className="space-y-3 text-white/90 text-sm leading-relaxed max-w-4xl relative z-10">
+          <li data-i18n="s7.not.point1">
+            • Not a CSRD/ESRS climate disclosure
+          </li>
+          <li data-i18n="s7.not.point2">
+            • Not a greenhouse gas inventory (GHG Protocol Scopes 1, 2 and 3)
+          </li>
+          <li data-i18n="s7.not.point3">
+            • Not an audited carbon footprint or lifecycle assessment
+          </li>
+          <li data-i18n="s7.not.point4">
+            • Not suitable for regulatory filings or investor-grade reporting
+          </li>
+          <li data-i18n="s7.not.point5">
+            • Not based on operational/physical data such as energy or fuel consumption
+          </li>
+        </ul>
+      </div>
+
+      {/* WHEN IT FITS */}
+      <div
+        className="mt-16 p-10 rounded-xl bg-[#F8FAFC] border border-[#15B097]/30 shadow-sm"
+        data-i18n="s7.fit.block"
+      >
+        <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4" data-i18n="s7.fit.title">
+          When It Fits Perfectly
+        </h3>
+
+        <ul className="space-y-3 text-sm text-gray-700 leading-relaxed max-w-4xl">
+          <li data-i18n="s7.fit.point1">
+            • Supplier onboarding where a basic CO₂e indicator is requested
+          </li>
+          <li data-i18n="s7.fit.point2">
+            • Banking or insurance applications needing a simplified climate metric
+          </li>
+          <li data-i18n="s7.fit.point3">
+            • Public tenders requiring an environmental indicator without full audit
+          </li>
+          <li data-i18n="s7.fit.point4">
+            • SMEs without ESG teams needing a verifiable document quickly
+          </li>
+          <li data-i18n="s7.fit.point5">
+            • International workflows requiring multilingual clarity and verification
+          </li>
+        </ul>
+      </div>
+
+      {/* WHEN NOT TO USE */}
+      <div
+        className="mt-16 p-10 rounded-xl bg-white border border-gray-200 shadow-sm"
+        data-i18n="s7.notuse.block"
+      >
+        <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4" data-i18n="s7.notuse.title">
+          When It Should NOT Be Used
+        </h3>
+
+        <ul className="space-y-3 text-sm text-gray-700 leading-relaxed max-w-4xl">
+          <li data-i18n="s7.notuse.point1">
+            • Regulatory reporting under CSRD or ESRS
+          </li>
+          <li data-i18n="s7.notuse.point2">
+            • Formal GHG inventories required for certifications
+          </li>
+          <li data-i18n="s7.notuse.point3">
+            • Carbon accounting requiring physical activity data
+          </li>
+          <li data-i18n="s7.notuse.point4">
+            • Scientific or highly detailed emissions modelling
+          </li>
+          <li data-i18n="s7.notuse.point5">
+            • Marketing claims requiring validated LCA data
+          </li>
+        </ul>
+      </div>
+
+      {/* CLOSING CLARIFICATION */}
+      <div
+        className="mt-16 p-10 rounded-xl bg-[#0B3A63] text-white shadow-lg relative overflow-hidden"
+        data-i18n="s7.closing.block"
+      >
+        <div
+          className="absolute inset-0 bg-gradient-to-br from-[#15B097]/30 to-transparent opacity-20"
+          aria-hidden="true"
+        />
+
+        <h3 className="text-2xl font-semibold mb-4 relative z-10" data-i18n="s7.closing.title">
+          Final Clarification
+        </h3>
+
+        <p
+          className="text-white/90 text-sm leading-relaxed max-w-4xl relative z-10"
+          data-i18n="s7.closing.text"
+        >
+          The Attestation is a simplified tool for preliminary ESG workflows. When a fully 
+          certified or audited emissions inventory is required, the organisation should 
+          use specialized carbon accounting solutions and physical activity data.
+        </p>
+      </div>
 
       {/* RETURN BUTTON */}
       <div className="mt-12 text-right">
         <a
           href="#top"
+          aria-label="Back to summary"
           data-i18n="s7.return"
           className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
         >
@@ -194,4 +182,4 @@ export default function Section7() {
 
     </section>
   );
-                  }
+            }
