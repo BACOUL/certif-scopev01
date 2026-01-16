@@ -22,13 +22,12 @@ export default function Footer() {
             </h2>
 
             <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
-              Instant spend-based CO₂e Attestation for procurement, banking
-              and institutional workflows. Standardized output, verifiable hash,
-              GDPR-safe and deterministic calculations.
+              Spend-based CO₂e Attestation designed for procurement, banking
+              and ESG workflows. Standardized, consistent and instantly verifiable.
             </p>
           </div>
 
-          {/* PRODUCT SECTION */}
+          {/* PRODUCT */}
           <nav aria-label="Product navigation">
             <h3 className="text-lg font-semibold text-[#0B3A63] dark:text-gray-100 mb-4">
               Product
@@ -38,12 +37,12 @@ export default function Footer() {
               <li><Link href="/product">Overview</Link></li>
               <li><Link href="/product/methodology">Methodology</Link></li>
               <li><Link href="/product/methodology/compliance">Compliance</Link></li>
-              <li><Link href="/sample-pdf">Sample Attestation</Link></li>
+              <li><Link href="/sample.pdf">Sample Attestation</Link></li>
               <li><Link href="/verify">Verify Attestation</Link></li>
             </ul>
           </nav>
 
-          {/* COMPANY SECTION */}
+          {/* COMPANY */}
           <nav aria-label="Company navigation">
             <h3 className="text-lg font-semibold text-[#0B3A63] dark:text-gray-100 mb-4">
               Company
@@ -56,7 +55,7 @@ export default function Footer() {
             </ul>
           </nav>
 
-          {/* LEGAL SECTION */}
+          {/* LEGAL */}
           <nav aria-label="Legal navigation">
             <h3 className="text-lg font-semibold text-[#0B3A63] dark:text-gray-100 mb-4">
               Legal
@@ -66,8 +65,6 @@ export default function Footer() {
               <li><Link href="/legal">Legal Notice</Link></li>
               <li><Link href="/privacy">Privacy Policy</Link></li>
               <li><Link href="/terms">Terms of Service</Link></li>
-              <li><Link href="/cookies">Cookie Policy</Link></li>
-              <li><Link href="/data-processing">Data Processing Overview</Link></li>
             </ul>
           </nav>
 
@@ -75,8 +72,7 @@ export default function Footer() {
 
         {/* DISCLAIMER */}
         <div className="mt-10 text-center text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
-          Certif-Scope provides an indicative spend-based CO₂e estimation. It is not a CSRD/ESRS report,
-          not an audited GHG inventory and not a regulatory disclosure. Accuracy depends on user inputs.
+          Indicative spend-based CO₂e estimate. Not audited and not CSRD/ESRS-compliant.
         </div>
 
         {/* COPYRIGHT */}
@@ -86,7 +82,7 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* JSON-LD SCHEMA */}
+        {/* JSON-LD SCHEMA ENRICHED */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -96,7 +92,19 @@ export default function Footer() {
               name: "Certif-Scope",
               url: "https://certif-scope.com",
               logo: "https://certif-scope.com/logo.png",
-              sameAs: [],
+              email: "contact@certif-scope.com",
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "3 rue de l'Église de Louppy",
+                addressLocality: "Les Hauts-de-Chée",
+                postalCode: "55000",
+                addressCountry: "FR"
+              },
+              contactPoint: [{
+                "@type": "ContactPoint",
+                contactType: "customer support",
+                email: "contact@certif-scope.com"
+              }]
             }),
           }}
         />
