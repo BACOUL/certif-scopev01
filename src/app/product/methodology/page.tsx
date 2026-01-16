@@ -30,13 +30,13 @@ export default function MethodologyPage() {
         </h1>
 
         <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed max-w-3xl">
-          Scientific and deterministic methodology behind the CO₂e Attestation:
-          spend-based model, emission factors, validation rules, versioning,
-          regulatory alignment and verification protocol.
+          Scientific and deterministic methodology behind the CO₂e attestation:
+          spend-based model, emission factors, calculation engine, update cycles
+          and institutional validation rules.
         </p>
       </div>
 
-      {/* TABLE OF CONTENTS — CANONICAL & ALIGNED */}
+      {/* TABLE OF CONTENTS — STRICTLY ALIGNED WITH REAL SECTIONS */}
       <nav
         aria-label="Methodology Sections"
         className="mb-16 p-6 bg-[#F8FAFC] border border-gray-200 rounded-xl shadow-sm"
@@ -44,68 +44,68 @@ export default function MethodologyPage() {
         <ol className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-[#0B3A63] font-medium list-decimal list-inside">
           <li>
             <a href="#s1" className="hover:text-[#15B097] transition">
-              Scope, Purpose and Legal Nature
+              Scope &amp; Purpose of the Methodology
             </a>
           </li>
           <li>
             <a href="#s2" className="hover:text-[#15B097] transition">
-              Regulatory and Standards Alignment
+              Theoretical Foundations
             </a>
           </li>
           <li>
             <a href="#s3" className="hover:text-[#15B097] transition">
-              Methodological Model Overview (Spend-Based)
+              Mathematical Model
             </a>
           </li>
           <li>
             <a href="#s4" className="hover:text-[#15B097] transition">
-              Data Inputs and Responsibility Boundaries
+              Category Definitions &amp; Boundaries
             </a>
           </li>
           <li>
             <a href="#s5" className="hover:text-[#15B097] transition">
-              Emission Factors Sources and Limitations
+              Input Normalisation Rules
             </a>
           </li>
           <li>
             <a href="#s6" className="hover:text-[#15B097] transition">
-              Calculation Engine and Transformation Pipeline
+              Transformation Pipeline
             </a>
           </li>
           <li>
             <a href="#s7" className="hover:text-[#15B097] transition">
-              Output Structure and Carbon Attestation Format
+              Emission-Factor Assignment Logic
             </a>
           </li>
           <li>
             <a href="#s8" className="hover:text-[#15B097] transition">
-              Verification, Auditability and Cryptographic Proof
+              Computational Flow &amp; Formula Structure
             </a>
           </li>
           <li>
             <a href="#s9" className="hover:text-[#15B097] transition">
-              Versioning, Updates and Methodology Governance
+              Internal Controls &amp; Calculation Guards
             </a>
           </li>
           <li>
             <a href="#s10" className="hover:text-[#15B097] transition">
-              Institutional Use Cases and Acceptance Criteria
+              Emission Factor Versioning &amp; Update Model
             </a>
           </li>
           <li>
             <a href="#s11" className="hover:text-[#15B097] transition">
-              Comparison with Alternative Market Approaches
+              Dataset Update Cycle &amp; Institutional Validation
             </a>
           </li>
           <li>
             <a href="#s12" className="hover:text-[#15B097] transition">
-              Legal Limitations, Exclusions and Non-Audit Disclaimer
+              Data Privacy &amp; GDPR Conformity
             </a>
           </li>
         </ol>
       </nav>
 
-      {/* SECTIONS — ORDER & IDS ARE AUTHORITATIVE */}
+      {/* SECTIONS — ORDER AND IDS ARE AUTHORITATIVE */}
       <Section1 />
       <Section2 />
       <Section3 />
@@ -120,4 +120,4 @@ export default function MethodologyPage() {
       <Section12 />
     </div>
   );
-      }
+}
