@@ -3,11 +3,10 @@
 export default function Section4() {
   return (
     <section
-      id="s4"
-      data-section="s4"
+      id="attestation-pdf-contents"
+      data-section="attestation-pdf-contents"
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
-
       {/* HEADER — Soft Blue + subtle gradient */}
       <div className="relative p-12 rounded-2xl bg-[#F0F4F8] border border-[#0B3A63]/15 shadow-md overflow-hidden">
         <div
@@ -19,6 +18,7 @@ export default function Section4() {
           data-i18n="s4.title"
           className="text-4xl md:text-5xl font-extrabold text-[#0B3A63] relative z-10"
         >
+          <span className="mr-2">4.</span>
           What’s Included in the CO₂e Attestation PDF
         </h2>
 
@@ -34,8 +34,6 @@ export default function Section4() {
 
       {/* GRID — refined, minimalistic */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-20">
-
-        {/* BLOCK 1 */}
         <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition">
           <h3 className="text-2xl font-semibold text-[#0B3A63]" data-i18n="s4.block1.title">
             1. Summary Indicators
@@ -45,7 +43,6 @@ export default function Section4() {
           </p>
         </div>
 
-        {/* BLOCK 2 */}
         <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#1FB6C1]/20 shadow-sm hover:shadow-md transition">
           <h3 className="text-2xl font-semibold text-[#0B3A63]" data-i18n="s4.block2.title">
             2. Category Breakdown
@@ -55,7 +52,6 @@ export default function Section4() {
           </p>
         </div>
 
-        {/* BLOCK 3 */}
         <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition">
           <h3 className="text-2xl font-semibold text-[#0B3A63]" data-i18n="s4.block3.title">
             3. Versioned Emission Dataset
@@ -65,7 +61,6 @@ export default function Section4() {
           </p>
         </div>
 
-        {/* BLOCK 4 */}
         <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#1FB6C1]/20 shadow-sm hover:shadow-md transition">
           <h3 className="text-2xl font-semibold text-[#0B3A63]" data-i18n="s4.block4.title">
             4. Verification ID + QR
@@ -75,7 +70,6 @@ export default function Section4() {
           </p>
         </div>
 
-        {/* BLOCK 5 */}
         <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition">
           <h3 className="text-2xl font-semibold text-[#0B3A63]" data-i18n="s4.block5.title">
             5. Attestation Metadata
@@ -85,7 +79,6 @@ export default function Section4() {
           </p>
         </div>
 
-        {/* BLOCK 6 */}
         <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#1FB6C1]/20 shadow-sm hover:shadow-md transition">
           <h3 className="text-2xl font-semibold text-[#0B3A63]" data-i18n="s4.block6.title">
             6. Method Summary
@@ -94,10 +87,9 @@ export default function Section4() {
             A concise explanation of the spend-based model and its non-regulatory scope.
           </p>
         </div>
-
       </div>
 
-      {/* FOOTNOTE — subtle green accent */}
+      {/* FOOTNOTE */}
       <div className="mt-20 p-8 rounded-xl bg-[#F0FDFC] border border-[#1FB6C1]/30 shadow-sm">
         <h4 className="text-xl font-semibold text-[#0B3A63] mb-2" data-i18n="s4.note.title">
           Institutional Usage Note
@@ -119,7 +111,6 @@ export default function Section4() {
           Back to summary
         </a>
       </div>
-
     </section>
   );
-          }
+      }
