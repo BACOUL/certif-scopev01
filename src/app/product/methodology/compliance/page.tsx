@@ -18,6 +18,8 @@ export default function ComplianceLegalPage() {
       data-section="compliance-overview"
       className="max-w-7xl mx-auto px-6 pt-8 pb-24"
     >
+      {/* TOP ANCHOR */}
+      <div id="top" />
 
       {/* HEADER */}
       <div className="w-full mb-12">
@@ -25,54 +27,44 @@ export default function ComplianceLegalPage() {
           Compliance & Legal Limits Overview
         </h1>
 
-        <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+        <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed max-w-3xl">
           Full legal, regulatory and compliance framework: legal boundaries,
-          CSRD/ESRS positioning, GDPR conformity, liability, permitted use cases,
-          prohibited use cases, data governance, versioning stability and
-          institutional compliance guarantees.
+          CSRD/ESRS positioning, GDPR conformity, liability allocation,
+          permitted and prohibited uses, data governance, version stability
+          and institutional compliance constraints.
         </p>
       </div>
 
-      {/* SECTIONS LIST */}
-      <div
-        className="w-full p-8 mb-24 bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-200 dark:border-gray-700"
-        role="navigation"
+      {/* TABLE OF CONTENTS — ALIGNED WITH METHODOLOGY & PRODUCT */}
+      <nav
         aria-label="Compliance Sections"
+        className="mb-16 p-6 bg-[#F8FAFC] border border-gray-200 rounded-xl shadow-sm"
       >
-        <h2 className="text-2xl md:text-3xl font-bold text-[#0B3A63] mb-6">
-          Compliance & Legal Sections
-        </h2>
-
-        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-gray-700 dark:text-gray-300 text-base leading-relaxed">
-          <li><a href="#s1" className="underline">1. Legal Scope & Boundaries</a></li>
-          <li><a href="#s2">2. Regulatory Positioning</a></li>
-          <li><a href="#s3">3. Nature of the Output</a></li>
-          <li><a href="#s4">4. Liability & Responsibility Model</a></li>
-          <li><a href="#s5">5. Data Privacy & GDPR Framework</a></li>
-          <li><a href="#s6">6. Permitted Institutional Use Cases</a></li>
-          <li><a href="#s7">7. Prohibited Use Cases</a></li>
-          <li><a href="#s8">8. User Input Limitations & Data Integrity</a></li>
-          <li><a href="#s9">9. Emission Factor Stability & Backward Compatibility</a></li>
-          <li><a href="#s10">10. Legal Disclaimer & Interpretation Rules</a></li>
+        <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-[#0B3A63] font-medium">
+          <li><a href="#s1" className="hover:text-[#15B097] transition">1. Legal Scope & Boundaries</a></li>
+          <li><a href="#s2" className="hover:text-[#15B097] transition">2. Regulatory Positioning</a></li>
+          <li><a href="#s3" className="hover:text-[#15B097] transition">3. Nature of the Output</a></li>
+          <li><a href="#s4" className="hover:text-[#15B097] transition">4. Liability & Responsibility Model</a></li>
+          <li><a href="#s5" className="hover:text-[#15B097] transition">5. Data Privacy & GDPR Framework</a></li>
+          <li><a href="#s6" className="hover:text-[#15B097] transition">6. Permitted Institutional Use Cases</a></li>
+          <li><a href="#s7" className="hover:text-[#15B097] transition">7. Prohibited Use Cases</a></li>
+          <li><a href="#s8" className="hover:text-[#15B097] transition">8. User Input Limitations & Data Integrity</a></li>
+          <li><a href="#s9" className="hover:text-[#15B097] transition">9. Emission Factor Stability & Backward Compatibility</a></li>
+          <li><a href="#s10" className="hover:text-[#15B097] transition">10. Legal Disclaimer & Interpretation Rules</a></li>
         </ul>
-      </div>
+      </nav>
 
-      {/* CONTENT SECTIONS */}
-      <div className="space-y-24">
-
-        <div id="s1"><Section1 /></div>
-        <div id="s2"><Section2 /></div>
-        <div id="s3"><Section3 /></div>
-        <div id="s4"><Section4 /></div>
-        <div id="s5"><Section5 /></div>
-        <div id="s6"><Section6 /></div>
-        <div id="s7"><Section7 /></div>
-        <div id="s8"><Section8 /></div>
-        <div id="s9"><Section9 /></div>
-        <div id="s10"><Section10 /></div>
-
-      </div>
-
+      {/* SECTIONS — SAME RENDERING LOGIC AS PRODUCT / METHODOLOGY */}
+      <Section1 />
+      <Section2 />
+      <Section3 />
+      <Section4 />
+      <Section5 />
+      <Section6 />
+      <Section7 />
+      <Section8 />
+      <Section9 />
+      <Section10 />
     </div>
   );
-        }
+}
