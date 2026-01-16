@@ -11,8 +11,9 @@ export default function Header() {
   const [dropdown, setDropdown] = useState(false);
 
   const closeAll = () => {
-    setOpen(false);
     setDropdown(false);
+    setOpen(false);
+    setTimeout(() => setOpen(false), 20);
   };
 
   return (
@@ -68,7 +69,7 @@ export default function Header() {
             p-5 lg:p-0 
             w-60 lg:w-auto
             transition-all duration-200
-            ${open ? "visible opacity-100" : "invisible opacity-0 lg:visible lg:opacity-100"}
+            ${open ? "block opacity-100" : "hidden opacity-0 lg:block lg:opacity-100"}
           `}
         >
           <ul className="flex flex-col lg:flex-row gap-4 lg:gap-10">
