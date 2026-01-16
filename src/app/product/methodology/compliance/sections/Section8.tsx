@@ -3,14 +3,14 @@
 export default function Section8() {
   return (
     <section
-      id="s8"
+      id="disclaimers-liability-legal-safeguards"
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
-
       {/* HEADER — Institutional */}
       <div className="p-12 bg-[#F8FAFC] border border-gray-300 dark:border-gray-700 dark:bg-gray-900 rounded-2xl shadow-lg relative overflow-hidden">
         <h2 className="text-4xl md:text-5xl font-extrabold text-[#0B3A63]">
-          8. Disclaimers, Liability & Legal Safeguards
+          <span className="mr-2">8.</span>
+          Disclaimers, Liability &amp; Legal Safeguards
         </h2>
 
         <p className="text-lg text-gray-700 dark:text-gray-300 max-w-5xl mt-6 leading-relaxed">
@@ -20,8 +20,6 @@ export default function Section8() {
           responsibility, preventing misinterpretation or regulatory misuse.
         </p>
       </div>
-
-
 
       {/* BLOCK — Nature of Output */}
       <div className="mt-16 p-10 bg-white dark:bg-gray-800 rounded-xl border border-gray-300 dark:border-gray-700 shadow-md">
@@ -37,8 +35,6 @@ export default function Section8() {
           <li>• No suitability for regulatory filings or environmental claims.</li>
         </ul>
       </div>
-
-
 
       {/* BLOCK — User Responsibility */}
       <div className="mt-20 p-10 bg-[#F8FAFC] dark:bg-gray-900 rounded-xl border border-[#15B097]/30 dark:border-gray-700 shadow-sm">
@@ -60,8 +56,6 @@ export default function Section8() {
         </ul>
       </div>
 
-
-
       {/* BLOCK — Platform Liability Limits */}
       <div className="mt-20 p-10 bg-white dark:bg-gray-800 rounded-xl border border-gray-300 dark:border-gray-700 shadow-md">
         <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
@@ -81,8 +75,6 @@ export default function Section8() {
           <li>• No liability for regulatory sanctions resulting from misinterpretation.</li>
         </ul>
       </div>
-
-
 
       {/* BLOCK — Legal Safeguards */}
       <div className="mt-20 p-10 bg-[#0B3A63] text-white rounded-xl shadow-md relative overflow-hidden">
@@ -105,8 +97,6 @@ export default function Section8() {
         </p>
       </div>
 
-
-
       {/* RETURN BUTTON */}
       <div className="mt-12 text-right">
         <a
@@ -116,7 +106,6 @@ export default function Section8() {
           Back to summary
         </a>
       </div>
-
     </section>
   );
-}
+        }
