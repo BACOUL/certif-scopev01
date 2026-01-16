@@ -3,14 +3,14 @@
 export default function Section1() {
   return (
     <section
-      id="s1"
+      id="compliance-scope-legal-boundaries"
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
-
       {/* HEADER — Legal framing */}
       <div className="p-12 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700">
         <h2 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63]">
-          1. Compliance Scope & Legal Boundaries
+          <span className="mr-2">1.</span>
+          Compliance Scope &amp; Legal Boundaries
         </h2>
 
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed max-w-5xl mt-6">
@@ -28,7 +28,6 @@ export default function Section1() {
         </p>
       </div>
 
-
       {/* BLOCK — Legal Scope */}
       <div className="mt-16 p-10 bg-[#F8FAFC] dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700">
         <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
@@ -44,7 +43,9 @@ export default function Section1() {
         </ul>
 
         <div className="mt-8 p-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl">
-          <h4 className="text-xl font-semibold text-[#0B3A63] mb-3">Legal Framework Positioning</h4>
+          <h4 className="text-xl font-semibold text-[#0B3A63] mb-3">
+            Legal Framework Positioning
+          </h4>
           <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
             Financial spend → Category assignment → Reference factor → CO₂e estimate.
             The result does not express real operational emissions but an indicative intensity
@@ -52,7 +53,6 @@ export default function Section1() {
           </p>
         </div>
       </div>
-
 
       {/* BLOCK — Explicit Legal Exclusions */}
       <div className="mt-16 p-10 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700">
@@ -75,7 +75,6 @@ export default function Section1() {
           <li>• No physical activity data (kWh, km, tCO₂e from operations).</li>
         </ul>
       </div>
-
 
       {/* BLOCK — Regulatory Alignment */}
       <div className="mt-16 p-10 bg-[#0B3A63] text-white rounded-2xl shadow-md">
@@ -102,11 +101,10 @@ export default function Section1() {
         </p>
       </div>
 
-
       {/* BLOCK — Liability & Responsibility Boundaries */}
       <div className="mt-16 p-10 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700">
         <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
-          Liability & Responsibility Boundaries
+          Liability &amp; Responsibility Boundaries
         </h3>
 
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed max-w-5xl">
@@ -123,7 +121,6 @@ export default function Section1() {
         </ul>
       </div>
 
-
       {/* RETURN BUTTON */}
       <div className="mt-12 text-right">
         <a
@@ -133,7 +130,6 @@ export default function Section1() {
           Back to summary
         </a>
       </div>
-
     </section>
   );
           }
