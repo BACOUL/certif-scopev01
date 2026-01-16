@@ -8,32 +8,32 @@ export default function FAQ() {
 
   const items = [
     {
-      q: "Do clients, banks or procurement teams accept the document?",
-      a: "Yes. Certif-Scope is used across onboarding, procurement checks and ESG screening when indicative CO₂e information is required. It is not an audited or regulatory emissions report, but a standardized structure that reviewers can compare consistently."
+      q: "Do clients or procurement teams accept the CO₂e Attestation?",
+      a: "Yes. It is used in onboarding, procurement checks and ESG screening when an indicative CO₂e value is required. It is not an audited or regulatory report but a standardized format reviewers can assess quickly."
     },
     {
       q: "How long does it take to generate the document?",
-      a: "Once annual spending (€) is entered, the Attestation is generated in under one minute. No consultants, no delays, and no manual calculations."
+      a: "Under one minute once annual spending (€) is entered. No consultants, no data collection and no waiting time."
     },
     {
-      q: "What exactly do I receive?",
-      a: "A structured PDF including CO₂e indicators, category breakdown, dataset version, timestamp, verification ID and a deterministic integrity hash. Designed for procurement and ESG workflows."
+      q: "What do I receive exactly?",
+      a: "A structured PDF with total CO₂e, category overview and verification metadata in a clear, consistent layout."
     },
     {
-      q: "How does the verification work?",
-      a: "Verification is deterministic and does not require any stored database. Reviewers scan the QR code or enter the verification ID to confirm authenticity. No login or backend lookup is needed."
+      q: "How does the verification process work?",
+      a: "Reviewers scan the QR code or enter the verification ID. Validation works offline and does not require stored data or user accounts."
     },
     {
       q: "What methodology is used?",
-      a: "A transparent spend-based method aligned with Scope 3 Category 1 principles. Only financial spending (€) is used. Not CSRD/ESRS-compliant and not intended to replace a full emissions inventory."
+      a: "A spend-based calculation aligned with Scope 3 Category 1 principles. Only financial spending (€) is used — no operational data."
     },
     {
-      q: "Is my data stored?",
-      a: "No. Inputs are processed during generation and never retained. Verification relies on embedded cryptographic integrity, ensuring privacy without storing any spending data."
+      q: "Is any data stored?",
+      a: "No. Inputs are processed during generation and never retained. Verification relies on embedded integrity checks, not on stored databases."
     },
     {
       q: "What are the limitations?",
-      a: "This is an indicative spend-based estimation. Not audited, not CSRD/ESRS-compliant, no Scope 1 or 2, and depends entirely on the spending data provided by the user."
+      a: "It provides an indicative, spend-based estimate and is not a substitute for a full emissions inventory."
     }
   ];
 
@@ -44,6 +44,14 @@ export default function FAQ() {
       className="w-full bg-white dark:bg-gray-900 py-24"
     >
       <div className="max-w-3xl mx-auto px-6">
+
+        {/* MICRO-LABEL */}
+        <p
+          data-i18n="faq.label"
+          className="uppercase text-xs md:text-sm font-medium text-[#64748B] dark:text-gray-400 tracking-wider text-center mb-2"
+        >
+          CO₂e Attestation — FAQ
+        </p>
 
         {/* TITLE */}
         <h2
@@ -79,6 +87,7 @@ export default function FAQ() {
                 </span>
               </button>
 
+              {/* ANSWER */}
               {open === i && (
                 <div
                   id={`faq-item-${i}`}
@@ -92,16 +101,15 @@ export default function FAQ() {
           ))}
         </div>
 
-        {/* LEGAL NOTICE — mandatory */}
+        {/* DISCLAIMER — unique, non répétitif */}
         <p
           data-i18n="faq.disclaimer"
           className="mt-10 text-center text-xs text-gray-500 dark:text-gray-400 max-w-xl mx-auto leading-relaxed"
         >
-          Spend-based indicative calculation only. Not a CSRD/ESRS-compliant report, not audited,
-          and not a substitute for a full emissions inventory.
+          Spend-based indicative calculation only. Not audited and not CSRD/ESRS-compliant.
         </p>
 
       </div>
     </section>
   );
-        }
+      }
