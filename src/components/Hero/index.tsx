@@ -20,12 +20,14 @@ export default function Hero() {
       <p
         className="text-xs md:text-sm font-semibold tracking-wide text-[#0B3A63]/70 mb-4 uppercase"
         itemProp="about"
+        data-i18n="hero.subtitle"
       >
         Instant, verifiable CO₂e attestations
       </p>
 
       <h1
         itemProp="headline"
+        data-i18n="hero.title"
         className="text-[2rem] md:text-[3rem] font-extrabold text-[#0B3A63] leading-tight tracking-tight"
       >
         Instant CO₂e Attestation for SMEs.
@@ -35,13 +37,14 @@ export default function Hero() {
 
       <p
         itemProp="description"
+        data-i18n="hero.description"
         className="text-base md:text-lg text-[#475569] max-w-2xl mx-auto mt-6 leading-relaxed"
       >
         Generate a standardized, spend-based CO₂e attestation used in procurement,
         banking and insurer workflows. Fast, verifiable and consistent across the EU.
       </p>
 
-      <div className="flex justify-center mt-10">
+      <div className="flex justify-center mt-6">
         <Image
           itemProp="primaryImageOfPage"
           src="/hero-attestation.webp"
@@ -53,14 +56,20 @@ export default function Hero() {
         />
       </div>
 
-      <p className="text-sm text-[#0B3A63]/80 font-medium mt-6">
-        Verified offline in seconds with a unique ID.
+      <p
+        className="text-sm text-[#0B3A63]/80 font-medium mt-6"
+        data-i18n="hero.verify"
+      >
+        Verified offline in seconds.
       </p>
 
       <div className="flex flex-col md:flex-row justify-center gap-6 mt-12">
+
         <Link
           href="/pricing"
           itemProp="url"
+          aria-label="Generate CO₂e Attestation"
+          data-i18n="hero.cta.generate"
           className="bg-[#1FB6C1] hover:bg-[#17a2a8] text-white font-semibold px-12 py-4 rounded-xl shadow-md text-center transition"
         >
           Generate Attestation
@@ -69,6 +78,8 @@ export default function Hero() {
         <Link
           href="/sample.pdf"
           itemProp="url"
+          aria-label="View Sample CO₂e PDF"
+          data-i18n="hero.cta.sample"
           className="bg-white border border-[#0B3A63] hover:bg-[#0B3A63] hover:text-white text-[#0B3A63] font-semibold px-12 py-4 rounded-xl shadow-md text-center transition"
         >
           View Sample PDF
