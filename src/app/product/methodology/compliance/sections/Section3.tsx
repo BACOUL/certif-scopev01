@@ -3,14 +3,14 @@
 export default function Section3() {
   return (
     <section
-      id="s3"
+      id="legal-boundary-interpretation"
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
-
       {/* HEADER — Strict legal boundary framing */}
       <div className="p-12 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-300 dark:border-gray-600 relative overflow-hidden">
         <h2 className="text-4xl md:text-5xl font-extrabold text-[#0B3A63]">
-          3. Legal Boundary of Interpretation
+          <span className="mr-2">3.</span>
+          Legal Boundary of Interpretation
         </h2>
 
         <p className="text-lg text-gray-700 dark:text-gray-300 mt-6 max-w-5xl leading-relaxed">
@@ -20,8 +20,6 @@ export default function Section3() {
           indicative CO₂e values as verified environmental indicators or regulatory disclosures.
         </p>
       </div>
-
-
 
       {/* BLOCK — What the Output Legally Represents */}
       <div className="mt-16 p-10 bg-[#F8FAFC] dark:bg-gray-900 rounded-2xl border border-gray-300 dark:border-gray-600">
@@ -42,8 +40,6 @@ export default function Section3() {
           <li>• An indicative estimate suitable for preliminary ESG screening.</li>
         </ul>
       </div>
-
-
 
       {/* BLOCK — What the Output Does NOT Represent */}
       <div className="mt-20 p-10 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-2xl">
@@ -71,8 +67,6 @@ export default function Section3() {
         </p>
       </div>
 
-
-
       {/* BLOCK — Institutional Duty of Interpretation */}
       <div className="mt-20 p-10 bg-[#F8FAFC] dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-2xl">
         <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
@@ -92,8 +86,6 @@ export default function Section3() {
           <li>• Institutions must validate suitability for use in their jurisdiction.</li>
         </ul>
       </div>
-
-
 
       {/* BLOCK — Legal Non-Reliance Clause */}
       <div className="mt-20 p-10 bg-[#0B3A63] text-white rounded-2xl shadow-md relative overflow-hidden">
@@ -118,8 +110,6 @@ export default function Section3() {
         </ul>
       </div>
 
-
-
       {/* RETURN BUTTON */}
       <div className="mt-12 text-right">
         <a
@@ -129,7 +119,6 @@ export default function Section3() {
           Back to summary
         </a>
       </div>
-
     </section>
   );
-        }
+          }
