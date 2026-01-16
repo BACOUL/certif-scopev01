@@ -9,7 +9,7 @@ export default function Hero() {
       id="hero"
       itemScope
       itemType="https://schema.org/WebPage"
-      className="relative max-w-6xl mx-auto px-6 pt-14 pb-20 text-center"
+      className="relative max-w-6xl mx-auto px-6 pt-8 md:pt-14 pb-16 md:pb-20 text-center"
     >
       <span className="sr-only" itemProp="alternativeHeadline">
         Instant CO2e Certificate for SMEs across Europe
@@ -75,7 +75,6 @@ export default function Hero() {
         </Link>
       </div>
 
-      {/* JSON-LD */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
