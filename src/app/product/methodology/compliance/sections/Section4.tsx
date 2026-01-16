@@ -3,14 +3,14 @@
 export default function Section4() {
   return (
     <section
-      id="s4"
+      id="regulatory-non-equivalence-misuse-prevention"
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
-
       {/* HEADER — Regulatory non-equivalence framing */}
       <div className="p-12 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-2xl shadow-lg">
         <h2 className="text-4xl md:text-5xl font-extrabold text-[#0B3A63]">
-          4. Regulatory Non-Equivalence & Misuse Prevention
+          <span className="mr-2">4.</span>
+          Regulatory Non-Equivalence &amp; Misuse Prevention
         </h2>
 
         <p className="text-lg text-gray-700 dark:text-gray-300 mt-6 max-w-5xl leading-relaxed">
@@ -20,7 +20,6 @@ export default function Section4() {
           preventing incorrect or misleading usage by institutions, suppliers or auditors.
         </p>
       </div>
-
 
       {/* BLOCK — Non-Equivalence With Regulatory Frameworks */}
       <div className="mt-16 p-10 bg-[#F8FAFC] dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-2xl">
@@ -43,7 +42,6 @@ export default function Section4() {
         </ul>
       </div>
 
-
       {/* BLOCK — Misuse Prevention */}
       <div className="mt-16 p-10 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-2xl shadow">
         <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
@@ -64,7 +62,6 @@ export default function Section4() {
         </ul>
       </div>
 
-
       {/* BLOCK — Responsibility Clarification */}
       <div className="mt-16 p-10 bg-[#0B3A63] text-white border border-[#0B3A63] rounded-2xl shadow-lg">
         <h3 className="text-2xl font-semibold mb-4">
@@ -83,7 +80,6 @@ export default function Section4() {
         </ul>
       </div>
 
-
       {/* RETURN BUTTON */}
       <div className="mt-12 text-right">
         <a
@@ -93,7 +89,6 @@ export default function Section4() {
           Back to summary
         </a>
       </div>
-
     </section>
   );
-}
+          }
