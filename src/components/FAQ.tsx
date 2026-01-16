@@ -7,6 +7,25 @@ export default function FAQ() {
   const toggle = (i: number) => setOpen(open === i ? null : i);
 
   const items = [
+    // 🔴 HAUTE INTENTION — URGENCE / APPELS D’OFFRES
+    {
+      q: "Can I get a carbon attestation immediately for a tender or supplier request?",
+      a: "Yes. Certif-Scope is designed to generate a standardized CO₂e attestation in under 60 seconds, based only on annual spending. The PDF can be used immediately to complete procurement or supplier compliance files."
+    },
+    {
+      q: "Do I need energy bills or physical activity data to use Certif-Scope?",
+      a: "No. Certif-Scope uses a spend-based approach. Only annual financial spending (€) is required. No meter readings, fuel data or operational measurements are needed."
+    },
+    {
+      q: "Can this attestation be used for bank or financial institution requests?",
+      a: "Yes, for ESG screening and risk assessment processes. The attestation provides a standardized, verifiable CO₂e indicator suitable for banking and insurance review workflows, without replacing a full regulatory report."
+    },
+    {
+      q: "What is the difference between this attestation and a regulatory carbon footprint?",
+      a: "This attestation provides an indicative, spend-based CO₂e estimate. It is not an ISO-certified inventory or a CSRD report, but a fast and practical solution to meet third-party ESG requests."
+    },
+
+    // 🟦 PRODUIT / CONFORMITÉ (FAQ EXISTANTE)
     {
       q: "Do clients or procurement teams accept the CO₂e Attestation?",
       a: "Yes. It is used in onboarding, procurement checks and ESG screening when an indicative CO₂e value is required. It is not an audited or regulatory report but a standardized format reviewers can assess quickly across suppliers."
@@ -45,19 +64,13 @@ export default function FAQ() {
     >
       <div className="max-w-3xl mx-auto px-6">
 
-        {/* MICRO-LABEL */}
-        <p
-          data-i18n="faq.label"
-          className="uppercase text-xs md:text-sm font-medium text-[#64748B] dark:text-gray-400 tracking-wider text-center mb-2"
-        >
+        {/* LABEL */}
+        <p className="uppercase text-xs md:text-sm font-medium text-[#64748B] tracking-wider text-center mb-2">
           CO₂e Attestation — FAQ
         </p>
 
         {/* TITLE */}
-        <h2
-          data-i18n="faq.title"
-          className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] text-center mb-12"
-        >
+        <h2 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] text-center mb-12">
           Frequently Asked Questions
         </h2>
 
@@ -67,9 +80,7 @@ export default function FAQ() {
             <div
               key={i}
               role="listitem"
-              itemScope
-              itemType="https://schema.org/Question"
-              className="border border-gray-200 dark:border-gray-700 rounded-lg"
+              className="border border-gray-200 rounded-lg"
             >
               <button
                 onClick={() => toggle(i)}
@@ -77,42 +88,28 @@ export default function FAQ() {
                 aria-controls={`faq-item-${i}`}
                 className="w-full text-left px-6 py-4 flex justify-between items-center focus-visible:outline focus-visible:outline-[#1FB6C1] focus-visible:outline-2"
               >
-                <span
-                  data-i18n={`faq.q.${i}`}
-                  itemProp="name"
-                  className="font-medium text-[#0B3A63] dark:text-gray-100"
-                >
+                <span className="font-medium text-[#0B3A63]">
                   {item.q}
                 </span>
-
                 <span aria-hidden="true" className="text-xl text-[#1FB6C1]">
                   {open === i ? "−" : "+"}
                 </span>
               </button>
 
-              {/* ANSWER */}
               {open === i && (
                 <div
                   id={`faq-item-${i}`}
-                  itemScope
-                  itemType="https://schema.org/Answer"
-                  itemProp="acceptedAnswer"
-                  className="px-6 pb-5 text-gray-600 dark:text-gray-300 text-sm leading-relaxed"
+                  className="px-6 pb-5 text-gray-600 text-sm leading-relaxed"
                 >
-                  <p data-i18n={`faq.a.${i}`} itemProp="text">
-                    {item.a}
-                  </p>
+                  <p>{item.a}</p>
                 </div>
               )}
             </div>
           ))}
         </div>
 
-        {/* DISCLAIMER — A+ version */}
-        <p
-          data-i18n="faq.disclaimer"
-          className="mt-10 text-center text-xs text-gray-500 dark:text-gray-400 max-w-xl mx-auto leading-relaxed"
-        >
+        {/* DISCLAIMER */}
+        <p className="mt-10 text-center text-xs text-gray-500 max-w-xl mx-auto leading-relaxed">
           Indicative spend-based estimate. Not audited, not CSRD/ESRS compliant, no Scope 1–2
           coverage, and not a substitute for a full emissions inventory. Values depend entirely
           on user-provided financial inputs.
@@ -121,4 +118,4 @@ export default function FAQ() {
       </div>
     </section>
   );
-        }
+                  }
