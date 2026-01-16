@@ -7,41 +7,41 @@ export default function ProblemSolution() {
     >
       <div className="max-w-6xl mx-auto px-6 text-center">
 
-        {/* TITLE — unique message & SEO-optimised */}
+        {/* TITLE */}
         <h2
           className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] leading-snug"
           data-i18n="problem.title"
         >
-          SMEs are asked for CO₂e figures — but lack a simple, verifiable way to respond.
+          SMEs are required to report CO₂e — but lack a fast, verifiable way to respond.
         </h2>
 
-        {/* PROBLEM — concise, non-repetitive */}
+        {/* PROBLEM */}
         <p
           className="mt-6 text-lg md:text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed"
           data-i18n="problem.description"
         >
           Buyers, banks and insurers increasingly request CO₂e information during onboarding,
-          procurement and risk assessments. Traditional reporting requires detailed activity data,
-          consultants, audits and specialised expertise — which most SMEs cannot produce instantly.
+          procurement and risk assessments. Full carbon accounting requires activity data,
+          consultants and audits — processes most SMEs cannot produce on demand.
         </p>
 
-        {/* SOLUTION — clear unique value */}
+        {/* SOLUTION */}
         <p
           className="mt-6 text-lg md:text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed"
           data-i18n="problem.solution"
         >
-          Certif-Scope provides a standardized, spend-based CO₂e Attestation generated directly
-          from annual expenses. A consistent format that reviewers understand immediately —
+          Certif-Scope provides an instant, spend-based CO₂e Attestation generated directly from
+          annual expenses. A clear, standardized format reviewers can understand immediately —
           verifiable offline and usable across all institutional workflows.
         </p>
 
         {/* SEPARATOR */}
         <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto my-16" />
 
-        {/* THREE INSTITUTIONAL BENEFITS */}
+        {/* 3 BENEFITS */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-14">
 
-          {/* POINT 1 */}
+          {/* BENEFIT 1 */}
           <div className="flex flex-col items-center gap-4" data-i18n="problem.point1.block">
             <svg
               className="h-14 w-14 text-[#0B3A63]"
@@ -57,12 +57,12 @@ export default function ProblemSolution() {
               Aligned with institutional workflows
             </h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 max-w-xs" data-i18n="problem.point1.text">
-              Matches procurement, banking and insurance screening expectations for quick,
-              indicative CO₂e values — without supplying technical reports.
+              Designed for procurement, banking and insurance screening processes that expect quick,
+              indicative CO₂e values.
             </p>
           </div>
 
-          {/* POINT 2 */}
+          {/* BENEFIT 2 */}
           <div className="flex flex-col items-center gap-4" data-i18n="problem.point2.block">
             <svg
               className="h-14 w-14 text-[#0B3A63]"
@@ -78,12 +78,12 @@ export default function ProblemSolution() {
               Transparent spend-based method
             </h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 max-w-xs" data-i18n="problem.point2.text">
-              Uses predefined annual spending (€) and stable emission factor sources. No modelling,
-              no surveys and no operational data required.
+              Uses annual spending (€) and stable emission factor sources. No audits, surveys or
+              operational data required.
             </p>
           </div>
 
-          {/* POINT 3 */}
+          {/* BENEFIT 3 */}
           <div className="flex flex-col items-center gap-4" data-i18n="problem.point3.block">
             <svg
               className="h-14 w-14 text-[#0B3A63]"
@@ -99,16 +99,15 @@ export default function ProblemSolution() {
               Consistent across suppliers
             </h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 max-w-xs" data-i18n="problem.point3.text">
-              Identical structure and indicators enable fast comparison across multiple vendors —
-              eliminating ambiguity and reducing review time.
+              Identical structure enables fast comparison between vendors — reducing ambiguity and review time.
             </p>
           </div>
 
         </div>
 
-        {/* LINKS — must link correctly for IA navigation */}
+        {/* LINKS */}
         <a
-          href="/sample-pdf"
+          href="/sample.pdf"
           className="mt-14 inline-block text-sm font-medium text-[#1FB6C1] hover:underline"
           data-i18n="problem.link.sample"
         >
@@ -126,4 +125,4 @@ export default function ProblemSolution() {
       </div>
     </section>
   );
-      }
+}
