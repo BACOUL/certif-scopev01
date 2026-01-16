@@ -6,8 +6,6 @@ import Section3 from "./sections/Section3";
 import Section4 from "./sections/Section4";
 import Section5 from "./sections/Section5";
 import Section6 from "./sections/Section6";
-import Section7 from "./sections/Section7";
-import Section8 from "./sections/Section8";
 
 export default function PartnersPage() {
   return (
@@ -16,54 +14,87 @@ export default function PartnersPage() {
       data-section="partners-overview"
       className="max-w-7xl mx-auto px-6 pt-8 pb-24"
     >
+      {/* TOP ANCHOR */}
+      <div id="top" />
 
       {/* HEADER */}
       <div className="w-full mb-12">
         <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-4">
-          Enterprise Partnerships — Integration Overview
+          Partners — Packs & Partner Key Model
         </h1>
 
         <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed max-w-3xl">
-          This page presents all partnership and integration capabilities available to
-          banks, insurers, procurement departments and enterprise compliance workflows.
-          Each section explains one dimension of operational, technical or regulatory integration.
+          This page explains how partners use Certif-Scope in V1: purchasing prepaid packs,
+          receiving a partner key, and generating CO₂e attestations on demand.
+          No API, no accounts, no integrations.
         </p>
       </div>
 
-      {/* SECTIONS TABLE OF CONTENTS */}
-      <div
-        className="w-full p-8 mb-24 bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-200 dark:border-gray-700"
-        role="navigation"
+      {/* TABLE OF CONTENTS — SAME MODEL AS PRODUCT / METHODOLOGY */}
+      <nav
         aria-label="Partner Sections"
+        className="mb-16 p-6 bg-[#F8FAFC] border border-gray-200 rounded-xl shadow-sm"
       >
-        <h2 className="text-2xl md:text-3xl font-bold text-[#0B3A63] mb-6">
-          Sections
-        </h2>
-
-        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-gray-700 dark:text-gray-300 text-base leading-relaxed">
-          <li><a href="#s1" className="underline hover:text-[#0B3A63]">1. Partnership Model Overview</a></li>
-          <li><a href="#s2" className="underline hover:text-[#0B3A63]">2. Regulatory Drivers</a></li>
-          <li><a href="#s3" className="underline hover:text-[#0B3A63]">3. Benefits for Large Groups</a></li>
-          <li><a href="#s4" className="underline hover:text-[#0B3A63]">4. API Integration Model</a></li>
-          <li><a href="#s5" className="underline hover:text-[#0B3A63]">5. Token System & Security</a></li>
-          <li><a href="#s6" className="underline hover:text-[#0B3A63]">6. Pricing & Volume Packs</a></li>
-          <li><a href="#s7" className="underline hover:text-[#0B3A63]">7. Deployment Workflow</a></li>
-          <li><a href="#s8" className="underline hover:text-[#0B3A63]">8. SLA, Support & Maintenance</a></li>
+        <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-[#0B3A63] font-medium">
+          <li>
+            <a href="#s1" className="hover:text-[#15B097] transition">
+              1. Partner Overview
+            </a>
+          </li>
+          <li>
+            <a href="#s2" className="hover:text-[#15B097] transition">
+              2. Packs & Credits
+            </a>
+          </li>
+          <li>
+            <a href="#s3" className="hover:text-[#15B097] transition">
+              3. Partner Key Issuance
+            </a>
+          </li>
+          <li>
+            <a href="#s4" className="hover:text-[#15B097] transition">
+              4. Key Validity & Usage Limits
+            </a>
+          </li>
+          <li>
+            <a href="#s5" className="hover:text-[#15B097] transition">
+              5. Recovery & Security Model
+            </a>
+          </li>
+          <li>
+            <a href="#s6" className="hover:text-[#15B097] transition">
+              6. API & High-Volume Access (Coming Soon)
+            </a>
+          </li>
         </ul>
-      </div>
+      </nav>
 
-      {/* CONTENT SECTIONS */}
+      {/* SECTIONS */}
       <div className="space-y-24">
-        <div id="s1" className="scroll-mt-28"><Section1 /></div>
-        <div id="s2" className="scroll-mt-28"><Section2 /></div>
-        <div id="s3" className="scroll-mt-28"><Section3 /></div>
-        <div id="s4" className="scroll-mt-28"><Section4 /></div>
-        <div id="s5" className="scroll-mt-28"><Section5 /></div>
-        <div id="s6" className="scroll-mt-28"><Section6 /></div>
-        <div id="s7" className="scroll-mt-28"><Section7 /></div>
-        <div id="s8" className="scroll-mt-28"><Section8 /></div>
-      </div>
+        <div id="s1" className="scroll-mt-28">
+          <Section1 />
+        </div>
 
+        <div id="s2" className="scroll-mt-28">
+          <Section2 />
+        </div>
+
+        <div id="s3" className="scroll-mt-28">
+          <Section3 />
+        </div>
+
+        <div id="s4" className="scroll-mt-28">
+          <Section4 />
+        </div>
+
+        <div id="s5" className="scroll-mt-28">
+          <Section5 />
+        </div>
+
+        <div id="s6" className="scroll-mt-28">
+          <Section6 />
+        </div>
+      </div>
     </div>
   );
 }
