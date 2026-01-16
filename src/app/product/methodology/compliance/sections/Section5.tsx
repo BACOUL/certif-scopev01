@@ -3,14 +3,14 @@
 export default function Section5() {
   return (
     <section
-      id="s5"
+      id="data-boundaries-prohibited-interpretations"
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
-
       {/* HEADER */}
       <div className="p-12 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-2xl shadow-lg">
         <h2 className="text-4xl md:text-5xl font-extrabold text-[#0B3A63]">
-          5. Data Boundaries & Prohibited Interpretations
+          <span className="mr-2">5.</span>
+          Data Boundaries &amp; Prohibited Interpretations
         </h2>
 
         <p className="text-lg text-gray-700 dark:text-gray-300 max-w-5xl mt-6 leading-relaxed">
@@ -20,7 +20,6 @@ export default function Section5() {
           the results within appropriate legal and methodological limits.
         </p>
       </div>
-
 
       {/* BLOCK — What the Data Represents */}
       <div className="mt-16 p-10 bg-[#F8FAFC] dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-2xl">
@@ -36,7 +35,6 @@ export default function Section5() {
           <li>• A non-binding indicator supporting high-level institutional screening.</li>
         </ul>
       </div>
-
 
       {/* BLOCK — What the Data Does NOT Represent */}
       <div className="mt-20 p-10 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-2xl">
@@ -59,7 +57,6 @@ export default function Section5() {
         </ul>
       </div>
 
-
       {/* BLOCK — Prohibited Interpretations */}
       <div className="mt-20 p-10 bg-[#F8FAFC] dark:bg-gray-900 border border-[#15B097]/30 rounded-xl shadow-sm">
         <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
@@ -81,7 +78,6 @@ export default function Section5() {
         </ul>
       </div>
 
-
       {/* BLOCK — Why These Boundaries Are Mandatory */}
       <div className="mt-20 p-10 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-2xl">
         <h3 className="text-2xl font-semibold text-[#0B3A63] mb-4">
@@ -95,7 +91,6 @@ export default function Section5() {
           compromise compliance and expose organisations to enforcement actions.
         </p>
       </div>
-
 
       {/* BLOCK — Anti-Misrepresentation Warning */}
       <div className="mt-20 p-10 bg-[#0B3A63] text-white rounded-2xl shadow-md relative overflow-hidden">
@@ -113,7 +108,6 @@ export default function Section5() {
         </p>
       </div>
 
-
       {/* RETURN BUTTON */}
       <div className="mt-12 text-right">
         <a
@@ -123,7 +117,6 @@ export default function Section5() {
           Back to summary
         </a>
       </div>
-
     </section>
   );
-        }
+}
