@@ -8,7 +8,10 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 export async function POST(req: Request) {
   const body = await req.text();
-  const signature = headers().get("stripe-signature");
+
+  // ✅ headers() est ASYNC en Next 16
+  const headerList = await headers();
+  const signature = headerList.get("stripe-signature");
 
   if (!signature) {
     return new NextResponse("Missing signature", { status: 400 });
@@ -27,20 +30,17 @@ export async function POST(req: Request) {
     return new NextResponse("Invalid signature", { status: 400 });
   }
 
-  // 🎯 On ne traite QUE le paiement finalisé
+  // 🎯 On traite UNIQUEMENT le paiement confirmé
   if (event.type === "checkout.session.completed") {
     const session = event.data.object as Stripe.Checkout.Session;
 
-    // ID unique d’attestation
     const attestationId = `CS-${Date.now()}`;
 
-    // Dossier public
     const dir = path.join(process.cwd(), "public", "attestations");
     fs.mkdirSync(dir, { recursive: true });
 
     const filePath = path.join(dir, `${attestationId}.txt`);
 
-    // 📄 Attestation V1 (placeholder structuré)
     const content = `
 CERTIF-SCOPE — CO₂e ATTESTATION
 
@@ -52,14 +52,14 @@ Currency: ${session.currency?.toUpperCase()}
 Status: PAID
 Methodology: Spend-based (indicative)
 Audit: NO
-Date: ${new Date().toISOString()}
+Generated at: ${new Date().toISOString()}
 
 This attestation is generated automatically after payment.
 `;
 
     fs.writeFileSync(filePath, content.trim());
 
-    console.log("Attestation generated:", attestationId);
+    console.log("✅ Attestation generated:", attestationId);
   }
 
   return NextResponse.json({ received: true });
