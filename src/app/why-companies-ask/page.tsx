@@ -7,7 +7,6 @@ export const metadata = {
 export default function WhyCompaniesAskPage() {
   return (
     <div id="why-companies-ask-page" className="max-w-7xl mx-auto px-6 pt-8 pb-24">
-
       {/* HEADER */}
       <div className="w-full mb-12">
         <p className="uppercase text-xs tracking-wider text-gray-500 mb-2">
@@ -38,7 +37,6 @@ export default function WhyCompaniesAskPage() {
 
       {/* CONTENT */}
       <div className="max-w-4xl mx-auto space-y-12">
-
         {/* SECTION 1 */}
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
@@ -126,7 +124,7 @@ export default function WhyCompaniesAskPage() {
 
           <ul className="list-disc ml-6 text-gray-700 dark:text-gray-300 space-y-2">
             <li>a unique attestation identifier</li>
-            <li>a cryptographic integrity hash</li>
+            <li>built-in integrity safeguards</li>
             <li>a permanent verification URL</li>
             <li>a QR code for institutional portals</li>
           </ul>
@@ -186,8 +184,7 @@ export default function WhyCompaniesAskPage() {
             onboarding workflows as an official explanation of this requirement.
           </p>
         </section>
-
       </div>
     </div>
   );
-}
+      }
