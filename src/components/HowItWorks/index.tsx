@@ -77,23 +77,15 @@ export default function HowItWorks() {
 
         </div>
 
-        {/* DATA HANDLING — PRIVACY BY DESIGN */}
-        <div
-          className="mt-16 p-6 rounded-xl border border-[#1FB6C1]/30 bg-white dark:bg-gray-800 dark:border-gray-700 max-w-3xl mx-auto"
-          data-i18n="howitworks.privacy"
+        {/* PRIVACY BY DESIGN — KEY STATEMENT */}
+        <p
+          className="mt-12 text-center text-sm text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed"
+          data-i18n="howitworks.privacy.statement"
         >
-          <h4 className="text-base font-semibold text-[#0B3A63] mb-2">
-            How your data is handled
-          </h4>
-
-          <ul className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed space-y-1">
-            <li>• Data is entered directly in your browser</li>
-            <li>• The CO₂e calculation runs locally on your device</li>
-            <li>• Only the final aggregated result is sent to generate the attestation</li>
-            <li>• No detailed financial data is stored</li>
-            <li>• No account, no tracking, no cookies</li>
-          </ul>
-        </div>
+          Calculations are performed locally in your browser.
+          <br />
+          Only the final CO₂e result is transmitted to issue the attestation.
+        </p>
 
         {/* SPONSORING BLOCK */}
         <div className="mt-16 p-6 rounded-xl border border-slate-200 bg-slate-50 dark:bg-gray-800 dark:border-gray-700 text-slate-700 dark:text-gray-300 text-sm max-w-3xl mx-auto">
@@ -117,4 +109,4 @@ export default function HowItWorks() {
       </div>
     </section>
   );
-        }
+              }
