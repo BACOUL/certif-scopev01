@@ -2,11 +2,22 @@
 
 export default function GenerateAttestationButton() {
   const handleClick = async () => {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_CERTIF_SCOPE_PDF_URL}/api/attestation`,
-      {
+    try {
+      console.log("CLICK → GenerateAttestationButton");
+
+      const baseUrl = process.env.NEXT_PUBLIC_CERTIF_SCOPE_PDF_URL;
+      console.log("PDF SERVICE URL =", baseUrl);
+
+      if (!baseUrl) {
+        alert("PDF service URL is missing (NEXT_PUBLIC_CERTIF_SCOPE_PDF_URL)");
+        return;
+      }
+
+      const res = await fetch(`${baseUrl}/api/attestation`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify({
           companyName: "Demo Company",
           sector: "Consulting",
@@ -17,23 +28,30 @@ export default function GenerateAttestationButton() {
           scope3: 20,
           total: 35
         })
+      });
+
+      console.log("RESPONSE STATUS =", res.status);
+
+      const data = await res.json();
+      console.log("RESPONSE DATA =", data);
+
+      if (!data?.pdfBase64) {
+        alert("PDF generation failed");
+        return;
       }
-    );
 
-    const data = await res.json();
+      const bytes = Uint8Array.from(atob(data.pdfBase64), c =>
+        c.charCodeAt(0)
+      );
 
-    if (!data?.pdfBase64) {
-      alert("PDF generation failed");
-      return;
+      const blob = new Blob([bytes], { type: "application/pdf" });
+      const url = URL.createObjectURL(blob);
+
+      window.open(url, "_blank");
+    } catch (err) {
+      console.error("BUTTON ERROR", err);
+      alert("Unexpected error — see console");
     }
-
-    const bytes = Uint8Array.from(atob(data.pdfBase64), c =>
-      c.charCodeAt(0)
-    );
-
-    const blob = new Blob([bytes], { type: "application/pdf" });
-    const url = URL.createObjectURL(blob);
-    window.open(url, "_blank");
   };
 
   return (
