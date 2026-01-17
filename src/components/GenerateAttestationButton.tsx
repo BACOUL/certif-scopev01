@@ -14,24 +14,28 @@ export default function GenerateAttestationButton() {
           scope1: 10,
           scope2: 5,
           scope3: 20,
-          total: 35
-        })
+          total: 35,
+        }),
       });
+
+      if (!res.ok) {
+        const text = await res.text();
+        alert("API error");
+        console.error(text);
+        return;
+      }
 
       const data = await res.json();
 
-      const url =
-        data?.document?.download_url ||
-        data?.document?.preview_url;
+      const pdfUrl = data?.pdfUrl;
 
-      if (!url) {
-        alert("PDFMonkey did not return a PDF URL");
+      if (!pdfUrl) {
+        alert("No PDF URL returned");
         console.error(data);
         return;
       }
 
-      window.open(url, "_blank");
-
+      window.open(pdfUrl, "_blank");
     } catch (err: any) {
       alert("JS error: " + err.message);
     }
