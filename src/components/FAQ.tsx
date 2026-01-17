@@ -36,11 +36,11 @@ export default function FAQ() {
     },
     {
       q: "What do I receive exactly?",
-      a: "A structured PDF including total CO₂e, category breakdown, dataset version, verification ID, timestamp and deterministic integrity hash."
+      a: "A structured PDF including total CO₂e, category breakdown, methodology version and attestation validity period."
     },
     {
       q: "How does the verification process work?",
-      a: "Reviewers scan the QR code or enter the verification ID. Verification works offline using embedded integrity metadata—no stored data, no server lookup and no user accounts are required."
+      a: "The attestation can be verified independently by third parties using the information embedded in the document, without relying on Certif-Scope servers or user accounts."
     },
     {
       q: "What methodology is used?",
@@ -48,7 +48,7 @@ export default function FAQ() {
     },
     {
       q: "Is any data stored?",
-      a: "No. Inputs are processed during generation and never retained. Verification relies solely on embedded cryptographic integrity, making the process GDPR-safe by design."
+      a: "No. Financial inputs are processed during attestation generation and are not stored. Certif-Scope does not retain detailed financial data."
     },
     {
       q: "What are the limitations?",
@@ -118,4 +118,4 @@ export default function FAQ() {
       </div>
     </section>
   );
-                  }
+}
