@@ -2,43 +2,42 @@
 
 export default function GenerateAttestationButton() {
   const handleClick = async () => {
-    try {
-      const res = await fetch("/api/generate-attestation", {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_CERTIF_SCOPE_PDF_URL}/api/attestation`,
+      {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           companyName: "Demo Company",
-          sector: "Services",
+          sector: "Consulting",
           country: "France",
           period: "2024",
-          scope1: 0,
-          scope2: 12.5,
-          scope3: 8.2,
-          total: 20.7
-        }),
-      });
-
-      if (!res.ok) {
-        alert("PDF generation failed");
-        return;
+          scope1: 10,
+          scope2: 5,
+          scope3: 20,
+          total: 35
+        })
       }
+    );
 
-      const data = await res.json();
+    const data = await res.json();
 
-      // téléchargement du PDF
-      const link = document.createElement("a");
-      link.href = `data:application/pdf;base64,${data.pdfBase64}`;
-      link.download = `certif-scope-${data.id}.pdf`;
-      link.click();
-    } catch (err) {
-      alert("Unexpected error");
+    if (data?.pdfBase64) {
+      const blob = new Blob(
+        [Uint8Array.from(atob(data.pdfBase64), c => c.charCodeAt(0))],
+        { type: "application/pdf" }
+      );
+      const url = URL.createObjectURL(blob);
+      window.open(url, "_blank");
+    } else {
+      alert("PDF generation failed");
     }
   };
 
   return (
     <button
       onClick={handleClick}
-      className="bg-[#1FB6C1] hover:bg-[#17a2a8] text-white font-semibold px-10 py-3 rounded-xl shadow-md text-center transition mt-auto"
+      className="bg-[#1FB6C1] hover:bg-[#17a2a8] text-white font-semibold px-10 py-3 rounded-xl shadow-md transition mt-auto"
     >
       Generate Attestation
     </button>
