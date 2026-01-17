@@ -26,9 +26,10 @@ export default function Section5() {
           data-i18n="s5.intro"
           className="text-white/90 text-lg max-w-4xl mt-6 leading-relaxed relative z-10"
         >
-          The CO₂e Attestation relies on a deterministic and transparent integrity system.
-          Validation is possible online or offline, without accounts, logins or stored
-          data. Every reviewer can recompute authenticity independently.
+          Each CO₂e Attestation is issued with built-in integrity and authenticity
+          guarantees. Verification is possible without accounts, without personal
+          data, and without relying on a live service. Reviewers can assess validity
+          independently, at any time.
         </p>
       </div>
 
@@ -39,16 +40,16 @@ export default function Section5() {
             className="text-2xl font-semibold text-[#0B3A63]"
             data-i18n="s5.block1.title"
           >
-            Deterministic Integrity Hash
+            Signed Attestation at Issuance
           </h3>
 
           <p
             className="mt-3 text-gray-700 text-sm leading-relaxed"
             data-i18n="s5.block1.text"
           >
-            The attestation embeds a cryptographic hash computed from the declared
-            input amount (€) and the versioned emission dataset. The same inputs
-            always generate the same output.
+            Each attestation is cryptographically signed at the moment of issuance
+            by Certif-Scope. This signature guarantees that the document has not been
+            altered since it was issued.
           </p>
         </div>
 
@@ -57,16 +58,16 @@ export default function Section5() {
             className="text-2xl font-semibold text-[#0B3A63]"
             data-i18n="s5.block2.title"
           >
-            Unique Verification Identifier
+            Public Verification Key
           </h3>
 
           <p
             className="mt-3 text-gray-700 text-sm leading-relaxed"
             data-i18n="s5.block2.text"
           >
-            Each PDF includes a verification ID derived from the integrity hash.
-            This identifier allows institutions to quickly confirm authenticity
-            during review or onboarding.
+            The corresponding public verification key is published and remains
+            accessible over time. Any third party can use this key to verify the
+            authenticity of an attestation independently.
           </p>
         </div>
 
@@ -75,16 +76,16 @@ export default function Section5() {
             className="text-2xl font-semibold text-[#0B3A63]"
             data-i18n="s5.block3.title"
           >
-            QR-Based Online Verification
+            Online Verification for Convenience
           </h3>
 
           <p
             className="mt-3 text-gray-700 text-sm leading-relaxed"
             data-i18n="s5.block3.text"
           >
-            The QR code printed in the PDF links to a public verification page.
-            No login or account is required. Reviewers can access the verification
-            data instantly.
+            A QR code included in the PDF provides optional access to a public
+            verification page. This page simplifies checks but is not required
+            for the validity of the attestation.
           </p>
         </div>
 
@@ -93,47 +94,46 @@ export default function Section5() {
             className="text-2xl font-semibold text-[#0B3A63]"
             data-i18n="s5.block4.title"
           >
-            Offline Verification Capability
+            Offline & Long-Term Verification
           </h3>
 
           <p
             className="mt-3 text-gray-700 text-sm leading-relaxed"
             data-i18n="s5.block4.text"
           >
-            Institutions can verify the attestation without internet access by
-            recomputing the hash locally using the visible inputs and dataset version.
+            Verification does not depend on a user account, a database, or a
+            running Certif-Scope service. Attestations remain verifiable using
+            the published public key, even if the issuer is no longer active.
           </p>
         </div>
       </div>
 
-      {/* TECHNICAL SUMMARY */}
+      {/* INTEGRITY SUMMARY */}
       <div className="mt-20 p-10 bg-white rounded-xl border border-[#0B3A63]/15 shadow-sm">
         <h3
           className="text-2xl font-semibold text-[#0B3A63] mb-4"
-          data-i18n="s5.technical.title"
+          data-i18n="s5.summary.title"
         >
-          Technical Integrity Model
+          Integrity & Trust Model
         </h3>
 
         <ul className="space-y-3 text-sm text-gray-700 leading-relaxed">
-          <li data-i18n="s5.technical.item1">• Deterministic SHA-256 hashing</li>
-          <li data-i18n="s5.technical.item2">• Inputs: spending (€) + dataset version</li>
-          <li data-i18n="s5.technical.item3">• No personal or operational data</li>
-          <li data-i18n="s5.technical.item4">• No server-side data storage required</li>
-          <li data-i18n="s5.technical.item5">• Reproducible by third parties</li>
+          <li data-i18n="s5.summary.item1">
+            • Attestations are signed once and never modified
+          </li>
+          <li data-i18n="s5.summary.item2">
+            • Verification is possible without accounts or credentials
+          </li>
+          <li data-i18n="s5.summary.item3">
+            • No personal, financial, or operational data is stored
+          </li>
+          <li data-i18n="s5.summary.item4">
+            • Validity does not depend on Certif-Scope availability
+          </li>
+          <li data-i18n="s5.summary.item5">
+            • Designed for institutional review and automated checks
+          </li>
         </ul>
-      </div>
-
-      {/* RETURN BUTTON */}
-      <div className="mt-12 text-right">
-        <a
-          href="#top"
-          data-i18n="s5.return"
-          className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63]
-                     text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
-        >
-          Back to summary
-        </a>
       </div>
     </section>
   );
