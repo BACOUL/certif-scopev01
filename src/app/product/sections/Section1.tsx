@@ -26,95 +26,32 @@ export default function Section1() {
           data-i18n="s1.paragraph1"
           className="text-lg text-gray-700 max-w-3xl mt-6 leading-relaxed relative z-10"
         >
-          Certif-Scope generates a standardized CO₂e Attestation based exclusively on annual 
-          spending (€). It is designed for SMEs that receive CO₂-related requests from clients, 
-          procurement teams, banks or insurers, but do not have the resources for CSRD/ESRS, 
-          greenhouse gas audits, or physical activity data tracking.
+          Certif-Scope provides a standardized CO₂e Attestation based exclusively on
+          annual spending (€). It is designed for SMEs that receive carbon-related
+          requests from clients, procurement teams, banks, or insurers, but do not
+          have the resources for CSRD/ESRS reporting, full greenhouse gas inventories,
+          or physical activity data tracking.
         </p>
 
         <p
           data-i18n="s1.paragraph2"
-          className="text-md text-gray-700 max-w-3xl mt-6 leading-relaxed relative z-10"
+          className="text-lg text-gray-700 max-w-3xl mt-4 leading-relaxed relative z-10"
         >
-          The attestation is formatted for institutional workflows. It includes a clear summary, 
-          category segmentation and a deterministic verification ID based on a cryptographic hash. 
-          This allows partners to verify authenticity instantly — with or without internet access — 
-          and without requiring stored data or backend lookups.
+          The attestation delivers a clear, consistent, and institution-readable
+          document that can be shared with third parties. Its validity can be
+          confirmed simply using a unique attestation reference ID, without accounts,
+          complex procedures, or technical expertise.
         </p>
-      </div>
 
-      {/* 3-PILLAR GRID */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
-        <div
-          data-i18n="s1.card1.block"
-          className="p-8 bg-white rounded-xl shadow-md border border-gray-200 hover:shadow-lg hover:border-[#1FB6C1]/40 transition-all duration-300"
+        <p
+          data-i18n="s1.paragraph3"
+          className="text-lg text-gray-700 max-w-3xl mt-4 leading-relaxed relative z-10"
         >
-          <div className="text-[#1FB6C1] text-4xl font-bold mb-3">01</div>
-          <h3
-            data-i18n="s1.card1.title"
-            className="text-xl font-semibold text-[#0B3A63] mb-2"
-          >
-            Structured Output
-          </h3>
-          <p
-            data-i18n="s1.card1.text"
-            className="text-gray-600 text-sm leading-relaxed"
-          >
-            Fixed layout, institution-friendly formatting, and consistent indicators. Ideal for 
-            procurement teams and risk assessors evaluating suppliers.
-          </p>
-        </div>
-
-        <div
-          data-i18n="s1.card2.block"
-          className="p-8 bg-[#F8FAFC] rounded-xl border border-[#1FB6C1]/30 shadow-md hover:shadow-lg hover:border-[#1FB6C1]/50 transition-all duration-300"
-        >
-          <div className="text-[#1FB6C1] text-4xl font-bold mb-3">02</div>
-          <h3
-            data-i18n="s1.card2.title"
-            className="text-xl font-semibold text-[#0B3A63] mb-2"
-          >
-            Instant Calculation
-          </h3>
-          <p
-            data-i18n="s1.card2.text"
-            className="text-gray-600 text-sm leading-relaxed"
-          >
-            Deterministic spend-based computation inspired by GHG Protocol Scope 3 Category 1. 
-            No consultants, no operational data needed. Result in under a minute.
-          </p>
-        </div>
-
-        <div
-          data-i18n="s1.card3.block"
-          className="p-8 bg-white rounded-xl shadow-md border border-gray-200 hover:shadow-lg hover:border-[#1FB6C1]/40 transition-all duration-300"
-        >
-          <div className="text-[#1FB6C1] text-4xl font-bold mb-3">03</div>
-          <h3
-            data-i18n="s1.card3.title"
-            className="text-xl font-semibold text-[#0B3A63] mb-2"
-          >
-            Verifiable Authenticity
-          </h3>
-          <p
-            data-i18n="s1.card3.text"
-            className="text-gray-600 text-sm leading-relaxed"
-          >
-            A cryptographic hash and verification ID allow independent validation. 
-            Institutions can recompute integrity offline without relying on a central database.
-          </p>
-        </div>
-      </div>
-
-      {/* RETURN BUTTON */}
-      <div className="mt-12 text-right">
-        <a
-          href="#top"
-          data-i18n="s1.return"
-          className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
-        >
-          Back to summary
-        </a>
+          Certif-Scope is not a certification body and does not replace regulatory
+          reporting or audits. It provides a practical, verifiable document that
+          answers common CO₂e disclosure requests while remaining accessible to SMEs
+          and compatible with institutional review.
+        </p>
       </div>
     </section>
   );
