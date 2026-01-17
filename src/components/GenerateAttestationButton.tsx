@@ -3,7 +3,7 @@
 export default function GenerateAttestationButton() {
   const handleClick = async () => {
     try {
-      const url = `${process.env.NEXT_PUBLIC_CERTIF_SCOPE_PDF_URL}/api/attestation`;
+      const url = `${process.env.NEXT_PUBLIC_CERTIF_SCOPE_PDF_URL}/api/create-attestation`;
       alert("Calling: " + url);
 
       const res = await fetch(url, {
