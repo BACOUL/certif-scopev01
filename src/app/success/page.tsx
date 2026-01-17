@@ -2,12 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-export const metadata = {
-  title: "Payment successful — Certif-Scope",
-  description:
-    "Your payment was successful. Your CO₂e attestation is ready for download.",
-};
-
 export default function SuccessPage() {
   const [attestationId, setAttestationId] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -19,7 +13,7 @@ export default function SuccessPage() {
           cache: "no-store",
         });
 
-        if (!res.ok) throw new Error("No attestation yet");
+        if (!res.ok) throw new Error("Not ready");
 
         const data = await res.json();
         setAttestationId(data.attestationId);
