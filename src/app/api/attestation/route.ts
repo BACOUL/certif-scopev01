@@ -9,7 +9,11 @@ export async function POST(req: Request) {
 
     if (!apiKey || !templateId) {
       return NextResponse.json(
-        { error: "Missing PDFMonkey env vars" },
+        {
+          error: "Missing PDFMonkey env vars",
+          apiKey: !!apiKey,
+          templateId: !!templateId,
+        },
         { status: 500 }
       );
     }
@@ -22,10 +26,9 @@ export async function POST(req: Request) {
       },
       body: JSON.stringify({
         document: {
-          template_id: templateId,
+          document_template_id: templateId,
           payload: body,
-          status: "pending"
-        }
+        },
       }),
     });
 
@@ -42,7 +45,7 @@ export async function POST(req: Request) {
 
   } catch (err: any) {
     return NextResponse.json(
-      { error: "Internal error", message: err.message },
+      { error: "Internal error", message: err?.message },
       { status: 500 }
     );
   }
