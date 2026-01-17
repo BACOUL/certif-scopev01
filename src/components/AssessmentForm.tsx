@@ -32,12 +32,10 @@ function Accordion({
 export default function AssessmentForm() {
   const currentYear = new Date().getFullYear();
 
-  const [apiKey, setApiKey] = useState("");
   const [companyName, setCompanyName] = useState("");
   const [companyId, setCompanyId] = useState("");
   const [year, setYear] = useState(currentYear);
   const [country, setCountry] = useState("FR");
-  const [loading, setLoading] = useState(false);
 
   const [expenses, setExpenses] = useState({
     it: "",
@@ -54,51 +52,36 @@ export default function AssessmentForm() {
   };
 
   const handleSubmit = async () => {
-    if (loading) return;
-    if (!apiKey || !companyName) {
-      alert("Please enter your pack key and company name.");
+    if (!companyName) {
+      alert("Please enter your company name.");
       return;
     }
 
-    try {
-      setLoading(true);
-      console.log("CTA clicked");
+    const payload = {
+      company: {
+        name: companyName,
+        id: companyId || null,
+      },
+      year,
+      country,
+      expenses: Object.fromEntries(
+        Object.entries(expenses).map(([k, v]) => [k, Number(v) || 0])
+      ),
+    };
 
-      const payload = {
-        apiKey,
-        company: {
-          name: companyName,
-          id: companyId || null,
-        },
-        year,
-        country,
-        expenses: Object.fromEntries(
-          Object.entries(expenses).map(([k, v]) => [k, Number(v) || 0])
-        ),
-      };
+    const res = await fetch("/api/checkout", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
 
-      const res = await fetch("/api/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-
-      if (!res.ok) {
-        console.error("Checkout error", await res.text());
-        alert("Payment initialization failed.");
-        return;
-      }
-
-      const { url } = await res.json();
-      if (!url) {
-        alert("Invalid payment session.");
-        return;
-      }
-
-      window.location.assign(url);
-    } finally {
-      setLoading(false);
+    if (!res.ok) {
+      alert("Payment initialization failed.");
+      return;
     }
+
+    const { url } = await res.json();
+    window.location.href = url;
   };
 
   return (
@@ -117,23 +100,6 @@ export default function AssessmentForm() {
             subscription
           </p>
         </div>
-
-        {/* API KEY */}
-        <Accordion title="Attestation key" defaultOpen>
-          <div>
-            <label className="block text-sm font-medium">Pack key</label>
-            <input
-              type="text"
-              value={apiKey}
-              onChange={(e) => setApiKey(e.target.value)}
-              placeholder="Enter your pack key"
-              className="w-full border rounded-md px-4 py-2 mt-1"
-            />
-            <p className="text-xs text-gray-500 mt-1">
-              Required. Provided after purchasing a pack.
-            </p>
-          </div>
-        </Accordion>
 
         {/* COMPANY */}
         <Accordion title="Company information" defaultOpen>
@@ -181,7 +147,9 @@ export default function AssessmentForm() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium">Main country</label>
+              <label className="block text-sm font-medium">
+                Main country
+              </label>
               <select
                 value={country}
                 onChange={(e) => setCountry(e.target.value)}
@@ -245,12 +213,10 @@ export default function AssessmentForm() {
 
         {/* CTA */}
         <button
-          type="button"
           onClick={handleSubmit}
-          disabled={loading}
-          className="w-full bg-[#0B3A63] hover:bg-[#092f50] disabled:opacity-50 text-white py-4 rounded-xl font-semibold transition"
+          className="w-full bg-[#0B3A63] hover:bg-[#092f50] text-white py-4 rounded-xl font-semibold transition"
         >
-          {loading ? "Redirecting to payment…" : "Proceed to payment — 89 €"}
+          Proceed to payment — 89 €
         </button>
 
         {/* DISCLAIMER */}
@@ -287,4 +253,4 @@ function Input({
       <p className="text-xs text-gray-500 mt-1">{hint}</p>
     </div>
   );
-    }
+}
