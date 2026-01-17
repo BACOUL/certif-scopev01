@@ -37,7 +37,6 @@ export default function TermsPage() {
 
       {/* CONTENT BLOCK */}
       <div className="max-w-4xl mx-auto space-y-12">
-
         {/* 1 PURPOSE */}
         <section id="t1">
           <h2
@@ -82,7 +81,7 @@ export default function TermsPage() {
             <li>downloadable institutional-grade PDF</li>
             <li>verification URL + QR code</li>
             <li>unique verification ID</li>
-            <li>cryptographic hash integrity check</li>
+            <li>built-in integrity safeguards</li>
             <li>dataset name and version</li>
             <li>validity of 1 year</li>
           </ul>
@@ -299,4 +298,4 @@ export default function TermsPage() {
       </div>
     </section>
   );
-            }
+          }
