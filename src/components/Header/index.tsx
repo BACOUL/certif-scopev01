@@ -10,8 +10,8 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const [dropdown, setDropdown] = useState(false);
 
-  const navRef = useRef(null);
-  const burgerRef = useRef(null);
+  const navRef = useRef<HTMLDivElement | null>(null);
+  const burgerRef = useRef<HTMLButtonElement | null>(null);
 
   const closeAll = () => {
     setDropdown(false);
@@ -32,12 +32,12 @@ export default function Header() {
   useEffect(() => {
     if (!open) return;
 
-    const handleClickOutside = (event) => {
+    const handleClickOutside = (event: MouseEvent | TouchEvent) => {
       if (
         navRef.current &&
-        !navRef.current.contains(event.target) &&
+        !navRef.current.contains(event.target as Node) &&
         burgerRef.current &&
-        !burgerRef.current.contains(event.target)
+        !burgerRef.current.contains(event.target as Node)
       ) {
         closeAll();
       }
@@ -215,6 +215,20 @@ export default function Header() {
               </Link>
             </li>
 
+            {/* GENERATE */}
+            <li>
+              <Link
+                href="/generate"
+                onClick={closeAll}
+                data-i18n="nav.generate"
+                className={`font-medium ${
+                  pathname === "/generate" ? "text-primary" : "text-gray-800 dark:text-gray-200"
+                }`}
+              >
+                Generate Attestation
+              </Link>
+            </li>
+
             {/* VERIFY */}
             <li>
               <Link
@@ -234,4 +248,4 @@ export default function Header() {
       </div>
     </header>
   );
-            }
+          }
