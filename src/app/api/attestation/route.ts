@@ -1,6 +1,12 @@
 import { NextResponse } from "next/server";
 import puppeteer from "puppeteer-core";
 
+const esc = (v: any) =>
+  String(v ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+
 export async function POST(req: Request) {
   try {
     const data = await req.json();
@@ -25,8 +31,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const html = `
-<!DOCTYPE html>
+    const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -75,16 +80,16 @@ export async function POST(req: Request) {
   <h1>CO₂e Attestation</h1>
   <div class="subtitle">Certif-Scope — Indicative Attestation</div>
 
-  <div class="section"><span class="label">Company:</span> ${companyName}</div>
-  <div class="section"><span class="label">Sector:</span> ${sector}</div>
-  <div class="section"><span class="label">Country:</span> ${country}</div>
-  <div class="section"><span class="label">Reporting period:</span> ${period}</div>
+  <div class="section"><span class="label">Company:</span> ${esc(companyName)}</div>
+  <div class="section"><span class="label">Sector:</span> ${esc(sector)}</div>
+  <div class="section"><span class="label">Country:</span> ${esc(country)}</div>
+  <div class="section"><span class="label">Reporting period:</span> ${esc(period)}</div>
 
   <div class="box">
-    <div>Scope 1: ${scope1} tCO₂e</div>
-    <div>Scope 2: ${scope2} tCO₂e</div>
-    <div>Scope 3: ${scope3} tCO₂e</div>
-    <div class="total">Total: ${total} tCO₂e</div>
+    <div>Scope 1: ${Number(scope1)} tCO₂e</div>
+    <div>Scope 2: ${Number(scope2)} tCO₂e</div>
+    <div>Scope 3: ${Number(scope3)} tCO₂e</div>
+    <div class="total">Total: ${Number(total)} tCO₂e</div>
   </div>
 
   <footer>
@@ -94,15 +99,14 @@ export async function POST(req: Request) {
   </footer>
 
 </body>
-</html>
-`;
+</html>`;
 
     const browser = await puppeteer.connect({
-      browserWSEndpoint: `wss://chrome.browserless.io?token=${browserlessKey}`,
+      browserWSEndpoint: `wss://chrome.browserless.io/chrome?token=${browserlessKey}`,
     });
 
     const page = await browser.newPage();
-    await page.setContent(html, { waitUntil: "networkidle0" });
+    await page.setContent(html);
 
     const pdfBuffer = await page.pdf({
       format: "A4",
@@ -122,7 +126,7 @@ export async function POST(req: Request) {
     });
   } catch (err: any) {
     return NextResponse.json(
-      { error: "PDF generation error", message: err.message },
+      { error: "PDF generation error", message: err?.message },
       { status: 500 }
     );
   }
