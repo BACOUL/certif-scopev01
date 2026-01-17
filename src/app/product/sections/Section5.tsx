@@ -47,8 +47,8 @@ export default function Section5() {
             className="mt-3 text-gray-700 text-sm leading-relaxed"
             data-i18n="s5.block1.text"
           >
-            Each attestation is cryptographically signed at the moment of issuance
-            by Certif-Scope. This signature guarantees that the document has not been
+            Each attestation is digitally signed at the moment of issuance by
+            Certif-Scope. This signature guarantees that the document has not been
             altered since it was issued.
           </p>
         </div>
@@ -66,8 +66,8 @@ export default function Section5() {
             data-i18n="s5.block2.text"
           >
             The corresponding public verification key is published and remains
-            accessible over time. Any third party can use this key to verify the
-            authenticity of an attestation independently.
+            accessible over time. Any third party can verify the authenticity of
+            an attestation independently, without relying on Certif-Scope systems.
           </p>
         </div>
 
@@ -76,16 +76,16 @@ export default function Section5() {
             className="text-2xl font-semibold text-[#0B3A63]"
             data-i18n="s5.block3.title"
           >
-            Online Verification for Convenience
+            Attestation Reference ID
           </h3>
 
           <p
             className="mt-3 text-gray-700 text-sm leading-relaxed"
             data-i18n="s5.block3.text"
           >
-            A QR code included in the PDF provides optional access to a public
-            verification page. This page simplifies checks but is not required
-            for the validity of the attestation.
+            Each PDF includes a unique attestation reference ID. This identifier
+            allows users, partners, and institutions to reference, retrieve, and
+            communicate about a specific attestation unambiguously.
           </p>
         </div>
 
@@ -94,16 +94,17 @@ export default function Section5() {
             className="text-2xl font-semibold text-[#0B3A63]"
             data-i18n="s5.block4.title"
           >
-            Offline & Long-Term Verification
+            Online & Offline Verification
           </h3>
 
           <p
             className="mt-3 text-gray-700 text-sm leading-relaxed"
             data-i18n="s5.block4.text"
           >
-            Verification does not depend on a user account, a database, or a
-            running Certif-Scope service. Attestations remain verifiable using
-            the published public key, even if the issuer is no longer active.
+            A QR code included in the PDF provides optional access to a public
+            verification page for convenience. Verification does not depend on
+            this page: attestations remain verifiable offline using the published
+            public key, even if the issuer is no longer active.
           </p>
         </div>
       </div>
@@ -122,16 +123,16 @@ export default function Section5() {
             • Attestations are signed once and never modified
           </li>
           <li data-i18n="s5.summary.item2">
-            • Verification is possible without accounts or credentials
+            • A public reference ID enables traceability and communication
           </li>
           <li data-i18n="s5.summary.item3">
-            • No personal, financial, or operational data is stored
+            • Verification is possible without accounts or credentials
           </li>
           <li data-i18n="s5.summary.item4">
-            • Validity does not depend on Certif-Scope availability
+            • No personal, financial, or operational data is stored
           </li>
           <li data-i18n="s5.summary.item5">
-            • Designed for institutional review and automated checks
+            • Validity does not depend on Certif-Scope availability
           </li>
         </ul>
       </div>
