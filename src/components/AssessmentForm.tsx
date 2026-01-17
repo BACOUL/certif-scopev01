@@ -21,9 +21,7 @@ function Accordion({
         className="w-full flex justify-between items-center px-5 py-4 bg-[#F8FAFC] text-left"
       >
         <span className="font-medium text-[#0B3A63]">{title}</span>
-        <span className="text-sm text-gray-500">
-          {open ? "−" : "+"}
-        </span>
+        <span className="text-sm text-gray-500">{open ? "−" : "+"}</span>
       </button>
 
       {open && (
@@ -233,4 +231,4 @@ function Input({
       <p className="text-xs text-gray-500 mt-1">{hint}</p>
     </div>
   );
-}
+                                       }
