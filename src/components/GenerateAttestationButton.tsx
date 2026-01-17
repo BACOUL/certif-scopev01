@@ -3,7 +3,7 @@
 export default function GenerateAttestationButton() {
   const handleClick = async () => {
     try {
-      const res = await fetch("/api/create-attestation", {
+      const res = await fetch("/api/attestation", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -14,28 +14,28 @@ export default function GenerateAttestationButton() {
           scope1: 10,
           scope2: 5,
           scope3: 20,
-          total: 35,
-        }),
+          total: 35
+        })
       });
 
       if (!res.ok) {
-        const text = await res.text();
-        alert("API error");
-        console.error(text);
-        return;
+        const t = await res.text();
+        throw new Error(t || "API error");
       }
 
       const data = await res.json();
 
-      const pdfUrl = data?.pdfUrl;
+      const url =
+        data?.document?.download_url ||
+        data?.document?.preview_url;
 
-      if (!pdfUrl) {
-        alert("No PDF URL returned");
+      if (!url) {
         console.error(data);
+        alert("PDFMonkey did not return a PDF URL");
         return;
       }
 
-      window.open(pdfUrl, "_blank");
+      window.open(url, "_blank");
     } catch (err: any) {
       alert("JS error: " + err.message);
     }
