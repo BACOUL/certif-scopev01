@@ -51,7 +51,7 @@ export default function AssessmentForm() {
   return (
     <main className="min-h-screen bg-white">
       {/* SAME CONTAINER AS VERIFY */}
-      <section className="max-w-3xl mx-auto px-6 pt-24 pb-20">
+      <section className="max-w-3xl mx-auto px-6 pt-16 pb-20">
 
         {/* TITLE */}
         <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-4">
@@ -232,4 +232,4 @@ function Input({
       <p className="text-xs text-gray-500 mt-1">{hint}</p>
     </div>
   );
-        }
+}
