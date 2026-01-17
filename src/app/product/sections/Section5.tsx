@@ -84,8 +84,9 @@ export default function Section5() {
             data-i18n="s5.block3.text"
           >
             Each PDF includes a unique attestation reference ID. This identifier
-            allows users, partners, and institutions to reference, retrieve, and
-            communicate about a specific attestation unambiguously.
+            allows users, partners, and institutions to confirm that an
+            attestation is valid, and to reference, retrieve, and communicate
+            about a specific document unambiguously.
           </p>
         </div>
 
@@ -123,7 +124,8 @@ export default function Section5() {
             • Attestations are signed once and never modified
           </li>
           <li data-i18n="s5.summary.item2">
-            • A public reference ID enables traceability and communication
+            • A public reference ID enables validity checks, traceability and
+            communication
           </li>
           <li data-i18n="s5.summary.item3">
             • Verification is possible without accounts or credentials
@@ -138,4 +140,4 @@ export default function Section5() {
       </div>
     </section>
   );
-}
+            }
