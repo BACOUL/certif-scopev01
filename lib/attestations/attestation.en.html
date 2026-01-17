@@ -49,10 +49,9 @@
       align-items: flex-start;
     }
 
-    .logo {
-      font-size: 18px;
-      font-weight: 800;
-      color: #0B3A63;
+    .logo img {
+      height: 28px;
+      width: auto;
     }
 
     .title {
@@ -160,7 +159,9 @@
 
   <!-- HEADER -->
   <div class="header">
-    <div class="logo">Certif-Scope</div>
+    <div class="logo">
+      <img src="{{logo_url}}" alt="Certif-Scope logo" />
+    </div>
     <div class="muted">
       Issued on: {{issued_date}}<br />
       Attestation ID: {{attestation_id}}
@@ -262,4 +263,4 @@
   </div>
 
 </body>
-      </html>
+</html>
