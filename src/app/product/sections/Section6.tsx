@@ -24,9 +24,9 @@ export default function Section6() {
           className="text-lg text-gray-700 max-w-4xl leading-relaxed mt-6 pl-6"
         >
           The CO₂e Attestation supports real institutional workflows where SMEs must
-          provide a clear, standardized environmental indicator. It applies to procurement,
-          banking, insurance, public tenders, and ESG screening processes that require
-          verification-ready documentation.
+          provide a clear, standardized environmental indicator. It applies to
+          procurement, banking, insurance, public tenders and ESG screening processes
+          that require a verifiable document.
         </p>
       </div>
 
@@ -48,9 +48,9 @@ export default function Section6() {
               data-i18n="s6.procurement.text"
               className="mt-3 text-sm text-gray-700 leading-relaxed"
             >
-              Procurement departments require consistent CO₂ indicators for supplier scoring.
-              The Attestation provides a standardized, verification-ready document that fits
-              onboarding and RFP requirements.
+              Procurement departments require comparable CO₂ indicators for supplier
+              assessment. The Attestation provides a standardized, verification-ready
+              document that fits onboarding and RFP review requirements.
             </p>
           </div>
 
@@ -68,9 +68,9 @@ export default function Section6() {
               data-i18n="s6.insurance.text"
               className="mt-3 text-sm text-gray-700 leading-relaxed"
             >
-              Insurers request environmental indicators to classify clients and exposures.
-              The Attestation provides a clear, stable, reproducible value suitable for
-              underwriting files and renewal processes.
+              Insurers request environmental indicators to support client classification
+              and risk analysis. The Attestation provides a clear, consistent document
+              suitable for underwriting files and renewal processes.
             </p>
           </div>
         </div>
@@ -90,9 +90,10 @@ export default function Section6() {
             data-i18n="s6.banking.text"
             className="text-white/90 text-sm leading-relaxed"
           >
-            Financial institutions must assess environmental risk exposure according to EU
-            supervisory guidelines. The Attestation provides a deterministic value that banks
-            can integrate into credit scoring without complex ESG reporting.
+            Financial institutions assess environmental exposure in line with EU
+            supervisory expectations. The Attestation provides a standardized CO₂e
+            indicator that can be reviewed and documented within credit assessment
+            and monitoring processes, without full ESG reporting.
           </p>
         </div>
       </div>
@@ -112,9 +113,9 @@ export default function Section6() {
           data-i18n="s6.tenders.text"
           className="text-sm text-gray-700 leading-relaxed max-w-4xl"
         >
-          Many EU-level tenders require environmental indicators. The Attestation simplifies
-          the submission process by providing a readable, verifiable document suitable for
-          eligibility checks, ESG scoring, and administrative completeness.
+          Many EU-level tenders require environmental indicators. The Attestation
+          simplifies submissions by providing a readable, verifiable document
+          suitable for eligibility checks, ESG scoring and administrative review.
         </p>
       </div>
 
@@ -142,8 +143,9 @@ export default function Section6() {
           data-i18n="s6.extended.note"
           className="mt-6 text-sm text-gray-700 leading-relaxed"
         >
-          These scenarios reflect real workflows where SMEs must supply a standardized,
-          verification-ready environmental indicator without full ESG reporting capabilities.
+          These scenarios reflect practical situations where SMEs must supply a
+          standardized and verifiable environmental document, without the burden
+          of full ESG or regulatory reporting.
         </p>
       </div>
 
@@ -161,4 +163,4 @@ export default function Section6() {
       </div>
     </section>
   );
-            }
+      }
