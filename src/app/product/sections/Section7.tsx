@@ -23,9 +23,9 @@ export default function Section7() {
           className="text-lg text-gray-700 max-w-4xl mt-6 leading-relaxed pl-6"
           data-i18n="s7.intro"
         >
-          The CO₂e Attestation is intentionally simplified and financial-based only. 
-          This section explains boundaries, correct use cases and limitations to prevent 
-          misinterpretation in institutional workflows.
+          The CO₂e Attestation is intentionally simplified and based on financial
+          inputs only. This section clarifies its scope, appropriate use cases and
+          limitations to avoid misinterpretation in institutional workflows.
         </p>
       </div>
 
@@ -42,11 +42,11 @@ export default function Section7() {
         </h3>
 
         <ul className="space-y-3 text-sm text-gray-700 leading-relaxed max-w-4xl">
-          <li data-i18n="s7.what.point1">• A simplified financial-based CO₂e indicator</li>
-          <li data-i18n="s7.what.point2">• Fully deterministic and reproducible</li>
-          <li data-i18n="s7.what.point3">• Standardized for procurement workflows</li>
-          <li data-i18n="s7.what.point4">• Includes cryptographic integrity verification</li>
-          <li data-i18n="s7.what.point5">• Suitable for screening and onboarding requests</li>
+          <li data-i18n="s7.what.point1">• A simplified, financial-based CO₂e indicator</li>
+          <li data-i18n="s7.what.point2">• Consistent and reproducible for identical inputs</li>
+          <li data-i18n="s7.what.point3">• Standardized for procurement and onboarding workflows</li>
+          <li data-i18n="s7.what.point4">• Issued with built-in integrity and validity checks</li>
+          <li data-i18n="s7.what.point5">• Suitable for screening and documentation requests</li>
         </ul>
       </div>
 
@@ -65,10 +65,10 @@ export default function Section7() {
         </h3>
 
         <ul className="space-y-3 text-white/90 text-sm leading-relaxed max-w-4xl relative z-10">
-          <li data-i18n="s7.not.point1">• Not a CSRD or ESRS climate disclosure</li>
+          <li data-i18n="s7.not.point1">• Not a CSRD or ESRS regulatory disclosure</li>
           <li data-i18n="s7.not.point2">• Not a full GHG Protocol inventory (Scopes 1–3)</li>
           <li data-i18n="s7.not.point3">• Not an audited carbon footprint or LCA</li>
-          <li data-i18n="s7.not.point4">• Not valid for regulatory filings</li>
+          <li data-i18n="s7.not.point4">• Not valid for formal regulatory filings</li>
           <li data-i18n="s7.not.point5">• Not based on physical activity or metered data</li>
         </ul>
       </div>
@@ -88,9 +88,9 @@ export default function Section7() {
           </h3>
 
           <ul className="space-y-3 text-sm text-gray-700 max-w-4xl leading-relaxed">
-            <li data-i18n="s7.fit.point1">• Supplier onboarding with basic CO₂ requests</li>
-            <li data-i18n="s7.fit.point2">• Banking / insurance simplified climate metrics</li>
-            <li data-i18n="s7.fit.point3">• Public tenders needing an environmental indicator</li>
+            <li data-i18n="s7.fit.point1">• Supplier onboarding with basic CO₂ information requests</li>
+            <li data-i18n="s7.fit.point2">• Banking and insurance screening indicators</li>
+            <li data-i18n="s7.fit.point3">• Public tenders requiring an environmental indicator</li>
             <li data-i18n="s7.fit.point4">• SMEs without ESG teams needing fast documentation</li>
             <li data-i18n="s7.fit.point5">• Cross-border workflows requiring multilingual clarity</li>
           </ul>
@@ -108,7 +108,7 @@ export default function Section7() {
             <li>• SMEs</li>
             <li>• Consultants</li>
             <li>• Procurement teams</li>
-            <li>• Banks / insurers</li>
+            <li>• Banks and insurers</li>
             <li>• Public agencies</li>
           </ul>
         </div>
@@ -128,10 +128,10 @@ export default function Section7() {
 
         <ul className="space-y-3 text-sm text-gray-700 leading-relaxed max-w-4xl">
           <li data-i18n="s7.notuse.point1">• CSRD or ESRS compulsory reporting</li>
-          <li data-i18n="s7.notuse.point2">• Formal GHG inventories for certification</li>
-          <li data-i18n="s7.notuse.point3">• Carbon accounting based on physical data</li>
-          <li data-i18n="s7.notuse.point4">• Scientific modeling or precise LCA work</li>
-          <li data-i18n="s7.notuse.point5">• Marketing claims requiring audited data</li>
+          <li data-i18n="s7.notuse.point2">• Formal GHG inventories for certification purposes</li>
+          <li data-i18n="s7.notuse.point3">• Carbon accounting based on physical or metered data</li>
+          <li data-i18n="s7.notuse.point4">• Scientific modeling or precise LCA studies</li>
+          <li data-i18n="s7.notuse.point5">• Marketing claims requiring audited carbon data</li>
         </ul>
       </div>
 
@@ -153,9 +153,10 @@ export default function Section7() {
           className="text-white/90 text-sm leading-relaxed max-w-4xl relative z-10"
           data-i18n="s7.closing.text"
         >
-          The Attestation is designed for practical ESG workflows where a quick, verifiable 
-          indicator is needed. For full carbon footprinting or regulatory work, a detailed 
-          GHG Protocol-compliant assessment with physical data remains required.
+          The Attestation is designed for practical ESG-related workflows where a
+          quick, verifiable document is required. For regulatory reporting or full
+          carbon footprinting, a detailed GHG Protocol-compliant assessment based on
+          physical data remains necessary.
         </p>
       </div>
 
