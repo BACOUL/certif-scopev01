@@ -3,21 +3,12 @@
 export default function GenerateAttestationButton() {
   const handleClick = async () => {
     try {
-      console.log("CLICK → GenerateAttestationButton");
+      const url = `${process.env.NEXT_PUBLIC_CERTIF_SCOPE_PDF_URL}/api/attestation`;
+      alert("Calling: " + url);
 
-      const baseUrl = process.env.NEXT_PUBLIC_CERTIF_SCOPE_PDF_URL;
-      console.log("PDF SERVICE URL =", baseUrl);
-
-      if (!baseUrl) {
-        alert("PDF service URL is missing (NEXT_PUBLIC_CERTIF_SCOPE_PDF_URL)");
-        return;
-      }
-
-      const res = await fetch(`${baseUrl}/api/attestation`, {
+      const res = await fetch(url, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           companyName: "Demo Company",
           sector: "Consulting",
@@ -30,13 +21,15 @@ export default function GenerateAttestationButton() {
         })
       });
 
-      console.log("RESPONSE STATUS =", res.status);
+      alert("HTTP status: " + res.status);
 
-      const data = await res.json();
-      console.log("RESPONSE DATA =", data);
+      const text = await res.text();
+      alert("Raw response: " + text);
+
+      const data = JSON.parse(text);
 
       if (!data?.pdfBase64) {
-        alert("PDF generation failed");
+        alert("No pdfBase64 in response");
         return;
       }
 
@@ -45,12 +38,11 @@ export default function GenerateAttestationButton() {
       );
 
       const blob = new Blob([bytes], { type: "application/pdf" });
-      const url = URL.createObjectURL(blob);
+      const pdfUrl = URL.createObjectURL(blob);
+      window.open(pdfUrl, "_blank");
 
-      window.open(url, "_blank");
-    } catch (err) {
-      console.error("BUTTON ERROR", err);
-      alert("Unexpected error — see console");
+    } catch (err: any) {
+      alert("JS ERROR: " + err.message);
     }
   };
 
