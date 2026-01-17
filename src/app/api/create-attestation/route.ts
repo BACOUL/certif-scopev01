@@ -12,7 +12,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const response = await fetch(`${pdfServiceUrl}/api/attestation`, {
+    const res = await fetch(`${pdfServiceUrl}/api/attestation`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -20,23 +20,19 @@ export async function POST(req: Request) {
       body: JSON.stringify(body),
     });
 
-    if (!response.ok) {
-      const text = await response.text();
+    if (!res.ok) {
+      const err = await res.text();
       return NextResponse.json(
-        { error: "PDF service error", details: text },
-        { status: 502 }
+        { error: "PDF service error", details: err },
+        { status: 500 }
       );
     }
 
-    const result = await response.json();
-
-    return NextResponse.json(result, { status: 200 });
+    const data = await res.json();
+    return NextResponse.json(data);
   } catch (err: any) {
     return NextResponse.json(
-      {
-        error: "Generation failed",
-        message: err?.message || "Unknown error",
-      },
+      { error: "Internal error", message: err?.message },
       { status: 500 }
     );
   }
