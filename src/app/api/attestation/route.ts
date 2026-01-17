@@ -8,11 +8,19 @@ export async function POST(req: Request) {
     const templateId = process.env.PDFMONKEY_TEMPLATE_ID;
 
     if (!apiKey || !templateId) {
-      return NextResponse.json(
-        { error: "Missing PDFMonkey env vars" },
-        { status: 500 }
-      );
+      return NextResponse.json({ error: "Missing env vars" }, { status: 500 });
     }
+
+    const payload = {
+      companyName: String(body.companyName),
+      sector: String(body.sector),
+      country: String(body.country),
+      period: String(body.period),
+      scope1: String(body.scope1),
+      scope2: String(body.scope2),
+      scope3: String(body.scope3),
+      total: String(body.total),
+    };
 
     const res = await fetch("https://api.pdfmonkey.io/api/v1/documents", {
       method: "POST",
@@ -23,24 +31,25 @@ export async function POST(req: Request) {
       body: JSON.stringify({
         document: {
           template_id: templateId,
-          payload: body,
+          payload,
           status: "published",
         },
       }),
     });
 
+    const text = await res.text();
+
     if (!res.ok) {
-      const text = await res.text();
       return NextResponse.json(
         { error: "PDFMonkey error", details: text },
         { status: 500 }
       );
     }
 
-    const data = await res.json();
+    const data = JSON.parse(text);
 
     return NextResponse.json({
-      pdfUrl: data.document.download_url,
+      document: data.document,
     });
   } catch (err: any) {
     return NextResponse.json(
