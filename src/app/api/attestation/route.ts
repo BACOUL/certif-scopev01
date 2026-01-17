@@ -9,7 +9,7 @@ export async function POST(req: Request) {
 
     if (!apiKey || !templateId) {
       return NextResponse.json(
-        { error: "PDFMonkey env vars missing" },
+        { error: "PDFMonkey not configured" },
         { status: 500 }
       );
     }
@@ -22,23 +22,35 @@ export async function POST(req: Request) {
       },
       body: JSON.stringify({
         document: {
-          document_template_id: templateId,
+          template_id: templateId,
           payload: body,
           status: "pending",
         },
       }),
     });
 
-    const data = await res.json();
+    const raw = await res.text();
 
     if (!res.ok) {
       return NextResponse.json(
-        { error: "PDFMonkey error", details: data },
+        { error: "PDFMonkey error", details: raw },
         { status: 500 }
       );
     }
 
-    return NextResponse.json(data);
+    const json = JSON.parse(raw);
+
+    const pdfUrl = json?.document?.download_url;
+
+    if (!pdfUrl) {
+      return NextResponse.json(
+        { error: "No PDF URL returned", details: json },
+        { status: 500 }
+      );
+    }
+
+    return NextResponse.json({ pdfUrl });
+
   } catch (err: any) {
     return NextResponse.json(
       { error: "Internal error", message: err?.message },
