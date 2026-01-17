@@ -2,32 +2,39 @@
 
 export default function GenerateAttestationButton() {
   const handleClick = async () => {
-    const res = await fetch("/api/attestation", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        companyName: "Demo Company",
-        sector: "Consulting",
-        country: "France",
-        period: "2024",
-        scope1: 10,
-        scope2: 5,
-        scope3: 20,
-        total: 35
-      })
-    });
+    try {
+      const res = await fetch("/api/create-attestation", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          companyName: "Demo Company",
+          sector: "Consulting",
+          country: "France",
+          period: "2024",
+          scope1: 10,
+          scope2: 5,
+          scope3: 20,
+          total: 35
+        })
+      });
 
-    const data = await res.json();
+      const data = await res.json();
 
-    if (!data?.pdfBase64) {
-      alert("PDF generation failed");
-      return;
+      const url =
+        data?.document?.download_url ||
+        data?.document?.preview_url;
+
+      if (!url) {
+        alert("PDFMonkey did not return a PDF URL");
+        console.error(data);
+        return;
+      }
+
+      window.open(url, "_blank");
+
+    } catch (err: any) {
+      alert("JS error: " + err.message);
     }
-
-    const bytes = Uint8Array.from(atob(data.pdfBase64), c => c.charCodeAt(0));
-    const blob = new Blob([bytes], { type: "application/pdf" });
-    const url = URL.createObjectURL(blob);
-    window.open(url, "_blank");
   };
 
   return (
