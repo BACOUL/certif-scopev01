@@ -1,46 +1,65 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
+import { headers } from "next/headers";
+import fs from "fs";
+import path from "path";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 export async function POST(req: Request) {
-  const sig = req.headers.get("stripe-signature");
+  const body = await req.text();
+  const signature = headers().get("stripe-signature");
 
-  if (!sig) {
-    return NextResponse.json(
-      { error: "Missing Stripe signature" },
-      { status: 400 }
-    );
+  if (!signature) {
+    return new NextResponse("Missing signature", { status: 400 });
   }
 
   let event: Stripe.Event;
 
   try {
-    const body = await req.text();
-
     event = stripe.webhooks.constructEvent(
       body,
-      sig,
+      signature,
       process.env.STRIPE_WEBHOOK_SECRET!
     );
   } catch (err: any) {
-    console.error("Webhook signature verification failed.", err.message);
-    return NextResponse.json(
-      { error: "Webhook signature verification failed" },
-      { status: 400 }
-    );
+    console.error("Webhook signature error:", err.message);
+    return new NextResponse("Invalid signature", { status: 400 });
   }
 
-  // ✅ ÉVÉNEMENT CLÉ
+  // 🎯 On ne traite QUE le paiement finalisé
   if (event.type === "checkout.session.completed") {
     const session = event.data.object as Stripe.Checkout.Session;
 
-    console.log("✅ Payment confirmed:", session.id);
+    // ID unique d’attestation
+    const attestationId = `CS-${Date.now()}`;
 
-    // 👉 PLUS TARD :
-    // - générer l’attestation
-    // - consommer une key de pack
-    // - signer le PDF
+    // Dossier public
+    const dir = path.join(process.cwd(), "public", "attestations");
+    fs.mkdirSync(dir, { recursive: true });
+
+    const filePath = path.join(dir, `${attestationId}.txt`);
+
+    // 📄 Attestation V1 (placeholder structuré)
+    const content = `
+CERTIF-SCOPE — CO₂e ATTESTATION
+
+Attestation ID: ${attestationId}
+Stripe session: ${session.id}
+Amount paid: ${session.amount_total! / 100} €
+Currency: ${session.currency?.toUpperCase()}
+
+Status: PAID
+Methodology: Spend-based (indicative)
+Audit: NO
+Date: ${new Date().toISOString()}
+
+This attestation is generated automatically after payment.
+`;
+
+    fs.writeFileSync(filePath, content.trim());
+
+    console.log("Attestation generated:", attestationId);
   }
 
   return NextResponse.json({ received: true });
