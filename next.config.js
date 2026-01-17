@@ -16,10 +16,6 @@ const nextConfig = {
   },
 
   experimental: {
-    // ⚠️ OBLIGATOIRE : désactive Turbopack pour les API server (PDF, Puppeteer)
-    turbo: false,
-
-    // Optimisations safe
     optimizeCss: true,
     optimizePackageImports: ["react", "react-dom"],
   },
