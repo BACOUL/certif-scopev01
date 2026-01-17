@@ -26,9 +26,9 @@ export default function Section4() {
           data-i18n="s4.intro"
           className="text-lg text-gray-700 max-w-4xl mt-6 leading-relaxed relative z-10"
         >
-          The attestation is built for clear, reliable and institution-ready workflows.
-          Every element is structured, deterministic and verifiable, enabling procurement,
-          banking and insurance teams to process it quickly.
+          The attestation is designed for clear, reliable and institution-ready
+          workflows. Each element is structured and standardized to enable
+          procurement, banking and insurance teams to review it efficiently.
         </p>
       </div>
 
@@ -39,7 +39,8 @@ export default function Section4() {
             1. Summary Indicators
           </h3>
           <p className="text-sm text-gray-700 mt-3 leading-relaxed" data-i18n="s4.block1.text">
-            Shows total indicative CO₂e emissions based on the deterministic spend-based method.
+            Displays the total indicative CO₂e emissions based on a standardized,
+            spend-based approach.
           </p>
         </div>
 
@@ -48,25 +49,28 @@ export default function Section4() {
             2. Category Breakdown
           </h3>
           <p className="text-sm text-gray-700 mt-3 leading-relaxed" data-i18n="s4.block2.text">
-            Spending is split into predefined categories using version-controlled emission factors.
+            Spending is presented across predefined categories to support review
+            and comparison.
           </p>
         </div>
 
         <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition">
           <h3 className="text-2xl font-semibold text-[#0B3A63]" data-i18n="s4.block3.title">
-            3. Versioned Emission Dataset
+            3. Emission Factor Documentation
           </h3>
           <p className="text-sm text-gray-700 mt-3 leading-relaxed" data-i18n="s4.block3.text">
-            Ensures traceability and reproducibility for audits and institutional review.
+            References the emission factors applied to ensure transparency and
+            consistency for institutional review.
           </p>
         </div>
 
         <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#1FB6C1]/20 shadow-sm hover:shadow-md transition">
           <h3 className="text-2xl font-semibold text-[#0B3A63]" data-i18n="s4.block4.title">
-            4. Verification ID + QR
+            4. Attestation Reference ID & QR Code
           </h3>
           <p className="text-sm text-gray-700 mt-3 leading-relaxed" data-i18n="s4.block4.text">
-            Deterministic hash + QR for online or offline validation. No API or login required.
+            Includes a unique reference ID to confirm the attestation’s validity.
+            A QR code provides optional access to the public verification page.
           </p>
         </div>
 
@@ -75,7 +79,8 @@ export default function Section4() {
             5. Attestation Metadata
           </h3>
           <p className="text-sm text-gray-700 mt-3 leading-relaxed" data-i18n="s4.block5.text">
-            Issuance date, validity, inputs, dataset version and calculation outputs.
+            Includes issuance date, validity period, declared inputs and
+            contextual information required for review.
           </p>
         </div>
 
@@ -84,7 +89,8 @@ export default function Section4() {
             6. Method Summary
           </h3>
           <p className="text-sm text-gray-700 mt-3 leading-relaxed" data-i18n="s4.block6.text">
-            A concise explanation of the spend-based model and its non-regulatory scope.
+            Provides a concise overview of the spend-based approach and clarifies
+            its indicative and non-regulatory scope.
           </p>
         </div>
       </div>
@@ -96,8 +102,8 @@ export default function Section4() {
         </h4>
 
         <p className="text-sm text-gray-700 leading-relaxed max-w-4xl" data-i18n="s4.note.text">
-          This document is suitable for procurement, banking reviews and onboarding workflows,
-          but not for CSRD/ESRS filings or audited carbon accounting.
+          This document is suitable for procurement, banking reviews and onboarding
+          workflows, but not for CSRD/ESRS filings or audited carbon accounting.
         </p>
       </div>
 
@@ -113,4 +119,4 @@ export default function Section4() {
       </div>
     </section>
   );
-      }
+}
