@@ -2,6 +2,8 @@
 const nextConfig = {
   compress: true,
 
+  reactStrictMode: true,
+
   images: {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 31536000,
@@ -14,15 +16,17 @@ const nextConfig = {
   },
 
   experimental: {
-    optimizeCss: true,                     // inline critical CSS
-    optimizePackageImports: ["react", "react-dom"], // supprime ancien JS + polyfills inutiles
+    // ⚠️ OBLIGATOIRE : désactive Turbopack pour les API server (PDF, Puppeteer)
+    turbo: false,
+
+    // Optimisations safe
+    optimizeCss: true,
+    optimizePackageImports: ["react", "react-dom"],
   },
 
   compiler: {
     removeConsole: process.env.NODE_ENV === "production",
   },
-
-  reactStrictMode: true,
 };
 
 module.exports = nextConfig;
