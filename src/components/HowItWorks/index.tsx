@@ -1,3 +1,5 @@
+"use client";
+
 export default function HowItWorks() {
   return (
     <section
@@ -20,8 +22,8 @@ export default function HowItWorks() {
           className="mt-4 text-center text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed"
           data-i18n="howitworks.intro"
         >
-          A simple three-step process converting annual spending (€) into a standardized CO₂e
-          Attestation used in procurement, banking, insurer and ESG screening workflows.
+          A simple three-step process converting annual spending (€) into a standardized
+          CO₂e Attestation used in procurement, banking, insurance and ESG screening workflows.
         </p>
 
         {/* SEPARATOR */}
@@ -39,8 +41,8 @@ export default function HowItWorks() {
               Enter annual spending
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Provide yearly expenses across predefined categories. Only financial inputs are needed —
-              no activity data, no documents, no audits.
+              Provide yearly expenses across predefined categories. Only financial inputs
+              are required — no activity data, no documents, no audits.
             </p>
           </div>
 
@@ -53,8 +55,9 @@ export default function HowItWorks() {
               Automatic calculation
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              A standard spend-based formula applies stable emission factors to generate consistent
-              CO₂e indicators. The method is deterministic and versioned for traceability.
+              A standard spend-based formula applies stable, versioned emission factors
+              to generate consistent CO₂e indicators. The calculation is deterministic
+              and fully reproducible.
             </p>
           </div>
 
@@ -67,11 +70,29 @@ export default function HowItWorks() {
               Download your Attestation
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Instantly receive a structured PDF including total CO₂e, category breakdown and
-              built-in verification information.
+              Instantly receive a structured PDF including total CO₂e, category breakdown
+              and built-in verification information.
             </p>
           </div>
 
+        </div>
+
+        {/* DATA HANDLING — PRIVACY BY DESIGN */}
+        <div
+          className="mt-16 p-6 rounded-xl border border-[#1FB6C1]/30 bg-white dark:bg-gray-800 dark:border-gray-700 max-w-3xl mx-auto"
+          data-i18n="howitworks.privacy"
+        >
+          <h4 className="text-base font-semibold text-[#0B3A63] mb-2">
+            How your data is handled
+          </h4>
+
+          <ul className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed space-y-1">
+            <li>• Data is entered directly in your browser</li>
+            <li>• The CO₂e calculation runs locally on your device</li>
+            <li>• Only the final aggregated result is sent to generate the attestation</li>
+            <li>• No detailed financial data is stored</li>
+            <li>• No account, no tracking, no cookies</li>
+          </ul>
         </div>
 
         {/* SPONSORING BLOCK */}
@@ -80,8 +101,8 @@ export default function HowItWorks() {
             Cost coverage by enterprise programs
           </p>
           <p className="mt-1">
-            Some enterprise partners cover the cost for part or all of their suppliers. If relevant,
-            confirm with your procurement or ESG contact.
+            Some enterprise partners cover the cost for part or all of their suppliers.
+            If applicable, confirm this with your procurement or ESG contact.
           </p>
         </div>
 
@@ -96,4 +117,4 @@ export default function HowItWorks() {
       </div>
     </section>
   );
-}
+        }
