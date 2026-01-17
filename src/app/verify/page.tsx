@@ -4,24 +4,20 @@ import { useState, useEffect } from "react";
 
 export default function VerifyPage() {
   const [id, setId] = useState("");
-  const [hash, setHash] = useState("");
   const [result, setResult] = useState<null | { valid: boolean; item?: any }>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // Load ID + hash from URL
+  // Load ID from URL (?id=...)
   useEffect(() => {
     if (typeof window === "undefined") return;
 
     const params = new URLSearchParams(window.location.search);
     const qid = params.get("id");
-    const qhash = params.get("hash");
 
-    if (qid) setId(qid);
-    if (qhash) setHash(qhash);
-
-    if (qid && qhash && /^[a-f0-9]{64}$/i.test(qhash)) {
-      verify(qid, qhash);
+    if (qid) {
+      setId(qid);
+      verify(qid);
     }
   }, []);
 
@@ -30,12 +26,11 @@ export default function VerifyPage() {
     setResult(null);
   }
 
-  async function verify(customId?: string, customHash?: string) {
+  async function verify(customId?: string) {
     resetErrors();
     setLoading(true);
 
     const finalId = (customId || id).trim();
-    const finalHash = (customHash || hash).trim().toLowerCase();
 
     // Basic validation
     if (finalId.length < 10) {
@@ -43,14 +38,9 @@ export default function VerifyPage() {
       setLoading(false);
       return;
     }
-    if (!/^[a-f0-9]{64}$/i.test(finalHash)) {
-      setError("Invalid hash format. Expected a 64-character SHA-256.");
-      setLoading(false);
-      return;
-    }
 
     try {
-      const endpoint = `/api/verify?id=${finalId}&hash=${finalHash}`;
+      const endpoint = `/api/verify?id=${encodeURIComponent(finalId)}`;
       const res = await fetch(endpoint);
       const data = await res.json();
 
@@ -68,7 +58,6 @@ export default function VerifyPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-6 pt-8 pb-24">
-
       {/* HEADER */}
       <div className="w-full mb-12">
         <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-4">
@@ -76,32 +65,20 @@ export default function VerifyPage() {
         </h1>
 
         <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed max-w-2xl">
-          Enter the Attestation ID and the corresponding SHA-256 verification hash.
-          This ensures the integrity of the document and confirms that it has not
-          been modified since issuance.
+          Enter the Attestation ID to confirm that this CO₂e Attestation is valid
+          and has been issued by Certif-Scope.
         </p>
       </div>
 
       {/* FORM */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+      <div className="grid grid-cols-1 gap-6 mb-10 max-w-xl">
         <div>
           <label className="block mb-2 font-medium">Attestation ID</label>
           <input
             className="w-full p-3 border rounded-md bg-white dark:bg-gray-800 dark:border-gray-700"
-            placeholder="e.g. CS-ATTEST-2024-000123"
+            placeholder="e.g. CS-ATTEST-2026-000123"
             value={id}
             onChange={(e) => setId(e.target.value)}
-            onFocus={resetErrors}
-          />
-        </div>
-
-        <div>
-          <label className="block mb-2 font-medium">SHA-256 Hash</label>
-          <input
-            className="w-full p-3 border rounded-md bg-white dark:bg-gray-800 dark:border-gray-700"
-            placeholder="64-character hash"
-            value={hash}
-            onChange={(e) => setHash(e.target.value)}
             onFocus={resetErrors}
           />
         </div>
@@ -128,7 +105,8 @@ export default function VerifyPage() {
                 ✔ Attestation is valid
               </h3>
               <p className="text-gray-600 dark:text-gray-300">
-                The document integrity is confirmed. No modification detected.
+                This attestation ID corresponds to a valid CO₂e Attestation
+                issued by Certif-Scope.
               </p>
 
               {result.item && (
@@ -143,7 +121,7 @@ export default function VerifyPage() {
                 ✘ Invalid attestation
               </h3>
               <p className="text-gray-600 dark:text-gray-300">
-                The hash does not match or the ID is unknown.
+                This attestation ID is unknown or not valid.
               </p>
             </div>
           )}
@@ -151,4 +129,4 @@ export default function VerifyPage() {
       )}
     </div>
   );
-}
+      }
