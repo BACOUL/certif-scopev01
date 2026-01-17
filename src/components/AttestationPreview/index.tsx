@@ -34,8 +34,8 @@ export default function AttestationPreview() {
           className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed mb-16"
         >
           This is the exact standardized layout produced by Certif-Scope. It includes total CO₂e,
-          category overview and verification metadata in a clean, review-ready format. Designed
-          for procurement, banking and ESG screening workflows across Europe.
+          category overview and built-in verification information in a clean, review-ready format.
+          Designed for procurement, banking and ESG screening workflows across Europe.
         </p>
 
         {/* IMAGE */}
@@ -43,7 +43,7 @@ export default function AttestationPreview() {
           <div className="relative w-full max-w-[600px]">
             <Image
               src="/preview.webp"
-              alt="Preview of the standardized Certif-Scope CO₂e Attestation showing total CO₂e, category overview and verification metadata"
+              alt="Preview of the standardized Certif-Scope CO₂e Attestation showing total CO₂e, category overview and verification information"
               width={1200}
               height={800}
               loading="lazy"
