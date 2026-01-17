@@ -26,8 +26,8 @@ export default function Section2() {
           data-i18n="s2.intro"
           className="text-lg text-gray-700 max-w-4xl mt-6 leading-relaxed relative z-10"
         >
-          Certif-Scope provides a standardized, deterministic and multilingual CO₂e Attestation
-          ready for procurement, banking and insurance workflows across the EU.
+          Certif-Scope provides a standardized and reproducible CO₂e Attestation,
+          designed for procurement, banking and insurance workflows across the EU.
         </p>
       </div>
 
@@ -50,7 +50,8 @@ export default function Section2() {
             data-i18n="s2.benefit1.text"
             className="text-gray-600 text-sm leading-relaxed"
           >
-            Fully deterministic output based only on annual spending (€). No operational data required.
+            Generated instantly based solely on annual spending (€),
+            without requiring operational or physical activity data.
           </p>
         </div>
 
@@ -70,7 +71,8 @@ export default function Section2() {
             data-i18n="s2.benefit2.text"
             className="text-gray-600 text-sm leading-relaxed"
           >
-            Structured and compliant with supplier onboarding, ESG questionnaires and RFP workflows.
+            Structured to fit supplier onboarding, ESG questionnaires
+            and RFP review processes used by institutions.
           </p>
         </div>
 
@@ -84,13 +86,14 @@ export default function Section2() {
             data-i18n="s2.benefit3.title"
             className="text-xl font-semibold text-[#0B3A63] mb-2"
           >
-            Verifiable Integrity
+            Simple Validity Verification
           </h3>
           <p
             data-i18n="s2.benefit3.text"
             className="text-gray-600 text-sm leading-relaxed"
           >
-            Cryptographic hash and verification ID allow offline validation without relying on a database.
+            A unique attestation reference ID allows third parties
+            to confirm validity quickly, without accounts or complex checks.
           </p>
         </div>
 
@@ -104,13 +107,14 @@ export default function Section2() {
             data-i18n="s2.benefit4.title"
             className="text-xl font-semibold text-[#0B3A63] mb-2"
           >
-            Deterministic Calculation
+            Consistent & Reproducible Results
           </h3>
           <p
             data-i18n="s2.benefit4.text"
             className="text-gray-600 text-sm leading-relaxed"
           >
-            Version-controlled emission factors ensure transparent and reproducible results.
+            Identical inputs always produce the same attestation,
+            providing a stable basis for comparison and review.
           </p>
         </div>
 
@@ -130,7 +134,8 @@ export default function Section2() {
             data-i18n="s2.benefit5.text"
             className="text-gray-600 text-sm leading-relaxed"
           >
-            Designed specifically for SMEs without sustainability teams or complex tools.
+            Designed for SMEs without sustainability teams,
+            consultants or complex reporting tools.
           </p>
         </div>
 
@@ -150,7 +155,8 @@ export default function Section2() {
             data-i18n="s2.benefit6.text"
             className="text-gray-600 text-sm leading-relaxed"
           >
-            Supports EN, FR, DE, ES and IT for cross-border procurement and institutional workflows.
+            Available in EN, FR, DE, ES and IT to support
+            cross-border procurement and institutional workflows.
           </p>
         </div>
 
@@ -169,4 +175,4 @@ export default function Section2() {
       </div>
     </section>
   );
-      }
+}
