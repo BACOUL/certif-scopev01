@@ -1,6 +1,7 @@
 export const metadata = {
   title: "Privacy Policy — Certif-Scope",
-  description: "GDPR-compliant privacy and data protection policy for Certif-Scope.",
+  description:
+    "Privacy and ePrivacy policy explaining how Certif-Scope processes data with a strict privacy-by-design approach, no tracking and no cookies.",
 };
 
 export default function PrivacyPage() {
@@ -20,8 +21,9 @@ export default function PrivacyPage() {
           data-i18n="privacy.intro"
           className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed max-w-3xl"
         >
-          This Privacy Policy explains how Certif-Scope collects, processes and protects personal
-          and non-personal data, following GDPR requirements and a strict minimal-data principle.
+          This Privacy Policy explains how Certif-Scope processes personal and non-personal
+          data in accordance with GDPR and the EU ePrivacy Directive, following a strict
+          privacy-by-design and data minimization approach.
         </p>
       </div>
 
@@ -30,252 +32,169 @@ export default function PrivacyPage() {
 
         {/* SECTION 1 */}
         <section>
-          <h2
-            data-i18n="privacy.section1.title"
-            className="text-2xl font-bold text-[#0B3A63] mb-4"
-          >
-            1. Data Collection Principles
+          <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
+            1. Privacy-by-Design Principles
           </h2>
 
-          <p
-            data-i18n="privacy.section1.text1"
-            className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4"
-          >
-            Certif-Scope follows privacy-by-design and data minimization. We collect only the
-            information strictly necessary for:
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+            Certif-Scope is designed to operate without user accounts, without behavioral
+            tracking and without unnecessary data collection. The service follows the
+            principles of privacy by design and privacy by default.
           </p>
 
-          <ul
-            data-i18n="privacy.section1.list"
-            className="list-disc ml-6 text-gray-700 dark:text-gray-300 space-y-2"
-          >
-            <li>communication with users</li>
-            <li>attestation generation and delivery</li>
-            <li>verification of attestation integrity</li>
-            <li>security and fraud prevention</li>
+          <ul className="list-disc ml-6 text-gray-700 dark:text-gray-300 space-y-2">
+            <li>no user accounts or profiles</li>
+            <li>no advertising or behavioral tracking</li>
+            <li>no third-party analytics</li>
+            <li>no cookies requiring consent</li>
+            <li>no storage of detailed financial input data</li>
           </ul>
         </section>
 
         {/* SECTION 2 */}
         <section>
-          <h2
-            data-i18n="privacy.section2.title"
-            className="text-2xl font-bold text-[#0B3A63] mb-4"
-          >
-            2. Data You Provide
+          <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
+            2. Data You Voluntarily Provide
           </h2>
 
-          <p
-            data-i18n="privacy.section2.text1"
-            className="text-gray-700 dark:text-gray-300 leading-relaxed"
-          >
-            Users may voluntarily submit the following:
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-3">
+            Depending on how you interact with the website, you may voluntarily provide:
           </p>
 
-          <ul
-            data-i18n="privacy.section2.list"
-            className="list-disc ml-6 text-gray-700 dark:text-gray-300 space-y-2 mt-3"
-          >
-            <li>email address (for communication)</li>
-            <li>optional company identification</li>
-            <li>annual spending (€) for CO₂e calculation</li>
-            <li>content of contact requests</li>
+          <ul className="list-disc ml-6 text-gray-700 dark:text-gray-300 space-y-2">
+            <li>an email address when contacting us</li>
+            <li>optional company identification information</li>
+            <li>annual spending (€) entered for CO₂e calculation</li>
+            <li>content of contact or support requests</li>
           </ul>
         </section>
 
         {/* SECTION 3 */}
         <section>
-          <h2
-            data-i18n="privacy.section3.title"
-            className="text-2xl font-bold text-[#0B3A63] mb-4"
-          >
-            3. Data Automatically Collected
+          <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
+            3. How CO₂e Calculations Are Processed
           </h2>
 
-          <p
-            data-i18n="privacy.section3.text1"
-            className="text-gray-700 dark:text-gray-300 leading-relaxed mb-3"
-          >
-            For security and statistical purposes, we may log:
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+            CO₂e calculations are performed locally in the user’s browser. This means that
+            detailed financial inputs are processed on the user’s device and are not stored
+            on Certif-Scope servers.
           </p>
 
-          <ul
-            data-i18n="privacy.section3.list"
-            className="list-disc ml-6 text-gray-700 dark:text-gray-300 space-y-2"
-          >
-            <li>IP address (anonymized when technically possible)</li>
-            <li>browser and device information</li>
-            <li>non-personal analytics (page views, interactions)</li>
-          </ul>
-
-          <p
-            data-i18n="privacy.section3.text2"
-            className="text-gray-700 dark:text-gray-300 leading-relaxed mt-4"
-          >
-            No advertising cookies or behavioral tracking are used.
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+            Only the final aggregated result required to generate the CO₂e Attestation is
+            transmitted. No detailed spending breakdowns are retained.
           </p>
         </section>
 
-        {/* SECTION 4 */}
+        {/* SECTION 4 — ePRIVACY */}
         <section>
-          <h2
-            data-i18n="privacy.section4.title"
-            className="text-2xl font-bold text-[#0B3A63] mb-4"
-          >
-            4. How We Use the Data
+          <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
+            4. Cookies, Trackers and ePrivacy
           </h2>
 
-          <p
-            data-i18n="privacy.section4.text1"
-            className="text-gray-700 dark:text-gray-300 leading-relaxed"
-          >
-            Personal and technical data is used strictly for:
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+            Certif-Scope does not use advertising cookies, tracking cookies or third-party
+            analytics tools. The website does not rely on cookies that require user consent
+            under the EU ePrivacy Directive.
           </p>
 
-          <ul
-            data-i18n="privacy.section4.list"
-            className="list-disc ml-6 text-gray-700 dark:text-gray-300 space-y-2 mt-3"
-          >
-            <li>responding to inquiries</li>
-            <li>generating CO₂e attestations</li>
-            <li>verifying cryptographic integrity</li>
-            <li>website security and performance</li>
+          <ul className="list-disc ml-6 text-gray-700 dark:text-gray-300 space-y-2">
+            <li>no marketing or analytics cookies</li>
+            <li>no cross-site or behavioral tracking</li>
+            <li>no cookie consent banner required</li>
           </ul>
+
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed mt-4">
+            Any strictly necessary technical cookies, if used, are limited to essential
+            site operation and do not store personal data.
+          </p>
         </section>
 
         {/* SECTION 5 */}
         <section>
-          <h2
-            data-i18n="privacy.section5.title"
-            className="text-2xl font-bold text-[#0B3A63] mb-4"
-          >
+          <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
             5. Data Storage & Retention
           </h2>
 
-          <p
-            data-i18n="privacy.section5.text1"
-            className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4"
-          >
-            Certif-Scope does not permanently store attestation input data. Spending values are
-            processed temporarily in memory and never saved in databases.
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+            Certif-Scope does not permanently store calculation input data. Spending values
+            are processed transiently and discarded immediately after attestation generation.
           </p>
 
-          <p
-            data-i18n="privacy.section5.text2"
-            className="text-gray-700 dark:text-gray-300 leading-relaxed"
-          >
-            Emails and contact messages may be retained for support purposes for up to 12 months
-            and can be deleted upon request.
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+            Emails and support messages may be retained for up to 12 months for operational
+            purposes and can be deleted upon request.
           </p>
         </section>
 
         {/* SECTION 6 */}
         <section>
-          <h2
-            data-i18n="privacy.section6.title"
-            className="text-2xl font-bold text-[#0B3A63] mb-4"
-          >
-            6. Sharing of Information
+          <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
+            6. Data Sharing
           </h2>
 
-          <p
-            data-i18n="privacy.section6.text1"
-            className="text-gray-700 dark:text-gray-300 leading-relaxed"
-          >
-            We never sell or rent personal data. Limited sharing may occur with:
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-3">
+            Certif-Scope does not sell, rent or monetize personal data. Limited data processing
+            may involve:
           </p>
 
-          <ul
-            data-i18n="privacy.section6.list"
-            className="list-disc ml-6 text-gray-700 dark:text-gray-300 space-y-2 mt-3"
-          >
-            <li>hosting infrastructure (Vercel)</li>
-            <li>email processing systems</li>
+          <ul className="list-disc ml-6 text-gray-700 dark:text-gray-300 space-y-2">
+            <li>hosting infrastructure providers</li>
+            <li>email delivery services</li>
           </ul>
 
-          <p
-            data-i18n="privacy.section6.text2"
-            className="text-gray-700 dark:text-gray-300 leading-relaxed mt-4"
-          >
-            All third parties operate under GDPR-compliant agreements.
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed mt-4">
+            All service providers operate under GDPR-compliant data processing agreements.
           </p>
         </section>
 
         {/* SECTION 7 */}
         <section>
-          <h2
-            data-i18n="privacy.section7.title"
-            className="text-2xl font-bold text-[#0B3A63] mb-4"
-          >
-            7. GDPR Rights
+          <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
+            7. Your GDPR Rights
           </h2>
 
-          <p
-            data-i18n="privacy.section7.text1"
-            className="text-gray-700 dark:text-gray-300 leading-relaxed mb-3"
-          >
-            Users have the following GDPR rights:
-          </p>
-
-          <ul
-            data-i18n="privacy.section7.list"
-            className="list-disc ml-6 text-gray-700 dark:text-gray-300 space-y-2"
-          >
-            <li>access</li>
-            <li>rectification</li>
-            <li>erasure</li>
-            <li>portability</li>
-            <li>restriction of processing</li>
-            <li>objection</li>
+          <ul className="list-disc ml-6 text-gray-700 dark:text-gray-300 space-y-2">
+            <li>right of access</li>
+            <li>right to rectification</li>
+            <li>right to erasure</li>
+            <li>right to restriction of processing</li>
+            <li>right to data portability</li>
+            <li>right to object</li>
           </ul>
 
-          <p
-            data-i18n="privacy.section7.text2"
-            className="text-gray-700 dark:text-gray-300 leading-relaxed mt-4"
-          >
-            To exercise your rights, contact:
-            <br />
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed mt-4">
+            To exercise your rights, contact:<br />
             <strong>contact@certif-scope.com</strong>
           </p>
         </section>
 
         {/* SECTION 8 */}
         <section>
-          <h2
-            data-i18n="privacy.section8.title"
-            className="text-2xl font-bold text-[#0B3A63] mb-4"
-          >
+          <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
             8. Security Measures
           </h2>
 
-          <p
-            data-i18n="privacy.section8.text1"
-            className="text-gray-700 dark:text-gray-300 leading-relaxed"
-          >
-            We apply HTTPS, access control, firewall protection and industry-standard security
-            measures to reduce risks of unauthorized access or disclosure.
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+            Certif-Scope applies HTTPS encryption and standard security practices to
+            protect data against unauthorized access or disclosure.
           </p>
         </section>
 
         {/* SECTION 9 */}
         <section>
-          <h2
-            data-i18n="privacy.section9.title"
-            className="text-2xl font-bold text-[#0B3A63] mb-4"
-          >
-            9. Updates to This Policy
+          <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
+            9. Policy Updates
           </h2>
 
-          <p
-            data-i18n="privacy.section9.text1"
-            className="text-gray-700 dark:text-gray-300 leading-relaxed"
-          >
-            This policy may be updated when technical, legal or operational changes apply. Users
-            will be notified in the event of substantial modifications.
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+            This policy may be updated to reflect legal, technical or operational changes.
+            Significant updates will be published on this page.
           </p>
         </section>
 
       </div>
     </div>
   );
-}
+              }
