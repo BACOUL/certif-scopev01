@@ -1,3 +1,5 @@
+import GenerateAttestationButton from "@/components/GenerateAttestationButton";
+
 export const metadata = {
   title: "Pricing — Certif-Scope",
   description:
@@ -70,13 +72,7 @@ export default function PricingPage() {
             <li>• Validity 1 year</li>
           </ul>
 
-          <a
-            href="#assessment"
-            data-i18n="pricing.single.cta"
-            className="bg-[#1FB6C1] hover:bg-[#17a2a8] text-white font-semibold px-10 py-3 rounded-xl shadow-md text-center transition mt-auto"
-          >
-            Generate Attestation
-          </a>
+          <GenerateAttestationButton />
         </div>
 
         {/* PACK 5 */}
@@ -100,13 +96,7 @@ export default function PricingPage() {
             requests.
           </p>
 
-          <a
-            href="#assessment"
-            data-i18n="pricing.pack5.cta"
-            className="bg-[#0B3A63] hover:bg-[#083253] text-white font-semibold px-10 py-3 rounded-xl shadow-md transition mt-auto"
-          >
-            Use Pack
-          </a>
+          <GenerateAttestationButton />
         </div>
 
         {/* PACK 10 */}
@@ -130,13 +120,7 @@ export default function PricingPage() {
             requests.
           </p>
 
-          <a
-            href="#assessment"
-            data-i18n="pricing.pack10.cta"
-            className="bg-[#0B3A63] hover:bg-[#083253] text-white font-semibold px-10 py-3 rounded-xl shadow-md transition mt-auto"
-          >
-            Use Pack
-          </a>
+          <GenerateAttestationButton />
         </div>
 
         {/* PACK 50 */}
@@ -160,13 +144,7 @@ export default function PricingPage() {
             demands.
           </p>
 
-          <a
-            href="#assessment"
-            data-i18n="pricing.pack50.cta"
-            className="bg-[#0B3A63] hover:bg-[#083253] text-white font-semibold px-10 py-3 rounded-xl shadow-md transition mt-auto"
-          >
-            Use Pack
-          </a>
+          <GenerateAttestationButton />
         </div>
 
         {/* ENTERPRISE BLOCK */}
@@ -206,4 +184,4 @@ export default function PricingPage() {
       </p>
     </section>
   );
-        }
+            }
