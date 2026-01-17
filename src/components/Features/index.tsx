@@ -88,8 +88,9 @@ export default function Features() {
             <div>
               <h3 className="text-lg font-semibold text-[#0B3A63]">Verification & integrity block</h3>
               <p className="text-gray-600 dark:text-gray-300 mt-2 text-sm leading-relaxed">
-                Includes deterministic integrity hash, timestamp, verification ID and offline validation
-                instructions — no stored data, no backend lookup, GDPR-safe by design.
+                Includes built-in verification elements allowing third parties to confirm the
+                authenticity and integrity of the attestation without relying on our servers.
+                No financial data is stored or transmitted.
               </p>
             </div>
           </div>
@@ -119,4 +120,4 @@ export default function Features() {
       </div>
     </section>
   );
-            }
+                }
