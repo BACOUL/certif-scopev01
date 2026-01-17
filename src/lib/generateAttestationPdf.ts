@@ -40,7 +40,9 @@ export async function generateAttestationPdf(
   });
 
   await browser.close();
-  return pdf;
+
+  // ✅ FIX TYPE — Uint8Array → Buffer
+  return Buffer.from(pdf);
 }
 
 /* ---------------- HTML ---------------- */
@@ -175,4 +177,4 @@ function buildHtml(data: AttestationData): string {
 </body>
 </html>
 `;
-    }
+}
