@@ -1,66 +1,66 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
-import { headers } from "next/headers";
-import fs from "fs";
-import path from "path";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 export async function POST(req: Request) {
-  const body = await req.text();
-
-  // ✅ headers() est ASYNC en Next 16
-  const headerList = await headers();
-  const signature = headerList.get("stripe-signature");
-
-  if (!signature) {
-    return new NextResponse("Missing signature", { status: 400 });
-  }
-
-  let event: Stripe.Event;
-
   try {
-    event = stripe.webhooks.constructEvent(
-      body,
-      signature,
-      process.env.STRIPE_WEBHOOK_SECRET!
+    const origin =
+      req.headers.get("origin") ||
+      process.env.NEXT_PUBLIC_BASE_URL ||
+      "http://localhost:3000";
+
+    const body = await req.json();
+
+    const {
+      company,
+      year,
+      country,
+      expenses
+    } = body;
+
+    // ID de brouillon unique (avant attestation)
+    const draftId = `draft_${Date.now()}`;
+
+    const session = await stripe.checkout.sessions.create({
+      mode: "payment",
+
+      // 🔗 CONTEXTE MÉTIER LIÉ AU PAIEMENT
+      metadata: {
+        draftId,
+        companyName: company?.name || "",
+        companyId: company?.id || "",
+        year: String(year),
+        country,
+        expenses: JSON.stringify(expenses)
+      },
+
+      line_items: [
+        {
+          price_data: {
+            currency: "eur",
+            unit_amount: 8900,
+            product_data: {
+              name: "CO₂e Attestation — Certif-Scope",
+              description:
+                "Standardized spend-based CO₂e attestation (PDF)",
+            },
+          },
+          quantity: 1,
+        },
+      ],
+
+      success_url: `${origin}/success`,
+      cancel_url: `${origin}/generate`,
+    });
+
+    return NextResponse.json({ url: session.url });
+
+  } catch (error: any) {
+    console.error("Stripe checkout error:", error);
+    return NextResponse.json(
+      { error: error.message },
+      { status: 500 }
     );
-  } catch (err: any) {
-    console.error("Webhook signature error:", err.message);
-    return new NextResponse("Invalid signature", { status: 400 });
   }
-
-  // 🎯 On traite UNIQUEMENT le paiement confirmé
-  if (event.type === "checkout.session.completed") {
-    const session = event.data.object as Stripe.Checkout.Session;
-
-    const attestationId = `CS-${Date.now()}`;
-
-    const dir = path.join(process.cwd(), "public", "attestations");
-    fs.mkdirSync(dir, { recursive: true });
-
-    const filePath = path.join(dir, `${attestationId}.txt`);
-
-    const content = `
-CERTIF-SCOPE — CO₂e ATTESTATION
-
-Attestation ID: ${attestationId}
-Stripe session: ${session.id}
-Amount paid: ${session.amount_total! / 100} €
-Currency: ${session.currency?.toUpperCase()}
-
-Status: PAID
-Methodology: Spend-based (indicative)
-Audit: NO
-Generated at: ${new Date().toISOString()}
-
-This attestation is generated automatically after payment.
-`;
-
-    fs.writeFileSync(filePath, content.trim());
-
-    console.log("✅ Attestation generated:", attestationId);
-  }
-
-  return NextResponse.json({ received: true });
 }
