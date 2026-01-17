@@ -22,16 +22,18 @@ export default function GenerateAttestationButton() {
 
     const data = await res.json();
 
-    if (data?.pdfBase64) {
-      const blob = new Blob(
-        [Uint8Array.from(atob(data.pdfBase64), c => c.charCodeAt(0))],
-        { type: "application/pdf" }
-      );
-      const url = URL.createObjectURL(blob);
-      window.open(url, "_blank");
-    } else {
+    if (!data?.pdfBase64) {
       alert("PDF generation failed");
+      return;
     }
+
+    const bytes = Uint8Array.from(atob(data.pdfBase64), c =>
+      c.charCodeAt(0)
+    );
+
+    const blob = new Blob([bytes], { type: "application/pdf" });
+    const url = URL.createObjectURL(blob);
+    window.open(url, "_blank");
   };
 
   return (
