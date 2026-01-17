@@ -7,7 +7,7 @@ export default function Section6() {
       data-section="api-and-high-volume-access"
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
-      {/* HEADER BLOCK — same model, muted accent */}
+      {/* HEADER BLOCK — muted institutional accent */}
       <div className="relative p-12 rounded-2xl bg-[#F8FAFC] border border-[#0B3A63]/15 shadow-[0_4px_20px_rgba(0,0,0,0.04)] overflow-hidden">
         <div
           className="absolute inset-0 bg-gradient-to-br from-[#0B3A63]/10 via-[#64748B]/10 to-transparent pointer-events-none"
@@ -26,9 +26,9 @@ export default function Section6() {
           data-i18n="partners.s6.intro"
           className="text-lg text-gray-700 max-w-4xl mt-6 leading-relaxed relative z-10"
         >
-          Certif-Scope is designed to scale beyond manual or low-volume partner usage.
-          High-volume access and API-based generation are planned for organizations
-          requiring automated, large-scale CO₂e attestation workflows.
+          Certif-Scope is designed to scale beyond individual or low-volume usage.
+          A dedicated V2 model is planned for organizations requiring automated,
+          high-volume issuance and verification of CO₂e Attestations.
         </p>
       </div>
 
@@ -45,19 +45,19 @@ export default function Section6() {
             data-i18n="partners.s6.card1.title"
             className="text-xl font-semibold text-[#0B3A63] mb-2"
           >
-            Designed for Large Volumes
+            Institutional & Large-Scale Usage
           </h3>
           <p
             data-i18n="partners.s6.card1.text"
             className="text-gray-600 text-sm leading-relaxed"
           >
-            Intended for banks, insurers, procurement platforms and large groups
-            that must generate hundreds or thousands of attestations as part of
-            automated supplier or client workflows.
+            Designed for banks, insurers, large groups and procurement platforms
+            managing hundreds or thousands of supplier or client attestations
+            through automated workflows.
           </p>
         </div>
 
-        {/* BLOCK 2 — API PRINCIPLES */}
+        {/* BLOCK 2 — TECHNICAL MODEL (V2 ONLY) */}
         <div
           data-i18n="partners.s6.card2.block"
           className="p-8 bg-[#F8FAFC] rounded-xl border border-[#64748B]/30 shadow-md hover:shadow-lg transition-all duration-300"
@@ -67,19 +67,20 @@ export default function Section6() {
             data-i18n="partners.s6.card2.title"
             className="text-xl font-semibold text-[#0B3A63] mb-2"
           >
-            API-First, Stateless Model
+            Cryptographic & API Model (V2)
           </h3>
           <p
             data-i18n="partners.s6.card2.text"
             className="text-gray-600 text-sm leading-relaxed"
           >
-            The future API will follow the same principles as the current system:
-            stateless generation, no data retention, deterministic outputs and
-            independent verification without vendor lock-in.
+            V2 will introduce an API-based model using a dedicated private issuance
+            key and a publicly available verification key. Attestations will rely
+            on an internal SHA-256 integrity mechanism to guarantee immutability
+            and independent verification at scale.
           </p>
         </div>
 
-        {/* BLOCK 3 — STATUS & AVAILABILITY */}
+        {/* BLOCK 3 — CLEAR V1 / V2 SEPARATION */}
         <div
           data-i18n="partners.s6.card3.block"
           className="p-8 bg-white rounded-xl shadow-md border border-gray-200 hover:shadow-lg transition-all duration-300"
@@ -89,21 +90,21 @@ export default function Section6() {
             data-i18n="partners.s6.card3.title"
             className="text-xl font-semibold text-[#0B3A63] mb-2"
           >
-            Planned, Not Active
+            Not Required for V1
           </h3>
           <p
             data-i18n="partners.s6.card3.text"
             className="text-gray-600 text-sm leading-relaxed"
           >
-            API and high-volume access are not enabled in V1.
-            This section exists to document the roadmap direction
-            and to avoid misuse or misinterpretation of current capabilities.
+            These mechanisms are not active in V1 and are not required for standard
+            users or SMEs. The current V1 model remains ID-based, human-readable
+            and intentionally non-technical.
           </p>
         </div>
 
       </div>
 
-      {/* ROADMAP NOTE */}
+      {/* ROADMAP & BOUNDARIES */}
       <div
         data-i18n="partners.s6.roadmap.block"
         className="mt-20 p-10 bg-white rounded-xl border border-gray-200 shadow-md"
@@ -112,17 +113,18 @@ export default function Section6() {
           data-i18n="partners.s6.roadmap.title"
           className="text-xl font-bold text-[#0B3A63] mb-4"
         >
-          Roadmap Transparency
+          Roadmap Transparency & Scope
         </h3>
 
         <p
           data-i18n="partners.s6.roadmap.text"
           className="text-gray-700 text-sm leading-relaxed max-w-4xl"
         >
-          Until API access is officially released, all partner usage relies on
-          prepaid keys and manual generation. No guarantees are made regarding
-          timelines or feature scope. This transparency ensures clear contractual
-          and operational boundaries.
+          API access, cryptographic verification keys and automated batch workflows
+          are planned for a future V2 release. No timelines or guarantees are
+          implied. This section exists solely to document the intended evolution
+          for institutional partners and to prevent any ambiguity regarding the
+          current V1 scope.
         </p>
       </div>
 
