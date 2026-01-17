@@ -48,7 +48,7 @@ export default function Hero() {
         <Image
           itemProp="primaryImageOfPage"
           src="/hero-attestation.webp"
-          alt="Preview of the standardized CO₂e Attestation issued by Certif-Scope for SMEs, including verification ID and cryptographic hash."
+          alt="Preview of the standardized CO₂e Attestation issued by Certif-Scope for SMEs, including built-in verification information."
           width={900}
           height={600}
           priority
@@ -60,7 +60,7 @@ export default function Hero() {
         className="text-sm text-[#0B3A63]/80 font-medium mt-6"
         data-i18n="hero.verify"
       >
-        Verified offline in seconds.
+        Verifiable independently by third parties.
       </p>
 
       <div className="flex flex-col md:flex-row justify-center gap-6 mt-12">
@@ -100,7 +100,7 @@ export default function Hero() {
               "@type": "Product",
               name: "CO₂e Attestation",
               description:
-                "Standardized spend-based CO₂e attestation with verification ID and offline validation.",
+                "Standardized spend-based CO₂e attestation including built-in verification information.",
               offers: {
                 "@type": "Offer",
                 url: "https://certif-scope.com/pricing",
