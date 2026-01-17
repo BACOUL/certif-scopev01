@@ -3,33 +3,36 @@
 import { useEffect, useState } from "react";
 
 export default function SuccessPage() {
-  const [attestationId, setAttestationId] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [status, setStatus] = useState<"loading" | "pending" | "ready">("loading");
+  const [attestationUrl, setAttestationUrl] = useState<string | null>(null);
 
   useEffect(() => {
-    async function fetchLatest() {
+    const checkStatus = async () => {
       try {
-        const res = await fetch("/attestations/latest.json", {
+        const res = await fetch("/api/attestation/status", {
           cache: "no-store",
         });
-
-        if (!res.ok) throw new Error("Not ready");
-
         const data = await res.json();
-        setAttestationId(data.attestationId);
-      } catch {
-        setAttestationId(null);
-      } finally {
-        setLoading(false);
-      }
-    }
 
-    fetchLatest();
+        if (data.status === "ready") {
+          setStatus("ready");
+          setAttestationUrl(data.url);
+        } else {
+          setStatus("pending");
+        }
+      } catch {
+        setStatus("pending");
+      }
+    };
+
+    checkStatus();
+    const interval = setInterval(checkStatus, 3000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
-    <main className="min-h-screen bg-[#F8FAFC] px-6 pt-20">
-      <section className="max-w-xl mx-auto bg-white border border-gray-200 rounded-2xl shadow-sm p-10 text-center space-y-8">
+    <main className="min-h-screen bg-[#F8FAFC] flex items-start justify-center px-6 pt-24">
+      <section className="max-w-xl w-full bg-white border border-gray-200 rounded-2xl shadow-sm p-10 text-center space-y-6">
 
         <h1 className="text-3xl font-extrabold text-[#0B3A63]">
           Payment successful
@@ -41,34 +44,23 @@ export default function SuccessPage() {
           Your CO₂e attestation has been generated.
         </p>
 
-        {loading && (
-          <p className="text-sm text-gray-500">
-            Checking attestation status…
-          </p>
-        )}
-
-        {!loading && attestationId && (
-          <div className="space-y-3">
-            <a
-              href={`/attestations/${attestationId}.txt`}
-              target="_blank"
-              className="inline-block w-full bg-[#15B097] hover:bg-[#129c85] text-white font-semibold px-6 py-4 rounded-xl transition"
-            >
-              Download your attestation
-            </a>
-
-            <p className="text-xs text-gray-500">
-              Attestation ID: {attestationId}
-            </p>
-          </div>
-        )}
-
-        {!loading && !attestationId && (
-          <p className="text-sm text-red-600">
+        {status !== "ready" && (
+          <p className="text-red-600 font-medium">
             Your attestation is not available yet.
             <br />
             Please refresh this page in a few seconds.
           </p>
+        )}
+
+        {status === "ready" && attestationUrl && (
+          <div className="pt-4">
+            <a
+              href={attestationUrl}
+              className="inline-block bg-[#15B097] hover:bg-[#10907c] text-white font-semibold px-8 py-3 rounded-xl transition"
+            >
+              View my attestation
+            </a>
+          </div>
         )}
 
         <div className="pt-6">
