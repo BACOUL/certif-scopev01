@@ -65,8 +65,9 @@ export default function Hero() {
 
       <div className="flex flex-col md:flex-row justify-center gap-6 mt-12">
 
+        {/* CTA — MODIFIED */}
         <Link
-          href="/pricing"
+          href="/generate"
           itemProp="url"
           aria-label="Generate CO₂e Attestation"
           data-i18n="hero.cta.generate"
@@ -114,4 +115,4 @@ export default function Hero() {
       />
     </section>
   );
-}
+        }
