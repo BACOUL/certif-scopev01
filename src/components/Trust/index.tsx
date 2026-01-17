@@ -30,8 +30,8 @@ export default function Trust() {
           className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed mb-16"
           data-i18n="trust.intro"
         >
-          Certif-Scope applies a fixed structure, stable emission factor versions and embedded
-          verification metadata. Reviewers receive a consistent, reproducible and comparable
+          Certif-Scope applies a fixed structure, stable emission factor versions and built-in
+          verification information. Reviewers receive a consistent, reproducible and comparable
           document across all suppliers — reducing checks and eliminating ambiguity.
         </p>
 
@@ -59,9 +59,9 @@ export default function Trust() {
             </h3>
 
             <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Each Attestation embeds a verification ID and a deterministic hash of all inputs.
-              Partners validate the document offline in seconds without accounts, databases or
-              any stored information.
+              Each Attestation includes built-in verification elements allowing partners to confirm
+              authenticity and integrity independently, without relying on user accounts, databases
+              or stored financial information.
             </p>
           </div>
 
