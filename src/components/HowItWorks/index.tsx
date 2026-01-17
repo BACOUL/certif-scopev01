@@ -68,7 +68,7 @@ export default function HowItWorks() {
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
               Instantly receive a structured PDF including total CO₂e, category breakdown and
-              verification metadata.
+              built-in verification information.
             </p>
           </div>
 
@@ -96,4 +96,4 @@ export default function HowItWorks() {
       </div>
     </section>
   );
-        }
+}
