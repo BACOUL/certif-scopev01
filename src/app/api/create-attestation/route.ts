@@ -4,32 +4,15 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
 
-    const pdfServiceUrl = process.env.CERTIF_SCOPE_PDF_URL;
-    if (!pdfServiceUrl) {
-      return NextResponse.json(
-        { error: "PDF service URL not configured" },
-        { status: 500 }
-      );
-    }
+    // MOCK TEMPORAIRE POUR VALIDER LE PIPELINE
+    // (on vérifiera Puppeteer après)
+    const fakePdfBase64 =
+      "JVBERi0xLjQKJcfsj6IKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyA+PgplbmRvYmoK";
 
-    const res = await fetch(`${pdfServiceUrl}/api/attestation`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
+    return NextResponse.json({
+      id: "demo-attestation",
+      pdfBase64: fakePdfBase64,
     });
-
-    if (!res.ok) {
-      const err = await res.text();
-      return NextResponse.json(
-        { error: "PDF service error", details: err },
-        { status: 500 }
-      );
-    }
-
-    const data = await res.json();
-    return NextResponse.json(data);
   } catch (err: any) {
     return NextResponse.json(
       { error: "Internal error", message: err?.message },
