@@ -10,8 +10,30 @@ export async function POST(req: Request) {
       process.env.NEXT_PUBLIC_BASE_URL ||
       "http://localhost:3000";
 
+    const body = await req.json();
+
+    const {
+      company,
+      year,
+      country,
+      expenses
+    } = body;
+
+    // ID de brouillon unique (avant attestation)
+    const draftId = `draft_${Date.now()}`;
+
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
+
+      // 🔗 CONTEXTE MÉTIER LIÉ AU PAIEMENT
+      metadata: {
+        draftId,
+        companyName: company?.name || "",
+        companyId: company?.id || "",
+        year: String(year),
+        country,
+        expenses: JSON.stringify(expenses)
+      },
 
       line_items: [
         {
@@ -33,6 +55,7 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json({ url: session.url });
+
   } catch (error: any) {
     console.error("Stripe checkout error:", error);
     return NextResponse.json(
