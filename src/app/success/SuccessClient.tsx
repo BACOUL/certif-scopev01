@@ -58,12 +58,20 @@ export default function SuccessClient() {
       </p>
 
       {status === "idle" && (
-        <button
-          onClick={download}
-          className="bg-[#0B3A63] hover:bg-[#092f50] text-white font-semibold px-8 py-3 rounded-xl transition"
-        >
-          Download your attestation (PDF)
-        </button>
+        <>
+          <p className="text-sm text-gray-500">
+            This attestation can only be downloaded once.
+            <br />
+            Please save it immediately after download.
+          </p>
+
+          <button
+            onClick={download}
+            className="bg-[#0B3A63] hover:bg-[#092f50] text-white font-semibold px-8 py-3 rounded-xl transition"
+          >
+            Download your attestation (PDF)
+          </button>
+        </>
       )}
 
       {status === "loading" && (
@@ -91,7 +99,7 @@ export default function SuccessClient() {
       <div className="text-sm text-gray-500 pt-4 leading-relaxed">
         No data is stored.
         <br />
-        Please save your attestation after download.
+        Certif-Scope does not keep a copy of your attestation.
       </div>
 
       <div className="pt-4">
@@ -104,4 +112,4 @@ export default function SuccessClient() {
       </div>
     </section>
   );
-}
+          }
