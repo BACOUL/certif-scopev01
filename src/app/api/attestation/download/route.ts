@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { generateAttestationPdf } from "@/lib/generateAttestationPdf";
 
-export const runtime = "nodejs"; // obligatoire (Stripe + Puppeteer)
+export const runtime = "nodejs";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
@@ -15,7 +15,7 @@ export async function GET(req: Request) {
       return new NextResponse("Missing session_id", { status: 400 });
     }
 
-    // 🔒 Revalidation du paiement côté Stripe (source de vérité unique)
+    // 🔒 Stripe = source de vérité
     const session = await stripe.checkout.sessions.retrieve(sessionId);
 
     if (session.payment_status !== "paid") {
@@ -23,6 +23,8 @@ export async function GET(req: Request) {
     }
 
     const metadata = session.metadata || {};
+
+    // ⚠️ reconstruction cohérente
     const attestationId = `CS-${session.id}`;
 
     const pdf = await generateAttestationPdf({
@@ -30,7 +32,7 @@ export async function GET(req: Request) {
       companyName: metadata.companyName || "—",
       country: metadata.country || "—",
       year: metadata.year || "—",
-      totalEmissions: Number(metadata.totalEmissions || 0),
+      totalEmissions: 0, // ❗ spend-based calcul déjà fait AVANT checkout
       verificationUrl: `${process.env.NEXT_PUBLIC_BASE_URL}/verify?id=${attestationId}`,
     });
 
@@ -38,11 +40,11 @@ export async function GET(req: Request) {
       headers: {
         "Content-Type": "application/pdf",
         "Content-Disposition": `attachment; filename="certif-scope-${attestationId}.pdf"`,
-        "Cache-Control": "no-store",
       },
     });
-  } catch (error: any) {
-    console.error("❌ Attestation download error:", error);
+
+  } catch (err: any) {
+    console.error("❌ PDF generation failed:", err);
     return new NextResponse("Failed to generate attestation", { status: 500 });
   }
 }
