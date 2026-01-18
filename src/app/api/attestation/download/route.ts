@@ -5,12 +5,13 @@ import { AttestationPdf } from "@/lib/AttestationPdf";
 
 export const runtime = "nodejs";
 
+// Stripe = source de vérité unique
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 export async function GET(req: Request) {
   try {
     // ─────────────────────────────────────────────
-    // 1. Lecture du session_id depuis l’URL
+    // 1. Lecture du session_id
     // ─────────────────────────────────────────────
     const { searchParams } = new URL(req.url);
     const sessionId = searchParams.get("session_id");
@@ -20,7 +21,7 @@ export async function GET(req: Request) {
     }
 
     // ─────────────────────────────────────────────
-    // 2. Stripe = source de vérité absolue
+    // 2. Stripe = vérité absolue du paiement
     // ─────────────────────────────────────────────
     const session = await stripe.checkout.sessions.retrieve(sessionId);
 
@@ -29,13 +30,18 @@ export async function GET(req: Request) {
     }
 
     // ─────────────────────────────────────────────
-    // 3. Reconstruction déterministe (sans stockage)
+    // 3. Reconstruction déterministe (stateless)
     // ─────────────────────────────────────────────
     const metadata = session.metadata || {};
     const attestationId = `CS-${session.id}`;
 
-    const verificationUrl =
-      `${process.env.NEXT_PUBLIC_BASE_URL}/verify?id=${attestationId}`;
+    // ORIGIN fiable (preview + prod + custom domain)
+    const origin = req.headers.get("origin");
+    if (!origin) {
+      return new Response("Missing origin header", { status: 400 });
+    }
+
+    const verificationUrl = `${origin}/verify?id=${attestationId}`;
 
     // QR code généré à la volée (aucune persistance)
     const qrDataUrl = await QRCode.toDataURL(verificationUrl, {
@@ -44,7 +50,7 @@ export async function GET(req: Request) {
     });
 
     // ─────────────────────────────────────────────
-    // 4. Génération du document PDF
+    // 4. Génération du PDF
     // ─────────────────────────────────────────────
     const doc = AttestationPdf({
       attestationId,
@@ -58,7 +64,7 @@ export async function GET(req: Request) {
     const buffer = await pdf(doc).toBuffer();
 
     // ─────────────────────────────────────────────
-    // 5. Réponse HTTP CORRECTE (pas NextResponse)
+    // 5. Réponse HTTP (PDF téléchargeable)
     // ─────────────────────────────────────────────
     return new Response(buffer as any, {
       headers: {
