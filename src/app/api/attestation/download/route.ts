@@ -50,7 +50,6 @@ export async function GET(req: Request) {
 
     // ─────────────────────────────────────────────
     // 3. Reconstruction déterministe (stateless)
-    //    → calcul déjà fait côté client
     // ─────────────────────────────────────────────
     const metadata = session.metadata || {};
     const attestationId = `CS-${session.id}`;
@@ -59,7 +58,9 @@ export async function GET(req: Request) {
     const country = metadata.country || "—";
     const year = metadata.year || "—";
 
-    const totalCO2e = String(metadata.totalCO2e || "—");
+    // ✅ NORMALISATION STRICTE
+    const totalCO2e = Number(metadata.totalCO2e ?? 0);
+
     const methodology =
       metadata.methodology || "Spend-based deterministic estimation";
 
@@ -84,8 +85,6 @@ export async function GET(req: Request) {
     });
 
     const draftOutput = await pdf(draftDoc).toBuffer();
-
-    // ⚠️ Normalisation CRITIQUE
     const draftBuffer = Buffer.isBuffer(draftOutput)
       ? draftOutput
       : Buffer.from(draftOutput);
@@ -141,4 +140,4 @@ export async function GET(req: Request) {
     console.error("❌ Attestation PDF error:", err);
     return new Response("Failed to generate attestation", { status: 500 });
   }
-      }
+}
