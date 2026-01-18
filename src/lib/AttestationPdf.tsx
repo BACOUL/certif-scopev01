@@ -8,11 +8,11 @@ import {
 } from "@react-pdf/renderer";
 
 /* ======================================================
-   LOGO — BASE64 (logo1.png)
+   LOGO — BASE64 (logo.png)
    → intégré directement, robuste Vercel / API / PDF
 ====================================================== */
 const LOGO_DATA_URL =
-  "data:image/png;base64,REPLACE_THIS_WITH_BASE64_OF_logo1_png";
+  "data:image/png;base64,REPLACE_THIS_WITH_BASE64_OF_logo_png";
 
 /* ======================================================
    STYLES — CANON INSTITUTIONNEL
@@ -266,4 +266,4 @@ export function AttestationPdf({
 
     </Document>
   );
-  }
+        }
