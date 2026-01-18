@@ -41,8 +41,8 @@ const styles = StyleSheet.create({
 
   logo: {
     height: 32,
-    width: 140,          // ← dimension stable
-    objectFit: "contain" // ← pas de déformation
+    width: 140,
+    objectFit: "contain",
   },
 
   qr: {
@@ -266,4 +266,4 @@ export function AttestationPdf({
 
     </Document>
   );
-      }
+  }
