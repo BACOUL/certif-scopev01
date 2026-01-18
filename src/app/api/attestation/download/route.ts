@@ -2,9 +2,6 @@ import Stripe from "stripe";
 import { pdf } from "@react-pdf/renderer";
 import QRCode from "qrcode";
 import crypto from "crypto";
-import { Readable } from "stream";
-import fs from "fs";
-import path from "path";
 import { AttestationPdf } from "@/lib/AttestationPdf";
 
 export const runtime = "nodejs";
@@ -12,7 +9,7 @@ export const runtime = "nodejs";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 /**
- * Détermination robuste de l’URL de base
+ * Détermination robuste de l’URL de base (Vercel / prod / local)
  */
 function getBaseUrl(req: Request): string {
   const proto = req.headers.get("x-forwarded-proto");
@@ -29,18 +26,10 @@ function getBaseUrl(req: Request): string {
   throw new Error("Unable to determine base URL");
 }
 
-/**
- * Logo Certif-Scope (chargé UNE FOIS)
- */
-const logoPath = path.join(process.cwd(), "public/logo.png");
-const logoDataUrl = `data:image/png;base64,${fs
-  .readFileSync(logoPath)
-  .toString("base64")}`;
-
 export async function GET(req: Request) {
   try {
     // ─────────────────────────────────────────────
-    // 1. Lecture du session_id
+    // 1. session_id
     // ─────────────────────────────────────────────
     const { searchParams } = new URL(req.url);
     const sessionId = searchParams.get("session_id");
@@ -50,7 +39,7 @@ export async function GET(req: Request) {
     }
 
     // ─────────────────────────────────────────────
-    // 2. Stripe = vérité absolue
+    // 2. Stripe = source de vérité
     // ─────────────────────────────────────────────
     const session = await stripe.checkout.sessions.retrieve(sessionId);
 
@@ -59,7 +48,7 @@ export async function GET(req: Request) {
     }
 
     // ─────────────────────────────────────────────
-    // 3. Reconstruction déterministe
+    // 3. Données reconstruites (stateless)
     // ─────────────────────────────────────────────
     const metadata = session.metadata || {};
     const attestationId = `CS-${session.id}`;
@@ -74,29 +63,29 @@ export async function GET(req: Request) {
 
     const baseUrl = getBaseUrl(req);
 
-    // QR temporaire (obligatoire pour le hash)
+    // QR factice pour la première passe
     const dummyQr =
       "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+X2ZkAAAAASUVORK5CYII=";
 
     // ─────────────────────────────────────────────
-    // 4. PDF — PREMIÈRE PASSE (hash)
+    // 4. PDF – première passe (pour le hash)
     // ─────────────────────────────────────────────
     const draftDoc = AttestationPdf({
       attestationId,
       companyName,
       country,
       year,
-      qrDataUrl: dummyQr,
-      logoDataUrl,
       totalCO2e,
       methodology,
+      qrDataUrl: dummyQr,
       hash: "",
     });
 
-    const draftBuffer = (await pdf(draftDoc).toBuffer()) as Buffer;
+    const draftUint8 = await pdf(draftDoc).toBuffer();
+    const draftBuffer = Buffer.from(draftUint8 as unknown as Uint8Array);
 
     // ─────────────────────────────────────────────
-    // 5. Hash cryptographique
+    // 5. Hash SHA-256
     // ─────────────────────────────────────────────
     const hash = crypto
       .createHash("sha256")
@@ -114,28 +103,26 @@ export async function GET(req: Request) {
     });
 
     // ─────────────────────────────────────────────
-    // 7. PDF FINAL
+    // 7. PDF final figé
     // ─────────────────────────────────────────────
     const finalDoc = AttestationPdf({
       attestationId,
       companyName,
       country,
       year,
-      qrDataUrl,
-      logoDataUrl,
       totalCO2e,
       methodology,
       hash,
+      qrDataUrl,
     });
 
-    const finalBuffer = (await pdf(finalDoc).toBuffer()) as Buffer;
-
-    const stream = Readable.from(finalBuffer);
+    const finalUint8 = await pdf(finalDoc).toBuffer();
+    const finalBuffer = Buffer.from(finalUint8 as unknown as Uint8Array);
 
     // ─────────────────────────────────────────────
     // 8. Réponse HTTP
     // ─────────────────────────────────────────────
-    return new Response(stream as any, {
+    return new Response(finalBuffer, {
       headers: {
         "Content-Type": "application/pdf",
         "Content-Disposition": `attachment; filename="certif-scope-${attestationId}.pdf"`,
@@ -146,4 +133,4 @@ export async function GET(req: Request) {
     console.error("❌ Attestation PDF error:", err);
     return new Response("Failed to generate attestation", { status: 500 });
   }
-      }
+}
