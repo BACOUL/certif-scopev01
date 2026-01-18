@@ -3,47 +3,63 @@ export const runtime = "nodejs";
 import { renderPdfHtml } from "./template";
 
 export async function POST(req: Request) {
+  try {
+    // 1️⃣ Vérification clé API (OBLIGATOIRE)
+    if (!process.env.PDFSHIFT_API_KEY) {
+      return new Response("PDFSHIFT_API_KEY missing", { status: 500 });
+    }
 
-  // 🔴 TEST OBLIGATOIRE
-  if (!process.env.PDFSHIFT_API_KEY) {
-    return new Response("PDFSHIFT_API_KEY missing", { status: 500 });
-  }
+    // 2️⃣ Lecture payload
+    const data = await req.json();
 
-  const data = await req.json();
-  const html = renderPdfHtml(data);
+    // 3️⃣ Génération HTML
+    const html = renderPdfHtml(data);
 
-  const response = await fetch("https://api.pdfshift.io/v3/convert/pdf", {
-    method: "POST",
-    headers: {
-      Authorization:
-        "Basic " +
-        Buffer.from(`${process.env.PDFSHIFT_API_KEY}:`).toString("base64"),
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      source: html,
-      format: "A4",
-      margin: {
-        top: "24mm",
-        right: "20mm",
-        bottom: "24mm",
-        left: "20mm",
+    // 4️⃣ Appel PDFShift
+    const response = await fetch("https://api.pdfshift.io/v3/convert/pdf", {
+      method: "POST",
+      headers: {
+        Authorization:
+          "Basic " +
+          Buffer.from(`${process.env.PDFSHIFT_API_KEY}:`).toString("base64"),
+        "Content-Type": "application/json",
       },
-      print_background: true,
-    }),
-  });
+      body: JSON.stringify({
+        source: html,
+        format: "A4",
+        print_background: true,
+        margin: {
+          top: "24mm",
+          right: "20mm",
+          bottom: "24mm",
+          left: "20mm",
+        },
+      }),
+    });
 
-  if (!response.ok) {
-    const error = await response.text();
-    return new Response(error, { status: 500 });
+    // 5️⃣ Erreur PDFShift explicite
+    if (!response.ok) {
+      const errorText = await response.text();
+      return new Response(
+        `PDFSHIFT_ERROR:\n${errorText}`,
+        { status: 500 }
+      );
+    }
+
+    // 6️⃣ Retour PDF
+    const pdfBuffer = await response.arrayBuffer();
+
+    return new Response(pdfBuffer, {
+      headers: {
+        "Content-Type": "application/pdf",
+        "Content-Disposition": "attachment; filename=certif-scope-test.pdf",
+      },
+    });
+  } catch (err: any) {
+    // 7️⃣ Catch ultime (forcé)
+    return new Response(
+      `UNHANDLED_ERROR:\n${err?.message || String(err)}`,
+      { status: 500 }
+    );
   }
-
-  const pdfBuffer = await response.arrayBuffer();
-
-  return new Response(pdfBuffer, {
-    headers: {
-      "Content-Type": "application/pdf",
-      "Content-Disposition": "attachment; filename=certif-scope.pdf",
-    },
-  });
 }
