@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 export default function VerifyPage() {
   const [id, setId] = useState("");
-  const [result, setResult] = useState<null | { valid: boolean; item?: any }>(null);
+  const [result, setResult] = useState<null | { valid: boolean }>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -21,75 +21,82 @@ export default function VerifyPage() {
     }
   }, []);
 
-  function resetErrors() {
+  function resetState() {
     setError("");
     setResult(null);
   }
 
   async function verify(customId?: string) {
-    resetErrors();
+    resetState();
     setLoading(true);
 
     const finalId = (customId || id).trim();
 
-    // Basic validation
-    if (finalId.length < 10) {
-      setError("Invalid attestation ID.");
+    // Strict canonical format validation
+    if (!/^CS-[A-Za-z0-9_-]+$/.test(finalId)) {
+      setError("Invalid attestation ID format.");
       setLoading(false);
       return;
     }
 
     try {
-      const endpoint = `/api/verify?id=${encodeURIComponent(finalId)}`;
-      const res = await fetch(endpoint);
+      const res = await fetch(
+        `/api/verify?id=${encodeURIComponent(finalId)}`
+      );
+
+      if (!res.ok) {
+        throw new Error("Verification service unavailable");
+      }
+
       const data = await res.json();
 
-      if (!data || typeof data.valid === "undefined") {
-        setError("Unexpected response from verification service.");
-      } else {
-        setResult(data);
+      if (typeof data.valid !== "boolean") {
+        throw new Error("Unexpected verification response");
       }
+
+      setResult({ valid: data.valid });
     } catch (err) {
-      setError("Unable to verify attestation. Please try again later.");
+      setError(
+        "Unable to verify this attestation at the moment. Please try again later."
+      );
     }
 
     setLoading(false);
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-6 pt-8 pb-24">
+    <div className="max-w-6xl mx-auto px-6 pt-10 pb-24">
       {/* HEADER */}
-      <div className="w-full mb-12">
+      <header className="mb-12">
         <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-4">
           Verify Attestation
         </h1>
 
-        <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed max-w-2xl">
-          Enter the Attestation ID to confirm that this CO₂e Attestation is valid
-          and has been issued by Certif-Scope.
+        <p className="text-lg text-gray-700 leading-relaxed max-w-2xl">
+          Confirm that an attestation exists and was issued by Certif-Scope.
         </p>
-      </div>
+      </header>
 
       {/* FORM */}
-      <div className="grid grid-cols-1 gap-6 mb-10 max-w-xl">
-        <div>
-          <label className="block mb-2 font-medium">Attestation ID</label>
-          <input
-            className="w-full p-3 border rounded-md bg-white dark:bg-gray-800 dark:border-gray-700"
-            placeholder="e.g. CS-ATTEST-2026-000123"
-            value={id}
-            onChange={(e) => setId(e.target.value)}
-            onFocus={resetErrors}
-          />
-        </div>
-      </div>
+      <section className="max-w-xl mb-10">
+        <label className="block mb-2 font-medium text-gray-800">
+          Attestation ID
+        </label>
+        <input
+          className="w-full p-3 border rounded-md bg-white border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0B3A63]"
+          placeholder="e.g. CS-XXXXXXX"
+          value={id}
+          onChange={(e) => setId(e.target.value)}
+          onFocus={resetState}
+        />
+      </section>
 
       <button
         onClick={() => verify()}
         disabled={loading}
         className="px-6 py-3 bg-[#0B3A63] text-white rounded-lg hover:bg-[#094366] disabled:opacity-50"
       >
-        {loading ? "Verifying..." : "Verify"}
+        {loading ? "Verifying…" : "Verify"}
       </button>
 
       {/* RESULTS */}
@@ -98,32 +105,26 @@ export default function VerifyPage() {
       )}
 
       {result && (
-        <div className="mt-10 p-6 border rounded-md bg-[#F8FAFC] dark:bg-gray-800 dark:border-gray-700">
+        <div className="mt-10 p-6 border rounded-md bg-[#F8FAFC] border-gray-300">
           {result.valid ? (
-            <div>
-              <h3 className="text-xl font-bold text-green-600 mb-3">
-                ✔ Attestation is valid
+            <>
+              <h3 className="text-xl font-bold text-green-700 mb-3">
+                ✔ Attestation found
               </h3>
-              <p className="text-gray-600 dark:text-gray-300">
-                This attestation ID corresponds to a valid CO₂e Attestation
-                issued by Certif-Scope.
+              <p className="text-gray-700">
+                This attestation exists and was issued by Certif-Scope.
               </p>
-
-              {result.item && (
-                <pre className="mt-6 bg-gray-900 text-white p-4 rounded-md overflow-x-auto text-sm">
-                  {JSON.stringify(result.item, null, 2)}
-                </pre>
-              )}
-            </div>
+            </>
           ) : (
-            <div>
-              <h3 className="text-xl font-bold text-red-600 mb-3">
-                ✘ Invalid attestation
+            <>
+              <h3 className="text-xl font-bold text-red-700 mb-3">
+                ✘ Attestation not found
               </h3>
-              <p className="text-gray-600 dark:text-gray-300">
-                This attestation ID is unknown or not valid.
+              <p className="text-gray-700">
+                The provided Attestation ID does not correspond to an issued
+                attestation.
               </p>
-            </div>
+            </>
           )}
         </div>
       )}
