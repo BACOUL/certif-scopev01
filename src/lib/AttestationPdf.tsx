@@ -125,7 +125,7 @@ export function AttestationPdf({
   country: string;
   year: string;
   qrDataUrl: string;
-  logoDataUrl: string;
+  logoDataUrl?: string; // ✅ CORRECTION CRITIQUE
 
   totalCO2e: number;
   methodology: string;
@@ -142,7 +142,9 @@ export function AttestationPdf({
         {/* AUTORITÉ ÉMETTRICE */}
         <View style={styles.header}>
           <View style={styles.logoBlock}>
-            <Image src={logoDataUrl} style={styles.logo} />
+            {logoDataUrl && (
+              <Image src={logoDataUrl} style={styles.logo} />
+            )}
             <View style={styles.authorityBlock}>
               <Text style={styles.authorityName}>Certif-Scope</Text>
               <Text style={styles.authorityRole}>
@@ -260,4 +262,4 @@ export function AttestationPdf({
 
     </Document>
   );
-}
+  }
