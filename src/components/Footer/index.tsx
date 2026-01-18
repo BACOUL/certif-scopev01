@@ -25,7 +25,10 @@ export default function Footer() {
 
           {/* BRANDING */}
           <div>
-            <h2 data-i18n="footer.brand" className="text-xl font-bold text-[#0B3A63] dark:text-gray-100 mb-4">
+            <h2
+              data-i18n="footer.brand"
+              className="text-xl font-bold text-[#0B3A63] dark:text-gray-100 mb-4"
+            >
               Certif-Scope
             </h2>
 
@@ -40,7 +43,10 @@ export default function Footer() {
 
           {/* PRODUCT */}
           <nav aria-label="Product navigation">
-            <h3 data-i18n="footer.product" className="text-lg font-semibold text-[#0B3A63] dark:text-gray-100 mb-4">
+            <h3
+              data-i18n="footer.product"
+              className="text-lg font-semibold text-[#0B3A63] dark:text-gray-100 mb-4"
+            >
               Product
             </h3>
 
@@ -55,7 +61,10 @@ export default function Footer() {
 
           {/* COMPANY */}
           <nav aria-label="Company navigation">
-            <h3 data-i18n="footer.company" className="text-lg font-semibold text-[#0B3A63] dark:text-gray-100 mb-4">
+            <h3
+              data-i18n="footer.company"
+              className="text-lg font-semibold text-[#0B3A63] dark:text-gray-100 mb-4"
+            >
               Company
             </h3>
 
@@ -68,7 +77,10 @@ export default function Footer() {
 
           {/* LEGAL */}
           <nav aria-label="Legal navigation">
-            <h3 data-i18n="footer.legal" className="text-lg font-semibold text-[#0B3A63] dark:text-gray-100 mb-4">
+            <h3
+              data-i18n="footer.legal"
+              className="text-lg font-semibold text-[#0B3A63] dark:text-gray-100 mb-4"
+            >
               Legal
             </h3>
 
@@ -81,6 +93,44 @@ export default function Footer() {
             </ul>
           </nav>
 
+        </div>
+
+        {/* TEST PDF BUTTON – TEMPORAIRE */}
+        <div className="mt-12 flex justify-center">
+          <button
+            className="px-4 py-2 text-sm border border-gray-400 dark:border-gray-500 rounded text-gray-700 dark:text-gray-300"
+            onClick={async () => {
+              const res = await fetch("/api/generate-pdf", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  company_name: "TEST COMPANY",
+                  company_identifier: "TEST-ID",
+                  country: "FR",
+                  period: "2024",
+                  emissions_value: "1.23",
+                  attestation_id: "TEST-001",
+                  generated_at: new Date().toISOString(),
+                  document_hash: "test"
+                })
+              });
+
+              if (!res.ok) {
+                alert("Erreur génération PDF");
+                return;
+              }
+
+              const blob = await res.blob();
+              const url = URL.createObjectURL(blob);
+              const a = document.createElement("a");
+              a.href = url;
+              a.download = "test.pdf";
+              a.click();
+              URL.revokeObjectURL(url);
+            }}
+          >
+            TEST PDF (nouveau moteur)
+          </button>
         </div>
 
         {/* DISCLAIMER */}
@@ -123,10 +173,10 @@ export default function Footer() {
                 contactType: "customer support",
                 email: "contact@certif-scope.com"
               }]
-            }),
+            })
           }}
         />
       </div>
     </footer>
   );
-          }
+      }
