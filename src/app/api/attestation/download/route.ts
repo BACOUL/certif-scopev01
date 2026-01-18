@@ -2,19 +2,20 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { generateAttestationPdf } from "@/lib/generateAttestationPdf";
 
-export const runtime = "nodejs"; // obligatoire (Stripe + Puppeteer)
+export const runtime = "nodejs";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
-export async function POST(req: Request) {
+export async function GET(req: Request) {
   try {
-    const { sessionId } = await req.json();
+    const { searchParams } = new URL(req.url);
+    const sessionId = searchParams.get("session_id");
 
     if (!sessionId) {
-      return new NextResponse("Missing sessionId", { status: 400 });
+      return new NextResponse("Missing session_id", { status: 400 });
     }
 
-    // 🔒 Stripe = source de vérité absolue
+    // 🔒 Stripe = source de vérité
     const session = await stripe.checkout.sessions.retrieve(sessionId);
 
     if (session.payment_status !== "paid") {
@@ -22,11 +23,8 @@ export async function POST(req: Request) {
     }
 
     const metadata = session.metadata || {};
-
-    // ID déterministe, reproductible, sans stockage
     const attestationId = `CS-${session.id}`;
 
-    // ⚠️ aucune donnée sensible stockée
     const pdf = await generateAttestationPdf({
       attestationId,
       companyName: metadata.companyName || "—",
@@ -43,8 +41,7 @@ export async function POST(req: Request) {
         "Cache-Control": "no-store",
       },
     });
-
-  } catch (err: any) {
+  } catch (err) {
     console.error("❌ Attestation download failed:", err);
     return new NextResponse("Failed to generate attestation", { status: 500 });
   }
