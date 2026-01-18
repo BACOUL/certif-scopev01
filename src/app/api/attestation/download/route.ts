@@ -2,8 +2,6 @@ import Stripe from "stripe";
 import { pdf } from "@react-pdf/renderer";
 import QRCode from "qrcode";
 import crypto from "crypto";
-import fs from "fs";
-import path from "path";
 import { Readable } from "stream";
 import { AttestationPdf } from "@/lib/AttestationPdf";
 
@@ -26,15 +24,6 @@ function getBaseUrl(req: Request): string {
 
 export async function GET(req: Request) {
   try {
-    /* ─────────────────────────────────────────────
-       0. LOGO — lecture locale (public/logo.png)
-       → compatible Vercel / Node / PDF
-    ───────────────────────────────────────────── */
-    const logoPath = path.join(process.cwd(), "public/logo.png");
-    const logoDataUrl =
-      "data:image/png;base64," +
-      fs.readFileSync(logoPath).toString("base64");
-
     /* ─────────────────────────────────────────────
        1. session_id
     ───────────────────────────────────────────── */
@@ -71,13 +60,18 @@ export async function GET(req: Request) {
     const baseUrl = getBaseUrl(req);
 
     /* ─────────────────────────────────────────────
-       4. QR factice (première passe)
+       4. LOGO — URL ABSOLUE (SOLUTION OFFICIELLE)
+    ───────────────────────────────────────────── */
+    const logoUrl = `${baseUrl}/pdf/logo.png`;
+
+    /* ─────────────────────────────────────────────
+       5. QR factice (première passe)
     ───────────────────────────────────────────── */
     const dummyQr =
       "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+X2ZkAAAAASUVORK5CYII=";
 
     /* ─────────────────────────────────────────────
-       5. PDF — PREMIÈRE PASSE (pour le hash)
+       6. PDF — PREMIÈRE PASSE (pour le hash)
     ───────────────────────────────────────────── */
     const draftDoc = AttestationPdf({
       attestationId,
@@ -87,7 +81,7 @@ export async function GET(req: Request) {
       totalCO2e,
       methodology,
       qrDataUrl: dummyQr,
-      logoDataUrl,
+      logoUrl,
       hash: "",
     });
 
@@ -96,7 +90,7 @@ export async function GET(req: Request) {
     );
 
     /* ─────────────────────────────────────────────
-       6. Hash cryptographique
+       7. Hash cryptographique
     ───────────────────────────────────────────── */
     const hash = crypto
       .createHash("sha256")
@@ -104,7 +98,7 @@ export async function GET(req: Request) {
       .digest("hex");
 
     /* ─────────────────────────────────────────────
-       7. QR final
+       8. QR final
     ───────────────────────────────────────────── */
     const verificationUrl = `${baseUrl}/verify?id=${attestationId}`;
     const qrDataUrl = await QRCode.toDataURL(verificationUrl, {
@@ -113,7 +107,7 @@ export async function GET(req: Request) {
     });
 
     /* ─────────────────────────────────────────────
-       8. PDF FINAL (figé)
+       9. PDF FINAL (figé)
     ───────────────────────────────────────────── */
     const finalDoc = AttestationPdf({
       attestationId,
@@ -123,7 +117,7 @@ export async function GET(req: Request) {
       totalCO2e,
       methodology,
       qrDataUrl,
-      logoDataUrl,
+      logoUrl,
       hash,
     });
 
@@ -134,7 +128,7 @@ export async function GET(req: Request) {
     const stream = Readable.from(finalBuffer);
 
     /* ─────────────────────────────────────────────
-       9. Réponse HTTP
+       10. Réponse HTTP
     ───────────────────────────────────────────── */
     return new Response(stream as any, {
       headers: {
