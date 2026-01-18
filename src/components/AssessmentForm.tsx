@@ -2,6 +2,43 @@
 
 import { useState } from "react";
 
+/* ======================================================
+   CERTIF-SCOPE — CALCULATION MODEL (CLIENT-SIDE)
+====================================================== */
+
+// kgCO₂e / €
+const EMISSION_FACTORS = {
+  it: 0.30,
+  services: 0.22,
+  goods: 0.45,
+  logistics: 0.18,
+  travel: 0.25,
+  accommodation: 0.27,
+  other: 0.25,
+} as const;
+
+const METHODOLOGY =
+  "Certif-Scope deterministic spend-based model v1.0";
+
+function calculateTotalCO2e(expenses: Record<string, number>) {
+  let totalKg = 0;
+
+  for (const key in expenses) {
+    const value = expenses[key] || 0;
+    const factor =
+      EMISSION_FACTORS[key as keyof typeof EMISSION_FACTORS] || 0;
+
+    totalKg += value * factor;
+  }
+
+  // kg → tonnes, arrondi institutionnel (1 décimale)
+  return Math.round((totalKg / 1000) * 10) / 10;
+}
+
+/* ======================================================
+   UI COMPONENTS
+====================================================== */
+
 function Accordion({
   title,
   children,
@@ -29,6 +66,10 @@ function Accordion({
   );
 }
 
+/* ======================================================
+   MAIN FORM
+====================================================== */
+
 export default function AssessmentForm() {
   const currentYear = new Date().getFullYear();
 
@@ -51,6 +92,18 @@ export default function AssessmentForm() {
     setExpenses((prev) => ({ ...prev, [field]: value }));
   };
 
+  // ─────────────────────────────────────────────
+  // CALCULATION (REAL-TIME)
+  // ─────────────────────────────────────────────
+  const numericExpenses = Object.fromEntries(
+    Object.entries(expenses).map(([k, v]) => [k, Number(v) || 0])
+  );
+
+  const totalCO2e = calculateTotalCO2e(numericExpenses);
+
+  // ─────────────────────────────────────────────
+  // SUBMIT
+  // ─────────────────────────────────────────────
   const handleSubmit = async () => {
     if (!companyName) {
       alert("Please enter your company name.");
@@ -64,9 +117,12 @@ export default function AssessmentForm() {
       },
       year,
       country,
-      expenses: Object.fromEntries(
-        Object.entries(expenses).map(([k, v]) => [k, Number(v) || 0])
-      ),
+
+      // RESULT IS FIXED HERE
+      result: {
+        totalCO2e,
+        methodology: METHODOLOGY,
+      },
     };
 
     const res = await fetch("/api/checkout", {
@@ -87,6 +143,7 @@ export default function AssessmentForm() {
   return (
     <main className="min-h-screen bg-white">
       <section className="max-w-3xl mx-auto px-6 pt-16 pb-20 space-y-10">
+
         {/* HEADER */}
         <div>
           <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-3">
@@ -96,8 +153,7 @@ export default function AssessmentForm() {
             Spend-based indicative estimation. No audit. No physical data required.
           </p>
           <p className="text-sm text-gray-500 mt-3">
-            <strong>Price:</strong> 89 € per attestation · One-time fee · No
-            subscription
+            <strong>Price:</strong> 89 € per attestation · One-time fee · No subscription
           </p>
         </div>
 
@@ -167,49 +223,27 @@ export default function AssessmentForm() {
 
         {/* EXPENSES */}
         <Accordion title="Annual external expenses (€)">
-          <Input
-            label="IT & digital services"
-            hint="Software, cloud, SaaS, IT outsourcing"
-            value={expenses.it}
-            onChange={(v) => update("it", v)}
-          />
-          <Input
-            label="Professional services"
-            hint="Consulting, accounting, legal services"
-            value={expenses.services}
-            onChange={(v) => update("services", v)}
-          />
-          <Input
-            label="Purchased goods"
-            hint="Office supplies, equipment, materials"
-            value={expenses.goods}
-            onChange={(v) => update("goods", v)}
-          />
-          <Input
-            label="Logistics & transport services"
-            hint="Freight, delivery, transport providers"
-            value={expenses.logistics}
-            onChange={(v) => update("logistics", v)}
-          />
-          <Input
-            label="Business travel"
-            hint="Flights, trains, taxis, car rentals"
-            value={expenses.travel}
-            onChange={(v) => update("travel", v)}
-          />
-          <Input
-            label="Accommodation & events"
-            hint="Hotels, conferences, corporate events"
-            value={expenses.accommodation}
-            onChange={(v) => update("accommodation", v)}
-          />
-          <Input
-            label="Other external expenses"
-            hint="Marketing, subscriptions, miscellaneous costs"
-            value={expenses.other}
-            onChange={(v) => update("other", v)}
-          />
+          <Input label="IT & digital services" hint="Software, cloud, SaaS, IT outsourcing" value={expenses.it} onChange={(v) => update("it", v)} />
+          <Input label="Professional services" hint="Consulting, accounting, legal services" value={expenses.services} onChange={(v) => update("services", v)} />
+          <Input label="Purchased goods" hint="Office supplies, equipment, materials" value={expenses.goods} onChange={(v) => update("goods", v)} />
+          <Input label="Logistics & transport services" hint="Freight, delivery, transport providers" value={expenses.logistics} onChange={(v) => update("logistics", v)} />
+          <Input label="Business travel" hint="Flights, trains, taxis, car rentals" value={expenses.travel} onChange={(v) => update("travel", v)} />
+          <Input label="Accommodation & events" hint="Hotels, conferences, corporate events" value={expenses.accommodation} onChange={(v) => update("accommodation", v)} />
+          <Input label="Other external expenses" hint="Marketing, subscriptions, miscellaneous costs" value={expenses.other} onChange={(v) => update("other", v)} />
         </Accordion>
+
+        {/* RESULT */}
+        <div className="border rounded-xl p-6 bg-[#F8FAFC]">
+          <p className="text-sm text-gray-600 mb-1">
+            Indicative annual emissions estimate
+          </p>
+          <p className="text-3xl font-bold text-[#0B3A63]">
+            {totalCO2e} tCO₂e
+          </p>
+          <p className="text-xs text-gray-500 mt-2">
+            Deterministic spend-based estimation · Indicative · Non-audit
+          </p>
+        </div>
 
         {/* CTA */}
         <button
@@ -221,13 +255,17 @@ export default function AssessmentForm() {
 
         {/* DISCLAIMER */}
         <p className="text-xs text-gray-500 leading-relaxed">
-          This attestation is based solely on the information provided by the
-          applicant and is not an audit.
+          This attestation is based solely on the information provided by the applicant
+          and is not a greenhouse gas audit or regulatory report.
         </p>
       </section>
     </main>
   );
 }
+
+/* ======================================================
+   INPUT
+====================================================== */
 
 function Input({
   label,
@@ -253,4 +291,4 @@ function Input({
       <p className="text-xs text-gray-500 mt-1">{hint}</p>
     </div>
   );
-}
+    }
