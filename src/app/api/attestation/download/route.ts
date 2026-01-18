@@ -8,6 +8,22 @@ export const runtime = "nodejs";
 // Stripe = source de vérité unique
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
+function getBaseUrl(req: Request): string {
+  const proto = req.headers.get("x-forwarded-proto");
+  const host = req.headers.get("x-forwarded-host");
+
+  if (proto && host) {
+    return `${proto}://${host}`;
+  }
+
+  // fallback canonique (OBLIGATOIRE en prod)
+  if (process.env.NEXT_PUBLIC_BASE_URL) {
+    return process.env.NEXT_PUBLIC_BASE_URL;
+  }
+
+  throw new Error("Unable to determine base URL");
+}
+
 export async function GET(req: Request) {
   try {
     // ─────────────────────────────────────────────
@@ -35,13 +51,8 @@ export async function GET(req: Request) {
     const metadata = session.metadata || {};
     const attestationId = `CS-${session.id}`;
 
-    // ORIGIN fiable (preview + prod + custom domain)
-    const origin = req.headers.get("origin");
-    if (!origin) {
-      return new Response("Missing origin header", { status: 400 });
-    }
-
-    const verificationUrl = `${origin}/verify?id=${attestationId}`;
+    const baseUrl = getBaseUrl(req);
+    const verificationUrl = `${baseUrl}/verify?id=${attestationId}`;
 
     // QR code généré à la volée (aucune persistance)
     const qrDataUrl = await QRCode.toDataURL(verificationUrl, {
@@ -77,4 +88,4 @@ export async function GET(req: Request) {
     console.error("❌ Attestation PDF error:", err);
     return new Response("Failed to generate attestation", { status: 500 });
   }
-}
+      }
