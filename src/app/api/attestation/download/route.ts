@@ -1,4 +1,3 @@
-import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { pdf } from "@react-pdf/renderer";
 import QRCode from "qrcode";
@@ -10,27 +9,43 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 export async function GET(req: Request) {
   try {
+    // ─────────────────────────────────────────────
+    // 1. Lecture du session_id depuis l’URL
+    // ─────────────────────────────────────────────
     const { searchParams } = new URL(req.url);
     const sessionId = searchParams.get("session_id");
 
     if (!sessionId) {
-      return new NextResponse("Missing session_id", { status: 400 });
+      return new Response("Missing session_id", { status: 400 });
     }
 
+    // ─────────────────────────────────────────────
+    // 2. Stripe = source de vérité absolue
+    // ─────────────────────────────────────────────
     const session = await stripe.checkout.sessions.retrieve(sessionId);
 
     if (session.payment_status !== "paid") {
-      return new NextResponse("Payment not completed", { status: 403 });
+      return new Response("Payment not completed", { status: 403 });
     }
 
+    // ─────────────────────────────────────────────
+    // 3. Reconstruction déterministe (sans stockage)
+    // ─────────────────────────────────────────────
     const metadata = session.metadata || {};
     const attestationId = `CS-${session.id}`;
 
     const verificationUrl =
       `${process.env.NEXT_PUBLIC_BASE_URL}/verify?id=${attestationId}`;
 
-    const qrDataUrl = await QRCode.toDataURL(verificationUrl);
+    // QR code généré à la volée (aucune persistance)
+    const qrDataUrl = await QRCode.toDataURL(verificationUrl, {
+      margin: 1,
+      width: 200,
+    });
 
+    // ─────────────────────────────────────────────
+    // 4. Génération du document PDF
+    // ─────────────────────────────────────────────
     const doc = AttestationPdf({
       attestationId,
       companyName: metadata.companyName || "—",
@@ -42,7 +57,10 @@ export async function GET(req: Request) {
 
     const buffer = await pdf(doc).toBuffer();
 
-    return new NextResponse(buffer, {
+    // ─────────────────────────────────────────────
+    // 5. Réponse HTTP CORRECTE (pas NextResponse)
+    // ─────────────────────────────────────────────
+    return new Response(buffer as any, {
       headers: {
         "Content-Type": "application/pdf",
         "Content-Disposition": `attachment; filename="certif-scope-${attestationId}.pdf"`,
@@ -50,7 +68,7 @@ export async function GET(req: Request) {
       },
     });
   } catch (err) {
-    console.error("PDF ERROR:", err);
-    return new NextResponse("Failed to generate attestation", { status: 500 });
+    console.error("❌ Attestation PDF error:", err);
+    return new Response("Failed to generate attestation", { status: 500 });
   }
 }
