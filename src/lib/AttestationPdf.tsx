@@ -7,12 +7,7 @@ import {
   Image,
 } from "@react-pdf/renderer";
 
-/* ======================================================
-   LOGO — BASE64 (logo.png)
-   → intégré directement, robuste Vercel / API / PDF
-====================================================== */
-const LOGO_DATA_URL =
-  "data:image/png;base64,REPLACE_THIS_WITH_BASE64_OF_logo_png";
+import { LOGO_DATA_URL } from "@/lib/assets/logo.base64";
 
 /* ======================================================
    STYLES — CANON INSTITUTIONNEL
@@ -40,8 +35,8 @@ const styles = StyleSheet.create({
   },
 
   logo: {
-    height: 32,
     width: 140,
+    height: 32,
     objectFit: "contain",
   },
 
@@ -122,7 +117,6 @@ export function AttestationPdf({
   country,
   year,
   qrDataUrl,
-
   totalCO2e,
   methodology,
   hash,
@@ -132,19 +126,16 @@ export function AttestationPdf({
   country: string;
   year: string;
   qrDataUrl: string;
-
   totalCO2e: number;
   methodology: string;
   hash?: string;
 }) {
   return (
     <Document>
-
       {/* ======================================================
           PAGE 1 — ACTE INSTITUTIONNEL
       ====================================================== */}
       <Page size="A4" style={styles.page}>
-
         {/* AUTORITÉ ÉMETTRICE */}
         <View style={styles.header}>
           <View style={styles.logoBlock}>
@@ -247,7 +238,6 @@ export function AttestationPdf({
             Verification via QR code or public verification interface.
           </Text>
         </View>
-
       </Page>
 
       {/* ======================================================
@@ -263,7 +253,6 @@ export function AttestationPdf({
           </Text>
         </View>
       </Page>
-
     </Document>
   );
-        }
+}
