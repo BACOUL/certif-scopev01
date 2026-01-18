@@ -1,4 +1,4 @@
-import AssessmentForm from "./AssessmentForm";
+import AssessmentForm from "@/components/AssessmentForm";
 
 export const metadata = {
   title: "Generate attestation — Certif-Scope",
