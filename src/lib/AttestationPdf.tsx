@@ -8,6 +8,13 @@ import {
 } from "@react-pdf/renderer";
 
 /* ======================================================
+   LOGO — BASE64 (logo1.png)
+   → intégré directement, robuste Vercel / API / PDF
+====================================================== */
+const LOGO_DATA_URL =
+  "data:image/png;base64,REPLACE_THIS_WITH_BASE64_OF_logo1_png";
+
+/* ======================================================
    STYLES — CANON INSTITUTIONNEL
 ====================================================== */
 const styles = StyleSheet.create({
@@ -34,7 +41,8 @@ const styles = StyleSheet.create({
 
   logo: {
     height: 32,
-    marginBottom: 6,
+    width: 140,          // ← dimension stable
+    objectFit: "contain" // ← pas de déformation
   },
 
   qr: {
@@ -106,7 +114,7 @@ const styles = StyleSheet.create({
 });
 
 /* ======================================================
-   PDF — COMPOSANT PUR (AUCUN FS / AUCUN PATH)
+   PDF — COMPOSANT PUR
 ====================================================== */
 export function AttestationPdf({
   attestationId,
@@ -114,7 +122,6 @@ export function AttestationPdf({
   country,
   year,
   qrDataUrl,
-  logoDataUrl,
 
   totalCO2e,
   methodology,
@@ -125,7 +132,6 @@ export function AttestationPdf({
   country: string;
   year: string;
   qrDataUrl: string;
-  logoDataUrl?: string; // ✅ CORRECTION CRITIQUE
 
   totalCO2e: number;
   methodology: string;
@@ -142,9 +148,7 @@ export function AttestationPdf({
         {/* AUTORITÉ ÉMETTRICE */}
         <View style={styles.header}>
           <View style={styles.logoBlock}>
-            {logoDataUrl && (
-              <Image src={logoDataUrl} style={styles.logo} />
-            )}
+            <Image src={LOGO_DATA_URL} style={styles.logo} />
             <View style={styles.authorityBlock}>
               <Text style={styles.authorityName}>Certif-Scope</Text>
               <Text style={styles.authorityRole}>
@@ -262,4 +266,4 @@ export function AttestationPdf({
 
     </Document>
   );
-  }
+      }
