@@ -7,52 +7,113 @@ import {
   Image,
 } from "@react-pdf/renderer";
 
+/* =======================
+   STYLES PREMIUM
+======================= */
 const styles = StyleSheet.create({
   page: {
     padding: 40,
     fontFamily: "Helvetica",
     color: "#0B3A63",
   },
-  box: {
+
+  container: {
     border: "2 solid #0B3A63",
-    borderRadius: 10,
-    padding: 24,
+    borderRadius: 14,
+    padding: 28,
     height: "100%",
   },
+
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 24,
     alignItems: "center",
+    marginBottom: 28,
   },
+
   logo: {
-    height: 40,
+    height: 42,
   },
+
+  titleBlock: {
+    textAlign: "right",
+  },
+
   title: {
     fontSize: 20,
     fontWeight: "bold",
   },
-  label: {
+
+  subtitle: {
     fontSize: 11,
+    color: "#444",
+    marginTop: 4,
+  },
+
+  section: {
+    marginBottom: 22,
+  },
+
+  sectionTitle: {
+    fontSize: 13,
+    fontWeight: "bold",
+    marginBottom: 6,
+  },
+
+  label: {
+    fontSize: 10,
+    fontWeight: "bold",
+  },
+
+  value: {
+    fontSize: 11,
+    marginBottom: 6,
+  },
+
+  resultBox: {
+    border: "1 solid #0B3A63",
+    borderRadius: 10,
+    padding: 18,
+    textAlign: "center",
+    marginVertical: 18,
+  },
+
+  resultValue: {
+    fontSize: 26,
     fontWeight: "bold",
     marginTop: 6,
   },
-  value: {
-    fontSize: 12,
+
+  small: {
+    fontSize: 9,
+    color: "#444",
+    lineHeight: 1.4,
   },
+
   footer: {
-    marginTop: 32,
+    marginTop: 24,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "flex-end",
   },
-  small: {
-    fontSize: 9,
-    color: "#444",
+
+  qr: {
+    width: 90,
+    height: 90,
   },
 });
 
-export function AttestationPdf(props: {
+/* =======================
+   PDF COMPONENT
+======================= */
+export function AttestationPdf({
+  attestationId,
+  companyName,
+  country,
+  year,
+  verificationUrl,
+  qrDataUrl,
+}: {
   attestationId: string;
   companyName: string;
   country: string;
@@ -63,40 +124,83 @@ export function AttestationPdf(props: {
   return (
     <Document>
       <Page size="A4" style={styles.page}>
-        <View style={styles.box}>
+        <View style={styles.container}>
+
+          {/* HEADER */}
           <View style={styles.header}>
-            <Image
-              src={`${process.env.NEXT_PUBLIC_BASE_URL}/logo.png`}
-              style={styles.logo}
-            />
-            <Text style={styles.title}>CO₂e Attestation</Text>
-          </View>
-
-          <Text style={styles.label}>Attestation ID</Text>
-          <Text style={styles.value}>{props.attestationId}</Text>
-
-          <Text style={styles.label}>Company</Text>
-          <Text style={styles.value}>{props.companyName}</Text>
-
-          <Text style={styles.label}>Country</Text>
-          <Text style={styles.value}>{props.country}</Text>
-
-          <Text style={styles.label}>Reference year</Text>
-          <Text style={styles.value}>{props.year}</Text>
-
-          <View style={styles.footer}>
-            <View>
-              <Text style={styles.label}>Verification</Text>
-              <Text style={styles.small}>{props.verificationUrl}</Text>
-              <Text style={styles.small}>
-                Verifiable independently — no data stored
+            <Image src="/logo.png" style={styles.logo} />
+            <View style={styles.titleBlock}>
+              <Text style={styles.title}>CO₂e Attestation</Text>
+              <Text style={styles.subtitle}>
+                Instant spend-based estimate for institutional use
               </Text>
             </View>
-
-            <Image src={props.qrDataUrl} style={{ width: 90, height: 90 }} />
           </View>
+
+          {/* ENTITY DATA */}
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Entity information</Text>
+
+            <Text style={styles.label}>Attestation ID</Text>
+            <Text style={styles.value}>{attestationId}</Text>
+
+            <Text style={styles.label}>Company / Legal entity</Text>
+            <Text style={styles.value}>{companyName}</Text>
+
+            <Text style={styles.label}>Main country</Text>
+            <Text style={styles.value}>{country}</Text>
+
+            <Text style={styles.label}>Reference year</Text>
+            <Text style={styles.value}>{year}</Text>
+          </View>
+
+          {/* RESULT */}
+          <View style={styles.resultBox}>
+            <Text style={styles.label}>Total estimated emissions</Text>
+            <Text style={styles.resultValue}>Indicative CO₂e value</Text>
+            <Text style={styles.small}>
+              Spend-based estimation derived from annual external expenditures
+            </Text>
+          </View>
+
+          {/* METHODOLOGY */}
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Methodology</Text>
+            <Text style={styles.small}>
+              This attestation is generated using a standardized spend-based
+              methodology. Annual external expenditures are converted into
+              estimated CO₂e emissions using sector-average emission factors.
+              This approach is commonly used when physical activity data is not
+              available.
+            </Text>
+          </View>
+
+          {/* SCOPE & LIMITATIONS */}
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Scope & limitations</Text>
+            <Text style={styles.small}>
+              This document provides an indicative estimate only. It does not
+              constitute a full greenhouse gas inventory, audit, or regulatory
+              reporting under CSRD, ESRS, or equivalent frameworks. Direct
+              emissions (Scope 1) and energy-related emissions (Scope 2) are not
+              calculated.
+            </Text>
+          </View>
+
+          {/* VERIFICATION */}
+          <View style={styles.footer}>
+            <View style={{ maxWidth: "65%" }}>
+              <Text style={styles.sectionTitle}>Verification</Text>
+              <Text style={styles.small}>{verificationUrl}</Text>
+              <Text style={styles.small}>
+                Verifiable independently — no data stored by Certif-Scope
+              </Text>
+            </View>
+            <Image src={qrDataUrl} style={styles.qr} />
+          </View>
+
         </View>
       </Page>
     </Document>
   );
-}
+            }
