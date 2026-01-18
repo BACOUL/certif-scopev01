@@ -7,16 +7,6 @@ import {
   Image,
 } from "@react-pdf/renderer";
 
-import { LOGO_DATA_URL as RAW_LOGO_DATA_URL } from "@/lib/assets/logo.base64";
-
-/* ======================================================
-   LOGO — BASE64 (sécurisé)
-====================================================== */
-const LOGO_DATA_URL: string =
-  typeof RAW_LOGO_DATA_URL === "string" && RAW_LOGO_DATA_URL.startsWith("data:image")
-    ? RAW_LOGO_DATA_URL
-    : "";
-
 /* ======================================================
    STYLES — CANON INSTITUTIONNEL
 ====================================================== */
@@ -117,7 +107,7 @@ const styles = StyleSheet.create({
 });
 
 /* ======================================================
-   PDF — COMPOSANT PUR
+   PDF — COMPOSANT PUR (LOGO PAR URL)
 ====================================================== */
 export function AttestationPdf({
   attestationId,
@@ -125,6 +115,7 @@ export function AttestationPdf({
   country,
   year,
   qrDataUrl,
+  logoUrl,
   totalCO2e,
   methodology,
   hash,
@@ -134,6 +125,7 @@ export function AttestationPdf({
   country: string;
   year: string;
   qrDataUrl: string;
+  logoUrl: string;
   totalCO2e: number;
   methodology: string;
   hash?: string;
@@ -147,9 +139,7 @@ export function AttestationPdf({
         {/* AUTORITÉ ÉMETTRICE */}
         <View style={styles.header}>
           <View style={styles.logoBlock}>
-            {LOGO_DATA_URL !== "" && (
-              <Image src={LOGO_DATA_URL} style={styles.logo} />
-            )}
+            <Image src={logoUrl} style={styles.logo} />
             <View style={styles.authorityBlock}>
               <Text style={styles.authorityName}>Certif-Scope</Text>
               <Text style={styles.authorityRole}>
@@ -265,4 +255,4 @@ export function AttestationPdf({
       </Page>
     </Document>
   );
-      }
+}
