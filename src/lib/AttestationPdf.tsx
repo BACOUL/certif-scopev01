@@ -125,7 +125,7 @@ export function AttestationPdf({
   year,
   qrDataUrl,
 
-  /* NOUVELLES DONNÉES — SANS RIEN SUPPRIMER */
+  /* DONNÉES FIGÉES (STRIPE = SOURCE DE VÉRITÉ) */
   totalCO2e,
   methodology,
   hash,
@@ -136,10 +136,9 @@ export function AttestationPdf({
   year: string;
   qrDataUrl: string;
 
-  /* AJOUTS */
-  totalCO2e: string;
+  totalCO2e: number;          // ← correction nécessaire
   methodology: string;
-  hash: string;
+  hash?: string;              // ← optionnel tant qu’il n’est pas généré
 }) {
   return (
     <Document>
@@ -261,9 +260,11 @@ export function AttestationPdf({
             <Text style={styles.label}>Methodology:</Text> {methodology}
           </Text>
 
-          <Text style={styles.small}>
-            <Text style={styles.label}>Integrity hash:</Text> {hash}
-          </Text>
+          {hash && (
+            <Text style={styles.small}>
+              <Text style={styles.label}>Integrity hash:</Text> {hash}
+            </Text>
+          )}
 
           <Text style={styles.small}>
             <Text style={styles.label}>Verification:</Text> Scan the QR code or
@@ -299,4 +300,4 @@ export function AttestationPdf({
       </Page>
     </Document>
   );
-      }
+    }
