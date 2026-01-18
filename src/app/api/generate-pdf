@@ -1,3 +1,5 @@
+export const runtime = "nodejs";
+
 import { renderPdfHtml } from "./template";
 
 export async function POST(req: Request) {
@@ -8,8 +10,10 @@ export async function POST(req: Request) {
   const response = await fetch("https://api.pdfshift.io/v3/convert/pdf", {
     method: "POST",
     headers: {
-      "Authorization": "Basic " + Buffer.from(`${process.env.PDFSHIFT_API_KEY}:`).toString("base64"),
-      "Content-Type": "application/json"
+      Authorization:
+        "Basic " +
+        Buffer.from(`${process.env.PDFSHIFT_API_KEY}:`).toString("base64"),
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({
       source: html,
@@ -18,10 +22,10 @@ export async function POST(req: Request) {
         top: "24mm",
         right: "20mm",
         bottom: "24mm",
-        left: "20mm"
+        left: "20mm",
       },
-      print_background: true
-    })
+      print_background: true,
+    }),
   });
 
   if (!response.ok) {
@@ -34,7 +38,7 @@ export async function POST(req: Request) {
   return new Response(pdfBuffer, {
     headers: {
       "Content-Type": "application/pdf",
-      "Content-Disposition": "attachment; filename=certif-scope.pdf"
-    }
+      "Content-Disposition": "attachment; filename=certif-scope.pdf",
+    },
   });
 }
