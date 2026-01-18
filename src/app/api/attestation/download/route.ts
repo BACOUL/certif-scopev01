@@ -56,7 +56,7 @@ export async function GET(req: Request) {
       totalCO2e,
       methodology,
       qrDataUrl,
-      logoDataUrl,
+      logoUrl: logoDataUrl, // ✅ CORRECTION UNIQUE
     });
 
     const buffer = Buffer.from(
