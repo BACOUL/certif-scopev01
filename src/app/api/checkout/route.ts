@@ -18,8 +18,15 @@ export async function POST(req: Request) {
       company,
       year,
       country,
-      expenses,
+      result, // 👈 NOUVEAU : résultat figé
     } = body;
+
+    if (!result?.totalCO2e || !result?.methodology) {
+      return NextResponse.json(
+        { error: "Missing calculation result" },
+        { status: 400 }
+      );
+    }
 
     // ID brouillon non persistant (contexte métier)
     const draftId = `draft_${Date.now()}`;
@@ -27,14 +34,17 @@ export async function POST(req: Request) {
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
 
-      // 🔗 CONTEXTE MÉTIER PORTÉ PAR STRIPE (source de vérité)
+      // 🔗 STRIPE = SOURCE DE VÉRITÉ
       metadata: {
         draftId,
         companyName: company?.name || "",
         companyId: company?.id || "",
         year: String(year),
         country: country || "",
-        expenses: JSON.stringify(expenses || {}),
+
+        // 🔒 DONNÉES ATTESTÉES
+        totalCO2e: String(result.totalCO2e),
+        methodology: result.methodology,
       },
 
       line_items: [
@@ -45,7 +55,7 @@ export async function POST(req: Request) {
             product_data: {
               name: "CO₂e Attestation — Certif-Scope",
               description:
-                "Standardized spend-based CO₂e attestation (PDF, non-audited)",
+                "Indicative spend-based CO₂e attestation (PDF, non-audited)",
             },
           },
           quantity: 1,
