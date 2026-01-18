@@ -43,7 +43,6 @@ const styles = StyleSheet.create({
     height: 32,
   },
 
-  /* ===== SECTION 1 — AUTORITÉ ÉMETTRICE ===== */
   authorityBlock: {
     marginTop: 4,
   },
@@ -62,7 +61,6 @@ const styles = StyleSheet.create({
     color: "#333",
   },
 
-  /* ===== SECTION 2 — INTITULÉ FORMEL ===== */
   titleBlock: {
     alignItems: "center",
     marginTop: 36,
@@ -102,68 +100,9 @@ const styles = StyleSheet.create({
     color: "#333",
   },
 
-  centralValue: {
-    fontFamily: "Times-Roman",
-    fontSize: 32,
-    fontWeight: "bold",
-    marginBottom: 4,
-  },
-
-  centralNote: {
-    fontSize: 9,
-    color: "#333",
-    maxWidth: "90%",
-  },
-
-  row: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingVertical: 5,
-  },
-
   label: {
-    width: "42%",
     fontSize: 9,
     fontWeight: "bold",
-  },
-
-  value: {
-    width: "58%",
-    fontSize: 9,
-  },
-
-  separator: {
-    borderBottomWidth: 0.5,
-    borderBottomColor: "#D1D5DB",
-  },
-
-  legalBox: {
-    borderLeftWidth: 3,
-    borderLeftColor: "#15B097",
-    paddingLeft: 12,
-  },
-
-  footer: {
-    marginTop: 28,
-    paddingTop: 12,
-    borderTopWidth: 0.5,
-    borderTopColor: "#D1D5DB",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "flex-end",
-  },
-
-  qr: {
-    width: 70,
-    height: 70,
-  },
-
-  pageNumber: {
-    position: "absolute",
-    bottom: 30,
-    right: 68,
-    fontSize: 8,
-    color: "#555",
   },
 });
 
@@ -175,25 +114,19 @@ export function AttestationPdf({
   companyName,
   country,
   year,
-  verificationUrl,
-  qrDataUrl,
 }: {
   attestationId: string;
   companyName: string;
   country: string;
   year: string;
-  verificationUrl: string;
-  qrDataUrl: string;
 }) {
   return (
     <Document>
-
       <Page size="A4" style={styles.page}>
 
-        {/* HEADER + SECTION 1 */}
+        {/* SECTION 1 — AUTORITÉ ÉMETTRICE */}
         <View style={styles.header}>
           <Image src={logoBase64} style={styles.logo} />
-
           <View style={styles.authorityBlock}>
             <Text style={styles.authorityName}>Certif-Scope</Text>
             <Text style={styles.authorityRole}>
@@ -205,7 +138,7 @@ export function AttestationPdf({
           </View>
         </View>
 
-        {/* SECTION 2 — INTITULÉ FORMEL DE L’ACTE */}
+        {/* SECTION 2 — INTITULÉ FORMEL */}
         <View style={styles.titleBlock}>
           <Text style={styles.title}>
             Indicative Carbon Emissions Attestation
@@ -233,64 +166,47 @@ export function AttestationPdf({
           </Text>
         </View>
 
-        {/* LE RESTE DU DOCUMENT EST STRICTEMENT INCHANGÉ */}
-
+        {/* SECTION 5 — OBJET ATTESTÉ */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Attested indicative result</Text>
-          <Text style={styles.centralValue}>XX.X tCO₂e</Text>
-          <Text style={styles.centralNote}>
-            Indicative annual CO₂e estimate derived exclusively from aggregated
-            external financial expenditures, without physical activity data,
-            supplier-specific measurements or audit procedures.
-          </Text>
-        </View>
-
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Identification</Text>
-          {[
-            ["Attestation ID", attestationId],
-            ["Entity", companyName],
-            ["Main country", country],
-            ["Reference year", year],
-            ["Estimation scope", "Indicative spend-based Scope 3 only"],
-            ["Issued by", "Certif-Scope"],
-          ].map(([l, v], i) => (
-            <View key={i}>
-              <View style={styles.row}>
-                <Text style={styles.label}>{l}</Text>
-                <Text style={styles.value}>{v}</Text>
-              </View>
-              {i < 5 && <View style={styles.separator} />}
-            </View>
-          ))}
-        </View>
-
-        <View style={[styles.section, styles.legalBox]}>
-          <Text style={styles.sectionTitle}>Scope, nature & legal limits</Text>
+          <Text style={styles.sectionTitle}>Attested facts</Text>
           <Text style={styles.small}>
-            This document constitutes an indicative estimation instrument only.
-            It does not represent a greenhouse gas audit, a verified carbon
-            footprint, an ISO 14064-1 inventory, nor a CSRD / ESRS regulatory
-            disclosure. It is not suitable for certification, assurance,
-            regulatory filing or public environmental claims.
+            <Text style={styles.label}>Entity:</Text> {companyName}
+          </Text>
+          <Text style={styles.small}>
+            <Text style={styles.label}>Reference year:</Text> {year}
+          </Text>
+          <Text style={styles.small}>
+            <Text style={styles.label}>Nature of the attested fact:</Text> Indicative carbon emissions estimation
+          </Text>
+          <Text style={styles.small}>
+            <Text style={styles.label}>Indicative estimated value:</Text> XX.X tCO₂e (annual)
           </Text>
         </View>
 
-        <View style={styles.footer}>
-          <View style={{ maxWidth: "65%" }}>
-            <Text style={styles.sectionTitle}>Issuance & verification</Text>
-            <Text style={styles.small}>Attestation ID: {attestationId}</Text>
-            <Text style={styles.small}>{verificationUrl}</Text>
-            <Text style={styles.small}>
-              Digitally issued. Independently verifiable. No raw input data stored.
-            </Text>
-          </View>
-          <Image src={qrDataUrl} style={styles.qr} />
+        {/* SECTION 6 — PORTÉE & LIMITES */}
+        <View style={styles.section}>
+          <Text style={styles.small}>
+            <Text style={styles.label}>Scope and limitations.</Text>
+          </Text>
+          <Text style={styles.small}>
+            This attestation is limited to an indicative estimation of carbon
+            emissions produced for decision-support purposes only.
+          </Text>
+          <Text style={styles.small}>
+            It does not constitute a greenhouse gas audit, a verified carbon
+            footprint, a certification, or any form of regulatory reporting.
+          </Text>
+          <Text style={styles.small}>
+            This attestation is not equivalent to, and must not be used as, an
+            ISO 14064-1 inventory, a CSRD / ESRS disclosure, or a GHG Protocol audit.
+          </Text>
+          <Text style={styles.small}>
+            Any use for certification, assurance, regulatory compliance, or
+            public claims of verified emissions is expressly excluded.
+          </Text>
         </View>
 
-        <Text style={styles.pageNumber}>Page 1 / 2</Text>
       </Page>
-
     </Document>
   );
-  }
+      }
