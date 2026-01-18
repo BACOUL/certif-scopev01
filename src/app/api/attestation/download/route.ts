@@ -2,6 +2,7 @@ import Stripe from "stripe";
 import { pdf } from "@react-pdf/renderer";
 import QRCode from "qrcode";
 import crypto from "crypto";
+import { Readable } from "stream";
 import { AttestationPdf } from "@/lib/AttestationPdf";
 
 export const runtime = "nodejs";
@@ -63,11 +64,12 @@ export async function GET(req: Request) {
 
     const baseUrl = getBaseUrl(req);
 
+    // QR factice obligatoire pour la première passe
     const dummyQr =
       "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+X2ZkAAAAASUVORK5CYII=";
 
     // ─────────────────────────────────────────────
-    // 4. PDF — PREMIÈRE PASSE
+    // 4. PDF — PREMIÈRE PASSE (pour hash)
     // ─────────────────────────────────────────────
     const draftDoc = AttestationPdf({
       attestationId,
@@ -80,7 +82,6 @@ export async function GET(req: Request) {
       hash: "",
     });
 
-    // ✅ CAST TYPE-SAFE POUR TS
     const draftBuffer = (await pdf(draftDoc).toBuffer()) as unknown as Buffer;
 
     // ─────────────────────────────────────────────
@@ -92,7 +93,7 @@ export async function GET(req: Request) {
       .digest("hex");
 
     // ─────────────────────────────────────────────
-    // 6. URL de vérification + QR
+    // 6. URL de vérification + QR final
     // ─────────────────────────────────────────────
     const verificationUrl = `${baseUrl}/verify?id=${attestationId}`;
 
@@ -102,7 +103,7 @@ export async function GET(req: Request) {
     });
 
     // ─────────────────────────────────────────────
-    // 7. PDF FINAL
+    // 7. PDF FINAL (figé)
     // ─────────────────────────────────────────────
     const finalDoc = AttestationPdf({
       attestationId,
@@ -117,10 +118,13 @@ export async function GET(req: Request) {
 
     const finalBuffer = (await pdf(finalDoc).toBuffer()) as unknown as Buffer;
 
+    // ⚠️ FIX CRITIQUE : stream Node → Response Web
+    const stream = Readable.from(finalBuffer);
+
     // ─────────────────────────────────────────────
     // 8. Réponse HTTP
     // ─────────────────────────────────────────────
-    return new Response(finalBuffer, {
+    return new Response(stream as any, {
       headers: {
         "Content-Type": "application/pdf",
         "Content-Disposition": `attachment; filename="certif-scope-${attestationId}.pdf"`,
