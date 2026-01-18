@@ -107,7 +107,10 @@ const styles = StyleSheet.create({
 });
 
 /* ======================================================
-   PDF — COMPOSANT PUR (LOGO PAR URL)
+   PDF — COMPOSANT PUR
+   IMPORTANT :
+   - logoUrl DOIT être une data URL (data:image/png;base64,…)
+   - la conversion se fait côté API Node, jamais ici
 ====================================================== */
 export function AttestationPdf({
   attestationId,
@@ -125,21 +128,20 @@ export function AttestationPdf({
   country: string;
   year: string;
   qrDataUrl: string;
-  logoUrl: string;
+  logoUrl: string; // data:image/png;base64,...
   totalCO2e: number;
   methodology: string;
   hash?: string;
 }) {
   return (
     <Document>
-      {/* ======================================================
-          PAGE 1 — ACTE INSTITUTIONNEL
-      ====================================================== */}
       <Page size="A4" style={styles.page}>
-        {/* AUTORITÉ ÉMETTRICE */}
         <View style={styles.header}>
           <View style={styles.logoBlock}>
-            <Image src={logoUrl} style={styles.logo} />
+            {logoUrl && (
+              <Image src={logoUrl} style={styles.logo} />
+            )}
+
             <View style={styles.authorityBlock}>
               <Text style={styles.authorityName}>Certif-Scope</Text>
               <Text style={styles.authorityRole}>
@@ -154,14 +156,12 @@ export function AttestationPdf({
           <Image src={qrDataUrl} style={styles.qr} />
         </View>
 
-        {/* TITRE */}
         <View style={styles.titleBlock}>
           <Text style={styles.title}>
             Indicative Carbon Emissions Attestation
           </Text>
         </View>
 
-        {/* CONTEXTE */}
         <View style={styles.section}>
           <Text style={styles.small}>
             This attestation is issued through a standardized, deterministic
@@ -171,7 +171,6 @@ export function AttestationPdf({
           </Text>
         </View>
 
-        {/* DÉCLARATION */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Declaration of attestation</Text>
           <Text style={styles.declaration}>
@@ -182,7 +181,6 @@ export function AttestationPdf({
           </Text>
         </View>
 
-        {/* FAITS ATTESTÉS */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Attested facts</Text>
 
@@ -204,19 +202,6 @@ export function AttestationPdf({
           </Text>
         </View>
 
-        {/* LIMITES */}
-        <View style={styles.section}>
-          <Text style={styles.small}>
-            <Text style={styles.label}>Scope and limitations.</Text>
-          </Text>
-          <Text style={styles.small}>
-            This document does not constitute a verified carbon footprint,
-            certification, regulatory disclosure, or audit under CSRD, ESRS,
-            ISO 14064-1, or the GHG Protocol.
-          </Text>
-        </View>
-
-        {/* ÉMISSION */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Issuance & verification</Text>
 
@@ -240,9 +225,6 @@ export function AttestationPdf({
         </View>
       </Page>
 
-      {/* ======================================================
-          PAGE 2 — ANNEXE MÉTHODOLOGIQUE
-      ====================================================== */}
       <Page size="A4" style={styles.page}>
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Estimation framework</Text>
@@ -255,4 +237,4 @@ export function AttestationPdf({
       </Page>
     </Document>
   );
-}
+          }
