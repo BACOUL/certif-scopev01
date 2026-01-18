@@ -33,14 +33,14 @@ const styles = StyleSheet.create({
 
   header: {
     position: "relative",
-    marginBottom: 28, // légèrement réduit pour laisser place à la section 1
+    marginBottom: 28,
   },
 
   logo: {
     position: "absolute",
     top: 0,
     right: 0,
-    height: 32, // conforme au standard validé
+    height: 32,
   },
 
   /* ===== SECTION 1 — AUTORITÉ ÉMETTRICE ===== */
@@ -62,10 +62,11 @@ const styles = StyleSheet.create({
     color: "#333",
   },
 
-  /* ===== TITRE (SECTION 2) ===== */
+  /* ===== SECTION 2 — INTITULÉ FORMEL ===== */
   titleBlock: {
     alignItems: "center",
     marginTop: 36,
+    marginBottom: 22,
   },
 
   title: {
@@ -74,14 +75,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     letterSpacing: 0.6,
     textAlign: "center",
-    marginBottom: 8,
-  },
-
-  subtitle: {
-    fontSize: 9,
-    textAlign: "center",
-    color: "#333",
-    maxWidth: "78%",
   },
 
   section: {
@@ -101,6 +94,12 @@ const styles = StyleSheet.create({
     fontFamily: "Times-Roman",
     fontSize: 11,
     lineHeight: 1.55,
+  },
+
+  small: {
+    fontSize: 9,
+    lineHeight: 1.5,
+    color: "#333",
   },
 
   centralValue: {
@@ -142,17 +141,6 @@ const styles = StyleSheet.create({
     borderLeftWidth: 3,
     borderLeftColor: "#15B097",
     paddingLeft: 12,
-  },
-
-  small: {
-    fontSize: 9,
-    lineHeight: 1.5,
-    color: "#333",
-  },
-
-  listItem: {
-    fontSize: 9,
-    marginBottom: 3,
   },
 
   footer: {
@@ -200,16 +188,12 @@ export function AttestationPdf({
   return (
     <Document>
 
-      {/* ======================================================
-          PAGE 1 — ACTE INSTITUTIONNEL
-      ====================================================== */}
       <Page size="A4" style={styles.page}>
 
         {/* HEADER + SECTION 1 */}
         <View style={styles.header}>
           <Image src={logoBase64} style={styles.logo} />
 
-          {/* SECTION 1 — AUTORITÉ ÉMETTRICE */}
           <View style={styles.authorityBlock}>
             <Text style={styles.authorityName}>Certif-Scope</Text>
             <Text style={styles.authorityRole}>
@@ -221,29 +205,35 @@ export function AttestationPdf({
           </View>
         </View>
 
-        {/* SECTION 2 — INTITULÉ FORMEL */}
+        {/* SECTION 2 — INTITULÉ FORMEL DE L’ACTE */}
         <View style={styles.titleBlock}>
           <Text style={styles.title}>
             Indicative Carbon Emissions Attestation
           </Text>
-          <Text style={styles.subtitle}>
-            Formal institutional act recording the existence of an indicative
-            CO₂e estimation, issued for decision-support purposes only
+        </View>
+
+        {/* SECTION 3 — BASE D’ÉMISSION / MANDAT */}
+        <View style={styles.section}>
+          <Text style={styles.small}>
+            This attestation is issued upon request through a standardized,
+            non-discretionary issuance process operated by Certif-Scope, based on
+            aggregated data provided by the requesting entity for indicative
+            decision-support purposes only.
           </Text>
         </View>
 
-        {/* SECTION 4 — DÉCLARATION */}
+        {/* SECTION 4 — DÉCLARATION D’ATTESTATION */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Declaration of attestation</Text>
           <Text style={styles.declaration}>
             Certif-Scope hereby attests that an indicative estimation of carbon
-            emissions has been produced for the entity identified below, using a
-            standardized deterministic spend-based calculation framework, under
-            the methodological, legal and compliance boundaries defined herein.
+            emissions has been produced for the entity identified herein, for the
+            stated reference year, within a strictly defined, non-regulatory and
+            non-audit framework.
           </Text>
         </View>
 
-        {/* LE RESTE EST STRICTEMENT INCHANGÉ */}
+        {/* LE RESTE DU DOCUMENT EST STRICTEMENT INCHANGÉ */}
 
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Attested indicative result</Text>
@@ -301,7 +291,6 @@ export function AttestationPdf({
         <Text style={styles.pageNumber}>Page 1 / 2</Text>
       </Page>
 
-      {/* PAGE 2 — inchangée */}
     </Document>
   );
-}
+  }
