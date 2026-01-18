@@ -10,7 +10,7 @@ export const runtime = "nodejs";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 /**
- * Détermination robuste de l’URL de base (prod / preview / custom domain)
+ * Détermination robuste de l’URL de base
  */
 function getBaseUrl(req: Request): string {
   const proto = req.headers.get("x-forwarded-proto");
@@ -50,7 +50,7 @@ export async function GET(req: Request) {
 
     // ─────────────────────────────────────────────
     // 3. Reconstruction déterministe (stateless)
-    //    → données calculées côté client
+    //    → calcul déjà fait côté client
     // ─────────────────────────────────────────────
     const metadata = session.metadata || {};
     const attestationId = `CS-${session.id}`;
@@ -58,13 +58,19 @@ export async function GET(req: Request) {
     const companyName = metadata.companyName || "—";
     const country = metadata.country || "—";
     const year = metadata.year || "—";
-    const totalCO2e = metadata.totalCO2e || "—";
-    const methodology = metadata.methodology || "—";
+
+    const totalCO2e = Number(metadata.totalCO2e || 0);
+    const methodology =
+      metadata.methodology || "Spend-based deterministic estimation";
 
     const baseUrl = getBaseUrl(req);
 
+    // QR temporaire (obligatoire pour la 1ʳᵉ passe PDF)
+    const dummyQr =
+      "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+X2ZkAAAAASUVORK5CYII=";
+
     // ─────────────────────────────────────────────
-    // 4. Génération PDF — PREMIÈRE PASSE (sans QR / hash)
+    // 4. Génération PDF — PREMIÈRE PASSE (sans hash réel)
     // ─────────────────────────────────────────────
     const draftDoc = AttestationPdf({
       attestationId,
@@ -73,12 +79,13 @@ export async function GET(req: Request) {
       year,
       totalCO2e,
       methodology,
+      qrDataUrl: dummyQr,
     });
 
     const draftBuffer = await pdf(draftDoc).toBuffer();
 
     // ─────────────────────────────────────────────
-    // 5. Calcul de l’empreinte (HASH) DU DOCUMENT
+    // 5. Calcul de l’empreinte cryptographique
     // ─────────────────────────────────────────────
     const hash = crypto
       .createHash("sha256")
@@ -86,13 +93,12 @@ export async function GET(req: Request) {
       .digest("hex");
 
     // ─────────────────────────────────────────────
-    // 6. Génération URL de vérification + QR
+    // 6. Génération URL de vérification + QR code final
     // ─────────────────────────────────────────────
-    const verificationUrl =
-      `${baseUrl}/verify?id=${attestationId}&hash=${hash}`;
+    const verificationUrl = `${baseUrl}/verify?id=${attestationId}`;
 
     const qrDataUrl = await QRCode.toDataURL(verificationUrl, {
-      width: 72,   // dimension institutionnelle
+      width: 72,
       margin: 1,
     });
 
@@ -113,7 +119,7 @@ export async function GET(req: Request) {
     const finalBuffer = await pdf(finalDoc).toBuffer();
 
     // ─────────────────────────────────────────────
-    // 8. Réponse HTTP (PDF téléchargeable)
+    // 8. Réponse HTTP
     // ─────────────────────────────────────────────
     return new Response(finalBuffer as any, {
       headers: {
@@ -126,4 +132,4 @@ export async function GET(req: Request) {
     console.error("❌ Attestation PDF error:", err);
     return new Response("Failed to generate attestation", { status: 500 });
   }
-      }
+                             }
