@@ -58,20 +58,18 @@ export async function GET(req: Request) {
     const country = metadata.country || "—";
     const year = metadata.year || "—";
 
-    // ✅ NORMALISATION STRICTE
     const totalCO2e = Number(metadata.totalCO2e ?? 0);
-
     const methodology =
       metadata.methodology || "Spend-based deterministic estimation";
 
     const baseUrl = getBaseUrl(req);
 
-    // QR temporaire (obligatoire pour la 1ʳᵉ passe PDF)
+    // QR temporaire (1ʳᵉ passe)
     const dummyQr =
       "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+X2ZkAAAAASUVORK5CYII=";
 
     // ─────────────────────────────────────────────
-    // 4. Génération PDF — PREMIÈRE PASSE
+    // 4. PDF — PREMIÈRE PASSE
     // ─────────────────────────────────────────────
     const draftDoc = AttestationPdf({
       attestationId,
@@ -84,13 +82,11 @@ export async function GET(req: Request) {
       hash: "",
     });
 
-    const draftOutput = await pdf(draftDoc).toBuffer();
-    const draftBuffer = Buffer.isBuffer(draftOutput)
-      ? draftOutput
-      : Buffer.from(draftOutput);
+    // ✅ CAST EXPLICITE (solution)
+    const draftBuffer = (await pdf(draftDoc).toBuffer()) as Buffer;
 
     // ─────────────────────────────────────────────
-    // 5. Calcul de l’empreinte cryptographique
+    // 5. Hash cryptographique
     // ─────────────────────────────────────────────
     const hash = crypto
       .createHash("sha256")
@@ -98,7 +94,7 @@ export async function GET(req: Request) {
       .digest("hex");
 
     // ─────────────────────────────────────────────
-    // 6. Génération URL de vérification + QR final
+    // 6. URL de vérification + QR final
     // ─────────────────────────────────────────────
     const verificationUrl = `${baseUrl}/verify?id=${attestationId}`;
 
@@ -108,7 +104,7 @@ export async function GET(req: Request) {
     });
 
     // ─────────────────────────────────────────────
-    // 7. Génération PDF FINAL (figé)
+    // 7. PDF FINAL (figé)
     // ─────────────────────────────────────────────
     const finalDoc = AttestationPdf({
       attestationId,
@@ -121,15 +117,12 @@ export async function GET(req: Request) {
       qrDataUrl,
     });
 
-    const finalOutput = await pdf(finalDoc).toBuffer();
-    const finalBuffer = Buffer.isBuffer(finalOutput)
-      ? finalOutput
-      : Buffer.from(finalOutput);
+    const finalBuffer = (await pdf(finalDoc).toBuffer()) as Buffer;
 
     // ─────────────────────────────────────────────
     // 8. Réponse HTTP
     // ─────────────────────────────────────────────
-    return new Response(finalBuffer as any, {
+    return new Response(finalBuffer, {
       headers: {
         "Content-Type": "application/pdf",
         "Content-Disposition": `attachment; filename="certif-scope-${attestationId}.pdf"`,
