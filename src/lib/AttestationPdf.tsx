@@ -122,6 +122,10 @@ export function AttestationPdf({
 }) {
   return (
     <Document>
+
+      {/* ======================================================
+          PAGE 1 — ACTE INSTITUTIONNEL
+      ====================================================== */}
       <Page size="A4" style={styles.page}>
 
         {/* SECTION 1 — AUTORITÉ ÉMETTRICE */}
@@ -206,7 +210,52 @@ export function AttestationPdf({
           </Text>
         </View>
 
+        {/* SECTION 7 — ÉMISSION & VÉRIFICATION */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Issuance & verification</Text>
+          <Text style={styles.small}>
+            <Text style={styles.label}>Attestation ID:</Text> {attestationId}
+          </Text>
+          <Text style={styles.small}>
+            <Text style={styles.label}>Issued by:</Text> Certif-Scope
+          </Text>
+          <Text style={styles.small}>
+            <Text style={styles.label}>Date of issuance:</Text> {year}
+          </Text>
+          <Text style={styles.small}>
+            <Text style={styles.label}>Verification:</Text> Public verification endpoint available.
+            Accessible without authentication. No input data disclosed.
+          </Text>
+        </View>
+
+      </Page>
+
+      {/* ======================================================
+          PAGE 2 — ANNEXE
+      ====================================================== */}
+      <Page size="A4" style={styles.page}>
+
+        {/* SECTION 8 — CADRE D’ESTIMATION */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Estimation framework</Text>
+          <Text style={styles.small}>
+            The indicative carbon emissions estimation referenced in this
+            attestation is produced using a deterministic spend-based estimation
+            framework.
+          </Text>
+          <Text style={styles.small}>
+            The model converts aggregated external financial expenditures into
+            indicative CO₂e values using predefined intensity coefficients, for
+            decision-support purposes only.
+          </Text>
+          <Text style={styles.small}>
+            The estimation does not rely on physical activity data,
+            supplier-specific measurements, lifecycle assessment, or audit
+            procedures.
+          </Text>
+        </View>
+
       </Page>
     </Document>
   );
-      }
+        }
