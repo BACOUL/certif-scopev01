@@ -4,21 +4,29 @@ import { AttestationPdf } from "@/lib/AttestationPdf";
 export const runtime = "nodejs";
 
 export async function GET() {
-  const doc = AttestationPdf({
-    attestationId: "CS-PREVIEW-2026",
-    companyName: "Example Company Ltd",
-    country: "FR",
-    year: "2026",
-    verificationUrl: "https://certif-scope.io/verify?id=CS-PREVIEW-2026",
-    qrDataUrl: "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=preview",
-  });
+  try {
+    // ─────────────────────────────────────────────
+    // Génération d’une attestation de prévisualisation
+    // (sans QR, sans URL, conforme à l’acte institutionnel)
+    // ─────────────────────────────────────────────
+    const doc = AttestationPdf({
+      attestationId: "CS-PREVIEW-2026",
+      companyName: "Preview Entity",
+      country: "FR",
+      year: "2026",
+    });
 
-  const buffer = await pdf(doc).toBuffer();
+    const buffer = await pdf(doc).toBuffer();
 
-  return new Response(buffer as any, {
-    headers: {
-      "Content-Type": "application/pdf",
-      "Cache-Control": "no-store",
-    },
-  });
+    return new Response(buffer as any, {
+      headers: {
+        "Content-Type": "application/pdf",
+        "Content-Disposition": `inline; filename="certif-scope-preview.pdf"`,
+        "Cache-Control": "no-store",
+      },
+    });
+  } catch (err) {
+    console.error("❌ PDF preview error:", err);
+    return new Response("Failed to generate preview PDF", { status: 500 });
+  }
 }
