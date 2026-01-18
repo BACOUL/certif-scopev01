@@ -6,7 +6,6 @@ import { AttestationPdf } from "@/lib/AttestationPdf";
 
 export const runtime = "nodejs";
 
-// Stripe = source de vérité unique
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 /**
@@ -64,7 +63,6 @@ export async function GET(req: Request) {
 
     const baseUrl = getBaseUrl(req);
 
-    // QR temporaire (1ʳᵉ passe)
     const dummyQr =
       "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+X2ZkAAAAASUVORK5CYII=";
 
@@ -82,8 +80,8 @@ export async function GET(req: Request) {
       hash: "",
     });
 
-    // ✅ CAST EXPLICITE (solution)
-    const draftBuffer = (await pdf(draftDoc).toBuffer()) as Buffer;
+    // ✅ CAST TYPE-SAFE POUR TS
+    const draftBuffer = (await pdf(draftDoc).toBuffer()) as unknown as Buffer;
 
     // ─────────────────────────────────────────────
     // 5. Hash cryptographique
@@ -94,7 +92,7 @@ export async function GET(req: Request) {
       .digest("hex");
 
     // ─────────────────────────────────────────────
-    // 6. URL de vérification + QR final
+    // 6. URL de vérification + QR
     // ─────────────────────────────────────────────
     const verificationUrl = `${baseUrl}/verify?id=${attestationId}`;
 
@@ -104,7 +102,7 @@ export async function GET(req: Request) {
     });
 
     // ─────────────────────────────────────────────
-    // 7. PDF FINAL (figé)
+    // 7. PDF FINAL
     // ─────────────────────────────────────────────
     const finalDoc = AttestationPdf({
       attestationId,
@@ -117,7 +115,7 @@ export async function GET(req: Request) {
       qrDataUrl,
     });
 
-    const finalBuffer = (await pdf(finalDoc).toBuffer()) as Buffer;
+    const finalBuffer = (await pdf(finalDoc).toBuffer()) as unknown as Buffer;
 
     // ─────────────────────────────────────────────
     // 8. Réponse HTTP
