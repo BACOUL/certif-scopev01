@@ -2,24 +2,14 @@ import Stripe from "stripe";
 import { pdf } from "@react-pdf/renderer";
 import QRCode from "qrcode";
 import crypto from "crypto";
-import fs from "fs";
-import path from "path";
 import { AttestationPdf } from "@/lib/AttestationPdf";
 
 export const runtime = "nodejs";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
-/* ─────────────────────────────────────────────
-   LOGO — chargé UNE FOIS côté serveur
-───────────────────────────────────────────── */
-const logoPath = path.join(process.cwd(), "public/logo.png");
-const logoBase64 = `data:image/png;base64,${fs
-  .readFileSync(logoPath)
-  .toString("base64")}`;
-
 /**
- * Détermination robuste de l’URL de base
+ * Base URL robuste (Vercel / prod / local)
  */
 function getBaseUrl(req: Request): string {
   const proto = req.headers.get("x-forwarded-proto");
@@ -28,7 +18,7 @@ function getBaseUrl(req: Request): string {
   if (proto && host) return `${proto}://${host}`;
   if (process.env.NEXT_PUBLIC_BASE_URL) return process.env.NEXT_PUBLIC_BASE_URL;
 
-  throw new Error("Unable to determine base URL");
+  throw new Error("Base URL not resolvable");
 }
 
 export async function GET(req: Request) {
@@ -44,7 +34,7 @@ export async function GET(req: Request) {
     }
 
     /* ─────────────────────────────────────────────
-       2. Stripe = vérité absolue
+       2. Stripe = source de vérité
     ───────────────────────────────────────────── */
     const session = await stripe.checkout.sessions.retrieve(sessionId);
 
@@ -53,11 +43,11 @@ export async function GET(req: Request) {
     }
 
     /* ─────────────────────────────────────────────
-       3. Données métier reconstruites (stateless)
+       3. Reconstruction déterministe
     ───────────────────────────────────────────── */
     const metadata = session.metadata || {};
-    const attestationId = `CS-${session.id}`;
 
+    const attestationId = `CS-${session.id}`;
     const companyName = metadata.companyName || "—";
     const country = metadata.country || "—";
     const year = metadata.year || "—";
@@ -67,70 +57,53 @@ export async function GET(req: Request) {
       metadata.methodology || "Spend-based deterministic estimation";
 
     const baseUrl = getBaseUrl(req);
+    const verificationUrl = `${baseUrl}/verify?id=${attestationId}`;
 
     /* ─────────────────────────────────────────────
-       4. PDF — première passe (hash)
+       4. Hash déterministe (SANS PDF)
     ───────────────────────────────────────────── */
-    const dummyQr =
-      "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+X2ZkAAAAASUVORK5CYII=";
-
-    const draftDoc = AttestationPdf({
+    const hashSource = JSON.stringify({
       attestationId,
       companyName,
       country,
       year,
       totalCO2e,
       methodology,
-      logoDataUrl: logoBase64,
-      qrDataUrl: dummyQr,
-      hash: "",
     });
 
-    const draftBuffer = Buffer.from(
-      (await pdf(draftDoc).toBuffer()) as unknown as Uint8Array
-    );
-
-    /* ─────────────────────────────────────────────
-       5. Hash cryptographique
-    ───────────────────────────────────────────── */
     const hash = crypto
       .createHash("sha256")
-      .update(draftBuffer)
+      .update(hashSource)
       .digest("hex");
 
     /* ─────────────────────────────────────────────
-       6. QR final
+       5. QR code
     ───────────────────────────────────────────── */
-    const verificationUrl = `${baseUrl}/verify?id=${attestationId}`;
-
     const qrDataUrl = await QRCode.toDataURL(verificationUrl, {
       width: 72,
       margin: 1,
     });
 
     /* ─────────────────────────────────────────────
-       7. PDF FINAL (figé)
+       6. PDF (UN SEUL RENDU)
     ───────────────────────────────────────────── */
-    const finalDoc = AttestationPdf({
+    const doc = AttestationPdf({
       attestationId,
       companyName,
       country,
       year,
       totalCO2e,
       methodology,
-      logoDataUrl: logoBase64,
-      qrDataUrl,
       hash,
+      qrDataUrl,
     });
 
-    const finalBuffer = Buffer.from(
-      (await pdf(finalDoc).toBuffer()) as unknown as Uint8Array
-    );
+    const buffer = (await pdf(doc).toBuffer()) as unknown as Uint8Array;
 
     /* ─────────────────────────────────────────────
-       8. Réponse HTTP
+       7. Réponse HTTP
     ───────────────────────────────────────────── */
-    return new Response(finalBuffer, {
+    return new Response(buffer, {
       headers: {
         "Content-Type": "application/pdf",
         "Content-Disposition": `attachment; filename="certif-scope-${attestationId}.pdf"`,
@@ -138,7 +111,7 @@ export async function GET(req: Request) {
       },
     });
   } catch (err) {
-    console.error("❌ Attestation PDF error:", err);
+    console.error("❌ Attestation generation failed:", err);
     return new Response("Failed to generate attestation", { status: 500 });
   }
 }
