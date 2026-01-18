@@ -7,6 +7,8 @@ import {
   Image,
 } from "@react-pdf/renderer";
 
+import { LOGO_DATA_URL } from "@/lib/logo";
+
 /* ======================================================
    STYLES — CANON INSTITUTIONNEL
 ====================================================== */
@@ -107,10 +109,7 @@ const styles = StyleSheet.create({
 });
 
 /* ======================================================
-   PDF — COMPOSANT PUR
-   IMPORTANT :
-   - logoUrl DOIT être une data URL (data:image/png;base64,…)
-   - la conversion se fait côté API Node, jamais ici
+   PDF — COMPOSANT PUR (LOGO EMBARQUÉ AU BUILD)
 ====================================================== */
 export function AttestationPdf({
   attestationId,
@@ -118,7 +117,6 @@ export function AttestationPdf({
   country,
   year,
   qrDataUrl,
-  logoUrl,
   totalCO2e,
   methodology,
   hash,
@@ -128,7 +126,6 @@ export function AttestationPdf({
   country: string;
   year: string;
   qrDataUrl: string;
-  logoUrl: string; // data:image/png;base64,...
   totalCO2e: number;
   methodology: string;
   hash?: string;
@@ -138,9 +135,7 @@ export function AttestationPdf({
       <Page size="A4" style={styles.page}>
         <View style={styles.header}>
           <View style={styles.logoBlock}>
-            {logoUrl && (
-              <Image src={logoUrl} style={styles.logo} />
-            )}
+            <Image src={LOGO_DATA_URL} style={styles.logo} />
 
             <View style={styles.authorityBlock}>
               <Text style={styles.authorityName}>Certif-Scope</Text>
@@ -237,4 +232,4 @@ export function AttestationPdf({
       </Page>
     </Document>
   );
-          }
+            }
