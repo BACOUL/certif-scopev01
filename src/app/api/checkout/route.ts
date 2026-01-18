@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
+export const runtime = "nodejs"; // obligatoire (Stripe + crypto)
+
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 export async function POST(req: Request) {
@@ -16,23 +18,23 @@ export async function POST(req: Request) {
       company,
       year,
       country,
-      expenses
+      expenses,
     } = body;
 
-    // ID de brouillon unique (avant attestation)
+    // ID brouillon non persistant (contexte métier)
     const draftId = `draft_${Date.now()}`;
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
 
-      // 🔗 CONTEXTE MÉTIER LIÉ AU PAIEMENT
+      // 🔗 CONTEXTE MÉTIER PORTÉ PAR STRIPE (source de vérité)
       metadata: {
         draftId,
         companyName: company?.name || "",
         companyId: company?.id || "",
         year: String(year),
-        country,
-        expenses: JSON.stringify(expenses)
+        country: country || "",
+        expenses: JSON.stringify(expenses || {}),
       },
 
       line_items: [
@@ -43,14 +45,15 @@ export async function POST(req: Request) {
             product_data: {
               name: "CO₂e Attestation — Certif-Scope",
               description:
-                "Standardized spend-based CO₂e attestation (PDF)",
+                "Standardized spend-based CO₂e attestation (PDF, non-audited)",
             },
           },
           quantity: 1,
         },
       ],
 
-      success_url: `${origin}/success`,
+      // ✅ SESSION ID TRANSMIS AU SUCCESS FLOW
+      success_url: `${origin}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/generate`,
     });
 
@@ -58,8 +61,9 @@ export async function POST(req: Request) {
 
   } catch (error: any) {
     console.error("Stripe checkout error:", error);
+
     return NextResponse.json(
-      { error: error.message },
+      { error: error.message || "Stripe checkout failed" },
       { status: 500 }
     );
   }
