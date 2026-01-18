@@ -18,19 +18,20 @@ const logoBase64 = `data:image/png;base64,${fs
   .toString("base64")}`;
 
 /* =======================
-   STYLES PREMIUM
+   STYLES — INSTITUTIONAL
 ======================= */
 const styles = StyleSheet.create({
   page: {
-    padding: 40,
+    padding: 42,
     fontFamily: "Helvetica",
     color: "#0B3A63",
+    backgroundColor: "#FFFFFF",
   },
 
   container: {
     border: "2 solid #0B3A63",
     borderRadius: 14,
-    padding: 28,
+    padding: 30,
     height: "100%",
   },
 
@@ -38,26 +39,28 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: 28,
+    marginBottom: 26,
   },
 
   logo: {
-    height: 42,
+    height: 38,
   },
 
   titleBlock: {
     textAlign: "right",
+    maxWidth: "60%",
   },
 
   title: {
     fontSize: 20,
     fontWeight: "bold",
+    letterSpacing: 0.4,
   },
 
   subtitle: {
     fontSize: 11,
-    color: "#444",
     marginTop: 4,
+    color: "#444",
   },
 
   section: {
@@ -67,41 +70,60 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 13,
     fontWeight: "bold",
-    marginBottom: 6,
+    marginBottom: 8,
+    textTransform: "uppercase",
+    letterSpacing: 0.4,
+  },
+
+  grid: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+
+  col: {
+    width: "48%",
   },
 
   label: {
-    fontSize: 10,
+    fontSize: 9,
     fontWeight: "bold",
+    marginBottom: 2,
   },
 
   value: {
     fontSize: 11,
-    marginBottom: 6,
+    marginBottom: 10,
   },
 
-  resultBox: {
+  keyFactsBox: {
     border: "1 solid #0B3A63",
-    borderRadius: 10,
+    borderRadius: 12,
     padding: 18,
-    textAlign: "center",
-    marginVertical: 18,
+    marginBottom: 26,
+    backgroundColor: "#F8FAFC",
   },
 
-  resultValue: {
-    fontSize: 26,
+  keyValue: {
+    fontSize: 28,
     fontWeight: "bold",
-    marginTop: 6,
+    marginVertical: 6,
+  },
+
+  keyUnit: {
+    fontSize: 11,
+    color: "#444",
   },
 
   small: {
     fontSize: 9,
     color: "#444",
-    lineHeight: 1.4,
+    lineHeight: 1.45,
   },
 
   footer: {
-    marginTop: 24,
+    marginTop: 22,
+    paddingTop: 14,
+    borderTop: "1 solid #0B3A63",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "flex-end",
@@ -111,10 +133,18 @@ const styles = StyleSheet.create({
     width: 90,
     height: 90,
   },
+
+  pageNumber: {
+    position: "absolute",
+    bottom: 20,
+    right: 42,
+    fontSize: 9,
+    color: "#444",
+  },
 });
 
 /* =======================
-   PDF COMPONENT
+   COMPONENT
 ======================= */
 export function AttestationPdf({
   attestationId,
@@ -133,83 +163,216 @@ export function AttestationPdf({
 }) {
   return (
     <Document>
+
+      {/* ======================================================
+          PAGE 1 — EXECUTIVE SUMMARY / KEY FACTS
+      ====================================================== */}
       <Page size="A4" style={styles.page}>
         <View style={styles.container}>
 
-          {/* HEADER */}
           <View style={styles.header}>
             <Image src={logoBase64} style={styles.logo} />
             <View style={styles.titleBlock}>
-              <Text style={styles.title}>CO₂e Attestation</Text>
+              <Text style={styles.title}>CO₂e Emissions Attestation</Text>
               <Text style={styles.subtitle}>
-                Standardized spend-based carbon estimation
+                Indicative spend-based carbon emission estimate
               </Text>
             </View>
           </View>
 
-          {/* ENTITY */}
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Entity information</Text>
-
-            <Text style={styles.label}>Attestation ID</Text>
-            <Text style={styles.value}>{attestationId}</Text>
-
-            <Text style={styles.label}>Company / Legal entity</Text>
-            <Text style={styles.value}>{companyName}</Text>
-
-            <Text style={styles.label}>Main country</Text>
-            <Text style={styles.value}>{country}</Text>
-
-            <Text style={styles.label}>Reference year</Text>
-            <Text style={styles.value}>{year}</Text>
-          </View>
-
-          {/* RESULT */}
-          <View style={styles.resultBox}>
+          <View style={styles.keyFactsBox}>
             <Text style={styles.label}>Total estimated emissions</Text>
-            <Text style={styles.resultValue}>Indicative CO₂e value</Text>
+            <Text style={styles.keyValue}>XX.X tCO₂e</Text>
+            <Text style={styles.keyUnit}>
+              Annual indicative estimate — spend-based methodology
+            </Text>
             <Text style={styles.small}>
-              Spend-based estimation derived from annual external expenditures
+              Scope 3 (upstream, monetary). External expenditures only.
             </Text>
           </View>
 
-          {/* METHODOLOGY */}
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Methodology</Text>
-            <Text style={styles.small}>
-              This attestation is generated using a standardized spend-based
-              methodology. Annual external expenditures are converted into
-              estimated CO₂e emissions using sector-average emission factors.
-              This approach is commonly used when physical activity data is not
-              available.
-            </Text>
+            <Text style={styles.sectionTitle}>Attestation details</Text>
+
+            <View style={styles.grid}>
+              <View style={styles.col}>
+                <Text style={styles.label}>Attestation ID</Text>
+                <Text style={styles.value}>{attestationId}</Text>
+
+                <Text style={styles.label}>Entity</Text>
+                <Text style={styles.value}>{companyName}</Text>
+              </View>
+
+              <View style={styles.col}>
+                <Text style={styles.label}>Main country</Text>
+                <Text style={styles.value}>{country}</Text>
+
+                <Text style={styles.label}>Reference year</Text>
+                <Text style={styles.value}>{year}</Text>
+              </View>
+            </View>
           </View>
 
-          {/* LIMITATIONS */}
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Scope & limitations</Text>
+            <Text style={styles.sectionTitle}>Purpose</Text>
             <Text style={styles.small}>
-              This document provides an indicative estimate only. It does not
-              constitute a greenhouse gas audit, regulatory report, or
-              compliance statement under CSRD, ESRS, or similar frameworks.
-              Scope 1 and Scope 2 emissions are not included.
+              This attestation provides a standardized, deterministic and
+              verifiable CO₂e estimate designed for institutional workflows
+              including procurement screening, banking and insurance risk
+              assessment, and ESG due-diligence processes.
             </Text>
           </View>
 
-          {/* VERIFICATION */}
+          <Text style={styles.pageNumber}>Page 1 / 4</Text>
+        </View>
+      </Page>
+
+      {/* ======================================================
+          PAGE 2 — METHODOLOGY & NORMATIVE FRAMEWORK
+      ====================================================== */}
+      <Page size="A4" style={styles.page}>
+        <View style={styles.container}>
+
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Methodology overview</Text>
+            <Text style={styles.small}>
+              The calculation follows a standardized spend-based carbon
+              accounting methodology. Annual external expenditures are converted
+              into estimated CO₂e emissions using sector-average emission
+              factors. This approach is commonly applied when physical activity
+              data or supplier-specific primary data is unavailable.
+            </Text>
+          </View>
+
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Deterministic calculation model</Text>
+            <Text style={styles.small}>
+              Emissions are calculated using the following deterministic
+              formula: Emissions = Financial spending × Emission factor.
+              Identical inputs always produce identical outputs. No statistical
+              inference, extrapolation, or estimation smoothing is applied.
+            </Text>
+          </View>
+
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Normative references</Text>
+            <Text style={styles.small}>
+              • GHG Protocol — Scope 3, spend-based method{"\n"}
+              • ISO 14064-1 — greenhouse gas accounting principles{"\n"}
+              • ESRS E1 / CSRD — contextual alignment (non-audit){"\n"}
+              • Environmentally-Extended Input-Output (EEIO) foundations{"\n"}
+              • Public sector emission factor datasets (versioned)
+            </Text>
+          </View>
+
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Reproducibility & versioning</Text>
+            <Text style={styles.small}>
+              All emission factors and methodological rules are versioned.
+              Results are reproducible over time. No retroactive modification
+              of issued attestations occurs.
+            </Text>
+          </View>
+
+          <Text style={styles.pageNumber}>Page 2 / 4</Text>
+        </View>
+      </Page>
+
+      {/* ======================================================
+          PAGE 3 — SCOPE, LIMITATIONS & LEGAL STATUS
+      ====================================================== */}
+      <Page size="A4" style={styles.page}>
+        <View style={styles.container}>
+
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Scope definition</Text>
+            <Text style={styles.small}>
+              This attestation covers Scope 3 upstream emissions derived from
+              monetary external expenditures. Scope 1 and Scope 2 emissions are
+              explicitly excluded.
+            </Text>
+          </View>
+
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Exclusions</Text>
+            <Text style={styles.small}>
+              This document does not include physical activity data, lifecycle
+              assessments, supplier-specific primary data, or downstream
+              emissions. It does not represent a complete greenhouse gas
+              inventory.
+            </Text>
+          </View>
+
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Limitations</Text>
+            <Text style={styles.small}>
+              The spend-based methodology provides an indicative estimate only.
+              It is sensitive to sector averages and is not intended to replace
+              detailed audits or primary-data-based accounting.
+            </Text>
+          </View>
+
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Legal status</Text>
+            <Text style={styles.small}>
+              This attestation is not a certified greenhouse gas audit, a
+              regulatory filing, or a compliance statement under CSRD, ESRS, or
+              equivalent frameworks. It is provided for informational and
+              decision-support purposes within institutional workflows.
+            </Text>
+          </View>
+
+          <Text style={styles.pageNumber}>Page 3 / 4</Text>
+        </View>
+      </Page>
+
+      {/* ======================================================
+          PAGE 4 — VERIFICATION, PRIVACY & ISSUANCE
+      ====================================================== */}
+      <Page size="A4" style={styles.page}>
+        <View style={styles.container}>
+
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Verification</Text>
+            <Text style={styles.small}>
+              This attestation can be verified independently using its unique
+              identifier and verification URL. Verification does not require
+              contacting Certif-Scope and can be performed online or offline.
+            </Text>
+            <Text style={styles.small}>{verificationUrl}</Text>
+          </View>
+
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Data protection & privacy</Text>
+            <Text style={styles.small}>
+              All calculations are performed locally. No raw financial input
+              data is stored by Certif-Scope. Only the resulting attestation and
+              minimal non-sensitive metadata are generated.
+            </Text>
+          </View>
+
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Issuance</Text>
+            <Text style={styles.small}>
+              Digitally issued by Certif-Scope. Each attestation is uniquely
+              identified and protected against tampering. Re-issuance is
+              possible; recovery of lost documents is not provided.
+            </Text>
+          </View>
+
           <View style={styles.footer}>
             <View style={{ maxWidth: "65%" }}>
-              <Text style={styles.sectionTitle}>Verification</Text>
-              <Text style={styles.small}>{verificationUrl}</Text>
               <Text style={styles.small}>
-                Verifiable independently — no data stored by Certif-Scope
+                Certif-Scope — Independent CO₂e attestation infrastructure
               </Text>
             </View>
             <Image src={qrDataUrl} style={styles.qr} />
           </View>
 
+          <Text style={styles.pageNumber}>Page 4 / 4</Text>
         </View>
       </Page>
+
     </Document>
   );
-}
+  }
