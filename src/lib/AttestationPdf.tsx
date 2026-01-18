@@ -33,19 +33,39 @@ const styles = StyleSheet.create({
 
   header: {
     position: "relative",
-    marginBottom: 42,
+    marginBottom: 28, // légèrement réduit pour laisser place à la section 1
   },
 
   logo: {
     position: "absolute",
     top: 0,
     right: 0,
-    height: 40,
+    height: 32, // conforme au standard validé
   },
 
+  /* ===== SECTION 1 — AUTORITÉ ÉMETTRICE ===== */
+  authorityBlock: {
+    marginTop: 4,
+  },
+
+  authorityName: {
+    fontSize: 9,
+    fontWeight: "bold",
+  },
+
+  authorityRole: {
+    fontSize: 9,
+  },
+
+  authorityLimits: {
+    fontSize: 9,
+    color: "#333",
+  },
+
+  /* ===== TITRE (SECTION 2) ===== */
   titleBlock: {
     alignItems: "center",
-    paddingTop: 28,
+    marginTop: 36,
   },
 
   title: {
@@ -185,20 +205,34 @@ export function AttestationPdf({
       ====================================================== */}
       <Page size="A4" style={styles.page}>
 
+        {/* HEADER + SECTION 1 */}
         <View style={styles.header}>
           <Image src={logoBase64} style={styles.logo} />
 
-          <View style={styles.titleBlock}>
-            <Text style={styles.title}>
-              Indicative Carbon Emissions Attestation
+          {/* SECTION 1 — AUTORITÉ ÉMETTRICE */}
+          <View style={styles.authorityBlock}>
+            <Text style={styles.authorityName}>Certif-Scope</Text>
+            <Text style={styles.authorityRole}>
+              Independent infrastructure for indicative carbon emissions attestation
             </Text>
-            <Text style={styles.subtitle}>
-              Formal institutional act recording the existence of an indicative
-              CO₂e estimation, issued for decision-support purposes only
+            <Text style={styles.authorityLimits}>
+              Non-regulatory · Non-audit · Decision-support act
             </Text>
           </View>
         </View>
 
+        {/* SECTION 2 — INTITULÉ FORMEL */}
+        <View style={styles.titleBlock}>
+          <Text style={styles.title}>
+            Indicative Carbon Emissions Attestation
+          </Text>
+          <Text style={styles.subtitle}>
+            Formal institutional act recording the existence of an indicative
+            CO₂e estimation, issued for decision-support purposes only
+          </Text>
+        </View>
+
+        {/* SECTION 4 — DÉCLARATION */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Declaration of attestation</Text>
           <Text style={styles.declaration}>
@@ -208,6 +242,8 @@ export function AttestationPdf({
             the methodological, legal and compliance boundaries defined herein.
           </Text>
         </View>
+
+        {/* LE RESTE EST STRICTEMENT INCHANGÉ */}
 
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Attested indicative result</Text>
@@ -265,7 +301,7 @@ export function AttestationPdf({
         <Text style={styles.pageNumber}>Page 1 / 2</Text>
       </Page>
 
-      {/* PAGE 2 = inchangée (annexe méthodologique & compliance) */}
+      {/* PAGE 2 — inchangée */}
     </Document>
   );
-  }
+}
