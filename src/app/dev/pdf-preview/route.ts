@@ -1,7 +1,5 @@
 import { pdf } from "@react-pdf/renderer";
 import QRCode from "qrcode";
-import fs from "fs";
-import path from "path";
 import { AttestationPdf } from "@/lib/AttestationPdf";
 
 export const runtime = "nodejs";
@@ -9,17 +7,7 @@ export const runtime = "nodejs";
 export async function GET() {
   try {
     /* ─────────────────────────────────────────────
-       1. LOGO — lecture locale (public/logo1.png)
-       → AUCUNE dépendance Stripe
-    ───────────────────────────────────────────── */
-    const logoPath = path.join(process.cwd(), "public/logo1.png");
-
-    const logoUrl =
-      "data:image/png;base64," +
-      fs.readFileSync(logoPath).toString("base64");
-
-    /* ─────────────────────────────────────────────
-       2. QR CODE FACTICE (mais valide)
+       1. QR CODE FACTICE (mais valide)
     ───────────────────────────────────────────── */
     const qrDataUrl = await QRCode.toDataURL(
       "https://certif-scope.io/verify?id=CS-PREVIEW",
@@ -27,7 +15,8 @@ export async function GET() {
     );
 
     /* ─────────────────────────────────────────────
-       3. PDF — DONNÉES STATIQUES
+       2. PDF — DONNÉES STATIQUES
+       ⚠️ AUCUN logo ici
     ───────────────────────────────────────────── */
     const doc = AttestationPdf({
       attestationId: "CS-PREVIEW-2026",
@@ -37,7 +26,6 @@ export async function GET() {
       totalCO2e: 123.45,
       methodology: "Spend-based deterministic estimation",
       qrDataUrl,
-      logoUrl, // ✅ LOGO GARANTI
       hash: "PREVIEW_HASH",
     });
 
@@ -46,7 +34,7 @@ export async function GET() {
     );
 
     /* ─────────────────────────────────────────────
-       4. RÉPONSE — TÉLÉCHARGEMENT FORCÉ
+       3. RÉPONSE — TÉLÉCHARGEMENT PDF
     ───────────────────────────────────────────── */
     return new Response(buffer, {
       headers: {
