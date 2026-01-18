@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   },
 
   qr: {
-    width: 72,   // dimension institutionnelle standard
+    width: 72,
     height: 72,
   },
 
@@ -124,12 +124,22 @@ export function AttestationPdf({
   country,
   year,
   qrDataUrl,
+
+  /* NOUVELLES DONNÉES — SANS RIEN SUPPRIMER */
+  totalCO2e,
+  methodology,
+  hash,
 }: {
   attestationId: string;
   companyName: string;
   country: string;
   year: string;
   qrDataUrl: string;
+
+  /* AJOUTS */
+  totalCO2e: string;
+  methodology: string;
+  hash: string;
 }) {
   return (
     <Document>
@@ -192,17 +202,27 @@ export function AttestationPdf({
         {/* SECTION 5 — OBJET ATTESTÉ */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Attested facts</Text>
+
           <Text style={styles.small}>
             <Text style={styles.label}>Entity:</Text> {companyName}
           </Text>
+
+          <Text style={styles.small}>
+            <Text style={styles.label}>Country:</Text> {country}
+          </Text>
+
           <Text style={styles.small}>
             <Text style={styles.label}>Reference year:</Text> {year}
           </Text>
+
           <Text style={styles.small}>
-            <Text style={styles.label}>Nature of the attested fact:</Text> Indicative carbon emissions estimation
+            <Text style={styles.label}>Nature of the attested fact:</Text>{" "}
+            Indicative carbon emissions estimation
           </Text>
+
           <Text style={styles.small}>
-            <Text style={styles.label}>Indicative estimated value:</Text> XX.X tCO₂e (annual)
+            <Text style={styles.label}>Indicative estimated value:</Text>{" "}
+            {totalCO2e} tCO₂e (annual)
           </Text>
         </View>
 
@@ -232,18 +252,22 @@ export function AttestationPdf({
         {/* SECTION 7 — ÉMISSION & VÉRIFICATION */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Issuance & verification</Text>
+
           <Text style={styles.small}>
             <Text style={styles.label}>Attestation ID:</Text> {attestationId}
           </Text>
+
           <Text style={styles.small}>
-            <Text style={styles.label}>Issued by:</Text> Certif-Scope
+            <Text style={styles.label}>Methodology:</Text> {methodology}
           </Text>
+
           <Text style={styles.small}>
-            <Text style={styles.label}>Date of issuance:</Text> {year}
+            <Text style={styles.label}>Integrity hash:</Text> {hash}
           </Text>
+
           <Text style={styles.small}>
-            <Text style={styles.label}>Verification:</Text> Public verification endpoint available.
-            Accessible without authentication. No input data disclosed.
+            <Text style={styles.label}>Verification:</Text> Scan the QR code or
+            enter the attestation ID on the public verification page.
           </Text>
         </View>
 
@@ -264,17 +288,15 @@ export function AttestationPdf({
           </Text>
           <Text style={styles.small}>
             The model converts aggregated external financial expenditures into
-            indicative CO₂e values using predefined intensity coefficients, for
-            decision-support purposes only.
+            indicative CO₂e values using predefined intensity coefficients.
           </Text>
           <Text style={styles.small}>
-            The estimation does not rely on physical activity data,
-            supplier-specific measurements, lifecycle assessment, or audit
-            procedures.
+            No physical activity data, supplier-specific data, lifecycle
+            assessment, or audit procedures are used.
           </Text>
         </View>
 
       </Page>
     </Document>
   );
-}
+      }
