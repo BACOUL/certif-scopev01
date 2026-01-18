@@ -59,7 +59,7 @@ export async function GET(req: Request) {
     const country = metadata.country || "—";
     const year = metadata.year || "—";
 
-    const totalCO2e = Number(metadata.totalCO2e || 0);
+    const totalCO2e = String(metadata.totalCO2e || "—");
     const methodology =
       metadata.methodology || "Spend-based deterministic estimation";
 
@@ -70,7 +70,7 @@ export async function GET(req: Request) {
       "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+X2ZkAAAAASUVORK5CYII=";
 
     // ─────────────────────────────────────────────
-    // 4. Génération PDF — PREMIÈRE PASSE (sans hash réel)
+    // 4. Génération PDF — PREMIÈRE PASSE
     // ─────────────────────────────────────────────
     const draftDoc = AttestationPdf({
       attestationId,
@@ -80,9 +80,15 @@ export async function GET(req: Request) {
       totalCO2e,
       methodology,
       qrDataUrl: dummyQr,
+      hash: "",
     });
 
-    const draftBuffer = await pdf(draftDoc).toBuffer();
+    const draftOutput = await pdf(draftDoc).toBuffer();
+
+    // ⚠️ Normalisation CRITIQUE
+    const draftBuffer = Buffer.isBuffer(draftOutput)
+      ? draftOutput
+      : Buffer.from(draftOutput);
 
     // ─────────────────────────────────────────────
     // 5. Calcul de l’empreinte cryptographique
@@ -93,7 +99,7 @@ export async function GET(req: Request) {
       .digest("hex");
 
     // ─────────────────────────────────────────────
-    // 6. Génération URL de vérification + QR code final
+    // 6. Génération URL de vérification + QR final
     // ─────────────────────────────────────────────
     const verificationUrl = `${baseUrl}/verify?id=${attestationId}`;
 
@@ -103,7 +109,7 @@ export async function GET(req: Request) {
     });
 
     // ─────────────────────────────────────────────
-    // 7. Génération PDF FINAL (figé, auto-porteur)
+    // 7. Génération PDF FINAL (figé)
     // ─────────────────────────────────────────────
     const finalDoc = AttestationPdf({
       attestationId,
@@ -116,7 +122,10 @@ export async function GET(req: Request) {
       qrDataUrl,
     });
 
-    const finalBuffer = await pdf(finalDoc).toBuffer();
+    const finalOutput = await pdf(finalDoc).toBuffer();
+    const finalBuffer = Buffer.isBuffer(finalOutput)
+      ? finalOutput
+      : Buffer.from(finalOutput);
 
     // ─────────────────────────────────────────────
     // 8. Réponse HTTP
@@ -132,4 +141,4 @@ export async function GET(req: Request) {
     console.error("❌ Attestation PDF error:", err);
     return new Response("Failed to generate attestation", { status: 500 });
   }
-                             }
+      }
