@@ -6,16 +6,6 @@ import {
   StyleSheet,
   Image,
 } from "@react-pdf/renderer";
-import fs from "fs";
-import path from "path";
-
-/* ======================================================
-   LOGO
-====================================================== */
-const logoPath = path.join(process.cwd(), "public/logo.png");
-const logoBase64 = `data:image/png;base64,${fs
-  .readFileSync(logoPath)
-  .toString("base64")}`;
 
 /* ======================================================
    STYLES — CANON INSTITUTIONNEL
@@ -116,7 +106,7 @@ const styles = StyleSheet.create({
 });
 
 /* ======================================================
-   PDF
+   PDF — COMPOSANT PUR (AUCUN FS / AUCUN PATH)
 ====================================================== */
 export function AttestationPdf({
   attestationId,
@@ -124,8 +114,8 @@ export function AttestationPdf({
   country,
   year,
   qrDataUrl,
+  logoDataUrl,
 
-  /* DONNÉES FIGÉES (STRIPE = SOURCE DE VÉRITÉ) */
   totalCO2e,
   methodology,
   hash,
@@ -135,10 +125,11 @@ export function AttestationPdf({
   country: string;
   year: string;
   qrDataUrl: string;
+  logoDataUrl: string;
 
-  totalCO2e: number;          // ← correction nécessaire
+  totalCO2e: number;
   methodology: string;
-  hash?: string;              // ← optionnel tant qu’il n’est pas généré
+  hash?: string;
 }) {
   return (
     <Document>
@@ -148,12 +139,10 @@ export function AttestationPdf({
       ====================================================== */}
       <Page size="A4" style={styles.page}>
 
-        {/* SECTION 1 — AUTORITÉ ÉMETTRICE */}
+        {/* AUTORITÉ ÉMETTRICE */}
         <View style={styles.header}>
-
-          {/* GAUCHE — LOGO + AUTORITÉ */}
           <View style={styles.logoBlock}>
-            <Image src={logoBase64} style={styles.logo} />
+            <Image src={logoDataUrl} style={styles.logo} />
             <View style={styles.authorityBlock}>
               <Text style={styles.authorityName}>Certif-Scope</Text>
               <Text style={styles.authorityRole}>
@@ -165,40 +154,38 @@ export function AttestationPdf({
             </View>
           </View>
 
-          {/* DROITE — QR CODE */}
           <Image src={qrDataUrl} style={styles.qr} />
-
         </View>
 
-        {/* SECTION 2 — INTITULÉ FORMEL */}
+        {/* TITRE */}
         <View style={styles.titleBlock}>
           <Text style={styles.title}>
             Indicative Carbon Emissions Attestation
           </Text>
         </View>
 
-        {/* SECTION 3 — BASE D’ÉMISSION / MANDAT */}
+        {/* CONTEXTE */}
         <View style={styles.section}>
           <Text style={styles.small}>
-            This attestation is issued upon request through a standardized,
-            non-discretionary issuance process operated by Certif-Scope, based on
-            aggregated data provided by the requesting entity for indicative
-            decision-support purposes only.
+            This attestation is issued through a standardized, deterministic
+            issuance process operated by Certif-Scope, based on aggregated data
+            provided by the requesting entity for indicative decision-support
+            purposes only.
           </Text>
         </View>
 
-        {/* SECTION 4 — DÉCLARATION D’ATTESTATION */}
+        {/* DÉCLARATION */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Declaration of attestation</Text>
           <Text style={styles.declaration}>
             Certif-Scope hereby attests that an indicative estimation of carbon
             emissions has been produced for the entity identified herein, for the
-            stated reference year, within a strictly defined, non-regulatory and
+            stated reference year, within a strictly defined non-regulatory and
             non-audit framework.
           </Text>
         </View>
 
-        {/* SECTION 5 — OBJET ATTESTÉ */}
+        {/* FAITS ATTESTÉS */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Attested facts</Text>
 
@@ -215,40 +202,24 @@ export function AttestationPdf({
           </Text>
 
           <Text style={styles.small}>
-            <Text style={styles.label}>Nature of the attested fact:</Text>{" "}
-            Indicative carbon emissions estimation
-          </Text>
-
-          <Text style={styles.small}>
             <Text style={styles.label}>Indicative estimated value:</Text>{" "}
             {totalCO2e} tCO₂e (annual)
           </Text>
         </View>
 
-        {/* SECTION 6 — PORTÉE & LIMITES */}
+        {/* LIMITES */}
         <View style={styles.section}>
           <Text style={styles.small}>
             <Text style={styles.label}>Scope and limitations.</Text>
           </Text>
           <Text style={styles.small}>
-            This attestation is limited to an indicative estimation of carbon
-            emissions produced for decision-support purposes only.
-          </Text>
-          <Text style={styles.small}>
-            It does not constitute a greenhouse gas audit, a verified carbon
-            footprint, a certification, or any form of regulatory reporting.
-          </Text>
-          <Text style={styles.small}>
-            This attestation is not equivalent to, and must not be used as, an
-            ISO 14064-1 inventory, a CSRD / ESRS disclosure, or a GHG Protocol audit.
-          </Text>
-          <Text style={styles.small}>
-            Any use for certification, assurance, regulatory compliance, or
-            public claims of verified emissions is expressly excluded.
+            This document does not constitute a verified carbon footprint,
+            certification, regulatory disclosure, or audit under CSRD, ESRS,
+            ISO 14064-1, or the GHG Protocol.
           </Text>
         </View>
 
-        {/* SECTION 7 — ÉMISSION & VÉRIFICATION */}
+        {/* ÉMISSION */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Issuance & verification</Text>
 
@@ -267,37 +238,26 @@ export function AttestationPdf({
           )}
 
           <Text style={styles.small}>
-            <Text style={styles.label}>Verification:</Text> Scan the QR code or
-            enter the attestation ID on the public verification page.
+            Verification via QR code or public verification interface.
           </Text>
         </View>
 
       </Page>
 
       {/* ======================================================
-          PAGE 2 — ANNEXE
+          PAGE 2 — ANNEXE MÉTHODOLOGIQUE
       ====================================================== */}
       <Page size="A4" style={styles.page}>
-
-        {/* SECTION 8 — CADRE D’ESTIMATION */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Estimation framework</Text>
           <Text style={styles.small}>
-            The indicative carbon emissions estimation referenced in this
-            attestation is produced using a deterministic spend-based estimation
-            framework.
-          </Text>
-          <Text style={styles.small}>
-            The model converts aggregated external financial expenditures into
-            indicative CO₂e values using predefined intensity coefficients.
-          </Text>
-          <Text style={styles.small}>
-            No physical activity data, supplier-specific data, lifecycle
-            assessment, or audit procedures are used.
+            The estimation is produced using a deterministic spend-based model
+            converting aggregated financial data into indicative CO₂e values
+            using predefined intensity coefficients.
           </Text>
         </View>
-
       </Page>
+
     </Document>
   );
-    }
+}
