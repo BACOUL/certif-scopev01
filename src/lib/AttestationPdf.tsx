@@ -7,7 +7,15 @@ import {
   Image,
 } from "@react-pdf/renderer";
 
-import { LOGO_DATA_URL } from "@/lib/assets/logo.base64";
+import { LOGO_DATA_URL as RAW_LOGO_DATA_URL } from "@/lib/assets/logo.base64";
+
+/* ======================================================
+   LOGO — BASE64 (sécurisé)
+====================================================== */
+const LOGO_DATA_URL: string =
+  typeof RAW_LOGO_DATA_URL === "string" && RAW_LOGO_DATA_URL.startsWith("data:image")
+    ? RAW_LOGO_DATA_URL
+    : "";
 
 /* ======================================================
    STYLES — CANON INSTITUTIONNEL
@@ -139,7 +147,9 @@ export function AttestationPdf({
         {/* AUTORITÉ ÉMETTRICE */}
         <View style={styles.header}>
           <View style={styles.logoBlock}>
-            <Image src={LOGO_DATA_URL} style={styles.logo} />
+            {LOGO_DATA_URL !== "" && (
+              <Image src={LOGO_DATA_URL} style={styles.logo} />
+            )}
             <View style={styles.authorityBlock}>
               <Text style={styles.authorityName}>Certif-Scope</Text>
               <Text style={styles.authorityRole}>
@@ -255,4 +265,4 @@ export function AttestationPdf({
       </Page>
     </Document>
   );
-}
+      }
