@@ -6,6 +6,16 @@ import {
   StyleSheet,
   Image,
 } from "@react-pdf/renderer";
+import fs from "fs";
+import path from "path";
+
+/* =======================
+   LOGO LOCAL → BASE64
+======================= */
+const logoPath = path.join(process.cwd(), "public/logo.png");
+const logoBase64 = `data:image/png;base64,${fs
+  .readFileSync(logoPath)
+  .toString("base64")}`;
 
 /* =======================
    STYLES PREMIUM
@@ -128,16 +138,16 @@ export function AttestationPdf({
 
           {/* HEADER */}
           <View style={styles.header}>
-            <Image src="/logo.png" style={styles.logo} />
+            <Image src={logoBase64} style={styles.logo} />
             <View style={styles.titleBlock}>
               <Text style={styles.title}>CO₂e Attestation</Text>
               <Text style={styles.subtitle}>
-                Instant spend-based estimate for institutional use
+                Standardized spend-based carbon estimation
               </Text>
             </View>
           </View>
 
-          {/* ENTITY DATA */}
+          {/* ENTITY */}
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Entity information</Text>
 
@@ -175,15 +185,14 @@ export function AttestationPdf({
             </Text>
           </View>
 
-          {/* SCOPE & LIMITATIONS */}
+          {/* LIMITATIONS */}
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Scope & limitations</Text>
             <Text style={styles.small}>
               This document provides an indicative estimate only. It does not
-              constitute a full greenhouse gas inventory, audit, or regulatory
-              reporting under CSRD, ESRS, or equivalent frameworks. Direct
-              emissions (Scope 1) and energy-related emissions (Scope 2) are not
-              calculated.
+              constitute a greenhouse gas audit, regulatory report, or
+              compliance statement under CSRD, ESRS, or similar frameworks.
+              Scope 1 and Scope 2 emissions are not included.
             </Text>
           </View>
 
@@ -203,4 +212,4 @@ export function AttestationPdf({
       </Page>
     </Document>
   );
-            }
+}
