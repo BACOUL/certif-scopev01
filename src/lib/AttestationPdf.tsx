@@ -32,19 +32,28 @@ const styles = StyleSheet.create({
   },
 
   header: {
-    position: "relative",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-start",
     marginBottom: 28,
   },
 
+  logoBlock: {
+    maxWidth: "70%",
+  },
+
   logo: {
-    position: "absolute",
-    top: 0,
-    right: 0,
     height: 32,
+    marginBottom: 6,
+  },
+
+  qr: {
+    width: 72,   // dimension institutionnelle standard
+    height: 72,
   },
 
   authorityBlock: {
-    marginTop: 4,
+    marginTop: 2,
   },
 
   authorityName: {
@@ -114,11 +123,13 @@ export function AttestationPdf({
   companyName,
   country,
   year,
+  qrDataUrl,
 }: {
   attestationId: string;
   companyName: string;
   country: string;
   year: string;
+  qrDataUrl: string;
 }) {
   return (
     <Document>
@@ -130,16 +141,24 @@ export function AttestationPdf({
 
         {/* SECTION 1 — AUTORITÉ ÉMETTRICE */}
         <View style={styles.header}>
-          <Image src={logoBase64} style={styles.logo} />
-          <View style={styles.authorityBlock}>
-            <Text style={styles.authorityName}>Certif-Scope</Text>
-            <Text style={styles.authorityRole}>
-              Independent infrastructure for indicative carbon emissions attestation
-            </Text>
-            <Text style={styles.authorityLimits}>
-              Non-regulatory · Non-audit · Decision-support act
-            </Text>
+
+          {/* GAUCHE — LOGO + AUTORITÉ */}
+          <View style={styles.logoBlock}>
+            <Image src={logoBase64} style={styles.logo} />
+            <View style={styles.authorityBlock}>
+              <Text style={styles.authorityName}>Certif-Scope</Text>
+              <Text style={styles.authorityRole}>
+                Independent infrastructure for indicative carbon emissions attestation
+              </Text>
+              <Text style={styles.authorityLimits}>
+                Non-regulatory · Non-audit · Decision-support act
+              </Text>
+            </View>
           </View>
+
+          {/* DROITE — QR CODE */}
+          <Image src={qrDataUrl} style={styles.qr} />
+
         </View>
 
         {/* SECTION 2 — INTITULÉ FORMEL */}
@@ -258,4 +277,4 @@ export function AttestationPdf({
       </Page>
     </Document>
   );
-        }
+}
