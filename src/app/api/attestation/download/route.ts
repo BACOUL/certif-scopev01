@@ -1,11 +1,31 @@
 import Stripe from "stripe";
 import { pdf } from "@react-pdf/renderer";
+import QRCode from "qrcode";
+import crypto from "crypto";
 import { AttestationPdf } from "@/lib/AttestationPdf";
 
 export const runtime = "nodejs";
 
 // Stripe = source de vérité unique
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+
+/**
+ * Détermination robuste de l’URL de base (prod / preview / custom domain)
+ */
+function getBaseUrl(req: Request): string {
+  const proto = req.headers.get("x-forwarded-proto");
+  const host = req.headers.get("x-forwarded-host");
+
+  if (proto && host) {
+    return `${proto}://${host}`;
+  }
+
+  if (process.env.NEXT_PUBLIC_BASE_URL) {
+    return process.env.NEXT_PUBLIC_BASE_URL;
+  }
+
+  throw new Error("Unable to determine base URL");
+}
 
 export async function GET(req: Request) {
   try {
@@ -30,26 +50,72 @@ export async function GET(req: Request) {
 
     // ─────────────────────────────────────────────
     // 3. Reconstruction déterministe (stateless)
+    //    → données calculées côté client
     // ─────────────────────────────────────────────
     const metadata = session.metadata || {};
     const attestationId = `CS-${session.id}`;
 
+    const companyName = metadata.companyName || "—";
+    const country = metadata.country || "—";
+    const year = metadata.year || "—";
+    const totalCO2e = metadata.totalCO2e || "—";
+    const methodology = metadata.methodology || "—";
+
+    const baseUrl = getBaseUrl(req);
+
     // ─────────────────────────────────────────────
-    // 4. Génération du PDF (acte institutionnel)
+    // 4. Génération PDF — PREMIÈRE PASSE (sans QR / hash)
     // ─────────────────────────────────────────────
-    const doc = AttestationPdf({
+    const draftDoc = AttestationPdf({
       attestationId,
-      companyName: metadata.companyName || "—",
-      country: metadata.country || "—",
-      year: metadata.year || "—",
+      companyName,
+      country,
+      year,
+      totalCO2e,
+      methodology,
     });
 
-    const buffer = await pdf(doc).toBuffer();
+    const draftBuffer = await pdf(draftDoc).toBuffer();
 
     // ─────────────────────────────────────────────
-    // 5. Réponse HTTP (PDF téléchargeable)
+    // 5. Calcul de l’empreinte (HASH) DU DOCUMENT
     // ─────────────────────────────────────────────
-    return new Response(buffer as any, {
+    const hash = crypto
+      .createHash("sha256")
+      .update(draftBuffer)
+      .digest("hex");
+
+    // ─────────────────────────────────────────────
+    // 6. Génération URL de vérification + QR
+    // ─────────────────────────────────────────────
+    const verificationUrl =
+      `${baseUrl}/verify?id=${attestationId}&hash=${hash}`;
+
+    const qrDataUrl = await QRCode.toDataURL(verificationUrl, {
+      width: 72,   // dimension institutionnelle
+      margin: 1,
+    });
+
+    // ─────────────────────────────────────────────
+    // 7. Génération PDF FINAL (figé, auto-porteur)
+    // ─────────────────────────────────────────────
+    const finalDoc = AttestationPdf({
+      attestationId,
+      companyName,
+      country,
+      year,
+      totalCO2e,
+      methodology,
+      hash,
+      qrDataUrl,
+    });
+
+    const finalBuffer = await pdf(finalDoc).toBuffer();
+
+    // ─────────────────────────────────────────────
+    // 8. Réponse HTTP (PDF téléchargeable)
+    // ─────────────────────────────────────────────
+    return new Response(finalBuffer as any, {
       headers: {
         "Content-Type": "application/pdf",
         "Content-Disposition": `attachment; filename="certif-scope-${attestationId}.pdf"`,
@@ -60,4 +126,4 @@ export async function GET(req: Request) {
     console.error("❌ Attestation PDF error:", err);
     return new Response("Failed to generate attestation", { status: 500 });
   }
-}
+      }
