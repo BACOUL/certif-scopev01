@@ -1,15 +1,5 @@
 import { pdf } from "@react-pdf/renderer";
-import fs from "fs";
-import path from "path";
 import { AttestationPdf } from "@/lib/AttestationPdf";
-
-/* ─────────────────────────────────────────────
-   LOGO — même source que le vrai PDF
-───────────────────────────────────────────── */
-const logoPath = path.join(process.cwd(), "public/logo.png");
-const logoBase64 = `data:image/png;base64,${fs
-  .readFileSync(logoPath)
-  .toString("base64")}`;
 
 export const runtime = "nodejs";
 
@@ -24,7 +14,6 @@ export async function GET() {
     year: "2025",
     totalCO2e: 123.45,
     methodology: "Spend-based deterministic estimation",
-    logoDataUrl: logoBase64,
     qrDataUrl:
       "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+X2ZkAAAAASUVORK5CYII=",
     hash: "PREVIEW_HASH",
