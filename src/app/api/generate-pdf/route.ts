@@ -1,21 +1,29 @@
-export const runtime = "nodejs";
+import type { NextApiRequest, NextApiResponse } from "next";
 
-import { renderPdfHtml } from "./template";
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  if (req.method !== "POST") {
+    res.status(405).send("Method Not Allowed");
+    return;
+  }
 
-export async function POST(req: Request) {
+  if (!process.env.PDFSHIFT_API_KEY) {
+    res.status(500).send("PDFSHIFT_API_KEY missing");
+    return;
+  }
+
   try {
-    // Debug obligatoire : clé présente ?
-    if (!process.env.PDFSHIFT_API_KEY) {
-      return new Response("PDFSHIFT_API_KEY missing", { status: 500 });
-    }
+    const html = `
+      <html>
+        <body>
+          <h1>TEST PDF</h1>
+          <p>OK</p>
+        </body>
+      </html>
+    `;
 
-    // Lecture des données envoyées
-    const data = await req.json();
-
-    // Génération HTML
-    const html = renderPdfHtml(data);
-
-    // Appel PDFShift
     const response = await fetch("https://api.pdfshift.io/v3/convert/pdf", {
       method: "POST",
       headers: {
@@ -27,37 +35,24 @@ export async function POST(req: Request) {
       body: JSON.stringify({
         source: html,
         format: "A4",
-        print_background: true,
-        margin: {
-          top: "24mm",
-          right: "20mm",
-          bottom: "24mm",
-          left: "20mm",
-        },
       }),
     });
 
-    // Erreur PDFShift explicite
     if (!response.ok) {
-      const errorText = await response.text();
-      return new Response(`PDFSHIFT_ERROR:\n${errorText}`, {
-        status: 500,
-      });
+      const text = await response.text();
+      res.status(500).send(text);
+      return;
     }
 
-    // Retour PDF
-    const pdfBuffer = await response.arrayBuffer();
+    const buffer = Buffer.from(await response.arrayBuffer());
 
-    return new Response(pdfBuffer, {
-      headers: {
-        "Content-Type": "application/pdf",
-        "Content-Disposition": "attachment; filename=certif-scope-test.pdf",
-      },
-    });
-  } catch (err: any) {
-    return new Response(
-      `UNHANDLED_ERROR:\n${err?.message || String(err)}`,
-      { status: 500 }
+    res.setHeader("Content-Type", "application/pdf");
+    res.setHeader(
+      "Content-Disposition",
+      "attachment; filename=test.pdf"
     );
+    res.send(buffer);
+  } catch (e: any) {
+    res.status(500).send(e.message);
   }
 }
