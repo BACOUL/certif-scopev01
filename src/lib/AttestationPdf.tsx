@@ -9,54 +9,51 @@ import {
 import fs from "fs";
 import path from "path";
 
-/* LOGO */
+/* ======================================================
+   LOGO
+====================================================== */
 const logoPath = path.join(process.cwd(), "public/logo.png");
 const logoBase64 = `data:image/png;base64,${fs
   .readFileSync(logoPath)
   .toString("base64")}`;
 
-/* STYLES — ACTE FORMEL */
+/* ======================================================
+   STYLES — CHARTE INSTITUTIONNELLE
+====================================================== */
 const styles = StyleSheet.create({
   page: {
     paddingTop: 64,
     paddingBottom: 64,
     paddingHorizontal: 64,
     fontFamily: "Helvetica",
+    fontSize: 10,
     color: "#0B3A63",
     backgroundColor: "#FFFFFF",
   },
 
   header: {
     alignItems: "center",
-    marginBottom: 36,
+    marginBottom: 40,
   },
 
   logo: {
     height: 32,
-    marginBottom: 18,
+    marginBottom: 16,
   },
 
   title: {
     fontFamily: "Times-Roman",
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: "bold",
-    letterSpacing: 0.8,
     textAlign: "center",
-    marginBottom: 6,
+    marginBottom: 10,
   },
 
-  subtitle: {
-    fontSize: 10,
-    textAlign: "center",
-    color: "#444",
-    maxWidth: "70%",
-  },
-
-  block: {
+  section: {
     marginBottom: 28,
   },
 
-  blockTitle: {
+  sectionTitle: {
     fontFamily: "Times-Roman",
     fontSize: 11,
     fontWeight: "bold",
@@ -65,32 +62,31 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
 
-  centralValue: {
-    fontFamily: "Times-Roman",
-    fontSize: 32,
-    fontWeight: "bold",
-    marginBottom: 4,
+  declaration: {
+    borderLeftWidth: 3,
+    borderLeftColor: "#15B097",
+    paddingLeft: 14,
   },
 
-  centralNote: {
-    fontSize: 9,
-    color: "#333",
+  declarationText: {
+    fontSize: 11,
+    lineHeight: 1.45,
   },
 
-  row: {
+  factsRow: {
     flexDirection: "row",
     justifyContent: "space-between",
     paddingVertical: 6,
   },
 
-  label: {
-    width: "40%",
+  factsLabel: {
+    width: "42%",
     fontSize: 9,
     fontWeight: "bold",
   },
 
-  value: {
-    width: "60%",
+  factsValue: {
+    width: "58%",
     fontSize: 9,
   },
 
@@ -99,10 +95,11 @@ const styles = StyleSheet.create({
     borderBottomColor: "#D1D5DB",
   },
 
-  legalBox: {
-    borderLeftWidth: 3,
-    borderLeftColor: "#15B097",
-    paddingLeft: 12,
+  emphasisValue: {
+    fontFamily: "Times-Roman",
+    fontSize: 30,
+    fontWeight: "bold",
+    marginBottom: 6,
   },
 
   small: {
@@ -113,7 +110,7 @@ const styles = StyleSheet.create({
 
   footer: {
     marginTop: 36,
-    paddingTop: 12,
+    paddingTop: 14,
     borderTopWidth: 0.5,
     borderTopColor: "#D1D5DB",
     flexDirection: "row",
@@ -135,6 +132,9 @@ const styles = StyleSheet.create({
   },
 });
 
+/* ======================================================
+   COMPONENT
+====================================================== */
 export function AttestationPdf({
   attestationId,
   companyName,
@@ -154,67 +154,77 @@ export function AttestationPdf({
     <Document>
 
       {/* ======================================================
-          PAGE 1 — ACTE D’ATTESTATION
+          PAGE 1 — ACTE AUTONOME
       ====================================================== */}
       <Page size="A4" style={styles.page}>
 
+        {/* 1. AUTORITÉ ÉMETTRICE */}
         <View style={styles.header}>
           <Image src={logoBase64} style={styles.logo} />
+        </View>
+
+        {/* 2. INTITULÉ FORMEL */}
+        <View style={styles.section}>
           <Text style={styles.title}>
             Indicative Carbon Emissions Attestation
           </Text>
-          <Text style={styles.subtitle}>
-            Formal indicative estimation issued for institutional
-            decision-support purposes only
+        </View>
+
+        {/* 3. DÉCLARATION D’ATTESTATION */}
+        <View style={[styles.section, styles.declaration]}>
+          <Text style={styles.declarationText}>
+            This document formally records the existence of an indicative
+            estimation of carbon emissions for the entity identified below,
+            calculated using a standardized spend-based estimation framework
+            within a defined and limited scope.
           </Text>
         </View>
 
-        <View style={styles.block}>
-          <Text style={styles.blockTitle}>Indicative estimated emissions</Text>
-          <Text style={styles.centralValue}>XX.X tCO₂e</Text>
-          <Text style={styles.centralNote}>
-            Indicative annual estimate derived from aggregated financial data
-            using a standardized spend-based estimation framework.
-          </Text>
-        </View>
+        {/* 4. OBJET ATTESTÉ (FAITS) */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Attested facts</Text>
 
-        <View style={styles.block}>
-          <Text style={styles.blockTitle}>Attestation identification</Text>
+          <Text style={styles.emphasisValue}>XX.X tCO₂e</Text>
+          <Text style={styles.small}>
+            Indicative annual emissions estimate
+          </Text>
 
           {[
-            ["Attestation ID", attestationId],
             ["Entity", companyName],
             ["Main country", country],
             ["Reference year", year],
-            ["Nature of document", "Indicative estimation — non-audit"],
-            ["Issued by", "Certif-Scope"],
+            ["Nature of estimation", "Indicative spend-based estimation"],
           ].map(([l, v], i) => (
             <View key={i}>
-              <View style={styles.row}>
-                <Text style={styles.label}>{l}</Text>
-                <Text style={styles.value}>{v}</Text>
+              <View style={styles.factsRow}>
+                <Text style={styles.factsLabel}>{l}</Text>
+                <Text style={styles.factsValue}>{v}</Text>
               </View>
-              {i < 5 && <View style={styles.separator} />}
+              {i < 3 && <View style={styles.separator} />}
             </View>
           ))}
         </View>
 
-        <View style={[styles.block, styles.legalBox]}>
-          <Text style={styles.blockTitle}>Legal nature</Text>
+        {/* 5. PORTÉE & LIMITES */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Scope and limitations</Text>
           <Text style={styles.small}>
-            This document is an indicative estimation instrument. It does not
-            constitute a greenhouse gas audit, a verified carbon footprint, an
-            ISO-compliant inventory, or a CSRD / ESRS regulatory report. It is
-            not intended for certification, assurance, or regulatory filing.
+            This attestation is indicative only. It does not constitute a
+            greenhouse gas audit, a verified carbon footprint, a regulatory
+            disclosure, or any form of certification. It is not suitable for
+            CSRD, ESRS, ISO 14064-1 or equivalent compliance or assurance use.
           </Text>
         </View>
 
+        {/* 6. ÉMISSION & VÉRIFICATION */}
         <View style={styles.footer}>
           <View style={{ maxWidth: "65%" }}>
-            <Text style={styles.blockTitle}>Verification</Text>
+            <Text style={styles.sectionTitle}>Issuance and verification</Text>
+            <Text style={styles.small}>Attestation ID: {attestationId}</Text>
+            <Text style={styles.small}>Issued by: Certif-Scope</Text>
             <Text style={styles.small}>{verificationUrl}</Text>
             <Text style={styles.small}>
-              Digitally issued. Independently verifiable. No raw input data stored.
+              Digitally issued. Independently verifiable.
             </Text>
           </View>
           <Image src={qrDataUrl} style={styles.qr} />
@@ -224,65 +234,60 @@ export function AttestationPdf({
       </Page>
 
       {/* ======================================================
-          PAGE 2 — ANNEXE TECHNIQUE
+          PAGE 2 — ANNEXE TECHNIQUE (NON AUTONOME)
       ====================================================== */}
       <Page size="A4" style={styles.page}>
 
-        <View style={styles.block}>
-          <Text style={styles.blockTitle}>Estimation framework (summary)</Text>
+        {/* 7. CADRE D’ESTIMATION */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Estimation framework</Text>
           <Text style={styles.small}>
-            The estimation is performed using a deterministic spend-based model.
+            The estimation is produced using a deterministic spend-based model.
             Aggregated financial expenditures are converted into indicative CO₂e
-            values using predefined intensity coefficients. Identical inputs
-            produce identical outputs.
+            values using predefined intensity coefficients.
           </Text>
         </View>
 
-        <View style={styles.block}>
-          <Text style={styles.blockTitle}>Indicative breakdown</Text>
-
-          {[
-            ["Purchased goods & services", "Spend-based estimation", "v2024-01", "X.X tCO₂e"],
-            ["Professional services", "Spend-based estimation", "v2024-01", "X.X tCO₂e"],
-          ].map((r, i) => (
-            <View key={i}>
-              <View style={styles.row}>
-                <Text style={styles.label}>{r[0]}</Text>
-                <Text style={styles.value}>
-                  {r[1]} — {r[2]} — {r[3]}
-                </Text>
-              </View>
-              {i < 1 && <View style={styles.separator} />}
-            </View>
-          ))}
-        </View>
-
-        <View style={styles.block}>
-          <Text style={styles.blockTitle}>Explicit exclusions</Text>
+        {/* 8. HYPOTHÈSES CLÉS */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Key assumptions</Text>
           <Text style={styles.small}>
-            No physical activity data. No supplier-specific data. No lifecycle
-            assessment. No downstream emissions. No verification or audit
-            procedures applied.
+            – Aggregated financial data only{"\n"}
+            – No physical activity data{"\n"}
+            – No supplier-specific information{"\n"}
+            – Deterministic calculation model
           </Text>
         </View>
 
-        <View style={styles.block}>
-          <Text style={styles.blockTitle}>Conceptual references</Text>
+        {/* 9. EXCLUSIONS EXPLICITES */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Explicit exclusions</Text>
           <Text style={styles.small}>
-            Certain international frameworks may be referenced for conceptual
-            context only. This document does not claim compliance or alignment
-            with GHG Protocol standards, ISO 14064-1, CSRD, ESRS, or equivalent
-            regulatory frameworks.
+            – No Scope 1 or Scope 2 emissions{"\n"}
+            – No lifecycle assessment{"\n"}
+            – No downstream emissions{"\n"}
+            – No verification or audit procedures
           </Text>
         </View>
 
-        <View style={styles.block}>
-          <Text style={styles.blockTitle}>Data protection & integrity</Text>
+        {/* 10. RÉFÉRENCES CONTEXTUELLES */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Contextual references</Text>
           <Text style={styles.small}>
-            Calculations are performed without storing raw financial inputs.
-            Integrity relies on unique identification and independent
-            verification. This framework performs estimation, not validation
-            or assurance.
+            References to international frameworks such as the GHG Protocol,
+            ISO 14064-1, CSRD or ESRS are provided for contextual purposes only.
+            This document does not claim compliance or alignment with these
+            frameworks.
+          </Text>
+        </View>
+
+        {/* 11. DONNÉES & INTÉGRITÉ */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Data handling and integrity</Text>
+          <Text style={styles.small}>
+            No raw financial input data is stored. Integrity relies on unique
+            identification and independent verification of the issued act.
+            Certif-Scope performs estimation only, not validation or assurance.
           </Text>
         </View>
 
@@ -291,4 +296,4 @@ export function AttestationPdf({
 
     </Document>
   );
-}
+  }
