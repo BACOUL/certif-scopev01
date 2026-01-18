@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { generateAttestationPdf } from "@/lib/generateAttestationPdf";
 
-export const runtime = "nodejs";
+export const runtime = "nodejs"; // obligatoire (Stripe + Puppeteer)
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
@@ -15,6 +15,7 @@ export async function GET(req: Request) {
       return new NextResponse("Missing session_id", { status: 400 });
     }
 
+    // 🔒 Revalidation du paiement côté Stripe (source de vérité unique)
     const session = await stripe.checkout.sessions.retrieve(sessionId);
 
     if (session.payment_status !== "paid") {
@@ -37,10 +38,11 @@ export async function GET(req: Request) {
       headers: {
         "Content-Type": "application/pdf",
         "Content-Disposition": `attachment; filename="certif-scope-${attestationId}.pdf"`,
+        "Cache-Control": "no-store",
       },
     });
-  } catch (err: any) {
-    console.error("Download error:", err);
-    return new NextResponse("Failed to generate PDF", { status: 500 });
+  } catch (error: any) {
+    console.error("❌ Attestation download error:", error);
+    return new NextResponse("Failed to generate attestation", { status: 500 });
   }
 }
