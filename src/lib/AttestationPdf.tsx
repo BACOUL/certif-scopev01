@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   titleBlock: {
     alignItems: "center",
     marginTop: 24,
-    marginBottom: 28,
+    marginBottom: 12,
   },
 
   title: {
@@ -78,6 +78,13 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     letterSpacing: 0.6,
     textAlign: "center",
+  },
+
+  testNotice: {
+    marginTop: 8,
+    fontSize: 9,
+    color: "#AA0000",
+    letterSpacing: 0.4,
   },
 
   /* SECTIONS */
@@ -136,13 +143,11 @@ export function AttestationPdf({
 }) {
   return (
     <Document>
-      {/* ================================================== */}
-      {/* PAGE 1 */}
-      {/* ================================================== */}
+      {/* ================= PAGE 1 ================= */}
       <Page size="A4" style={styles.page}>
         {/* HEADER */}
         <View style={styles.header}>
-          {/* LEFT — LOGO + AUTORITÉ */}
+          {/* LEFT */}
           <View style={styles.headerLeft}>
             <Image src={LOGO_DATA_URL} style={styles.logo} />
 
@@ -155,7 +160,7 @@ export function AttestationPdf({
             </Text>
           </View>
 
-          {/* RIGHT — QR */}
+          {/* RIGHT */}
           <View style={styles.headerRight}>
             <Image src={qrDataUrl} style={styles.qr} />
           </View>
@@ -165,6 +170,11 @@ export function AttestationPdf({
         <View style={styles.titleBlock}>
           <Text style={styles.title}>
             Indicative Carbon Emissions Attestation
+          </Text>
+
+          {/* ===== TEST UPDATE ===== */}
+          <Text style={styles.testNotice}>
+            TEST UPDATE — TEMPLATE MODIFICATION OK
           </Text>
         </View>
 
@@ -235,9 +245,7 @@ export function AttestationPdf({
         </View>
       </Page>
 
-      {/* ================================================== */}
-      {/* PAGE 2 */}
-      {/* ================================================== */}
+      {/* ================= PAGE 2 ================= */}
       <Page size="A4" style={styles.page}>
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Estimation framework</Text>
