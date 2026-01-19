@@ -60,8 +60,6 @@ export async function GET(req: Request) {
       line-height: 1.5;
     }
 
-    /* ===== SECTION 1 ===== */
-
     .header {
       display: flex;
       justify-content: space-between;
@@ -113,8 +111,6 @@ export async function GET(req: Request) {
       color: #6b7280;
     }
 
-    /* ===== SECTION 2 ===== */
-
     .section-title {
       text-align: center;
       margin: 48px 0 40px;
@@ -131,8 +127,6 @@ export async function GET(req: Request) {
       color: #6b7280;
     }
 
-    /* ===== SECTIONS GENERIC ===== */
-
     .section {
       margin-bottom: 28px;
     }
@@ -146,13 +140,9 @@ export async function GET(req: Request) {
       font-weight: 600;
     }
 
-    /* ===== SECTION 3 ===== */
-
     .section-object .row {
       margin-bottom: 6px;
     }
-
-    /* ===== FOOTER ===== */
 
     .footer {
       margin-top: 48px;
@@ -165,7 +155,6 @@ export async function GET(req: Request) {
 </head>
 <body>
 
-  <!-- SECTION 1 — ISSUER IDENTIFICATION -->
   <div class="header">
     <div class="issuer">
       <img src="/logo.png" alt="Certif-Scope logo" class="issuer-logo" />
@@ -185,7 +174,6 @@ export async function GET(req: Request) {
     </div>
   </div>
 
-  <!-- SECTION 2 — TITLE -->
   <section class="section-title">
     <div class="doc-title">Indicative Carbon Emissions Attestation</div>
     <div class="doc-subtitle">
@@ -193,7 +181,6 @@ export async function GET(req: Request) {
     </div>
   </section>
 
-  <!-- SECTION 3 — IDENTIFICATION OF THE OBJECT CERTIFIED -->
   <section class="section section-object small">
     <div class="row"><span class="label">Entity name:</span> ${companyName}</div>
     <div class="row"><span class="label">Entity identifier:</span> ${entityIdentifier}</div>
@@ -201,23 +188,19 @@ export async function GET(req: Request) {
     <div class="row"><span class="label">Reporting year:</span> ${year}</div>
   </section>
 
-  <!-- SECTION 4 — RESULT -->
   <section class="section small">
     <div><span class="label">Total estimated emissions:</span> ${totalCO2e} tCO₂e</div>
   </section>
 
-  <!-- SECTION 5 — METHODOLOGY -->
   <section class="section small">
     <div><span class="label">Methodology:</span> ${methodology}</div>
   </section>
 
-  <!-- SECTION 6 — TRACEABILITY -->
   <section class="section small">
     <div><span class="label">Attestation ID:</span> ${attestationId}</div>
     <div>Verification available via QR code or public verification interface.</div>
   </section>
 
-  <!-- SECTION 7 — LEGAL CLAUSES -->
   <div class="footer">
     This attestation is indicative only. It does not constitute a regulatory report,
     a GHG inventory, or a CSRD/ESRS-compliant disclosure. All input data remain under
@@ -258,7 +241,7 @@ export async function GET(req: Request) {
     return new Response(pdfBuffer, {
       headers: {
         "Content-Type": "application/pdf",
-        "Content-Disposition": \`attachment; filename="certif-scope-\${attestationId}.pdf"\`,
+        "Content-Disposition": `attachment; filename="certif-scope-${attestationId}.pdf"`,
         "Cache-Control": "no-store",
       },
     });
