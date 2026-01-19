@@ -13,7 +13,7 @@ export async function POST(req: Request) {
   const response = await fetch("https://api.pdfshift.io/v3/convert/pdf", {
     method: "POST",
     headers: {
-      "X-API-Key": process.env.PDFSHIFT_API_KEY, // ✅ CORRECT
+      "X-API-Key": process.env.PDFSHIFT_API_KEY,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
@@ -25,7 +25,7 @@ export async function POST(req: Request) {
         bottom: "24mm",
         left: "20mm",
       },
-      print_background: true,
+      use_print: true
     }),
   });
 
