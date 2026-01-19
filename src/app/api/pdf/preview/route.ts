@@ -1,24 +1,28 @@
-import { NextResponse } from "next/server";
-import { renderToBuffer } from "@react-pdf/renderer";
-import { AttestationPdf } from "@/components/pdf/AttestationPdf";
+import { pdf } from "@react-pdf/renderer";
+import { AttestationPdf } from "@/lib/AttestationPdf";
+import QRCode from "qrcode";
+
+export const runtime = "nodejs";
 
 export async function GET() {
-  const pdfBuffer = await renderToBuffer(
-    <AttestationPdf
-      attestationId="PREVIEW"
-      companyName="TEST COMPANY"
-      country="FR"
-      year="2026"
-      totalCO2e={42}
-      methodology="PREVIEW MODE"
-      qrDataUrl="data:image/png;base64,..." // QR fake
-    />
-  );
+  const qrDataUrl = await QRCode.toDataURL("DEV-PREVIEW");
 
-  return new NextResponse(pdfBuffer, {
+  const doc = AttestationPdf({
+    attestationId: "DEV-001",
+    companyName: "TEST COMPANY",
+    country: "FR",
+    year: "2024",
+    totalCO2e: "123.45",
+    methodology: "DEV spend-based",
+    qrDataUrl,
+  });
+
+  const buffer = await pdf(doc).toBuffer();
+
+  return new Response(buffer, {
     headers: {
       "Content-Type": "application/pdf",
-      "Content-Disposition": "inline; filename=preview.pdf",
+      "Cache-Control": "no-store",
     },
   });
 }
