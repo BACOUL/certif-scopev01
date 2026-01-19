@@ -30,6 +30,7 @@ export async function GET(req: Request) {
     const attestationId = `CS-${session.id}`;
 
     const companyName = metadata.companyName || "—";
+    const entityIdentifier = metadata.entityIdentifier || "—";
     const country = metadata.country || "—";
     const year = metadata.year || "—";
     const totalCO2e = metadata.totalCO2e || "—";
@@ -58,6 +59,8 @@ export async function GET(req: Request) {
       font-size: 11px;
       line-height: 1.5;
     }
+
+    /* ===== SECTION 1 ===== */
 
     .header {
       display: flex;
@@ -110,25 +113,46 @@ export async function GET(req: Request) {
       color: #6b7280;
     }
 
-    h1 {
+    /* ===== SECTION 2 ===== */
+
+    .section-title {
+      text-align: center;
+      margin: 48px 0 40px;
+    }
+
+    .doc-title {
       font-size: 20px;
       font-weight: 600;
-      text-align: center;
-      margin: 48px 0 32px;
+      margin-bottom: 6px;
     }
+
+    .doc-subtitle {
+      font-size: 11px;
+      color: #6b7280;
+    }
+
+    /* ===== SECTIONS GENERIC ===== */
 
     .section {
-      margin-bottom: 24px;
-    }
-
-    .label {
-      font-weight: 600;
+      margin-bottom: 28px;
     }
 
     .small {
       font-size: 10.5px;
       color: #374151;
     }
+
+    .label {
+      font-weight: 600;
+    }
+
+    /* ===== SECTION 3 ===== */
+
+    .section-object .row {
+      margin-bottom: 6px;
+    }
+
+    /* ===== FOOTER ===== */
 
     .footer {
       margin-top: 48px;
@@ -162,39 +186,38 @@ export async function GET(req: Request) {
   </div>
 
   <!-- SECTION 2 — TITLE -->
-  <h1>Indicative Carbon Emissions Attestation</h1>
+  <section class="section-title">
+    <div class="doc-title">Indicative Carbon Emissions Attestation</div>
+    <div class="doc-subtitle">
+      Non-regulatory · Methodology-based · Decision-support document
+    </div>
+  </section>
 
-  <!-- SECTION 3 — DECLARATION -->
-  <div class="section small">
-    This document is an indicative, non-regulatory attestation issued through a
-    standardized, deterministic methodology-based process. It is intended solely
-    for decision-support purposes.
-  </div>
+  <!-- SECTION 3 — IDENTIFICATION OF THE OBJECT CERTIFIED -->
+  <section class="section section-object small">
+    <div class="row"><span class="label">Entity name:</span> ${companyName}</div>
+    <div class="row"><span class="label">Entity identifier:</span> ${entityIdentifier}</div>
+    <div class="row"><span class="label">Country:</span> ${country}</div>
+    <div class="row"><span class="label">Reporting year:</span> ${year}</div>
+  </section>
 
-  <!-- SECTION 4 — IDENTIFICATION -->
-  <div class="section small">
-    <div><span class="label">Entity name:</span> ${companyName}</div>
-    <div><span class="label">Country:</span> ${country}</div>
-    <div><span class="label">Reporting year:</span> ${year}</div>
-  </div>
-
-  <!-- SECTION 5 — RESULT -->
-  <div class="section small">
+  <!-- SECTION 4 — RESULT -->
+  <section class="section small">
     <div><span class="label">Total estimated emissions:</span> ${totalCO2e} tCO₂e</div>
-  </div>
+  </section>
 
-  <!-- SECTION 6 — METHODOLOGY -->
-  <div class="section small">
+  <!-- SECTION 5 — METHODOLOGY -->
+  <section class="section small">
     <div><span class="label">Methodology:</span> ${methodology}</div>
-  </div>
+  </section>
 
-  <!-- SECTION 7 — TRACEABILITY -->
-  <div class="section small">
+  <!-- SECTION 6 — TRACEABILITY -->
+  <section class="section small">
     <div><span class="label">Attestation ID:</span> ${attestationId}</div>
     <div>Verification available via QR code or public verification interface.</div>
-  </div>
+  </section>
 
-  <!-- SECTION 8 — LEGAL CLAUSES -->
+  <!-- SECTION 7 — LEGAL CLAUSES -->
   <div class="footer">
     This attestation is indicative only. It does not constitute a regulatory report,
     a GHG inventory, or a CSRD/ESRS-compliant disclosure. All input data remain under
