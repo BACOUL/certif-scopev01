@@ -244,37 +244,64 @@ export async function GET(req: Request) {
     </ul>
   </section>
 
-  <!-- SECTION 6 — DECLARATION OF RESULT -->
-<section class="section small">
-  <div><span class="label">Total estimated emissions:</span> ${totalCO2e} tCO₂e</div>
-</section>
+  <!-- SECTION 6 — RESULT -->
+  <section class="section small">
+    <div class="section-title-left">Estimated emissions result</div>
+    <div>
+      <span class="label">Total estimated emissions:</span>
+      ${totalCO2e} tCO₂e
+    </div>
+    <p class="small">
+      This value represents an aggregated, indicative estimation derived from
+      user-provided financial data using a standardized spend-based model.
+    </p>
+  </section>
 
-<!-- SECTION 7 — METHODOLOGY APPLIED -->
-<section class="section small">
-  <div>
-    <span class="label">Methodology:</span>
-    Certif-Scope deterministic spend-based methodology v1.0
+  <!-- SECTION 7 — METHODOLOGY -->
+  <section class="section small">
+    <div class="section-title-left">Methodology overview</div>
+    <p>
+      The estimation is generated using the
+      <strong>${methodology}</strong>.
+    </p>
+    <ul class="scope-list">
+      <li>Spend-based calculation using aggregated expenditure data</li>
+      <li>No physical activity data or operational metrics</li>
+      <li>No calculation of Scope 1 or Scope 2 emissions</li>
+      <li>Indicative model, not a full GHG inventory</li>
+    </ul>
+  </section>
+
+  <!-- SECTION 8 — AUTHENTICATION & TRACEABILITY -->
+  <section class="section small">
+    <div class="section-title-left">Authentication and traceability</div>
+    <div>
+      <span class="label">Attestation ID:</span> ${attestationId}
+    </div>
+    <div>
+      Verification of authenticity and integrity is available via the embedded
+      QR code or the public verification interface.
+    </div>
+  </section>
+
+  <!-- CLAUSES FINALES — LEGAL NOTICE -->
+  <div class="footer">
+    This attestation is indicative only.<br/><br/>
+
+    It does not constitute a regulatory report, a greenhouse gas inventory,
+    a third-party verified statement, or a CSRD / ESRS-compliant disclosure.<br/><br/>
+
+    The results are derived exclusively from data provided by the entity,
+    under its sole responsibility, using a standardized spend-based estimation
+    methodology.<br/><br/>
+
+    Certif-Scope does not store underlying input data and does not perform any
+    audit, validation, verification, or assurance service.<br/><br/>
+
+    This document is intended solely for internal decision-support,
+    informational, or communication purposes.
   </div>
-</section>
 
-<!-- SECTION 8 — AUTHENTICATION & TRACEABILITY -->
-<section class="section small">
-  <div><span class="label">Attestation ID:</span> ${attestationId}</div>
-  <div>
-    Verification of authenticity and integrity is available via the embedded QR code
-    or the public verification interface.
-  </div>
-</section>
-
-<!-- CLAUSES FINALES — LEGAL NOTICE -->
-<div class="footer">
-  This attestation is indicative only.<br/><br/>
-  It does not constitute a regulatory report, a greenhouse gas inventory, a third-party
-  verified statement, or a CSRD / ESRS-compliant disclosure.<br/><br/>
-  The results are derived from user-provided data under their sole responsibility,
-  using a standardized spend-based estimation methodology.<br/><br/>
-  Certif-Scope does not store underlying input data and does not perform any audit,
-  validation, or assurance service.<br/><br/>
-  This document is intended solely for internal decision-support, communication,
-  or informational purposes.
-</div>
+</body>
+</html>
+`;
