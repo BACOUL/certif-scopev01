@@ -4,7 +4,7 @@ import { useSearchParams } from "next/navigation";
 
 export default function SuccessClient() {
   const searchParams = useSearchParams();
-  const sessionId = searchParams.get("session_id");
+  const sessionId = searchParams?.get("session_id");
 
   return (
     <section className="max-w-xl w-full bg-white border border-gray-200 rounded-2xl shadow-sm p-10 text-center space-y-6">
