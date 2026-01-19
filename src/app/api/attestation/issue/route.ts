@@ -157,7 +157,11 @@ export async function GET(req: Request) {
 
   <div class="header">
     <div class="issuer">
-      <img src="/logo.png" alt="Certif-Scope logo" class="issuer-logo" />
+      <img
+        src="https://certif-scope.io/logo.png"
+        alt="Certif-Scope logo"
+        class="issuer-logo"
+      />
       <div class="issuer-name">Certif-Scope</div>
       <div class="issuer-role">
         Independent issuer of standardized indicative carbon attestations
@@ -249,4 +253,4 @@ export async function GET(req: Request) {
     console.error("Issuance error:", err);
     return new Response("Failed to issue attestation", { status: 500 });
   }
-}
+        }
