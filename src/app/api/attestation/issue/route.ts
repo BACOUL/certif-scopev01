@@ -244,66 +244,37 @@ export async function GET(req: Request) {
     </ul>
   </section>
 
-  <!-- SECTION 6 — RESULT -->
-  <section class="section small">
-    <div><span class="label">Total estimated emissions:</span> ${totalCO2e} tCO₂e</div>
-  </section>
+  <!-- SECTION 6 — DECLARATION OF RESULT -->
+<section class="section small">
+  <div><span class="label">Total estimated emissions:</span> ${totalCO2e} tCO₂e</div>
+</section>
 
-  <!-- SECTION 7 — METHODOLOGY -->
-  <section class="section small">
-    <div><span class="label">Methodology:</span> ${methodology}</div>
-  </section>
-
-  <!-- SECTION 8 — TRACEABILITY -->
-  <section class="section small">
-    <div><span class="label">Attestation ID:</span> ${attestationId}</div>
-  </section>
-
-  <!-- SECTION 9 — LEGAL -->
-  <div class="footer">
-    This attestation is indicative only. It does not constitute a regulatory report,
-    a GHG inventory, or a CSRD/ESRS-compliant disclosure.
+<!-- SECTION 7 — METHODOLOGY APPLIED -->
+<section class="section small">
+  <div>
+    <span class="label">Methodology:</span>
+    Certif-Scope deterministic spend-based methodology v1.0
   </div>
+</section>
 
-</body>
-</html>
-`;
+<!-- SECTION 8 — AUTHENTICATION & TRACEABILITY -->
+<section class="section small">
+  <div><span class="label">Attestation ID:</span> ${attestationId}</div>
+  <div>
+    Verification of authenticity and integrity is available via the embedded QR code
+    or the public verification interface.
+  </div>
+</section>
 
-    // 5. PDFShift
-    const response = await fetch("https://api.pdfshift.io/v3/convert/pdf", {
-      method: "POST",
-      headers: {
-        "X-API-Key": process.env.PDFSHIFT_API_KEY,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        source: html,
-        format: "A4",
-        margin: {
-          top: "24mm",
-          right: "20mm",
-          bottom: "24mm",
-          left: "20mm",
-        },
-      }),
-    });
-
-    if (!response.ok) {
-      const error = await response.text();
-      return new Response(error, { status: response.status });
-    }
-
-    const pdfBuffer = await response.arrayBuffer();
-
-    return new Response(pdfBuffer, {
-      headers: {
-        "Content-Type": "application/pdf",
-        "Content-Disposition": `attachment; filename="certif-scope-${attestationId}.pdf"`,
-        "Cache-Control": "no-store",
-      },
-    });
-  } catch (err) {
-    console.error("Issuance error:", err);
-    return new Response("Failed to issue attestation", { status: 500 });
-  }
-}
+<!-- CLAUSES FINALES — LEGAL NOTICE -->
+<div class="footer">
+  This attestation is indicative only.<br/><br/>
+  It does not constitute a regulatory report, a greenhouse gas inventory, a third-party
+  verified statement, or a CSRD / ESRS-compliant disclosure.<br/><br/>
+  The results are derived from user-provided data under their sole responsibility,
+  using a standardized spend-based estimation methodology.<br/><br/>
+  Certif-Scope does not store underlying input data and does not perform any audit,
+  validation, or assurance service.<br/><br/>
+  This document is intended solely for internal decision-support, communication,
+  or informational purposes.
+</div>
