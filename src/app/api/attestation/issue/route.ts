@@ -19,7 +19,7 @@ export async function GET(req: Request) {
       return new Response("Missing session_id", { status: 400 });
     }
 
-    // 2. Stripe = vérité absolue
+    // 2. Stripe = source de vérité
     const session = await stripe.checkout.sessions.retrieve(sessionId);
 
     if (session.payment_status !== "paid") {
@@ -34,7 +34,7 @@ export async function GET(req: Request) {
     const year = metadata.year || "—";
     const totalCO2e = metadata.totalCO2e || "—";
     const methodology =
-      metadata.methodology || "Spend-based deterministic estimation";
+      metadata.methodology || "Certif-Scope deterministic spend-based model v1.0";
 
     // 3. QR Code
     const qrDataUrl = await QRCode.toDataURL(
@@ -42,10 +42,10 @@ export async function GET(req: Request) {
       { width: 72, margin: 1 }
     );
 
-    // 4. HTML FINAL (source PDF)
+    // 4. HTML FINAL — TEST VISUEL OBLIGATOIRE
     const html = `
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <title>Certif-Scope Attestation</title>
@@ -56,18 +56,46 @@ export async function GET(req: Request) {
       padding: 64px;
       font-size: 12px;
     }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 48px;
+    }
+
+    .authority {
+      max-width: 70%;
+      font-size: 11px;
+      line-height: 1.4;
+    }
+
+    .authority strong {
+      display: block;
+      font-size: 12px;
+    }
+
     h1 {
       font-family: "Times New Roman", serif;
       font-size: 28px;
       text-align: center;
-      margin-bottom: 40px;
+      margin: 40px 0;
     }
+
+    .test {
+      color: red;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
     .section {
       margin-bottom: 24px;
     }
+
     .label {
       font-weight: bold;
     }
+
     .small {
       font-size: 11px;
       color: #333;
@@ -77,7 +105,22 @@ export async function GET(req: Request) {
 </head>
 <body>
 
-  <h1>Indicative Carbon Emissions Attestation</h1>
+  <div class="header">
+    <div class="authority">
+      <strong>Certif-Scope</strong>
+      Independent infrastructure for indicative carbon emissions attestation<br/>
+      Non-regulatory · Non-audit · Decision-support act
+    </div>
+
+    <div>
+      <img src="${qrDataUrl}" width="72" height="72" />
+    </div>
+  </div>
+
+  <h1>
+    Indicative Carbon Emissions Attestation
+    <span class="test"> — TEST OK</span>
+  </h1>
 
   <div class="section small">
     This attestation is issued through a standardized, deterministic issuance
@@ -96,9 +139,8 @@ export async function GET(req: Request) {
     <div class="small"><span class="label">Methodology:</span> ${methodology}</div>
   </div>
 
-  <div class="section">
-    <img src="${qrDataUrl}" width="72" height="72" />
-    <div class="small">Verification via QR code.</div>
+  <div class="section small">
+    Verification via QR code or public verification interface.
   </div>
 
 </body>
