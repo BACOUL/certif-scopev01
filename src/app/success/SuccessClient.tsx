@@ -6,6 +6,35 @@ export default function SuccessClient() {
   const searchParams = useSearchParams();
   const sessionId = searchParams?.get("session_id");
 
+  async function handleDownload() {
+    if (!sessionId) {
+      alert("Missing session reference");
+      return;
+    }
+
+    const res = await fetch("/api/attestation/issue", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ sessionId }),
+    });
+
+    if (!res.ok) {
+      const error = await res.text();
+      alert(error || "Failed to generate attestation");
+      return;
+    }
+
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "certif-scope-attestation.pdf";
+    a.click();
+
+    URL.revokeObjectURL(url);
+  }
+
   return (
     <section className="max-w-xl w-full bg-white border border-gray-200 rounded-2xl shadow-sm p-10 text-center space-y-6">
       <h1 className="text-3xl font-extrabold text-[#0B3A63]">
@@ -26,12 +55,12 @@ export default function SuccessClient() {
             Please save it immediately after download.
           </p>
 
-          <a
-            href={`/api/attestation/download?session_id=${sessionId}`}
+          <button
+            onClick={handleDownload}
             className="inline-block bg-[#0B3A63] hover:bg-[#092f50] text-white font-semibold px-8 py-3 rounded-xl transition"
           >
             Download your attestation (PDF)
-          </a>
+          </button>
         </>
       ) : (
         <p className="text-red-600">
