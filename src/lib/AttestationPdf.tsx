@@ -9,12 +9,9 @@ import {
 
 import { LOGO_DATA_URL } from "@/lib/logo";
 
-/* ======================================================
-   STYLES — CANON INSTITUTIONNEL (PDF)
-====================================================== */
 const styles = StyleSheet.create({
   page: {
-    paddingTop: 96, // espace réservé au header
+    paddingTop: 56,
     paddingBottom: 64,
     paddingHorizontal: 64,
     fontFamily: "Helvetica",
@@ -23,19 +20,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
   },
 
-  /* HEADER (FIXE) */
-  headerWrapper: {
-    position: "absolute",
-    top: 32,
-    left: 64,
-    right: 64,
-    height: 80,
-  },
-
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "flex-start",
+    marginBottom: 32,
   },
 
   headerLeft: {
@@ -46,6 +35,16 @@ const styles = StyleSheet.create({
     width: 140,
     height: 32,
     marginBottom: 6,
+  },
+
+  headerRight: {
+    width: 80,
+    alignItems: "flex-end",
+  },
+
+  qr: {
+    width: 72,
+    height: 72,
   },
 
   authorityName: {
@@ -62,20 +61,9 @@ const styles = StyleSheet.create({
     color: "#333",
   },
 
-  headerRight: {
-    width: 80,
-    alignItems: "flex-end",
-  },
-
-  qr: {
-    width: 72,
-    height: 72,
-  },
-
-  /* TITLE */
   titleBlock: {
     alignItems: "center",
-    marginTop: 32,
+    marginTop: 24,
     marginBottom: 28,
   },
 
@@ -87,7 +75,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 
-  /* SECTIONS */
   section: {
     marginBottom: 22,
   },
@@ -99,12 +86,6 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
     letterSpacing: 0.6,
     marginBottom: 8,
-  },
-
-  declaration: {
-    fontFamily: "Times-Roman",
-    fontSize: 11,
-    lineHeight: 1.55,
   },
 
   small: {
@@ -119,136 +100,88 @@ const styles = StyleSheet.create({
   },
 });
 
-/* ======================================================
-   PDF — ATTESTATION OFFICIELLE
-====================================================== */
 export function AttestationPdf({
   attestationId,
   companyName,
   country,
   year,
-  qrDataUrl,
   totalCO2e,
   methodology,
-  hash,
+  qrDataUrl,
 }: {
   attestationId: string;
   companyName: string;
   country: string;
   year: string;
-  qrDataUrl: string;
-  totalCO2e: number;
+  totalCO2e: string;
   methodology: string;
-  hash?: string;
+  qrDataUrl: string;
 }) {
   return (
     <Document>
-      {/* ================================================== */}
-      {/* PAGE 1 */}
-      {/* ================================================== */}
       <Page size="A4" style={styles.page}>
-        {/* HEADER FIXE */}
-        <View style={styles.headerWrapper}>
-          <View style={styles.header}>
-            <View style={styles.headerLeft}>
-              <Image src={LOGO_DATA_URL} style={styles.logo} />
-              <Text style={styles.authorityName}>Certif-Scope</Text>
-              <Text style={styles.authorityRole}>
-                Independent infrastructure for indicative carbon emissions attestation
-              </Text>
-              <Text style={styles.authorityLimits}>
-                Non-regulatory · Non-audit · Decision-support act
-              </Text>
-            </View>
+        <View style={styles.header}>
+          <View style={styles.headerLeft}>
+            <Image src={LOGO_DATA_URL} style={styles.logo} />
 
-            <View style={styles.headerRight}>
-              <Image src={qrDataUrl} style={styles.qr} />
-            </View>
+            <Text style={styles.authorityName}>Certif-Scope</Text>
+            <Text style={styles.authorityRole}>
+              Independent infrastructure for indicative carbon emissions attestation
+            </Text>
+            <Text style={styles.authorityLimits}>
+              Non-regulatory · Non-audit · Decision-support act
+            </Text>
+          </View>
+
+          <View style={styles.headerRight}>
+            <Image src={qrDataUrl} style={styles.qr} />
           </View>
         </View>
 
-        {/* CONTENU */}
-        <View>
-          <View style={styles.titleBlock}>
-            <Text style={styles.title}>
-              Indicative Carbon Emissions Attestation
-            </Text>
-          </View>
-
-          <View style={styles.section}>
-            <Text style={styles.small}>
-              This attestation is issued through a standardized, deterministic
-              issuance process operated by Certif-Scope, based on aggregated data
-              provided by the requesting entity for indicative decision-support
-              purposes only.
-            </Text>
-          </View>
-
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Declaration of attestation</Text>
-            <Text style={styles.declaration}>
-              Certif-Scope hereby attests that an indicative estimation of carbon
-              emissions has been produced for the entity identified herein, for the
-              stated reference year, within a strictly defined non-regulatory and
-              non-audit framework.
-            </Text>
-          </View>
-
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Attested facts</Text>
-
-            <Text style={styles.small}>
-              <Text style={styles.label}>Entity:</Text> {companyName}
-            </Text>
-
-            <Text style={styles.small}>
-              <Text style={styles.label}>Country:</Text> {country}
-            </Text>
-
-            <Text style={styles.small}>
-              <Text style={styles.label}>Reference year:</Text> {year}
-            </Text>
-
-            <Text style={styles.small}>
-              <Text style={styles.label}>Indicative estimated value:</Text>{" "}
-              {totalCO2e} tCO₂e (annual)
-            </Text>
-          </View>
-
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Issuance & verification</Text>
-
-            <Text style={styles.small}>
-              <Text style={styles.label}>Attestation ID:</Text> {attestationId}
-            </Text>
-
-            <Text style={styles.small}>
-              <Text style={styles.label}>Methodology:</Text> {methodology}
-            </Text>
-
-            {hash && (
-              <Text style={styles.small}>
-                <Text style={styles.label}>Integrity hash:</Text> {hash}
-              </Text>
-            )}
-
-            <Text style={styles.small}>
-              Verification via QR code or public verification interface.
-            </Text>
-          </View>
+        <View style={styles.titleBlock}>
+          <Text style={styles.title}>
+            Indicative Carbon Emissions Attestation
+          </Text>
         </View>
-      </Page>
 
-      {/* ================================================== */}
-      {/* PAGE 2 */}
-      {/* ================================================== */}
-      <Page size="A4" style={styles.page}>
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Estimation framework</Text>
           <Text style={styles.small}>
-            The estimation is produced using a deterministic spend-based model
-            converting aggregated financial data into indicative CO₂e values
-            using predefined intensity coefficients.
+            This attestation is issued through a standardized, deterministic
+            issuance process operated by Certif-Scope, for indicative
+            decision-support purposes only.
+          </Text>
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Attested facts</Text>
+
+          <Text style={styles.small}>
+            <Text style={styles.label}>Entity:</Text> {companyName}
+          </Text>
+
+          <Text style={styles.small}>
+            <Text style={styles.label}>Country:</Text> {country}
+          </Text>
+
+          <Text style={styles.small}>
+            <Text style={styles.label}>Reference year:</Text> {year}
+          </Text>
+
+          <Text style={styles.small}>
+            <Text style={styles.label}>Indicative estimated value:</Text>{" "}
+            {totalCO2e} tCO₂e
+          </Text>
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Issuance</Text>
+
+          <Text style={styles.small}>
+            <Text style={styles.label}>Attestation ID:</Text> {attestationId}
+          </Text>
+
+          <Text style={styles.small}>
+            <Text style={styles.label}>Methodology:</Text> {methodology}
           </Text>
         </View>
       </Page>
