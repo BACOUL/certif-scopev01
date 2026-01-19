@@ -99,10 +99,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link
-                  data-i18n="footer.link.why"
-                  href="/why-companies-ask"
-                >
+                <Link data-i18n="footer.link.why" href="/why-companies-ask">
                   Why Companies Ask for It
                 </Link>
               </li>
@@ -145,55 +142,12 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link
-                  data-i18n="footer.link.dpo"
-                  href="/data-processing"
-                >
+                <Link data-i18n="footer.link.dpo" href="/data-processing">
                   Data Processing Overview
                 </Link>
               </li>
             </ul>
           </nav>
-        </div>
-
-        {/* TEST PDF BUTTON – TEMPORAIRE */}
-        <div className="mt-12 flex justify-center">
-          <button
-            className="px-4 py-2 text-sm border border-gray-400 dark:border-gray-500 rounded text-gray-700 dark:text-gray-300"
-            onClick={async () => {
-              const res = await fetch("/api/generate-pdf", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  company_name: "TEST COMPANY",
-                  company_identifier: "TEST-ID",
-                  country: "FR",
-                  period: "2024",
-                  emissions_value: "1.23",
-                  attestation_id: "TEST-001",
-                  generated_at: new Date().toISOString(),
-                  document_hash: "test",
-                }),
-              });
-
-              // 🔴 SEULE MODIFICATION : afficher l’erreur réelle
-              if (!res.ok) {
-                const text = await res.text();
-                alert(text);
-                return;
-              }
-
-              const blob = await res.blob();
-              const url = URL.createObjectURL(blob);
-              const a = document.createElement("a");
-              a.href = url;
-              a.download = "test.pdf";
-              a.click();
-              URL.revokeObjectURL(url);
-            }}
-          >
-            TEST PDF (nouveau moteur)
-          </button>
         </div>
 
         {/* DISCLAIMER */}
@@ -245,4 +199,4 @@ export default function Footer() {
       </div>
     </footer>
   );
-}
+          }
