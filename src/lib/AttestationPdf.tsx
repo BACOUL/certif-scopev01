@@ -10,43 +10,35 @@ import {
 import { LOGO_DATA_URL } from "@/lib/logo";
 
 /* ======================================================
-   STYLES — CANON INSTITUTIONNEL
+   STYLES — CANON INSTITUTIONNEL (PDF)
 ====================================================== */
 const styles = StyleSheet.create({
   page: {
-    paddingTop: 64,
+    paddingTop: 56,
     paddingBottom: 64,
-    paddingHorizontal: 68,
+    paddingHorizontal: 64,
     fontFamily: "Helvetica",
     fontSize: 9.5,
     color: "#0B3A63",
     backgroundColor: "#FFFFFF",
   },
 
+  /* HEADER */
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "flex-start",
-    marginBottom: 28,
+    marginBottom: 32,
   },
 
-  logoBlock: {
-    maxWidth: "70%",
+  headerLeft: {
+    width: 360,
   },
 
   logo: {
     width: 140,
     height: 32,
-    objectFit: "contain",
-  },
-
-  qr: {
-    width: 72,
-    height: 72,
-  },
-
-  authorityBlock: {
-    marginTop: 2,
+    marginBottom: 6,
   },
 
   authorityName: {
@@ -63,10 +55,21 @@ const styles = StyleSheet.create({
     color: "#333",
   },
 
+  headerRight: {
+    width: 80,
+    alignItems: "flex-end",
+  },
+
+  qr: {
+    width: 72,
+    height: 72,
+  },
+
+  /* TITLE */
   titleBlock: {
     alignItems: "center",
-    marginTop: 36,
-    marginBottom: 22,
+    marginTop: 24,
+    marginBottom: 28,
   },
 
   title: {
@@ -77,6 +80,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 
+  /* SECTIONS */
   section: {
     marginBottom: 22,
   },
@@ -109,7 +113,7 @@ const styles = StyleSheet.create({
 });
 
 /* ======================================================
-   PDF — COMPOSANT PUR (LOGO EMBARQUÉ AU BUILD)
+   PDF — ATTESTATION OFFICIELLE
 ====================================================== */
 export function AttestationPdf({
   attestationId,
@@ -132,31 +136,39 @@ export function AttestationPdf({
 }) {
   return (
     <Document>
+      {/* ================================================== */}
+      {/* PAGE 1 */}
+      {/* ================================================== */}
       <Page size="A4" style={styles.page}>
+        {/* HEADER */}
         <View style={styles.header}>
-          <View style={styles.logoBlock}>
+          {/* LEFT — LOGO + AUTORITÉ */}
+          <View style={styles.headerLeft}>
             <Image src={LOGO_DATA_URL} style={styles.logo} />
 
-            <View style={styles.authorityBlock}>
-              <Text style={styles.authorityName}>Certif-Scope</Text>
-              <Text style={styles.authorityRole}>
-                Independent infrastructure for indicative carbon emissions attestation
-              </Text>
-              <Text style={styles.authorityLimits}>
-                Non-regulatory · Non-audit · Decision-support act
-              </Text>
-            </View>
+            <Text style={styles.authorityName}>Certif-Scope</Text>
+            <Text style={styles.authorityRole}>
+              Independent infrastructure for indicative carbon emissions attestation
+            </Text>
+            <Text style={styles.authorityLimits}>
+              Non-regulatory · Non-audit · Decision-support act
+            </Text>
           </View>
 
-          <Image src={qrDataUrl} style={styles.qr} />
+          {/* RIGHT — QR */}
+          <View style={styles.headerRight}>
+            <Image src={qrDataUrl} style={styles.qr} />
+          </View>
         </View>
 
+        {/* TITLE */}
         <View style={styles.titleBlock}>
           <Text style={styles.title}>
             Indicative Carbon Emissions Attestation
           </Text>
         </View>
 
+        {/* INTRO */}
         <View style={styles.section}>
           <Text style={styles.small}>
             This attestation is issued through a standardized, deterministic
@@ -166,6 +178,7 @@ export function AttestationPdf({
           </Text>
         </View>
 
+        {/* DECLARATION */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Declaration of attestation</Text>
           <Text style={styles.declaration}>
@@ -176,6 +189,7 @@ export function AttestationPdf({
           </Text>
         </View>
 
+        {/* FACTS */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Attested facts</Text>
 
@@ -197,6 +211,7 @@ export function AttestationPdf({
           </Text>
         </View>
 
+        {/* ISSUANCE */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Issuance & verification</Text>
 
@@ -220,6 +235,9 @@ export function AttestationPdf({
         </View>
       </Page>
 
+      {/* ================================================== */}
+      {/* PAGE 2 */}
+      {/* ================================================== */}
       <Page size="A4" style={styles.page}>
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Estimation framework</Text>
@@ -232,4 +250,4 @@ export function AttestationPdf({
       </Page>
     </Document>
   );
-            }
+}
