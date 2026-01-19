@@ -6,33 +6,14 @@ export default function SuccessClient() {
   const searchParams = useSearchParams();
   const sessionId = searchParams?.get("session_id");
 
-  async function handleDownload() {
+  function handleDownload() {
     if (!sessionId) {
       alert("Missing session reference");
       return;
     }
 
-    const res = await fetch("/api/attestation/issue", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ sessionId }),
-    });
-
-    if (!res.ok) {
-      const error = await res.text();
-      alert(error || "Failed to generate attestation");
-      return;
-    }
-
-    const blob = await res.blob();
-    const url = URL.createObjectURL(blob);
-
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "certif-scope-attestation.pdf";
-    a.click();
-
-    URL.revokeObjectURL(url);
+    // Téléchargement direct via GET (API = vérité)
+    window.location.href = `/api/attestation/issue?session_id=${sessionId}`;
   }
 
   return (
