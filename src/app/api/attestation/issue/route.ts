@@ -34,7 +34,8 @@ export async function GET(req: Request) {
     const year = metadata.year || "—";
     const totalCO2e = metadata.totalCO2e || "—";
     const methodology =
-      metadata.methodology || "Certif-Scope deterministic spend-based model v1.0";
+      metadata.methodology ||
+      "Certif-Scope deterministic spend-based methodology v1.0";
 
     // 3. QR Code
     const qrDataUrl = await QRCode.toDataURL(
@@ -42,7 +43,7 @@ export async function GET(req: Request) {
       { width: 72, margin: 1 }
     );
 
-    // 4. HTML FINAL — TEST VISUEL OBLIGATOIRE
+    // 4. HTML FINAL — INSTITUTIONAL
     const html = `
 <!DOCTYPE html>
 <html lang="en">
@@ -51,41 +52,69 @@ export async function GET(req: Request) {
   <title>Certif-Scope Attestation</title>
   <style>
     body {
-      font-family: Helvetica, Arial, sans-serif;
-      color: #0B3A63;
+      font-family: Inter, Helvetica, Arial, sans-serif;
+      color: #0b0b0b;
       padding: 64px;
-      font-size: 12px;
+      font-size: 11px;
+      line-height: 1.5;
     }
 
     .header {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 24px;
       margin-bottom: 48px;
     }
 
-    .authority {
-      max-width: 70%;
-      font-size: 11px;
-      line-height: 1.4;
+    .issuer {
+      max-width: 65%;
     }
 
-    .authority strong {
-      display: block;
-      font-size: 12px;
+    .issuer-logo {
+      height: 28px;
+      margin-bottom: 12px;
+    }
+
+    .issuer-name {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .issuer-role {
+      font-size: 11px;
+      font-weight: 500;
+      color: #374151;
+      margin-bottom: 6px;
+    }
+
+    .issuer-meta {
+      font-size: 10px;
+      color: #6b7280;
+    }
+
+    .qr {
+      text-align: center;
+    }
+
+    .qr img {
+      width: 72px;
+      height: 72px;
+      margin-bottom: 6px;
+    }
+
+    .qr-caption {
+      font-size: 9px;
+      color: #6b7280;
     }
 
     h1 {
-      font-family: "Times New Roman", serif;
-      font-size: 28px;
+      font-size: 20px;
+      font-weight: 600;
       text-align: center;
-      margin: 40px 0;
-    }
-
-    .test {
-      color: red;
-      font-weight: bold;
-      font-size: 14px;
+      margin: 48px 0 32px;
     }
 
     .section {
@@ -93,54 +122,84 @@ export async function GET(req: Request) {
     }
 
     .label {
-      font-weight: bold;
+      font-weight: 600;
     }
 
     .small {
-      font-size: 11px;
-      color: #333;
-      line-height: 1.5;
+      font-size: 10.5px;
+      color: #374151;
+    }
+
+    .footer {
+      margin-top: 48px;
+      border-top: 1px solid #e5e7eb;
+      padding-top: 16px;
+      font-size: 9px;
+      color: #6b7280;
     }
   </style>
 </head>
 <body>
 
+  <!-- SECTION 1 — ISSUER IDENTIFICATION -->
   <div class="header">
-    <div class="authority">
-      <strong>Certif-Scope</strong>
-      Independent infrastructure for indicative carbon emissions attestation<br/>
-      Non-regulatory · Non-audit · Decision-support act
+    <div class="issuer">
+      <img src="/logo.png" alt="Certif-Scope logo" class="issuer-logo" />
+      <div class="issuer-name">Certif-Scope</div>
+      <div class="issuer-role">
+        Independent issuer of standardized indicative carbon attestations
+      </div>
+      <div class="issuer-meta">
+        Automated issuance system · No human signatory<br/>
+        Attestation format: Certif-Scope v1.x
+      </div>
     </div>
 
-    <div>
-      <img src="${qrDataUrl}" width="72" height="72" />
+    <div class="qr">
+      <img src="${qrDataUrl}" alt="Verification QR code" />
+      <div class="qr-caption">Verify authenticity and integrity</div>
     </div>
   </div>
 
-  <h1>
-    Indicative Carbon Emissions Attestation
-    <span class="test"> — TEST OK</span>
-  </h1>
+  <!-- SECTION 2 — TITLE -->
+  <h1>Indicative Carbon Emissions Attestation</h1>
 
+  <!-- SECTION 3 — DECLARATION -->
   <div class="section small">
-    This attestation is issued through a standardized, deterministic issuance
-    process operated by Certif-Scope, for indicative decision-support purposes only.
+    This document is an indicative, non-regulatory attestation issued through a
+    standardized, deterministic methodology-based process. It is intended solely
+    for decision-support purposes.
   </div>
 
-  <div class="section">
-    <div class="small"><span class="label">Entity:</span> ${companyName}</div>
-    <div class="small"><span class="label">Country:</span> ${country}</div>
-    <div class="small"><span class="label">Reference year:</span> ${year}</div>
-    <div class="small"><span class="label">Indicative estimated value:</span> ${totalCO2e} tCO₂e</div>
-  </div>
-
-  <div class="section">
-    <div class="small"><span class="label">Attestation ID:</span> ${attestationId}</div>
-    <div class="small"><span class="label">Methodology:</span> ${methodology}</div>
-  </div>
-
+  <!-- SECTION 4 — IDENTIFICATION -->
   <div class="section small">
-    Verification via QR code or public verification interface.
+    <div><span class="label">Entity name:</span> ${companyName}</div>
+    <div><span class="label">Country:</span> ${country}</div>
+    <div><span class="label">Reporting year:</span> ${year}</div>
+  </div>
+
+  <!-- SECTION 5 — RESULT -->
+  <div class="section small">
+    <div><span class="label">Total estimated emissions:</span> ${totalCO2e} tCO₂e</div>
+  </div>
+
+  <!-- SECTION 6 — METHODOLOGY -->
+  <div class="section small">
+    <div><span class="label">Methodology:</span> ${methodology}</div>
+  </div>
+
+  <!-- SECTION 7 — TRACEABILITY -->
+  <div class="section small">
+    <div><span class="label">Attestation ID:</span> ${attestationId}</div>
+    <div>Verification available via QR code or public verification interface.</div>
+  </div>
+
+  <!-- SECTION 8 — LEGAL CLAUSES -->
+  <div class="footer">
+    This attestation is indicative only. It does not constitute a regulatory report,
+    a GHG inventory, or a CSRD/ESRS-compliant disclosure. All input data remain under
+    the responsibility of the user. Certif-Scope does not retain underlying business
+    or financial data.
   </div>
 
 </body>
@@ -176,7 +235,7 @@ export async function GET(req: Request) {
     return new Response(pdfBuffer, {
       headers: {
         "Content-Type": "application/pdf",
-        "Content-Disposition": `attachment; filename="certif-scope-${attestationId}.pdf"`,
+        "Content-Disposition": \`attachment; filename="certif-scope-\${attestationId}.pdf"\`,
         "Cache-Control": "no-store",
       },
     });
