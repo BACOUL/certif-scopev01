@@ -242,8 +242,6 @@ export async function GET(req: Request) {
       <li>ISO 14083 – Value chain emission factors (reference only)</li>
       <li>CSRD / ESRS / EU Taxonomy – contextual references</li>
     </ul>
-  </section>
-
   <!-- SECTION 6 — RESULT -->
   <section class="section small">
     <div class="section-title-left">Estimated emissions result</div>
