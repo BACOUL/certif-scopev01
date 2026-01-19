@@ -21,9 +21,13 @@ const CERTIF_SCOPE_LOGO_BASE64 = "COLLE_ICI_TON_BASE64_EN_UNE_SEULE_LIGNE";
 ======================================================================
 */
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2023-10-16",
-});
+/*
+IMPORTANT — STRIPE
+❗️NE PAS forcer apiVersion
+La version est typée côté SDK (ex: "2025-12-15.clover")
+Forcer une autre valeur provoque une erreur TypeScript.
+*/
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 export async function GET(req: Request) {
   try {
@@ -326,7 +330,6 @@ export async function GET(req: Request) {
       },
       body: JSON.stringify({
         source: html,
-        landscape: false,
         format: "A4",
         margin: "20mm",
       }),
@@ -354,4 +357,4 @@ export async function GET(req: Request) {
     console.error(err);
     return new Response("Internal server error", { status: 500 });
   }
-}
+       }
