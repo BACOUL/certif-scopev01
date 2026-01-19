@@ -151,12 +151,14 @@ export async function GET(req: Request) {
       margin-bottom: 8px;
     }
 
-    .scope-list {
+    .scope-list,
+    .reference-list {
       margin: 0 0 10px 16px;
       padding: 0;
     }
 
-    .scope-list li {
+    .scope-list li,
+    .reference-list li {
       margin-bottom: 4px;
     }
 
@@ -238,23 +240,47 @@ export async function GET(req: Request) {
     </p>
   </section>
 
-  <!-- SECTION 5 — RESULT -->
+  <!-- SECTION 5 — TECHNICAL AND NORMATIVE REFERENCES -->
+  <section class="section references small">
+    <div class="section-title-left">Technical and normative references</div>
+
+    <p>
+      This attestation is based on methodological principles and publicly available
+      reference frameworks, used for alignment purposes only.
+    </p>
+
+    <ul class="reference-list">
+      <li>GHG Protocol – Corporate Value Chain (Scope 3), spend-based approach</li>
+      <li>ISO 14064-1 – Principles and terminology (reference only)</li>
+      <li>ISO 14083 – Value chain emission factors (reference only)</li>
+      <li>CSRD – contextual regulatory reference</li>
+      <li>ESRS – contextual regulatory reference</li>
+      <li>EU Taxonomy – contextual regulatory reference</li>
+    </ul>
+
+    <p>
+      These references are provided for methodological alignment only and do not imply
+      certification, validation, or regulatory compliance.
+    </p>
+  </section>
+
+  <!-- SECTION 6 — RESULT -->
   <section class="section small">
     <div><span class="label">Total estimated emissions:</span> ${totalCO2e} tCO₂e</div>
   </section>
 
-  <!-- SECTION 6 — METHODOLOGY -->
+  <!-- SECTION 7 — METHODOLOGY -->
   <section class="section small">
     <div><span class="label">Methodology:</span> ${methodology}</div>
   </section>
 
-  <!-- SECTION 7 — TRACEABILITY -->
+  <!-- SECTION 8 — TRACEABILITY -->
   <section class="section small">
     <div><span class="label">Attestation ID:</span> ${attestationId}</div>
     <div>Verification available via QR code or public verification interface.</div>
   </section>
 
-  <!-- SECTION 8 — LEGAL CLAUSES -->
+  <!-- SECTION 9 — LEGAL CLAUSES -->
   <div class="footer">
     This attestation is indicative only. It does not constitute a regulatory report,
     a GHG inventory, or a CSRD/ESRS-compliant disclosure. All input data remain under
@@ -303,4 +329,4 @@ export async function GET(req: Request) {
     console.error("Issuance error:", err);
     return new Response("Failed to issue attestation", { status: 500 });
   }
-}
+        }
