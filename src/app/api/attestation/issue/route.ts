@@ -144,6 +144,22 @@ export async function GET(req: Request) {
       margin-bottom: 6px;
     }
 
+    .section-title-left {
+      font-size: 12px;
+      font-weight: 600;
+      color: #0b0b0b;
+      margin-bottom: 8px;
+    }
+
+    .scope-list {
+      margin: 0 0 10px 16px;
+      padding: 0;
+    }
+
+    .scope-list li {
+      margin-bottom: 4px;
+    }
+
     .footer {
       margin-top: 48px;
       border-top: 1px solid #e5e7eb;
@@ -155,6 +171,7 @@ export async function GET(req: Request) {
 </head>
 <body>
 
+  <!-- SECTION 1 — ISSUER IDENTIFICATION -->
   <div class="header">
     <div class="issuer">
       <img
@@ -178,6 +195,7 @@ export async function GET(req: Request) {
     </div>
   </div>
 
+  <!-- SECTION 2 — TITLE -->
   <section class="section-title">
     <div class="doc-title">Indicative Carbon Emissions Attestation</div>
     <div class="doc-subtitle">
@@ -185,6 +203,7 @@ export async function GET(req: Request) {
     </div>
   </section>
 
+  <!-- SECTION 3 — IDENTIFICATION OF THE OBJECT CERTIFIED -->
   <section class="section section-object small">
     <div class="row"><span class="label">Entity name:</span> ${companyName}</div>
     <div class="row"><span class="label">Entity identifier:</span> ${entityIdentifier}</div>
@@ -192,19 +211,50 @@ export async function GET(req: Request) {
     <div class="row"><span class="label">Reporting year:</span> ${year}</div>
   </section>
 
+  <!-- SECTION 4 — SCOPE -->
+  <section class="section scope small">
+    <div class="section-title-left">Scope of the attestation</div>
+
+    <p>
+      This attestation covers an indicative, non-regulatory estimation of greenhouse
+      gas emissions based on aggregated expenditure data using a spend-based approach.
+    </p>
+
+    <p>
+      The following elements are explicitly excluded from the scope:
+    </p>
+
+    <ul class="scope-list">
+      <li>Scope 1 and Scope 2 emissions</li>
+      <li>Full GHG inventories</li>
+      <li>Physical activity data</li>
+      <li>Third-party verification</li>
+      <li>Regulatory or compliance use (CSRD / ESRS)</li>
+    </ul>
+
+    <p>
+      All input data are provided under the sole responsibility of the user.
+      The attestation is intended for decision-support purposes only.
+    </p>
+  </section>
+
+  <!-- SECTION 5 — RESULT -->
   <section class="section small">
     <div><span class="label">Total estimated emissions:</span> ${totalCO2e} tCO₂e</div>
   </section>
 
+  <!-- SECTION 6 — METHODOLOGY -->
   <section class="section small">
     <div><span class="label">Methodology:</span> ${methodology}</div>
   </section>
 
+  <!-- SECTION 7 — TRACEABILITY -->
   <section class="section small">
     <div><span class="label">Attestation ID:</span> ${attestationId}</div>
     <div>Verification available via QR code or public verification interface.</div>
   </section>
 
+  <!-- SECTION 8 — LEGAL CLAUSES -->
   <div class="footer">
     This attestation is indicative only. It does not constitute a regulatory report,
     a GHG inventory, or a CSRD/ESRS-compliant disclosure. All input data remain under
@@ -253,4 +303,4 @@ export async function GET(req: Request) {
     console.error("Issuance error:", err);
     return new Response("Failed to issue attestation", { status: 500 });
   }
-        }
+}
