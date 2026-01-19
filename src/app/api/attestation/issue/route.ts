@@ -5,6 +5,18 @@ import QRCode from "qrcode";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
+/*
+  ============================================================
+  LOGO BASE64 — COLLE ICI UNIQUEMENT LE CONTENU BASE64
+  (sans "data:image/png;base64," et sans sauts de ligne)
+  ============================================================
+*/
+const CERTIF_SCOPE_LOGO_BASE64 = "COLLE_ICI_TON_BASE64";
+
+/*
+  ============================================================
+*/
+
 export async function GET(req: Request) {
   try {
     if (!process.env.PDFSHIFT_API_KEY) {
@@ -44,7 +56,7 @@ export async function GET(req: Request) {
       { width: 72, margin: 1 }
     );
 
-    // 4. HTML FINAL — SANS BASE64
+    // 4. HTML FINAL — INSTITUTIONAL (BASE64 EMBEDDED)
     const html = `
 <!DOCTYPE html>
 <html lang="en">
@@ -150,12 +162,14 @@ export async function GET(req: Request) {
       margin-bottom: 8px;
     }
 
-    ul {
+    .scope-list,
+    .reference-list {
       margin: 0 0 10px 16px;
       padding: 0;
     }
 
-    ul li {
+    .scope-list li,
+    .reference-list li {
       margin-bottom: 4px;
     }
 
@@ -174,7 +188,7 @@ export async function GET(req: Request) {
   <div class="header">
     <div class="issuer">
       <img
-        src="https://certif-scope.io/logo.png"
+        src="data:image/png;base64,${CERTIF_SCOPE_LOGO_BASE64}"
         alt="Certif-Scope logo"
         class="issuer-logo"
       />
@@ -222,7 +236,7 @@ export async function GET(req: Request) {
   <!-- SECTION 5 — REFERENCES -->
   <section class="section small">
     <div class="section-title-left">Technical and normative references</div>
-    <ul>
+    <ul class="reference-list">
       <li>GHG Protocol – Corporate Value Chain (Scope 3), spend-based approach</li>
       <li>ISO 14064-1 – Principles and terminology (reference only)</li>
       <li>ISO 14083 – Value chain emission factors (reference only)</li>
@@ -232,58 +246,23 @@ export async function GET(req: Request) {
 
   <!-- SECTION 6 — RESULT -->
   <section class="section small">
-    <div class="section-title-left">Estimated emissions result</div>
-    <div>
-      <span class="label">Total estimated emissions:</span>
-      ${totalCO2e} tCO₂e
-    </div>
-    <p>
-      Aggregated indicative estimation derived from user-provided financial data
-      using a standardized spend-based model.
-    </p>
+    <div><span class="label">Total estimated emissions:</span> ${totalCO2e} tCO₂e</div>
   </section>
 
   <!-- SECTION 7 — METHODOLOGY -->
   <section class="section small">
-    <div class="section-title-left">Methodology overview</div>
-    <p>
-      The estimation is generated using the
-      <strong>${methodology}</strong>.
-    </p>
-    <ul>
-      <li>Spend-based calculation using aggregated expenditure data</li>
-      <li>No physical activity data or operational metrics</li>
-      <li>No Scope 1 or Scope 2 emissions</li>
-      <li>Indicative model, not a full GHG inventory</li>
-    </ul>
+    <div><span class="label">Methodology:</span> ${methodology}</div>
   </section>
 
-  <!-- SECTION 8 — AUTHENTICATION & TRACEABILITY -->
+  <!-- SECTION 8 — TRACEABILITY -->
   <section class="section small">
-    <div class="section-title-left">Authentication and traceability</div>
     <div><span class="label">Attestation ID:</span> ${attestationId}</div>
-    <div>
-      Verification of authenticity and integrity is available via the embedded
-      QR code or the public verification interface.
-    </div>
   </section>
 
-  <!-- FINAL LEGAL CLAUSES -->
+  <!-- SECTION 9 — LEGAL -->
   <div class="footer">
-    This attestation is indicative only.<br/><br/>
-
-    It does not constitute a regulatory report, a greenhouse gas inventory,
-    a third-party verified statement, or a CSRD / ESRS-compliant disclosure.<br/><br/>
-
-    The results are derived exclusively from data provided by the entity,
-    under its sole responsibility, using a standardized spend-based estimation
-    methodology.<br/><br/>
-
-    Certif-Scope does not store underlying input data and does not perform any
-    audit, validation, verification, or assurance service.<br/><br/>
-
-    This document is intended solely for internal decision-support,
-    informational, or communication purposes.
+    This attestation is indicative only. It does not constitute a regulatory report,
+    a GHG inventory, or a CSRD/ESRS-compliant disclosure.
   </div>
 
 </body>
@@ -319,7 +298,7 @@ export async function GET(req: Request) {
     return new Response(pdfBuffer, {
       headers: {
         "Content-Type": "application/pdf",
-        "Content-Disposition": \`attachment; filename="certif-scope-${attestationId}.pdf"\`,
+        "Content-Disposition": `attachment; filename="certif-scope-${attestationId}.pdf"`,
         "Cache-Control": "no-store",
       },
     });
