@@ -16,7 +16,9 @@ const nextConfig = {
   },
 
   experimental: {
-    optimizeCss: true,
+    // 🔴 Désactivé pour éviter la dépendance critters
+    optimizeCss: false,
+
     optimizePackageImports: ["react", "react-dom"],
   },
 
