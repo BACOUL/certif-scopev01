@@ -12,9 +12,6 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 LOGO BASE64
 👉 COLLE ICI UNIQUEMENT LE CONTENU BASE64 DU LOGO
 (sans "data:image/png;base64," et sans retour à la ligne)
-
-Si tu ne veux PAS de logo :
-- laisse la constante vide ""
 ==============================================================================
 */
 const CERTIF_SCOPE_LOGO_BASE64 = "";
@@ -26,7 +23,7 @@ export async function GET(req: Request) {
     }
 
     /* ---------------------------------------------------------------------
-       1. Stripe — source de vérité
+       1. Stripe session (source de vérité)
     --------------------------------------------------------------------- */
     const { searchParams } = new URL(req.url);
     const sessionId = searchParams.get("session_id");
@@ -54,15 +51,16 @@ export async function GET(req: Request) {
       "Certif-Scope deterministic spend-based methodology v1.0";
 
     /* ---------------------------------------------------------------------
-       2. QR Code — vérification publique
+       2. QR CODE (vérification publique)
     --------------------------------------------------------------------- */
     const qrDataUrl = await QRCode.toDataURL(
-      `https://certif-scope.io/verify?id=${attestationId}`,
-      { width: 72, margin: 1 }
+      `https://certif-scope.com/verify?id=${attestationId}`,
+      { width: 90, margin: 1 }
     );
 
     /* ---------------------------------------------------------------------
-       3. HTML — VERSION PREMIUM / 1 PAGE / 9 SECTIONS CANONIQUES
+       3. HTML — ATTESTATION PREMIUM 1 PAGE / 9 SECTIONS
+       Style inspiré documents officiels (État / TCF)
     --------------------------------------------------------------------- */
     const html = `
 <!DOCTYPE html>
@@ -72,106 +70,113 @@ export async function GET(req: Request) {
 <title>Certif-Scope Attestation</title>
 
 <style>
-  @page { size: A4; margin: 24mm; }
+  @page {
+    size: A4;
+    margin: 22mm;
+  }
 
   body {
-    font-family: Inter, Helvetica, Arial, sans-serif;
-    font-size: 10.5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10.2px;
     line-height: 1.45;
-    color: #0b0b0b;
+    color: #000;
   }
 
   .header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    border-bottom: 1px solid #e5e7eb;
-    padding-bottom: 14px;
-    margin-bottom: 20px;
+    border-bottom: 2px solid #000;
+    padding-bottom: 10px;
+    margin-bottom: 14px;
   }
 
-  .issuer { max-width: 65%; }
+  .issuer {
+    max-width: 70%;
+  }
 
   .issuer-logo {
-    height: 26px;
-    margin-bottom: 6px;
+    height: 28px;
+    margin-bottom: 4px;
   }
 
   .issuer-name {
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 13px;
+    font-weight: bold;
+  }
+
+  .issuer-site {
+    font-size: 9px;
   }
 
   .issuer-meta {
     font-size: 9px;
-    color: #6b7280;
     margin-top: 4px;
   }
 
   .qr {
     text-align: center;
-    font-size: 8.5px;
-    color: #6b7280;
+    font-size: 8px;
   }
 
   .qr img {
-    width: 64px;
-    height: 64px;
-    margin-bottom: 4px;
+    width: 80px;
+    height: 80px;
   }
 
   .title {
     text-align: center;
-    margin: 18px 0 18px;
+    margin: 14px 0 12px;
   }
 
   .title h1 {
-    font-size: 18px;
+    font-size: 17px;
     margin: 0;
-    font-weight: 600;
+    font-weight: bold;
+    text-transform: uppercase;
   }
 
   .subtitle {
-    font-size: 10px;
-    color: #6b7280;
+    font-size: 9.5px;
     margin-top: 4px;
   }
 
   .section {
-    margin-bottom: 14px;
+    margin-bottom: 10px;
   }
 
   .section-title {
     font-size: 11px;
-    font-weight: 600;
-    margin-bottom: 6px;
+    font-weight: bold;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+  }
+
+  .row {
+    margin-bottom: 2px;
+  }
+
+  .label {
+    font-weight: bold;
   }
 
   .grid-2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 16px;
+    gap: 14px;
   }
 
-  .row { margin-bottom: 3px; }
-  .label { font-weight: 600; }
-
   .result-box {
-    border: 1px solid #e5e7eb;
-    padding: 16px;
+    border: 2px solid #000;
+    padding: 10px;
     text-align: center;
-    margin: 18px 0 20px;
+    margin: 12px 0;
   }
 
   .result-value {
-    font-size: 24px;
-    font-weight: 600;
-    margin-bottom: 4px;
-  }
-
-  .result-unit {
-    font-size: 10px;
-    color: #374151;
+    font-size: 22px;
+    font-weight: bold;
+    margin: 6px 0;
   }
 
   ul {
@@ -179,21 +184,22 @@ export async function GET(req: Request) {
     padding: 0;
   }
 
-  li { margin-bottom: 3px; }
+  li {
+    margin-bottom: 2px;
+  }
 
   .footer {
-    border-top: 1px solid #e5e7eb;
-    margin-top: 18px;
-    padding-top: 10px;
-    font-size: 8.8px;
-    color: #6b7280;
+    border-top: 1px solid #000;
+    margin-top: 10px;
+    padding-top: 6px;
+    font-size: 8.5px;
   }
 </style>
 </head>
 
 <body>
 
-<!-- 1. IDENTIFICATION DE L’ÉMETTEUR -->
+<!-- 1. ISSUER -->
 <div class="header">
   <div class="issuer">
     ${
@@ -202,18 +208,20 @@ export async function GET(req: Request) {
         : ""
     }
     <div class="issuer-name">Certif-Scope</div>
+    <div class="issuer-site">https://certif-scope.com</div>
     <div class="issuer-meta">
       Independent issuer of standardized indicative carbon attestations<br/>
-      Automated issuance · No human signatory · Format v1.x
+      Automated issuance · No human signatory
     </div>
   </div>
+
   <div class="qr">
-    <img src="${qrDataUrl}" />
-    Verify authenticity
+    <img src="${qrDataUrl}" /><br/>
+    Verification QR
   </div>
 </div>
 
-<!-- 2. TITRE DU DOCUMENT -->
+<!-- 2. TITLE -->
 <div class="title">
   <h1>Indicative Carbon Emissions Attestation</h1>
   <div class="subtitle">
@@ -221,71 +229,69 @@ export async function GET(req: Request) {
   </div>
 </div>
 
-<!-- 3. IDENTIFICATION DE L’OBJET CERTIFIÉ -->
-<div class="section">
-  <div class="section-title">3. Identification of the certified entity</div>
-  <div class="row"><span class="label">Entity name:</span> ${companyName}</div>
-  <div class="row"><span class="label">Entity identifier:</span> ${entityIdentifier}</div>
-  <div class="row"><span class="label">Country:</span> ${country}</div>
-  <div class="row"><span class="label">Reporting year:</span> ${year}</div>
-</div>
+<!-- 3 & 4 -->
+<div class="grid-2 section">
+  <div>
+    <div class="section-title">3. Entity identification</div>
+    <div class="row"><span class="label">Entity name:</span> ${companyName}</div>
+    <div class="row"><span class="label">Entity identifier:</span> ${entityIdentifier}</div>
+    <div class="row"><span class="label">Country:</span> ${country}</div>
+    <div class="row"><span class="label">Reporting year:</span> ${year}</div>
+  </div>
 
-<!-- 4. PORTÉE / SCOPE -->
-<div class="section">
-  <div class="section-title">4. Scope of the attestation</div>
-  <p>
+  <div>
+    <div class="section-title">4. Scope of the attestation</div>
     Indicative estimation of greenhouse gas emissions based exclusively on
     aggregated expenditure data using a spend-based approach.
-  </p>
-</div>
-
-<!-- 5. RÉFÉRENCES TECHNIQUES / NORMATIVES -->
-<div class="section">
-  <div class="section-title">5. Technical and normative references</div>
-  <ul>
-    <li>GHG Protocol – Scope 3 (spend-based approach)</li>
-    <li>ISO 14064-1 (reference framework)</li>
-    <li>ISO 14083 (value chain emissions)</li>
-    <li>CSRD / ESRS / EU Taxonomy (contextual references)</li>
-  </ul>
-</div>
-
-<!-- 6. DÉCLARATION DE RÉSULTAT -->
-<div class="result-box">
-  <div class="section-title">6. Indicative emissions result</div>
-  <div class="result-value">${totalCO2e}</div>
-  <div class="result-unit">tCO₂e (indicative)</div>
-</div>
-
-<!-- 7. MÉTHODOLOGIE -->
-<div class="section">
-  <div class="section-title">7. Methodology statement</div>
-  <p>
-    Result generated using the <strong>${methodology}</strong>, based on a
-    deterministic spend-based estimation model. No physical activity data,
-    no Scope 1 or Scope 2 emissions, and no audit or verification performed.
-  </p>
-</div>
-
-<!-- 8. AUTHENTIFICATION ET TRAÇABILITÉ -->
-<div class="section">
-  <div class="section-title">8. Authentication and traceability</div>
-  <div><span class="label">Attestation ID:</span> ${attestationId}</div>
-  <div>
-    Authenticity and integrity can be verified independently via the QR code
-    or the public verification interface.
   </div>
 </div>
 
-<!-- 9. CLAUSES FINALES -->
-<div class="footer">
-  This attestation is indicative only. It does not constitute a regulatory
-  carbon footprint, a greenhouse gas inventory, a third-party verified
-  statement, or a CSRD / ESRS-compliant disclosure.<br/><br/>
+<!-- 6. RESULT -->
+<div class="result-box">
+  <div class="section-title">6. Estimated emissions result</div>
+  <div class="result-value">${totalCO2e} tCO₂e</div>
+  Indicative aggregated value
+</div>
 
-  Results are derived exclusively from data provided by the entity, under its
-  sole responsibility. Certif-Scope does not store input data and does not
-  perform audit, validation, verification, or assurance services.
+<!-- 5 & 7 -->
+<div class="grid-2 section">
+  <div>
+    <div class="section-title">5. Technical references</div>
+    <ul>
+      <li>GHG Protocol – Scope 3 (spend-based)</li>
+      <li>ISO 14064-1 (reference)</li>
+      <li>ISO 14083 (reference)</li>
+      <li>CSRD / ESRS / EU Taxonomy (context)</li>
+    </ul>
+  </div>
+
+  <div>
+    <div class="section-title">7. Methodology & limitations</div>
+    <ul>
+      <li>${methodology}</li>
+      <li>No physical activity data</li>
+      <li>No Scope 1 or Scope 2 calculation</li>
+      <li>Indicative model, not a GHG inventory</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 8 -->
+<div class="section">
+  <div class="section-title">8. Authentication and traceability</div>
+  <div class="row"><span class="label">Attestation ID:</span> ${attestationId}</div>
+  Authenticity and integrity can be verified via QR code or public interface.
+</div>
+
+<!-- 9 -->
+<div class="footer">
+  <strong>9. Legal notice</strong><br/>
+  This attestation is indicative only. It does not constitute a regulatory report,
+  a greenhouse gas inventory, a third-party verified statement, or a CSRD / ESRS
+  compliant disclosure.<br/><br/>
+  Results are derived exclusively from data provided by the entity, under its sole
+  responsibility. Certif-Scope does not perform audit, validation, verification,
+  or assurance services.
 </div>
 
 </body>
@@ -318,7 +324,7 @@ export async function GET(req: Request) {
     return new Response(pdfBuffer, {
       headers: {
         "Content-Type": "application/pdf",
-        "Content-Disposition": \`attachment; filename="certif-scope-\${attestationId}.pdf"\`,
+        "Content-Disposition": `attachment; filename="certif-scope-${attestationId}.pdf"`,
         "Cache-Control": "no-store",
       },
     });
@@ -326,4 +332,4 @@ export async function GET(req: Request) {
     console.error(err);
     return new Response("Internal error", { status: 500 });
   }
-      }
+}
