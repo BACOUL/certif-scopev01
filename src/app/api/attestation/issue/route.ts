@@ -365,4 +365,55 @@ export async function GET(req: Request) {
           <div class="verify-title">Verification & Integrity</div>
           <div class="small">This attestation can be independently verified without access to the issuer's systems. Verification does not require access to Certif-Scope systems and remains possible even if the issuer becomes unavailable.</div>
           <div style="margin-top:8px;"><strong>Privacy by design:</strong> This attestation is generated without storage of underlying financial data. Verification relies solely on the attestation identifier and cryptographic integrity mechanisms.</div>
-          <div
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div>Indicative carbon emissions attestation · Issued by Certif-Scope · certif-scope.com</div>
+    <div>Page 2 / 2</div>
+  </div>
+
+</div>
+</body>
+</html>
+`;
+
+    // Call PDFShift to convert HTML to PDF
+    const pdfShiftResponse = await fetch("https://api.pdfshift.io/v3/convert/pdf", {
+      method: "POST",
+      headers: {
+        Authorization: "Basic " + Buffer.from("api:" + process.env.PDFSHIFT_API_KEY).toString("base64"),
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        source: html,
+        landscape: false,
+        use_print: false,
+        sandbox: true,
+      }),
+    });
+
+    if (!pdfShiftResponse.ok) {
+      const errText = await pdfShiftResponse.text();
+      console.error("PDFShift Error:", errText);
+      return new Response("Error generating PDF", { status: 500 });
+    }
+
+    const pdfBuffer = await pdfShiftResponse.arrayBuffer();
+
+    // Return the PDF
+    return new Response(pdfBuffer, {
+      status: 200,
+      headers: {
+        "Content-Type": "application/pdf",
+        "Content-Disposition": `inline; filename="Attestation-${metadata.attestationId}.pdf"`,
+      },
+    });
+
+  } catch (error) {
+    console.error("Handler error:", error);
+    return new Response("Internal Server Error", { status: 500 });
+  }
+}
