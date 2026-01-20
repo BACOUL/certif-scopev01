@@ -113,10 +113,10 @@ export async function GET(req: Request) {
 <meta charset="utf-8"/>
 <title>${metadata.issuerName} — Attestation</title>
 <style>
-  /* Page & margins (single-page target while keeping air) */
+  /* Page & margins (final adjustment) */
   @page {
     size: A4;
-    margin: 16mm;
+    margin: 14mm; /* reduced from 16mm */
   }
 
   /* Global font size and line-height (PDFShift-safe) */
@@ -156,7 +156,7 @@ export async function GET(req: Request) {
     display: block;
     margin-bottom: 8px;
     object-fit: contain;
-  } /* INSTITUTIONAL: larger logo while preserving aspect ratio */
+  }
   .issuer-site { font-size:10px; color:var(--muted); margin-bottom:6px; }
   .issuer-meta { font-size:10px; color:var(--muted); }
 
@@ -182,20 +182,29 @@ export async function GET(req: Request) {
 
   .meta-list { font-size:11px; color:#222; }
 
+  /* Micro spacing for lists in sections 6 & 7 */
+  .meta-list ul {
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
+  .meta-list li {
+    margin-bottom: 2px;
+  }
+
   /* Result panel: reduced height and margins as requested */
-  .result-panel { margin:10px 0; display:flex; justify-content:center; } /* reduced vertical margin */
+  .result-panel { margin:8px 0; display:flex; justify-content:center; } /* 18px -> 8px */
   .result-box {
     width:100%;
     max-width:640px;
     background:#ffffff;
     border:3px solid var(--accent); /* 4px -> 3px */
-    padding:8px 18px; /* vertical padding 14px -> 8px */
+    padding:8px 14px; /* 14px 18px -> 8px 14px */
     box-shadow: 0 6px 18px rgba(11,43,74,0.08);
     text-align:center;
   }
   .result-label { font-size:10px; font-weight:700; color:#222; margin-bottom:6px; font-family: Inter, Arial, sans-serif; } /* 11px -> 10px */
-  .result-value { font-family:var(--serif); font-size:32px; font-weight:800; color:var(--accent); margin:6px 0; letter-spacing:1px; } /* 40px -> 32px, keep serif */
-  .result-note { font-size:10px; color:var(--muted); margin-top:4px; } /* keep one secondary line; removed the other to save space */
+  .result-value { font-family:var(--serif); font-size:30px; font-weight:800; color:var(--accent); margin:4px 0; letter-spacing:1px; } /* 40px -> 30px, margin 6px->4px */
+  /* .result-note removed to save vertical space */
 
   /* Verification block */
   .verify-block { border:1px solid #d9d9d9; padding:10px; background:#f7f9fb; font-size:10.5px; margin-top:8px; }
@@ -245,12 +254,11 @@ export async function GET(req: Request) {
     <div class="subtitle">Non-regulatory · Methodology-based · Indicative attestation</div>
   </div>
 
-  <!-- Result emphasized and centered -->
+  <!-- Result emphasized and centered (note: one secondary line removed) -->
   <div class="result-panel" role="region" aria-label="Estimated emissions result">
     <div class="result-box" role="figure" aria-labelledby="result-label">
       <div id="result-label" class="result-label">Declared aggregated indicative emissions</div>
       <div class="result-value">${metadata.totalCO2e} tCO₂e</div>
-      <div class="result-note">(aggregated estimate based on declared expenditures)</div>
     </div>
   </div>
 
@@ -311,16 +319,16 @@ export async function GET(req: Request) {
         </div>
       </section>
 
-      <!-- 6 Declaration of result -->
+      <!-- 6 Declaration of result (reduced spacing) -->
       <section aria-labelledby="s6">
         <div class="section-title" id="s6">6. Declaration of result</div>
         <div class="meta-list">
-          <div style="font-style:italic; margin-bottom:8px;">Formal declaration</div>
+          <div style="font-style:italic; margin-bottom:4px;">Formal declaration</div>
           <div class="row"><strong>Declaration:</strong> Pursuant to the information provided by the entity, Certif-Scope hereby attests the above indicative aggregated emissions result for the reporting year stated.</div>
         </div>
       </section>
 
-      <!-- 7 Methodology and limitations -->
+      <!-- 7 Methodology and limitations (list spacing reduced) -->
       <section aria-labelledby="s7">
         <div class="section-title" id="s7">7. Methodology and limitations</div>
         <div class="meta-list">
