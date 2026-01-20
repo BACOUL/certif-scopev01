@@ -2,7 +2,6 @@ import crypto from "crypto";
 
 /**
  * Canonical payload definition (IMMUTABLE)
- * Order, fields, and types MUST NEVER change.
  */
 export type CanonicalPayload = {
   issuer: "Certif-Scope";
@@ -15,10 +14,6 @@ export type CanonicalPayload = {
   issuedDate: string;  // "YYYY-MM-DD"
 };
 
-/**
- * Canonical JSON stringify with strict field order.
- * No extra fields, no reordering, UTF-8 only.
- */
 function canonicalStringify(payload: CanonicalPayload): string {
   const ordered: CanonicalPayload = {
     issuer: payload.issuer,
@@ -34,21 +29,14 @@ function canonicalStringify(payload: CanonicalPayload): string {
   return JSON.stringify(ordered);
 }
 
-/**
- * Sign canonical payload using Ed25519.
- * Private key MUST be provided via env variable:
- * CERTIFSCOPE_SIGNING_KEY (base64, PKCS8 DER)
- */
 export function signCanonicalPayload(payload: CanonicalPayload) {
   const canonical = canonicalStringify(payload);
 
-  // SHA-256 hash of canonical JSON (hex)
   const hashHex = crypto
     .createHash("sha256")
     .update(canonical, "utf8")
     .digest("hex");
 
-  // Load private key from env (NEVER committed)
   const privateKeyDer = Buffer.from(
     process.env.CERTIFSCOPE_SIGNING_KEY!,
     "base64"
@@ -60,7 +48,6 @@ export function signCanonicalPayload(payload: CanonicalPayload) {
     type: "pkcs8",
   });
 
-  // Ed25519 signature over the hash
   const signature = crypto.sign(
     null,
     Buffer.from(hashHex, "hex"),
@@ -68,17 +55,13 @@ export function signCanonicalPayload(payload: CanonicalPayload) {
   );
 
   return {
-    canonical, // internal use only (do NOT store)
+    canonical,          // debug interne uniquement
     hashHex,
     signatureBase64: signature.toString("base64"),
     algorithm: "Ed25519",
   };
 }
 
-/**
- * Deterministic attestation ID derived from content.
- * No storage required.
- */
 export function makeAttestationId(year: string, hashHex: string): string {
   return `CS-${year}-${hashHex.slice(0, 8).toUpperCase()}`;
 }
