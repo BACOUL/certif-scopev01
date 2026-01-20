@@ -113,13 +113,13 @@ export async function GET(req: Request) {
 <meta charset="utf-8"/>
 <title>${metadata.issuerName} — Attestation</title>
 <style>
-  /* 1. Page & margins (modified to force single page) */
+  /* Page & margins (single-page target) */
   @page {
     size: A4;
     margin: 16mm;
   }
 
-  /* 2. Global font size and line-height (PDFShift-safe) */
+  /* Global font size and line-height (PDFShift-safe) */
   body {
     font-family: Inter, "Helvetica Neue", Arial, Helvetica, sans-serif;
     font-size: 10.8px;
@@ -151,17 +151,17 @@ export async function GET(req: Request) {
   header { display:flex; justify-content:space-between; align-items:flex-start; border-bottom:3px solid var(--accent); padding-bottom:12px; margin-bottom:18px; }
   .issuer { max-width:68%; }
   .issuer-logo {
-    height: 64px;
-    max-width: 240px;
+    height: 80px;
+    max-width: 320px;
     display: block;
     margin-bottom: 6px;
-  } /* UPDATED: larger institutional logo */
+  } /* INSTITUTIONAL: larger logo */
   .issuer-site { font-size:10px; color:var(--muted); margin-bottom:6px; }
   .issuer-meta { font-size:10px; color:var(--muted); }
 
-  /* QR (adjusted) */
+  /* QR */
   .qr { text-align:center; font-size:9px; }
-  .qr img { width:105px; height:105px; border:1px solid #ddd; padding:6px; background:#fff; } /* 105px */
+  .qr img { width:105px; height:105px; border:1px solid #ddd; padding:6px; background:#fff; }
 
   /* Title area: serif titles */
   .title { text-align:center; margin:18px 0 8px; font-family:var(--serif); }
@@ -174,21 +174,21 @@ export async function GET(req: Request) {
   .two-col { display:grid; grid-template-columns: 1fr 300px; gap:20px; align-items:start; }
 
   /* Sections spacing (reduced) */
-  section { margin-bottom: 12px; } /* 12px */
+  section { margin-bottom: 12px; }
 
   /* Section titles (preserve hierarchy) */
   .section-title { font-family:var(--serif); font-size:11.5px; margin-bottom:5px; font-weight:700; color:var(--accent); text-transform:uppercase; font-variant:small-caps; }
 
   .meta-list { font-size:11px; color:#222; }
 
-  /* Result panel: padding reduced for A4 fit */
+  /* Result panel: padding reduced for A4 fit but visually strong */
   .result-panel { margin:18px 0; display:flex; justify-content:center; }
   .result-box {
     width:100%;
     max-width:640px;
     background:#ffffff;
     border:4px solid var(--accent);
-    padding:14px 18px; /* reduced padding */
+    padding:14px 18px;
     box-shadow: 0 6px 18px rgba(11,43,74,0.08);
     text-align:center;
   }
@@ -277,7 +277,7 @@ export async function GET(req: Request) {
         <div class="section-title" id="s3">3. Identification of the object certified</div>
         <div class="meta-list">
           <div class="row"><strong>Entity name:</strong> ${metadata.companyName}</div>
-          <div class="row"><strong>Activity sector:</strong> ${metadata.companySector}</div> <!-- ADDED: activity sector -->
+          <div class="row"><strong>Activity sector:</strong> ${metadata.companySector}</div>
           <div class="row"><strong>Country:</strong> ${metadata.country}</div>
           <div class="row"><strong>Reporting year:</strong> ${metadata.year}</div>
         </div>
