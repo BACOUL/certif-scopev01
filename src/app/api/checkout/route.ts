@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
-export const runtime = "nodejs"; // obligatoire (Stripe + crypto)
+export const runtime = "nodejs"; // required (Stripe)
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
@@ -18,33 +18,71 @@ export async function POST(req: Request) {
       company,
       year,
       country,
-      result, // 👈 NOUVEAU : résultat figé
+      result, // fixed calculation result
     } = body;
 
-    if (!result?.totalCO2e || !result?.methodology) {
+    // ─────────────────────────────────────────────
+    // VALIDATION
+    // ─────────────────────────────────────────────
+    if (!company?.name) {
+      return NextResponse.json(
+        { error: "Missing company name" },
+        { status: 400 }
+      );
+    }
+
+    if (!company?.sector) {
+      return NextResponse.json(
+        { error: "Missing company sector" },
+        { status: 400 }
+      );
+    }
+
+    if (!year || !country) {
+      return NextResponse.json(
+        { error: "Missing contextual information" },
+        { status: 400 }
+      );
+    }
+
+    if (
+      result?.totalCO2e === undefined ||
+      result?.totalCO2e === null ||
+      !result?.methodology
+    ) {
       return NextResponse.json(
         { error: "Missing calculation result" },
         { status: 400 }
       );
     }
 
-    // ID brouillon non persistant (contexte métier)
+    // ─────────────────────────────────────────────
+    // BUSINESS CONTEXT (NON-PERSISTENT)
+    // ─────────────────────────────────────────────
     const draftId = `draft_${Date.now()}`;
 
+    // ─────────────────────────────────────────────
+    // STRIPE CHECKOUT (SOURCE OF TRUTH)
+    // ─────────────────────────────────────────────
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
 
-      // 🔗 STRIPE = SOURCE DE VÉRITÉ
       metadata: {
+        // internal context
         draftId,
-        companyName: company?.name || "",
-        companyId: company?.id || "",
-        year: String(year),
-        country: country || "",
 
-        // 🔒 DONNÉES ATTESTÉES
+        // entity identification (lightweight)
+        companyName: String(company.name),
+        companySector: String(company.sector),
+        companyId: String(company.id || ""),
+
+        // context
+        year: String(year),
+        country: String(country),
+
+        // attested result (immutable)
         totalCO2e: String(result.totalCO2e),
-        methodology: result.methodology,
+        methodology: String(result.methodology),
       },
 
       line_items: [
@@ -55,26 +93,24 @@ export async function POST(req: Request) {
             product_data: {
               name: "CO₂e Attestation — Certif-Scope",
               description:
-                "Indicative spend-based CO₂e attestation (PDF, non-audited)",
+                "Indicative spend-based CO₂e attestation (PDF, non-audited, one-time issuance)",
             },
           },
           quantity: 1,
         },
       ],
 
-      // ✅ SESSION ID TRANSMIS AU SUCCESS FLOW
       success_url: `${origin}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/generate`,
     });
 
     return NextResponse.json({ url: session.url });
-
   } catch (error: any) {
     console.error("Stripe checkout error:", error);
 
     return NextResponse.json(
-      { error: error.message || "Stripe checkout failed" },
+      { error: error?.message || "Stripe checkout failed" },
       { status: 500 }
     );
   }
-}
+            }
