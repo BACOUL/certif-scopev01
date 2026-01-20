@@ -116,7 +116,7 @@ export async function GET(req: Request) {
   /* 1. Page & margins (modified to force single page) */
   @page {
     size: A4;
-    margin: 18mm;
+    margin: 16mm;
   }
 
   /* 2. Global font size and line-height (PDFShift-safe) */
@@ -137,15 +137,25 @@ export async function GET(req: Request) {
 
   .container { padding: 0; }
 
+  /* Force single-page layout */
+  .container,
+  section,
+  .result-panel,
+  .final-box,
+  .final-stamp {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
   /* Header */
   header { display:flex; justify-content:space-between; align-items:flex-start; border-bottom:3px solid var(--accent); padding-bottom:12px; margin-bottom:18px; }
   .issuer { max-width:68%; }
   .issuer-logo {
-    height: 48px;
-    max-width: 180px;
+    height: 64px;
+    max-width: 240px;
     display: block;
-    margin-bottom: 8px;
-  } /* updated logo size */
+    margin-bottom: 6px;
+  } /* UPDATED: larger institutional logo */
   .issuer-site { font-size:10px; color:var(--muted); margin-bottom:6px; }
   .issuer-meta { font-size:10px; color:var(--muted); }
 
@@ -194,8 +204,12 @@ export async function GET(req: Request) {
   /* Aside micro-block (scope summary) */
   .scope-summary { margin-top:12px; border-left:3px solid #e6eef8; padding-left:10px; font-size:10.5px; color:#222; }
 
-  /* Final legal box */
-  .final-box { border-top:1px solid #ddd; margin-top:18px; padding-top:12px; }
+  /* Final legal box (reduced spacing to fit single page) */
+  .final-box {
+    border-top:1px solid #ddd;
+    margin-top:10px;
+    padding-top:8px;
+  }
   .final-stamp { border:1px solid #e0e0e0; padding:10px; font-style:italic; color:#222; background:#fff; font-size:10.5px; }
 
   .muted { color:var(--muted); font-size:10px; }
@@ -360,7 +374,7 @@ export async function GET(req: Request) {
     </aside>
   </div>
 
-  <div class="footer muted" style="margin-top:10px;">
+  <div class="footer muted" style="margin-top:6px; page-break-inside:avoid;">
     For verification and audit trail, consult the verification URL or contact ${metadata.issuerName} via ${metadata.issuerSite}.
   </div>
 
