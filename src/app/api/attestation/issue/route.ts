@@ -113,7 +113,7 @@ export async function GET(req: Request) {
 <meta charset="utf-8"/>
 <title>${metadata.issuerName} — Attestation</title>
 <style>
-  /* Page & margins (single-page target) */
+  /* Page & margins (single-page target while keeping air) */
   @page {
     size: A4;
     margin: 16mm;
@@ -148,14 +148,15 @@ export async function GET(req: Request) {
   }
 
   /* Header */
-  header { display:flex; justify-content:space-between; align-items:flex-start; border-bottom:3px solid var(--accent); padding-bottom:12px; margin-bottom:18px; }
-  .issuer { max-width:68%; }
+  header { display:flex; justify-content:space-between; align-items:flex-start; border-bottom:3px solid var(--accent); padding-bottom:14px; margin-bottom:18px; }
+  .issuer { max-width:68%; display:flex; flex-direction:column; justify-content:flex-start; }
   .issuer-logo {
-    height: 80px;
-    max-width: 320px;
+    height: 96px;
+    max-width: 380px;
     display: block;
-    margin-bottom: 6px;
-  } /* INSTITUTIONAL: larger logo */
+    margin-bottom: 8px;
+    object-fit: contain;
+  } /* INSTITUTIONAL: larger logo while preserving aspect ratio */
   .issuer-site { font-size:10px; color:var(--muted); margin-bottom:6px; }
   .issuer-meta { font-size:10px; color:var(--muted); }
 
@@ -173,8 +174,8 @@ export async function GET(req: Request) {
   /* Layout */
   .two-col { display:grid; grid-template-columns: 1fr 300px; gap:20px; align-items:start; }
 
-  /* Sections spacing (reduced) */
-  section { margin-bottom: 12px; }
+  /* Sections spacing (reduced but airy) */
+  section { margin-bottom: 12px; padding-right:2px; }
 
   /* Section titles (preserve hierarchy) */
   .section-title { font-family:var(--serif); font-size:11.5px; margin-bottom:5px; font-weight:700; color:var(--accent); text-transform:uppercase; font-variant:small-caps; }
@@ -214,6 +215,12 @@ export async function GET(req: Request) {
 
   .muted { color:var(--muted); font-size:10px; }
   .small { font-size:10px; color:var(--muted); }
+
+  /* Small print adjustments to keep airy layout without overflow */
+  @media print {
+    .issuer-logo { height: 88px; max-width: 340px; }
+    .two-col { gap:16px; }
+  }
 </style>
 </head>
 <body>
