@@ -182,21 +182,20 @@ export async function GET(req: Request) {
 
   .meta-list { font-size:11px; color:#222; }
 
-  /* Result panel: padding reduced for A4 fit but visually strong */
-  .result-panel { margin:18px 0; display:flex; justify-content:center; }
+  /* Result panel: reduced height and margins as requested */
+  .result-panel { margin:10px 0; display:flex; justify-content:center; } /* reduced vertical margin */
   .result-box {
     width:100%;
     max-width:640px;
     background:#ffffff;
-    border:4px solid var(--accent);
-    padding:14px 18px;
+    border:3px solid var(--accent); /* 4px -> 3px */
+    padding:8px 18px; /* vertical padding 14px -> 8px */
     box-shadow: 0 6px 18px rgba(11,43,74,0.08);
     text-align:center;
   }
-  .result-label { font-size:11px; font-weight:700; color:#222; margin-bottom:6px; font-family: Inter, Arial, sans-serif; }
-  .result-value { font-family:var(--serif); font-size:40px; font-weight:800; color:var(--accent); margin:6px 0; letter-spacing:1px; }
-  .result-official { font-size:12px; font-weight:700; color:#222; margin-top:6px; }
-  .result-note { font-size:10px; color:var(--muted); margin-top:4px; }
+  .result-label { font-size:10px; font-weight:700; color:#222; margin-bottom:6px; font-family: Inter, Arial, sans-serif; } /* 11px -> 10px */
+  .result-value { font-family:var(--serif); font-size:32px; font-weight:800; color:var(--accent); margin:6px 0; letter-spacing:1px; } /* 40px -> 32px, keep serif */
+  .result-note { font-size:10px; color:var(--muted); margin-top:4px; } /* keep one secondary line; removed the other to save space */
 
   /* Verification block */
   .verify-block { border:1px solid #d9d9d9; padding:10px; background:#f7f9fb; font-size:10.5px; margin-top:8px; }
@@ -252,7 +251,6 @@ export async function GET(req: Request) {
       <div id="result-label" class="result-label">Declared aggregated indicative emissions</div>
       <div class="result-value">${metadata.totalCO2e} tCO₂e</div>
       <div class="result-note">(aggregated estimate based on declared expenditures)</div>
-      <div class="result-official">Declared aggregated indicative emissions for reporting year</div>
     </div>
   </div>
 
