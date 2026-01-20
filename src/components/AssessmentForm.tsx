@@ -20,6 +20,25 @@ const EMISSION_FACTORS = {
 const METHODOLOGY =
   "Certif-Scope deterministic spend-based model v1.0";
 
+/* ======================================================
+   SECTORS (DECLARATIVE)
+====================================================== */
+
+const SECTORS = [
+  { value: "professional_services", label: "Professional services" },
+  { value: "information_technology", label: "Information & technology" },
+  { value: "manufacturing", label: "Manufacturing & industry" },
+  { value: "construction", label: "Construction & real estate" },
+  { value: "wholesale_retail", label: "Wholesale & retail" },
+  { value: "transport_logistics", label: "Transport & logistics" },
+  { value: "hospitality_events", label: "Hospitality, travel & events" },
+  { value: "other", label: "Other activities" },
+];
+
+/* ======================================================
+   CALCULATION
+====================================================== */
+
 function calculateTotalCO2e(expenses: Record<string, number>) {
   let totalKg = 0;
 
@@ -31,7 +50,7 @@ function calculateTotalCO2e(expenses: Record<string, number>) {
     totalKg += value * factor;
   }
 
-  // kg → tonnes, arrondi institutionnel (1 décimale)
+  // kg → tonnes, institutional rounding (1 decimal)
   return Math.round((totalKg / 1000) * 10) / 10;
 }
 
@@ -75,6 +94,7 @@ export default function AssessmentForm() {
 
   const [companyName, setCompanyName] = useState("");
   const [companyId, setCompanyId] = useState("");
+  const [sector, setSector] = useState("");
   const [year, setYear] = useState(currentYear);
   const [country, setCountry] = useState("FR");
 
@@ -110,15 +130,19 @@ export default function AssessmentForm() {
       return;
     }
 
+    if (!sector) {
+      alert("Please select your main sector of activity.");
+      return;
+    }
+
     const payload = {
       company: {
         name: companyName,
         id: companyId || null,
+        sector,
       },
       year,
       country,
-
-      // RESULT IS FIXED HERE
       result: {
         totalCO2e,
         methodology: METHODOLOGY,
@@ -174,13 +198,31 @@ export default function AssessmentForm() {
 
             <div>
               <label className="block text-sm font-medium">
+                Main sector of activity
+              </label>
+              <select
+                value={sector}
+                onChange={(e) => setSector(e.target.value)}
+                className="w-full border rounded-md px-4 py-2 mt-1"
+              >
+                <option value="">Select a sector</option>
+                {SECTORS.map((s) => (
+                  <option key={s.value} value={s.label}>
+                    {s.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium">
                 Business identifier (optional)
               </label>
               <input
                 type="text"
                 value={companyId}
                 onChange={(e) => setCompanyId(e.target.value)}
-                placeholder="SIREN / SIRET / EU registration number"
+                placeholder="Optional internal or registration identifier"
                 className="w-full border rounded-md px-4 py-2 mt-1"
               />
             </div>
@@ -291,4 +333,4 @@ function Input({
       <p className="text-xs text-gray-500 mt-1">{hint}</p>
     </div>
   );
-    }
+           }
