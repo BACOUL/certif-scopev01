@@ -101,9 +101,8 @@ export async function GET(req: Request) {
       validUntil: escapeHtml(String(metadataRaw.validUntil || "")),
       validityMonths: escapeHtml(String(metadataRaw.validityMonths || "12")),
       standardRef: escapeHtml(String(metadataRaw.standardRef || "Certif-Scope CS-SB-v1")),
-      // 4️⃣ INJECTER signature + hash (FINAL) dans le HTML
+      // 4️⃣ INJECTER signature (Sans le hash)
       signature: signatureResult.signatureBase64,
-      hash: signatureResult.hashHex,
       algorithm: signatureResult.algorithm,
     };
 
@@ -399,7 +398,6 @@ export async function GET(req: Request) {
           <div class="small" style="margin-top:8px;">
             <strong>Cryptographic integrity:</strong><br/>
             Algorithm: ${metadata.algorithm}<br/>
-            Hash (SHA-256): ${metadata.hash}<br/>
             Signature (Base64):<br/>
             <span style="word-break:break-all;">${metadata.signature}</span>
           </div>
