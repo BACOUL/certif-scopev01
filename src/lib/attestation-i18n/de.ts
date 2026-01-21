@@ -16,14 +16,16 @@ export const ATTESTATION_DE = {
   /* ===============================
      HEADER / GLOBAL UI
   =============================== */
-  headerTagline: "Automatisierte Ausstellung · Standardisierte indikative Bescheinigung",
+  headerTagline:
+    "Automatisierte Ausstellung · Standardisierte indikative Bescheinigung",
   scanToVerifyLabel: "Zur Verifizierung scannen",
 
   /* ===============================
      TITLE
   =============================== */
   title: "Indikative Bescheinigung über CO₂-Emissionen",
-  subtitle: "Nicht regulatorisch · Methodikbasiert · Indikative Bescheinigung",
+  subtitle:
+    "Nicht regulatorisch · Methodikgestützt · Indikative Bescheinigung",
   standardReference:
     "Ausgestellt gemäß der standardisierten Certif-Scope-Methodik CS-SB-v1",
   standardReferenceLabel: "Standardreferenz",
@@ -51,7 +53,7 @@ export const ATTESTATION_DE = {
   =============================== */
   documentNatureSectionTitle: "2. Art des Dokuments",
   documentNatureText:
-    "Dieses Dokument stellt eine indikative Bescheinigung über CO₂-Emissionen dar und wird ausschließlich zu Informations-, Entscheidungsunterstützungs- und Voranalysezwecken ausgestellt.",
+    "Dieses Dokument stellt eine indikative Bescheinigung über CO₂-Emissionen dar und wird ausschließlich zu Informations-, Entscheidungsunterstützungs- und vorläufigen Analysezwecken ausgestellt.",
 
   /* ===============================
      SECTION 3 — ENTITY
@@ -68,7 +70,7 @@ export const ATTESTATION_DE = {
   =============================== */
   scopeSectionTitle: "4. Geltungsbereich",
   scopeText:
-    "Diese Bescheinigung liefert eine indikative Schätzung der Treibhausgasemissionen, die ausschließlich aus aggregierten Ausgabendaten mittels einer ausgabenbasierten Methodik (spend-based) abgeleitet wird.",
+    "Diese Bescheinigung liefert eine indikative Schätzung der Treibhausgasemissionen, die ausschließlich aus aggregierten Finanzdaten mittels einer ausgabenbasierten Methodik (spend-based) abgeleitet wird.",
   noteLabel: "Hinweis",
   scopeNote:
     "Dieses Dokument stellt weder ein Treibhausgasinventar noch ein Audit, eine Verifizierung oder eine regulatorische Offenlegung im Sinne der CSRD, ESRS oder vergleichbarer Rahmenwerke dar.",
@@ -119,7 +121,7 @@ export const ATTESTATION_DE = {
   =============================== */
   methodologySectionTitle: "7. Methodik und Einschränkungen",
   methodologyLabel:
-    "Deterministische ausgabenbasierte Methodik unter Verwendung aggregierter Ausgabendaten.",
+    "Deterministische ausgabenbasierte Methodik unter Verwendung aggregierter Finanzdaten.",
   limitationsText:
     "Keine physischen Aktivitätsdaten. Keine Scope-1- oder Scope-2-Emissionen. Ausschließlich indikatives Modell.",
   transferabilityText: "Nicht übertragbar.",
@@ -130,7 +132,8 @@ export const ATTESTATION_DE = {
   verificationSectionTitle: "8. Verifizierung und Integrität",
   verificationBoxTitle: "Verifizierung und Integrität",
 
-  privacyLabel: "Datenschutz durch Technikgestaltung",
+  privacyLabel:
+    "Datenschutz durch Technikgestaltung (Privacy by Design)",
   privacyText:
     "Diese Bescheinigung wird ohne Speicherung zugrunde liegender Finanzdaten durch Certif-Scope erzeugt.",
 
