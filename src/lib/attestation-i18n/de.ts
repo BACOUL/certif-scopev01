@@ -122,7 +122,8 @@ export const ATTESTATION_DE = {
      SECTION 7 — METHODOLOGY
   =============================== */
   methodologySectionTitle: "7. Methodik und Einschränkungen",
-  methodologyLabel:
+  methodologyLabel: "Methodik",
+  methodologyText:
     "Deterministische ausgabenbasierte Methodik unter Verwendung aggregierter Finanzdaten.",
   limitationsLabel: "Einschränkungen",
   limitationsText:
@@ -172,6 +173,7 @@ export const ATTESTATION_DE = {
   liabilityText:
     "Die Ergebnisse beruhen ausschließlich auf den von der Einheit bereitgestellten Daten und liegen in deren alleiniger Verantwortung.",
 
+  validityExplanationLabel: "Gültigkeit",
   validityText:
     "Der Gültigkeitszeitraum spiegelt die zeitliche Relevanz der zugrunde liegenden Daten und der Methodik wider.",
 
