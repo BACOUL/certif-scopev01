@@ -14,9 +14,6 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 // Paste only the base64 content of your logo here (no data: prefix, no newlines)
 const CERTIF_SCOPE_LOGO_BASE64 = "";
 
-/**
- * Simple HTML escaper to avoid injection in the generated HTML.
- */
 function escapeHtml(input: string) {
   return input
     .replace(/&/g, "&amp;")
@@ -44,14 +41,13 @@ export async function GET(req: Request) {
 
     const metadataRaw = session.metadata || {};
 
-    // 2️⃣ LIRE LA LANGUE CHOISIE DANS STRIPE
+    // 2️⃣ LIRE LA LANGUE (STRICT)
     const locale =
       (metadataRaw.attestationLocale as AttestationLocale) ||
       DEFAULT_ATTESTATION_LOCALE;
 
     const i18n = ATTESTATION_I18N[locale] || ATTESTATION_I18N.en;
 
-    // Required metadata keys
     const required = ["companyName", "totalCO2e", "year"];
     const missing = required.filter((k) => {
       const v = metadataRaw[k];
@@ -61,13 +57,12 @@ export async function GET(req: Request) {
       return new Response(`Missing metadata: ${missing.join(", ")}`, { status: 400 });
     }
 
-    // Parse and validate numeric totalCO2e
     const totalCO2eNum = Number(String(metadataRaw.totalCO2e).replace(",", "."));
     if (Number.isNaN(totalCO2eNum)) {
       return new Response("Invalid metadata: totalCO2e must be a number", { status: 400 });
     }
 
-    // 3️⃣ GÉNÉRER L’ID et SIGNER
+    // 3️⃣ CRYPTO & ID
     const issuedDate = new Date().toISOString().slice(0, 10);
 
     const canonicalPayload = {
@@ -81,7 +76,6 @@ export async function GET(req: Request) {
       issuedDate,
     };
 
-    // 1. hash provisoire
     const tempSignature = signCanonicalPayload({
       ...canonicalPayload,
       attestationId: "TEMP",
@@ -92,13 +86,12 @@ export async function GET(req: Request) {
       tempSignature.hashHex
     );
 
-    // 2. signature FINALE
     const signatureResult = signCanonicalPayload({
       ...canonicalPayload,
       attestationId,
     });
 
-    // 3️⃣ METADATA DYNAMIQUE
+    // 4️⃣ METADATA DYNAMIQUE (Données brutes uniquement)
     const metadata = {
       attestationId: attestationId,
       issuerName: escapeHtml(String(metadataRaw.issuerName || "Certif-Scope")),
@@ -122,7 +115,7 @@ export async function GET(req: Request) {
     const verifyUrl = `https://certif-scope.com/verify?id=${encodeURIComponent(metadata.attestationId)}`;
     const qrDataUrl = await QRCode.toDataURL(verifyUrl, { width: 120, margin: 1 });
 
-    // HTML (V2.0 STRICT 2-PAGES LAYOUT)
+    // HTML (V1.12 FULL I18N STRICT)
     const html = `
 <!doctype html>
 <html lang="${locale}">
@@ -130,7 +123,7 @@ export async function GET(req: Request) {
 <meta charset="utf-8"/>
 <title>${metadata.issuerName} — Attestation</title>
 <style>
-  /* Page & margins - Marges réduites pour éviter tout débordement */
+  /* Layout: 2 pages strictes */
   @page {
     size: A4;
     margin: 12mm 14mm 12mm 14mm; 
@@ -138,7 +131,7 @@ export async function GET(req: Request) {
 
   body {
     font-family: Inter, "Helvetica Neue", Arial, Helvetica, sans-serif;
-    font-size: 10px; /* Taille légèrement réduite pour sécurité */
+    font-size: 10px;
     line-height: 1.4;
     margin: 0;
     color: #111;
@@ -155,7 +148,7 @@ export async function GET(req: Request) {
 
   .container { padding: 0; }
 
-  /* Footer normal (non fixe) pour éviter les sauts de page fantômes */
+  /* Footer Flow (Non-Fixed) */
   .footer-static {
     width: 100%;
     font-size: 9px;
@@ -165,7 +158,7 @@ export async function GET(req: Request) {
     border-top: 1px solid #ddd;
     padding-top: 8px;
     margin-top: 20px;
-    clear: both; /* Assure que le footer est bien sous les colonnes */
+    clear: both;
   }
 
   /* Header */
@@ -180,7 +173,7 @@ export async function GET(req: Request) {
 
   .issuer { max-width:68%; display:flex; flex-direction:column; justify-content:flex-start; }
   .issuer-logo {
-    height: 75px; /* Réduit */
+    height: 75px;
     max-width: 300px;
     display: block;
     margin-bottom: 5px;
@@ -227,41 +220,20 @@ export async function GET(req: Request) {
   .two-col {
     width: 100%;
   }
-
-  .two-col > div {
-    float: left;
-    width: calc(100% - 310px);
-  }
-
-  .two-col > aside {
-    float: right;
-    width: 300px;
-    margin-top: 0;
-  }
-
-  .clearfix::after {
-    content: "";
-    display: block;
-    clear: both;
-  }
+  .two-col > div { float: left; width: calc(100% - 310px); }
+  .two-col > aside { float: right; width: 300px; margin-top: 0; }
+  .clearfix::after { content: ""; display: block; clear: both; }
 
   /* Sections */
   section { margin-bottom: 8px; padding-right:2px; }
-
   .section-title { font-family:var(--serif); font-size:11px; margin-bottom:4px; font-weight:700; color:var(--accent); text-transform:uppercase; font-variant:small-caps; border-bottom: 1px solid #eee; padding-bottom: 2px; display: inline-block; min-width: 100%; }
 
   .meta-list { font-size:10px; color:#222; }
-
-  .meta-list ul {
-    margin-top: 2px;
-    margin-bottom: 2px; padding-left: 14px;
-  }
-  .meta-list li {
-    margin-bottom: 2px;
-  }
+  .meta-list ul { margin-top: 2px; margin-bottom: 2px; padding-left: 14px; }
+  .meta-list li { margin-bottom: 2px; }
   .row { margin-bottom: 2px; }
 
-  /* Verify blocks */
+  /* Blocks */
   .verify-block { 
     border:1px solid var(--border-light); 
     padding:10px; 
@@ -271,31 +243,18 @@ export async function GET(req: Request) {
     border-radius: 2px;
   }
   .verify-title { font-weight:700; color:var(--accent); font-size:10px; margin-bottom:4px; text-transform: uppercase; letter-spacing: 0.5px; }
-
-  /* Aside micro-block */
   .scope-summary { margin-top:8px; border-left:3px solid var(--border-light); padding-left:10px; font-size:9.5px; color:#222; }
 
   /* Final clauses */
-  .final-box {
-    border-top:1px solid #ddd;
-    margin-top:10px;
-    padding-top:8px;
-  }
-  .final-stamp {
-    border:1px solid #e0e0e0;
-    padding:10px;
-    font-style:italic;
-    color:#222;
-    background:#fff;
-    font-size:10px;
-  }
+  .final-box { border-top:1px solid #ddd; margin-top:10px; padding-top:8px; }
+  .final-stamp { border:1px solid #e0e0e0; padding:10px; font-style:italic; color:#222; background:#fff; font-size:10px; }
 
   .muted { color:var(--muted); font-size:9px; }
   .small { font-size:9px; color:var(--muted); line-height: 1.3; }
 
-  @media print {
-    .issuer-logo { height: 75px; max-width: 300px; }
-  }
+  /* Print optimizations */
+  .result-box, .verify-block, .final-stamp { page-break-inside: avoid; break-inside: avoid; }
+  @media print { .issuer-logo { height: 75px; max-width: 300px; } }
 </style>
 </head>
 <body>
@@ -372,10 +331,7 @@ export async function GET(req: Request) {
         <div class="meta-list">
           <div style="margin-bottom:4px;"><em>${i18n.normativeText}</em></div>
           <ul>
-            <li>GHG Protocol – Scope 3 (spend-based)</li>
-            <li>ISO 14064-1 (reference)</li>
-            <li>ISO 14083 (reference)</li>
-            <li>CSRD / ESRS / EU Taxonomy (context)</li>
+            ${i18n.referencesList.map((ref: string) => `<li>${ref}</li>`).join("")}
           </ul>
         </div>
       </section>
@@ -384,30 +340,22 @@ export async function GET(req: Request) {
     <aside>
       <div class="verify-block" style="margin-top:0;">
         <div class="verify-title">${i18n.authenticityOverviewTitle}</div>
-        <div class="small">
-          ${i18n.authenticityOverviewText}
-        </div>
+        <div class="small">${i18n.authenticityOverviewText}</div>
       </div>
 
       <div class="verify-block">
         <div class="verify-title">${i18n.natureOfAttestationTitle}</div>
-        <div class="small">
-          ${i18n.natureOfAttestationText}
-        </div>
+        <div class="small">${i18n.natureOfAttestationText}</div>
       </div>
 
       <div class="verify-block">
         <div class="verify-title">${i18n.documentScopeSummaryTitle}</div>
-        <div style="font-size:9.5px; color:#222; margin-top:4px;">
-          ${i18n.documentScopeSummaryText}
-        </div>
+        <div style="font-size:9.5px; color:#222; margin-top:4px;">${i18n.documentScopeSummaryText}</div>
       </div>
 
       <div class="verify-block">
         <div class="verify-title">${i18n.documentValidityTitle}</div>
-        <div class="small">
-          ${i18n.documentValidityText}
-        </div>
+        <div class="small">${i18n.documentValidityText}</div>
       </div>
     </aside>
   </div>
@@ -418,7 +366,7 @@ export async function GET(req: Request) {
   </div>
 
   <div style="page-break-after: always;"></div>
-
+  
   <div class="two-col clearfix">
     <div>
       <section aria-labelledby="s6">
@@ -434,8 +382,8 @@ export async function GET(req: Request) {
         <div class="meta-list">
           <ul>
             <li><strong>${i18n.methodologyLabel}:</strong> ${metadata.methodology}</li>
-            <li><strong>${i18n.limitationsLabel}:</strong> ${i18n.limitationsText || "No physical activity data; no Scope 1 or 2; indicative model only."}</li>
-            <li><strong>${i18n.transferabilityLabel}:</strong> ${i18n.transferabilityText || "Non-transferable."}</li>
+            <li><strong>${i18n.limitationsLabel}:</strong> ${i18n.limitationsText}</li>
+            <li><strong>${i18n.transferabilityLabel}:</strong> ${i18n.transferabilityText}</li>
           </ul>
         </div>
       </section>
@@ -445,13 +393,13 @@ export async function GET(req: Request) {
         <div class="verify-block">
           <div class="verify-title">${i18n.verificationBoxTitle}</div>
 
-          <div style="margin-top:6px;"><strong>${i18n.privacyLabel}:</strong> ${i18n.privacyText}</div>
+          <div style="margin-top:8px;"><strong>${i18n.privacyLabel}:</strong> ${i18n.privacyText}</div>
 
-          <div class="small" style="margin-top:6px;">
+          <div class="small" style="margin-top:8px;">
             ${i18n.pdfObjectText}
           </div>
 
-          <div style="margin-top:6px;"><strong>${i18n.verificationPageLabel}:</strong><br/>
+          <div style="margin-top:8px;"><strong>${i18n.verificationPageLabel}:</strong><br/>
             <a href="${verifyUrl}"
                style="color:var(--accent); text-decoration:none; word-break:break-all;">
               ${verifyUrl}
@@ -489,14 +437,15 @@ export async function GET(req: Request) {
         <div class="final-box">
           <div class="final-stamp">
             <div><strong>${i18n.issuedPursuantText}</strong></div>
-            <div style="margin-top:6px;"><strong>${i18n.legalEffectLabel}:</strong> ${i18n.legalEffectLabel}</div>
+            
+            <div style="margin-top:6px;"><strong>${i18n.legalEffectLabel}:</strong> ${i18n.legalEffectText}</div>
             
             <div style="margin-top:6px;">
-              <strong>${i18n.liabilityLabel}:</strong> ${i18n.liabilityLabel}
+              <strong>${i18n.liabilityLabel}:</strong> ${i18n.liabilityText}
             </div>
             
             <div style="margin-top:6px;">
-              <strong>${i18n.validityLabel}:</strong> ${i18n.validityExplanationLabel}
+              <strong>${i18n.validityLabel}:</strong> ${i18n.validityText}
             </div>
 
             <div class="small" style="margin-top:8px; font-weight:bold;">
@@ -524,9 +473,8 @@ export async function GET(req: Request) {
 </html>
 `;
 
-    // Convert to PDF via PDFShift with Timeout and Filename Sanity
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 15000); // 15s timeout
+    const timeoutId = setTimeout(() => controller.abort(), 15000); 
 
     const pdfResponse = await fetch("https://api.pdfshift.io/v3/convert/pdf", {
       method: "POST",
