@@ -23,7 +23,8 @@ export const ATTESTATION_FR = {
      TITLE
   =============================== */
   title: "Attestation indicative d’émissions de carbone",
-  subtitle: "Non réglementaire · Fondée sur une méthodologie · Attestation indicative",
+  subtitle:
+    "Non réglementaire · Fondée sur une méthodologie · Attestation indicative",
   standardReference:
     "Émise conformément à la méthodologie standardisée Certif-Scope CS-SB-v1",
   standardReferenceLabel: "Référence du standard",
@@ -67,6 +68,7 @@ export const ATTESTATION_FR = {
      SECTION 4 — SCOPE
   =============================== */
   scopeSectionTitle: "4. Périmètre",
+  scopeDescriptionLabel: "Description du périmètre",
   scopeText:
     "Cette attestation fournit une estimation indicative des émissions de gaz à effet de serre, dérivée exclusivement de données de dépenses agrégées, selon une méthodologie basée sur les dépenses (spend-based).",
   noteLabel: "Note",
@@ -119,8 +121,6 @@ export const ATTESTATION_FR = {
   =============================== */
   methodologySectionTitle: "7. Méthodologie et limites",
   methodologyLabel: "Méthodologie",
-  methodologyText:
-    "Méthodologie déterministe basée sur les dépenses, utilisant des données de dépenses agrégées.",
   limitationsLabel: "Limites",
   limitationsText:
     "Aucune donnée d’activité physique. Aucune émission de Scope 1 ou de Scope 2. Modèle strictement indicatif.",
