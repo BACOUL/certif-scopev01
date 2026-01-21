@@ -118,10 +118,13 @@ export const ATTESTATION_EN = {
      SECTION 7 — METHODOLOGY
   =============================== */
   methodologySectionTitle: "7. Methodology and limitations",
-  methodologyLabel:
+  methodologyLabel: "Methodology",
+  methodologyText:
     "Deterministic spend-based methodology using aggregated expenditure data.",
+  limitationsLabel: "Limitations",
   limitationsText:
     "No physical activity data. No Scope 1 or Scope 2 emissions. Indicative model only.",
+  transferabilityLabel: "Transferability",
   transferabilityText: "Non-transferable.",
 
   /* ===============================
@@ -166,6 +169,7 @@ export const ATTESTATION_EN = {
   liabilityText:
     "The results are derived exclusively from data provided by the entity, under its sole responsibility.",
 
+  validityExplanationLabel: "Validity",
   validityText:
     "The validity period reflects the temporal relevance of the underlying data and methodology.",
 
