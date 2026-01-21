@@ -49,12 +49,13 @@ export default function VerifyPage() {
       {/* HEADER */}
       <header className="mb-12">
         <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-4">
-          Verify a CO₂e Attestation
+          How to Verify a CO₂e Attestation
         </h1>
 
         <p className="text-lg text-gray-700 leading-relaxed max-w-3xl">
-          This page explains how to independently verify the authenticity and
-          integrity of a CO₂e attestation issued by Certif-Scope.
+          Verification of a Certif-Scope CO₂e attestation is performed using the
+          PDF document itself. This page does not perform any automated
+          verification and does not access any registry or database.
         </p>
       </header>
 
@@ -81,7 +82,7 @@ export default function VerifyPage() {
         onClick={() => submit()}
         className="px-6 py-3 bg-[#0B3A63] text-white rounded-lg hover:bg-[#094366]"
       >
-        Show verification instructions
+        View verification instructions
       </button>
 
       {/* ERROR */}
@@ -89,41 +90,42 @@ export default function VerifyPage() {
         <p className="mt-6 text-red-600 font-medium">{error}</p>
       )}
 
-      {/* RESULT */}
+      {/* INSTRUCTIONS */}
       {submitted && !error && (
         <div className="mt-10 p-6 border rounded-md bg-[#F8FAFC] border-gray-300 max-w-3xl">
           <h3 className="text-xl font-bold text-[#0B3A63] mb-4">
-            Verification instructions
+            Independent verification instructions
           </h3>
 
           <p className="text-gray-700 mb-4">
-            This attestation was issued by Certif-Scope. Certif-Scope does not
-            maintain a central registry of attestations.
+            Certif-Scope does not maintain a central registry of issued
+            attestations. Authenticity and integrity are verified directly from
+            the original PDF document.
           </p>
 
           <p className="text-gray-700 mb-4">
-            To independently verify the authenticity and integrity of this
-            attestation:
+            To independently verify a Certif-Scope CO₂e attestation:
           </p>
 
           <ul className="list-disc pl-6 text-gray-700 mb-4 space-y-1">
-            <li>Download the original PDF document.</li>
+            <li>Obtain the original PDF attestation file.</li>
             <li>
-              Extract the signed payload and digital signature embedded in the
-              document.
+              Locate the signed payload, Attestation ID, and digital signature
+              embedded in the document.
             </li>
             <li>
-              Verify the signature using Certif-Scope’s public verification key.
+              Verify the digital signature using Certif-Scope’s public
+              verification key.
             </li>
             <li>
-              Ensure the Attestation ID matches the signed content of the
-              document.
+              Confirm that the Attestation ID matches the signed payload without
+              alteration.
             </li>
           </ul>
 
           <p className="text-gray-700 mb-4">
-            This verification can be performed offline and does not require
-            access to Certif-Scope systems.
+            This verification can be performed entirely offline and remains
+            possible even if Certif-Scope systems are unavailable.
           </p>
 
           <div className="mt-6">
@@ -137,7 +139,7 @@ export default function VerifyPage() {
 
             <p className="mt-2 text-sm text-gray-600">
               This public key is used to verify the digital signature of all
-              Certif-Scope attestations.
+              Certif-Scope CO₂e attestations.
             </p>
           </div>
         </div>
@@ -147,13 +149,13 @@ export default function VerifyPage() {
       <div className="mt-12 max-w-3xl text-sm text-gray-600 leading-relaxed">
         <p>
           <strong>Important notice.</strong> This page does not perform automated
-          verification. It provides instructions for independent verification
-          only. Certif-Scope attestations are indicative, spend-based CO₂e
-          estimates and do not constitute audit, certification, regulatory
-          compliance (including CSRD or ESRS), or validation of user-provided
-          data.
+          verification and does not validate data accuracy. It provides
+          instructions for independent verification only. Certif-Scope
+          attestations are indicative, spend-based CO₂e estimates and do not
+          constitute an audit, certification, regulatory disclosure (including
+          CSRD or ESRS), or assurance of user-provided information.
         </p>
       </div>
     </div>
   );
-}
+      }
