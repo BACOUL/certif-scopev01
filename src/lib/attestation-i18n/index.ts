@@ -5,6 +5,7 @@
 
 import { ATTESTATION_EN } from "./en";
 import { ATTESTATION_FR } from "./fr";
+import { ATTESTATION_DE } from "./de";
 
 /**
  * Supported attestation locales
@@ -13,14 +14,18 @@ import { ATTESTATION_FR } from "./fr";
  */
 export type AttestationLocale =
   | "en"
-  | "fr";
+  | "fr"
+  | "de";
 
 /**
  * Attestation dictionaries registry
+ * - One file per language
+ * - Strict 1:1 key parity across all dictionaries
  */
 export const ATTESTATION_I18N = {
   en: ATTESTATION_EN,
   fr: ATTESTATION_FR,
+  de: ATTESTATION_DE,
 } as const;
 
 /**
