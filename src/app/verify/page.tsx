@@ -2,10 +2,14 @@
 
 import { useState, useEffect } from "react";
 
+const CERTIFSCOPE_PUBLIC_KEY_BASE64 = `
+MCowBQYDK2VwAyEAbKp2pg4wmzE5Kqo9tEwv7
+JJjxQyT2cBmwiLLHp4cSac=
+`.trim();
+
 export default function VerifyPage() {
   const [id, setId] = useState("");
-  const [result, setResult] = useState<null | { valid: boolean }>(null);
-  const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
 
   // Load ID from URL (?id=...)
@@ -17,51 +21,27 @@ export default function VerifyPage() {
 
     if (qid) {
       setId(qid);
-      verify(qid);
+      setSubmitted(true);
     }
   }, []);
 
   function resetState() {
     setError("");
-    setResult(null);
+    setSubmitted(false);
   }
 
-  async function verify(customId?: string) {
+  function submit(customId?: string) {
     resetState();
-    setLoading(true);
 
     const finalId = (customId || id).trim();
 
     // Strict canonical format validation
     if (!/^CS-[A-Za-z0-9_-]+$/.test(finalId)) {
       setError("Invalid Attestation ID format.");
-      setLoading(false);
       return;
     }
 
-    try {
-      const res = await fetch(
-        `/api/verify?id=${encodeURIComponent(finalId)}`
-      );
-
-      if (!res.ok) {
-        throw new Error("Verification service unavailable");
-      }
-
-      const data = await res.json();
-
-      if (typeof data.valid !== "boolean") {
-        throw new Error("Unexpected verification response");
-      }
-
-      setResult({ valid: data.valid });
-    } catch {
-      setError(
-        "Unable to verify this attestation at the moment. Please try again later."
-      );
-    }
-
-    setLoading(false);
+    setSubmitted(true);
   }
 
   return (
@@ -72,9 +52,9 @@ export default function VerifyPage() {
           Verify a CO₂e Attestation
         </h1>
 
-        <p className="text-lg text-gray-700 leading-relaxed max-w-2xl">
-          Verify the existence and authenticity of a CO₂e attestation issued by
-          Certif-Scope.
+        <p className="text-lg text-gray-700 leading-relaxed max-w-3xl">
+          This page explains how to independently verify the authenticity and
+          integrity of a CO₂e attestation issued by Certif-Scope.
         </p>
       </header>
 
@@ -92,60 +72,88 @@ export default function VerifyPage() {
         />
 
         <p className="mt-3 text-sm text-gray-600">
-          The Attestation ID is displayed on the CO₂e Attestation PDF and embedded
-          in the QR code.
+          The Attestation ID is displayed on the PDF document and embedded in the
+          QR code.
         </p>
       </section>
 
       <button
-        onClick={() => verify()}
-        disabled={loading}
-        className="px-6 py-3 bg-[#0B3A63] text-white rounded-lg hover:bg-[#094366] disabled:opacity-50"
+        onClick={() => submit()}
+        className="px-6 py-3 bg-[#0B3A63] text-white rounded-lg hover:bg-[#094366]"
       >
-        {loading ? "Verifying…" : "Verify attestation"}
+        Show verification instructions
       </button>
 
-      {/* RESULTS */}
+      {/* ERROR */}
       {error && (
         <p className="mt-6 text-red-600 font-medium">{error}</p>
       )}
 
-      {result && (
-        <div className="mt-10 p-6 border rounded-md bg-[#F8FAFC] border-gray-300 max-w-xl">
-          {result.valid ? (
-            <>
-              <h3 className="text-xl font-bold text-green-700 mb-3">
-                Attestation verified
-              </h3>
-              <p className="text-gray-700">
-                This attestation exists and was issued by Certif-Scope. Its
-                integrity has not been altered since issuance.
-              </p>
-            </>
-          ) : (
-            <>
-              <h3 className="text-xl font-bold text-red-700 mb-3">
-                Attestation not found
-              </h3>
-              <p className="text-gray-700">
-                The provided Attestation ID does not correspond to a valid
-                Certif-Scope attestation.
-              </p>
-            </>
-          )}
+      {/* RESULT */}
+      {submitted && !error && (
+        <div className="mt-10 p-6 border rounded-md bg-[#F8FAFC] border-gray-300 max-w-3xl">
+          <h3 className="text-xl font-bold text-[#0B3A63] mb-4">
+            Verification instructions
+          </h3>
+
+          <p className="text-gray-700 mb-4">
+            This attestation was issued by Certif-Scope. Certif-Scope does not
+            maintain a central registry of attestations.
+          </p>
+
+          <p className="text-gray-700 mb-4">
+            To independently verify the authenticity and integrity of this
+            attestation:
+          </p>
+
+          <ul className="list-disc pl-6 text-gray-700 mb-4 space-y-1">
+            <li>Download the original PDF document.</li>
+            <li>
+              Extract the signed payload and digital signature embedded in the
+              document.
+            </li>
+            <li>
+              Verify the signature using Certif-Scope’s public verification key.
+            </li>
+            <li>
+              Ensure the Attestation ID matches the signed content of the
+              document.
+            </li>
+          </ul>
+
+          <p className="text-gray-700 mb-4">
+            This verification can be performed offline and does not require
+            access to Certif-Scope systems.
+          </p>
+
+          <div className="mt-6">
+            <h4 className="font-semibold text-gray-800 mb-2">
+              Certif-Scope public verification key
+            </h4>
+
+            <pre className="text-sm bg-white border border-gray-300 rounded-md p-4 overflow-x-auto">
+{CERTIFSCOPE_PUBLIC_KEY_BASE64}
+            </pre>
+
+            <p className="mt-2 text-sm text-gray-600">
+              This public key is used to verify the digital signature of all
+              Certif-Scope attestations.
+            </p>
+          </div>
         </div>
       )}
 
       {/* LEGAL NOTICE */}
-      <div className="mt-12 max-w-2xl text-sm text-gray-600 leading-relaxed">
+      <div className="mt-12 max-w-3xl text-sm text-gray-600 leading-relaxed">
         <p>
-          <strong>Important notice.</strong> This verification confirms the
-          existence and integrity of an attestation only. It does not imply
-          audit, certification, regulatory compliance (including CSRD or ESRS),
-          or validation of user-provided data. The attestation represents an
-          indicative, spend-based CO₂e estimate.
+          <strong>Important notice.</strong> This page does not perform automated
+          verification. It provides instructions for independent verification
+          only. Certif-Scope attestations are indicative, spend-based CO₂e
+          estimates and do not constitute audit, certification, regulatory
+          compliance (including CSRD or ESRS), or validation of user-provided
+          data.
         </p>
       </div>
     </div>
   );
-      }
+}
