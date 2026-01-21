@@ -3,21 +3,16 @@ export const runtime = "nodejs";
 import Stripe from "stripe";
 import QRCode from "qrcode";
 import { signCanonicalPayload, makeAttestationId } from "@/lib/sign";
-// ✅ APRÈS (safe Turbopack)
 import {
   ATTESTATION_I18N,
   AttestationLocale,
-  DEFAULT_ATTESTATION_LOCALE,
-} from "@/lib/attestation-i18n/index";
+} from "@/lib/attestation-i18n";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 // Paste only the base64 content of your logo here (no data: prefix, no newlines)
 const CERTIF_SCOPE_LOGO_BASE64 = "";
 
-/**
- * Simple HTML escaper to avoid injection in the generated HTML.
- */
 function escapeHtml(input: string) {
   return input
     .replace(/&/g, "&amp;")
@@ -29,7 +24,6 @@ function escapeHtml(input: string) {
 
 export async function GET(req: Request) {
   try {
-    // 1️⃣ CHECK TECHNIQUE
     if (!process.env.PDFSHIFT_API_KEY) {
       return new Response("PDFSHIFT_API_KEY missing", { status: 500 });
     }
@@ -46,13 +40,9 @@ export async function GET(req: Request) {
     const metadataRaw = session.metadata || {};
 
     // 2️⃣ LIRE LA LANGUE CHOISIE DANS STRIPE
-    // Utilisation du fallback hardcodé "en" ici, ou DEFAULT_ATTESTATION_LOCALE si vous souhaitez l'utiliser
-    const locale =
-      (metadataRaw.attestationLocale as AttestationLocale) || "en";
-
+    const locale = (metadataRaw.attestationLocale as AttestationLocale) || "en";
     const i18n = ATTESTATION_I18N[locale] || ATTESTATION_I18N.en;
 
-    // Required metadata keys
     const required = ["companyName", "totalCO2e", "year"];
     const missing = required.filter((k) => {
       const v = metadataRaw[k];
@@ -62,19 +52,18 @@ export async function GET(req: Request) {
       return new Response(`Missing metadata: ${missing.join(", ")}`, { status: 400 });
     }
 
-    // Parse and validate numeric totalCO2e
     const totalCO2eNum = Number(String(metadataRaw.totalCO2e).replace(",", "."));
     if (Number.isNaN(totalCO2eNum)) {
       return new Response("Invalid metadata: totalCO2e must be a number", { status: 400 });
     }
 
-    // 3️⃣ GÉNÉRER L’ID et SIGNER (Logique V1 : double passe)
+    // 3️⃣ GÉNÉRER L’ID et SIGNER
     const issuedDate = new Date().toISOString().slice(0, 10);
 
     const canonicalPayload = {
       issuer: "Certif-Scope" as const,
       standard: "CS-SB-v1" as const,
-      attestationId: "", // Sera écrasé lors de la signature finale
+      attestationId: "",
       companyName: String(metadataRaw.companyName),
       country: String(metadataRaw.country || "—"),
       year: String(metadataRaw.year),
@@ -82,7 +71,6 @@ export async function GET(req: Request) {
       issuedDate,
     };
 
-    // 1. hash provisoire pour dériver l’ID
     const tempSignature = signCanonicalPayload({
       ...canonicalPayload,
       attestationId: "TEMP",
@@ -93,13 +81,11 @@ export async function GET(req: Request) {
       tempSignature.hashHex
     );
 
-    // 2. signature FINALE avec l’ID définitif
     const signatureResult = signCanonicalPayload({
       ...canonicalPayload,
       attestationId,
     });
 
-    // 3️⃣ NE PAS MODIFIER LE METADATA ACTUEL (Données dynamiques)
     const metadata = {
       attestationId: attestationId,
       issuerName: escapeHtml(String(metadataRaw.issuerName || "Certif-Scope")),
@@ -112,20 +98,17 @@ export async function GET(req: Request) {
       totalCO2e: escapeHtml(String(totalCO2eNum)),
       methodology: escapeHtml(String(metadataRaw.methodology || "Certif-Scope deterministic spend-based methodology v1.0")),
       issuedDate: escapeHtml(issuedDate),
-      validUntil: "", // Force le standard "validityMonths"
+      validUntil: "",
       validityMonths: escapeHtml(String(metadataRaw.validityMonths || "12")),
       standardRef: escapeHtml(String(metadataRaw.standardRef || "Certif-Scope CS-SB-v1")),
-      // Injections cryptographiques finales
       signature: signatureResult.signatureBase64,
       hash: signatureResult.hashHex,
       algorithm: signatureResult.algorithm,
     };
 
-    // QR code
     const verifyUrl = `https://certif-scope.com/verify?id=${encodeURIComponent(metadata.attestationId)}`;
     const qrDataUrl = await QRCode.toDataURL(verifyUrl, { width: 120, margin: 1 });
 
-    // HTML (V1.9 FINAL I18N POLISHED)
     const html = `
 <!doctype html>
 <html lang="${locale}">
@@ -133,17 +116,18 @@ export async function GET(req: Request) {
 <meta charset="utf-8"/>
 <title>${metadata.issuerName} — Attestation</title>
 <style>
-  /* Page & margins - Increased bottom margin for fixed footer */
+  /* ✅ FIX 1 : Marges ajustées. 
+     Bottom 25mm laisse de la place au footer fixe sans déclencher de saut de page intempestif.
+  */
   @page {
     size: A4;
-    margin: 14mm 14mm 20mm 14mm;
+    margin: 14mm 14mm 25mm 14mm; 
   }
 
-  /* Global font size and line-height */
   body {
     font-family: Inter, "Helvetica Neue", Arial, Helvetica, sans-serif;
-    font-size: 10.8px;
-    line-height: 1.5;
+    font-size: 10.5px; /* Légèrement réduit pour être sûr que ça rentre */
+    line-height: 1.45;
     margin: 0;
     color: #111;
     -webkit-font-smoothing: antialiased;
@@ -162,20 +146,18 @@ export async function GET(req: Request) {
   /* Footer Fixe */
   .footer-fixed {
     position: fixed;
-    bottom: 10mm;
-    left: 14mm;
-    right: 14mm;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 15mm; /* Hauteur explicite */
     font-size: 9px;
     color: #666;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     border-top: 1px solid #ddd;
-    padding-top: 8px;
-  }
-
-  .page-break-safe {
-    page-break-before: always;
-    break-before: page;
+    padding-top: 5px;
+    background: white; /* Évite la transparence sur le texte */
   }
 
   /* Keep page-break-inside avoidance */
@@ -198,33 +180,33 @@ export async function GET(req: Request) {
 
   .issuer { max-width:68%; display:flex; flex-direction:column; justify-content:flex-start; }
   .issuer-logo {
-    height: 85px;
+    height: 80px; /* Réduit un peu pour gagner de la place */
     max-width: 340px;
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     object-fit: contain;
   }
-  .issuer-site { font-size:10px; color:var(--muted); margin-bottom:6px; }
+  .issuer-site { font-size:10px; color:var(--muted); margin-bottom:4px; }
   .issuer-meta { font-size:10px; color:var(--muted); }
 
   /* QR */
   .qr { text-align:center; font-size:9px; }
-  .qr img { width:100px; height:100px; border:1px solid #ddd; padding:4px; background:#fff; }
+  .qr img { width:90px; height:90px; border:1px solid #ddd; padding:4px; background:#fff; }
 
   /* Title */
   .title {
     text-align:center;
-    margin: 14px 0 14px;
+    margin: 10px 0 10px; /* Marges réduites */
     font-family:var(--serif);
   }
-  .title h1 { font-size:22px; margin:0; font-weight:700; letter-spacing:0.8px; text-transform:uppercase; color:var(--accent); }
-  .title .formal-line { margin-top:6px; font-size:11px; color:#222; font-weight:600; font-family: Inter, Arial, sans-serif; }
-  .title .subtitle { margin-top:6px; font-size:10px; color:var(--muted); }
-  .title .standard-ref { margin-top:6px; font-size:10px; color:var(--accent); font-weight:600; }
+  .title h1 { font-size:20px; margin:0; font-weight:700; letter-spacing:0.8px; text-transform:uppercase; color:var(--accent); }
+  .title .formal-line { margin-top:4px; font-size:11px; color:#222; font-weight:600; font-family: Inter, Arial, sans-serif; }
+  .title .subtitle { margin-top:4px; font-size:10px; color:var(--muted); }
+  .title .standard-ref { margin-top:4px; font-size:10px; color:var(--accent); font-weight:600; }
 
   /* Result Panel */
   .result-panel {
-    margin: 4px 0 16px;
+    margin: 4px 0 14px; /* Marge basse réduite */
     display:flex;
     justify-content:center;
   }
@@ -234,12 +216,12 @@ export async function GET(req: Request) {
     max-width:600px;
     background:#ffffff;
     border:3px solid var(--accent);
-    padding:10px 16px;
+    padding:8px 16px; /* Padding vertical réduit */
     box-shadow: 0 4px 12px rgba(11,43,74,0.06);
     text-align:center;
   }
-  .result-label { font-size:10px; font-weight:700; color:#222; margin-bottom:6px; font-family: Inter, Arial, sans-serif; text-transform: uppercase; letter-spacing: 0.5px; }
-  .result-value { font-family:var(--serif); font-size:28px; font-weight:800; color:var(--accent); margin:4px 0; letter-spacing:1px; }
+  .result-label { font-size:10px; font-weight:700; color:#222; margin-bottom:4px; font-family: Inter, Arial, sans-serif; text-transform: uppercase; letter-spacing: 0.5px; }
+  .result-value { font-family:var(--serif); font-size:26px; font-weight:800; color:var(--accent); margin:2px 0; letter-spacing:1px; }
 
   /* Layout PDF SAFE (FLOAT - NO GRID) */
   .two-col {
@@ -248,12 +230,12 @@ export async function GET(req: Request) {
 
   .two-col > div {
     float: left;
-    width: calc(100% - 320px);
+    width: calc(100% - 310px); /* Ajusté */
   }
 
   .two-col > aside {
     float: right;
-    width: 300px;
+    width: 290px; /* Ajusté */
     margin-top: 0;
   }
 
@@ -263,57 +245,56 @@ export async function GET(req: Request) {
     clear: both;
   }
 
-  /* Sections */
-  section { margin-bottom: 10px; padding-right:2px; }
+  /* ✅ FIX 2 : Marges des sections réduites pour remonter le contenu */
+  section { margin-bottom: 8px; padding-right:2px; }
 
-  /* Section titles */
-  .section-title { font-family:var(--serif); font-size:11.5px; margin-bottom:6px; font-weight:700; color:var(--accent); text-transform:uppercase; font-variant:small-caps; border-bottom: 1px solid #eee; padding-bottom: 2px; display: inline-block; min-width: 100%; }
+  .section-title { font-family:var(--serif); font-size:11px; margin-bottom:4px; font-weight:700; color:var(--accent); text-transform:uppercase; font-variant:small-caps; border-bottom: 1px solid #eee; padding-bottom: 2px; display: inline-block; min-width: 100%; }
 
-  .meta-list { font-size:11px; color:#222; }
+  .meta-list { font-size:10.5px; color:#222; }
 
   .meta-list ul {
-    margin-top: 4px;
-    margin-bottom: 4px; padding-left: 16px;
+    margin-top: 2px;
+    margin-bottom: 2px; padding-left: 16px;
   }
   .meta-list li {
-    margin-bottom: 3px;
+    margin-bottom: 2px;
   }
   .row { margin-bottom: 2px; }
 
   /* Verify blocks */
   .verify-block { 
     border:1px solid var(--border-light); 
-    padding:12px; 
+    padding:10px; 
     background: var(--bg-light);
-    font-size:10.5px;
-    margin-top:8px;
+    font-size:10px;
+    margin-top:6px;
     border-radius: 2px;
   }
-  .verify-title { font-weight:700; color:var(--accent); font-size:11px; margin-bottom:6px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .verify-title { font-weight:700; color:var(--accent); font-size:10.5px; margin-bottom:4px; text-transform: uppercase; letter-spacing: 0.5px; }
 
   /* Aside micro-block */
-  .scope-summary { margin-top:12px; border-left:3px solid var(--border-light); padding-left:12px; font-size:10.5px; color:#222; }
+  .scope-summary { margin-top:10px; border-left:3px solid var(--border-light); padding-left:10px; font-size:10px; color:#222; }
 
   /* Final clauses */
   .final-box {
     border-top:1px solid #ddd;
-    margin-top:14px;
-    padding-top:10px;
+    margin-top:10px;
+    padding-top:8px;
   }
   .final-stamp {
     border:1px solid #e0e0e0;
-    padding:14px;
+    padding:12px;
     font-style:italic;
     color:#222;
     background:#fff;
-    font-size:10.8px;
+    font-size:10.5px;
   }
 
   .muted { color:var(--muted); font-size:10px; }
-  .small { font-size:10px; color:var(--muted); line-height: 1.4; }
+  .small { font-size:10px; color:var(--muted); line-height: 1.3; }
 
   @media print {
-    .issuer-logo { height: 85px; max-width: 340px; }
+    .issuer-logo { height: 80px; max-width: 340px; }
   }
 </style>
 </head>
@@ -437,11 +418,9 @@ export async function GET(req: Request) {
     </aside>
   </div>
 
-  <div class="page-break-safe"></div>
-
-  <div class="two-col clearfix">
+  <div class="two-col clearfix" style="page-break-before: always;">
     <div>
-      <section aria-labelledby="s6" style="page-break-before: always;">
+      <section aria-labelledby="s6">
         <div class="section-title" id="s6">${i18n.declarationSectionTitle}</div>
         <div class="meta-list">
           <div style="font-style:italic; margin-bottom:4px;">Formal declaration</div>
@@ -545,9 +524,8 @@ export async function GET(req: Request) {
 </html>
 `;
 
-    // Convert to PDF via PDFShift with Timeout and Filename Sanity
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 15000); // 15s timeout
+    const timeoutId = setTimeout(() => controller.abort(), 15000); 
 
     const pdfResponse = await fetch("https://api.pdfshift.io/v3/convert/pdf", {
       method: "POST",
