@@ -1,6 +1,6 @@
 /* =========================================================
    Certif-Scope — Attestation i18n (EN)
-   Reference legal language
+   Reference legal language — CANONICAL VERSION
    ========================================================= */
 
 export const ATTESTATION_EN = {
@@ -39,13 +39,10 @@ export const ATTESTATION_EN = {
   issuerSectionTitle: "1. Identification of the issuer",
   issuerLabel: "Issuer",
   websiteLabel: "Website",
-  attestationIdLabel: "Attestation reference",
   attestationReferenceLabel: "Attestation reference",
   issuedDateLabel: "Issued date",
-  validityLabel: "Validity period",
   validityPeriodLabel: "Validity period",
   validUntilLabel: "Valid until",
-  uniqueDocumentIdNote: "Unique document identifier",
   uniqueIdentifierLabel: "Unique document identifier",
   monthsLabel: "months",
 
@@ -61,13 +58,9 @@ export const ATTESTATION_EN = {
   =============================== */
   entitySectionTitle: "3. Identification of the entity",
   entityNameLabel: "Entity name",
-  sectorLabel: "Activity sector",
   activitySectorLabel: "Activity sector",
-  identifierLabel: "Entity identifier",
-  identifierOptionalLabel: "Entity identifier (optional)",
   entityIdentifierLabel: "Entity identifier",
   countryLabel: "Country",
-  yearLabel: "Reporting year",
   reportingYearLabel: "Reporting year",
 
   /* ===============================
@@ -76,44 +69,35 @@ export const ATTESTATION_EN = {
   scopeSectionTitle: "4. Scope",
   scopeText:
     "This attestation provides an indicative estimation of greenhouse gas emissions derived exclusively from aggregated expenditure data using a spend-based methodology.",
+  noteLabel: "Note",
   scopeNote:
     "This document does not constitute a greenhouse gas inventory, audit, verification, or regulatory disclosure under CSRD, ESRS, or equivalent frameworks.",
-  noteLabel: "Note",
 
   /* ===============================
      SECTION 5 — REFERENCES
   =============================== */
   referencesSectionTitle: "5. Normative references",
-  referencesIntro:
-    "The following standards and frameworks are referenced for methodological alignment and contextual consistency:",
   normativeText:
     "The following standards and frameworks are referenced for methodological alignment and contextual consistency:",
+  referencesList: [
+    "GHG Protocol – Scope 3 (spend-based)",
+    "ISO 14064-1 (reference)",
+    "ISO 14083 (reference)",
+    "CSRD / ESRS / EU Taxonomy (context)",
+  ],
 
   /* ===============================
-     ASIDE — SUMMARY / NATURE
+     ASIDE — AUTHENTICITY & SUMMARY
   =============================== */
-  authenticityTitle: "Authenticity",
-  authenticityText:
-    "This attestation is cryptographically signed and can be verified independently without access to Certif-Scope systems.",
   authenticityOverviewTitle: "Authenticity overview",
   authenticityOverviewText:
     "This attestation is cryptographically signed and can be verified independently without access to Certif-Scope systems.",
-
-  natureTitle: "Document nature",
-  natureText:
-    "Indicative, non-regulatory, methodology-based declaration.",
 
   natureOfAttestationTitle: "Nature of the attestation",
   natureOfAttestationText:
     "This document is an indicative carbon emissions attestation issued using a standardized deterministic methodology. It does not constitute a regulatory disclosure or audit report.",
 
-  summaryTitle: "Scope summary",
-  summaryItems:
-    "Indicative estimation · Spend-based methodology · Aggregated result only",
-
   documentScopeSummaryTitle: "Document scope summary",
-  documentScopeSummaryItems:
-    "Indicative estimation · Spend-based methodology · Aggregated result only",
   documentScopeSummaryText:
     "Indicative estimation · Spend-based methodology · Aggregated result only",
 
@@ -136,54 +120,34 @@ export const ATTESTATION_EN = {
   methodologySectionTitle: "7. Methodology and limitations",
   methodologyLabel:
     "Deterministic spend-based methodology using aggregated expenditure data.",
-  limitationsLabel:
-    "No physical activity data. No Scope 1 or Scope 2 emissions. Indicative model only.",
   limitationsText:
     "No physical activity data. No Scope 1 or Scope 2 emissions. Indicative model only.",
-  transferabilityLabel: "This document is non-transferable.",
   transferabilityText: "Non-transferable.",
 
   /* ===============================
      SECTION 8 — VERIFICATION
   =============================== */
   verificationSectionTitle: "8. Verification and integrity",
-  verificationBlockTitle: "Verification & integrity",
   verificationBoxTitle: "Verification & integrity",
-  verificationIntro:
-    "This attestation is generated without storage of underlying financial data by Certif-Scope.",
-  verificationNote:
-    "The PDF document itself is the sole verifiable object.",
 
-  privacyByDesignLabel: "Privacy by design",
   privacyLabel: "Privacy by design",
-  privacyByDesignText:
-    "This attestation is generated without storage of underlying financial data by Certif-Scope. Verification relies solely on the attestation identifier and cryptographic integrity mechanisms.",
   privacyText:
     "This attestation is generated without storage of underlying financial data by Certif-Scope.",
 
-  pdfIsSoleObjectText:
-    "The PDF document itself is the only verifiable object.",
   pdfObjectText:
     "The PDF document itself is the only verifiable object.",
 
-  verificationLinkLabel: "Verification information page",
-  verificationInformationPageLabel: "Verification information page",
   verificationPageLabel: "Verification information page",
 
   technicalVerificationNote:
     "The following elements allow independent technical verification. No action is required from the reader.",
 
-  cryptographicLabel: "Cryptographic integrity",
-  cryptographicIntegrityDetailsLabel: "Cryptographic integrity",
   cryptographicIntegrityLabel: "Cryptographic integrity",
-
   algorithmLabel: "Algorithm",
   hashLabel: "Signed payload hash (SHA-256)",
   signatureLabel: "Signature (Base64)",
 
   publicKeyLabel: "Issuer public verification key",
-  publicKeyExplanationText:
-    "This public key allows any third party to verify the authenticity and integrity of this document independently.",
   publicKeyNote:
     "This public key allows any third party to verify the authenticity and integrity of this document independently.",
 
@@ -193,22 +157,21 @@ export const ATTESTATION_EN = {
   finalClausesTitle: "9. Final clauses and liability",
   issuedPursuantText:
     "Issued pursuant to the Certif-Scope internal standard CS-SB-v1.",
-  legalEffectLabel:
-    "This document has no regulatory or legal effect and is provided for informational purposes only.",
+
+  legalEffectLabel: "Legal effect",
   legalEffectText:
     "This document has no regulatory or legal effect and is provided for informational purposes only.",
-  liabilityLabel:
-    "The results are derived exclusively from data provided by the entity, under its sole responsibility.",
+
+  liabilityLabel: "Liability",
   liabilityText:
     "The results are derived exclusively from data provided by the entity, under its sole responsibility.",
-  validityExplanationLabel:
+
+  validityText:
     "The validity period reflects the temporal relevance of the underlying data and methodology.",
-  noAuditNotice:
-    "Certif-Scope does not perform audit, validation, verification, or assurance services.",
+
   noAuditText:
     "Certif-Scope does not perform audit, validation, verification, or assurance services.",
-  internalStandardNotice:
-    "CS-SB-v1 is an internal standardized methodology maintained by Certif-Scope.",
+
   methodologyNote:
     "CS-SB-v1 is an internal standardized methodology maintained by Certif-Scope.",
 
