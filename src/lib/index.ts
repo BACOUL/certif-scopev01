@@ -7,9 +7,8 @@ import { ATTESTATION_EN } from "./en";
 import { ATTESTATION_FR } from "./fr";
 
 /**
- * List of supported attestation locales.
- * IMPORTANT:
- * - Add a locale here ONLY when its file is 100% complete
+ * Supported attestation locales
+ * - Add a locale ONLY when its dictionary is complete
  * - English ("en") is the legal reference language
  */
 export type AttestationLocale =
@@ -18,8 +17,6 @@ export type AttestationLocale =
 
 /**
  * Attestation dictionaries registry
- * - One file per language
- * - No fallback magic at dictionary level
  */
 export const ATTESTATION_I18N = {
   en: ATTESTATION_EN,
