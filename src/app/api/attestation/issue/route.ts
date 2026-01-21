@@ -3,10 +3,12 @@ export const runtime = "nodejs";
 import Stripe from "stripe";
 import QRCode from "qrcode";
 import { signCanonicalPayload, makeAttestationId } from "@/lib/sign";
+// ✅ APRÈS (safe Turbopack)
 import {
   ATTESTATION_I18N,
   AttestationLocale,
-} from "@/lib/attestation-i18n";
+  DEFAULT_ATTESTATION_LOCALE,
+} from "@/lib/attestation-i18n/index";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
@@ -44,6 +46,7 @@ export async function GET(req: Request) {
     const metadataRaw = session.metadata || {};
 
     // 2️⃣ LIRE LA LANGUE CHOISIE DANS STRIPE
+    // Utilisation du fallback hardcodé "en" ici, ou DEFAULT_ATTESTATION_LOCALE si vous souhaitez l'utiliser
     const locale =
       (metadataRaw.attestationLocale as AttestationLocale) || "en";
 
