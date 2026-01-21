@@ -6,13 +6,17 @@ import { signCanonicalPayload, makeAttestationId } from "@/lib/sign";
 import {
   ATTESTATION_I18N,
   AttestationLocale,
-} from "@/lib/attestation-i18n";
+  DEFAULT_ATTESTATION_LOCALE,
+} from "@/lib/attestation-i18n/index";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 // Paste only the base64 content of your logo here (no data: prefix, no newlines)
 const CERTIF_SCOPE_LOGO_BASE64 = "";
 
+/**
+ * Simple HTML escaper to avoid injection in the generated HTML.
+ */
 function escapeHtml(input: string) {
   return input
     .replace(/&/g, "&amp;")
@@ -24,6 +28,7 @@ function escapeHtml(input: string) {
 
 export async function GET(req: Request) {
   try {
+    // 1️⃣ CHECK TECHNIQUE
     if (!process.env.PDFSHIFT_API_KEY) {
       return new Response("PDFSHIFT_API_KEY missing", { status: 500 });
     }
@@ -39,10 +44,15 @@ export async function GET(req: Request) {
 
     const metadataRaw = session.metadata || {};
 
-    // 2️⃣ LIRE LA LANGUE CHOISIE DANS STRIPE
-    const locale = (metadataRaw.attestationLocale as AttestationLocale) || "en";
+    // 2️⃣ LIRE LA LANGUE CHOISIE DANS STRIPE AVEC FALLBACK PROPRE
+    const locale =
+      (metadataRaw.attestationLocale as AttestationLocale) ||
+      DEFAULT_ATTESTATION_LOCALE;
+
+    // Sélection du dictionnaire (Fallback de sécurité sur EN)
     const i18n = ATTESTATION_I18N[locale] || ATTESTATION_I18N.en;
 
+    // Required metadata keys
     const required = ["companyName", "totalCO2e", "year"];
     const missing = required.filter((k) => {
       const v = metadataRaw[k];
@@ -52,6 +62,7 @@ export async function GET(req: Request) {
       return new Response(`Missing metadata: ${missing.join(", ")}`, { status: 400 });
     }
 
+    // Parse and validate numeric totalCO2e
     const totalCO2eNum = Number(String(metadataRaw.totalCO2e).replace(",", "."));
     if (Number.isNaN(totalCO2eNum)) {
       return new Response("Invalid metadata: totalCO2e must be a number", { status: 400 });
@@ -71,6 +82,7 @@ export async function GET(req: Request) {
       issuedDate,
     };
 
+    // 1. hash provisoire
     const tempSignature = signCanonicalPayload({
       ...canonicalPayload,
       attestationId: "TEMP",
@@ -81,11 +93,13 @@ export async function GET(req: Request) {
       tempSignature.hashHex
     );
 
+    // 2. signature FINALE
     const signatureResult = signCanonicalPayload({
       ...canonicalPayload,
       attestationId,
     });
 
+    // 3️⃣ METADATA DYNAMIQUE
     const metadata = {
       attestationId: attestationId,
       issuerName: escapeHtml(String(metadataRaw.issuerName || "Certif-Scope")),
@@ -98,7 +112,7 @@ export async function GET(req: Request) {
       totalCO2e: escapeHtml(String(totalCO2eNum)),
       methodology: escapeHtml(String(metadataRaw.methodology || "Certif-Scope deterministic spend-based methodology v1.0")),
       issuedDate: escapeHtml(issuedDate),
-      validUntil: "",
+      validUntil: "", // Force le standard "validityMonths"
       validityMonths: escapeHtml(String(metadataRaw.validityMonths || "12")),
       standardRef: escapeHtml(String(metadataRaw.standardRef || "Certif-Scope CS-SB-v1")),
       signature: signatureResult.signatureBase64,
@@ -109,6 +123,7 @@ export async function GET(req: Request) {
     const verifyUrl = `https://certif-scope.com/verify?id=${encodeURIComponent(metadata.attestationId)}`;
     const qrDataUrl = await QRCode.toDataURL(verifyUrl, { width: 120, margin: 1 });
 
+    // HTML (V1.11 DIAMOND MASTER - OPTION A)
     const html = `
 <!doctype html>
 <html lang="${locale}">
@@ -116,18 +131,16 @@ export async function GET(req: Request) {
 <meta charset="utf-8"/>
 <title>${metadata.issuerName} — Attestation</title>
 <style>
-  /* ✅ FIX 1 : Marges ajustées. 
-     Bottom 25mm laisse de la place au footer fixe sans déclencher de saut de page intempestif.
-  */
+  /* Page & margins */
   @page {
     size: A4;
-    margin: 14mm 14mm 25mm 14mm; 
+    margin: 14mm 14mm 20mm 14mm;
   }
 
   body {
     font-family: Inter, "Helvetica Neue", Arial, Helvetica, sans-serif;
-    font-size: 10.5px; /* Légèrement réduit pour être sûr que ça rentre */
-    line-height: 1.45;
+    font-size: 10.8px;
+    line-height: 1.5;
     margin: 0;
     color: #111;
     -webkit-font-smoothing: antialiased;
@@ -146,21 +159,23 @@ export async function GET(req: Request) {
   /* Footer Fixe */
   .footer-fixed {
     position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 15mm; /* Hauteur explicite */
+    bottom: 10mm;
+    left: 14mm;
+    right: 14mm;
     font-size: 9px;
     color: #666;
     display: flex;
     justify-content: space-between;
-    align-items: center;
     border-top: 1px solid #ddd;
-    padding-top: 5px;
-    background: white; /* Évite la transparence sur le texte */
+    padding-top: 8px;
   }
 
-  /* Keep page-break-inside avoidance */
+  .page-break-safe {
+    page-break-before: always;
+    break-before: page;
+  }
+
+  /* Avoid breaks */
   .result-box,
   .verify-block,
   .final-stamp {
@@ -180,33 +195,33 @@ export async function GET(req: Request) {
 
   .issuer { max-width:68%; display:flex; flex-direction:column; justify-content:flex-start; }
   .issuer-logo {
-    height: 80px; /* Réduit un peu pour gagner de la place */
+    height: 85px;
     max-width: 340px;
     display: block;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
     object-fit: contain;
   }
-  .issuer-site { font-size:10px; color:var(--muted); margin-bottom:4px; }
+  .issuer-site { font-size:10px; color:var(--muted); margin-bottom:6px; }
   .issuer-meta { font-size:10px; color:var(--muted); }
 
   /* QR */
   .qr { text-align:center; font-size:9px; }
-  .qr img { width:90px; height:90px; border:1px solid #ddd; padding:4px; background:#fff; }
+  .qr img { width:100px; height:100px; border:1px solid #ddd; padding:4px; background:#fff; }
 
   /* Title */
   .title {
     text-align:center;
-    margin: 10px 0 10px; /* Marges réduites */
+    margin: 14px 0 14px;
     font-family:var(--serif);
   }
-  .title h1 { font-size:20px; margin:0; font-weight:700; letter-spacing:0.8px; text-transform:uppercase; color:var(--accent); }
-  .title .formal-line { margin-top:4px; font-size:11px; color:#222; font-weight:600; font-family: Inter, Arial, sans-serif; }
-  .title .subtitle { margin-top:4px; font-size:10px; color:var(--muted); }
-  .title .standard-ref { margin-top:4px; font-size:10px; color:var(--accent); font-weight:600; }
+  .title h1 { font-size:22px; margin:0; font-weight:700; letter-spacing:0.8px; text-transform:uppercase; color:var(--accent); }
+  .title .formal-line { margin-top:6px; font-size:11px; color:#222; font-weight:600; font-family: Inter, Arial, sans-serif; }
+  .title .subtitle { margin-top:6px; font-size:10px; color:var(--muted); }
+  .title .standard-ref { margin-top:6px; font-size:10px; color:var(--accent); font-weight:600; }
 
   /* Result Panel */
   .result-panel {
-    margin: 4px 0 14px; /* Marge basse réduite */
+    margin: 4px 0 16px;
     display:flex;
     justify-content:center;
   }
@@ -216,26 +231,26 @@ export async function GET(req: Request) {
     max-width:600px;
     background:#ffffff;
     border:3px solid var(--accent);
-    padding:8px 16px; /* Padding vertical réduit */
+    padding:10px 16px;
     box-shadow: 0 4px 12px rgba(11,43,74,0.06);
     text-align:center;
   }
-  .result-label { font-size:10px; font-weight:700; color:#222; margin-bottom:4px; font-family: Inter, Arial, sans-serif; text-transform: uppercase; letter-spacing: 0.5px; }
-  .result-value { font-family:var(--serif); font-size:26px; font-weight:800; color:var(--accent); margin:2px 0; letter-spacing:1px; }
+  .result-label { font-size:10px; font-weight:700; color:#222; margin-bottom:6px; font-family: Inter, Arial, sans-serif; text-transform: uppercase; letter-spacing: 0.5px; }
+  .result-value { font-family:var(--serif); font-size:28px; font-weight:800; color:var(--accent); margin:4px 0; letter-spacing:1px; }
 
-  /* Layout PDF SAFE (FLOAT - NO GRID) */
+  /* Layout PDF SAFE (FLOAT) */
   .two-col {
     width: 100%;
   }
 
   .two-col > div {
     float: left;
-    width: calc(100% - 310px); /* Ajusté */
+    width: calc(100% - 320px);
   }
 
   .two-col > aside {
     float: right;
-    width: 290px; /* Ajusté */
+    width: 300px;
     margin-top: 0;
   }
 
@@ -245,56 +260,56 @@ export async function GET(req: Request) {
     clear: both;
   }
 
-  /* ✅ FIX 2 : Marges des sections réduites pour remonter le contenu */
-  section { margin-bottom: 8px; padding-right:2px; }
+  /* Sections */
+  section { margin-bottom: 10px; padding-right:2px; }
 
-  .section-title { font-family:var(--serif); font-size:11px; margin-bottom:4px; font-weight:700; color:var(--accent); text-transform:uppercase; font-variant:small-caps; border-bottom: 1px solid #eee; padding-bottom: 2px; display: inline-block; min-width: 100%; }
+  .section-title { font-family:var(--serif); font-size:11.5px; margin-bottom:6px; font-weight:700; color:var(--accent); text-transform:uppercase; font-variant:small-caps; border-bottom: 1px solid #eee; padding-bottom: 2px; display: inline-block; min-width: 100%; }
 
-  .meta-list { font-size:10.5px; color:#222; }
+  .meta-list { font-size:11px; color:#222; }
 
   .meta-list ul {
-    margin-top: 2px;
-    margin-bottom: 2px; padding-left: 16px;
+    margin-top: 4px;
+    margin-bottom: 4px; padding-left: 16px;
   }
   .meta-list li {
-    margin-bottom: 2px;
+    margin-bottom: 3px;
   }
   .row { margin-bottom: 2px; }
 
   /* Verify blocks */
   .verify-block { 
     border:1px solid var(--border-light); 
-    padding:10px; 
+    padding:12px; 
     background: var(--bg-light);
-    font-size:10px;
-    margin-top:6px;
+    font-size:10.5px;
+    margin-top:8px;
     border-radius: 2px;
   }
-  .verify-title { font-weight:700; color:var(--accent); font-size:10.5px; margin-bottom:4px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .verify-title { font-weight:700; color:var(--accent); font-size:11px; margin-bottom:6px; text-transform: uppercase; letter-spacing: 0.5px; }
 
   /* Aside micro-block */
-  .scope-summary { margin-top:10px; border-left:3px solid var(--border-light); padding-left:10px; font-size:10px; color:#222; }
+  .scope-summary { margin-top:12px; border-left:3px solid var(--border-light); padding-left:12px; font-size:10.5px; color:#222; }
 
   /* Final clauses */
   .final-box {
     border-top:1px solid #ddd;
-    margin-top:10px;
-    padding-top:8px;
+    margin-top:14px;
+    padding-top:10px;
   }
   .final-stamp {
     border:1px solid #e0e0e0;
-    padding:12px;
+    padding:14px;
     font-style:italic;
     color:#222;
     background:#fff;
-    font-size:10.5px;
+    font-size:10.8px;
   }
 
   .muted { color:var(--muted); font-size:10px; }
-  .small { font-size:10px; color:var(--muted); line-height: 1.3; }
+  .small { font-size:10px; color:var(--muted); line-height: 1.4; }
 
   @media print {
-    .issuer-logo { height: 80px; max-width: 340px; }
+    .issuer-logo { height: 85px; max-width: 340px; }
   }
 </style>
 </head>
@@ -305,20 +320,20 @@ export async function GET(req: Request) {
     <div class="issuer">
       ${CERTIF_SCOPE_LOGO_BASE64 ? `<img src="data:image/png;base64,${CERTIF_SCOPE_LOGO_BASE64}" class="issuer-logo" alt="Issuer logo" />` : ""}
       <div class="issuer-site">${metadata.issuerSite}</div>
-      <div class="issuer-meta small">Automated issuance · Standardized indicative attestation</div>
+      <div class="issuer-meta small">${i18n.headerTagline}</div>
     </div>
 
     <div class="qr">
       <img src="${qrDataUrl}" alt="QR verification" />
-      <div class="small">Scan to verify</div>
+      <div class="small">${i18n.scanToVerifyLabel}</div>
     </div>
   </header>
 
   <div class="title">
     <h1>${i18n.title}</h1>
     <div class="formal-line">${i18n.standardReference}</div>
-    <div class="standard-ref">Standard reference: ${metadata.standardRef}</div>
-    <div class="subtitle">Non-regulatory · Methodology-based · Indicative attestation</div>
+    <div class="standard-ref">${i18n.standardReferenceLabel} ${metadata.standardRef}</div>
+    <div class="subtitle">${i18n.subtitle}</div>
   </div>
 
   <div class="result-panel" role="region" aria-label="Estimated emissions result">
@@ -333,11 +348,11 @@ export async function GET(req: Request) {
       <section aria-labelledby="s1">
         <div class="section-title" id="s1">${i18n.issuerSectionTitle}</div>
         <div class="meta-list">
-          <div class="row"><strong>Issuer:</strong> ${metadata.issuerName}</div>
-          <div class="row"><strong>Website:</strong> ${metadata.issuerSite}</div>
-          <div class="row"><strong>Attestation reference:</strong> ${metadata.attestationId} <span class="small"> (Unique document identifier)</span></div>
-          <div class="row"><strong>Issued date:</strong> ${metadata.issuedDate}</div>
-          ${metadata.validUntil ? `<div class="row"><strong>Valid until:</strong> ${metadata.validUntil}</div>` : `<div class="row"><strong>Validity period:</strong> ${metadata.validityMonths} months</div>`}
+          <div class="row"><strong>${i18n.issuerLabel}:</strong> ${metadata.issuerName}</div>
+          <div class="row"><strong>${i18n.websiteLabel}:</strong> ${metadata.issuerSite}</div>
+          <div class="row"><strong>${i18n.attestationReferenceLabel}:</strong> ${metadata.attestationId} <span class="small"> (${i18n.uniqueIdentifierLabel})</span></div>
+          <div class="row"><strong>${i18n.issuedDateLabel}:</strong> ${metadata.issuedDate}</div>
+          ${metadata.validUntil ? `<div class="row"><strong>${i18n.validUntilLabel}:</strong> ${metadata.validUntil}</div>` : `<div class="row"><strong>${i18n.validityPeriodLabel}:</strong> ${metadata.validityMonths} ${i18n.monthsLabel}</div>`}
         </div>
       </section>
 
@@ -351,11 +366,11 @@ export async function GET(req: Request) {
       <section aria-labelledby="s3">
         <div class="section-title" id="s3">${i18n.entitySectionTitle}</div>
         <div class="meta-list">
-          <div class="row"><strong>Entity name:</strong> ${metadata.companyName}</div>
-          <div class="row"><strong>Activity sector:</strong> ${metadata.companySector}</div>
-          <div class="row"><strong>Entity identifier (optional):</strong> ${metadata.entityIdentifier}</div>
-          <div class="row"><strong>Country:</strong> ${metadata.country}</div>
-          <div class="row"><strong>Reporting year:</strong> ${metadata.year}</div>
+          <div class="row"><strong>${i18n.entityNameLabel}:</strong> ${metadata.companyName}</div>
+          <div class="row"><strong>${i18n.activitySectorLabel}:</strong> ${metadata.companySector}</div>
+          <div class="row"><strong>${i18n.entityIdentifierLabel}:</strong> ${metadata.entityIdentifier}</div>
+          <div class="row"><strong>${i18n.countryLabel}:</strong> ${metadata.country}</div>
+          <div class="row"><strong>${i18n.reportingYearLabel}:</strong> ${metadata.year}</div>
         </div>
       </section>
 
@@ -363,14 +378,14 @@ export async function GET(req: Request) {
         <div class="section-title" id="s4">${i18n.scopeSectionTitle}</div>
         <div class="meta-list">
           <div><strong>${i18n.scopeSectionTitle}:</strong> ${i18n.scopeText}</div>
-          <div style="margin-top:6px; font-size:10.5px; color:var(--muted);"><strong>Note:</strong> ${i18n.scopeNote}</div>
+          <div style="margin-top:6px; font-size:10.5px; color:var(--muted);"><strong>${i18n.noteLabel}:</strong> ${i18n.scopeNote}</div>
         </div>
       </section>
 
       <section aria-labelledby="s5">
         <div class="section-title" id="s5">${i18n.referencesSectionTitle}</div>
         <div class="meta-list">
-          <div style="margin-bottom:6px;"><em>The following standards and frameworks are referenced for methodological alignment and contextual consistency.</em></div>
+          <div style="margin-bottom:6px;"><em>${i18n.normativeText}</em></div>
           <ul>
             <li>GHG Protocol – Scope 3 (spend-based)</li>
             <li>ISO 14064-1 (reference)</li>
@@ -383,36 +398,30 @@ export async function GET(req: Request) {
 
     <aside>
       <div class="verify-block" style="margin-top:0;">
-        <div class="verify-title">Authenticity overview</div>
+        <div class="verify-title">${i18n.authenticityOverviewTitle}</div>
         <div class="small">
-          This attestation is cryptographically signed and can be verified
-          independently without access to Certif-Scope systems.
+          ${i18n.authenticityOverviewText}
         </div>
       </div>
 
       <div class="verify-block">
-        <div class="verify-title">Nature of the attestation</div>
+        <div class="verify-title">${i18n.natureOfAttestationTitle}</div>
         <div class="small">
-          This document is an indicative carbon emissions attestation
-          issued using a standardized deterministic methodology.
-          It does not constitute a regulatory disclosure or audit report.
+          ${i18n.natureOfAttestationText}
         </div>
       </div>
 
       <div class="verify-block">
-        <div class="verify-title">Document scope summary</div>
+        <div class="verify-title">${i18n.documentScopeSummaryTitle}</div>
         <div style="font-size:10.5px; color:#222; margin-top:6px;">
-          – Indicative estimation<br/>
-          – Spend-based methodology<br/>
-          – Aggregated result only
+          ${i18n.documentScopeSummaryText}
         </div>
       </div>
 
       <div class="verify-block">
-        <div class="verify-title">Document validity</div>
+        <div class="verify-title">${i18n.documentValidityTitle}</div>
         <div class="small">
-          This attestation is valid for a fixed period of ${metadata.validityMonths} months,
-          reflecting the temporal relevance of the underlying data and methodology.
+          ${i18n.documentValidityText}
         </div>
       </div>
     </aside>
@@ -423,8 +432,8 @@ export async function GET(req: Request) {
       <section aria-labelledby="s6">
         <div class="section-title" id="s6">${i18n.declarationSectionTitle}</div>
         <div class="meta-list">
-          <div style="font-style:italic; margin-bottom:4px;">Formal declaration</div>
-          <div class="row"><strong>Declaration:</strong> ${i18n.declarationText}</div>
+          <div style="font-style:italic; margin-bottom:4px;">${i18n.formalDeclarationLabel}</div>
+          <div class="row"><strong>${i18n.declarationLabel}:</strong> ${i18n.declarationText}</div>
         </div>
       </section>
 
@@ -432,9 +441,9 @@ export async function GET(req: Request) {
         <div class="section-title" id="s7">${i18n.methodologySectionTitle}</div>
         <div class="meta-list">
           <ul>
-            <li><strong>Methodology:</strong> ${metadata.methodology}</li>
-            <li><strong>Limitations:</strong> No physical activity data; no Scope 1 or 2; indicative model only.</li>
-            <li><strong>Transferability:</strong> Non-transferable.</li>
+            <li><strong>${i18n.methodologyLabel}:</strong> ${metadata.methodology}</li>
+            <li><strong>${i18n.limitationsLabel}:</strong> ${i18n.limitationsText || "No physical activity data; no Scope 1 or 2; indicative model only."}</li>
+            <li><strong>${i18n.transferabilityLabel}:</strong> ${i18n.transferabilityText || "Non-transferable."}</li>
           </ul>
         </div>
       </section>
@@ -442,15 +451,15 @@ export async function GET(req: Request) {
       <section aria-labelledby="s8">
         <div class="section-title" id="s8">${i18n.verificationSectionTitle}</div>
         <div class="verify-block">
-          <div class="verify-title">Verification & Integrity</div>
+          <div class="verify-title">${i18n.verificationBoxTitle}</div>
 
-          <div style="margin-top:8px;"><strong>Privacy by design:</strong> This attestation is generated without storage of underlying financial data by Certif-Scope. Verification relies solely on the attestation identifier and cryptographic integrity mechanisms.</div>
+          <div style="margin-top:8px;"><strong>${i18n.privacyLabel}:</strong> ${i18n.privacyText}</div>
 
           <div class="small" style="margin-top:8px;">
-            The PDF document itself is the only verifiable object.
+            ${i18n.pdfObjectText}
           </div>
 
-          <div style="margin-top:8px;"><strong>Verification information page:</strong><br/>
+          <div style="margin-top:8px;"><strong>${i18n.verificationPageLabel}:</strong><br/>
             <a href="${verifyUrl}"
                style="color:var(--accent); text-decoration:none; word-break:break-all;">
               ${verifyUrl}
@@ -458,23 +467,22 @@ export async function GET(req: Request) {
           </div>
 
           <div class="small" style="margin-top:12px; border-top:1px solid #e0e0e0; padding-top:8px;">
-            <em>The following elements allow independent technical verification. No action is required from the reader.</em>
+            <em>${i18n.technicalVerificationNote}</em>
           </div>
 
           <div class="small" style="margin-top:8px;">
-            <strong>Cryptographic integrity:</strong><br/>
-            Algorithm: ${metadata.algorithm}<br/>
-            Signed payload hash (SHA-256):<br/>
+            <strong>${i18n.cryptographicIntegrityLabel}:</strong><br/>
+            ${i18n.algorithmLabel}: ${metadata.algorithm}<br/>
+            ${i18n.hashLabel}:<br/>
             <span style="word-break:break-all;">${metadata.hash}</span><br/>
-            Signature (Base64):<br/>
+            ${i18n.signatureLabel}:<br/>
             <span style="word-break:break-all;">${metadata.signature}</span>
           </div>
 
           <div class="small" style="margin-top:8px;">
-            <strong>Issuer public verification key (Ed25519):</strong><br/>
+            <strong>${i18n.publicKeyLabel}:</strong><br/>
             <span class="small">
-              This public key allows any third party to verify the authenticity
-              and integrity of this document independently.
+              ${i18n.publicKeyNote}
             </span><br/>
             <span style="word-break:break-all;">
               MCowBQYDK2VwAyEAbKp2pg4wmzE5Kqo9tEwv7JJjxQyT2cBmwiLLHp4cSac=
@@ -488,23 +496,24 @@ export async function GET(req: Request) {
         <div class="section-title" id="s9">${i18n.finalClausesTitle}</div>
         <div class="final-box">
           <div class="final-stamp">
-            <div><strong>Issued pursuant to the Certif-Scope internal standard CS-SB-v1.</strong></div>
-            <div style="margin-top:6px;"><strong>Legal effect:</strong> ${i18n.legalEffectLabel}</div>
+            <div><strong>${i18n.issuedPursuantText}</strong></div>
+            
+            <div style="margin-top:6px;"><strong>${i18n.legalEffectLabel}:</strong> ${i18n.legalEffectText}</div>
             
             <div style="margin-top:6px;">
-              <strong>Liability:</strong> ${i18n.liabilityLabel}
+              <strong>${i18n.liabilityLabel}:</strong> ${i18n.liabilityText}
             </div>
             
             <div style="margin-top:6px;">
-              <strong>Validity:</strong> ${i18n.validityExplanationLabel}
+              <strong>${i18n.validityLabel}:</strong> ${i18n.validityExplanationLabel}
             </div>
 
             <div class="small" style="margin-top:8px; font-weight:bold;">
               ${i18n.englishPrevailsNotice}
             </div>
 
-            <div style="margin-top:8px; color:var(--muted); font-size:10px;"><strong>Certif-Scope does not perform audit, validation, verification, or assurance services.</strong></div>
-            <div style="margin-top:8px; color:var(--muted); font-size:10px;"><em>CS-SB-v1 is an internal standardized methodology maintained by Certif-Scope.</em></div>
+            <div style="margin-top:8px; color:var(--muted); font-size:10px;"><strong>${i18n.noAuditText}</strong></div>
+            <div style="margin-top:8px; color:var(--muted); font-size:10px;"><em>${i18n.methodologyNote}</em></div>
           </div>
         </div>
       </section>
@@ -515,8 +524,8 @@ export async function GET(req: Request) {
   </div>
 
   <div class="footer-fixed">
-    <div>Indicative carbon emissions attestation · Issued by Certif-Scope · certif-scope.com</div>
-    <div>Page <span class="pageNumber"></span> / <span class="totalPages"></span></div>
+    <div>${i18n.footerText}</div>
+    <div>${i18n.pageLabel} <span class="pageNumber"></span> / <span class="totalPages"></span></div>
   </div>
 
 </div>
@@ -524,8 +533,9 @@ export async function GET(req: Request) {
 </html>
 `;
 
+    // Convert to PDF via PDFShift with Timeout and Filename Sanity
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 15000); 
+    const timeoutId = setTimeout(() => controller.abort(), 15000); // 15s timeout
 
     const pdfResponse = await fetch("https://api.pdfshift.io/v3/convert/pdf", {
       method: "POST",
