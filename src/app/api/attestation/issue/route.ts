@@ -111,7 +111,7 @@ export async function GET(req: Request) {
     const verifyUrl = `https://certif-scope.com/verify?id=${encodeURIComponent(metadata.attestationId)}`;
     const qrDataUrl = await QRCode.toDataURL(verifyUrl, { width: 120, margin: 1 });
 
-    // ✅ FIX : Extraction du texte de responsabilité pour éviter les erreurs de template
+    // ✅ FIX : Variable extraite pour sécuriser le template
     const liabilityText = `Results are derived exclusively from data provided by the entity, under its sole responsibility. Certif-Scope does not accept liability for inaccuracies in source data. This document is valid for a period of ${metadata.validityMonths} months from the issued date unless a specific valid-until date is provided.`;
 
     // HTML (A4-safe CSS)
@@ -511,3 +511,37 @@ export async function GET(req: Request) {
 </div>
 </body>
 </html>
+`;
+
+    // Convert to PDF via PDFShift
+    const pdfResponse = await fetch("https://api.pdfshift.io/v3/convert/pdf", {
+      method: "POST",
+      headers: {
+        "X-API-Key": process.env.PDFSHIFT_API_KEY!,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        source: html,
+        format: "A4",
+        use_print: true,
+      }),
+    });
+
+    if (!pdfResponse.ok) {
+      const error = await pdfResponse.text();
+      return new Response(error, { status: pdfResponse.status });
+    }
+
+    const pdfBuffer = Buffer.from(await pdfResponse.arrayBuffer());
+    return new Response(pdfBuffer, {
+      headers: {
+        "Content-Type": "application/pdf",
+        "Content-Disposition": `attachment; filename="${metadata.issuerName.toLowerCase().replace(/\\s+/g,'-')}-${metadata.attestationId}.pdf"`,
+        "Cache-Control": "no-store",
+      },
+    });
+  } catch (err) {
+    console.error(err);
+    return new Response("Internal error", { status: 500 });
+  }
+}
