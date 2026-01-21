@@ -54,7 +54,7 @@ export async function GET(req: Request) {
       return new Response("Invalid metadata: totalCO2e must be a number", { status: 400 });
     }
 
-    // 3️⃣ GÉNÉRER L’ID et SIGNER (Nouvelle logique avec double passe)
+    // 3️⃣ GÉNÉRER L’ID et SIGNER (Logique V1 validée : double passe)
     const issuedDate = new Date().toISOString().slice(0, 10);
 
     const canonicalPayload = {
@@ -101,7 +101,7 @@ export async function GET(req: Request) {
       validUntil: escapeHtml(String(metadataRaw.validUntil || "")),
       validityMonths: escapeHtml(String(metadataRaw.validityMonths || "12")),
       standardRef: escapeHtml(String(metadataRaw.standardRef || "Certif-Scope CS-SB-v1")),
-      // 4️⃣ INJECTER signature + hash (Mod 4 appliqué)
+      // Injections cryptographiques finales
       signature: signatureResult.signatureBase64,
       hash: signatureResult.hashHex,
       algorithm: signatureResult.algorithm,
@@ -119,13 +119,13 @@ export async function GET(req: Request) {
 <meta charset="utf-8"/>
 <title>${metadata.issuerName} — Attestation</title>
 <style>
-  /* Page & margins (final adjustment) */
+  /* Page & margins */
   @page {
     size: A4;
-    margin: 14mm; /* reduced from 16mm */
+    margin: 14mm;
   }
 
-  /* Global font size and line-height (PDFShift-safe) */
+  /* Global font size and line-height */
   body {
     font-family: Inter, "Helvetica Neue", Arial, Helvetica, sans-serif;
     font-size: 10.8px;
@@ -143,13 +143,13 @@ export async function GET(req: Request) {
 
   .container { padding: 0; }
 
-  /* Controlled page break helper (single use) */
+  /* Controlled page break helper */
   .page-break {
     page-break-before: always;
     break-before: page;
   }
 
-  /* Keep page-break-inside avoidance only on critical blocks */
+  /* Keep page-break-inside avoidance */
   .result-box,
   .verify-block,
   .final-stamp {
@@ -157,8 +157,16 @@ export async function GET(req: Request) {
     break-inside: avoid;
   }
 
-  /* Header */
-  header { display:flex; justify-content:space-between; align-items:flex-start; border-bottom:3px solid var(--accent); padding-bottom:14px; margin-bottom:18px; }
+  /* Header compacté */
+  header {
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    border-bottom:3px solid var(--accent);
+    padding-bottom:10px;
+    margin-bottom:10px;
+  }
+
   .issuer { max-width:68%; display:flex; flex-direction:column; justify-content:flex-start; }
   .issuer-logo {
     height: 90px;
@@ -166,7 +174,7 @@ export async function GET(req: Request) {
     display: block;
     margin-bottom: 8px;
     object-fit: contain;
-  } /* institutional logo size per spec */
+  }
   .issuer-site { font-size:10px; color:var(--muted); margin-bottom:6px; }
   .issuer-meta { font-size:10px; color:var(--muted); }
 
@@ -174,25 +182,34 @@ export async function GET(req: Request) {
   .qr { text-align:center; font-size:9px; }
   .qr img { width:105px; height:105px; border:1px solid #ddd; padding:6px; background:#fff; }
 
-  /* Title area: serif titles */
-  .title { text-align:center; margin:18px 0 8px; font-family:var(--serif); }
+  /* Title compacté */
+  .title {
+    text-align:center;
+    margin:10px 0 6px;
+    font-family:var(--serif);
+  }
   .title h1 { font-size:22px; margin:0; font-weight:700; letter-spacing:0.8px; text-transform:uppercase; color:var(--accent); }
   .title .formal-line { margin-top:6px; font-size:11px; color:#222; font-weight:600; font-family: Inter, Arial, sans-serif; }
   .title .subtitle { margin-top:6px; font-size:10px; color:var(--muted); }
   .title .standard-ref { margin-top:6px; font-size:10px; color:var(--accent); font-weight:600; }
 
-  /* Layout */
-  .two-col { display:grid; grid-template-columns: 1fr 300px; gap:20px; align-items:start; }
+  /* ✅ FIX 1 : Layout plus dense (.two-col) */
+  .two-col {
+    display:grid;
+    grid-template-columns: 1fr 280px; /* Reduced right col width */
+    gap:14px; /* Reduced gap */
+    align-items:start;
+    margin-top:6px;
+  }
 
-  /* Sections spacing (slightly reduced) */
+  /* Sections spacing */
   section { margin-bottom: 10px; padding-right:2px; }
 
-  /* Section titles (preserve hierarchy) */
+  /* Section titles */
   .section-title { font-family:var(--serif); font-size:11.5px; margin-bottom:5px; font-weight:700; color:var(--accent); text-transform:uppercase; font-variant:small-caps; }
 
   .meta-list { font-size:11px; color:#222; }
 
-  /* Micro spacing for lists in sections 6 & 7 */
   .meta-list ul {
     margin-top: 4px;
     margin-bottom: 4px;
@@ -201,19 +218,25 @@ export async function GET(req: Request) {
     margin-bottom: 2px;
   }
 
-  /* Result panel: reduced height and margins as requested */
-  .result-panel { margin:8px 0; display:flex; justify-content:center; } /* 18px -> 8px */
+  /* Result panel compacté */
+  .result-panel {
+    margin:4px 0;
+    display:flex;
+    justify-content:center;
+  }
+  
+  /* Result box & value compactés */
   .result-box {
     width:100%;
     max-width:640px;
     background:#ffffff;
-    border:3px solid var(--accent); /* 4px -> 3px */
-    padding:8px 14px; /* 14px 18px -> 8px 14px */
+    border:3px solid var(--accent);
+    padding:6px 12px;
     box-shadow: 0 6px 18px rgba(11,43,74,0.08);
     text-align:center;
   }
-  .result-label { font-size:10px; font-weight:700; color:#222; margin-bottom:6px; font-family: Inter, Arial, sans-serif; } /* 11px -> 10px */
-  .result-value { font-family:var(--serif); font-size:30px; font-weight:800; color:var(--accent); margin:4px 0; letter-spacing:1px; } /* 40px -> 30px */
+  .result-label { font-size:10px; font-weight:700; color:#222; margin-bottom:6px; font-family: Inter, Arial, sans-serif; }
+  .result-value { font-family:var(--serif); font-size:26px; font-weight:800; color:var(--accent); margin:4px 0; letter-spacing:1px; }
 
   /* Verification block */
   .verify-block { border:1px solid #d9d9d9; padding:10px; background:#f7f9fb; font-size:10.5px; margin-top:8px; }
@@ -222,7 +245,7 @@ export async function GET(req: Request) {
   /* Aside micro-block (scope summary) */
   .scope-summary { margin-top:12px; border-left:3px solid #e6eef8; padding-left:10px; font-size:10.5px; color:#222; }
 
-  /* Final legal box (reduced spacing to fit layout) */
+  /* Final legal box */
   .final-box {
     border-top:1px solid #ddd;
     margin-top:10px;
@@ -237,7 +260,7 @@ export async function GET(req: Request) {
     font-size:10.5px;
   }
 
-  /* Footer (institutional, appears on each page) */
+  /* Footer */
   .footer {
     border-top: 1px solid #ddd;
     margin-top: 18px;
@@ -251,7 +274,6 @@ export async function GET(req: Request) {
   .muted { color:var(--muted); font-size:10px; }
   .small { font-size:10px; color:var(--muted); }
 
-  /* Small print adjustments to keep airy layout without overflow */
   @media print {
     .issuer-logo { height: 88px; max-width: 340px; }
     .two-col { gap:16px; }
@@ -343,6 +365,14 @@ export async function GET(req: Request) {
 
     <aside>
       <div class="verify-block" style="margin-top:6px;">
+        <div class="verify-title">Authenticity overview</div>
+        <div class="small">
+          This attestation is cryptographically signed and can be verified
+          independently without access to Certif-Scope systems.
+        </div>
+      </div>
+
+      <div class="verify-block" style="margin-top:6px;">
         <div class="verify-title">Document scope summary</div>
         <div style="font-size:10.5px; color:#222; margin-top:6px;">
           – Indicative estimation<br/>
@@ -386,12 +416,11 @@ export async function GET(req: Request) {
         <div class="section-title" id="s8">8. Verification & Integrity</div>
         <div class="verify-block">
           <div class="verify-title">Verification & Integrity</div>
-          <div class="small">This attestation can be independently verified without access to the issuer's systems. Verification does not require access to Certif-Scope systems and remains possible even if the issuer becomes unavailable.</div>
+
           <div style="margin-top:8px;"><strong>Privacy by design:</strong> This attestation is generated without storage of underlying financial data. Verification relies solely on the attestation identifier and cryptographic integrity mechanisms.</div>
 
           <div class="small" style="margin-top:8px;">
             The PDF document itself is the only verifiable object.
-            No online registry or database is required to verify this attestation.
           </div>
 
           <div style="margin-top:8px;"><strong>Verification information page:</strong><br/>
@@ -400,7 +429,6 @@ export async function GET(req: Request) {
               ${verifyUrl}
             </a>
           </div>
-          <div class="small" style="margin-top:8px;">Scan the QR code at the top of this document to confirm authenticity and integrity.</div>
 
           <div class="small" style="margin-top:8px;">
             <strong>Cryptographic integrity:</strong><br/>
@@ -412,7 +440,11 @@ export async function GET(req: Request) {
           </div>
 
           <div class="small" style="margin-top:8px;">
-            <strong>Public verification key (Ed25519):</strong><br/>
+            <strong>Issuer public verification key (Ed25519):</strong><br/>
+            <span class="small">
+              This public key allows any third party to verify the authenticity
+              and integrity of this document independently.
+            </span><br/>
             <span style="word-break:break-all;">
               MCowBQYDK2VwAyEAbKp2pg4wmzE5Kqo9tEwv7JJjxQyT2cBmwiLLHp4cSac=
             </span>
@@ -437,6 +469,13 @@ export async function GET(req: Request) {
             <div><strong>Issued pursuant to the Certif-Scope internal standard CS-SB-v1.</strong></div>
             <div style="margin-top:6px;"><strong>Legal effect:</strong> This document is indicative only and does not constitute a regulatory disclosure under CSRD, ESRS, or equivalent frameworks. It is provided for decision-support purposes.</div>
             <div style="margin-top:6px;"><strong>Liability:</strong> Results are derived exclusively from data provided by the entity, under its sole responsibility. Certif-Scope does not accept liability for inaccuracies in source data. This document is valid for a period of ${metadata.validityMonths} months from the issued date unless a specific valid-until date is provided.</div>
+            
+            <div style="margin-top:6px;">
+              <strong>Validity:</strong>
+              The validity period reflects the temporal relevance of the underlying data
+              and methodology, not a cryptographic expiration of this document.
+            </div>
+
             <div style="margin-top:8px; color:var(--muted); font-size:10px;"><strong>Certif-Scope does not perform audit, validation, verification, or assurance services.</strong></div>
             <div style="margin-top:8px; color:var(--muted); font-size:10px;"><em>CS-SB-v1 is an internal standardized methodology maintained by Certif-Scope.</em></div>
           </div>
