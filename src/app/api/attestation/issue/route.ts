@@ -115,7 +115,7 @@ export async function GET(req: Request) {
     const verifyUrl = `https://certif-scope.com/verify?id=${encodeURIComponent(metadata.attestationId)}`;
     const qrDataUrl = await QRCode.toDataURL(verifyUrl, { width: 120, margin: 1 });
 
-    // HTML (V1.13 FINAL PATCHED)
+    // HTML (V1.14 DIAMOND MASTER - SAFE I18N KEYS)
     const html = `
 <!doctype html>
 <html lang="${locale}">
@@ -456,7 +456,7 @@ export async function GET(req: Request) {
             </div>
             
             <div style="margin-top:6px;">
-              <strong>${i18n.validityLabel}:</strong> ${i18n.validityExplanationLabel}
+              <strong>${i18n.validityPeriodLabel}:</strong> ${i18n.documentValidityText}
             </div>
 
             <div class="small" style="margin-top:8px; font-weight:bold;">
