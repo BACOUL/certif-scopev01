@@ -115,7 +115,7 @@ export async function GET(req: Request) {
     // Texte de responsabilité extrait (Sécurité Template)
     const liabilityText = `Results are derived exclusively from data provided by the entity, under its sole responsibility. Certif-Scope does not accept liability for inaccuracies in source data. This document is valid for a period of ${metadata.validityMonths} months from the issued date unless a specific valid-until date is provided.`;
 
-    // HTML (V1.1 PREMIUM / INSTITUTIONAL)
+    // HTML (V1.3 PAGINATION SAFE)
     const html = `
 <!doctype html>
 <html lang="en">
@@ -129,7 +129,7 @@ export async function GET(req: Request) {
     margin: 14mm;
   }
 
-  /* Global font size and line-height - Rythme lent */
+  /* Global font size and line-height */
   body {
     font-family: Inter, "Helvetica Neue", Arial, Helvetica, sans-serif;
     font-size: 10.8px;
@@ -149,8 +149,8 @@ export async function GET(req: Request) {
 
   .container { padding: 0; }
 
-  /* Controlled page break helper */
-  .page-break {
+  /* ✅ FIX PAGINATION CSS */
+  .page-break-safe {
     page-break-before: always;
     break-before: page;
   }
@@ -163,7 +163,7 @@ export async function GET(req: Request) {
     break-inside: avoid;
   }
 
-  /* 1️⃣ HEADER — SOBRIÉTÉ OFFICIELLE */
+  /* Header */
   header {
     display:flex;
     justify-content:space-between;
@@ -188,7 +188,7 @@ export async function GET(req: Request) {
   .qr { text-align:center; font-size:9px; }
   .qr img { width:100px; height:100px; border:1px solid #ddd; padding:4px; background:#fff; }
 
-  /* 2️⃣ TITRE — AXE CENTRAL AÉRÉ */
+  /* Title */
   .title {
     text-align:center;
     margin: 14px 0 14px;
@@ -199,9 +199,9 @@ export async function GET(req: Request) {
   .title .subtitle { margin-top:6px; font-size:10px; color:var(--muted); }
   .title .standard-ref { margin-top:6px; font-size:10px; color:var(--accent); font-weight:600; }
 
-  /* 3️⃣ RÉSULTAT — BLOC “PLAQUE OFFICIELLE” */
+  /* Result Panel */
   .result-panel {
-    margin: 4px 0 24px;
+    margin: 4px 0 16px;
     display:flex;
     justify-content:center;
   }
@@ -218,7 +218,7 @@ export async function GET(req: Request) {
   .result-label { font-size:10px; font-weight:700; color:#222; margin-bottom:6px; font-family: Inter, Arial, sans-serif; text-transform: uppercase; letter-spacing: 0.5px; }
   .result-value { font-family:var(--serif); font-size:28px; font-weight:800; color:var(--accent); margin:4px 0; letter-spacing:1px; }
 
-  /* 5️⃣ COLONNES — ÉQUILIBRE PREMIUM */
+  /* Columns */
   .two-col {
     display:grid;
     grid-template-columns: 1fr 300px;
@@ -230,8 +230,8 @@ export async function GET(req: Request) {
     margin-top: 0;
   }
 
-  /* 6️⃣ SECTIONS — RYTHME CONSTANT */
-  section { margin-bottom: 14px; padding-right:2px; }
+  /* Sections */
+  section { margin-bottom: 10px; padding-right:2px; }
 
   /* Section titles */
   .section-title { font-family:var(--serif); font-size:11.5px; margin-bottom:6px; font-weight:700; color:var(--accent); text-transform:uppercase; font-variant:small-caps; border-bottom: 1px solid #eee; padding-bottom: 2px; display: inline-block; min-width: 100%; }
@@ -247,7 +247,7 @@ export async function GET(req: Request) {
   }
   .row { margin-bottom: 2px; }
 
-  /* 7️⃣ BLOCS VÉRIFICATION — STYLE TECHNIQUE */
+  /* Verify blocks */
   .verify-block { 
     border:1px solid var(--border-light); 
     padding:12px; 
@@ -258,10 +258,10 @@ export async function GET(req: Request) {
   }
   .verify-title { font-weight:700; color:var(--accent); font-size:11px; margin-bottom:6px; text-transform: uppercase; letter-spacing: 0.5px; }
 
-  /* Aside micro-block (scope summary) */
+  /* Aside micro-block */
   .scope-summary { margin-top:12px; border-left:3px solid var(--border-light); padding-left:12px; font-size:10.5px; color:#222; }
 
-  /* 9️⃣ CLAUSES FINALES — RESPIRATION */
+  /* Final clauses */
   .final-box {
     border-top:1px solid #ddd;
     margin-top:14px;
@@ -285,6 +285,7 @@ export async function GET(req: Request) {
     color: #666;
     display: flex;
     justify-content: space-between;
+    page-break-inside: avoid;
   }
 
   .muted { color:var(--muted); font-size:10px; }
@@ -406,6 +407,14 @@ export async function GET(req: Request) {
           – Aggregated result only
         </div>
       </div>
+
+      <div class="verify-block">
+        <div class="verify-title">Document validity</div>
+        <div class="small">
+          This attestation is valid for a fixed period of ${metadata.validityMonths} months,
+          reflecting the temporal relevance of the underlying data and methodology.
+        </div>
+      </div>
     </aside>
   </div>
 
@@ -414,7 +423,7 @@ export async function GET(req: Request) {
     <div>Page 1 / 2</div>
   </div>
 
-  <div class="page-break"></div>
+  <div class="page-break-safe"></div>
 
   <div class="two-col">
     <div>
@@ -547,7 +556,6 @@ export async function GET(req: Request) {
 
     const pdfBuffer = Buffer.from(await pdfResponse.arrayBuffer());
     
-    // ✅ ROBUSTESSE : Sanitization du nom de fichier
     const safeIssuerName = metadata.issuerName.toLowerCase().replace(/[^a-z0-9\-]/g, "");
     
     return new Response(pdfBuffer, {
