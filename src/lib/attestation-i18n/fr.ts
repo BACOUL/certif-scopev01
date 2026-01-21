@@ -1,4 +1,7 @@
-// lib/attestation-i18n/fr.ts
+/* =========================================================
+   Certif-Scope — Attestation i18n (FR)
+   Traduction complète alignée sur EN
+   ========================================================= */
 
 export const ATTESTATION_FR = {
   /* ===============================
@@ -11,116 +14,168 @@ export const ATTESTATION_FR = {
     "En cas de divergence entre les versions linguistiques, la version anglaise prévaut.",
 
   /* ===============================
+     HEADER / GLOBAL UI
+  =============================== */
+  headerTagline:
+    "Émission automatisée · Attestation indicative standardisée",
+  scanToVerifyLabel: "Scanner pour vérifier",
+
+  /* ===============================
      TITLE
   =============================== */
-  title: "Attestation indicative d'emissions de carbone",
+  title: "Attestation indicative d’émissions de carbone",
   subtitle:
-    "Declaration indicative, non reglementaire, fondee sur une methodologie",
+    "Attestation indicative · Fondée sur une méthodologie · Non réglementaire",
   standardReference:
-    "Emise conformement a la methodologie standardisee Certif-Scope CS-SB-v1",
+    "Émise conformément à la méthodologie standardisée Certif-Scope CS-SB-v1",
+  standardReferenceLabel: "Référence du standard",
 
   /* ===============================
      RESULT
   =============================== */
-  resultLabel: "Emissions indicatives agregees declarees",
+  resultLabel: "Émissions indicatives agrégées déclarées",
 
   /* ===============================
      SECTION 1 — ISSUER
   =============================== */
-  issuerSectionTitle: "1. Identification de l'emetteur",
-  issuerLabel: "Emetteur",
+  issuerSectionTitle: "1. Identification de l’émetteur",
+  issuerLabel: "Émetteur",
   websiteLabel: "Site web",
-  attestationIdLabel: "Reference de l'attestation",
-  issuedDateLabel: "Date d'emission",
-  validityLabel: "Periode de validite",
+  attestationIdLabel: "Référence de l’attestation",
+  issuedDateLabel: "Date d’émission",
+  validityLabel: "Période de validité",
+  validityPeriodLabel: "Période de validité",
+  validUntilLabel: "Valide jusqu’au",
+  uniqueDocumentIdNote: "Identifiant unique du document",
 
   /* ===============================
      SECTION 2 — DOCUMENT NATURE
   =============================== */
   documentNatureSectionTitle: "2. Nature du document",
   documentNatureText:
-    "Ce document constitue une attestation indicative d'emissions de carbone, emise exclusivement a des fins d'information, d'aide a la decision et d'evaluation preliminaire.",
+    "Ce document constitue une attestation indicative d’émissions de carbone, émise exclusivement à des fins d’information, d’aide à la décision et d’évaluation préliminaire.",
 
   /* ===============================
      SECTION 3 — ENTITY
   =============================== */
-  entitySectionTitle: "3. Identification de l'entite",
-  entityNameLabel: "Nom de l'entite",
-  sectorLabel: "Secteur d'activite",
-  identifierLabel: "Identifiant de l'entite",
+  entitySectionTitle: "3. Identification de l’entité",
+  entityNameLabel: "Nom de l’entité",
+  sectorLabel: "Secteur d’activité",
+  identifierLabel: "Identifiant de l’entité",
+  identifierOptionalLabel: "Identifiant de l’entité (optionnel)",
   countryLabel: "Pays",
-  yearLabel: "Annee de reference",
+  yearLabel: "Année de référence",
 
   /* ===============================
      SECTION 4 — SCOPE
   =============================== */
-  scopeSectionTitle: "4. Perimetre",
+  scopeSectionTitle: "4. Périmètre",
   scopeText:
-    "Cette attestation fournit une estimation indicative des emissions de gaz a effet de serre, derivee exclusivement de donnees de depenses agregees, au moyen d'une methodologie basee sur les depenses (spend-based).",
+    "Cette attestation fournit une estimation indicative des émissions de gaz à effet de serre, dérivée exclusivement de données de dépenses agrégées, selon une méthodologie fondée sur les dépenses (spend-based).",
   scopeNote:
-    "Ce document ne constitue ni un inventaire de gaz a effet de serre, ni un audit, ni une verification, ni une declaration reglementaire au sens de la CSRD, des ESRS ou de tout cadre equivalent.",
+    "Ce document ne constitue ni un inventaire de gaz à effet de serre, ni un audit, ni une vérification, ni une déclaration réglementaire au sens de la CSRD, des ESRS ou de tout cadre équivalent.",
 
   /* ===============================
      SECTION 5 — REFERENCES
   =============================== */
-  referencesSectionTitle: "5. References normatives",
+  referencesSectionTitle: "5. Références normatives",
   referencesIntro:
-    "Les normes et cadres suivants sont mentionnes a titre d'alignement methodologique et de coherence contextuelle :",
+    "Les normes et cadres suivants sont mentionnés à titre d’alignement méthodologique et de cohérence contextuelle :",
 
   /* ===============================
      ASIDE — SUMMARY / NATURE
   =============================== */
-  authenticityTitle: "Authenticite",
+  authenticityTitle: "Authenticité",
   authenticityText:
-    "Cette attestation est signee cryptographiquement et peut etre verifiee de maniere independante, sans acces aux systemes de Certif-Scope.",
+    "Cette attestation est signée cryptographiquement et peut être vérifiée de manière indépendante, sans accès aux systèmes de Certif-Scope.",
+
+  authenticityOverviewTitle: "Aperçu de l’authenticité",
+
   natureTitle: "Nature du document",
   natureText:
-    "Declaration indicative, non reglementaire, fondee sur une methodologie.",
-  summaryTitle: "Resume du perimetre",
+    "Attestation indicative, non réglementaire, fondée sur une méthodologie.",
+
+  natureOfAttestationTitle: "Nature de l’attestation",
+  natureOfAttestationText:
+    "Ce document est une attestation indicative d’émissions de carbone émise selon une méthodologie déterministe standardisée. Il ne constitue ni une déclaration réglementaire ni un rapport d’audit.",
+
+  summaryTitle: "Résumé du périmètre",
   summaryItems:
-    "Estimation indicative · Methodologie basee sur les depenses · Resultat agrege uniquement",
+    "Estimation indicative · Méthodologie fondée sur les dépenses · Résultat agrégé uniquement",
+
+  documentScopeSummaryTitle: "Résumé du périmètre du document",
+  documentScopeSummaryItems:
+    "Estimation indicative · Méthodologie fondée sur les dépenses · Résultat agrégé uniquement",
+
+  documentValidityTitle: "Validité du document",
+  documentValidityText:
+    "Cette attestation est valable pour une période fixe reflétant la pertinence temporelle des données et de la méthodologie sous-jacentes.",
 
   /* ===============================
      SECTION 6 — DECLARATION
   =============================== */
-  declarationSectionTitle: "6. Declaration du resultat",
+  declarationSectionTitle: "6. Déclaration du résultat",
+  formalDeclarationLabel: "Déclaration formelle",
+  declarationLabel: "Déclaration",
   declarationText:
-    "Sur la seule base des donnees fournies par l'entite, Certif-Scope emet la presente attestation indicative des emissions agregees de gaz a effet de serre pour l'annee de reference indiquee.",
+    "Sur la seule base des données fournies par l’entité, Certif-Scope émet la présente attestation indicative des émissions agrégées de gaz à effet de serre pour l’année de référence indiquée.",
 
   /* ===============================
      SECTION 7 — METHODOLOGY
   =============================== */
-  methodologySectionTitle: "7. Methodologie et limites",
+  methodologySectionTitle: "7. Méthodologie et limites",
   methodologyLabel:
-    "Methodologie deterministe basee sur les depenses, utilisant des donnees de depenses agregees.",
+    "Méthodologie déterministe fondée sur les dépenses, utilisant des données de dépenses agrégées.",
   limitationsLabel:
-    "Aucune donnee d'activite physique. Aucune emission de Scope 1 ou de Scope 2. Modele strictement indicatif.",
-  transferabilityLabel: "Ce document est non transferable.",
+    "Aucune donnée d’activité physique. Aucune émission de Scope 1 ou de Scope 2. Modèle strictement indicatif.",
+  transferabilityLabel: "Ce document est non transférable.",
 
   /* ===============================
      SECTION 8 — VERIFICATION
   =============================== */
-  verificationSectionTitle: "8. Verification et integrite",
+  verificationSectionTitle: "8. Vérification et intégrité",
+  verificationBlockTitle: "Vérification et intégrité",
   verificationIntro:
-    "Cette attestation est generee sans conservation des donnees financieres sous-jacentes par Certif-Scope.",
+    "Cette attestation est générée sans conservation des données financières sous-jacentes par Certif-Scope.",
   verificationNote:
-    "Le document PDF constitue l'unique objet verifiable.",
-  verificationLinkLabel: "Page d'information de verification",
-  cryptographicLabel: "Integrite cryptographique",
-  publicKeyLabel: "Cle publique de verification de l'emetteur",
+    "Le document PDF constitue l’unique objet vérifiable.",
+
+  privacyByDesignLabel: "Protection des données par conception",
+  privacyByDesignText:
+    "Cette attestation est générée sans conservation des données financières sous-jacentes par Certif-Scope. La vérification repose uniquement sur l’identifiant de l’attestation et des mécanismes d’intégrité cryptographique.",
+
+  pdfIsSoleObjectText:
+    "Le document PDF constitue l’unique objet vérifiable.",
+
+  verificationLinkLabel: "Page d’information de vérification",
+  verificationInformationPageLabel: "Page d’information de vérification",
+
+  cryptographicLabel: "Intégrité cryptographique",
+  cryptographicIntegrityDetailsLabel: "Détails d’intégrité cryptographique",
+
+  publicKeyLabel: "Clé publique de vérification de l’émetteur",
+  publicKeyExplanationText:
+    "Cette clé publique permet à tout tiers de vérifier de manière indépendante l’authenticité et l’intégrité de ce document.",
 
   /* ===============================
      SECTION 9 — FINAL CLAUSES
   =============================== */
-  finalClausesTitle: "9. Clauses finales et responsabilite",
+  finalClausesTitle: "9. Clauses finales et responsabilité",
   legalEffectLabel:
-    "Ce document n'a aucun effet reglementaire ou juridique et est fourni exclusivement a titre informatif.",
+    "Ce document n’a aucun effet réglementaire ou juridique et est fourni exclusivement à titre informatif.",
   liabilityLabel:
-    "Les resultats sont exclusivement derives des donnees fournies par l'entite, sous sa seule responsabilite.",
+    "Les résultats sont exclusivement dérivés des données fournies par l’entité, sous sa seule responsabilité.",
   validityExplanationLabel:
-    "La periode de validite reflete la pertinence temporelle des donnees et de la methodologie sous-jacentes.",
+    "La période de validité reflète la pertinence temporelle des données et de la méthodologie sous-jacentes.",
   noAuditNotice:
-    "Certif-Scope ne realise aucune mission d'audit, de validation, de verification ou d'assurance.",
+    "Certif-Scope ne réalise aucune mission d’audit, de validation, de vérification ou d’assurance.",
   internalStandardNotice:
-    "CS-SB-v1 est une methodologie standardisee interne maintenue par Certif-Scope.",
+    "CS-SB-v1 est une méthodologie standardisée interne maintenue par Certif-Scope.",
+
+  /* ===============================
+     FOOTER
+  =============================== */
+  footerText:
+    "Attestation indicative d’émissions de carbone · Émise par Certif-Scope · certif-scope.com",
+  pageLabel: "Page",
 } as const;
