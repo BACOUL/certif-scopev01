@@ -83,6 +83,9 @@ export async function POST(req: Request) {
         // attested result (immutable)
         totalCO2e: String(result.totalCO2e),
         methodology: String(result.methodology),
+
+        // 🌍 attestation language (V1 — English only)
+        attestationLocale: "en",
       },
 
       line_items: [
@@ -113,4 +116,4 @@ export async function POST(req: Request) {
       { status: 500 }
     );
   }
-            }
+}
