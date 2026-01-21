@@ -21,6 +21,12 @@ const METHODOLOGY =
   "Certif-Scope deterministic spend-based model v1.0";
 
 /* ======================================================
+   TYPES
+====================================================== */
+
+type AttestationLocale = "en" | "fr";
+
+/* ======================================================
    SECTORS (DECLARATIVE)
 ====================================================== */
 
@@ -50,7 +56,6 @@ function calculateTotalCO2e(expenses: Record<string, number>) {
     totalKg += value * factor;
   }
 
-  // kg → tonnes, institutional rounding (1 decimal)
   return Math.round((totalKg / 1000) * 10) / 10;
 }
 
@@ -98,6 +103,9 @@ export default function AssessmentForm() {
   const [year, setYear] = useState(currentYear);
   const [country, setCountry] = useState("FR");
 
+  const [attestationLocale, setAttestationLocale] =
+    useState<AttestationLocale>("en");
+
   const [expenses, setExpenses] = useState({
     it: "",
     services: "",
@@ -112,18 +120,12 @@ export default function AssessmentForm() {
     setExpenses((prev) => ({ ...prev, [field]: value }));
   };
 
-  // ─────────────────────────────────────────────
-  // CALCULATION (REAL-TIME)
-  // ─────────────────────────────────────────────
   const numericExpenses = Object.fromEntries(
     Object.entries(expenses).map(([k, v]) => [k, Number(v) || 0])
   );
 
   const totalCO2e = calculateTotalCO2e(numericExpenses);
 
-  // ─────────────────────────────────────────────
-  // SUBMIT
-  // ─────────────────────────────────────────────
   const handleSubmit = async () => {
     if (!companyName) {
       alert("Please enter your company name.");
@@ -143,6 +145,7 @@ export default function AssessmentForm() {
       },
       year,
       country,
+      attestationLocale,
       result: {
         totalCO2e,
         methodology: METHODOLOGY,
@@ -168,7 +171,6 @@ export default function AssessmentForm() {
     <main className="min-h-screen bg-white">
       <section className="max-w-3xl mx-auto px-6 pt-16 pb-20 space-y-10">
 
-        {/* HEADER */}
         <div>
           <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-3">
             Generate your carbon attestation
@@ -181,7 +183,6 @@ export default function AssessmentForm() {
           </p>
         </div>
 
-        {/* COMPANY */}
         <Accordion title="Company information" defaultOpen>
           <div className="space-y-4">
             <div>
@@ -222,14 +223,12 @@ export default function AssessmentForm() {
                 type="text"
                 value={companyId}
                 onChange={(e) => setCompanyId(e.target.value)}
-                placeholder="Optional internal or registration identifier"
                 className="w-full border rounded-md px-4 py-2 mt-1"
               />
             </div>
           </div>
         </Accordion>
 
-        {/* CONTEXT */}
         <Accordion title="Context" defaultOpen>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
@@ -260,10 +259,28 @@ export default function AssessmentForm() {
                 <option value="EU">Other EU</option>
               </select>
             </div>
+
+            <div className="md:col-span-2">
+              <label className="block text-sm font-medium">
+                Attestation language
+              </label>
+              <select
+                value={attestationLocale}
+                onChange={(e) =>
+                  setAttestationLocale(e.target.value as AttestationLocale)
+                }
+                className="w-full border rounded-md px-4 py-2 mt-1"
+              >
+                <option value="en">English (legal reference)</option>
+                <option value="fr">Français</option>
+              </select>
+              <p className="text-xs text-gray-500 mt-1">
+                The English version remains the legal reference in case of discrepancy.
+              </p>
+            </div>
           </div>
         </Accordion>
 
-        {/* EXPENSES */}
         <Accordion title="Annual external expenses (€)">
           <Input label="IT & digital services" hint="Software, cloud, SaaS, IT outsourcing" value={expenses.it} onChange={(v) => update("it", v)} />
           <Input label="Professional services" hint="Consulting, accounting, legal services" value={expenses.services} onChange={(v) => update("services", v)} />
@@ -274,7 +291,6 @@ export default function AssessmentForm() {
           <Input label="Other external expenses" hint="Marketing, subscriptions, miscellaneous costs" value={expenses.other} onChange={(v) => update("other", v)} />
         </Accordion>
 
-        {/* RESULT */}
         <div className="border rounded-xl p-6 bg-[#F8FAFC]">
           <p className="text-sm text-gray-600 mb-1">
             Indicative annual emissions estimate
@@ -287,7 +303,6 @@ export default function AssessmentForm() {
           </p>
         </div>
 
-        {/* CTA */}
         <button
           onClick={handleSubmit}
           className="w-full bg-[#0B3A63] hover:bg-[#092f50] text-white py-4 rounded-xl font-semibold transition"
@@ -295,7 +310,6 @@ export default function AssessmentForm() {
           Proceed to payment — 89 €
         </button>
 
-        {/* DISCLAIMER */}
         <p className="text-xs text-gray-500 leading-relaxed">
           This attestation is based solely on the information provided by the applicant
           and is not a greenhouse gas audit or regulatory report.
