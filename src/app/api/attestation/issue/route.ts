@@ -3,6 +3,10 @@ export const runtime = "nodejs";
 import Stripe from "stripe";
 import QRCode from "qrcode";
 import { signCanonicalPayload, makeAttestationId } from "@/lib/sign";
+import {
+  ATTESTATION_I18N,
+  AttestationLocale,
+} from "@/lib/attestation-i18n";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
@@ -38,6 +42,12 @@ export async function GET(req: Request) {
     }
 
     const metadataRaw = session.metadata || {};
+
+    // 2️⃣ LIRE LA LANGUE CHOISIE DANS STRIPE
+    const locale =
+      (metadataRaw.attestationLocale as AttestationLocale) || "en";
+
+    const i18n = ATTESTATION_I18N[locale] || ATTESTATION_I18N.en;
 
     // Required metadata keys
     const required = ["companyName", "totalCO2e", "year"];
@@ -86,7 +96,7 @@ export async function GET(req: Request) {
       attestationId,
     });
 
-    // Build sanitized metadata (escaped for HTML)
+    // 3️⃣ NE PAS MODIFIER LE METADATA ACTUEL (Données dynamiques)
     const metadata = {
       attestationId: attestationId,
       issuerName: escapeHtml(String(metadataRaw.issuerName || "Certif-Scope")),
@@ -112,21 +122,18 @@ export async function GET(req: Request) {
     const verifyUrl = `https://certif-scope.com/verify?id=${encodeURIComponent(metadata.attestationId)}`;
     const qrDataUrl = await QRCode.toDataURL(verifyUrl, { width: 120, margin: 1 });
 
-    // Texte de responsabilité extrait
-    const liabilityText = `Results are derived exclusively from data provided by the entity, under its sole responsibility. Certif-Scope does not accept liability for inaccuracies in source data. This document is valid for a period of ${metadata.validityMonths} months from the issued date unless a specific valid-until date is provided.`;
-
-    // HTML (V1.6 PLATINUM MASTER)
+    // HTML (V1.9 FINAL I18N POLISHED)
     const html = `
 <!doctype html>
-<html lang="en">
+<html lang="${locale}">
 <head>
 <meta charset="utf-8"/>
 <title>${metadata.issuerName} — Attestation</title>
 <style>
-  /* ✅ FIX CSS 1 : Marge standard, le footer fixed se gère seul */
+  /* Page & margins - Increased bottom margin for fixed footer */
   @page {
     size: A4;
-    margin: 14mm;
+    margin: 14mm 14mm 20mm 14mm;
   }
 
   /* Global font size and line-height */
@@ -161,6 +168,11 @@ export async function GET(req: Request) {
     justify-content: space-between;
     border-top: 1px solid #ddd;
     padding-top: 8px;
+  }
+
+  .page-break-safe {
+    page-break-before: always;
+    break-before: page;
   }
 
   /* Keep page-break-inside avoidance */
@@ -319,15 +331,15 @@ export async function GET(req: Request) {
   </header>
 
   <div class="title">
-    <h1>Indicative Carbon Emissions Attestation</h1>
-    <div class="formal-line">Issued pursuant to the Certif-Scope standardized methodology CS-SB-v1</div>
+    <h1>${i18n.title}</h1>
+    <div class="formal-line">${i18n.standardReference}</div>
     <div class="standard-ref">Standard reference: ${metadata.standardRef}</div>
     <div class="subtitle">Non-regulatory · Methodology-based · Indicative attestation</div>
   </div>
 
   <div class="result-panel" role="region" aria-label="Estimated emissions result">
     <div class="result-box" role="figure" aria-labelledby="result-label">
-      <div id="result-label" class="result-label">Declared aggregated indicative emissions</div>
+      <div id="result-label" class="result-label">${i18n.resultLabel}</div>
       <div class="result-value">${metadata.totalCO2e} tCO₂e</div>
     </div>
   </div>
@@ -335,7 +347,7 @@ export async function GET(req: Request) {
   <div class="two-col clearfix">
     <div>
       <section aria-labelledby="s1">
-        <div class="section-title" id="s1">1. Identification of the issuer</div>
+        <div class="section-title" id="s1">${i18n.issuerSectionTitle}</div>
         <div class="meta-list">
           <div class="row"><strong>Issuer:</strong> ${metadata.issuerName}</div>
           <div class="row"><strong>Website:</strong> ${metadata.issuerSite}</div>
@@ -346,15 +358,14 @@ export async function GET(req: Request) {
       </section>
 
       <section aria-labelledby="s2">
-        <div class="section-title" id="s2">2. Title of the document</div>
+        <div class="section-title" id="s2">${i18n.documentNatureSectionTitle}</div>
         <div class="meta-list">
-          <div><strong>This attestation constitutes an indicative technical attestation.</strong></div>
-          <div style="margin-top:6px;">This attestation is issued for informational, decision-support, and preliminary procurement assessment purposes.</div>
+          <div><strong>${i18n.documentNatureText}</strong></div>
         </div>
       </section>
 
       <section aria-labelledby="s3">
-        <div class="section-title" id="s3">3. Identification of the object certified</div>
+        <div class="section-title" id="s3">${i18n.entitySectionTitle}</div>
         <div class="meta-list">
           <div class="row"><strong>Entity name:</strong> ${metadata.companyName}</div>
           <div class="row"><strong>Activity sector:</strong> ${metadata.companySector}</div>
@@ -365,15 +376,15 @@ export async function GET(req: Request) {
       </section>
 
       <section aria-labelledby="s4">
-        <div class="section-title" id="s4">4. Scope</div>
+        <div class="section-title" id="s4">${i18n.scopeSectionTitle}</div>
         <div class="meta-list">
-          <div><strong>Scope:</strong> Indicative estimation of greenhouse gas emissions derived exclusively from aggregated expenditure data using a spend-based approach. This attestation does not cover Scope 1 or Scope 2 emissions unless explicitly stated.</div>
-          <div style="margin-top:6px; font-size:10.5px; color:var(--muted);"><strong>Note:</strong> This attestation is not intended to satisfy CSRD, ESRS, or mandatory regulatory reporting requirements.</div>
+          <div><strong>${i18n.scopeSectionTitle}:</strong> ${i18n.scopeText}</div>
+          <div style="margin-top:6px; font-size:10.5px; color:var(--muted);"><strong>Note:</strong> ${i18n.scopeNote}</div>
         </div>
       </section>
 
       <section aria-labelledby="s5">
-        <div class="section-title" id="s5">5. Normative references</div>
+        <div class="section-title" id="s5">${i18n.referencesSectionTitle}</div>
         <div class="meta-list">
           <div style="margin-bottom:6px;"><em>The following standards and frameworks are referenced for methodological alignment and contextual consistency.</em></div>
           <ul>
@@ -423,18 +434,20 @@ export async function GET(req: Request) {
     </aside>
   </div>
 
+  <div class="page-break-safe"></div>
+
   <div class="two-col clearfix">
     <div>
       <section aria-labelledby="s6" style="page-break-before: always;">
-        <div class="section-title" id="s6">6. Declaration of result</div>
+        <div class="section-title" id="s6">${i18n.declarationSectionTitle}</div>
         <div class="meta-list">
           <div style="font-style:italic; margin-bottom:4px;">Formal declaration</div>
-          <div class="row"><strong>Declaration:</strong> Pursuant to the information provided by the entity, Certif-Scope hereby attests the above indicative aggregated emissions result for the reporting year stated.</div>
+          <div class="row"><strong>Declaration:</strong> ${i18n.declarationText}</div>
         </div>
       </section>
 
       <section aria-labelledby="s7">
-        <div class="section-title" id="s7">7. Methodology and limitations</div>
+        <div class="section-title" id="s7">${i18n.methodologySectionTitle}</div>
         <div class="meta-list">
           <ul>
             <li><strong>Methodology:</strong> ${metadata.methodology}</li>
@@ -445,7 +458,7 @@ export async function GET(req: Request) {
       </section>
 
       <section aria-labelledby="s8">
-        <div class="section-title" id="s8">8. Verification & Integrity</div>
+        <div class="section-title" id="s8">${i18n.verificationSectionTitle}</div>
         <div class="verify-block">
           <div class="verify-title">Verification & Integrity</div>
 
@@ -490,20 +503,22 @@ export async function GET(req: Request) {
       </section>
 
       <section aria-labelledby="s9" style="margin-top:12px;">
-        <div class="section-title" id="s9">9. Final clauses and liability</div>
+        <div class="section-title" id="s9">${i18n.finalClausesTitle}</div>
         <div class="final-box">
           <div class="final-stamp">
             <div><strong>Issued pursuant to the Certif-Scope internal standard CS-SB-v1.</strong></div>
-            <div style="margin-top:6px;"><strong>Legal effect:</strong> This document is indicative only and does not constitute a regulatory disclosure under CSRD, ESRS, or equivalent frameworks. It is provided for decision-support purposes.</div>
+            <div style="margin-top:6px;"><strong>Legal effect:</strong> ${i18n.legalEffectLabel}</div>
             
             <div style="margin-top:6px;">
-              <strong>Liability:</strong> ${liabilityText}
+              <strong>Liability:</strong> ${i18n.liabilityLabel}
             </div>
             
             <div style="margin-top:6px;">
-              <strong>Validity:</strong>
-              The validity period reflects the temporal relevance of the underlying data
-              and methodology, not a cryptographic expiration of this document.
+              <strong>Validity:</strong> ${i18n.validityExplanationLabel}
+            </div>
+
+            <div class="small" style="margin-top:8px; font-weight:bold;">
+              ${i18n.englishPrevailsNotice}
             </div>
 
             <div style="margin-top:8px; color:var(--muted); font-size:10px;"><strong>Certif-Scope does not perform audit, validation, verification, or assurance services.</strong></div>
