@@ -23,6 +23,7 @@ function escapeHtml(input: string) {
 
 export async function GET(req: Request) {
   try {
+    // 1️⃣ CHECK TECHNIQUE
     if (!process.env.PDFSHIFT_API_KEY) {
       return new Response("PDFSHIFT_API_KEY missing", { status: 500 });
     }
@@ -54,7 +55,7 @@ export async function GET(req: Request) {
       return new Response("Invalid metadata: totalCO2e must be a number", { status: 400 });
     }
 
-    // 3️⃣ GÉNÉRER L’ID et SIGNER (Logique V1 validée : double passe)
+    // 3️⃣ GÉNÉRER L’ID et SIGNER (Logique V1 : double passe)
     const issuedDate = new Date().toISOString().slice(0, 10);
 
     const canonicalPayload = {
@@ -98,7 +99,7 @@ export async function GET(req: Request) {
       totalCO2e: escapeHtml(String(totalCO2eNum)),
       methodology: escapeHtml(String(metadataRaw.methodology || "Certif-Scope deterministic spend-based methodology v1.0")),
       issuedDate: escapeHtml(issuedDate),
-      validUntil: escapeHtml(String(metadataRaw.validUntil || "")),
+      validUntil: "", // ✅ SIMPLIFICATION V1 : Force le standard "validityMonths"
       validityMonths: escapeHtml(String(metadataRaw.validityMonths || "12")),
       standardRef: escapeHtml(String(metadataRaw.standardRef || "Certif-Scope CS-SB-v1")),
       // Injections cryptographiques finales
@@ -111,10 +112,10 @@ export async function GET(req: Request) {
     const verifyUrl = `https://certif-scope.com/verify?id=${encodeURIComponent(metadata.attestationId)}`;
     const qrDataUrl = await QRCode.toDataURL(verifyUrl, { width: 120, margin: 1 });
 
-    // ✅ FIX : Variable extraite pour sécuriser le template
+    // Texte de responsabilité extrait (Sécurité Template)
     const liabilityText = `Results are derived exclusively from data provided by the entity, under its sole responsibility. Certif-Scope does not accept liability for inaccuracies in source data. This document is valid for a period of ${metadata.validityMonths} months from the issued date unless a specific valid-until date is provided.`;
 
-    // HTML (A4-safe CSS)
+    // HTML (V1.1 PREMIUM / INSTITUTIONAL)
     const html = `
 <!doctype html>
 <html lang="en">
@@ -128,11 +129,11 @@ export async function GET(req: Request) {
     margin: 14mm;
   }
 
-  /* Global font size and line-height */
+  /* Global font size and line-height - Rythme lent */
   body {
     font-family: Inter, "Helvetica Neue", Arial, Helvetica, sans-serif;
     font-size: 10.8px;
-    line-height: 1.42;
+    line-height: 1.5;
     margin: 0;
     color: #111;
     -webkit-font-smoothing: antialiased;
@@ -142,6 +143,8 @@ export async function GET(req: Request) {
     --serif: "Times New Roman", Georgia, "Garamond", serif;
     --muted: #666;
     --accent: #0b2b4a;
+    --border-light: #cfd8e3;
+    --bg-light: #f8fafc;
   }
 
   .container { padding: 0; }
@@ -160,19 +163,19 @@ export async function GET(req: Request) {
     break-inside: avoid;
   }
 
-  /* Header compacté */
+  /* 1️⃣ HEADER — SOBRIÉTÉ OFFICIELLE */
   header {
     display:flex;
     justify-content:space-between;
     align-items:flex-start;
     border-bottom:3px solid var(--accent);
-    padding-bottom:10px;
-    margin-bottom:10px;
+    padding-bottom: 6px;
+    margin-bottom: 10px;
   }
 
   .issuer { max-width:68%; display:flex; flex-direction:column; justify-content:flex-start; }
   .issuer-logo {
-    height: 90px;
+    height: 85px;
     max-width: 340px;
     display: block;
     margin-bottom: 8px;
@@ -183,12 +186,12 @@ export async function GET(req: Request) {
 
   /* QR */
   .qr { text-align:center; font-size:9px; }
-  .qr img { width:105px; height:105px; border:1px solid #ddd; padding:6px; background:#fff; }
+  .qr img { width:100px; height:100px; border:1px solid #ddd; padding:4px; background:#fff; }
 
-  /* Title compacté */
+  /* 2️⃣ TITRE — AXE CENTRAL AÉRÉ */
   .title {
     text-align:center;
-    margin:10px 0 6px;
+    margin: 14px 0 14px;
     font-family:var(--serif);
   }
   .title h1 { font-size:22px; margin:0; font-weight:700; letter-spacing:0.8px; text-transform:uppercase; color:var(--accent); }
@@ -196,89 +199,88 @@ export async function GET(req: Request) {
   .title .subtitle { margin-top:6px; font-size:10px; color:var(--muted); }
   .title .standard-ref { margin-top:6px; font-size:10px; color:var(--accent); font-weight:600; }
 
-  /* Layout */
-  .two-col {
-    display:grid;
-    grid-template-columns: 1fr 280px;
-    gap:14px;
-    align-items:start;
-    margin-top:6px;
+  /* 3️⃣ RÉSULTAT — BLOC “PLAQUE OFFICIELLE” */
+  .result-panel {
+    margin: 4px 0 24px;
+    display:flex;
+    justify-content:center;
   }
   
-  /* Safe margin for PDFShift */
+  .result-box {
+    width:100%;
+    max-width:600px;
+    background:#ffffff;
+    border:3px solid var(--accent);
+    padding:10px 16px;
+    box-shadow: 0 4px 12px rgba(11,43,74,0.06);
+    text-align:center;
+  }
+  .result-label { font-size:10px; font-weight:700; color:#222; margin-bottom:6px; font-family: Inter, Arial, sans-serif; text-transform: uppercase; letter-spacing: 0.5px; }
+  .result-value { font-family:var(--serif); font-size:28px; font-weight:800; color:var(--accent); margin:4px 0; letter-spacing:1px; }
+
+  /* 5️⃣ COLONNES — ÉQUILIBRE PREMIUM */
+  .two-col {
+    display:grid;
+    grid-template-columns: 1fr 300px;
+    gap: 18px;
+    align-items:start;
+  }
+  
   aside {
-    margin-top: -6px;
+    margin-top: 0;
   }
 
-  /* Sections spacing */
-  section { margin-bottom: 10px; padding-right:2px; }
+  /* 6️⃣ SECTIONS — RYTHME CONSTANT */
+  section { margin-bottom: 14px; padding-right:2px; }
 
   /* Section titles */
-  .section-title { font-family:var(--serif); font-size:11.5px; margin-bottom:5px; font-weight:700; color:var(--accent); text-transform:uppercase; font-variant:small-caps; }
+  .section-title { font-family:var(--serif); font-size:11.5px; margin-bottom:6px; font-weight:700; color:var(--accent); text-transform:uppercase; font-variant:small-caps; border-bottom: 1px solid #eee; padding-bottom: 2px; display: inline-block; min-width: 100%; }
 
   .meta-list { font-size:11px; color:#222; }
 
   .meta-list ul {
     margin-top: 4px;
-    margin-bottom: 4px;
+    margin-bottom: 4px; padding-left: 16px;
   }
   .meta-list li {
-    margin-bottom: 2px;
+    margin-bottom: 3px;
   }
+  .row { margin-bottom: 2px; }
 
-  /* Result panel compacté */
-  .result-panel {
-    margin:4px 0;
-    display:flex;
-    justify-content:center;
-  }
-  
-  /* Result box */
-  .result-box {
-    width:100%;
-    max-width:560px;
-    background:#ffffff;
-    border:3px solid var(--accent);
-    padding:6px 10px;
-    box-shadow: 0 6px 18px rgba(11,43,74,0.08);
-    text-align:center;
-  }
-  .result-label { font-size:10px; font-weight:700; color:#222; margin-bottom:6px; font-family: Inter, Arial, sans-serif; }
-  .result-value { font-family:var(--serif); font-size:24px; font-weight:800; color:var(--accent); margin:4px 0; letter-spacing:1px; }
-
-  /* Verify blocks */
+  /* 7️⃣ BLOCS VÉRIFICATION — STYLE TECHNIQUE */
   .verify-block { 
-    border:1px solid #d9d9d9; 
-    padding:10px; 
-    background:#f7f9fb; 
-    font-size:10.2px;
-    margin-top:6px;
+    border:1px solid var(--border-light); 
+    padding:12px; 
+    background: var(--bg-light);
+    font-size:10.5px;
+    margin-top:8px;
+    border-radius: 2px;
   }
-  .verify-title { font-weight:700; color:var(--accent); font-size:11px; margin-bottom:6px; }
+  .verify-title { font-weight:700; color:var(--accent); font-size:11px; margin-bottom:6px; text-transform: uppercase; letter-spacing: 0.5px; }
 
   /* Aside micro-block (scope summary) */
-  .scope-summary { margin-top:12px; border-left:3px solid #e6eef8; padding-left:10px; font-size:10.5px; color:#222; }
+  .scope-summary { margin-top:12px; border-left:3px solid var(--border-light); padding-left:12px; font-size:10.5px; color:#222; }
 
-  /* Final legal box */
+  /* 9️⃣ CLAUSES FINALES — RESPIRATION */
   .final-box {
     border-top:1px solid #ddd;
-    margin-top:10px;
-    padding-top:8px;
+    margin-top:14px;
+    padding-top:10px;
   }
   .final-stamp {
     border:1px solid #e0e0e0;
-    padding:10px;
+    padding:14px;
     font-style:italic;
     color:#222;
     background:#fff;
-    font-size:10.5px;
+    font-size:10.8px;
   }
 
   /* Footer */
   .footer {
     border-top: 1px solid #ddd;
-    margin-top: 18px;
-    padding-top: 6px;
+    margin-top: 24px;
+    padding-top: 8px;
     font-size: 9px;
     color: #666;
     display: flex;
@@ -286,11 +288,11 @@ export async function GET(req: Request) {
   }
 
   .muted { color:var(--muted); font-size:10px; }
-  .small { font-size:10px; color:var(--muted); }
+  .small { font-size:10px; color:var(--muted); line-height: 1.4; }
 
   @media print {
-    .issuer-logo { height: 88px; max-width: 340px; }
-    .two-col { gap:16px; }
+    .issuer-logo { height: 85px; max-width: 340px; }
+    .two-col { gap:18px; }
   }
 </style>
 </head>
@@ -350,6 +352,7 @@ export async function GET(req: Request) {
         <div class="meta-list">
           <div class="row"><strong>Entity name:</strong> ${metadata.companyName}</div>
           <div class="row"><strong>Activity sector:</strong> ${metadata.companySector}</div>
+          <div class="row"><strong>Entity identifier (optional):</strong> ${metadata.entityIdentifier}</div>
           <div class="row"><strong>Country:</strong> ${metadata.country}</div>
           <div class="row"><strong>Reporting year:</strong> ${metadata.year}</div>
         </div>
@@ -378,7 +381,7 @@ export async function GET(req: Request) {
     </div>
 
     <aside>
-      <div class="verify-block" style="margin-top:6px;">
+      <div class="verify-block" style="margin-top:0;">
         <div class="verify-title">Authenticity overview</div>
         <div class="small">
           This attestation is cryptographically signed and can be verified
@@ -386,7 +389,16 @@ export async function GET(req: Request) {
         </div>
       </div>
 
-      <div class="verify-block" style="margin-top:6px;">
+      <div class="verify-block">
+        <div class="verify-title">Nature of the attestation</div>
+        <div class="small">
+          This document is an indicative carbon emissions attestation
+          issued using a standardized deterministic methodology.
+          It does not constitute a regulatory disclosure or audit report.
+        </div>
+      </div>
+
+      <div class="verify-block">
         <div class="verify-title">Document scope summary</div>
         <div style="font-size:10.5px; color:#222; margin-top:6px;">
           – Indicative estimation<br/>
@@ -418,7 +430,7 @@ export async function GET(req: Request) {
         <div class="section-title" id="s7">7. Methodology and limitations</div>
         <div class="meta-list">
           <ul>
-            <li><strong>Methodology:</strong> Certif-Scope deterministic spend-based model v1.0.</li>
+            <li><strong>Methodology:</strong> ${metadata.methodology}</li>
             <li><strong>Limitations:</strong> No physical activity data; no Scope 1 or 2; indicative model only.</li>
             <li><strong>Transferability:</strong> Non-transferable.</li>
           </ul>
@@ -430,7 +442,7 @@ export async function GET(req: Request) {
         <div class="verify-block">
           <div class="verify-title">Verification & Integrity</div>
 
-          <div style="margin-top:8px;"><strong>Privacy by design:</strong> This attestation is generated without storage of underlying financial data. Verification relies solely on the attestation identifier and cryptographic integrity mechanisms.</div>
+          <div style="margin-top:8px;"><strong>Privacy by design:</strong> This attestation is generated without storage of underlying financial data by Certif-Scope. Verification relies solely on the attestation identifier and cryptographic integrity mechanisms.</div>
 
           <div class="small" style="margin-top:8px;">
             The PDF document itself is the only verifiable object.
@@ -441,6 +453,10 @@ export async function GET(req: Request) {
                style="color:var(--accent); text-decoration:none; word-break:break-all;">
               ${verifyUrl}
             </a>
+          </div>
+
+          <div class="small" style="margin-top:12px; border-top:1px solid #e0e0e0; padding-top:8px;">
+            <em>The following elements allow independent technical verification. No action is required from the reader.</em>
           </div>
 
           <div class="small" style="margin-top:8px;">
@@ -463,15 +479,6 @@ export async function GET(req: Request) {
             </span>
           </div>
 
-          <div class="scope-summary" style="margin-top:12px;">
-            <strong>Document scope summary</strong>
-            <div style="margin-top:6px;">
-              – Indicative estimation<br/>
-              – Spend-based methodology<br/>
-              – Aggregated result only<br/>
-              – Validity: ${metadata.validityMonths} months
-            </div>
-          </div>
         </div>
       </section>
 
@@ -513,7 +520,10 @@ export async function GET(req: Request) {
 </html>
 `;
 
-    // Convert to PDF via PDFShift
+    // Convert to PDF via PDFShift with Timeout and Filename Sanity
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 15000); // 15s timeout
+
     const pdfResponse = await fetch("https://api.pdfshift.io/v3/convert/pdf", {
       method: "POST",
       headers: {
@@ -525,7 +535,10 @@ export async function GET(req: Request) {
         format: "A4",
         use_print: true,
       }),
+      signal: controller.signal,
     });
+    
+    clearTimeout(timeoutId);
 
     if (!pdfResponse.ok) {
       const error = await pdfResponse.text();
@@ -533,10 +546,14 @@ export async function GET(req: Request) {
     }
 
     const pdfBuffer = Buffer.from(await pdfResponse.arrayBuffer());
+    
+    // ✅ ROBUSTESSE : Sanitization du nom de fichier
+    const safeIssuerName = metadata.issuerName.toLowerCase().replace(/[^a-z0-9\-]/g, "");
+    
     return new Response(pdfBuffer, {
       headers: {
         "Content-Type": "application/pdf",
-        "Content-Disposition": `attachment; filename="${metadata.issuerName.toLowerCase().replace(/\\s+/g,'-')}-${metadata.attestationId}.pdf"`,
+        "Content-Disposition": `attachment; filename="${safeIssuerName}-${metadata.attestationId}.pdf"`,
         "Cache-Control": "no-store",
       },
     });
