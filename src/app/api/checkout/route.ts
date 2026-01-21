@@ -5,6 +5,39 @@ export const runtime = "nodejs"; // required (Stripe)
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
+/**
+ * Langues autorisées pour l’attestation
+ * (ISO 639-1 – UE + anglais)
+ */
+const ALLOWED_ATTESTATION_LOCALES = [
+  "en", // English (reference)
+  "fr", // French
+  "de", // German
+  "es", // Spanish
+  "it", // Italian
+  "pt", // Portuguese
+  "nl", // Dutch
+  "pl", // Polish
+  "cs", // Czech
+  "sk", // Slovak
+  "hu", // Hungarian
+  "ro", // Romanian
+  "bg", // Bulgarian
+  "hr", // Croatian
+  "sl", // Slovenian
+  "et", // Estonian
+  "lv", // Latvian
+  "lt", // Lithuanian
+  "mt", // Maltese
+  "el", // Greek
+  "fi", // Finnish
+  "sv", // Swedish
+  "da", // Danish
+  "ga", // Irish
+] as const;
+
+type AttestationLocale = (typeof ALLOWED_ATTESTATION_LOCALES)[number];
+
 export async function POST(req: Request) {
   try {
     const origin =
@@ -19,6 +52,7 @@ export async function POST(req: Request) {
       year,
       country,
       result, // fixed calculation result
+      attestationLocale, // ⬅️ CHOISI PAR L’UTILISATEUR
     } = body;
 
     // ─────────────────────────────────────────────
@@ -56,6 +90,16 @@ export async function POST(req: Request) {
       );
     }
 
+    if (
+      !attestationLocale ||
+      !ALLOWED_ATTESTATION_LOCALES.includes(attestationLocale)
+    ) {
+      return NextResponse.json(
+        { error: "Invalid or missing attestation language" },
+        { status: 400 }
+      );
+    }
+
     // ─────────────────────────────────────────────
     // BUSINESS CONTEXT (NON-PERSISTENT)
     // ─────────────────────────────────────────────
@@ -76,7 +120,7 @@ export async function POST(req: Request) {
         companySector: String(company.sector),
         companyId: String(company.id || ""),
 
-        // context
+        // contextual data
         year: String(year),
         country: String(country),
 
@@ -84,8 +128,11 @@ export async function POST(req: Request) {
         totalCO2e: String(result.totalCO2e),
         methodology: String(result.methodology),
 
-        // 🌍 attestation language (V1 — English only)
-        attestationLocale: "en",
+        // 🌍 attestation language (USER-SELECTED)
+        attestationLocale: attestationLocale,
+
+        // legal reference language (explicit)
+        referenceLocale: "en",
       },
 
       line_items: [
@@ -116,4 +163,4 @@ export async function POST(req: Request) {
       { status: 500 }
     );
   }
-}
+  }
