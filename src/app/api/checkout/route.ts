@@ -47,25 +47,41 @@ export async function POST(req: Request) {
 
     const body = await req.json();
 
+    /**
+     * EXPECTED PAYLOAD (FLAT — aligned with frontend)
+     * {
+     *   companyName: string
+     *   companySector: string
+     *   entityIdentifier?: string
+     *   year: string
+     *   country: string
+     *   totalCO2e: number
+     *   methodology: string
+     *   attestationLocale: AttestationLocale
+     * }
+     */
     const {
-      company,
+      companyName,
+      companySector,
+      entityIdentifier,
       year,
       country,
-      result, // fixed calculation result
-      attestationLocale, // ⬅️ CHOISI PAR L’UTILISATEUR
+      totalCO2e,
+      methodology,
+      attestationLocale,
     } = body;
 
     // ─────────────────────────────────────────────
     // VALIDATION
     // ─────────────────────────────────────────────
-    if (!company?.name) {
+    if (!companyName) {
       return NextResponse.json(
         { error: "Missing company name" },
         { status: 400 }
       );
     }
 
-    if (!company?.sector) {
+    if (!companySector) {
       return NextResponse.json(
         { error: "Missing company sector" },
         { status: 400 }
@@ -80,12 +96,13 @@ export async function POST(req: Request) {
     }
 
     if (
-      result?.totalCO2e === undefined ||
-      result?.totalCO2e === null ||
-      !result?.methodology
+      totalCO2e === undefined ||
+      totalCO2e === null ||
+      Number.isNaN(Number(totalCO2e)) ||
+      !methodology
     ) {
       return NextResponse.json(
-        { error: "Missing calculation result" },
+        { error: "Missing or invalid calculation result" },
         { status: 400 }
       );
     }
@@ -112,26 +129,24 @@ export async function POST(req: Request) {
       mode: "payment",
 
       metadata: {
-        // internal context
+        // internal
         draftId,
 
-        // entity identification (lightweight)
-        companyName: String(company.name),
-        companySector: String(company.sector),
-        companyId: String(company.id || ""),
+        // entity
+        companyName: String(companyName),
+        companySector: String(companySector),
+        entityIdentifier: String(entityIdentifier || ""),
 
-        // contextual data
+        // context
         year: String(year),
         country: String(country),
 
-        // attested result (immutable)
-        totalCO2e: String(result.totalCO2e),
-        methodology: String(result.methodology),
+        // result
+        totalCO2e: String(totalCO2e),
+        methodology: String(methodology),
 
-        // 🌍 attestation language (USER-SELECTED)
+        // language
         attestationLocale: attestationLocale,
-
-        // legal reference language (explicit)
         referenceLocale: "en",
       },
 
@@ -163,4 +178,4 @@ export async function POST(req: Request) {
       { status: 500 }
     );
   }
-  }
+}
