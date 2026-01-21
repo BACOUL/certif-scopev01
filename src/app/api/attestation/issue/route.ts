@@ -58,8 +58,8 @@ export async function GET(req: Request) {
     const issuedDate = new Date().toISOString().slice(0, 10);
 
     const canonicalPayload = {
-      issuer: "Certif-Scope",
-      standard: "CS-SB-v1",
+      issuer: "Certif-Scope" as const,
+      standard: "CS-SB-v1" as const,
       attestationId: "", // Sera écrasé lors de la signature finale
       companyName: String(metadataRaw.companyName),
       country: String(metadataRaw.country || "—"),
