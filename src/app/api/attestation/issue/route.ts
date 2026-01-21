@@ -101,8 +101,9 @@ export async function GET(req: Request) {
       validUntil: escapeHtml(String(metadataRaw.validUntil || "")),
       validityMonths: escapeHtml(String(metadataRaw.validityMonths || "12")),
       standardRef: escapeHtml(String(metadataRaw.standardRef || "Certif-Scope CS-SB-v1")),
-      // 4️⃣ INJECTER signature (Sans le hash)
+      // 4️⃣ INJECTER signature + hash (Mod 4 appliqué)
       signature: signatureResult.signatureBase64,
+      hash: signatureResult.hashHex,
       algorithm: signatureResult.algorithm,
     };
 
@@ -387,7 +388,13 @@ export async function GET(req: Request) {
           <div class="verify-title">Verification & Integrity</div>
           <div class="small">This attestation can be independently verified without access to the issuer's systems. Verification does not require access to Certif-Scope systems and remains possible even if the issuer becomes unavailable.</div>
           <div style="margin-top:8px;"><strong>Privacy by design:</strong> This attestation is generated without storage of underlying financial data. Verification relies solely on the attestation identifier and cryptographic integrity mechanisms.</div>
-          <div style="margin-top:8px;"><strong>Verification URL:</strong><br/>
+
+          <div class="small" style="margin-top:8px;">
+            The PDF document itself is the only verifiable object.
+            No online registry or database is required to verify this attestation.
+          </div>
+
+          <div style="margin-top:8px;"><strong>Verification information page:</strong><br/>
             <a href="${verifyUrl}"
                style="color:var(--accent); text-decoration:none; word-break:break-all;">
               ${verifyUrl}
@@ -398,8 +405,17 @@ export async function GET(req: Request) {
           <div class="small" style="margin-top:8px;">
             <strong>Cryptographic integrity:</strong><br/>
             Algorithm: ${metadata.algorithm}<br/>
+            Signed payload hash (SHA-256):<br/>
+            <span style="word-break:break-all;">${metadata.hash}</span><br/>
             Signature (Base64):<br/>
             <span style="word-break:break-all;">${metadata.signature}</span>
+          </div>
+
+          <div class="small" style="margin-top:8px;">
+            <strong>Public verification key (Ed25519):</strong><br/>
+            <span style="word-break:break-all;">
+              MCowBQYDK2VwAyEAbKp2pg4wmzE5Kqo9tEwv7JJjxQyT2cBmwiLLHp4cSac=
+            </span>
           </div>
 
           <div class="scope-summary" style="margin-top:12px;">
