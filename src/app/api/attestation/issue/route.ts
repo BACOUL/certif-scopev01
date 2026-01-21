@@ -44,12 +44,11 @@ export async function GET(req: Request) {
 
     const metadataRaw = session.metadata || {};
 
-    // 2️⃣ LIRE LA LANGUE CHOISIE DANS STRIPE AVEC FALLBACK PROPRE
+    // 2️⃣ LIRE LA LANGUE CHOISIE DANS STRIPE
     const locale =
       (metadataRaw.attestationLocale as AttestationLocale) ||
       DEFAULT_ATTESTATION_LOCALE;
 
-    // Sélection du dictionnaire (Fallback de sécurité sur EN)
     const i18n = ATTESTATION_I18N[locale] || ATTESTATION_I18N.en;
 
     // Required metadata keys
@@ -112,7 +111,7 @@ export async function GET(req: Request) {
       totalCO2e: escapeHtml(String(totalCO2eNum)),
       methodology: escapeHtml(String(metadataRaw.methodology || "Certif-Scope deterministic spend-based methodology v1.0")),
       issuedDate: escapeHtml(issuedDate),
-      validUntil: "", // Force le standard "validityMonths"
+      validUntil: "",
       validityMonths: escapeHtml(String(metadataRaw.validityMonths || "12")),
       standardRef: escapeHtml(String(metadataRaw.standardRef || "Certif-Scope CS-SB-v1")),
       signature: signatureResult.signatureBase64,
@@ -123,7 +122,7 @@ export async function GET(req: Request) {
     const verifyUrl = `https://certif-scope.com/verify?id=${encodeURIComponent(metadata.attestationId)}`;
     const qrDataUrl = await QRCode.toDataURL(verifyUrl, { width: 120, margin: 1 });
 
-    // HTML (V1.11 DIAMOND MASTER - OPTION A)
+    // HTML (V2.0 STRICT 2-PAGES LAYOUT)
     const html = `
 <!doctype html>
 <html lang="${locale}">
@@ -131,16 +130,16 @@ export async function GET(req: Request) {
 <meta charset="utf-8"/>
 <title>${metadata.issuerName} — Attestation</title>
 <style>
-  /* Page & margins */
+  /* Page & margins - Marges réduites pour éviter tout débordement */
   @page {
     size: A4;
-    margin: 14mm 14mm 20mm 14mm;
+    margin: 12mm 14mm 12mm 14mm; 
   }
 
   body {
     font-family: Inter, "Helvetica Neue", Arial, Helvetica, sans-serif;
-    font-size: 10.8px;
-    line-height: 1.5;
+    font-size: 10px; /* Taille légèrement réduite pour sécurité */
+    line-height: 1.4;
     margin: 0;
     color: #111;
     -webkit-font-smoothing: antialiased;
@@ -156,31 +155,17 @@ export async function GET(req: Request) {
 
   .container { padding: 0; }
 
-  /* Footer Fixe */
-  .footer-fixed {
-    position: fixed;
-    bottom: 10mm;
-    left: 14mm;
-    right: 14mm;
+  /* Footer normal (non fixe) pour éviter les sauts de page fantômes */
+  .footer-static {
+    width: 100%;
     font-size: 9px;
     color: #666;
     display: flex;
     justify-content: space-between;
     border-top: 1px solid #ddd;
     padding-top: 8px;
-  }
-
-  .page-break-safe {
-    page-break-before: always;
-    break-before: page;
-  }
-
-  /* Avoid breaks */
-  .result-box,
-  .verify-block,
-  .final-stamp {
-    page-break-inside: avoid;
-    break-inside: avoid;
+    margin-top: 20px;
+    clear: both; /* Assure que le footer est bien sous les colonnes */
   }
 
   /* Header */
@@ -189,39 +174,39 @@ export async function GET(req: Request) {
     justify-content:space-between;
     align-items:flex-start;
     border-bottom:3px solid var(--accent);
-    padding-bottom: 6px;
-    margin-bottom: 10px;
+    padding-bottom: 5px;
+    margin-bottom: 8px;
   }
 
   .issuer { max-width:68%; display:flex; flex-direction:column; justify-content:flex-start; }
   .issuer-logo {
-    height: 85px;
-    max-width: 340px;
+    height: 75px; /* Réduit */
+    max-width: 300px;
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
     object-fit: contain;
   }
-  .issuer-site { font-size:10px; color:var(--muted); margin-bottom:6px; }
-  .issuer-meta { font-size:10px; color:var(--muted); }
+  .issuer-site { font-size:9px; color:var(--muted); margin-bottom:4px; }
+  .issuer-meta { font-size:9px; color:var(--muted); }
 
   /* QR */
   .qr { text-align:center; font-size:9px; }
-  .qr img { width:100px; height:100px; border:1px solid #ddd; padding:4px; background:#fff; }
+  .qr img { width:90px; height:90px; border:1px solid #ddd; padding:4px; background:#fff; }
 
   /* Title */
   .title {
     text-align:center;
-    margin: 14px 0 14px;
+    margin: 8px 0 10px;
     font-family:var(--serif);
   }
-  .title h1 { font-size:22px; margin:0; font-weight:700; letter-spacing:0.8px; text-transform:uppercase; color:var(--accent); }
-  .title .formal-line { margin-top:6px; font-size:11px; color:#222; font-weight:600; font-family: Inter, Arial, sans-serif; }
-  .title .subtitle { margin-top:6px; font-size:10px; color:var(--muted); }
-  .title .standard-ref { margin-top:6px; font-size:10px; color:var(--accent); font-weight:600; }
+  .title h1 { font-size:20px; margin:0; font-weight:700; letter-spacing:0.8px; text-transform:uppercase; color:var(--accent); }
+  .title .formal-line { margin-top:4px; font-size:10px; color:#222; font-weight:600; font-family: Inter, Arial, sans-serif; }
+  .title .subtitle { margin-top:4px; font-size:9px; color:var(--muted); }
+  .title .standard-ref { margin-top:4px; font-size:9px; color:var(--accent); font-weight:600; }
 
   /* Result Panel */
   .result-panel {
-    margin: 4px 0 16px;
+    margin: 4px 0 14px;
     display:flex;
     justify-content:center;
   }
@@ -231,12 +216,12 @@ export async function GET(req: Request) {
     max-width:600px;
     background:#ffffff;
     border:3px solid var(--accent);
-    padding:10px 16px;
+    padding:8px 14px;
     box-shadow: 0 4px 12px rgba(11,43,74,0.06);
     text-align:center;
   }
-  .result-label { font-size:10px; font-weight:700; color:#222; margin-bottom:6px; font-family: Inter, Arial, sans-serif; text-transform: uppercase; letter-spacing: 0.5px; }
-  .result-value { font-family:var(--serif); font-size:28px; font-weight:800; color:var(--accent); margin:4px 0; letter-spacing:1px; }
+  .result-label { font-size:9px; font-weight:700; color:#222; margin-bottom:4px; font-family: Inter, Arial, sans-serif; text-transform: uppercase; letter-spacing: 0.5px; }
+  .result-value { font-family:var(--serif); font-size:26px; font-weight:800; color:var(--accent); margin:2px 0; letter-spacing:1px; }
 
   /* Layout PDF SAFE (FLOAT) */
   .two-col {
@@ -245,7 +230,7 @@ export async function GET(req: Request) {
 
   .two-col > div {
     float: left;
-    width: calc(100% - 320px);
+    width: calc(100% - 310px);
   }
 
   .two-col > aside {
@@ -261,55 +246,55 @@ export async function GET(req: Request) {
   }
 
   /* Sections */
-  section { margin-bottom: 10px; padding-right:2px; }
+  section { margin-bottom: 8px; padding-right:2px; }
 
-  .section-title { font-family:var(--serif); font-size:11.5px; margin-bottom:6px; font-weight:700; color:var(--accent); text-transform:uppercase; font-variant:small-caps; border-bottom: 1px solid #eee; padding-bottom: 2px; display: inline-block; min-width: 100%; }
+  .section-title { font-family:var(--serif); font-size:11px; margin-bottom:4px; font-weight:700; color:var(--accent); text-transform:uppercase; font-variant:small-caps; border-bottom: 1px solid #eee; padding-bottom: 2px; display: inline-block; min-width: 100%; }
 
-  .meta-list { font-size:11px; color:#222; }
+  .meta-list { font-size:10px; color:#222; }
 
   .meta-list ul {
-    margin-top: 4px;
-    margin-bottom: 4px; padding-left: 16px;
+    margin-top: 2px;
+    margin-bottom: 2px; padding-left: 14px;
   }
   .meta-list li {
-    margin-bottom: 3px;
+    margin-bottom: 2px;
   }
   .row { margin-bottom: 2px; }
 
   /* Verify blocks */
   .verify-block { 
     border:1px solid var(--border-light); 
-    padding:12px; 
+    padding:10px; 
     background: var(--bg-light);
-    font-size:10.5px;
-    margin-top:8px;
+    font-size:9.5px;
+    margin-top:6px;
     border-radius: 2px;
   }
-  .verify-title { font-weight:700; color:var(--accent); font-size:11px; margin-bottom:6px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .verify-title { font-weight:700; color:var(--accent); font-size:10px; margin-bottom:4px; text-transform: uppercase; letter-spacing: 0.5px; }
 
   /* Aside micro-block */
-  .scope-summary { margin-top:12px; border-left:3px solid var(--border-light); padding-left:12px; font-size:10.5px; color:#222; }
+  .scope-summary { margin-top:8px; border-left:3px solid var(--border-light); padding-left:10px; font-size:9.5px; color:#222; }
 
   /* Final clauses */
   .final-box {
     border-top:1px solid #ddd;
-    margin-top:14px;
-    padding-top:10px;
+    margin-top:10px;
+    padding-top:8px;
   }
   .final-stamp {
     border:1px solid #e0e0e0;
-    padding:14px;
+    padding:10px;
     font-style:italic;
     color:#222;
     background:#fff;
-    font-size:10.8px;
+    font-size:10px;
   }
 
-  .muted { color:var(--muted); font-size:10px; }
-  .small { font-size:10px; color:var(--muted); line-height: 1.4; }
+  .muted { color:var(--muted); font-size:9px; }
+  .small { font-size:9px; color:var(--muted); line-height: 1.3; }
 
   @media print {
-    .issuer-logo { height: 85px; max-width: 340px; }
+    .issuer-logo { height: 75px; max-width: 300px; }
   }
 </style>
 </head>
@@ -378,14 +363,14 @@ export async function GET(req: Request) {
         <div class="section-title" id="s4">${i18n.scopeSectionTitle}</div>
         <div class="meta-list">
           <div><strong>${i18n.scopeSectionTitle}:</strong> ${i18n.scopeText}</div>
-          <div style="margin-top:6px; font-size:10.5px; color:var(--muted);"><strong>${i18n.noteLabel}:</strong> ${i18n.scopeNote}</div>
+          <div style="margin-top:6px; font-size:10px; color:var(--muted);"><strong>${i18n.noteLabel}:</strong> ${i18n.scopeNote}</div>
         </div>
       </section>
 
       <section aria-labelledby="s5">
         <div class="section-title" id="s5">${i18n.referencesSectionTitle}</div>
         <div class="meta-list">
-          <div style="margin-bottom:6px;"><em>${i18n.normativeText}</em></div>
+          <div style="margin-bottom:4px;"><em>${i18n.normativeText}</em></div>
           <ul>
             <li>GHG Protocol – Scope 3 (spend-based)</li>
             <li>ISO 14064-1 (reference)</li>
@@ -413,7 +398,7 @@ export async function GET(req: Request) {
 
       <div class="verify-block">
         <div class="verify-title">${i18n.documentScopeSummaryTitle}</div>
-        <div style="font-size:10.5px; color:#222; margin-top:6px;">
+        <div style="font-size:9.5px; color:#222; margin-top:4px;">
           ${i18n.documentScopeSummaryText}
         </div>
       </div>
@@ -427,7 +412,14 @@ export async function GET(req: Request) {
     </aside>
   </div>
 
-  <div class="two-col clearfix" style="page-break-before: always;">
+  <div class="footer-static">
+    <div>${i18n.footerText}</div>
+    <div>${i18n.pageLabel} 1 / 2</div>
+  </div>
+
+  <div style="page-break-after: always;"></div>
+
+  <div class="two-col clearfix">
     <div>
       <section aria-labelledby="s6">
         <div class="section-title" id="s6">${i18n.declarationSectionTitle}</div>
@@ -453,24 +445,24 @@ export async function GET(req: Request) {
         <div class="verify-block">
           <div class="verify-title">${i18n.verificationBoxTitle}</div>
 
-          <div style="margin-top:8px;"><strong>${i18n.privacyLabel}:</strong> ${i18n.privacyText}</div>
+          <div style="margin-top:6px;"><strong>${i18n.privacyLabel}:</strong> ${i18n.privacyText}</div>
 
-          <div class="small" style="margin-top:8px;">
+          <div class="small" style="margin-top:6px;">
             ${i18n.pdfObjectText}
           </div>
 
-          <div style="margin-top:8px;"><strong>${i18n.verificationPageLabel}:</strong><br/>
+          <div style="margin-top:6px;"><strong>${i18n.verificationPageLabel}:</strong><br/>
             <a href="${verifyUrl}"
                style="color:var(--accent); text-decoration:none; word-break:break-all;">
               ${verifyUrl}
             </a>
           </div>
 
-          <div class="small" style="margin-top:12px; border-top:1px solid #e0e0e0; padding-top:8px;">
+          <div class="small" style="margin-top:10px; border-top:1px solid #e0e0e0; padding-top:6px;">
             <em>${i18n.technicalVerificationNote}</em>
           </div>
 
-          <div class="small" style="margin-top:8px;">
+          <div class="small" style="margin-top:6px;">
             <strong>${i18n.cryptographicIntegrityLabel}:</strong><br/>
             ${i18n.algorithmLabel}: ${metadata.algorithm}<br/>
             ${i18n.hashLabel}:<br/>
@@ -479,7 +471,7 @@ export async function GET(req: Request) {
             <span style="word-break:break-all;">${metadata.signature}</span>
           </div>
 
-          <div class="small" style="margin-top:8px;">
+          <div class="small" style="margin-top:6px;">
             <strong>${i18n.publicKeyLabel}:</strong><br/>
             <span class="small">
               ${i18n.publicKeyNote}
@@ -492,16 +484,15 @@ export async function GET(req: Request) {
         </div>
       </section>
 
-      <section aria-labelledby="s9" style="margin-top:12px;">
+      <section aria-labelledby="s9" style="margin-top:10px;">
         <div class="section-title" id="s9">${i18n.finalClausesTitle}</div>
         <div class="final-box">
           <div class="final-stamp">
             <div><strong>${i18n.issuedPursuantText}</strong></div>
-            
-            <div style="margin-top:6px;"><strong>${i18n.legalEffectLabel}:</strong> ${i18n.legalEffectText}</div>
+            <div style="margin-top:6px;"><strong>${i18n.legalEffectLabel}:</strong> ${i18n.legalEffectLabel}</div>
             
             <div style="margin-top:6px;">
-              <strong>${i18n.liabilityLabel}:</strong> ${i18n.liabilityText}
+              <strong>${i18n.liabilityLabel}:</strong> ${i18n.liabilityLabel}
             </div>
             
             <div style="margin-top:6px;">
@@ -512,8 +503,8 @@ export async function GET(req: Request) {
               ${i18n.englishPrevailsNotice}
             </div>
 
-            <div style="margin-top:8px; color:var(--muted); font-size:10px;"><strong>${i18n.noAuditText}</strong></div>
-            <div style="margin-top:8px; color:var(--muted); font-size:10px;"><em>${i18n.methodologyNote}</em></div>
+            <div style="margin-top:8px; color:var(--muted); font-size:9px;"><strong>${i18n.noAuditText}</strong></div>
+            <div style="margin-top:4px; color:var(--muted); font-size:9px;"><em>${i18n.methodologyNote}</em></div>
           </div>
         </div>
       </section>
@@ -523,9 +514,9 @@ export async function GET(req: Request) {
       </aside>
   </div>
 
-  <div class="footer-fixed">
+  <div class="footer-static">
     <div>${i18n.footerText}</div>
-    <div>${i18n.pageLabel} <span class="pageNumber"></span> / <span class="totalPages"></span></div>
+    <div>${i18n.pageLabel} 2 / 2</div>
   </div>
 
 </div>
