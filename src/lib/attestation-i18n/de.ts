@@ -1,6 +1,7 @@
 /* =========================================================
    Certif-Scope — Attestation i18n (DE)
-   Vollständige Übersetzung, strikt schlüsselgleich zu ATTESTATION_EN
+   Vollständige Übersetzung
+   STRICT 1:1 SCHLÜSSELKOHÄRENZ MIT ATTESTATION_EN
    ========================================================= */
 
 export const ATTESTATION_DE = {
@@ -69,6 +70,7 @@ export const ATTESTATION_DE = {
      SECTION 4 — SCOPE
   =============================== */
   scopeSectionTitle: "4. Geltungsbereich",
+  scopeDescriptionLabel: "Beschreibung des Geltungsbereichs",
   scopeText:
     "Diese Bescheinigung liefert eine indikative Schätzung der Treibhausgasemissionen, die ausschließlich aus aggregierten Finanzdaten mittels einer ausgabenbasierten Methodik (spend-based) abgeleitet wird.",
   noteLabel: "Hinweis",
@@ -122,8 +124,10 @@ export const ATTESTATION_DE = {
   methodologySectionTitle: "7. Methodik und Einschränkungen",
   methodologyLabel:
     "Deterministische ausgabenbasierte Methodik unter Verwendung aggregierter Finanzdaten.",
+  limitationsLabel: "Einschränkungen",
   limitationsText:
     "Keine physischen Aktivitätsdaten. Keine Scope-1- oder Scope-2-Emissionen. Ausschließlich indikatives Modell.",
+  transferabilityLabel: "Übertragbarkeit",
   transferabilityText: "Nicht übertragbar.",
 
   /* ===============================
@@ -132,8 +136,7 @@ export const ATTESTATION_DE = {
   verificationSectionTitle: "8. Verifizierung und Integrität",
   verificationBoxTitle: "Verifizierung und Integrität",
 
-  privacyLabel:
-    "Datenschutz durch Technikgestaltung (Privacy by Design)",
+  privacyLabel: "Datenschutz durch Technikgestaltung (Privacy by Design)",
   privacyText:
     "Diese Bescheinigung wird ohne Speicherung zugrunde liegender Finanzdaten durch Certif-Scope erzeugt.",
 
