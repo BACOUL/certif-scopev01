@@ -1,6 +1,6 @@
 /* =========================================================
    Certif-Scope — Attestation i18n (FR)
-   Traduction complète alignée strictement sur ATTESTATION_EN
+   Traduction CANONIQUE — alignement strict sur ATTESTATION_EN
    ========================================================= */
 
 export const ATTESTATION_FR = {
@@ -39,13 +39,10 @@ export const ATTESTATION_FR = {
   issuerSectionTitle: "1. Identification de l’émetteur",
   issuerLabel: "Émetteur",
   websiteLabel: "Site web",
-  attestationIdLabel: "Référence de l’attestation",
   attestationReferenceLabel: "Référence de l’attestation",
   issuedDateLabel: "Date d’émission",
-  validityLabel: "Période de validité",
   validityPeriodLabel: "Période de validité",
   validUntilLabel: "Valable jusqu’au",
-  uniqueDocumentIdNote: "Identifiant unique du document",
   uniqueIdentifierLabel: "Identifiant unique du document",
   monthsLabel: "mois",
 
@@ -61,13 +58,9 @@ export const ATTESTATION_FR = {
   =============================== */
   entitySectionTitle: "3. Identification de l’entité",
   entityNameLabel: "Nom de l’entité",
-  sectorLabel: "Secteur d’activité",
   activitySectorLabel: "Secteur d’activité",
-  identifierLabel: "Identifiant de l’entité",
-  identifierOptionalLabel: "Identifiant de l’entité (optionnel)",
   entityIdentifierLabel: "Identifiant de l’entité",
   countryLabel: "Pays",
-  yearLabel: "Année de référence",
   reportingYearLabel: "Année de référence",
 
   /* ===============================
@@ -76,44 +69,35 @@ export const ATTESTATION_FR = {
   scopeSectionTitle: "4. Périmètre",
   scopeText:
     "Cette attestation fournit une estimation indicative des émissions de gaz à effet de serre, dérivée exclusivement de données de dépenses agrégées, selon une méthodologie basée sur les dépenses (spend-based).",
+  noteLabel: "Note",
   scopeNote:
     "Ce document ne constitue ni un inventaire de gaz à effet de serre, ni un audit, ni une vérification, ni une déclaration réglementaire au sens de la CSRD, des ESRS ou de tout cadre équivalent.",
-  noteLabel: "Note",
 
   /* ===============================
      SECTION 5 — REFERENCES
   =============================== */
   referencesSectionTitle: "5. Références normatives",
-  referencesIntro:
-    "Les normes et cadres suivants sont mentionnés à titre d’alignement méthodologique et de cohérence contextuelle :",
   normativeText:
     "Les normes et cadres suivants sont mentionnés à titre d’alignement méthodologique et de cohérence contextuelle :",
+  referencesList: [
+    "GHG Protocol – Scope 3 (spend-based)",
+    "ISO 14064-1 (référence)",
+    "ISO 14083 (référence)",
+    "CSRD / ESRS / Taxonomie européenne (contexte)",
+  ],
 
   /* ===============================
-     ASIDE — SUMMARY / NATURE
+     ASIDE — AUTHENTICITY & SUMMARY
   =============================== */
-  authenticityTitle: "Authenticité",
-  authenticityText:
-    "Cette attestation est signée cryptographiquement et peut être vérifiée de manière indépendante, sans accès aux systèmes de Certif-Scope.",
   authenticityOverviewTitle: "Aperçu de l’authenticité",
   authenticityOverviewText:
     "Cette attestation est signée cryptographiquement et peut être vérifiée de manière indépendante, sans accès aux systèmes de Certif-Scope.",
-
-  natureTitle: "Nature du document",
-  natureText:
-    "Déclaration indicative, non réglementaire, fondée sur une méthodologie.",
 
   natureOfAttestationTitle: "Nature de l’attestation",
   natureOfAttestationText:
     "Ce document est une attestation indicative d’émissions de carbone émise selon une méthodologie déterministe standardisée. Il ne constitue ni une déclaration réglementaire ni un rapport d’audit.",
 
-  summaryTitle: "Résumé du périmètre",
-  summaryItems:
-    "Estimation indicative · Méthodologie basée sur les dépenses · Résultat agrégé uniquement",
-
   documentScopeSummaryTitle: "Résumé du périmètre du document",
-  documentScopeSummaryItems:
-    "Estimation indicative · Méthodologie basée sur les dépenses · Résultat agrégé uniquement",
   documentScopeSummaryText:
     "Estimation indicative · Méthodologie basée sur les dépenses · Résultat agrégé uniquement",
 
@@ -136,54 +120,34 @@ export const ATTESTATION_FR = {
   methodologySectionTitle: "7. Méthodologie et limites",
   methodologyLabel:
     "Méthodologie déterministe basée sur les dépenses, utilisant des données de dépenses agrégées.",
-  limitationsLabel:
-    "Aucune donnée d’activité physique. Aucune émission de Scope 1 ou de Scope 2. Modèle strictement indicatif.",
   limitationsText:
     "Aucune donnée d’activité physique. Aucune émission de Scope 1 ou de Scope 2. Modèle strictement indicatif.",
-  transferabilityLabel: "Document non transférable.",
   transferabilityText: "Non transférable.",
 
   /* ===============================
      SECTION 8 — VERIFICATION
   =============================== */
   verificationSectionTitle: "8. Vérification et intégrité",
-  verificationBlockTitle: "Vérification et intégrité",
   verificationBoxTitle: "Vérification et intégrité",
-  verificationIntro:
-    "Cette attestation est générée sans conservation des données financières sous-jacentes par Certif-Scope.",
-  verificationNote:
-    "Le document PDF constitue l’unique objet vérifiable.",
 
-  privacyByDesignLabel: "Protection de la vie privée dès la conception",
   privacyLabel: "Protection de la vie privée dès la conception",
-  privacyByDesignText:
-    "Cette attestation est générée sans conservation des données financières sous-jacentes par Certif-Scope. La vérification repose uniquement sur l’identifiant de l’attestation et des mécanismes d’intégrité cryptographique.",
   privacyText:
     "Cette attestation est générée sans conservation des données financières sous-jacentes par Certif-Scope.",
 
-  pdfIsSoleObjectText:
-    "Le document PDF constitue l’unique objet vérifiable.",
   pdfObjectText:
     "Le document PDF constitue l’unique objet vérifiable.",
 
-  verificationLinkLabel: "Page d’information de vérification",
-  verificationInformationPageLabel: "Page d’information de vérification",
   verificationPageLabel: "Page d’information de vérification",
 
   technicalVerificationNote:
     "Les éléments suivants permettent une vérification technique indépendante. Aucune action n’est requise de la part du lecteur.",
 
-  cryptographicLabel: "Intégrité cryptographique",
-  cryptographicIntegrityDetailsLabel: "Intégrité cryptographique",
   cryptographicIntegrityLabel: "Intégrité cryptographique",
-
   algorithmLabel: "Algorithme",
   hashLabel: "Empreinte du contenu signé (SHA-256)",
   signatureLabel: "Signature (Base64)",
 
   publicKeyLabel: "Clé publique de vérification de l’émetteur",
-  publicKeyExplanationText:
-    "Cette clé publique permet à tout tiers de vérifier de manière indépendante l’authenticité et l’intégrité de ce document.",
   publicKeyNote:
     "Cette clé publique permet à tout tiers de vérifier de manière indépendante l’authenticité et l’intégrité de ce document.",
 
@@ -193,22 +157,21 @@ export const ATTESTATION_FR = {
   finalClausesTitle: "9. Clauses finales et responsabilité",
   issuedPursuantText:
     "Émise conformément au standard interne Certif-Scope CS-SB-v1.",
-  legalEffectLabel:
-    "Ce document n’a aucun effet réglementaire ou juridique et est fourni exclusivement à titre informatif.",
+
+  legalEffectLabel: "Effet juridique",
   legalEffectText:
     "Ce document n’a aucun effet réglementaire ou juridique et est fourni exclusivement à titre informatif.",
-  liabilityLabel:
-    "Les résultats sont exclusivement dérivés des données fournies par l’entité, sous sa seule responsabilité.",
+
+  liabilityLabel: "Responsabilité",
   liabilityText:
     "Les résultats sont exclusivement dérivés des données fournies par l’entité, sous sa seule responsabilité.",
-  validityExplanationLabel:
+
+  validityText:
     "La période de validité reflète la pertinence temporelle des données et de la méthodologie sous-jacentes.",
-  noAuditNotice:
-    "Certif-Scope ne réalise aucune mission d’audit, de validation, de vérification ou d’assurance.",
+
   noAuditText:
     "Certif-Scope ne réalise aucune mission d’audit, de validation, de vérification ou d’assurance.",
-  internalStandardNotice:
-    "CS-SB-v1 est une méthodologie standardisée interne maintenue par Certif-Scope.",
+
   methodologyNote:
     "CS-SB-v1 est une méthodologie standardisée interne maintenue par Certif-Scope.",
 
