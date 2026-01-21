@@ -115,7 +115,7 @@ export async function GET(req: Request) {
     const verifyUrl = `https://certif-scope.com/verify?id=${encodeURIComponent(metadata.attestationId)}`;
     const qrDataUrl = await QRCode.toDataURL(verifyUrl, { width: 120, margin: 1 });
 
-    // HTML (V1.14 DIAMOND MASTER - SAFE I18N KEYS)
+    // HTML (V1.16 FINAL STABLE)
     const html = `
 <!doctype html>
 <html lang="${locale}">
@@ -393,8 +393,8 @@ export async function GET(req: Request) {
         <div class="meta-list">
           <ul>
             <li><strong>${i18n.methodologyLabel}:</strong> ${metadata.methodology}</li>
-            <li><strong>${i18n.limitationsLabel}:</strong> ${i18n.limitationsText}</li>
-            <li><strong>${i18n.transferabilityLabel}:</strong> ${i18n.transferabilityText}</li>
+            <li>${i18n.limitationsText}</li>
+            <li>${i18n.transferabilityText}</li>
           </ul>
         </div>
       </section>
