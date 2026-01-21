@@ -67,6 +67,7 @@ export const ATTESTATION_EN = {
      SECTION 4 — SCOPE
   =============================== */
   scopeSectionTitle: "4. Scope",
+  scopeDescriptionLabel: "Scope description",
   scopeText:
     "This attestation provides an indicative estimation of greenhouse gas emissions derived exclusively from aggregated expenditure data using a spend-based methodology.",
   noteLabel: "Note",
@@ -119,8 +120,6 @@ export const ATTESTATION_EN = {
   =============================== */
   methodologySectionTitle: "7. Methodology and limitations",
   methodologyLabel: "Methodology",
-  methodologyText:
-    "Deterministic spend-based methodology using aggregated expenditure data.",
   limitationsLabel: "Limitations",
   limitationsText:
     "No physical activity data. No Scope 1 or Scope 2 emissions. Indicative model only.",
@@ -168,10 +167,6 @@ export const ATTESTATION_EN = {
   liabilityLabel: "Liability",
   liabilityText:
     "The results are derived exclusively from data provided by the entity, under its sole responsibility.",
-
-  validityExplanationLabel: "Validity",
-  validityText:
-    "The validity period reflects the temporal relevance of the underlying data and methodology.",
 
   noAuditText:
     "Certif-Scope does not perform audit, validation, verification, or assurance services.",
