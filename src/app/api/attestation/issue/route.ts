@@ -115,7 +115,7 @@ export async function GET(req: Request) {
     const verifyUrl = `https://certif-scope.com/verify?id=${encodeURIComponent(metadata.attestationId)}`;
     const qrDataUrl = await QRCode.toDataURL(verifyUrl, { width: 120, margin: 1 });
 
-    // HTML (V1.16 FINAL STABLE)
+    // HTML (V2.0 STRICT 2-PAGES & I18N FIXED)
     const html = `
 <!doctype html>
 <html lang="${locale}">
@@ -123,7 +123,9 @@ export async function GET(req: Request) {
 <meta charset="utf-8"/>
 <title>${metadata.issuerName} — Attestation</title>
 <style>
-  /* Layout: 2 pages strictes */
+  /* LAYOUT 2 PAGES STRICT 
+     Marges réduites pour éviter le débordement qui crée des pages fantômes
+  */
   @page {
     size: A4;
     margin: 12mm 14mm 12mm 14mm; 
@@ -148,7 +150,7 @@ export async function GET(req: Request) {
 
   .container { padding: 0; }
 
-  /* Footer Flow (Non-Fixed) */
+  /* Footer Statique (Flux normal) - Remplace le footer fixed */
   .footer-static {
     width: 100%;
     font-size: 9px;
@@ -157,7 +159,7 @@ export async function GET(req: Request) {
     justify-content: space-between;
     border-top: 1px solid #ddd;
     padding-top: 8px;
-    margin-top: 20px;
+    margin-top: 15px;
     clear: both;
   }
 
@@ -321,7 +323,7 @@ export async function GET(req: Request) {
       <section aria-labelledby="s4">
         <div class="section-title" id="s4">${i18n.scopeSectionTitle}</div>
         <div class="meta-list">
-          <div><strong>${i18n.scopeSectionTitle}:</strong> ${i18n.scopeText}</div>
+          <div><strong>${i18n.scopeDescriptionLabel}:</strong> ${i18n.scopeText}</div>
           <div style="margin-top:6px; font-size:10px; color:var(--muted);"><strong>${i18n.noteLabel}:</strong> ${i18n.scopeNote}</div>
         </div>
       </section>
@@ -331,10 +333,7 @@ export async function GET(req: Request) {
         <div class="meta-list">
           <div style="margin-bottom:4px;"><em>${i18n.normativeText}</em></div>
           <ul>
-            <li>GHG Protocol – Scope 3 (spend-based)</li>
-            <li>ISO 14064-1 (reference)</li>
-            <li>ISO 14083 (reference)</li>
-            <li>CSRD / ESRS / EU Taxonomy (context)</li>
+            ${i18n.referencesList.map((ref: string) => `<li>${ref}</li>`).join("")}
           </ul>
         </div>
       </section>
@@ -377,7 +376,7 @@ export async function GET(req: Request) {
   </div>
 
   <div style="page-break-after: always;"></div>
-  
+
   <div class="two-col clearfix">
     <div>
       <section aria-labelledby="s6">
@@ -393,8 +392,8 @@ export async function GET(req: Request) {
         <div class="meta-list">
           <ul>
             <li><strong>${i18n.methodologyLabel}:</strong> ${metadata.methodology}</li>
-            <li>${i18n.limitationsText}</li>
-            <li>${i18n.transferabilityText}</li>
+            <li><strong>${i18n.limitationsLabel}:</strong> ${i18n.limitationsText}</li>
+            <li><strong>${i18n.transferabilityLabel}:</strong> ${i18n.transferabilityText}</li>
           </ul>
         </div>
       </section>
