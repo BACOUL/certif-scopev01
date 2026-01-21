@@ -4,6 +4,7 @@ import { useState } from "react";
 
 /* ======================================================
    CERTIF-SCOPE — CALCULATION MODEL (CLIENT-SIDE)
+   UPDATED — i18n aligned with EN / FR / DE
 ====================================================== */
 
 // kgCO₂e / €
@@ -18,13 +19,13 @@ const EMISSION_FACTORS = {
 } as const;
 
 const METHODOLOGY =
-  "Certif-Scope deterministic spend-based model v1.0";
+  "Certif-Scope deterministic spend-based methodology v1.0";
 
 /* ======================================================
    TYPES
 ====================================================== */
 
-type AttestationLocale = "en" | "fr";
+type AttestationLocale = "en" | "fr" | "de";
 
 /* ======================================================
    SECTORS (DECLARATIVE)
@@ -137,19 +138,26 @@ export default function AssessmentForm() {
       return;
     }
 
+    /**
+     * Payload STRICTLY aligned with API / Stripe metadata:
+     * - companyName
+     * - companySector
+     * - entityIdentifier
+     * - year
+     * - country
+     * - totalCO2e
+     * - methodology
+     * - attestationLocale
+     */
     const payload = {
-      company: {
-        name: companyName,
-        id: companyId || null,
-        sector,
-      },
-      year,
+      companyName,
+      companySector: sector,
+      entityIdentifier: companyId || "",
+      year: String(year),
       country,
+      totalCO2e,
+      methodology: METHODOLOGY,
       attestationLocale,
-      result: {
-        totalCO2e,
-        methodology: METHODOLOGY,
-      },
     };
 
     const res = await fetch("/api/checkout", {
@@ -273,6 +281,7 @@ export default function AssessmentForm() {
               >
                 <option value="en">English (legal reference)</option>
                 <option value="fr">Français</option>
+                <option value="de">Deutsch</option>
               </select>
               <p className="text-xs text-gray-500 mt-1">
                 The English version remains the legal reference in case of discrepancy.
@@ -347,4 +356,4 @@ function Input({
       <p className="text-xs text-gray-500 mt-1">{hint}</p>
     </div>
   );
-           }
+}
