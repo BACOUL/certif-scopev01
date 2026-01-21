@@ -40,11 +40,14 @@ export const ATTESTATION_EN = {
   issuerLabel: "Issuer",
   websiteLabel: "Website",
   attestationIdLabel: "Attestation reference",
+  attestationReferenceLabel: "Attestation reference",
   issuedDateLabel: "Issued date",
   validityLabel: "Validity period",
   validityPeriodLabel: "Validity period",
   validUntilLabel: "Valid until",
   uniqueDocumentIdNote: "Unique document identifier",
+  uniqueIdentifierLabel: "Unique document identifier",
+  monthsLabel: "months",
 
   /* ===============================
      SECTION 2 — DOCUMENT NATURE
@@ -59,10 +62,13 @@ export const ATTESTATION_EN = {
   entitySectionTitle: "3. Identification of the entity",
   entityNameLabel: "Entity name",
   sectorLabel: "Activity sector",
+  activitySectorLabel: "Activity sector",
   identifierLabel: "Entity identifier",
   identifierOptionalLabel: "Entity identifier (optional)",
+  entityIdentifierLabel: "Entity identifier",
   countryLabel: "Country",
   yearLabel: "Reporting year",
+  reportingYearLabel: "Reporting year",
 
   /* ===============================
      SECTION 4 — SCOPE
@@ -72,12 +78,15 @@ export const ATTESTATION_EN = {
     "This attestation provides an indicative estimation of greenhouse gas emissions derived exclusively from aggregated expenditure data using a spend-based methodology.",
   scopeNote:
     "This document does not constitute a greenhouse gas inventory, audit, verification, or regulatory disclosure under CSRD, ESRS, or equivalent frameworks.",
+  noteLabel: "Note",
 
   /* ===============================
      SECTION 5 — REFERENCES
   =============================== */
   referencesSectionTitle: "5. Normative references",
   referencesIntro:
+    "The following standards and frameworks are referenced for methodological alignment and contextual consistency:",
+  normativeText:
     "The following standards and frameworks are referenced for methodological alignment and contextual consistency:",
 
   /* ===============================
@@ -86,8 +95,9 @@ export const ATTESTATION_EN = {
   authenticityTitle: "Authenticity",
   authenticityText:
     "This attestation is cryptographically signed and can be verified independently without access to Certif-Scope systems.",
-
   authenticityOverviewTitle: "Authenticity overview",
+  authenticityOverviewText:
+    "This attestation is cryptographically signed and can be verified independently without access to Certif-Scope systems.",
 
   natureTitle: "Document nature",
   natureText:
@@ -103,6 +113,8 @@ export const ATTESTATION_EN = {
 
   documentScopeSummaryTitle: "Document scope summary",
   documentScopeSummaryItems:
+    "Indicative estimation · Spend-based methodology · Aggregated result only",
+  documentScopeSummaryText:
     "Indicative estimation · Spend-based methodology · Aggregated result only",
 
   documentValidityTitle: "Document validity",
@@ -126,48 +138,78 @@ export const ATTESTATION_EN = {
     "Deterministic spend-based methodology using aggregated expenditure data.",
   limitationsLabel:
     "No physical activity data. No Scope 1 or Scope 2 emissions. Indicative model only.",
+  limitationsText:
+    "No physical activity data. No Scope 1 or Scope 2 emissions. Indicative model only.",
   transferabilityLabel: "This document is non-transferable.",
+  transferabilityText: "Non-transferable.",
 
   /* ===============================
      SECTION 8 — VERIFICATION
   =============================== */
   verificationSectionTitle: "8. Verification and integrity",
-  verificationBlockTitle: "Verification & Integrity",
+  verificationBlockTitle: "Verification & integrity",
+  verificationBoxTitle: "Verification & integrity",
   verificationIntro:
     "This attestation is generated without storage of underlying financial data by Certif-Scope.",
   verificationNote:
     "The PDF document itself is the sole verifiable object.",
 
   privacyByDesignLabel: "Privacy by design",
+  privacyLabel: "Privacy by design",
   privacyByDesignText:
     "This attestation is generated without storage of underlying financial data by Certif-Scope. Verification relies solely on the attestation identifier and cryptographic integrity mechanisms.",
+  privacyText:
+    "This attestation is generated without storage of underlying financial data by Certif-Scope.",
 
   pdfIsSoleObjectText:
+    "The PDF document itself is the only verifiable object.",
+  pdfObjectText:
     "The PDF document itself is the only verifiable object.",
 
   verificationLinkLabel: "Verification information page",
   verificationInformationPageLabel: "Verification information page",
+  verificationPageLabel: "Verification information page",
+
+  technicalVerificationNote:
+    "The following elements allow independent technical verification. No action is required from the reader.",
 
   cryptographicLabel: "Cryptographic integrity",
   cryptographicIntegrityDetailsLabel: "Cryptographic integrity",
+  cryptographicIntegrityLabel: "Cryptographic integrity",
+
+  algorithmLabel: "Algorithm",
+  hashLabel: "Signed payload hash (SHA-256)",
+  signatureLabel: "Signature (Base64)",
 
   publicKeyLabel: "Issuer public verification key",
   publicKeyExplanationText:
+    "This public key allows any third party to verify the authenticity and integrity of this document independently.",
+  publicKeyNote:
     "This public key allows any third party to verify the authenticity and integrity of this document independently.",
 
   /* ===============================
      SECTION 9 — FINAL CLAUSES
   =============================== */
   finalClausesTitle: "9. Final clauses and liability",
+  issuedPursuantText:
+    "Issued pursuant to the Certif-Scope internal standard CS-SB-v1.",
   legalEffectLabel:
     "This document has no regulatory or legal effect and is provided for informational purposes only.",
+  legalEffectText:
+    "This document has no regulatory or legal effect and is provided for informational purposes only.",
   liabilityLabel:
+    "The results are derived exclusively from data provided by the entity, under its sole responsibility.",
+  liabilityText:
     "The results are derived exclusively from data provided by the entity, under its sole responsibility.",
   validityExplanationLabel:
     "The validity period reflects the temporal relevance of the underlying data and methodology.",
   noAuditNotice:
     "Certif-Scope does not perform audit, validation, verification, or assurance services.",
+  noAuditText:
+    "Certif-Scope does not perform audit, validation, verification, or assurance services.",
   internalStandardNotice:
+    "CS-SB-v1 is an internal standardized methodology maintained by Certif-Scope.",
+  methodologyNote:
     "CS-SB-v1 is an internal standardized methodology maintained by Certif-Scope.",
 
   /* ===============================
