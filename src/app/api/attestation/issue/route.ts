@@ -91,7 +91,7 @@ export async function GET(req: Request) {
       attestationId,
     });
 
-    // 4️⃣ METADATA DYNAMIQUE (Données brutes uniquement)
+    // 4️⃣ METADATA DYNAMIQUE
     const metadata = {
       attestationId: attestationId,
       issuerName: escapeHtml(String(metadataRaw.issuerName || "Certif-Scope")),
@@ -115,7 +115,7 @@ export async function GET(req: Request) {
     const verifyUrl = `https://certif-scope.com/verify?id=${encodeURIComponent(metadata.attestationId)}`;
     const qrDataUrl = await QRCode.toDataURL(verifyUrl, { width: 120, margin: 1 });
 
-    // HTML (V1.12 FULL I18N STRICT)
+    // HTML (V1.13 FINAL PATCHED)
     const html = `
 <!doctype html>
 <html lang="${locale}">
@@ -331,7 +331,10 @@ export async function GET(req: Request) {
         <div class="meta-list">
           <div style="margin-bottom:4px;"><em>${i18n.normativeText}</em></div>
           <ul>
-            ${i18n.referencesList.map((ref: string) => `<li>${ref}</li>`).join("")}
+            <li>GHG Protocol – Scope 3 (spend-based)</li>
+            <li>ISO 14064-1 (reference)</li>
+            <li>ISO 14083 (reference)</li>
+            <li>CSRD / ESRS / EU Taxonomy (context)</li>
           </ul>
         </div>
       </section>
@@ -340,22 +343,30 @@ export async function GET(req: Request) {
     <aside>
       <div class="verify-block" style="margin-top:0;">
         <div class="verify-title">${i18n.authenticityOverviewTitle}</div>
-        <div class="small">${i18n.authenticityOverviewText}</div>
+        <div class="small">
+          ${i18n.authenticityOverviewText}
+        </div>
       </div>
 
       <div class="verify-block">
         <div class="verify-title">${i18n.natureOfAttestationTitle}</div>
-        <div class="small">${i18n.natureOfAttestationText}</div>
+        <div class="small">
+          ${i18n.natureOfAttestationText}
+        </div>
       </div>
 
       <div class="verify-block">
         <div class="verify-title">${i18n.documentScopeSummaryTitle}</div>
-        <div style="font-size:9.5px; color:#222; margin-top:4px;">${i18n.documentScopeSummaryText}</div>
+        <div style="font-size:9.5px; color:#222; margin-top:4px;">
+          ${i18n.documentScopeSummaryText}
+        </div>
       </div>
 
       <div class="verify-block">
         <div class="verify-title">${i18n.documentValidityTitle}</div>
-        <div class="small">${i18n.documentValidityText}</div>
+        <div class="small">
+          ${i18n.documentValidityText}
+        </div>
       </div>
     </aside>
   </div>
@@ -445,7 +456,7 @@ export async function GET(req: Request) {
             </div>
             
             <div style="margin-top:6px;">
-              <strong>${i18n.validityLabel}:</strong> ${i18n.validityText}
+              <strong>${i18n.validityLabel}:</strong> ${i18n.validityExplanationLabel}
             </div>
 
             <div class="small" style="margin-top:8px; font-weight:bold;">
