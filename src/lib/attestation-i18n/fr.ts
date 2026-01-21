@@ -1,6 +1,6 @@
 /* =========================================================
    Certif-Scope — Attestation i18n (FR)
-   Traduction complète alignée sur EN
+   Traduction complète alignée sur ATTESTATION_EN
    ========================================================= */
 
 export const ATTESTATION_FR = {
@@ -16,16 +16,14 @@ export const ATTESTATION_FR = {
   /* ===============================
      HEADER / GLOBAL UI
   =============================== */
-  headerTagline:
-    "Émission automatisée · Attestation indicative standardisée",
+  headerTagline: "Émission automatisée · Attestation indicative standardisée",
   scanToVerifyLabel: "Scanner pour vérifier",
 
   /* ===============================
      TITLE
   =============================== */
   title: "Attestation indicative d’émissions de carbone",
-  subtitle:
-    "Attestation indicative · Fondée sur une méthodologie · Non réglementaire",
+  subtitle: "Non réglementaire · Fondée sur une méthodologie · Attestation indicative",
   standardReference:
     "Émise conformément à la méthodologie standardisée Certif-Scope CS-SB-v1",
   standardReferenceLabel: "Référence du standard",
@@ -45,7 +43,7 @@ export const ATTESTATION_FR = {
   issuedDateLabel: "Date d’émission",
   validityLabel: "Période de validité",
   validityPeriodLabel: "Période de validité",
-  validUntilLabel: "Valide jusqu’au",
+  validUntilLabel: "Valable jusqu’au",
   uniqueDocumentIdNote: "Identifiant unique du document",
 
   /* ===============================
@@ -71,7 +69,7 @@ export const ATTESTATION_FR = {
   =============================== */
   scopeSectionTitle: "4. Périmètre",
   scopeText:
-    "Cette attestation fournit une estimation indicative des émissions de gaz à effet de serre, dérivée exclusivement de données de dépenses agrégées, selon une méthodologie fondée sur les dépenses (spend-based).",
+    "Cette attestation fournit une estimation indicative des émissions de gaz à effet de serre, dérivée exclusivement de données de dépenses agrégées, selon une méthodologie basée sur les dépenses (spend-based).",
   scopeNote:
     "Ce document ne constitue ni un inventaire de gaz à effet de serre, ni un audit, ni une vérification, ni une déclaration réglementaire au sens de la CSRD, des ESRS ou de tout cadre équivalent.",
 
@@ -93,7 +91,7 @@ export const ATTESTATION_FR = {
 
   natureTitle: "Nature du document",
   natureText:
-    "Attestation indicative, non réglementaire, fondée sur une méthodologie.",
+    "Déclaration indicative, non réglementaire, fondée sur une méthodologie.",
 
   natureOfAttestationTitle: "Nature de l’attestation",
   natureOfAttestationText:
@@ -101,15 +99,15 @@ export const ATTESTATION_FR = {
 
   summaryTitle: "Résumé du périmètre",
   summaryItems:
-    "Estimation indicative · Méthodologie fondée sur les dépenses · Résultat agrégé uniquement",
+    "Estimation indicative · Méthodologie basée sur les dépenses · Résultat agrégé uniquement",
 
   documentScopeSummaryTitle: "Résumé du périmètre du document",
   documentScopeSummaryItems:
-    "Estimation indicative · Méthodologie fondée sur les dépenses · Résultat agrégé uniquement",
+    "Estimation indicative · Méthodologie basée sur les dépenses · Résultat agrégé uniquement",
 
   documentValidityTitle: "Validité du document",
   documentValidityText:
-    "Cette attestation est valable pour une période fixe reflétant la pertinence temporelle des données et de la méthodologie sous-jacentes.",
+    "Cette attestation est valable pour une période fixe, reflétant la pertinence temporelle des données et de la méthodologie sous-jacentes.",
 
   /* ===============================
      SECTION 6 — DECLARATION
@@ -125,7 +123,7 @@ export const ATTESTATION_FR = {
   =============================== */
   methodologySectionTitle: "7. Méthodologie et limites",
   methodologyLabel:
-    "Méthodologie déterministe fondée sur les dépenses, utilisant des données de dépenses agrégées.",
+    "Méthodologie déterministe basée sur les dépenses, utilisant des données de dépenses agrégées.",
   limitationsLabel:
     "Aucune donnée d’activité physique. Aucune émission de Scope 1 ou de Scope 2. Modèle strictement indicatif.",
   transferabilityLabel: "Ce document est non transférable.",
@@ -140,7 +138,7 @@ export const ATTESTATION_FR = {
   verificationNote:
     "Le document PDF constitue l’unique objet vérifiable.",
 
-  privacyByDesignLabel: "Protection des données par conception",
+  privacyByDesignLabel: "Protection de la vie privée dès la conception",
   privacyByDesignText:
     "Cette attestation est générée sans conservation des données financières sous-jacentes par Certif-Scope. La vérification repose uniquement sur l’identifiant de l’attestation et des mécanismes d’intégrité cryptographique.",
 
@@ -151,7 +149,7 @@ export const ATTESTATION_FR = {
   verificationInformationPageLabel: "Page d’information de vérification",
 
   cryptographicLabel: "Intégrité cryptographique",
-  cryptographicIntegrityDetailsLabel: "Détails d’intégrité cryptographique",
+  cryptographicIntegrityDetailsLabel: "Intégrité cryptographique",
 
   publicKeyLabel: "Clé publique de vérification de l’émetteur",
   publicKeyExplanationText:
