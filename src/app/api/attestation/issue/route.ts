@@ -193,13 +193,18 @@ export async function GET(req: Request) {
   .title .subtitle { margin-top:6px; font-size:10px; color:var(--muted); }
   .title .standard-ref { margin-top:6px; font-size:10px; color:var(--accent); font-weight:600; }
 
-  /* ✅ FIX 1 : Layout plus dense (.two-col) */
+  /* Layout */
   .two-col {
     display:grid;
-    grid-template-columns: 1fr 280px; /* Reduced right col width */
-    gap:14px; /* Reduced gap */
+    grid-template-columns: 1fr 280px;
+    gap:14px;
     align-items:start;
     margin-top:6px;
+  }
+  
+  /* ✅ FIX 1 : Remontée visuelle SAFE pour PDFShift (-6px) */
+  aside {
+    margin-top: -6px;
   }
 
   /* Sections spacing */
@@ -225,21 +230,27 @@ export async function GET(req: Request) {
     justify-content:center;
   }
   
-  /* Result box & value compactés */
+  /* Result box */
   .result-box {
     width:100%;
-    max-width:640px;
+    max-width:560px;
     background:#ffffff;
     border:3px solid var(--accent);
-    padding:6px 12px;
+    padding:6px 10px;
     box-shadow: 0 6px 18px rgba(11,43,74,0.08);
     text-align:center;
   }
   .result-label { font-size:10px; font-weight:700; color:#222; margin-bottom:6px; font-family: Inter, Arial, sans-serif; }
-  .result-value { font-family:var(--serif); font-size:26px; font-weight:800; color:var(--accent); margin:4px 0; letter-spacing:1px; }
+  .result-value { font-family:var(--serif); font-size:24px; font-weight:800; color:var(--accent); margin:4px 0; letter-spacing:1px; }
 
-  /* Verification block */
-  .verify-block { border:1px solid #d9d9d9; padding:10px; background:#f7f9fb; font-size:10.5px; margin-top:8px; }
+  /* Verify blocks */
+  .verify-block { 
+    border:1px solid #d9d9d9; 
+    padding:10px; 
+    background:#f7f9fb; 
+    font-size:10.2px;
+    margin-top:6px;
+  }
   .verify-title { font-weight:700; color:var(--accent); font-size:11px; margin-bottom:6px; }
 
   /* Aside micro-block (scope summary) */
@@ -377,9 +388,8 @@ export async function GET(req: Request) {
         <div style="font-size:10.5px; color:#222; margin-top:6px;">
           – Indicative estimation<br/>
           – Spend-based methodology<br/>
-          – Aggregated result only<br/>
-          – Validity: ${metadata.validityMonths} months
-        </div>
+          – Aggregated result only
+          </div>
       </div>
     </aside>
   </div>
@@ -495,37 +505,3 @@ export async function GET(req: Request) {
 </div>
 </body>
 </html>
-`;
-
-    // Convert to PDF via PDFShift
-    const pdfResponse = await fetch("https://api.pdfshift.io/v3/convert/pdf", {
-      method: "POST",
-      headers: {
-        "X-API-Key": process.env.PDFSHIFT_API_KEY!,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        source: html,
-        format: "A4",
-        use_print: true,
-      }),
-    });
-
-    if (!pdfResponse.ok) {
-      const error = await pdfResponse.text();
-      return new Response(error, { status: pdfResponse.status });
-    }
-
-    const pdfBuffer = Buffer.from(await pdfResponse.arrayBuffer());
-    return new Response(pdfBuffer, {
-      headers: {
-        "Content-Type": "application/pdf",
-        "Content-Disposition": `attachment; filename="${metadata.issuerName.toLowerCase().replace(/\\s+/g,'-')}-${metadata.attestationId}.pdf"`,
-        "Cache-Control": "no-store",
-      },
-    });
-  } catch (err) {
-    console.error(err);
-    return new Response("Internal error", { status: 500 });
-  }
-}
