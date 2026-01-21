@@ -1,6 +1,6 @@
 /* =========================================================
    Certif-Scope — Attestation i18n (FR)
-   Traduction CANONIQUE — alignement strict sur ATTESTATION_EN
+   Traduction STRICTE et CANONIQUE alignée sur ATTESTATION_EN
    ========================================================= */
 
 export const ATTESTATION_FR = {
@@ -80,10 +80,10 @@ export const ATTESTATION_FR = {
   normativeText:
     "Les normes et cadres suivants sont mentionnés à titre d’alignement méthodologique et de cohérence contextuelle :",
   referencesList: [
-    "GHG Protocol – Scope 3 (spend-based)",
+    "GHG Protocol – Scope 3 (méthode basée sur les dépenses)",
     "ISO 14064-1 (référence)",
     "ISO 14083 (référence)",
-    "CSRD / ESRS / Taxonomie européenne (contexte)",
+    "CSRD / ESRS / Taxonomie UE (contexte)",
   ],
 
   /* ===============================
@@ -118,10 +118,13 @@ export const ATTESTATION_FR = {
      SECTION 7 — METHODOLOGY
   =============================== */
   methodologySectionTitle: "7. Méthodologie et limites",
-  methodologyLabel:
+  methodologyLabel: "Méthodologie",
+  methodologyText:
     "Méthodologie déterministe basée sur les dépenses, utilisant des données de dépenses agrégées.",
+  limitationsLabel: "Limites",
   limitationsText:
     "Aucune donnée d’activité physique. Aucune émission de Scope 1 ou de Scope 2. Modèle strictement indicatif.",
+  transferabilityLabel: "Transférabilité",
   transferabilityText: "Non transférable.",
 
   /* ===============================
@@ -166,8 +169,9 @@ export const ATTESTATION_FR = {
   liabilityText:
     "Les résultats sont exclusivement dérivés des données fournies par l’entité, sous sa seule responsabilité.",
 
+  validityExplanationLabel: "Validité",
   validityText:
-    "La période de validité reflète la pertinence temporelle des données et de la méthodologie sous-jacentes.",
+    "La période de validité reflète la pertinence temporelle des données et de la méthodologie.",
 
   noAuditText:
     "Certif-Scope ne réalise aucune mission d’audit, de validation, de vérification ou d’assurance.",
