@@ -14,12 +14,19 @@ export const ATTESTATION_EN = {
     "In case of discrepancy between language versions, the English version shall prevail.",
 
   /* ===============================
+     HEADER / GLOBAL UI
+  =============================== */
+  headerTagline: "Automated issuance · Standardized indicative attestation",
+  scanToVerifyLabel: "Scan to verify",
+
+  /* ===============================
      TITLE
   =============================== */
   title: "Indicative Carbon Emissions Attestation",
-  subtitle: "Non-regulatory, methodology-based, indicative declaration",
+  subtitle: "Non-regulatory · Methodology-based · Indicative attestation",
   standardReference:
     "Issued pursuant to the Certif-Scope standardized methodology CS-SB-v1",
+  standardReferenceLabel: "Standard reference",
 
   /* ===============================
      RESULT
@@ -35,6 +42,9 @@ export const ATTESTATION_EN = {
   attestationIdLabel: "Attestation reference",
   issuedDateLabel: "Issued date",
   validityLabel: "Validity period",
+  validityPeriodLabel: "Validity period",
+  validUntilLabel: "Valid until",
+  uniqueDocumentIdNote: "Unique document identifier",
 
   /* ===============================
      SECTION 2 — DOCUMENT NATURE
@@ -50,6 +60,7 @@ export const ATTESTATION_EN = {
   entityNameLabel: "Entity name",
   sectorLabel: "Activity sector",
   identifierLabel: "Entity identifier",
+  identifierOptionalLabel: "Entity identifier (optional)",
   countryLabel: "Country",
   yearLabel: "Reporting year",
 
@@ -75,17 +86,35 @@ export const ATTESTATION_EN = {
   authenticityTitle: "Authenticity",
   authenticityText:
     "This attestation is cryptographically signed and can be verified independently without access to Certif-Scope systems.",
+
+  authenticityOverviewTitle: "Authenticity overview",
+
   natureTitle: "Document nature",
   natureText:
     "Indicative, non-regulatory, methodology-based declaration.",
+
+  natureOfAttestationTitle: "Nature of the attestation",
+  natureOfAttestationText:
+    "This document is an indicative carbon emissions attestation issued using a standardized deterministic methodology. It does not constitute a regulatory disclosure or audit report.",
+
   summaryTitle: "Scope summary",
   summaryItems:
     "Indicative estimation · Spend-based methodology · Aggregated result only",
+
+  documentScopeSummaryTitle: "Document scope summary",
+  documentScopeSummaryItems:
+    "Indicative estimation · Spend-based methodology · Aggregated result only",
+
+  documentValidityTitle: "Document validity",
+  documentValidityText:
+    "This attestation is valid for a fixed period reflecting the temporal relevance of the underlying data and methodology.",
 
   /* ===============================
      SECTION 6 — DECLARATION
   =============================== */
   declarationSectionTitle: "6. Declaration of result",
+  formalDeclarationLabel: "Formal declaration",
+  declarationLabel: "Declaration",
   declarationText:
     "Based solely on the data provided by the entity, Certif-Scope hereby issues this indicative attestation of aggregated greenhouse gas emissions for the reporting year stated.",
 
@@ -103,13 +132,28 @@ export const ATTESTATION_EN = {
      SECTION 8 — VERIFICATION
   =============================== */
   verificationSectionTitle: "8. Verification and integrity",
+  verificationBlockTitle: "Verification & Integrity",
   verificationIntro:
     "This attestation is generated without storage of underlying financial data by Certif-Scope.",
   verificationNote:
     "The PDF document itself is the sole verifiable object.",
+
+  privacyByDesignLabel: "Privacy by design",
+  privacyByDesignText:
+    "This attestation is generated without storage of underlying financial data by Certif-Scope. Verification relies solely on the attestation identifier and cryptographic integrity mechanisms.",
+
+  pdfIsSoleObjectText:
+    "The PDF document itself is the only verifiable object.",
+
   verificationLinkLabel: "Verification information page",
+  verificationInformationPageLabel: "Verification information page",
+
   cryptographicLabel: "Cryptographic integrity",
+  cryptographicIntegrityDetailsLabel: "Cryptographic integrity",
+
   publicKeyLabel: "Issuer public verification key",
+  publicKeyExplanationText:
+    "This public key allows any third party to verify the authenticity and integrity of this document independently.",
 
   /* ===============================
      SECTION 9 — FINAL CLAUSES
@@ -125,4 +169,11 @@ export const ATTESTATION_EN = {
     "Certif-Scope does not perform audit, validation, verification, or assurance services.",
   internalStandardNotice:
     "CS-SB-v1 is an internal standardized methodology maintained by Certif-Scope.",
+
+  /* ===============================
+     FOOTER
+  =============================== */
+  footerText:
+    "Indicative carbon emissions attestation · Issued by Certif-Scope · certif-scope.com",
+  pageLabel: "Page",
 } as const;
