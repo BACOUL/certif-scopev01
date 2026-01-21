@@ -99,7 +99,7 @@ export async function GET(req: Request) {
       totalCO2e: escapeHtml(String(totalCO2eNum)),
       methodology: escapeHtml(String(metadataRaw.methodology || "Certif-Scope deterministic spend-based methodology v1.0")),
       issuedDate: escapeHtml(issuedDate),
-      validUntil: "", // ✅ SIMPLIFICATION V1 : Force le standard "validityMonths"
+      validUntil: "", // Force le standard "validityMonths"
       validityMonths: escapeHtml(String(metadataRaw.validityMonths || "12")),
       standardRef: escapeHtml(String(metadataRaw.standardRef || "Certif-Scope CS-SB-v1")),
       // Injections cryptographiques finales
@@ -112,10 +112,10 @@ export async function GET(req: Request) {
     const verifyUrl = `https://certif-scope.com/verify?id=${encodeURIComponent(metadata.attestationId)}`;
     const qrDataUrl = await QRCode.toDataURL(verifyUrl, { width: 120, margin: 1 });
 
-    // Texte de responsabilité extrait (Sécurité Template)
+    // Texte de responsabilité extrait
     const liabilityText = `Results are derived exclusively from data provided by the entity, under its sole responsibility. Certif-Scope does not accept liability for inaccuracies in source data. This document is valid for a period of ${metadata.validityMonths} months from the issued date unless a specific valid-until date is provided.`;
 
-    // HTML (V1.3 PAGINATION SAFE)
+    // HTML (V1.6 PLATINUM MASTER)
     const html = `
 <!doctype html>
 <html lang="en">
@@ -123,7 +123,7 @@ export async function GET(req: Request) {
 <meta charset="utf-8"/>
 <title>${metadata.issuerName} — Attestation</title>
 <style>
-  /* Page & margins */
+  /* ✅ FIX CSS 1 : Marge standard, le footer fixed se gère seul */
   @page {
     size: A4;
     margin: 14mm;
@@ -149,10 +149,18 @@ export async function GET(req: Request) {
 
   .container { padding: 0; }
 
-  /* ✅ FIX PAGINATION CSS */
-  .page-break-safe {
-    page-break-before: always;
-    break-before: page;
+  /* Footer Fixe */
+  .footer-fixed {
+    position: fixed;
+    bottom: 10mm;
+    left: 14mm;
+    right: 14mm;
+    font-size: 9px;
+    color: #666;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #ddd;
+    padding-top: 8px;
   }
 
   /* Keep page-break-inside avoidance */
@@ -218,16 +226,26 @@ export async function GET(req: Request) {
   .result-label { font-size:10px; font-weight:700; color:#222; margin-bottom:6px; font-family: Inter, Arial, sans-serif; text-transform: uppercase; letter-spacing: 0.5px; }
   .result-value { font-family:var(--serif); font-size:28px; font-weight:800; color:var(--accent); margin:4px 0; letter-spacing:1px; }
 
-  /* Columns */
+  /* Layout PDF SAFE (FLOAT - NO GRID) */
   .two-col {
-    display:grid;
-    grid-template-columns: 1fr 300px;
-    gap: 18px;
-    align-items:start;
+    width: 100%;
   }
-  
-  aside {
+
+  .two-col > div {
+    float: left;
+    width: calc(100% - 320px);
+  }
+
+  .two-col > aside {
+    float: right;
+    width: 300px;
     margin-top: 0;
+  }
+
+  .clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
   }
 
   /* Sections */
@@ -276,24 +294,11 @@ export async function GET(req: Request) {
     font-size:10.8px;
   }
 
-  /* Footer */
-  .footer {
-    border-top: 1px solid #ddd;
-    margin-top: 24px;
-    padding-top: 8px;
-    font-size: 9px;
-    color: #666;
-    display: flex;
-    justify-content: space-between;
-    page-break-inside: avoid;
-  }
-
   .muted { color:var(--muted); font-size:10px; }
   .small { font-size:10px; color:var(--muted); line-height: 1.4; }
 
   @media print {
     .issuer-logo { height: 85px; max-width: 340px; }
-    .two-col { gap:18px; }
   }
 </style>
 </head>
@@ -327,7 +332,7 @@ export async function GET(req: Request) {
     </div>
   </div>
 
-  <div class="two-col">
+  <div class="two-col clearfix">
     <div>
       <section aria-labelledby="s1">
         <div class="section-title" id="s1">1. Identification of the issuer</div>
@@ -418,16 +423,9 @@ export async function GET(req: Request) {
     </aside>
   </div>
 
-  <div class="footer">
-    <div>Indicative carbon emissions attestation · Issued by Certif-Scope · certif-scope.com</div>
-    <div>Page 1 / 2</div>
-  </div>
-
-  <div class="page-break-safe"></div>
-
-  <div class="two-col">
+  <div class="two-col clearfix">
     <div>
-      <section aria-labelledby="s6">
+      <section aria-labelledby="s6" style="page-break-before: always;">
         <div class="section-title" id="s6">6. Declaration of result</div>
         <div class="meta-list">
           <div style="font-style:italic; margin-bottom:4px;">Formal declaration</div>
@@ -519,9 +517,9 @@ export async function GET(req: Request) {
       </aside>
   </div>
 
-  <div class="footer">
+  <div class="footer-fixed">
     <div>Indicative carbon emissions attestation · Issued by Certif-Scope · certif-scope.com</div>
-    <div>Page 2 / 2</div>
+    <div>Page <span class="pageNumber"></span> / <span class="totalPages"></span></div>
   </div>
 
 </div>
