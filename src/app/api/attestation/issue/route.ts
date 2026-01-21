@@ -111,6 +111,9 @@ export async function GET(req: Request) {
     const verifyUrl = `https://certif-scope.com/verify?id=${encodeURIComponent(metadata.attestationId)}`;
     const qrDataUrl = await QRCode.toDataURL(verifyUrl, { width: 120, margin: 1 });
 
+    // ✅ FIX : Extraction du texte de responsabilité pour éviter les erreurs de template
+    const liabilityText = `Results are derived exclusively from data provided by the entity, under its sole responsibility. Certif-Scope does not accept liability for inaccuracies in source data. This document is valid for a period of ${metadata.validityMonths} months from the issued date unless a specific valid-until date is provided.`;
+
     // HTML (A4-safe CSS)
     const html = `
 <!doctype html>
@@ -202,7 +205,7 @@ export async function GET(req: Request) {
     margin-top:6px;
   }
   
-  /* ✅ FIX 1 : Remontée visuelle SAFE pour PDFShift (-6px) */
+  /* Safe margin for PDFShift */
   aside {
     margin-top: -6px;
   }
@@ -389,7 +392,7 @@ export async function GET(req: Request) {
           – Indicative estimation<br/>
           – Spend-based methodology<br/>
           – Aggregated result only
-          </div>
+        </div>
       </div>
     </aside>
   </div>
@@ -478,7 +481,10 @@ export async function GET(req: Request) {
           <div class="final-stamp">
             <div><strong>Issued pursuant to the Certif-Scope internal standard CS-SB-v1.</strong></div>
             <div style="margin-top:6px;"><strong>Legal effect:</strong> This document is indicative only and does not constitute a regulatory disclosure under CSRD, ESRS, or equivalent frameworks. It is provided for decision-support purposes.</div>
-            <div style="margin-top:6px;"><strong>Liability:</strong> Results are derived exclusively from data provided by the entity, under its sole responsibility. Certif-Scope does not accept liability for inaccuracies in source data. This document is valid for a period of ${metadata.validityMonths} months from the issued date unless a specific valid-until date is provided.</div>
+            
+            <div style="margin-top:6px;">
+              <strong>Liability:</strong> ${liabilityText}
+            </div>
             
             <div style="margin-top:6px;">
               <strong>Validity:</strong>
