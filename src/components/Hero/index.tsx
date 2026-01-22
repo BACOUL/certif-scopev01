@@ -9,7 +9,7 @@ export default function Hero() {
       id="hero"
       itemScope
       itemType="https://schema.org/WebPage"
-      className="relative max-w-6xl mx-auto px-6 pt-8 md:pt-14 pb-14 md:pb-20 text-center"
+      className="relative max-w-6xl mx-auto px-6 pt-8 md:pt-14 pb-16 md:pb-20 text-center"
     >
       <span className="sr-only" itemProp="alternativeHeadline">
         Instant spend-based CO2e attestation for SMEs across Europe
@@ -39,7 +39,7 @@ export default function Hero() {
         </span>
       </h1>
 
-      {/* LEGAL + PRIVACY (VISUALLY DISTINCT, MOBILE-FIRST) */}
+      {/* LEGAL + PRIVACY */}
       <div className="mt-4 max-w-xl mx-auto space-y-1">
         <p
           className="text-xs text-slate-500 leading-relaxed"
@@ -69,20 +69,21 @@ export default function Hero() {
         insurer screening workflows. Fast, verifiable and consistent across the EU.
       </p>
 
-      {/* MINI CTA — ABOVE THE FOLD (MOBILE) */}
-      <div className="mt-6 md:hidden">
+      {/* PRIMARY CTA — UNIQUE */}
+      <div className="flex justify-center mt-8">
         <Link
           href="/generate"
+          itemProp="url"
           aria-label="Generate CO₂e Attestation"
           data-i18n="hero.cta.generate"
-          className="text-[#1FB6C1] font-semibold underline underline-offset-4"
+          className="bg-[#1FB6C1] hover:bg-[#17a2a8] text-white font-semibold px-12 py-4 rounded-xl shadow-md text-center transition"
         >
-          Generate your attestation →
+          Generate Attestation
         </Link>
       </div>
 
       {/* IMAGE */}
-      <div className="flex justify-center mt-6">
+      <div className="flex justify-center mt-8">
         <Image
           itemProp="primaryImageOfPage"
           src="/hero-attestation.webp"
@@ -96,53 +97,11 @@ export default function Hero() {
 
       {/* TRUST LINE */}
       <p
-        className="text-sm text-[#0B3A63]/80 font-medium mt-5"
+        className="text-sm text-[#0B3A63]/80 font-medium mt-6"
         data-i18n="hero.verify"
       >
         Verifiable independently by third parties.
       </p>
-
-      {/* PRIMARY CTA */}
-      <div className="flex justify-center mt-10">
-        <Link
-          href="/generate"
-          itemProp="url"
-          aria-label="Generate CO₂e Attestation"
-          data-i18n="hero.cta.generate"
-          className="bg-[#1FB6C1] hover:bg-[#17a2a8] text-white font-semibold px-12 py-4 rounded-xl shadow-md text-center transition"
-        >
-          Generate Attestation
-        </Link>
-      </div>
-
-      {/* STRUCTURED DATA */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            name: "Certif-Scope — Instant spend-based CO2e attestation",
-            description:
-              "Standardized indicative spend-based CO2e attestation for SMEs. Not a regulatory report or audited emissions inventory.",
-            image: "https://certif-scope.com/hero-attestation.webp",
-            url: "https://certif-scope.com/",
-            mainEntity: {
-              "@type": "Product",
-              name: "CO₂e Attestation",
-              description:
-                "Standardized indicative spend-based CO₂e attestation. Not a regulatory report or audited emissions inventory.",
-              offers: {
-                "@type": "Offer",
-                url: "https://certif-scope.com/pricing",
-                priceCurrency: "EUR",
-                price: "49",
-                availability: "https://schema.org/InStock",
-              },
-            },
-          }),
-        }}
-      />
     </section>
   );
 }
