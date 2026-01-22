@@ -2,33 +2,43 @@ export default function ProblemSolution() {
   return (
     <section
       id="problem-solution"
-      className="py-24 bg-white dark:bg-gray-900"
       data-section="problem-solution"
+      className="pt-24 pb-24 bg-white dark:bg-gray-900"
     >
-      <div className="max-w-6xl mx-auto px-6 text-center">
+      <div className="max-w-6xl mx-auto px-6">
 
-        {/* TITLE */}
-        <h2
-          className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] leading-snug"
-          data-i18n="problem.title"
-        >
-          SMEs are increasingly asked to provide CO₂e information — without having the means to respond.
-        </h2>
+        {/* SECTION HEADER — CANONICAL HOME */}
+        <header className="max-w-3xl mx-auto text-center mb-20">
+          <p
+            className="uppercase text-xs tracking-wider text-[#64748B] mb-3"
+            data-i18n="problem.label"
+          >
+            CO₂e Disclosure Challenge
+          </p>
 
-        {/* PROBLEM */}
-        <p
-          className="mt-6 text-lg md:text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed"
-          data-i18n="problem.description"
-        >
-          Buyers, banks and insurers routinely request CO₂e figures during onboarding,
-          procurement and risk screening processes. Producing a full carbon inventory
-          requires detailed activity data, consultants and audits — resources most SMEs
-          cannot mobilize on demand.
-        </p>
+          <h2
+            className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] leading-snug mb-4"
+            data-i18n="problem.title"
+          >
+            SMEs are increasingly asked to provide CO₂e information — without having the means to respond.
+          </h2>
+
+          <p
+            className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed"
+            data-i18n="problem.description"
+          >
+            Buyers, banks and insurers routinely request CO₂e figures during onboarding,
+            procurement and risk screening processes. Producing a full carbon inventory
+            requires detailed activity data, consultants and audits — resources most SMEs
+            cannot mobilize on demand.
+          </p>
+
+          <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto mt-10" />
+        </header>
 
         {/* SOLUTION */}
         <p
-          className="mt-6 text-lg md:text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed"
+          className="text-lg md:text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed text-center mb-20"
           data-i18n="problem.solution"
         >
           Certif-Scope provides an instant, indicative spend-based CO₂e attestation generated
@@ -36,11 +46,8 @@ export default function ProblemSolution() {
           verifiable independently and usable across institutional workflows.
         </p>
 
-        {/* SEPARATOR */}
-        <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto my-16" />
-
         {/* 3 BENEFITS */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-14">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-14 text-center">
 
           {/* BENEFIT 1 */}
           <div className="flex flex-col items-center gap-4" data-i18n="problem.point1.block">
@@ -128,7 +135,7 @@ export default function ProblemSolution() {
         {/* LINK */}
         <a
           href="#how-it-works"
-          className="block mt-16 text-xs text-[#0B3A63] hover:text-[#1FB6C1] underline"
+          className="block mt-20 text-xs text-center text-[#0B3A63] hover:text-[#1FB6C1] underline"
           data-i18n="problem.link.how"
         >
           How the attestation is generated →
