@@ -12,7 +12,7 @@ export default function ProblemSolution() {
           className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] leading-snug"
           data-i18n="problem.title"
         >
-          SMEs are required to report CO₂e — but lack a fast, verifiable way to respond.
+          SMEs are increasingly asked to provide CO₂e information — without having the means to respond.
         </h2>
 
         {/* PROBLEM */}
@@ -20,9 +20,10 @@ export default function ProblemSolution() {
           className="mt-6 text-lg md:text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed"
           data-i18n="problem.description"
         >
-          Buyers, banks and insurers increasingly request CO₂e information during onboarding,
-          procurement and risk assessments. Full carbon accounting requires activity data,
-          consultants and audits — processes most SMEs cannot produce on demand.
+          Buyers, banks and insurers routinely request CO₂e figures during onboarding,
+          procurement and risk screening processes. Producing a full carbon inventory
+          requires detailed activity data, consultants and audits — resources most SMEs
+          cannot mobilize on demand.
         </p>
 
         {/* SOLUTION */}
@@ -30,9 +31,9 @@ export default function ProblemSolution() {
           className="mt-6 text-lg md:text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed"
           data-i18n="problem.solution"
         >
-          Certif-Scope provides an instant, spend-based CO₂e Attestation generated directly from
-          annual expenses. A clear, standardized format reviewers can understand immediately —
-          verifiable offline and usable across all institutional workflows.
+          Certif-Scope provides an instant, indicative spend-based CO₂e attestation generated
+          directly from annual expenses. A standardized format reviewers can interpret immediately —
+          verifiable independently and usable across institutional workflows.
         </p>
 
         {/* SEPARATOR */}
@@ -53,12 +54,18 @@ export default function ProblemSolution() {
             >
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6l4 2m5-2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            <h3 className="text-xl font-semibold text-[#0B3A63] dark:text-white" data-i18n="problem.point1.title">
+            <h3
+              className="text-xl font-semibold text-[#0B3A63] dark:text-white"
+              data-i18n="problem.point1.title"
+            >
               Aligned with institutional workflows
             </h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400 max-w-xs" data-i18n="problem.point1.text">
-              Designed for procurement, banking and insurance screening processes that expect quick,
-              indicative CO₂e values.
+            <p
+              className="text-sm text-gray-600 dark:text-gray-400 max-w-xs"
+              data-i18n="problem.point1.text"
+            >
+              Designed for procurement, banking and insurance screening processes
+              that require fast, indicative CO₂e values.
             </p>
           </div>
 
@@ -74,12 +81,18 @@ export default function ProblemSolution() {
             >
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-9 4h9m3-14H6a2 2 0 00-2 2v14l4-4h10a2 2 0 002-2V4a2 2 0 00-2-2z" />
             </svg>
-            <h3 className="text-xl font-semibold text-[#0B3A63] dark:text-white" data-i18n="problem.point2.title">
+            <h3
+              className="text-xl font-semibold text-[#0B3A63] dark:text-white"
+              data-i18n="problem.point2.title"
+            >
               Transparent spend-based method
             </h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400 max-w-xs" data-i18n="problem.point2.text">
-              Uses annual spending (€) and stable emission factor sources. No audits, surveys or
-              operational data required.
+            <p
+              className="text-sm text-gray-600 dark:text-gray-400 max-w-xs"
+              data-i18n="problem.point2.text"
+            >
+              Uses annual spending (€) and stable emission factor sources.
+              No audits, surveys or operational data required.
             </p>
           </div>
 
@@ -95,34 +108,33 @@ export default function ProblemSolution() {
             >
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 11.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm8.485-4.243l-4.95-4.95a1 1 0 00-1.414 0L4.343 12.586a1 1 0 000 1.414l4.95 4.95a1 1 0 001.414 0l9.778-9.778a1 1 0 000-1.414z" />
             </svg>
-            <h3 className="text-xl font-semibold text-[#0B3A63] dark:text-white" data-i18n="problem.point3.title">
+            <h3
+              className="text-xl font-semibold text-[#0B3A63] dark:text-white"
+              data-i18n="problem.point3.title"
+            >
               Consistent across suppliers
             </h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400 max-w-xs" data-i18n="problem.point3.text">
-              Identical structure enables fast comparison between vendors — reducing ambiguity and review time.
+            <p
+              className="text-sm text-gray-600 dark:text-gray-400 max-w-xs"
+              data-i18n="problem.point3.text"
+            >
+              Identical structure enables fast comparison between vendors,
+              reducing ambiguity and review time.
             </p>
           </div>
 
         </div>
 
-        {/* LINKS */}
-        <a
-          href="/sample.pdf"
-          className="mt-14 inline-block text-sm font-medium text-[#1FB6C1] hover:underline"
-          data-i18n="problem.link.sample"
-        >
-          View sample document →
-        </a>
-
+        {/* LINK */}
         <a
           href="#how-it-works"
-          className="block mt-4 text-xs text-[#0B3A63] hover:text-[#1FB6C1] underline"
+          className="block mt-16 text-xs text-[#0B3A63] hover:text-[#1FB6C1] underline"
           data-i18n="problem.link.how"
         >
-          How the Attestation is generated →
+          How the attestation is generated →
         </a>
 
       </div>
     </section>
   );
-}
+              }
