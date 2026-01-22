@@ -58,10 +58,7 @@ export default function ProductPage() {
             </a>
           </li>
           <li>
-            <a
-              href="#key-benefits-summary"
-              className="hover:text-[#15B097] transition"
-            >
+            <a href="#key-benefits" className="hover:text-[#15B097] transition">
               2. Key Benefits Summary
             </a>
           </li>
@@ -108,7 +105,7 @@ export default function ProductPage() {
         </ul>
       </nav>
 
-      {/* CONTENT — CANONICAL ORDER, NO WRAPPERS */}
+      {/* CONTENT — CANONICAL ORDER */}
       <div className="max-w-4xl space-y-24">
         <Section1 />
         <Section2 />
@@ -120,4 +117,4 @@ export default function ProductPage() {
       </div>
     </section>
   );
-      }
+    }
