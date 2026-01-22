@@ -86,7 +86,6 @@ export const ATTESTATION_DE = {
   referencesList: [
     "GHG Protocol – Scope 3 (spend-based)",
     "ISO 14064-1 (Referenz)",
-    "ISO 14083 (Referenz)",
     "CSRD / ESRS / EU-Taxonomie (Kontext)",
   ],
 
@@ -123,8 +122,6 @@ export const ATTESTATION_DE = {
   =============================== */
   methodologySectionTitle: "7. Methodik und Einschränkungen",
   methodologyLabel: "Methodik",
-  methodologyText:
-    "Deterministische ausgabenbasierte Methodik unter Verwendung aggregierter Finanzdaten.",
   limitationsLabel: "Einschränkungen",
   limitationsText:
     "Keine physischen Aktivitätsdaten. Keine Scope-1- oder Scope-2-Emissionen. Ausschließlich indikatives Modell.",
@@ -172,10 +169,6 @@ export const ATTESTATION_DE = {
   liabilityLabel: "Haftung",
   liabilityText:
     "Die Ergebnisse beruhen ausschließlich auf den von der Einheit bereitgestellten Daten und liegen in deren alleiniger Verantwortung.",
-
-  validityExplanationLabel: "Gültigkeit",
-  validityText:
-    "Der Gültigkeitszeitraum spiegelt die zeitliche Relevanz der zugrunde liegenden Daten und der Methodik wider.",
 
   noAuditText:
     "Certif-Scope erbringt keine Audit-, Validierungs-, Verifizierungs- oder Assurance-Leistungen.",
