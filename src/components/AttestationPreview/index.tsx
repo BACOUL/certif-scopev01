@@ -52,24 +52,13 @@ export default function AttestationPreview() {
           </div>
         </div>
 
-        {/* CTA + INTERNAL LINK + DISCLAIMER */}
+        {/* INTERNAL LINK + DISCLAIMER */}
         <div className="mt-12 flex flex-col items-center">
-          {/* CTA VIEW IMAGE */}
-          <a
-            data-i18n="preview.cta"
-            href="/preview.webp"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-10 py-4 rounded-xl bg-[#0B3A63] text-white font-semibold text-sm md:text-base hover:bg-[#083253] transition shadow-md"
-          >
-            View Attestation Preview
-          </a>
-
           {/* INTERNAL NAVIGATION LINK */}
           <a
             href="/product"
             data-i18n="preview.methodologyLink"
-            className="mt-3 text-sm text-[#0B3A63] dark:text-gray-300 underline hover:text-[#1FB6C1]"
+            className="text-sm text-[#0B3A63] dark:text-gray-300 underline hover:text-[#1FB6C1]"
           >
             See full methodology →
           </a>
