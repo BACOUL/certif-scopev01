@@ -30,9 +30,9 @@ export default function Trust() {
           className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed mb-16"
           data-i18n="trust.intro"
         >
-          Certif-Scope applies a fixed structure, stable emission factor versions and built-in
-          verification information. Reviewers receive a consistent, reproducible and comparable
-          document across all suppliers — reducing checks and eliminating ambiguity.
+          Certif-Scope applies a fixed document structure, stable emission factor references and
+          built-in verification information. Reviewers receive a consistent and comparable
+          document across suppliers, reducing manual checks and eliminating ambiguity.
         </p>
 
         {/* PILLARS */}
@@ -51,7 +51,11 @@ export default function Trust() {
               strokeWidth="1.5"
               viewBox="0 0 24 24"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 2l7 4v6c0 5-3.5 9-7 10-3.5-1-7-5-7-10V6l7-4z" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 2l7 4v6c0 5-3.5 9-7 10-3.5-1-7-5-7-10V6l7-4z"
+              />
             </svg>
 
             <h3 className="text-lg font-semibold text-[#0B3A63] dark:text-gray-100 mb-2">
@@ -59,9 +63,9 @@ export default function Trust() {
             </h3>
 
             <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Each Attestation includes built-in verification elements allowing partners to confirm
-              authenticity and integrity independently, without relying on user accounts, databases
-              or stored financial information.
+              Each attestation includes built-in verification elements allowing third parties to
+              confirm authenticity and integrity independently, without relying on user accounts,
+              databases or stored financial information.
             </p>
           </div>
 
@@ -86,8 +90,8 @@ export default function Trust() {
             </h3>
 
             <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Inputs, methodology summary and outputs follow a fixed, predictable layout aligned
-              with how procurement, banking and ESG teams assess suppliers.
+              Inputs, methodology summary and outputs follow a predictable layout aligned with how
+              procurement, banking and ESG teams assess suppliers.
             </p>
           </div>
 
@@ -104,16 +108,21 @@ export default function Trust() {
               strokeWidth="1.5"
               viewBox="0 0 24 24"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h18v4H3V3zm0 7h18v11H3V10zm6 3h6" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M3 3h18v4H3V3zm0 7h18v11H3V10zm6 3h6"
+              />
             </svg>
 
             <h3 className="text-lg font-semibold text-[#0B3A63] dark:text-gray-100 mb-2">
-              Consistent and reproducible
+              Consistent and comparable results
             </h3>
 
             <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Version-controlled emission factors guarantee identical output for identical inputs.
-              A stable, audit-ready basis for institutional comparability and automated checks.
+              Stable and documented emission factor references ensure comparable outcomes across
+              assessments, providing a reliable basis for institutional screening and automated
+              comparisons.
             </p>
           </div>
 
@@ -124,10 +133,11 @@ export default function Trust() {
           className="mt-12 text-center text-xs text-gray-500 dark:text-gray-400"
           data-i18n="trust.footnote"
         >
-          Indicative, spend-based document — not a CSRD/ESRS report or audited emissions inventory.
+          Indicative, spend-based document — not a CSRD/ESRS report and not an audited emissions
+          inventory.
         </p>
 
       </div>
     </section>
   );
-}
+            }
