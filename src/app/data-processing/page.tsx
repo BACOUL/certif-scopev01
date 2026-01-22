@@ -9,10 +9,10 @@ export default function DataProcessingPage() {
     <section
       id="data-processing"
       data-section="data-processing"
-      className="max-w-7xl mx-auto px-6 pt-10 pb-24"
+      className="max-w-7xl mx-auto px-6 pt-12 pb-24"
     >
       {/* HEADER */}
-      <header className="mb-12 max-w-3xl">
+      <header className="max-w-3xl mx-auto text-center mb-12">
         <h1
           data-i18n="dataproc.title"
           className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-4"
@@ -22,7 +22,7 @@ export default function DataProcessingPage() {
 
         <p
           data-i18n="dataproc.intro"
-          className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed"
+          className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed"
         >
           This document provides a high-level, non-contractual overview of how
           Certif-Scope processes data. It is intended for transparency,
@@ -31,8 +31,11 @@ export default function DataProcessingPage() {
         </p>
       </header>
 
+      {/* SEPARATOR */}
+      <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto mb-14" />
+
       {/* CONTENT */}
-      <div className="max-w-4xl mx-auto space-y-12">
+      <div className="max-w-4xl mx-auto space-y-14">
 
         {/* SECTION 1 */}
         <section>
@@ -174,4 +177,4 @@ export default function DataProcessingPage() {
       </div>
     </section>
   );
-        }
+}
