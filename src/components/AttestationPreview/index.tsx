@@ -59,7 +59,9 @@ export default function AttestationPreview() {
           {/* CTA DOWNLOAD */}
           <a
             data-i18n="preview.cta"
-            href="/sample.pdf"
+            href="/api/sample"
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-10 py-4 rounded-xl bg-[#0B3A63] text-white font-semibold text-sm md:text-base hover:bg-[#083253] transition shadow-md"
           >
             Download Sample PDF
