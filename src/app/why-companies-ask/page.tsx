@@ -1,15 +1,22 @@
 export const metadata = {
   title: "Why Companies Ask for It — Certif-Scope",
   description:
-    "Institutional reasons why companies require CO₂e attestations from suppliers, including scope, limits, and intended use.",
+    "Institutional reasons why companies require CO₂e attestations from suppliers, including procurement, financial risk screening, scope limits and intended use.",
 };
 
 export default function WhyCompaniesAskPage() {
   return (
-    <div id="why-companies-ask-page" className="max-w-7xl mx-auto px-6 pt-8 pb-24">
+    <section
+      id="why-companies-ask"
+      data-section="why-companies-ask"
+      className="max-w-7xl mx-auto px-6 pt-12 pb-24"
+    >
       {/* HEADER */}
-      <div className="w-full mb-12">
-        <p className="uppercase text-xs tracking-wider text-gray-500 mb-2">
+      <header className="max-w-3xl mb-12">
+        <p
+          className="uppercase text-xs md:text-sm font-medium text-[#64748B] tracking-wider mb-3"
+          data-i18n="why.label"
+        >
           CO₂e Attestation — Supplier Requirement
         </p>
 
@@ -22,100 +29,107 @@ export default function WhyCompaniesAskPage() {
 
         <p
           data-i18n="why.intro"
-          className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed max-w-3xl"
+          className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed"
         >
-          Procurement teams, banks, insurers and public institutions increasingly require a
-          standardized CO₂e attestation from their suppliers. This page explains the institutional
-          reasons for this requirement, as well as what this attestation represents — and does not
-          represent.
+          Procurement teams, banks, insurers and public institutions increasingly
+          require a standardized CO₂e attestation from their suppliers. This page
+          explains the institutional rationale behind this request, as well as
+          what the attestation represents — and what it does not.
         </p>
 
-        <p className="text-sm text-gray-600 dark:text-gray-400 max-w-3xl mt-4">
-          The objective is standardization, not precision.
+        <p
+          className="text-sm text-gray-600 dark:text-gray-400 mt-4"
+          data-i18n="why.principle"
+        >
+          The objective is standardization and comparability, not measurement precision.
         </p>
-      </div>
+      </header>
 
       {/* CONTENT */}
       <div className="max-w-4xl mx-auto space-y-12">
-        {/* SECTION 1 */}
+
+        {/* 1 */}
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-            1. Procurement Risk & ESG Classification
+            1. Procurement Risk Classification
           </h2>
 
           <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-            Large organizations must classify suppliers according to environmental exposure to
-            comply with procurement governance frameworks (including ISO 20400) and internal ESG
-            risk models.
+            Large organizations must classify suppliers according to environmental
+            exposure as part of procurement governance and ESG risk frameworks,
+            including sustainable procurement standards such as ISO 20400.
           </p>
 
           <ul className="list-disc ml-6 text-gray-700 dark:text-gray-300 space-y-2">
-            <li>supplier ESG scoring</li>
-            <li>mandatory indicators in tender submissions</li>
-            <li>alignment with sustainable procurement policies</li>
+            <li>supplier ESG risk screening</li>
+            <li>mandatory environmental indicators in tenders</li>
+            <li>alignment with internal procurement policies</li>
           </ul>
         </section>
 
-        {/* SECTION 2 */}
+        {/* 2 */}
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-            2. Regulatory Pressure on Banks & Insurers
+            2. Financial Institutions and Regulatory Pressure
           </h2>
 
           <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-            Financial institutions are subject to increasing environmental risk assessment
-            obligations under the EU Taxonomy, EBA Guidelines and Solvency II. A standardized CO₂e
-            attestation allows them to document supplier exposure without requiring full
-            CSRD/ESRS inventories.
+            Banks and insurers are subject to increasing environmental risk
+            assessment obligations under frameworks such as the EU Taxonomy,
+            EBA Guidelines and Solvency II. A standardized CO₂e attestation
+            enables documentation of supplier exposure without requiring full
+            CSRD or ESRS inventories.
           </p>
         </section>
 
-        {/* SECTION 3 */}
+        {/* 3 */}
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-            3. Due Diligence & Vendor Onboarding
+            3. Due Diligence and Vendor Onboarding
           </h2>
 
           <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-            Many organizations require a CO₂e estimate as part of mandatory vendor due diligence.
-            The attestation provides a structured and verifiable document aligned with institutional
-            onboarding templates.
+            Many organizations require a CO₂e estimate as part of mandatory
+            supplier due diligence. The attestation provides a structured and
+            verifiable document aligned with institutional onboarding templates.
           </p>
 
           <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-            This enables even small suppliers to respond to requirements that previously required
-            consultants or complex audits.
+            This allows small and mid-sized suppliers to meet requirements that
+            previously required consultants or complex audits.
           </p>
         </section>
 
-        {/* SECTION 4 */}
+        {/* 4 */}
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-            4. Simplification for Non-Technical Suppliers
+            4. Accessibility for Non-Technical Suppliers
           </h2>
 
           <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-            Most SMEs cannot produce CSRD/ESRS reports or detailed greenhouse gas inventories. This
-            attestation provides an institutional-grade indicator using only annual spending data.
+            Most SMEs cannot produce CSRD or ESRS reports, nor detailed greenhouse
+            gas inventories. The attestation delivers an institutional-grade
+            indicator using only annual spending data, without technical expertise.
           </p>
         </section>
 
-        {/* SECTION 5 */}
+        {/* 5 */}
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-            5. Faster Supplier Approval
+            5. Faster Supplier Approval Cycles
           </h2>
 
           <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-            Supplier approval cycles are often delayed by missing or inconsistent environmental
-            information. A standardized CO₂e document significantly reduces onboarding timelines.
+            Supplier approval is often delayed due to missing or inconsistent
+            environmental information. A standardized CO₂e document significantly
+            reduces review time and accelerates onboarding decisions.
           </p>
         </section>
 
-        {/* SECTION 6 */}
+        {/* 6 */}
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-            6. A Document That Can Be Verified Instantly
+            6. Immediate and Independent Verification
           </h2>
 
           <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
@@ -124,30 +138,31 @@ export default function WhyCompaniesAskPage() {
 
           <ul className="list-disc ml-6 text-gray-700 dark:text-gray-300 space-y-2">
             <li>a unique attestation identifier</li>
-            <li>built-in integrity safeguards</li>
+            <li>embedded document integrity safeguards</li>
             <li>a permanent verification URL</li>
-            <li>a QR code for institutional portals</li>
+            <li>a QR code usable in institutional systems</li>
           </ul>
 
           <p className="text-gray-700 dark:text-gray-300 leading-relaxed mt-4">
-            Institutions can verify authenticity in seconds and ensure the document has not been
-            altered.
+            Reviewers can verify authenticity within seconds and confirm that
+            the document has not been altered.
           </p>
         </section>
 
-        {/* SECTION 7 */}
+        {/* 7 */}
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-            7. Accepted Across Europe
+            7. Cross-Border Acceptance
           </h2>
 
           <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-            The attestation format aligns with procurement expectations across multiple European
-            jurisdictions and supports cross-border supplier workflows.
+            The attestation format is aligned with procurement expectations
+            across multiple European jurisdictions, supporting cross-border
+            supplier and group-level workflows.
           </p>
         </section>
 
-        {/* SECTION 8 */}
+        {/* 8 */}
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
             8. What This Attestation Is Not
@@ -159,32 +174,36 @@ export default function WhyCompaniesAskPage() {
             <li>not an assurance or verification engagement</li>
             <li>not a regulatory carbon report</li>
             <li>not CSRD or ESRS reporting</li>
-            <li>not a Scope 1, Scope 2 or Scope 3 inventory</li>
+            <li>not a Scope 1, Scope 2 or Scope 3 emissions inventory</li>
           </ul>
         </section>
 
-        {/* SECTION 9 */}
+        {/* 9 */}
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
             9. Legal Scope and Intended Use
           </h2>
 
           <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-            This attestation is provided for indicative purposes only. Data accuracy and completeness
-            remain the sole responsibility of the supplier.
+            This attestation is provided for indicative purposes only. The
+            accuracy and completeness of the underlying data remain the sole
+            responsibility of the supplier.
           </p>
 
           <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-            It does not constitute an audit, certification, assurance engagement or legally binding
-            carbon footprint, and does not replace any regulatory or reporting obligations.
+            It does not constitute an audit, certification, assurance engagement
+            or legally binding carbon footprint, and does not replace regulatory
+            or reporting obligations.
           </p>
 
           <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-            This page may be referenced in supplier communications, procurement documentation or
-            onboarding workflows as an official explanation of this requirement.
+            This page may be referenced in procurement documentation, supplier
+            communications or onboarding workflows as the official explanation
+            of this requirement.
           </p>
         </section>
+
       </div>
-    </div>
+    </section>
   );
-      }
+}
