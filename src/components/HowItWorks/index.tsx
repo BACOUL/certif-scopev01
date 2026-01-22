@@ -11,6 +11,14 @@ export default function HowItWorks() {
     >
       <div className="max-w-6xl mx-auto px-6">
 
+        {/* MICRO LABEL */}
+        <p
+          className="uppercase text-xs md:text-sm font-medium text-[#64748B] tracking-wider text-center mb-3"
+          data-i18n="howitworks.label"
+        >
+          CO₂e Attestation — Process
+        </p>
+
         {/* TITLE */}
         <h2
           className="text-3xl md:text-4xl font-extrabold text-center text-[#0B3A63]"
@@ -110,4 +118,4 @@ export default function HowItWorks() {
       </div>
     </section>
   );
-              }
+          }
