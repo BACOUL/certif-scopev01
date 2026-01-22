@@ -46,23 +46,20 @@ export default function ProductPage() {
         <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mt-10" />
       </header>
 
-      {/* TABLE OF CONTENTS */}
+      {/* TABLE OF CONTENTS — CANONICAL & LOCKED */}
       <nav
         aria-label="Product sections"
         className="mb-16 max-w-4xl p-6 bg-[#F8FAFC] border border-gray-200 rounded-xl shadow-sm"
       >
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-[#0B3A63] font-medium">
           <li>
-            <a
-              href="#product-overview-section"
-              className="hover:text-[#15B097] transition"
-            >
+            <a href="#product-overview" className="hover:text-[#15B097] transition">
               1. Product Overview
             </a>
           </li>
           <li>
             <a
-              href="#key-benefits"
+              href="#key-benefits-summary"
               className="hover:text-[#15B097] transition"
             >
               2. Key Benefits Summary
@@ -111,11 +108,9 @@ export default function ProductPage() {
         </ul>
       </nav>
 
-      {/* CONTENT */}
+      {/* CONTENT — CANONICAL ORDER, NO WRAPPERS */}
       <div className="max-w-4xl space-y-24">
-        <div id="product-overview-section">
-          <Section1 />
-        </div>
+        <Section1 />
         <Section2 />
         <Section3 />
         <Section4 />
@@ -125,4 +120,4 @@ export default function ProductPage() {
       </div>
     </section>
   );
-}
+      }
