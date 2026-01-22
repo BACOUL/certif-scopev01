@@ -44,7 +44,6 @@ export default function Section2() {
 
       {/* BENEFITS GRID */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
-
         {/* BENEFIT 1 */}
         <div className="p-8 bg-white rounded-xl shadow-md border border-gray-200 hover:shadow-lg transition">
           <div className="text-[#1FB6C1] text-4xl font-bold mb-3">01</div>
@@ -52,9 +51,9 @@ export default function Section2() {
             Immediate Availability
           </h3>
           <p className="text-gray-600 text-sm leading-relaxed">
-            The attestation is generated instantly from declared annual spending,
-            without requiring operational metrics, physical data collection or
-            prior carbon expertise.
+            The attestation is generated instantly using a standardized and
+            deterministic approach, without requiring operational metrics,
+            physical data collection or prior carbon expertise.
           </p>
         </div>
 
@@ -78,7 +77,8 @@ export default function Section2() {
           </h3>
           <p className="text-gray-600 text-sm leading-relaxed">
             Each attestation includes a unique reference identifier that enables
-            third parties to confirm authenticity without accounts or technical tools.
+            third parties to confirm authenticity without accounts or technical
+            tools.
           </p>
         </div>
 
@@ -89,8 +89,8 @@ export default function Section2() {
             Deterministic Consistency
           </h3>
           <p className="text-gray-600 text-sm leading-relaxed">
-            Identical inputs always produce the same result, ensuring stability,
-            comparability and predictable review outcomes.
+            Identical declarations always produce the same result, ensuring
+            stability, comparability and predictable review outcomes.
           </p>
         </div>
 
@@ -101,8 +101,8 @@ export default function Section2() {
             Accessible to Non-Experts
           </h3>
           <p className="text-gray-600 text-sm leading-relaxed">
-            No sustainability team, consultant or specialized software is required.
-            The process is intentionally simple and guided.
+            No sustainability team, consultant or specialized software is
+            required. The process is intentionally simple and guided.
           </p>
         </div>
 
@@ -132,4 +132,4 @@ export default function Section2() {
       </div>
     </section>
   );
-      }
+            }
