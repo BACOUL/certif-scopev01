@@ -76,6 +76,18 @@ export default function Section1() {
           institutional review processes.
         </p>
       </div>
+
+      {/* RETURN BUTTON — CANONICAL (CONSISTENT WITH ALL SECTIONS) */}
+      <div className="mt-12 text-right">
+        <a
+          href="#top"
+          data-i18n="product.section1.return"
+          className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63]
+                     text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
+        >
+          Back to summary
+        </a>
+      </div>
     </section>
   );
 }
