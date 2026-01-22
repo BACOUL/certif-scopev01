@@ -3,8 +3,8 @@
 export default function Section2() {
   return (
     <section
-      id="s2"
-      data-section="s2"
+      id="key-benefits"
+      data-section="key-benefits"
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
       {/* HEADER — canonical product section */}
@@ -22,6 +22,15 @@ export default function Section2() {
           Key Benefits Summary
         </h2>
 
+        {/* HARD SCOPE BOUNDARY */}
+        <p
+          data-i18n="s2.scope"
+          className="mt-4 text-sm text-gray-500 leading-relaxed max-w-4xl relative z-10"
+        >
+          This section summarizes the practical benefits of the CO₂e Attestation.
+          It does not describe the calculation method or emission factors.
+        </p>
+
         <p
           data-i18n="s2.intro"
           className="text-lg text-gray-700 max-w-4xl mt-6 leading-relaxed relative z-10"
@@ -37,21 +46,12 @@ export default function Section2() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
 
         {/* BENEFIT 1 */}
-        <div
-          data-i18n="s2.benefit1.block"
-          className="p-8 bg-white rounded-xl shadow-md border border-gray-200 hover:shadow-lg transition"
-        >
+        <div className="p-8 bg-white rounded-xl shadow-md border border-gray-200 hover:shadow-lg transition">
           <div className="text-[#1FB6C1] text-4xl font-bold mb-3">01</div>
-          <h3
-            data-i18n="s2.benefit1.title"
-            className="text-xl font-semibold text-[#0B3A63] mb-2"
-          >
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
             Immediate Availability
           </h3>
-          <p
-            data-i18n="s2.benefit1.text"
-            className="text-gray-600 text-sm leading-relaxed"
-          >
+          <p className="text-gray-600 text-sm leading-relaxed">
             The attestation is generated instantly from declared annual spending,
             without requiring operational metrics, physical data collection or
             prior carbon expertise.
@@ -59,110 +59,64 @@ export default function Section2() {
         </div>
 
         {/* BENEFIT 2 */}
-        <div
-          data-i18n="s2.benefit2.block"
-          className="p-8 bg-[#F8FAFC] rounded-xl border border-[#1FB6C1]/30 shadow-sm hover:shadow-md transition"
-        >
+        <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#1FB6C1]/30 shadow-sm hover:shadow-md transition">
           <div className="text-[#1FB6C1] text-4xl font-bold mb-3">02</div>
-          <h3
-            data-i18n="s2.benefit2.title"
-            className="text-xl font-semibold text-[#0B3A63] mb-2"
-          >
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
             Institution-Ready Document
           </h3>
-          <p
-            data-i18n="s2.benefit2.text"
-            className="text-gray-600 text-sm leading-relaxed"
-          >
+          <p className="text-gray-600 text-sm leading-relaxed">
             The format aligns with supplier onboarding, ESG screening,
             procurement questionnaires and third-party due-diligence processes.
           </p>
         </div>
 
         {/* BENEFIT 3 */}
-        <div
-          data-i18n="s2.benefit3.block"
-          className="p-8 bg-white rounded-xl shadow-md border border-gray-200 hover:shadow-lg transition"
-        >
+        <div className="p-8 bg-white rounded-xl shadow-md border border-gray-200 hover:shadow-lg transition">
           <div className="text-[#1FB6C1] text-4xl font-bold mb-3">03</div>
-          <h3
-            data-i18n="s2.benefit3.title"
-            className="text-xl font-semibold text-[#0B3A63] mb-2"
-          >
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
             Clear Validity Reference
           </h3>
-          <p
-            data-i18n="s2.benefit3.text"
-            className="text-gray-600 text-sm leading-relaxed"
-          >
+          <p className="text-gray-600 text-sm leading-relaxed">
             Each attestation includes a unique reference identifier that enables
             third parties to confirm authenticity without accounts or technical tools.
           </p>
         </div>
 
         {/* BENEFIT 4 */}
-        <div
-          data-i18n="s2.benefit4.block"
-          className="p-8 bg-[#F8FAFC] rounded-xl border border-[#1FB6C1]/30 shadow-sm hover:shadow-md transition"
-        >
+        <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#1FB6C1]/30 shadow-sm hover:shadow-md transition">
           <div className="text-[#1FB6C1] text-4xl font-bold mb-3">04</div>
-          <h3
-            data-i18n="s2.benefit4.title"
-            className="text-xl font-semibold text-[#0B3A63] mb-2"
-          >
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
             Deterministic Consistency
           </h3>
-          <p
-            data-i18n="s2.benefit4.text"
-            className="text-gray-600 text-sm leading-relaxed"
-          >
+          <p className="text-gray-600 text-sm leading-relaxed">
             Identical inputs always produce the same result, ensuring stability,
-            comparability and predictable review outcomes across organizations.
+            comparability and predictable review outcomes.
           </p>
         </div>
 
         {/* BENEFIT 5 */}
-        <div
-          data-i18n="s2.benefit5.block"
-          className="p-8 bg-white rounded-xl shadow-md border border-gray-200 hover:shadow-lg transition"
-        >
+        <div className="p-8 bg-white rounded-xl shadow-md border border-gray-200 hover:shadow-lg transition">
           <div className="text-[#1FB6C1] text-4xl font-bold mb-3">05</div>
-          <h3
-            data-i18n="s2.benefit5.title"
-            className="text-xl font-semibold text-[#0B3A63] mb-2"
-          >
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
             Accessible to Non-Experts
           </h3>
-          <p
-            data-i18n="s2.benefit5.text"
-            className="text-gray-600 text-sm leading-relaxed"
-          >
+          <p className="text-gray-600 text-sm leading-relaxed">
             No sustainability team, consultant or specialized software is required.
             The process is intentionally simple and guided.
           </p>
         </div>
 
         {/* BENEFIT 6 */}
-        <div
-          data-i18n="s2.benefit6.block"
-          className="p-8 bg-[#F8FAFC] rounded-xl border border-[#1FB6C1]/30 shadow-sm hover:shadow-md transition"
-        >
+        <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#1FB6C1]/30 shadow-sm hover:shadow-md transition">
           <div className="text-[#1FB6C1] text-4xl font-bold mb-3">06</div>
-          <h3
-            data-i18n="s2.benefit6.title"
-            className="text-xl font-semibold text-[#0B3A63] mb-2"
-          >
+          <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
             Multilingual European Coverage
           </h3>
-          <p
-            data-i18n="s2.benefit6.text"
-            className="text-gray-600 text-sm leading-relaxed"
-          >
+          <p className="text-gray-600 text-sm leading-relaxed">
             Available in multiple European languages to support cross-border
             supplier relationships and institutional review workflows.
           </p>
         </div>
-
       </div>
 
       {/* RETURN BUTTON */}
@@ -178,4 +132,4 @@ export default function Section2() {
       </div>
     </section>
   );
-          }
+      }
