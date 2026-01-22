@@ -55,9 +55,8 @@ export default function HowItWorks() {
               Automatic calculation
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              A standard spend-based formula applies stable, versioned emission factors
-              to generate consistent CO₂e indicators. The calculation is deterministic
-              and fully reproducible.
+              A standardized spend-based method is applied automatically to generate a
+              consistent CO₂e result using recognized emission factor sources.
             </p>
           </div>
 
@@ -67,11 +66,11 @@ export default function HowItWorks() {
               3
             </div>
             <h3 className="mt-6 text-lg font-semibold text-[#0B3A63]">
-              Download your Attestation
+              Download your attestation
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Instantly receive a structured PDF including total CO₂e, category breakdown
-              and built-in verification information.
+              Instantly receive a standardized PDF presenting an aggregated CO₂e result,
+              key metadata and built-in verification information in a review-ready format.
             </p>
           </div>
 
@@ -87,17 +86,6 @@ export default function HowItWorks() {
           Only the final CO₂e result is transmitted to issue the attestation.
         </p>
 
-        {/* SPONSORING BLOCK */}
-        <div className="mt-16 p-6 rounded-xl border border-slate-200 bg-slate-50 dark:bg-gray-800 dark:border-gray-700 text-slate-700 dark:text-gray-300 text-sm max-w-3xl mx-auto">
-          <p className="font-semibold text-slate-900 dark:text-white">
-            Cost coverage by enterprise programs
-          </p>
-          <p className="mt-1">
-            Some enterprise partners cover the cost for part or all of their suppliers.
-            If applicable, confirm this with your procurement or ESG contact.
-          </p>
-        </div>
-
         {/* FOOTER LINE */}
         <p
           className="mt-12 text-center text-sm text-gray-500 dark:text-gray-400"
@@ -109,4 +97,4 @@ export default function HowItWorks() {
       </div>
     </section>
   );
-              }
+          }
