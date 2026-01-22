@@ -27,12 +27,12 @@ export default function Testimonials() {
     >
       <div className="max-w-4xl mx-auto px-6 text-center mb-14">
 
-        {/* SECTION LABEL */}
+        {/* MICRO LABEL — ALIGNED WITH OTHER HOME SECTIONS */}
         <p
           data-i18n="testimonials.label"
           className="uppercase text-xs md:text-sm font-medium text-[#64748B] dark:text-gray-400 tracking-wide mb-3"
         >
-          Representative feedback from European SMEs
+          CO₂e Attestation — Field Feedback
         </p>
 
         {/* TITLE */}
@@ -108,4 +108,4 @@ export default function Testimonials() {
       </div>
     </section>
   );
-        }
+            }
