@@ -9,39 +9,40 @@ export default function LegalPage() {
     <section
       id="legal"
       data-section="legal"
-      className="max-w-7xl mx-auto px-6 pt-12 pb-24"
+      className="max-w-7xl mx-auto px-6 pt-10 pb-24"
     >
-      {/* HEADER */}
-      <header className="max-w-3xl mx-auto text-center mb-12">
+      {/* CANONICAL HEADER */}
+      <header className="mb-14">
         <p
           data-i18n="legal.label"
-          className="uppercase text-xs md:text-sm font-medium text-[#64748B] tracking-wider mb-3"
+          className="uppercase text-xs tracking-wider text-[#64748B] mb-3"
         >
           Legal Information
         </p>
 
         <h1
           data-i18n="legal.title"
-          className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-4"
+          className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-6"
         >
           Legal Notice
         </h1>
 
         <p
           data-i18n="legal.description"
-          className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed"
+          className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed max-w-3xl"
         >
           Mandatory legal information regarding the operator, hosting provider,
           intellectual property, liability limitations and data handling
           principles applicable to Certif-Scope.
         </p>
+
+        <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mt-10" />
       </header>
 
-      <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto mb-14" />
+      {/* CONTENT — CANONICAL WIDTH */}
+      <div className="max-w-4xl space-y-16">
 
-      <div className="max-w-4xl mx-auto space-y-14">
-
-        {/* OPERATOR */}
+        {/* 1. OPERATOR */}
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
             1. Operator Information
@@ -56,13 +57,16 @@ export default function LegalPage() {
             <li><strong>Business name:</strong> TimeProofs</li>
             <li><strong>Legal status:</strong> Entrepreneur individuel (France)</li>
             <li><strong>SIREN:</strong> 999356439</li>
-            <li><strong>Registered address:</strong> 3 rue de l’Église de Louppy, 55000 Les Hauts-de-Chée, France</li>
+            <li>
+              <strong>Registered address:</strong> 3 rue de l’Église de Louppy,
+              55000 Les Hauts-de-Chée, France
+            </li>
             <li><strong>VAT regime:</strong> Franchise en base (VAT not applicable)</li>
             <li><strong>Contact email:</strong> contact@certif-scope.com</li>
           </ul>
         </section>
 
-        {/* PUBLICATION */}
+        {/* 2. PUBLICATION */}
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
             2. Publication Responsibility
@@ -76,7 +80,7 @@ export default function LegalPage() {
           </p>
         </section>
 
-        {/* HOSTING */}
+        {/* 3. HOSTING */}
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
             3. Hosting Provider
@@ -94,7 +98,7 @@ export default function LegalPage() {
           </p>
         </section>
 
-        {/* IP */}
+        {/* 4. IP */}
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
             4. Intellectual Property
@@ -109,7 +113,7 @@ export default function LegalPage() {
           </p>
         </section>
 
-        {/* LIABILITY */}
+        {/* 5. LIABILITY */}
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
             5. Liability Limitations
@@ -135,7 +139,7 @@ export default function LegalPage() {
           </p>
         </section>
 
-        {/* DATA STORAGE */}
+        {/* 6. DATA */}
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
             6. Data Storage and Processing
@@ -150,7 +154,7 @@ export default function LegalPage() {
           </p>
         </section>
 
-        {/* ABUSE */}
+        {/* 7. ABUSE */}
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
             7. Abuse, Misuse and Technical Reporting
@@ -167,4 +171,4 @@ export default function LegalPage() {
       </div>
     </section>
   );
-      }
+            }
