@@ -12,6 +12,8 @@ export default function Header() {
 
   const navRef = useRef<HTMLDivElement | null>(null);
   const burgerRef = useRef<HTMLButtonElement | null>(null);
+  const dropdownButtonRef = useRef<HTMLButtonElement | null>(null);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   const closeAll = () => {
     setDropdown(false);
@@ -20,24 +22,22 @@ export default function Header() {
 
   // Close menu when navigation event dispatched by ClientLayout
   useEffect(() => {
-    const handler = () => {
-      setOpen(false);
-      setDropdown(false);
-    };
+    const handler = () => closeAll();
     window.addEventListener("close-mobile-menu", handler);
     return () => window.removeEventListener("close-mobile-menu", handler);
   }, []);
 
   // Close menu when clicking outside
   useEffect(() => {
-    if (!open) return;
+    if (!open && !dropdown) return;
 
     const handleClickOutside = (event: MouseEvent | TouchEvent) => {
+      const target = event.target as Node;
       if (
         navRef.current &&
-        !navRef.current.contains(event.target as Node) &&
+        !navRef.current.contains(target) &&
         burgerRef.current &&
-        !burgerRef.current.contains(event.target as Node)
+        !burgerRef.current.contains(target)
       ) {
         closeAll();
       }
@@ -50,16 +50,31 @@ export default function Header() {
       document.removeEventListener("mousedown", handleClickOutside);
       document.removeEventListener("touchstart", handleClickOutside);
     };
-  }, [open]);
+  }, [open, dropdown]);
+
+  // Close dropdown on Escape key
+  useEffect(() => {
+    if (!dropdown) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setDropdown(false);
+        dropdownButtonRef.current?.focus();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [dropdown]);
 
   return (
     <header
       id="site-header"
       role="banner"
       className="
-        fixed top-0 left-0 w-full z-50 
-        bg-white/95 dark:bg-gray-900/90 
-        backdrop-blur-md 
+        fixed top-0 left-0 w-full z-50
+        bg-white/95 dark:bg-gray-900/90
+        backdrop-blur-md
         border-b border-gray-200 dark:border-gray-700
       "
     >
@@ -109,11 +124,11 @@ export default function Header() {
           id="main-navigation"
           aria-label="Main navigation"
           className={`
-            absolute lg:static top-[60px] right-4 
-            bg-white dark:bg-gray-900 
+            absolute lg:static top-[60px] right-4
+            bg-white dark:bg-gray-900
             border border-gray-200 dark:border-gray-700
             rounded-xl shadow-lg lg:shadow-none
-            p-5 lg:p-0 
+            p-5 lg:p-0
             w-60 lg:w-auto
             transition-all duration-200
             ${open ? "block opacity-100" : "hidden opacity-0 lg:block lg:opacity-100"}
@@ -121,7 +136,6 @@ export default function Header() {
         >
           <ul className="flex flex-col lg:flex-row gap-4 lg:gap-10">
 
-            {/* HOME */}
             <li>
               <Link
                 href="/"
@@ -138,22 +152,30 @@ export default function Header() {
             {/* ATTESTATION DROPDOWN */}
             <li className="relative">
               <button
+                ref={dropdownButtonRef}
                 onClick={() => setDropdown(!dropdown)}
                 aria-haspopup="true"
                 aria-expanded={dropdown}
                 aria-controls="dropdown-attestation"
                 data-i18n="nav.attestation"
-                className="font-medium text-gray-800 dark:text-gray-200 flex items-center gap-1"
+                className="font-medium text-gray-800 dark:text-gray-200 flex items-center gap-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1FB6C1]"
               >
                 CO₂e Attestation
-                <span className={`transition-transform ${dropdown ? "rotate-180" : ""}`}>▼</span>
+                <span
+                  aria-hidden="true"
+                  className={`transition-transform ${dropdown ? "rotate-180" : ""}`}
+                >
+                  ▼
+                </span>
               </button>
 
               {dropdown && (
                 <div
+                  ref={dropdownRef}
                   id="dropdown-attestation"
+                  role="menu"
                   className="
-                    absolute left-0 top-[55px] w-56 z-50 
+                    absolute left-0 top-[55px] w-56 z-50
                     bg-white dark:bg-gray-900
                     border border-gray-200 dark:border-gray-700
                     rounded-lg shadow-lg p-3
@@ -162,24 +184,27 @@ export default function Header() {
                   <Link
                     href="/product"
                     onClick={closeAll}
+                    role="menuitem"
                     data-i18n="nav.overview"
-                    className="block py-2 text-sm hover:text-primary"
+                    className="block py-2 text-sm hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1FB6C1]"
                   >
                     Overview
                   </Link>
                   <Link
                     href="/product/methodology"
                     onClick={closeAll}
+                    role="menuitem"
                     data-i18n="nav.methodology"
-                    className="block py-2 text-sm hover:text-primary"
+                    className="block py-2 text-sm hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1FB6C1]"
                   >
                     Methodology
                   </Link>
                   <Link
                     href="/product/methodology/compliance"
                     onClick={closeAll}
+                    role="menuitem"
                     data-i18n="nav.compliance"
-                    className="block py-2 text-sm hover:text-primary"
+                    className="block py-2 text-sm hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1FB6C1]"
                   >
                     Compliance
                   </Link>
@@ -187,49 +212,6 @@ export default function Header() {
               )}
             </li>
 
-            {/* PRICING */}
-            <li>
-              <Link
-                href="/pricing"
-                onClick={closeAll}
-                data-i18n="nav.pricing"
-                className={`font-medium ${
-                  pathname === "/pricing" ? "text-primary" : "text-gray-800 dark:text-gray-200"
-                }`}
-              >
-                Pricing
-              </Link>
-            </li>
-
-            {/* PARTNERS */}
-            <li>
-              <Link
-                href="/partners"
-                onClick={closeAll}
-                data-i18n="nav.partners"
-                className={`font-medium ${
-                  pathname === "/partners" ? "text-primary" : "text-gray-800 dark:text-gray-200"
-                }`}
-              >
-                Partnerships
-              </Link>
-            </li>
-
-            {/* GENERATE */}
-            <li>
-              <Link
-                href="/generate"
-                onClick={closeAll}
-                data-i18n="nav.generate"
-                className={`font-medium ${
-                  pathname === "/generate" ? "text-primary" : "text-gray-800 dark:text-gray-200"
-                }`}
-              >
-                Generate Attestation
-              </Link>
-            </li>
-
-            {/* VERIFY */}
             <li>
               <Link
                 href="/verify"
@@ -243,9 +225,48 @@ export default function Header() {
               </Link>
             </li>
 
+            <li>
+              <Link
+                href="/pricing"
+                onClick={closeAll}
+                data-i18n="nav.pricing"
+                className={`font-medium ${
+                  pathname === "/pricing" ? "text-primary" : "text-gray-800 dark:text-gray-200"
+                }`}
+              >
+                Pricing
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                href="/partners"
+                onClick={closeAll}
+                data-i18n="nav.partners"
+                className={`font-medium ${
+                  pathname === "/partners" ? "text-primary" : "text-gray-800 dark:text-gray-200"
+                }`}
+              >
+                Partnerships
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                href="/generate"
+                onClick={closeAll}
+                data-i18n="nav.generate"
+                className={`font-medium ${
+                  pathname === "/generate" ? "text-primary" : "text-gray-800 dark:text-gray-200"
+                }`}
+              >
+                Generate Attestation
+              </Link>
+            </li>
+
           </ul>
         </nav>
       </div>
     </header>
   );
-          }
+                                   }
