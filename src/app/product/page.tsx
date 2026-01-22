@@ -13,12 +13,12 @@ export default function ProductPage() {
     <section
       id="product"
       data-section="product"
-      className="max-w-7xl mx-auto px-6 pt-10 pb-24"
+      className="max-w-7xl mx-auto px-6 pt-12 pb-24"
     >
       {/* TOP ANCHOR */}
       <div id="top" />
 
-      {/* CANONICAL HEADER */}
+      {/* CANONICAL PAGE HEADER — IDENTICAL TO ALL SECONDARY PAGES */}
       <header className="mb-14">
         <p
           data-i18n="product.label"
@@ -36,14 +36,14 @@ export default function ProductPage() {
 
         <p
           data-i18n="product.subtitle"
-          className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed max-w-3xl"
+          className="text-lg text-gray-700 leading-relaxed max-w-3xl"
         >
           A structured, standardized and verification-ready overview of the CO₂e
           Attestation, including benefits, use cases, verification mechanisms and
           clearly defined limitations.
         </p>
 
-        <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mt-10" />
+        <div className="w-20 h-[2px] bg-gray-300 mt-10" />
       </header>
 
       {/* TABLE OF CONTENTS — CANONICAL & LOCKED */}
@@ -105,8 +105,8 @@ export default function ProductPage() {
         </ul>
       </nav>
 
-      {/* CONTENT — CANONICAL ORDER */}
-      <div className="max-w-4xl space-y-24">
+      {/* CONTENT — CANONICAL WIDTH & ORDER */}
+      <div className="max-w-4xl mx-auto space-y-24">
         <Section1 />
         <Section2 />
         <Section3 />
@@ -117,4 +117,4 @@ export default function ProductPage() {
       </div>
     </section>
   );
-    }
+        }
