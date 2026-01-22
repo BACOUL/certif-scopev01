@@ -26,71 +26,76 @@ export default function Section4() {
           data-i18n="s4.intro"
           className="text-lg text-gray-700 max-w-4xl mt-6 leading-relaxed relative z-10"
         >
-          The attestation is designed for clear, reliable and institution-ready
-          workflows. Each element is structured and standardized to enable
-          procurement, banking and insurance teams to review it efficiently.
+          The CO₂e Attestation is delivered as a standardized, institution-ready
+          PDF document. Each element is intentionally structured to support
+          procurement review, financial risk assessment and supplier onboarding.
         </p>
       </div>
 
-      {/* GRID — refined, minimalistic */}
+      {/* GRID */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-20">
         <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition">
           <h3 className="text-2xl font-semibold text-[#0B3A63]" data-i18n="s4.block1.title">
-            1. Summary Indicators
+            1. CO₂e Result Summary
           </h3>
           <p className="text-sm text-gray-700 mt-3 leading-relaxed" data-i18n="s4.block1.text">
-            Displays the total indicative CO₂e emissions based on a standardized,
-            spend-based approach.
+            A single aggregated CO₂e value expressed in tonnes of CO₂ equivalent,
+            presented in a clear and unambiguous format for institutional review.
           </p>
         </div>
 
         <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#1FB6C1]/20 shadow-sm hover:shadow-md transition">
           <h3 className="text-2xl font-semibold text-[#0B3A63]" data-i18n="s4.block2.title">
-            2. Category Breakdown
+            2. Declared Scope Overview
           </h3>
           <p className="text-sm text-gray-700 mt-3 leading-relaxed" data-i18n="s4.block2.text">
-            Spending is presented across predefined categories to support review
-            and comparison.
+            A high-level overview of the expense categories declared by the
+            organization, providing contextual clarity without disclosing
+            detailed financial data.
           </p>
         </div>
 
         <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition">
           <h3 className="text-2xl font-semibold text-[#0B3A63]" data-i18n="s4.block3.title">
-            3. Emission Factor Documentation
+            3. Normative References
           </h3>
           <p className="text-sm text-gray-700 mt-3 leading-relaxed" data-i18n="s4.block3.text">
-            References the emission factors applied to ensure transparency and
-            consistency for institutional review.
+            Explicit references to recognized European and international
+            sustainability frameworks, allowing reviewers to understand the
+            conceptual basis of the indicator without technical detail.
           </p>
         </div>
 
         <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#1FB6C1]/20 shadow-sm hover:shadow-md transition">
           <h3 className="text-2xl font-semibold text-[#0B3A63]" data-i18n="s4.block4.title">
-            4. Attestation Reference ID & QR Code
+            4. Verification Reference & QR Code
           </h3>
           <p className="text-sm text-gray-700 mt-3 leading-relaxed" data-i18n="s4.block4.text">
-            Includes a unique reference ID to confirm the attestation’s validity.
-            A QR code provides optional access to the public verification page.
+            A unique attestation identifier and QR code enabling third parties
+            to verify authenticity and document integrity through the public
+            verification page.
           </p>
         </div>
 
         <div className="p-8 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition">
           <h3 className="text-2xl font-semibold text-[#0B3A63]" data-i18n="s4.block5.title">
-            5. Attestation Metadata
+            5. Institutional Metadata
           </h3>
           <p className="text-sm text-gray-700 mt-3 leading-relaxed" data-i18n="s4.block5.text">
-            Includes issuance date, validity period, declared inputs and
-            contextual information required for review.
+            Issuance date, validity period, declared reference year and basic
+            organizational identifiers required for audit trails and internal
+            compliance processes.
           </p>
         </div>
 
         <div className="p-8 bg-[#F8FAFC] rounded-xl border border-[#1FB6C1]/20 shadow-sm hover:shadow-md transition">
           <h3 className="text-2xl font-semibold text-[#0B3A63]" data-i18n="s4.block6.title">
-            6. Method Summary
+            6. Usage Limitations Statement
           </h3>
           <p className="text-sm text-gray-700 mt-3 leading-relaxed" data-i18n="s4.block6.text">
-            Provides a concise overview of the spend-based approach and clarifies
-            its indicative and non-regulatory scope.
+            A clear statement defining the indicative nature of the document and
+            its intended use, preventing misinterpretation as a regulatory
+            report, audit or certification.
           </p>
         </div>
       </div>
@@ -102,8 +107,9 @@ export default function Section4() {
         </h4>
 
         <p className="text-sm text-gray-700 leading-relaxed max-w-4xl" data-i18n="s4.note.text">
-          This document is suitable for procurement, banking reviews and onboarding
-          workflows, but not for CSRD/ESRS filings or audited carbon accounting.
+          This attestation is designed for supplier assessment, procurement
+          screening and financial risk review. It does not replace regulatory
+          sustainability reporting or audited greenhouse gas inventories.
         </p>
       </div>
 
@@ -119,4 +125,4 @@ export default function Section4() {
       </div>
     </section>
   );
-}
+          }
