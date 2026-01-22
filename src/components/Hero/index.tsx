@@ -32,7 +32,9 @@ export default function Hero() {
       >
         Instant CO₂e Attestation for SMEs.
         <br />
-        <span className="text-[#1FB6C1]">Verified and accepted across Europe.</span>
+        <span className="text-[#1FB6C1]">
+          Verified and accepted across Europe.
+        </span>
       </h1>
 
       <p
@@ -64,8 +66,7 @@ export default function Hero() {
       </p>
 
       <div className="flex flex-col md:flex-row justify-center gap-6 mt-12">
-
-        {/* CTA — MODIFIED */}
+        {/* PRIMARY CTA */}
         <Link
           href="/generate"
           itemProp="url"
@@ -76,8 +77,11 @@ export default function Hero() {
           Generate Attestation
         </Link>
 
+        {/* SECONDARY CTA — SAMPLE */}
         <Link
-          href="/sample.pdf"
+          href="/api/sample"
+          target="_blank"
+          rel="noopener noreferrer"
           itemProp="url"
           aria-label="View Sample CO₂e PDF"
           data-i18n="hero.cta.sample"
@@ -94,7 +98,8 @@ export default function Hero() {
             "@context": "https://schema.org",
             "@type": "WebPage",
             name: "Certif-Scope — Instant CO2e Attestation",
-            description: "Instant spend-based CO2e attestation for SMEs across Europe.",
+            description:
+              "Instant spend-based CO2e attestation for SMEs across Europe.",
             image: "https://certif-scope.com/hero-attestation.webp",
             url: "https://certif-scope.com/",
             mainEntity: {
@@ -115,4 +120,4 @@ export default function Hero() {
       />
     </section>
   );
-        }
+          }
