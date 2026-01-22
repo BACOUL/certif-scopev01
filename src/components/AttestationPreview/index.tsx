@@ -14,7 +14,7 @@ export default function AttestationPreview() {
           data-i18n="preview.label"
           className="text-xs md:text-sm font-medium text-gray-500 dark:text-gray-400 tracking-wider uppercase mb-3"
         >
-          CO₂e Attestation Preview — Standardized • Spend-Based • Verifiable
+          CO₂e Attestation Format — Standardized • Spend-Based • Verifiable
         </p>
 
         <div className="w-16 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto mb-8" />
@@ -24,7 +24,7 @@ export default function AttestationPreview() {
           data-i18n="preview.title"
           className="text-2xl md:text-3xl font-extrabold text-[#0B3A63] dark:text-gray-100 leading-tight mb-6"
         >
-          Official CO₂e Attestation Preview
+          Illustrative example of the attestation format
         </h2>
 
         {/* DESCRIPTION */}
@@ -32,9 +32,10 @@ export default function AttestationPreview() {
           data-i18n="preview.description"
           className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed mb-16"
         >
-          This is the exact standardized layout produced by Certif-Scope. It includes total CO₂e,
-          category overview and built-in verification information in a clean, review-ready format.
-          Designed for procurement, banking and ESG screening workflows across Europe.
+          This image illustrates the standardized structure and visual format of a Certif-Scope
+          CO₂e attestation. It is provided for layout and readability purposes only and does not
+          represent an actual issued document. Each attestation is generated individually based
+          on user-provided data.
         </p>
 
         {/* IMAGE */}
@@ -42,7 +43,7 @@ export default function AttestationPreview() {
           <div className="relative w-full max-w-[600px]">
             <Image
               src="/preview.webp"
-              alt="Preview of the standardized Certif-Scope CO₂e Attestation showing total CO₂e, category overview and verification information"
+              alt="Illustrative example of the standardized Certif-Scope CO₂e attestation format, shown for layout and structure only"
               width={1200}
               height={800}
               loading="lazy"
@@ -68,10 +69,11 @@ export default function AttestationPreview() {
             data-i18n="preview.disclaimer"
             className="mt-4 text-xs text-gray-500 dark:text-gray-400 max-w-sm leading-relaxed"
           >
-            Indicative spend-based estimate. Not a CSRD/ESRS report or audited emissions inventory.
+            Illustrative example only. Indicative spend-based estimate. Not a CSRD/ESRS report and
+            not a substitute for an audited greenhouse gas inventory.
           </p>
         </div>
       </div>
     </section>
   );
-}
+          }
