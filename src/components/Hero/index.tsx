@@ -77,17 +77,17 @@ export default function Hero() {
           Generate Attestation
         </Link>
 
-        {/* SECONDARY CTA — SAMPLE */}
+        {/* SECONDARY CTA — VIEW IMAGE */}
         <Link
-          href="/api/sample"
+          href="/hero-attestation.webp"
           target="_blank"
           rel="noopener noreferrer"
           itemProp="url"
-          aria-label="View Sample CO₂e PDF"
+          aria-label="View CO₂e Attestation Preview"
           data-i18n="hero.cta.sample"
           className="bg-white border border-[#0B3A63] hover:bg-[#0B3A63] hover:text-white text-[#0B3A63] font-semibold px-12 py-4 rounded-xl shadow-md text-center transition"
         >
-          View Sample PDF
+          View Attestation Preview
         </Link>
       </div>
 
@@ -120,4 +120,4 @@ export default function Hero() {
       />
     </section>
   );
-}
+        }
