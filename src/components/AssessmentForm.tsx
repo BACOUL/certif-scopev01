@@ -28,6 +28,12 @@ const METHODOLOGY =
 
 type AttestationLocale = "en" | "fr" | "de";
 
+type FormErrors = {
+  companyName?: string;
+  sector?: string;
+  submit?: string;
+};
+
 /* ======================================================
    SECTORS (DISPLAY ONLY)
 ====================================================== */
@@ -129,6 +135,9 @@ export default function AssessmentForm() {
     other: "",
   });
 
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const update = (field: string, value: string) => {
     setExpenses((prev) => ({ ...prev, [field]: value }));
   };
@@ -139,16 +148,28 @@ export default function AssessmentForm() {
 
   const totalCO2e = calculateTotalCO2e(numericExpenses);
 
-  const handleSubmit = async () => {
-    if (!companyName) {
-      alert("Company name is required.");
-      return;
+  const validate = (): boolean => {
+    const nextErrors: FormErrors = {};
+
+    if (!companyName.trim()) {
+      nextErrors.companyName =
+        "Company name is required to issue the attestation.";
     }
 
     if (!sector) {
-      alert("Sector of activity is required.");
-      return;
+      nextErrors.sector =
+        "Please select a main sector of activity.";
     }
+
+    setErrors(nextErrors);
+    return Object.keys(nextErrors).length === 0;
+  };
+
+  const handleSubmit = async () => {
+    if (!validate()) return;
+
+    setIsSubmitting(true);
+    setErrors({});
 
     const payload = {
       companyName,
@@ -161,19 +182,26 @@ export default function AssessmentForm() {
       attestationLocale,
     };
 
-    const res = await fetch("/api/checkout", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
+    try {
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
 
-    if (!res.ok) {
-      alert("Payment initialization failed.");
-      return;
+      if (!res.ok) {
+        throw new Error("Payment initialization failed.");
+      }
+
+      const { url } = await res.json();
+      window.location.href = url;
+    } catch {
+      setErrors({
+        submit:
+          "Unable to initiate payment. Please try again or refresh the page.",
+      });
+      setIsSubmitting(false);
     }
-
-    const { url } = await res.json();
-    window.location.href = url;
   };
 
   return (
@@ -211,8 +239,15 @@ export default function AssessmentForm() {
                 type="text"
                 value={companyName}
                 onChange={(e) => setCompanyName(e.target.value)}
-                className="w-full border rounded-md px-4 py-2 mt-1"
+                className={`w-full border rounded-md px-4 py-2 mt-1 ${
+                  errors.companyName ? "border-red-500" : ""
+                }`}
               />
+              {errors.companyName && (
+                <p className="text-sm text-red-600 mt-1">
+                  {errors.companyName}
+                </p>
+              )}
             </div>
 
             <div>
@@ -222,7 +257,9 @@ export default function AssessmentForm() {
               <select
                 value={sector}
                 onChange={(e) => setSector(e.target.value)}
-                className="w-full border rounded-md px-4 py-2 mt-1"
+                className={`w-full border rounded-md px-4 py-2 mt-1 ${
+                  errors.sector ? "border-red-500" : ""
+                }`}
               >
                 <option value="">Select a sector</option>
                 {SECTORS.map((s) => (
@@ -231,6 +268,11 @@ export default function AssessmentForm() {
                   </option>
                 ))}
               </select>
+              {errors.sector && (
+                <p className="text-sm text-red-600 mt-1">
+                  {errors.sector}
+                </p>
+              )}
             </div>
 
             <div>
@@ -303,14 +345,14 @@ export default function AssessmentForm() {
           </div>
         </Accordion>
 
-        {/* STEP 3 */}
+        {/* STEP 2 — EXPENSES */}
         <p className="text-sm text-gray-500">
           Step 2 of 3 — Annual expenses
         </p>
 
         <Accordion
           title="Annual external expenses (€)"
-          intro="Provide approximate annual amounts. Exact figures are not required. Reasonable estimates are sufficient."
+          intro="Provide approximate annual amounts. Reasonable estimates are sufficient."
         >
           <Input label="IT & digital services" hint="Software, cloud, SaaS, IT outsourcing" value={expenses.it} onChange={(v) => update("it", v)} />
           <Input label="Professional services" hint="Consulting, accounting, legal services" value={expenses.services} onChange={(v) => update("services", v)} />
@@ -321,7 +363,7 @@ export default function AssessmentForm() {
           <Input label="Other external expenses" hint="Marketing, subscriptions, miscellaneous costs" value={expenses.other} onChange={(v) => update("other", v)} />
         </Accordion>
 
-        {/* RESULT */}
+        {/* STEP 3 */}
         <p className="text-sm text-gray-500">
           Step 3 of 3 — Result & attestation
         </p>
@@ -351,9 +393,20 @@ export default function AssessmentForm() {
           </ul>
         </div>
 
+        {errors.submit && (
+          <p className="text-sm text-red-600">
+            {errors.submit}
+          </p>
+        )}
+
         <button
           onClick={handleSubmit}
-          className="w-full bg-[#0B3A63] hover:bg-[#092f50] text-white py-4 rounded-xl font-semibold transition"
+          disabled={isSubmitting}
+          className={`w-full py-4 rounded-xl font-semibold transition ${
+            isSubmitting
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-[#0B3A63] hover:bg-[#092f50] text-white"
+          }`}
         >
           Generate my carbon attestation — 89 €
         </button>
@@ -396,4 +449,4 @@ function Input({
       <p className="text-xs text-gray-500 mt-1">{hint}</p>
     </div>
   );
-       }
+         }
