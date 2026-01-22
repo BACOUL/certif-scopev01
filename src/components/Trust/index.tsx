@@ -1,3 +1,5 @@
+"use client";
+
 export default function Trust() {
   return (
     <section
@@ -7,19 +9,17 @@ export default function Trust() {
     >
       <div className="max-w-6xl mx-auto px-6 text-center">
 
-        {/* TAGLINE */}
+        {/* MICRO LABEL — ALIGNED WITH OTHER HOME SECTIONS */}
         <p
-          className="text-xs md:text-sm font-medium text-gray-500 dark:text-gray-400 tracking-wider uppercase mb-3"
-          data-i18n="trust.tagline"
+          className="uppercase text-xs md:text-sm font-medium text-[#64748B] dark:text-gray-400 tracking-wider mb-3"
+          data-i18n="trust.label"
         >
-          Reliability for procurement, banking and ESG screening
+          CO₂e Attestation — Trust & Reliability
         </p>
-
-        <div className="w-16 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto mb-10" />
 
         {/* TITLE */}
         <h2
-          className="text-2xl md:text-3xl font-extrabold text-[#0B3A63] dark:text-gray-100 leading-tight mb-6"
+          className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] dark:text-gray-100 leading-tight"
           data-i18n="trust.title"
         >
           Built for institutional review and external verification
@@ -27,7 +27,7 @@ export default function Trust() {
 
         {/* INTRO */}
         <p
-          className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed mb-6"
+          className="mt-4 text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed"
           data-i18n="trust.intro"
         >
           Certif-Scope applies a fixed document structure, stable emission factor references and
@@ -35,9 +35,12 @@ export default function Trust() {
           document across suppliers, reducing manual checks and eliminating ambiguity.
         </p>
 
+        {/* SEPARATOR — CANONICAL */}
+        <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto my-14" />
+
         {/* INSTITUTIONAL ACCEPTANCE — KEY SENTENCE */}
         <p
-          className="text-sm text-[#0B3A63]/80 max-w-2xl mx-auto leading-relaxed mb-16"
+          className="text-sm text-[#0B3A63]/80 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed mb-16"
           data-i18n="trust.acceptance"
         >
           Commonly used for preliminary procurement, banking and ESG screening processes
@@ -149,4 +152,4 @@ export default function Trust() {
       </div>
     </section>
   );
-            }
+}
