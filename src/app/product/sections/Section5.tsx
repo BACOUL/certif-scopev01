@@ -26,10 +26,9 @@ export default function Section5() {
           data-i18n="s5.intro"
           className="text-white/90 text-lg max-w-4xl mt-6 leading-relaxed relative z-10"
         >
-          Each CO₂e Attestation is issued with built-in integrity and authenticity
-          guarantees. Verification is possible without accounts, without personal
-          data, and without relying on a live service. Reviewers can assess validity
-          independently, at any time.
+          Each CO₂e Attestation is issued with built-in integrity safeguards.
+          Its authenticity can be verified independently, without accounts,
+          without personal data and without relying on a central registry.
         </p>
       </div>
 
@@ -40,16 +39,16 @@ export default function Section5() {
             className="text-2xl font-semibold text-[#0B3A63]"
             data-i18n="s5.block1.title"
           >
-            Signed Attestation at Issuance
+            Issued as a Tamper-Evident Document
           </h3>
 
           <p
             className="mt-3 text-gray-700 text-sm leading-relaxed"
             data-i18n="s5.block1.text"
           >
-            Each attestation is digitally signed at the moment of issuance by
-            Certif-Scope. This signature guarantees that the document has not been
-            altered since it was issued.
+            Each attestation is generated as a final, non-modifiable document.
+            Any alteration of its content invalidates its authenticity, ensuring
+            that recipients can rely on the document as originally issued.
           </p>
         </div>
 
@@ -58,16 +57,16 @@ export default function Section5() {
             className="text-2xl font-semibold text-[#0B3A63]"
             data-i18n="s5.block2.title"
           >
-            Public Verification Key
+            Independent Authenticity Verification
           </h3>
 
           <p
             className="mt-3 text-gray-700 text-sm leading-relaxed"
             data-i18n="s5.block2.text"
           >
-            The corresponding public verification key is published and remains
-            accessible over time. Any third party can verify the authenticity of
-            an attestation independently, without relying on Certif-Scope systems.
+            Authenticity can be verified by third parties using publicly
+            available verification information. This process does not require
+            user accounts, credentials or access to Certif-Scope systems.
           </p>
         </div>
 
@@ -76,7 +75,7 @@ export default function Section5() {
             className="text-2xl font-semibold text-[#0B3A63]"
             data-i18n="s5.block3.title"
           >
-            Attestation Reference ID
+            Unique Attestation Reference ID
           </h3>
 
           <p
@@ -84,9 +83,8 @@ export default function Section5() {
             data-i18n="s5.block3.text"
           >
             Each PDF includes a unique attestation reference ID. This identifier
-            allows users, partners, and institutions to confirm that an
-            attestation is valid, and to reference, retrieve, and communicate
-            about a specific document unambiguously.
+            allows institutions and partners to reference the document clearly
+            in procurement files, compliance checks or internal communications.
           </p>
         </div>
 
@@ -95,7 +93,7 @@ export default function Section5() {
             className="text-2xl font-semibold text-[#0B3A63]"
             data-i18n="s5.block4.title"
           >
-            Online & Offline Verification
+            Online Convenience, Offline Validity
           </h3>
 
           <p
@@ -103,9 +101,8 @@ export default function Section5() {
             data-i18n="s5.block4.text"
           >
             A QR code included in the PDF provides optional access to a public
-            verification page for convenience. Verification does not depend on
-            this page: attestations remain verifiable offline using the published
-            public key, even if the issuer is no longer active.
+            explanation page. Verification does not depend on this page and
+            remains possible even if the issuer becomes unavailable.
           </p>
         </div>
       </div>
@@ -121,23 +118,33 @@ export default function Section5() {
 
         <ul className="space-y-3 text-sm text-gray-700 leading-relaxed">
           <li data-i18n="s5.summary.item1">
-            • Attestations are signed once and never modified
+            • Each attestation is issued once and cannot be altered afterwards
           </li>
           <li data-i18n="s5.summary.item2">
-            • A public reference ID enables validity checks, traceability and
-            communication
+            • Verification does not rely on a database or public registry
           </li>
           <li data-i18n="s5.summary.item3">
-            • Verification is possible without accounts or credentials
+            • No user accounts, credentials or personal data are required
           </li>
           <li data-i18n="s5.summary.item4">
-            • No personal, financial, or operational data is stored
+            • Certif-Scope does not store issued attestations
           </li>
           <li data-i18n="s5.summary.item5">
-            • Validity does not depend on Certif-Scope availability
+            • Authenticity remains verifiable over time, independently of the issuer
           </li>
         </ul>
       </div>
+
+      {/* RETURN BUTTON */}
+      <div className="mt-12 text-right">
+        <a
+          href="#top"
+          className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63]
+                     text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
+        >
+          Back to summary
+        </a>
+      </div>
     </section>
   );
-            }
+          }
