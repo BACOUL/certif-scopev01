@@ -9,13 +9,6 @@ export default function ProblemSolution() {
 
         {/* SECTION HEADER — CANONICAL HOME */}
         <header className="max-w-3xl mx-auto text-center mb-20">
-          <p
-            className="uppercase text-xs tracking-wider text-[#64748B] mb-3"
-            data-i18n="problem.label"
-          >
-            CO₂e Disclosure Challenge
-          </p>
-
           <h2
             className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] leading-snug mb-4"
             data-i18n="problem.title"
@@ -144,4 +137,4 @@ export default function ProblemSolution() {
       </div>
     </section>
   );
-              }
+                }
