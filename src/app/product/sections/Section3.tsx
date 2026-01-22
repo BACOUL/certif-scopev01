@@ -26,10 +26,10 @@ export default function Section3() {
           data-i18n="s3.intro"
           className="text-lg text-gray-700 max-w-4xl mt-6 leading-relaxed relative z-10"
         >
-          SMEs are increasingly required to provide CO₂e indicators due to obligations
-          applied to large companies, financial institutions, and public procurement.
-          These obligations cascade down the supply chain, even when SMEs are not
-          directly regulated.
+          Across Europe, climate-related disclosure obligations now apply to large
+          companies, financial institutions and public entities. As a result,
+          environmental information requests increasingly cascade to suppliers,
+          including SMEs that are not directly subject to these regulations.
         </p>
       </div>
 
@@ -49,32 +49,31 @@ export default function Section3() {
           data-i18n="s3.cascade.text1"
           className="text-gray-700 text-sm leading-relaxed max-w-4xl"
         >
-          Large companies and financial institutions must collect climate-related data
-          from suppliers to comply with EU regulations. This indirectly creates
-          information requests for SMEs.
+          Organizations subject to EU sustainability and risk-management frameworks
+          must assess climate exposure across their value chains. This creates
+          standardized data requests addressed to suppliers, regardless of their
+          individual regulatory status.
         </p>
 
         <ul className="mt-4 space-y-2 text-gray-700 text-sm leading-relaxed">
           <li data-i18n="s3.cascade.point1">
-            • <a href="https://eur-lex.europa.eu/eli/reg/2022/2464" target="_blank" className="text-[#0B3A63] hover:text-[#1FB6C1] underline">CSRD (2022/2464)</a> requires reporting on climate risks and value-chain impacts.
+            • Large companies must document climate risks and value-chain impacts
+            under EU sustainability reporting rules.
           </li>
 
           <li data-i18n="s3.cascade.point2">
-            • <a href="https://www.efrag.org" target="_blank" className="text-[#0B3A63] hover:text-[#1FB6C1] underline">ESRS E1</a> mandates upstream supplier information when relevant.
+            • Sustainability standards require upstream supplier information when
+            deemed material for risk or impact assessment.
           </li>
 
           <li data-i18n="s3.cascade.point3">
-            • <a href="https://www.eba.europa.eu" target="_blank" className="text-[#0B3A63] hover:text-[#1FB6C1] underline">EBA ESG Risk Guidelines</a> encourage banks to collect CO₂e indicators from clients.
+            • Financial institutions are encouraged to collect CO₂e indicators from
+            clients and counterparties as part of ESG risk analysis.
           </li>
 
           <li data-i18n="s3.cascade.point4">
-            • <a
-                href="https://environment.ec.europa.eu/topics/sustainable-production-and-consumption/green-public-procurement_en"
-                target="_blank"
-                className="text-[#0B3A63] hover:text-[#1FB6C1] underline"
-              >
-              EU Green Public Procurement (GPP)
-            </a> introduces environmental indicators into public tenders.
+            • Public procurement frameworks increasingly integrate environmental
+            indicators into supplier selection and tender evaluation.
           </li>
         </ul>
 
@@ -82,7 +81,8 @@ export default function Section3() {
           data-i18n="s3.cascade.text2"
           className="text-gray-700 text-sm mt-4"
         >
-          This explains why SMEs receive CO₂e requests despite not being subject to CSRD themselves.
+          In practice, this means SMEs are asked to provide CO₂e information even
+          though they are not required to produce full regulatory reports.
         </p>
       </div>
 
@@ -95,28 +95,36 @@ export default function Section3() {
           data-i18n="s3.gap.title"
           className="text-2xl font-semibold text-[#0B3A63] mb-4"
         >
-          The Gap in the Market
+          The Market Gap for SMEs
         </h3>
 
         <p
           data-i18n="s3.gap.text1"
           className="text-gray-700 text-sm leading-relaxed max-w-4xl mb-6"
         >
-          Existing sustainability platforms are designed for large enterprises and
-          rely on physical activity data, specialized expertise, and significant
-          budgets. SMEs often cannot meet these conditions but still need to provide
-          a usable CO₂e indicator.
+          Most existing sustainability tools and consulting approaches are built
+          for large organizations. They require detailed operational data,
+          specialized expertise and significant resources that are often
+          unavailable to SMEs.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <ul className="space-y-3 text-gray-700 text-sm leading-relaxed">
-            <li data-i18n="s3.gap.point1">• Lack of internal ESG expertise</li>
-            <li data-i18n="s3.gap.point2">• Time and budget constraints</li>
+            <li data-i18n="s3.gap.point1">
+              • Limited internal sustainability or ESG expertise
+            </li>
+            <li data-i18n="s3.gap.point2">
+              • Time, budget and resource constraints
+            </li>
           </ul>
 
           <ul className="space-y-3 text-gray-700 text-sm leading-relaxed">
-            <li data-i18n="s3.gap.point3">• No standardized document accepted by institutions</li>
-            <li data-i18n="s3.gap.point4">• No simple way to confirm document validity</li>
+            <li data-i18n="s3.gap.point3">
+              • Absence of a simple, standardized document accepted by institutions
+            </li>
+            <li data-i18n="s3.gap.point4">
+              • Difficulty proving authenticity or consistency of disclosed figures
+            </li>
           </ul>
         </div>
 
@@ -124,9 +132,9 @@ export default function Section3() {
           data-i18n="s3.gap.text2"
           className="mt-8 text-[#0B3A63] text-sm leading-relaxed font-medium"
         >
-          Certif-Scope addresses this gap by providing a standardized, spending-based
-          CO₂e Attestation and a verification-ready document suitable for banks,
-          procurement teams, and insurers.
+          Certif-Scope was created to bridge this gap by providing a standardized,
+          accessible CO₂e Attestation that meets institutional expectations while
+          remaining realistic for SMEs.
         </p>
       </div>
 
@@ -142,4 +150,4 @@ export default function Section3() {
       </div>
     </section>
   );
-              }
+          }
