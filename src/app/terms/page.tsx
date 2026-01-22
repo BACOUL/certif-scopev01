@@ -12,7 +12,7 @@ export default function TermsPage() {
       className="max-w-7xl mx-auto px-6 pt-12 pb-24"
     >
       {/* HEADER */}
-      <header className="max-w-3xl mx-auto mb-12">
+      <header className="max-w-3xl mx-auto text-center mb-12">
         <p
           data-i18n="terms.label"
           className="uppercase text-xs md:text-sm font-medium text-[#64748B] tracking-wider mb-3"
@@ -29,7 +29,7 @@ export default function TermsPage() {
 
         <p
           data-i18n="terms.intro"
-          className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed"
+          className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed"
         >
           These Terms of Service govern the use of Certif-Scope and the issuance
           of standardized CO₂e Attestations. By generating an Attestation, the
@@ -37,7 +37,11 @@ export default function TermsPage() {
         </p>
       </header>
 
-      <div className="max-w-4xl mx-auto space-y-12">
+      {/* SEPARATOR */}
+      <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto mb-14" />
+
+      {/* CONTENT */}
+      <div className="max-w-4xl mx-auto space-y-14">
 
         {/* 1 PURPOSE */}
         <section>
