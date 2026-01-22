@@ -11,10 +11,13 @@ export default function WhyCompaniesAskPage() {
       data-section="why-companies-ask"
       className="max-w-7xl mx-auto px-6 pt-12 pb-24"
     >
-      {/* HEADER */}
-      <header className="max-w-3xl mb-12">
+      {/* TOP ANCHOR */}
+      <div id="top" />
+
+      {/* CANONICAL PAGE HEADER — IDENTICAL TO ALL SECONDARY PAGES */}
+      <header className="mb-14">
         <p
-          className="uppercase text-xs md:text-sm font-medium text-[#64748B] tracking-wider mb-3"
+          className="uppercase text-xs tracking-wider text-[#64748B] mb-3"
           data-i18n="why.label"
         >
           CO₂e Attestation — Supplier Requirement
@@ -22,14 +25,14 @@ export default function WhyCompaniesAskPage() {
 
         <h1
           data-i18n="why.title"
-          className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-4"
+          className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-6"
         >
           Why Companies Ask for It
         </h1>
 
         <p
           data-i18n="why.intro"
-          className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed"
+          className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed max-w-3xl"
         >
           Procurement teams, banks, insurers and public institutions increasingly
           require a standardized CO₂e attestation from their suppliers. This page
@@ -37,15 +40,10 @@ export default function WhyCompaniesAskPage() {
           what the attestation represents — and what it does not.
         </p>
 
-        <p
-          className="text-sm text-gray-600 dark:text-gray-400 mt-4"
-          data-i18n="why.principle"
-        >
-          The objective is standardization and comparability, not measurement precision.
-        </p>
+        <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mt-10" />
       </header>
 
-      {/* CONTENT */}
+      {/* CONTENT — CANONICAL WIDTH */}
       <div className="max-w-4xl mx-auto space-y-12">
 
         {/* 1 */}
@@ -206,4 +204,4 @@ export default function WhyCompaniesAskPage() {
       </div>
     </section>
   );
-}
+        }
