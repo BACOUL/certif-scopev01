@@ -450,7 +450,7 @@ export async function GET(req: Request) {
             </div>
             
             <div style="margin-top:6px;">
-              <strong>${i18n.validityLabel}:</strong> Not applicable
+              <strong>${i18n.validityPeriodLabel}:</strong> Not applicable
             </div>
 
             <div style="margin-top:8px; color:var(--muted); font-size:9px;"><strong>${i18n.noAuditText}</strong></div>
