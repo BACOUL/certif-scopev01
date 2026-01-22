@@ -9,31 +9,37 @@ import Section6 from "./sections/Section6";
 
 export default function PartnersPage() {
   return (
-    <div
-      id="partners-overview"
-      data-section="partners-overview"
-      className="max-w-7xl mx-auto px-6 pt-8 pb-24"
+    <section
+      id="partners"
+      data-section="partners"
+      className="max-w-7xl mx-auto px-6 pt-12 pb-24"
     >
       {/* TOP ANCHOR */}
       <div id="top" />
 
-      {/* HEADER */}
-      <div className="w-full mb-12">
-        <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-4">
+      {/* CANONICAL PAGE HEADER — ALIGNED WITH PRODUCT / PRICING / METHODOLOGY */}
+      <header className="mb-14">
+        <p className="uppercase text-xs tracking-wider text-[#64748B] mb-3">
+          CO₂e Attestations — Partners
+        </p>
+
+        <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-6">
           Partners — Packs & Partner Key Model
         </h1>
 
-        <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed max-w-3xl">
-          This page explains how partners use Certif-Scope in V1: purchasing prepaid packs,
-          receiving a partner key, and generating CO₂e attestations on demand.
-          No API, no accounts, no integrations.
+        <p className="text-lg text-gray-700 leading-relaxed max-w-3xl">
+          This page explains how partners use Certif-Scope in V1: purchasing
+          prepaid packs, receiving a partner key, and generating CO₂e
+          attestations on demand. No API, no accounts, no integrations.
         </p>
-      </div>
 
-      {/* TABLE OF CONTENTS — SAME MODEL AS PRODUCT / METHODOLOGY */}
+        <div className="w-20 h-[2px] bg-gray-300 mt-10" />
+      </header>
+
+      {/* TABLE OF CONTENTS — CANONICAL & LOCKED */}
       <nav
-        aria-label="Partner Sections"
-        className="mb-16 p-6 bg-[#F8FAFC] border border-gray-200 rounded-xl shadow-sm"
+        aria-label="Partner sections"
+        className="mb-16 max-w-4xl p-6 bg-[#F8FAFC] border border-gray-200 rounded-xl shadow-sm"
       >
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-[#0B3A63] font-medium">
           <li>
@@ -69,8 +75,8 @@ export default function PartnersPage() {
         </ul>
       </nav>
 
-      {/* SECTIONS */}
-      <div className="space-y-24">
+      {/* CONTENT — CANONICAL ORDER, NO EXTRA WRAPPERS */}
+      <div className="max-w-4xl space-y-24">
         <div id="s1" className="scroll-mt-28">
           <Section1 />
         </div>
@@ -95,6 +101,6 @@ export default function PartnersPage() {
           <Section6 />
         </div>
       </div>
-    </div>
+    </section>
   );
 }
