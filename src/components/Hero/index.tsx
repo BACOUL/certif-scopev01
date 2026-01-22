@@ -9,7 +9,7 @@ export default function Hero() {
       id="hero"
       itemScope
       itemType="https://schema.org/WebPage"
-      className="relative max-w-6xl mx-auto px-6 pt-8 md:pt-14 pb-16 md:pb-20 text-center"
+      className="relative max-w-6xl mx-auto px-6 pt-8 md:pt-14 pb-14 md:pb-20 text-center"
     >
       <span className="sr-only" itemProp="alternativeHeadline">
         Instant spend-based CO2e attestation for SMEs across Europe
@@ -63,14 +63,14 @@ export default function Hero() {
       <p
         itemProp="description"
         data-i18n="hero.description"
-        className="text-base md:text-lg text-[#475569] max-w-2xl mx-auto mt-5 leading-relaxed"
+        className="text-base md:text-lg text-[#475569] max-w-2xl mx-auto mt-4 leading-relaxed"
       >
         Generate a standardized CO₂e attestation used in procurement, banking and
         insurer screening workflows. Fast, verifiable and consistent across the EU.
       </p>
 
-      {/* PRIMARY CTA — UNIQUE */}
-      <div className="flex justify-center mt-8">
+      {/* PRIMARY CTA — UNIQUE (SPACING OPTIMIZED FOR MOBILE) */}
+      <div className="flex justify-center mt-6 md:mt-7">
         <Link
           href="/generate"
           itemProp="url"
@@ -83,7 +83,7 @@ export default function Hero() {
       </div>
 
       {/* IMAGE */}
-      <div className="flex justify-center mt-8">
+      <div className="flex justify-center mt-7 md:mt-8">
         <Image
           itemProp="primaryImageOfPage"
           src="/hero-attestation.webp"
