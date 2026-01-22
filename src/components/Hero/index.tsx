@@ -47,22 +47,15 @@ export default function Hero() {
       </p>
 
       <div className="flex justify-center mt-6">
-        <a
-          href="/preview.webp"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="View CO₂e Attestation preview image"
-        >
-          <Image
-            itemProp="primaryImageOfPage"
-            src="/preview.webp"
-            alt="Preview of the standardized CO₂e Attestation issued by Certif-Scope for SMEs, including built-in verification information."
-            width={900}
-            height={600}
-            priority
-            className="w-full max-w-xs sm:max-w-sm md:max-w-xl rounded-2xl shadow-lg border border-slate-100 cursor-zoom-in"
-          />
-        </a>
+        <Image
+          itemProp="primaryImageOfPage"
+          src="/hero-attestation.webp"
+          alt="Preview of the standardized CO₂e Attestation issued by Certif-Scope for SMEs, including built-in verification information."
+          width={900}
+          height={600}
+          priority
+          className="w-full max-w-xs sm:max-w-sm md:max-w-xl rounded-2xl shadow-lg border border-slate-100"
+        />
       </div>
 
       <p
@@ -107,7 +100,7 @@ export default function Hero() {
             name: "Certif-Scope — Instant CO2e Attestation",
             description:
               "Instant spend-based CO2e attestation for SMEs across Europe.",
-            image: "https://certif-scope.com/preview.webp",
+            image: "https://certif-scope.com/hero-attestation.webp",
             url: "https://certif-scope.com/",
             mainEntity: {
               "@type": "Product",
