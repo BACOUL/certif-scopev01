@@ -79,11 +79,11 @@ export default function Hero() {
 
         {/* SECONDARY CTA — VIEW IMAGE */}
         <Link
-          href="/hero-attestation.webp"
+          href="/preview.webp"
           target="_blank"
           rel="noopener noreferrer"
           itemProp="url"
-          aria-label="View CO₂e Attestation Preview"
+          aria-label="View Sample CO₂e Attestation Preview"
           data-i18n="hero.cta.sample"
           className="bg-white border border-[#0B3A63] hover:bg-[#0B3A63] hover:text-white text-[#0B3A63] font-semibold px-12 py-4 rounded-xl shadow-md text-center transition"
         >
@@ -100,7 +100,7 @@ export default function Hero() {
             name: "Certif-Scope — Instant CO2e Attestation",
             description:
               "Instant spend-based CO2e attestation for SMEs across Europe.",
-            image: "https://certif-scope.com/hero-attestation.webp",
+            image: "https://certif-scope.com/preview.webp",
             url: "https://certif-scope.com/",
             mainEntity: {
               "@type": "Product",
@@ -120,4 +120,4 @@ export default function Hero() {
       />
     </section>
   );
-        }
+}
