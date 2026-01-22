@@ -7,7 +7,7 @@ export default function Section5() {
       data-section="verification-and-integrity"
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
-      {/* HEADER — Institutional Blue */}
+      {/* HEADER — INSTITUTIONAL TRUST BLOCK */}
       <div className="relative p-12 rounded-2xl bg-[#0B3A63] text-white shadow-md overflow-hidden">
         <div
           className="absolute inset-0 bg-gradient-to-br from-[#0B3A63]/90 to-transparent pointer-events-none"
@@ -21,6 +21,16 @@ export default function Section5() {
           <span className="mr-2">5.</span>
           Verification & Integrity
         </h2>
+
+        {/* SCOPE BOUNDARY — CANONICAL */}
+        <p
+          data-i18n="s5.scope"
+          className="text-white/80 text-sm max-w-4xl mt-4 leading-relaxed relative z-10"
+        >
+          This section describes how the authenticity and integrity of the
+          delivered document can be verified. It does not describe the
+          calculation methodology.
+        </p>
 
         <p
           data-i18n="s5.intro"
@@ -39,16 +49,16 @@ export default function Section5() {
             className="text-2xl font-semibold text-[#0B3A63]"
             data-i18n="s5.block1.title"
           >
-            Issued as a Tamper-Evident Document
+            Tamper-Evident Issuance
           </h3>
 
           <p
             className="mt-3 text-gray-700 text-sm leading-relaxed"
             data-i18n="s5.block1.text"
           >
-            Each attestation is generated as a final, non-modifiable document.
-            Any alteration of its content invalidates its authenticity, ensuring
-            that recipients can rely on the document as originally issued.
+            Each attestation is issued as a final document whose integrity can be
+            verified. Any modification of the document after issuance invalidates
+            its authenticity.
           </p>
         </div>
 
@@ -57,16 +67,16 @@ export default function Section5() {
             className="text-2xl font-semibold text-[#0B3A63]"
             data-i18n="s5.block2.title"
           >
-            Independent Authenticity Verification
+            Independent Verification
           </h3>
 
           <p
             className="mt-3 text-gray-700 text-sm leading-relaxed"
             data-i18n="s5.block2.text"
           >
-            Authenticity can be verified by third parties using publicly
-            available verification information. This process does not require
-            user accounts, credentials or access to Certif-Scope systems.
+            Authenticity can be verified by any third party using publicly
+            available verification information, without accounts, credentials
+            or access to internal systems.
           </p>
         </div>
 
@@ -75,16 +85,16 @@ export default function Section5() {
             className="text-2xl font-semibold text-[#0B3A63]"
             data-i18n="s5.block3.title"
           >
-            Unique Attestation Reference ID
+            Unique Attestation Reference
           </h3>
 
           <p
             className="mt-3 text-gray-700 text-sm leading-relaxed"
             data-i18n="s5.block3.text"
           >
-            Each PDF includes a unique attestation reference ID. This identifier
-            allows institutions and partners to reference the document clearly
-            in procurement files, compliance checks or internal communications.
+            Each PDF includes a unique reference identifier, enabling precise
+            citation, traceability and communication in procurement, banking or
+            compliance contexts.
           </p>
         </div>
 
@@ -100,34 +110,34 @@ export default function Section5() {
             className="mt-3 text-gray-700 text-sm leading-relaxed"
             data-i18n="s5.block4.text"
           >
-            A QR code included in the PDF provides optional access to a public
-            explanation page. Verification does not depend on this page and
-            remains possible even if the issuer becomes unavailable.
+            A QR code provides optional access to a public explanation page.
+            Verification remains possible offline and does not depend on the
+            continued availability of Certif-Scope.
           </p>
         </div>
       </div>
 
-      {/* INTEGRITY SUMMARY */}
+      {/* TRUST SUMMARY */}
       <div className="mt-20 p-10 bg-white rounded-xl border border-[#0B3A63]/15 shadow-sm">
         <h3
           className="text-2xl font-semibold text-[#0B3A63] mb-4"
           data-i18n="s5.summary.title"
         >
-          Integrity & Trust Model
+          Trust & Integrity Guarantees
         </h3>
 
         <ul className="space-y-3 text-sm text-gray-700 leading-relaxed">
           <li data-i18n="s5.summary.item1">
-            • Each attestation is issued once and cannot be altered afterwards
+            • Attestations are issued once and cannot be modified afterwards
           </li>
           <li data-i18n="s5.summary.item2">
-            • Verification does not rely on a database or public registry
+            • Verification does not rely on a central database or registry
           </li>
           <li data-i18n="s5.summary.item3">
             • No user accounts, credentials or personal data are required
           </li>
           <li data-i18n="s5.summary.item4">
-            • Certif-Scope does not store issued attestations
+            • Issued documents are not stored by Certif-Scope
           </li>
           <li data-i18n="s5.summary.item5">
             • Authenticity remains verifiable over time, independently of the issuer
@@ -139,6 +149,7 @@ export default function Section5() {
       <div className="mt-12 text-right">
         <a
           href="#top"
+          data-i18n="s5.return"
           className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63]
                      text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
         >
@@ -147,4 +158,4 @@ export default function Section5() {
       </div>
     </section>
   );
-          }
+      }
