@@ -12,7 +12,7 @@ export default function Features() {
           data-i18n="features.title"
           className="text-3xl md:text-4xl font-extrabold text-center text-[#0B3A63]"
         >
-          What You Receive in the CO₂e Attestation
+          What the CO₂e Attestation Includes
         </h2>
 
         {/* INTRO */}
@@ -20,9 +20,9 @@ export default function Features() {
           data-i18n="features.intro"
           className="text-center mt-4 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-lg leading-relaxed"
         >
-          A standardized CO₂e Attestation structured for procurement, banking, insurer and ESG
-          screening workflows. Each document follows a reproducible format based entirely on
-          declared annual spending (€).
+          A standardized, indicative CO₂e attestation designed for procurement, banking,
+          insurance and ESG screening contexts. Each document follows a fixed, reproducible
+          structure derived exclusively from declared annual spending (€).
         </p>
 
         <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto my-14" />
@@ -33,15 +33,25 @@ export default function Features() {
           {/* SUMMARY PAGE */}
           <div className="flex items-start gap-5" data-i18n="features.summary">
             <div className="h-12 w-12 flex items-center justify-center rounded-xl bg-[#1FB6C1]/10 text-[#1FB6C1] flex-shrink-0">
-              <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <svg
+                className="w-7 h-7"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4" />
               </svg>
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-[#0B3A63]">Summary sheet</h3>
+              <h3 className="text-lg font-semibold text-[#0B3A63]">
+                Summary sheet
+              </h3>
               <p className="text-gray-600 dark:text-gray-300 mt-2 text-sm leading-relaxed">
-                Total CO₂e indicator, reference year, boundary definition and core metadata in a
-                uniform audit-friendly layout enabling fast institutional review.
+                Aggregated CO₂e result, reference year, methodological perimeter and essential
+                metadata presented in a uniform, review-ready layout suitable for institutional
+                screening and comparison.
               </p>
             </div>
           </div>
@@ -49,15 +59,25 @@ export default function Features() {
           {/* METHODOLOGY OVERVIEW */}
           <div className="flex items-start gap-5" data-i18n="features.methodology">
             <div className="h-12 w-12 flex items-center justify-center rounded-xl bg-[#1FB6C1]/10 text-[#1FB6C1] flex-shrink-0">
-              <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <svg
+                className="w-7 h-7"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
               </svg>
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-[#0B3A63]">Methodology overview</h3>
+              <h3 className="text-lg font-semibold text-[#0B3A63]">
+                Methodology overview
+              </h3>
               <p className="text-gray-600 dark:text-gray-300 mt-2 text-sm leading-relaxed">
-                Transparent explanation of the spend-based formula, including category allocation
-                rules, deterministic calculation steps and boundaries aligned with Scope 3 Category 1.
+                High-level description of the spend-based approach applied, including scope,
+                assumptions and references. Detailed calculation logic and technical definitions
+                are documented separately.
               </p>
             </div>
           </div>
@@ -65,15 +85,25 @@ export default function Features() {
           {/* EMISSION FACTOR SOURCES */}
           <div className="flex items-start gap-5" data-i18n="features.sources">
             <div className="h-12 w-12 flex items-center justify-center rounded-xl bg-[#1FB6C1]/10 text-[#1FB6C1] flex-shrink-0">
-              <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <svg
+                className="w-7 h-7"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6l4 2" />
               </svg>
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-[#0B3A63]">Emission factor sources</h3>
+              <h3 className="text-lg font-semibold text-[#0B3A63]">
+                Emission factor sources
+              </h3>
               <p className="text-gray-600 dark:text-gray-300 mt-2 text-sm leading-relaxed">
-                Full traceability of emission factors with version, dataset year and source alignment
-                (ADEME, DEFRA, IPCC), ensuring reproducibility and institutional acceptance.
+                Referenced emission factor sources with dataset versioning and publication year
+                (ADEME, DEFRA, IPCC), enabling transparency, reproducibility and institutional
+                acceptance.
               </p>
             </div>
           </div>
@@ -81,16 +111,25 @@ export default function Features() {
           {/* VERIFICATION & INTEGRITY */}
           <div className="flex items-start gap-5" data-i18n="features.verification">
             <div className="h-12 w-12 flex items-center justify-center rounded-xl bg-[#1FB6C1]/10 text-[#1FB6C1] flex-shrink-0">
-              <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <svg
+                className="w-7 h-7"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
               </svg>
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-[#0B3A63]">Verification & integrity block</h3>
+              <h3 className="text-lg font-semibold text-[#0B3A63]">
+                Verification & integrity block
+              </h3>
               <p className="text-gray-600 dark:text-gray-300 mt-2 text-sm leading-relaxed">
-                Includes built-in verification elements allowing third parties to confirm the
-                authenticity and integrity of the attestation without relying on our servers.
-                No financial data is stored or transmitted.
+                Built-in verification elements allow independent third-party validation of
+                authenticity and integrity without platform dependency or data retention.
+                No financial input data is stored or transmitted.
               </p>
             </div>
           </div>
@@ -113,11 +152,12 @@ export default function Features() {
           data-i18n="features.disclaimer"
           className="mt-10 text-center text-xs text-gray-500 dark:text-gray-400 max-w-xl mx-auto leading-relaxed"
         >
-          Indicative spend-based estimate. Not CSRD/ESRS compliant and not a substitute for an audited
-          emissions inventory. Accuracy depends entirely on user-provided financial inputs.
+          Indicative spend-based estimate. Not CSRD/ESRS compliant and not a substitute for a
+          verified or audited greenhouse gas inventory. Results depend entirely on
+          user-provided financial inputs.
         </p>
 
       </div>
     </section>
   );
-                }
+}
