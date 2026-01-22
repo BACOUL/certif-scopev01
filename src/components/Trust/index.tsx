@@ -27,12 +27,21 @@ export default function Trust() {
 
         {/* INTRO */}
         <p
-          className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed mb-16"
+          className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed mb-6"
           data-i18n="trust.intro"
         >
           Certif-Scope applies a fixed document structure, stable emission factor references and
           built-in verification information. Reviewers receive a consistent and comparable
           document across suppliers, reducing manual checks and eliminating ambiguity.
+        </p>
+
+        {/* INSTITUTIONAL ACCEPTANCE — KEY SENTENCE */}
+        <p
+          className="text-sm text-[#0B3A63]/80 max-w-2xl mx-auto leading-relaxed mb-16"
+          data-i18n="trust.acceptance"
+        >
+          Commonly used for preliminary procurement, banking and ESG screening processes
+          across European organizations.
         </p>
 
         {/* PILLARS */}
