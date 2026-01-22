@@ -1,6 +1,7 @@
 export const metadata = {
-  title: "Contact — Certif-Scope",
-  description: "Contact Certif-Scope for partnerships, support and technical inquiries. GDPR compliant and minimal-data contact form.",
+  title: "Contact Certif-Scope — Support, Partnerships & Institutional Inquiries",
+  description:
+    "Contact Certif-Scope for support, partnerships or institutional inquiries related to indicative spend-based CO₂e attestations. GDPR minimal-data processing.",
 };
 
 export default function ContactPage() {
@@ -10,30 +11,35 @@ export default function ContactPage() {
       data-section="contact"
       className="max-w-7xl mx-auto px-6 pt-12 pb-24"
     >
+      {/* MICRO LABEL */}
       <p
         data-i18n="contact.label"
         className="uppercase text-xs md:text-sm font-medium text-[#64748B] tracking-wider text-center mb-3"
       >
-        CO₂e Attestations — Contact
+        Certif-Scope — Contact
       </p>
 
+      {/* H1 */}
       <h1
         data-i18n="contact.title"
         className="text-3xl md:text-4xl font-extrabold text-center text-[#0B3A63]"
       >
-        Contact Us
+        Contact Certif-Scope
       </h1>
 
+      {/* INTRO */}
       <p
         data-i18n="contact.description"
         className="text-center text-gray-600 dark:text-gray-300 text-lg mt-4 max-w-3xl mx-auto leading-relaxed"
       >
-        For support, partnership requests or technical inquiries, contact Certif-Scope using the form below. 
-        We reply within 24–48 hours. No data is stored beyond what is required to answer your request.
+        Use this form for support requests, partnership discussions or institutional
+        inquiries related to Certif-Scope’s indicative, spend-based CO₂e attestation.
+        Messages are processed manually and answered within 24–48 hours.
       </p>
 
       <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto my-12" />
 
+      {/* FORM CONTAINER */}
       <div className="max-w-3xl mx-auto bg-white dark:bg-gray-800 shadow-lg rounded-2xl p-10 border border-gray-200 dark:border-gray-700">
         <form
           method="POST"
@@ -42,6 +48,7 @@ export default function ContactPage() {
           aria-label="Contact form"
           className="space-y-6"
         >
+          {/* HONEYPOT */}
           <input
             type="text"
             name="website"
@@ -50,25 +57,26 @@ export default function ContactPage() {
             className="hidden"
           />
 
+          {/* NAME */}
           <div>
             <label
               htmlFor="name"
               data-i18n="contact.name.label"
               className="block mb-2 font-semibold text-gray-700 dark:text-gray-300"
             >
-              Your Name
+              Name
             </label>
             <input
               id="name"
               name="name"
               required
               aria-required="true"
-              data-i18n="contact.name.placeholder"
               placeholder="John Doe"
               className="w-full p-3 border rounded-md bg-white dark:bg-gray-900 dark:border-gray-700"
             />
           </div>
 
+          {/* EMAIL */}
           <div>
             <label
               htmlFor="email"
@@ -83,19 +91,19 @@ export default function ContactPage() {
               type="email"
               required
               aria-required="true"
-              data-i18n="contact.email.placeholder"
-              placeholder="you@example.com"
+              placeholder="you@company.com"
               className="w-full p-3 border rounded-md bg-white dark:bg-gray-900 dark:border-gray-700"
             />
           </div>
 
+          {/* SUBJECT */}
           <div>
             <label
               htmlFor="topic"
               data-i18n="contact.topic.label"
               className="block mb-2 font-semibold text-gray-700 dark:text-gray-300"
             >
-              Subject
+              Inquiry type
             </label>
             <select
               id="topic"
@@ -104,21 +112,14 @@ export default function ContactPage() {
               aria-required="true"
               className="w-full p-3 border rounded-md bg-white dark:bg-gray-900 dark:border-gray-700"
             >
-              <option value="support" data-i18n="contact.topic.support">
-                Support
-              </option>
-              <option value="partnership" data-i18n="contact.topic.partnership">
-                Partnership Request
-              </option>
-              <option value="technical" data-i18n="contact.topic.technical">
-                Technical Question
-              </option>
-              <option value="billing" data-i18n="contact.topic.billing">
-                Billing
-              </option>
+              <option value="support">Support</option>
+              <option value="partnership">Partnership discussion</option>
+              <option value="institutional">Institutional / compliance inquiry</option>
+              <option value="billing">Billing</option>
             </select>
           </div>
 
+          {/* MESSAGE */}
           <div>
             <label
               htmlFor="message"
@@ -133,29 +134,32 @@ export default function ContactPage() {
               rows={6}
               required
               aria-required="true"
-              data-i18n="contact.message.placeholder"
-              placeholder="Write your message..."
+              placeholder="Describe your request…"
               className="w-full p-3 border rounded-md bg-white dark:bg-gray-900 dark:border-gray-700"
             />
           </div>
 
+          {/* SUBMIT */}
           <button
             type="submit"
             data-i18n="contact.submit"
-            className="w-full bg-[#1FB6C1] hover:bg-[#17a2a8] text-white font-semibold px-8 py-4 rounded-xl shadow-lg transition text-lg"
+            className="w-full bg-[#0B3A63] hover:bg-[#083253] text-white font-semibold px-8 py-4 rounded-xl shadow-md transition text-base"
           >
-            Send Message
+            Send inquiry
           </button>
         </form>
       </div>
 
+      {/* LEGAL / GDPR */}
       <p
         data-i18n="contact.footer.disclaimer"
         className="text-gray-600 dark:text-gray-300 mt-10 text-xs text-center leading-relaxed max-w-xl mx-auto"
       >
-        Your message will be processed securely. Certif-Scope does not store personal or spending data 
-        beyond what is strictly necessary to respond. GDPR minimal-data policy applies.
+        Messages are processed solely to respond to your inquiry.
+        Certif-Scope does not store personal or financial data beyond what is
+        strictly necessary. No user accounts or historical records are created.
+        GDPR minimal-data processing applies.
       </p>
     </section>
   );
-              }
+            }
