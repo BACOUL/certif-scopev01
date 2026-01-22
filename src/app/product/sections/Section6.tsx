@@ -28,7 +28,8 @@ export default function Section6() {
         >
           The CO₂e Attestation is designed for situations where organizations are
           required to provide a standardized environmental indicator, without
-          producing a full greenhouse gas inventory or regulatory sustainability report.
+          producing a full greenhouse gas inventory or regulatory sustainability
+          report.
         </p>
       </div>
 
@@ -39,15 +40,16 @@ export default function Section6() {
           className="text-sm text-gray-600 leading-relaxed"
         >
           The scenarios below reflect common institutional and administrative use
-          cases where an indicative, spend-based CO₂e document is requested for
+          cases where an indicative, standardized CO₂e document is requested for
           screening, comparison or documentation purposes. The Attestation is not
-          intended to replace audited carbon accounting or regulatory ESG reporting.
+          intended to replace audited carbon accounting or regulatory ESG
+          reporting.
         </p>
       </div>
 
-      {/* GRID — 4 ASYMMETRIC SCENARIOS */}
+      {/* GRID — ASYMMETRIC SCENARIOS */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 mt-20">
-        {/* LEFT COLUMN (2 items stacked) */}
+        {/* LEFT COLUMN */}
         <div className="space-y-10 lg:col-span-2">
           <div
             data-i18n="s6.procurement.block"
@@ -92,7 +94,7 @@ export default function Section6() {
           </div>
         </div>
 
-        {/* RIGHT COLUMN — Banking Highlight */}
+        {/* RIGHT COLUMN */}
         <div
           data-i18n="s6.banking.block"
           className="p-8 rounded-xl bg-[#0B3A63] text-white shadow-lg"
@@ -191,4 +193,4 @@ export default function Section6() {
       </div>
     </section>
   );
-        }
+            }
