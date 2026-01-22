@@ -7,7 +7,7 @@ export default function Section2() {
       data-section="s2"
       className="scroll-mt-24 border-b border-gray-200 pb-24"
     >
-      {/* HEADER — même style que Section 1 */}
+      {/* HEADER — canonical product section */}
       <div className="relative p-12 rounded-2xl bg-[#F8FAFC] border border-gray-200 shadow-[0_4px_20px_rgba(0,0,0,0.04)] overflow-hidden">
         <div
           className="absolute inset-0 bg-gradient-to-br from-[#1FB6C1]/15 to-transparent pointer-events-none"
@@ -26,8 +26,10 @@ export default function Section2() {
           data-i18n="s2.intro"
           className="text-lg text-gray-700 max-w-4xl mt-6 leading-relaxed relative z-10"
         >
-          Certif-Scope provides a standardized and reproducible CO₂e Attestation,
-          designed for procurement, banking and insurance workflows across the EU.
+          Certif-Scope delivers a standardized CO₂e Attestation designed for
+          institutional consumption. Each benefit addresses a concrete
+          procurement, compliance or onboarding requirement faced by European
+          organizations.
         </p>
       </div>
 
@@ -44,14 +46,15 @@ export default function Section2() {
             data-i18n="s2.benefit1.title"
             className="text-xl font-semibold text-[#0B3A63] mb-2"
           >
-            Instant Generation
+            Immediate Availability
           </h3>
           <p
             data-i18n="s2.benefit1.text"
             className="text-gray-600 text-sm leading-relaxed"
           >
-            Generated instantly based solely on annual spending (€),
-            without requiring operational or physical activity data.
+            The attestation is generated instantly from declared annual spending,
+            without requiring operational metrics, physical data collection or
+            prior carbon expertise.
           </p>
         </div>
 
@@ -65,14 +68,14 @@ export default function Section2() {
             data-i18n="s2.benefit2.title"
             className="text-xl font-semibold text-[#0B3A63] mb-2"
           >
-            Procurement-Ready Format
+            Institution-Ready Document
           </h3>
           <p
             data-i18n="s2.benefit2.text"
             className="text-gray-600 text-sm leading-relaxed"
           >
-            Structured to fit supplier onboarding, ESG questionnaires
-            and RFP review processes used by institutions.
+            The format aligns with supplier onboarding, ESG screening,
+            procurement questionnaires and third-party due-diligence processes.
           </p>
         </div>
 
@@ -86,14 +89,14 @@ export default function Section2() {
             data-i18n="s2.benefit3.title"
             className="text-xl font-semibold text-[#0B3A63] mb-2"
           >
-            Simple Validity Verification
+            Clear Validity Reference
           </h3>
           <p
             data-i18n="s2.benefit3.text"
             className="text-gray-600 text-sm leading-relaxed"
           >
-            A unique attestation reference ID allows third parties
-            to confirm validity quickly, without accounts or complex checks.
+            Each attestation includes a unique reference identifier that enables
+            third parties to confirm authenticity without accounts or technical tools.
           </p>
         </div>
 
@@ -107,14 +110,14 @@ export default function Section2() {
             data-i18n="s2.benefit4.title"
             className="text-xl font-semibold text-[#0B3A63] mb-2"
           >
-            Consistent & Reproducible Results
+            Deterministic Consistency
           </h3>
           <p
             data-i18n="s2.benefit4.text"
             className="text-gray-600 text-sm leading-relaxed"
           >
-            Identical inputs always produce the same attestation,
-            providing a stable basis for comparison and review.
+            Identical inputs always produce the same result, ensuring stability,
+            comparability and predictable review outcomes across organizations.
           </p>
         </div>
 
@@ -128,14 +131,14 @@ export default function Section2() {
             data-i18n="s2.benefit5.title"
             className="text-xl font-semibold text-[#0B3A63] mb-2"
           >
-            No ESG Expertise Required
+            Accessible to Non-Experts
           </h3>
           <p
             data-i18n="s2.benefit5.text"
             className="text-gray-600 text-sm leading-relaxed"
           >
-            Designed for SMEs without sustainability teams,
-            consultants or complex reporting tools.
+            No sustainability team, consultant or specialized software is required.
+            The process is intentionally simple and guided.
           </p>
         </div>
 
@@ -149,14 +152,14 @@ export default function Section2() {
             data-i18n="s2.benefit6.title"
             className="text-xl font-semibold text-[#0B3A63] mb-2"
           >
-            Multilingual & EU Ready
+            Multilingual European Coverage
           </h3>
           <p
             data-i18n="s2.benefit6.text"
             className="text-gray-600 text-sm leading-relaxed"
           >
-            Available in EN, FR, DE, ES and IT to support
-            cross-border procurement and institutional workflows.
+            Available in multiple European languages to support cross-border
+            supplier relationships and institutional review workflows.
           </p>
         </div>
 
@@ -175,4 +178,4 @@ export default function Section2() {
       </div>
     </section>
   );
-}
+          }
