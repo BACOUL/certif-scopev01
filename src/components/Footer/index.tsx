@@ -11,16 +11,10 @@ export default function Footer() {
       className="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 pt-14 pb-10"
     >
       <div className="max-w-7xl mx-auto px-6">
-        {/* MICRO-LABEL */}
-        <p
-          data-i18n="footer.label"
-          className="uppercase text-xs md:text-sm font-medium text-[#64748B] dark:text-gray-400 tracking-wider text-center mb-8"
-        >
-          Institutional Footer
-        </p>
 
         {/* GRID */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+
           {/* BRANDING */}
           <div>
             <h2
@@ -34,8 +28,9 @@ export default function Footer() {
               data-i18n="footer.brand.desc"
               className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed"
             >
-              Spend-based CO₂e Attestation designed for procurement, banking and
-              ESG workflows. Standardized, consistent and instantly verifiable.
+              Spend-based CO₂e attestation designed for procurement, banking and
+              ESG screening workflows. Standardized, consistent and verifiable
+              documentation.
             </p>
           </div>
 
@@ -71,8 +66,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link data-i18n="footer.link.sample" href="/sample.pdf">
-                  Sample Attestation
+                <Link
+                  data-i18n="footer.link.format"
+                  href="#attestation-preview"
+                >
+                  Attestation format
                 </Link>
               </li>
               <li>
@@ -155,9 +153,9 @@ export default function Footer() {
           data-i18n="footer.disclaimer"
           className="mt-10 text-center text-xs text-gray-500 dark:text-gray-400 leading-relaxed"
         >
-          Indicative spend-based CO₂e estimate. Not audited, not
-          CSRD/ESRS-compliant, no Scope 1–2, and not a substitute for a full
-          emissions inventory. Values depend on user-provided data.
+          Indicative spend-based CO₂e estimate. Not audited, not CSRD/ESRS-compliant,
+          no Scope 1–2, and not a substitute for a full greenhouse gas emissions
+          inventory. Results depend entirely on user-provided data.
         </div>
 
         {/* COPYRIGHT */}
@@ -167,7 +165,7 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* JSON-LD SCHEMA */}
+        {/* JSON-LD — ORGANIZATION (MINIMAL, IA-SAFE) */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -177,26 +175,10 @@ export default function Footer() {
               name: "Certif-Scope",
               url: "https://certif-scope.com",
               logo: "https://certif-scope.com/logo.png",
-              email: "contact@certif-scope.com",
-              sameAs: [],
-              address: {
-                "@type": "PostalAddress",
-                streetAddress: "3 rue de l'Église de Louppy",
-                addressLocality: "Les Hauts-de-Chée",
-                postalCode: "55000",
-                addressCountry: "FR",
-              },
-              contactPoint: [
-                {
-                  "@type": "ContactPoint",
-                  contactType: "customer support",
-                  email: "contact@certif-scope.com",
-                },
-              ],
             }),
           }}
         />
       </div>
     </footer>
   );
-          }
+            }
