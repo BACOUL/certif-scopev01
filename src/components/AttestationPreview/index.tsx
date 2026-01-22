@@ -9,7 +9,6 @@ export default function AttestationPreview() {
       className="py-24 bg-[#F8FAFC] dark:bg-gray-900"
     >
       <div className="max-w-6xl mx-auto px-6 text-center">
-
         {/* SECTION LABEL */}
         <p
           data-i18n="preview.label"
@@ -38,9 +37,15 @@ export default function AttestationPreview() {
           Designed for procurement, banking and ESG screening workflows across Europe.
         </p>
 
-        {/* IMAGE */}
+        {/* IMAGE — VIEW */}
         <div className="flex justify-center">
-          <div className="relative w-full max-w-[600px]">
+          <a
+            href="/preview.webp"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="View CO₂e Attestation preview image"
+            className="relative w-full max-w-[600px]"
+          >
             <Image
               src="/preview.webp"
               alt="Preview of the standardized Certif-Scope CO₂e Attestation showing total CO₂e, category overview and verification information"
@@ -48,14 +53,13 @@ export default function AttestationPreview() {
               height={800}
               loading="lazy"
               sizes="(max-width: 768px) 100vw, 600px"
-              className="rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700"
+              className="rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 cursor-zoom-in"
             />
-          </div>
+          </a>
         </div>
 
         {/* CTA + INTERNAL LINK + DISCLAIMER */}
         <div className="mt-12 flex flex-col items-center">
-
           {/* CTA DOWNLOAD */}
           <a
             data-i18n="preview.cta"
@@ -83,9 +87,7 @@ export default function AttestationPreview() {
           >
             Indicative spend-based estimate. Not a CSRD/ESRS report or audited emissions inventory.
           </p>
-
         </div>
-
       </div>
     </section>
   );
