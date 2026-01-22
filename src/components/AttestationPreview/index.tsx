@@ -9,7 +9,6 @@ export default function AttestationPreview() {
       className="py-24 bg-[#F8FAFC] dark:bg-gray-900"
     >
       <div className="max-w-6xl mx-auto px-6 text-center">
-
         {/* SECTION LABEL */}
         <p
           data-i18n="preview.label"
@@ -55,16 +54,15 @@ export default function AttestationPreview() {
 
         {/* CTA + INTERNAL LINK + DISCLAIMER */}
         <div className="mt-12 flex flex-col items-center">
-
-          {/* CTA DOWNLOAD */}
+          {/* CTA VIEW IMAGE */}
           <a
             data-i18n="preview.cta"
-            href="/api/sample"
+            href="/preview.webp"
             target="_blank"
             rel="noopener noreferrer"
             className="px-10 py-4 rounded-xl bg-[#0B3A63] text-white font-semibold text-sm md:text-base hover:bg-[#083253] transition shadow-md"
           >
-            Download Sample PDF
+            View Attestation Preview
           </a>
 
           {/* INTERNAL NAVIGATION LINK */}
@@ -83,9 +81,7 @@ export default function AttestationPreview() {
           >
             Indicative spend-based estimate. Not a CSRD/ESRS report or audited emissions inventory.
           </p>
-
         </div>
-
       </div>
     </section>
   );
