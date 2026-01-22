@@ -3,22 +3,19 @@
 export default function Testimonials() {
   const items = [
     {
-      initials: "MR",
-      text: "A client needed CO₂e information for onboarding. Certif-Scope delivered a structured, verification-ready document in seconds — matching their procurement checklist perfectly.",
-      author: "Mark Reynolds",
+      initials: "SME",
+      text: "A client requested CO₂e information during onboarding. Certif-Scope made it possible to provide a clear, standardized and verification-ready document within minutes, aligned with procurement expectations.",
       role: "Construction — United Kingdom",
     },
     {
-      initials: "ID",
-      text: "The format integrates smoothly into supplier screening. Clear indicators, consistent layout and a verification code validated immediately by partners.",
-      author: "Isabel Duarte",
-      role: "E-Commerce — Portugal",
+      initials: "SME",
+      text: "The standardized format integrates smoothly into supplier screening workflows. Reviewers immediately understood the indicator and verification elements without additional explanations.",
+      role: "E-commerce — Portugal",
     },
     {
-      initials: "DM",
-      text: "We often receive CO₂e requests without a specified method. Certif-Scope provides a reproducible, spend-based value instantly — no consultants or complex reporting required.",
-      author: "Daniel Moretti",
-      role: "Consulting — Italy",
+      initials: "SME",
+      text: "We regularly receive CO₂e requests without a defined methodology. Certif-Scope provides an indicative, spend-based value instantly, without requiring consultants or complex reporting processes.",
+      role: "Professional Services — Italy",
     },
   ];
 
@@ -35,7 +32,7 @@ export default function Testimonials() {
           data-i18n="testimonials.label"
           className="uppercase text-xs md:text-sm font-medium text-[#64748B] dark:text-gray-400 tracking-wide mb-3"
         >
-          Verified by European SMEs
+          Representative feedback from European SMEs
         </p>
 
         {/* TITLE */}
@@ -43,7 +40,7 @@ export default function Testimonials() {
           data-i18n="testimonials.title"
           className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-3"
         >
-          What European Businesses Say
+          Typical Use Cases Reported by Businesses
         </h2>
 
         {/* INTRO */}
@@ -51,24 +48,22 @@ export default function Testimonials() {
           data-i18n="testimonials.intro"
           className="text-[#475569] dark:text-gray-300 text-base md:text-lg max-w-xl mx-auto leading-relaxed"
         >
-          Independent feedback from SMEs across Europe using Certif-Scope to provide clear,
-          consistent and instantly verifiable CO₂e Attestations for procurement and ESG checks.
+          Illustrative examples reflecting how European SMEs commonly use Certif-Scope to respond
+          to procurement, banking and ESG information requests with a standardized CO₂e attestation.
         </p>
       </div>
 
-      {/* TESTIMONIAL GRID */}
+      {/* GRID */}
       <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
         {items.map((item, idx) => (
-          <article
+          <div
             key={idx}
-            itemScope
-            itemType="https://schema.org/Review"
-            className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 p-7 flex flex-col h-full transition-transform duration-200 hover:-translate-y-1"
+            className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 p-7 flex flex-col h-full"
           >
             {/* INITIALS */}
             <div
               aria-hidden="true"
-              className="w-14 h-14 rounded-full bg-[#1FB6C1] flex items-center justify-center text-xl font-bold text-white mb-5 shadow-md"
+              className="w-14 h-14 rounded-full bg-[#1FB6C1] flex items-center justify-center text-sm font-semibold text-white mb-5 shadow-md"
             >
               {item.initials}
             </div>
@@ -76,29 +71,19 @@ export default function Testimonials() {
             {/* TEXT */}
             <p
               data-i18n={`testimonials.item.${idx}.text`}
-              itemProp="reviewBody"
               className="text-[#1E293B] dark:text-gray-200 text-base leading-relaxed mb-5"
             >
               {item.text}
             </p>
 
-            {/* AUTHOR */}
-            <footer className="mt-auto">
-              <p
-                data-i18n={`testimonials.item.${idx}.author`}
-                itemProp="author"
-                className="font-semibold text-[#0B3A63] dark:text-white"
-              >
-                {item.author}
-              </p>
-              <p
-                data-i18n={`testimonials.item.${idx}.role`}
-                className="text-[#64748B] dark:text-gray-400 text-sm"
-              >
-                {item.role}
-              </p>
-            </footer>
-          </article>
+            {/* META */}
+            <p
+              data-i18n={`testimonials.item.${idx}.role`}
+              className="mt-auto text-[#64748B] dark:text-gray-400 text-sm"
+            >
+              {item.role}
+            </p>
+          </div>
         ))}
       </div>
 
@@ -107,20 +92,20 @@ export default function Testimonials() {
         data-i18n="testimonials.disclaimer"
         className="mt-12 text-center text-xs text-[#64748B] dark:text-gray-400 max-w-xl mx-auto leading-relaxed"
       >
-        Indicative spend-based estimate. Not audited, not CSRD/ESRS compliant, and not a substitute
-        for a full emissions inventory. Accuracy depends entirely on user-provided financial inputs.
+        Illustrative feedback only. Indicative spend-based estimates. Not audited, not CSRD/ESRS
+        compliant, and not a substitute for a full greenhouse gas emissions inventory.
       </p>
 
       {/* CTA */}
       <div className="mt-4 text-center">
         <a
-          href="/sample.pdf"
+          href="#attestation-preview"
           data-i18n="testimonials.cta"
           className="text-[#0B3A63] dark:text-[#1FB6C1] underline text-base hover:text-[#1FB6C1] transition"
         >
-          View sample CO₂e Attestation →
+          View attestation format →
         </a>
       </div>
     </section>
   );
-            }
+        }
