@@ -15,31 +15,46 @@ import Section12 from "./sections/Section12";
 
 export default function MethodologyPage() {
   return (
-    <div
-      id="methodology-overview"
-      data-section="methodology-overview"
-      className="max-w-7xl mx-auto px-6 pt-8 pb-24"
+    <section
+      id="methodology"
+      data-section="methodology"
+      className="max-w-7xl mx-auto px-6 pt-12 pb-24"
     >
       {/* TOP ANCHOR */}
       <div id="top" />
 
-      {/* HEADER */}
-      <div className="w-full mb-12">
-        <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-4">
-          Certif-Scope Methodology Overview
+      {/* CANONICAL PAGE HEADER — IDENTICAL TO ALL SECONDARY PAGES */}
+      <header className="mb-14">
+        <p
+          data-i18n="methodology.label"
+          className="uppercase text-xs tracking-wider text-[#64748B] mb-3"
+        >
+          CO₂e Attestation — Methodology
+        </p>
+
+        <h1
+          data-i18n="methodology.h1"
+          className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-6"
+        >
+          Methodology Overview
         </h1>
 
-        <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed max-w-3xl">
-          Scientific and deterministic methodology behind the CO₂e attestation:
-          spend-based model, emission factors, calculation engine, update cycles
-          and institutional validation rules.
+        <p
+          data-i18n="methodology.subtitle"
+          className="text-lg text-gray-700 leading-relaxed max-w-3xl"
+        >
+          Scientific and deterministic methodology behind the CO₂e Attestation,
+          including the spend-based model, emission factors, calculation logic,
+          update cycles and institutional validation boundaries.
         </p>
-      </div>
 
-      {/* TABLE OF CONTENTS — STRICTLY ALIGNED WITH REAL SECTIONS */}
+        <div className="w-20 h-[2px] bg-gray-300 mt-10" />
+      </header>
+
+      {/* TABLE OF CONTENTS — CANONICAL & LOCKED */}
       <nav
-        aria-label="Methodology Sections"
-        className="mb-16 p-6 bg-[#F8FAFC] border border-gray-200 rounded-xl shadow-sm"
+        aria-label="Methodology sections"
+        className="mb-16 max-w-4xl p-6 bg-[#F8FAFC] border border-gray-200 rounded-xl shadow-sm"
       >
         <ol className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-[#0B3A63] font-medium list-decimal list-inside">
           <li>
@@ -105,19 +120,21 @@ export default function MethodologyPage() {
         </ol>
       </nav>
 
-      {/* SECTIONS — ORDER AND IDS ARE AUTHORITATIVE */}
-      <Section1 />
-      <Section2 />
-      <Section3 />
-      <Section4 />
-      <Section5 />
-      <Section6 />
-      <Section7 />
-      <Section8 />
-      <Section9 />
-      <Section10 />
-      <Section11 />
-      <Section12 />
-    </div>
+      {/* CONTENT — CANONICAL WIDTH & ORDER */}
+      <div className="max-w-4xl mx-auto space-y-24">
+        <Section1 />
+        <Section2 />
+        <Section3 />
+        <Section4 />
+        <Section5 />
+        <Section6 />
+        <Section7 />
+        <Section8 />
+        <Section9 />
+        <Section10 />
+        <Section11 />
+        <Section12 />
+      </div>
+    </section>
   );
-}
+            }
