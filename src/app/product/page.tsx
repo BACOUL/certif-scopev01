@@ -11,8 +11,8 @@ import Section7 from "./sections/Section7";
 export default function ProductPage() {
   return (
     <section
-      id="product-overview"
-      data-section="product-overview"
+      id="product"
+      data-section="product"
       className="max-w-7xl mx-auto px-6 pt-10 pb-24"
     >
       {/* TOP ANCHOR */}
@@ -46,53 +46,76 @@ export default function ProductPage() {
         <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mt-10" />
       </header>
 
-      {/* TABLE OF CONTENTS — CANONICAL */}
+      {/* TABLE OF CONTENTS */}
       <nav
         aria-label="Product sections"
         className="mb-16 max-w-4xl p-6 bg-[#F8FAFC] border border-gray-200 rounded-xl shadow-sm"
       >
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-[#0B3A63] font-medium">
           <li>
-            <a href="#product-overview" className="hover:text-[#15B097] transition">
+            <a
+              href="#product-overview-section"
+              className="hover:text-[#15B097] transition"
+            >
               1. Product Overview
             </a>
           </li>
           <li>
-            <a href="#key-benefits" className="hover:text-[#15B097] transition">
+            <a
+              href="#key-benefits"
+              className="hover:text-[#15B097] transition"
+            >
               2. Key Benefits Summary
             </a>
           </li>
           <li>
-            <a href="#why-the-product-exists" className="hover:text-[#15B097] transition">
+            <a
+              href="#why-the-product-exists"
+              className="hover:text-[#15B097] transition"
+            >
               3. Why the Product Exists
             </a>
           </li>
           <li>
-            <a href="#attestation-pdf-contents" className="hover:text-[#15B097] transition">
+            <a
+              href="#attestation-pdf-contents"
+              className="hover:text-[#15B097] transition"
+            >
               4. What’s Included in the PDF
             </a>
           </li>
           <li>
-            <a href="#verification-and-integrity" className="hover:text-[#15B097] transition">
+            <a
+              href="#verification-and-integrity"
+              className="hover:text-[#15B097] transition"
+            >
               5. Verification & Integrity
             </a>
           </li>
           <li>
-            <a href="#usage-scenarios" className="hover:text-[#15B097] transition">
+            <a
+              href="#usage-scenarios"
+              className="hover:text-[#15B097] transition"
+            >
               6. Usage Scenarios
             </a>
           </li>
           <li>
-            <a href="#limitations-and-fit" className="hover:text-[#15B097] transition">
+            <a
+              href="#limitations-and-fit"
+              className="hover:text-[#15B097] transition"
+            >
               7. Limitations & Fit
             </a>
           </li>
         </ul>
       </nav>
 
-      {/* CONTENT — CANONICAL WIDTH */}
+      {/* CONTENT */}
       <div className="max-w-4xl space-y-24">
-        <Section1 />
+        <div id="product-overview-section">
+          <Section1 />
+        </div>
         <Section2 />
         <Section3 />
         <Section4 />
