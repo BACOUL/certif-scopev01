@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 export default function HowItWorks() {
   return (
     <section
@@ -86,6 +88,17 @@ export default function HowItWorks() {
           Only the final CO₂e result is transmitted to issue the attestation.
         </p>
 
+        {/* SECONDARY CTA — DISCREET */}
+        <div className="mt-10 text-center">
+          <Link
+            href="/generate"
+            data-i18n="howitworks.cta"
+            className="inline-block text-sm font-medium text-[#0B3A63] underline hover:text-[#1FB6C1] transition"
+          >
+            Generate a CO₂e Attestation →
+          </Link>
+        </div>
+
         {/* FOOTER LINE */}
         <p
           className="mt-12 text-center text-sm text-gray-500 dark:text-gray-400"
@@ -97,4 +110,4 @@ export default function HowItWorks() {
       </div>
     </section>
   );
-          }
+              }
