@@ -9,38 +9,39 @@ export default function LegalPage() {
     <section
       id="legal"
       data-section="legal"
-      className="max-w-7xl mx-auto px-6 pt-10 pb-24"
+      className="max-w-7xl mx-auto px-6 pt-12 pb-24"
     >
-      {/* CANONICAL HEADER */}
-      <header className="mb-14">
+      {/* CANONICAL HEADER — ALIGNED WITH PRIVACY POLICY */}
+      <header className="max-w-3xl mx-auto text-center mb-12">
         <p
           data-i18n="legal.label"
-          className="uppercase text-xs tracking-wider text-[#64748B] mb-3"
+          className="uppercase text-xs md:text-sm font-medium text-[#64748B] tracking-wider mb-3"
         >
           Legal Information
         </p>
 
         <h1
           data-i18n="legal.title"
-          className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-6"
+          className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-4"
         >
           Legal Notice
         </h1>
 
         <p
           data-i18n="legal.description"
-          className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed max-w-3xl"
+          className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed"
         >
           Mandatory legal information regarding the operator, hosting provider,
           intellectual property, liability limitations and data handling
           principles applicable to Certif-Scope.
         </p>
-
-        <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mt-10" />
       </header>
 
-      {/* CONTENT — CANONICAL WIDTH */}
-      <div className="max-w-4xl space-y-16">
+      {/* SEPARATOR */}
+      <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto mb-14" />
+
+      {/* CONTENT */}
+      <div className="max-w-4xl mx-auto space-y-16">
 
         {/* 1. OPERATOR */}
         <section>
@@ -171,4 +172,4 @@ export default function LegalPage() {
       </div>
     </section>
   );
-            }
+}
