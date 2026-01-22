@@ -3,29 +3,37 @@ export default function Features() {
     <section
       id="features"
       data-section="features"
-      className="py-24 bg-[#F8FAFC] dark:bg-gray-900"
+      className="pt-24 pb-24 bg-[#F8FAFC] dark:bg-gray-900"
     >
       <div className="max-w-6xl mx-auto px-6">
 
-        {/* TITLE */}
-        <h2
-          data-i18n="features.title"
-          className="text-3xl md:text-4xl font-extrabold text-center text-[#0B3A63]"
-        >
-          What the CO₂e Attestation Includes
-        </h2>
+        {/* SECTION HEADER — CANONICAL HOME */}
+        <header className="max-w-3xl mx-auto text-center mb-20">
+          <p
+            className="uppercase text-xs tracking-wider text-[#64748B] mb-3"
+            data-i18n="features.label"
+          >
+            CO₂e Attestation — Contents
+          </p>
 
-        {/* INTRO */}
-        <p
-          data-i18n="features.intro"
-          className="text-center mt-4 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-lg leading-relaxed"
-        >
-          A standardized, indicative CO₂e attestation designed for procurement, banking,
-          insurance and ESG screening contexts. Each document follows a fixed, reproducible
-          structure derived exclusively from declared annual spending (€).
-        </p>
+          <h2
+            data-i18n="features.title"
+            className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-4"
+          >
+            What the CO₂e Attestation Includes
+          </h2>
 
-        <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto my-14" />
+          <p
+            data-i18n="features.intro"
+            className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed"
+          >
+            A standardized, indicative CO₂e attestation designed for procurement, banking,
+            insurance and ESG screening contexts. Each document follows a fixed, reproducible
+            structure derived exclusively from declared annual spending (€).
+          </p>
+
+          <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto mt-10" />
+        </header>
 
         {/* GRID */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-14">
