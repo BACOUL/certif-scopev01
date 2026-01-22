@@ -4,7 +4,8 @@ import { useState } from "react";
 
 /* ======================================================
    CERTIF-SCOPE — CALCULATION MODEL (CLIENT-SIDE)
-   UPDATED — i18n aligned with EN / FR / DE
+   FINAL VERSION — STRICT, GUIDED, 3 STEPS
+   LANGUAGES: EN / FR / DE (attestation only)
 ====================================================== */
 
 // kgCO₂e / €
@@ -28,7 +29,7 @@ const METHODOLOGY =
 type AttestationLocale = "en" | "fr" | "de";
 
 /* ======================================================
-   SECTORS (DECLARATIVE)
+   SECTORS (DISPLAY ONLY)
 ====================================================== */
 
 const SECTORS = [
@@ -66,10 +67,12 @@ function calculateTotalCO2e(expenses: Record<string, number>) {
 
 function Accordion({
   title,
+  intro,
   children,
   defaultOpen = false,
 }: {
   title: string;
+  intro?: string;
   children: React.ReactNode;
   defaultOpen?: boolean;
 }) {
@@ -86,7 +89,16 @@ function Accordion({
         <span className="text-sm text-gray-500">{open ? "−" : "+"}</span>
       </button>
 
-      {open && <div className="px-5 py-6 bg-white space-y-5">{children}</div>}
+      {open && (
+        <div className="px-5 py-6 bg-white space-y-5">
+          {intro && (
+            <p className="text-sm text-gray-600 leading-relaxed">
+              {intro}
+            </p>
+          )}
+          {children}
+        </div>
+      )}
     </div>
   );
 }
@@ -129,26 +141,15 @@ export default function AssessmentForm() {
 
   const handleSubmit = async () => {
     if (!companyName) {
-      alert("Please enter your company name.");
+      alert("Company name is required.");
       return;
     }
 
     if (!sector) {
-      alert("Please select your main sector of activity.");
+      alert("Sector of activity is required.");
       return;
     }
 
-    /**
-     * Payload STRICTLY aligned with API / Stripe metadata:
-     * - companyName
-     * - companySector
-     * - entityIdentifier
-     * - year
-     * - country
-     * - totalCO2e
-     * - methodology
-     * - attestationLocale
-     */
     const payload = {
       companyName,
       companySector: sector,
@@ -179,23 +180,32 @@ export default function AssessmentForm() {
     <main className="min-h-screen bg-white">
       <section className="max-w-3xl mx-auto px-6 pt-16 pb-20 space-y-10">
 
+        {/* INTRO */}
         <div>
+          <p className="text-sm text-gray-500 mb-2">
+            Step 1 of 3 — Company & context
+          </p>
           <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-3">
             Generate your carbon attestation
           </h1>
           <p className="text-gray-600 text-lg leading-relaxed">
-            Spend-based indicative estimation. No audit. No physical data required.
+            Indicative spend-based estimation. No audit. No physical data required.
           </p>
           <p className="text-sm text-gray-500 mt-3">
-            <strong>Price:</strong> 89 € per attestation · One-time fee · No subscription
+            <strong>Price:</strong> 89 € · One-time fee · No subscription
           </p>
         </div>
 
-        <Accordion title="Company information" defaultOpen>
+        {/* STEP 1 */}
+        <Accordion
+          title="Company information"
+          intro="Provide basic identification and context information. Fields marked with * are required."
+          defaultOpen
+        >
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-medium">
-                Company / legal entity name
+                Company / legal entity name *
               </label>
               <input
                 type="text"
@@ -207,7 +217,7 @@ export default function AssessmentForm() {
 
             <div>
               <label className="block text-sm font-medium">
-                Main sector of activity
+                Main sector of activity *
               </label>
               <select
                 value={sector}
@@ -237,7 +247,12 @@ export default function AssessmentForm() {
           </div>
         </Accordion>
 
-        <Accordion title="Context" defaultOpen>
+        {/* STEP 2 */}
+        <Accordion
+          title="Context"
+          intro="Define the reference year, country, and attestation language."
+          defaultOpen
+        >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium">
@@ -262,8 +277,6 @@ export default function AssessmentForm() {
               >
                 <option value="FR">France</option>
                 <option value="DE">Germany</option>
-                <option value="ES">Spain</option>
-                <option value="IT">Italy</option>
                 <option value="EU">Other EU</option>
               </select>
             </div>
@@ -284,13 +297,21 @@ export default function AssessmentForm() {
                 <option value="de">Deutsch</option>
               </select>
               <p className="text-xs text-gray-500 mt-1">
-                The English version remains the legal reference in case of discrepancy.
+                English remains the legal reference in case of discrepancy.
               </p>
             </div>
           </div>
         </Accordion>
 
-        <Accordion title="Annual external expenses (€)">
+        {/* STEP 3 */}
+        <p className="text-sm text-gray-500">
+          Step 2 of 3 — Annual expenses
+        </p>
+
+        <Accordion
+          title="Annual external expenses (€)"
+          intro="Provide approximate annual amounts. Exact figures are not required. Reasonable estimates are sufficient."
+        >
           <Input label="IT & digital services" hint="Software, cloud, SaaS, IT outsourcing" value={expenses.it} onChange={(v) => update("it", v)} />
           <Input label="Professional services" hint="Consulting, accounting, legal services" value={expenses.services} onChange={(v) => update("services", v)} />
           <Input label="Purchased goods" hint="Office supplies, equipment, materials" value={expenses.goods} onChange={(v) => update("goods", v)} />
@@ -299,6 +320,11 @@ export default function AssessmentForm() {
           <Input label="Accommodation & events" hint="Hotels, conferences, corporate events" value={expenses.accommodation} onChange={(v) => update("accommodation", v)} />
           <Input label="Other external expenses" hint="Marketing, subscriptions, miscellaneous costs" value={expenses.other} onChange={(v) => update("other", v)} />
         </Accordion>
+
+        {/* RESULT */}
+        <p className="text-sm text-gray-500">
+          Step 3 of 3 — Result & attestation
+        </p>
 
         <div className="border rounded-xl p-6 bg-[#F8FAFC]">
           <p className="text-sm text-gray-600 mb-1">
@@ -312,16 +338,30 @@ export default function AssessmentForm() {
           </p>
         </div>
 
+        <div className="border rounded-xl p-6 bg-white space-y-3">
+          <p className="font-medium text-[#0B3A63]">
+            What you will receive
+          </p>
+          <ul className="text-sm text-gray-600 list-disc pl-5 space-y-1">
+            <li>Signed PDF carbon attestation</li>
+            <li>Standardized institutional format</li>
+            <li>Spend-based indicative methodology</li>
+            <li>Independently verifiable document</li>
+            <li>Immediate delivery after payment</li>
+          </ul>
+        </div>
+
         <button
           onClick={handleSubmit}
           className="w-full bg-[#0B3A63] hover:bg-[#092f50] text-white py-4 rounded-xl font-semibold transition"
         >
-          Proceed to payment — 89 €
+          Generate my carbon attestation — 89 €
         </button>
 
         <p className="text-xs text-gray-500 leading-relaxed">
-          This attestation is based solely on the information provided by the applicant
-          and is not a greenhouse gas audit or regulatory report.
+          This attestation is indicative, non-regulatory, and based solely on the
+          information provided. It does not constitute a greenhouse gas audit
+          or compliance report.
         </p>
       </section>
     </main>
@@ -356,4 +396,4 @@ function Input({
       <p className="text-xs text-gray-500 mt-1">{hint}</p>
     </div>
   );
-}
+       }
