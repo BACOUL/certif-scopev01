@@ -13,23 +13,23 @@ export default function PricingPage() {
       data-section="pricing"
       className="max-w-7xl mx-auto px-6 pt-12 pb-24"
     >
-      {/* MICRO LABEL */}
-      <p className="uppercase text-xs md:text-sm font-medium text-[#64748B] tracking-wider text-center mb-3">
-        CO₂e Attestations — Pricing
-      </p>
+      {/* CANONICAL PAGE HEADER — ALIGNED WITH ALL SECONDARY PAGES */}
+      <header className="mb-14">
+        <p className="uppercase text-xs tracking-wider text-[#64748B] mb-3">
+          CO₂e Attestations — Pricing
+        </p>
 
-      {/* HEADING */}
-      <h1 className="text-3xl md:text-4xl font-extrabold text-center text-[#0B3A63]">
-        Simple, Transparent Pricing
-      </h1>
+        <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-6">
+          Simple, Transparent Pricing
+        </h1>
 
-      <p className="text-center text-gray-600 text-lg mt-4 max-w-2xl mx-auto leading-relaxed">
-        Fixed price per attestation. No subscription. Validity 1 year.
-        Spend-based method with built-in verification included in every PDF.
-      </p>
+        <p className="text-lg text-gray-700 leading-relaxed max-w-3xl">
+          Fixed price per CO₂e Attestation. No subscription. One-year validity.
+          Each document includes built-in verification and integrity safeguards.
+        </p>
 
-      {/* SEPARATOR */}
-      <div className="w-20 h-[2px] bg-gray-300 mx-auto my-12" />
+        <div className="w-20 h-[2px] bg-gray-300 mt-10" />
+      </header>
 
       {/* GRID */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
@@ -164,4 +164,4 @@ export default function PricingPage() {
       </p>
     </section>
   );
-}
+        }
