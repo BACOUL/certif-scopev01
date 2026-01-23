@@ -53,9 +53,10 @@ const SECTORS = [
    CALCULATION & UTILS
 ====================================================== */
 
-// ✅ PATCH 1: Fonction helper pour gérer les décimales (virgules)
+// ✅ PATCH CRITIQUE : Fonction helper pour gérer les virgules
 function toNumber(value: string): number {
   if (!value) return 0;
+  // Remplace la virgule par un point avant de convertir
   return Number(value.replace(",", ".")) || 0;
 }
 
@@ -128,6 +129,9 @@ export default function AssessmentForm() {
   const [year, setYear] = useState(currentYear);
   const [country, setCountry] = useState("FR");
 
+  // ✅ 1️⃣ ETAT EMAIL OPTIONNEL
+  const [emailForDelivery, setEmailForDelivery] = useState("");
+
   const [attestationLocale, setAttestationLocale] =
     useState<AttestationLocale>("en");
 
@@ -154,7 +158,7 @@ export default function AssessmentForm() {
     setExpenses((prev) => ({ ...prev, [field]: value }));
   };
 
-  // ✅ PATCH 2: Utilisation correcte de toNumber()
+  // ✅ PATCH CRITIQUE : Utilisation de toNumber() ici
   const numericExpenses = Object.fromEntries(
     Object.entries(expenses).map(([k, v]) => [k, toNumber(v)])
   );
@@ -219,8 +223,7 @@ export default function AssessmentForm() {
   const handleSubmit = async () => {
     if (!validate()) return;
 
-    // FIX 1: Only block if checking or if user insists on using a key that has 0 credits.
-    // An 'invalid' key status is ignored here, allowing the user to proceed to Stripe.
+    // Block only if checking or valid but empty credits
     if (keyStatus === "checking" || (keyStatus === "valid" && remainingCredits === 0)) {
       return;
     }
@@ -233,7 +236,7 @@ export default function AssessmentForm() {
     const isRedeeming = keyStatus === "valid" && remainingCredits !== null && remainingCredits > 0;
     const endpoint = isRedeeming ? "/api/redeem-key" : "/api/checkout";
 
-    // FIX 3: CLEAN PAYLOAD CONSTRUCTION
+    // ✅ 3️⃣ PAYLOAD AVEC EMAIL OPTIONNEL
     const basePayload = {
       companyName,
       companySector: sector,
@@ -243,6 +246,11 @@ export default function AssessmentForm() {
       totalCO2e,
       methodology: METHODOLOGY,
       attestationLocale,
+
+      // Ajout conditionnel
+      ...(emailForDelivery && {
+        emailForDelivery: emailForDelivery.trim(),
+      }),
     };
 
     // Add accessKey only if we are actually redeeming
@@ -263,6 +271,7 @@ export default function AssessmentForm() {
       }
 
       const { url } = await res.json();
+      // Redirect to Stripe or to the PDF generation URL (depending on API response)
       window.location.href = url;
     } catch {
       setErrors({
@@ -276,7 +285,7 @@ export default function AssessmentForm() {
   // Determine button label and blocked state
   const isRedeeming = keyStatus === "valid" && remainingCredits !== null && remainingCredits > 0;
   
-  // FIX 1 (UI): Block only on 'checking' or 'valid but empty'
+  // Block only on 'checking' or 'valid but empty'
   const isButtonBlocked = keyStatus === "checking" || (keyStatus === "valid" && remainingCredits === 0);
   
   const buttonLabel = isRedeeming
@@ -494,7 +503,6 @@ export default function AssessmentForm() {
               value={accessKey}
               onChange={(e) => {
                 setAccessKey(e.target.value);
-                // FIX 2: Fully reset state on input change
                 if (keyStatus !== "idle") {
                    setKeyStatus("idle");
                    setRemainingCredits(null);
@@ -537,6 +545,27 @@ export default function AssessmentForm() {
           By generating an Attestation, you acknowledge that Certif-Scope does not retain issued PDFs. Lost attestations are not stored and cannot be recovered. Re-issuance may be requested but is not guaranteed.
         </p>
 
+        {/* ✅ 2️⃣ BLOC EMAIL OPTIONNEL */}
+        <div className="border rounded-xl p-5 bg-[#F8FAFC] space-y-2">
+          <label className="block text-sm font-medium text-[#0B3A63]">
+            Receive a copy by email (optional)
+          </label>
+
+          <input
+            type="email"
+            placeholder="name@company.com"
+            value={emailForDelivery}
+            onChange={(e) => setEmailForDelivery(e.target.value)}
+            className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm"
+          />
+
+          <p className="text-xs text-gray-500 leading-relaxed">
+            If provided, your email will be used once to send the attestation PDF.
+            <br />
+            No email is stored by Certif-Scope.
+          </p>
+        </div>
+
         <button
           onClick={handleSubmit}
           disabled={isSubmitting || isButtonBlocked}
@@ -549,7 +578,6 @@ export default function AssessmentForm() {
           {buttonLabel}
         </button>
 
-        {/* FIX 4: UX "Pay Instead" Link */}
         {isRedeeming && (
           <button 
             type="button" 
@@ -594,7 +622,8 @@ function Input({
     <div>
       <label className="block text-sm font-medium">{label}</label>
       <input
-        type="number"
+        type="number" // type="text" pourrait être mieux pour gérer manuellement les virgules, mais "number" + toNumber() fonctionne aussi si le navigateur gère la localisation
+        inputMode="decimal"
         min="0"
         value={value}
         onChange={(e) => onChange(e.target.value)}
