@@ -34,22 +34,34 @@ export async function GET(req: Request) {
     const sessionId = searchParams.get("session_id");
     if (!sessionId) return new Response("Missing session_id", { status: 400 });
 
-    const session = await stripe.checkout.sessions.retrieve(sessionId);
+    let metadataRaw: Record<string, any> = {};
 
-    // ✅ SÉCURISATION ORIGINE STRIPE
-    if (session.mode !== "payment") {
-      return new Response("Invalid checkout mode", { status: 403 });
+    // MODE STRIPE
+    if (!sessionId.startsWith("key_")) {
+      const session = await stripe.checkout.sessions.retrieve(sessionId);
+
+      if (session.mode !== "payment") {
+        return new Response("Invalid checkout mode", { status: 403 });
+      }
+
+      if (
+        !session.metadata ||
+        session.metadata.product !== "certif-scope-attestation"
+      ) {
+        return new Response("Invalid attestation session", { status: 403 });
+      }
+
+      if (session.payment_status !== "paid") {
+        return new Response("Payment not completed", { status: 403 });
+      }
+
+      metadataRaw = session.metadata;
     }
 
-    if (!session.metadata || session.metadata.product !== "certif-scope-attestation") {
-      return new Response("Invalid attestation session", { status: 403 });
+    // MODE ACCESS KEY (stateless)
+    if (sessionId.startsWith("key_")) {
+      metadataRaw = Object.fromEntries(new URL(req.url).searchParams.entries());
     }
-
-    if (session.payment_status !== "paid") {
-      return new Response("Payment not completed", { status: 403 });
-    }
-
-    const metadataRaw = session.metadata || {};
 
     // 2️⃣ LIRE LA LANGUE (STRICT)
     const locale =
