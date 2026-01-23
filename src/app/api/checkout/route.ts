@@ -4,23 +4,9 @@ import Stripe from "stripe";
 export const runtime = "nodejs";
 
 // ======================================================
-// STRIPE CLIENT
+// STRIPE CLIENT (OK au build)
 // ======================================================
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
-
-// ======================================================
-// CONFIG — OBLIGATOIRE
-// ======================================================
-const STRIPE_PRICE_ID = process.env.STRIPE_PRICE_ID!;
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL!;
-
-if (!STRIPE_PRICE_ID) {
-  throw new Error("Missing STRIPE_PRICE_ID");
-}
-
-if (!BASE_URL) {
-  throw new Error("Missing NEXT_PUBLIC_BASE_URL");
-}
 
 // ======================================================
 // LANGUES AUTORISÉES
@@ -37,6 +23,24 @@ type AttestationLocale = (typeof ALLOWED_ATTESTATION_LOCALES)[number];
 // ======================================================
 export async function POST(req: Request) {
   try {
+    // 🔐 ENV — vérifiées AU RUNTIME
+    const STRIPE_PRICE_ID = process.env.STRIPE_PRICE_ID;
+    const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+
+    if (!STRIPE_PRICE_ID) {
+      return NextResponse.json(
+        { error: "Missing STRIPE_PRICE_ID" },
+        { status: 500 }
+      );
+    }
+
+    if (!BASE_URL) {
+      return NextResponse.json(
+        { error: "Missing NEXT_PUBLIC_BASE_URL" },
+        { status: 500 }
+      );
+    }
+
     const body = await req.json();
 
     const {
@@ -52,7 +56,10 @@ export async function POST(req: Request) {
 
     // ───────────────── VALIDATION
     if (!companyName || !companySector || !year || !country) {
-      return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Missing required fields" },
+        { status: 400 }
+      );
     }
 
     if (
@@ -60,14 +67,20 @@ export async function POST(req: Request) {
       Number.isNaN(Number(totalCO2e)) ||
       !methodology
     ) {
-      return NextResponse.json({ error: "Invalid result" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Invalid result" },
+        { status: 400 }
+      );
     }
 
     if (
       !attestationLocale ||
       !ALLOWED_ATTESTATION_LOCALES.includes(attestationLocale)
     ) {
-      return NextResponse.json({ error: "Invalid language" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Invalid language" },
+        { status: 400 }
+      );
     }
 
     // ───────────────── STRIPE CHECKOUT
@@ -100,11 +113,11 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json({ url: session.url });
-  } catch (err: any) {
+  } catch (err) {
     console.error(err);
     return NextResponse.json(
       { error: "Stripe checkout failed" },
       { status: 500 }
     );
   }
-}
+          }
