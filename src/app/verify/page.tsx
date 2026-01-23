@@ -165,6 +165,11 @@ export default function VerifyPage() {
             instructions for independent verification only.
           </p>
 
+          <p className="text-sm text-gray-600 mt-3">
+            Certif-Scope does not maintain a registry of issued attestations. Verification uses only the provided PDF and embedded signature.
+            Requests for re-issuance of lost documents must be made to support; recovery of previously issued attestations from Certif-Scope systems is not possible.
+          </p>
+
           <p className="mt-3">
             Certif-Scope attestations are indicative, spend-based CO₂e estimates.
             They do not constitute an audit, certification, regulatory compliance
@@ -175,4 +180,4 @@ export default function VerifyPage() {
       </div>
     </section>
   );
-        }
+}
