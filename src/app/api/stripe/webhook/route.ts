@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import crypto from "crypto";
-import { sendEmail } from "@/lib/mailer";
+import { Resend } from "resend";
 
 export const runtime = "nodejs";
 
@@ -9,6 +9,7 @@ export const runtime = "nodejs";
 // STRIPE CLIENT
 // ======================================================
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+const resend = new Resend(process.env.RESEND_API_KEY!);
 
 // ======================================================
 // UTIL — ACCESS KEY GENERATOR
@@ -58,27 +59,30 @@ export async function POST(req: Request) {
 
     console.log("✅ Payment confirmed:", session.id);
 
-    const email =
-      session.customer_details?.email ||
-      session.customer_email ||
-      null;
-
     // ===================================================
-    // CASE 1 — PACK DE CRÉDITS
+    // PACK DE CRÉDITS
     // ===================================================
     if (metadata.product === "certif-scope-pack") {
       const credits = Number(metadata.credits || 0);
       const pack = metadata.pack || "unknown";
+      const email =
+        session.customer_details?.email || session.customer_email;
 
       if (!credits || !email) {
         console.error("❌ Pack delivery failed: missing credits or email");
         return NextResponse.json({ received: true });
       }
 
+      // 🔑 Generate keys (stateless)
       const keys = Array.from({ length: credits }, generateAccessKey);
 
+      console.log("🔑 Generated keys:", keys);
+
+      // ✉️ Send email (fail-safe)
       try {
-        await sendEmail({
+        await resend.emails.send({
+          from: "Certif-Scope <no-reply@certif-scope.com>",
+          replyTo: "contact@certif-scope.com",
           to: email,
           subject: `Your Certif-Scope access keys (${pack})`,
           html: `
@@ -106,35 +110,41 @@ Please keep them safe — lost keys cannot be recovered.
           `,
         });
       } catch (err) {
-        console.error("❌ Pack email send failed:", err);
+        console.error("❌ Email send failed:", err);
+        // ❗ Never block Stripe webhook
       }
     }
 
     // ===================================================
-    // CASE 2 — ATTESTATION UNIQUE (PDF)
+    // ATTESTATION UNIQUE (PDF envoyé après paiement)
     // ===================================================
     if (metadata.product === "certif-scope-attestation") {
+      const email =
+        session.customer_details?.email ||
+        session.customer_email ||
+        metadata.emailForDelivery ||
+        null;
+
       if (!email) {
-        console.error("❌ Attestation delivery failed: missing email");
+        console.error("❌ Attestation email missing");
         return NextResponse.json({ received: true });
       }
 
       try {
-        const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-        if (!baseUrl) {
-          throw new Error("Missing NEXT_PUBLIC_BASE_URL");
+        // 🔁 Appel interne à l’API d’émission PDF (stateless)
+        const issueUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/attestation/issue?session_id=${session.id}`;
+        const pdfRes = await fetch(issueUrl);
+
+        if (!pdfRes.ok) {
+          console.error("❌ PDF generation failed");
+          return NextResponse.json({ received: true });
         }
 
-        const issueUrl = `${baseUrl}/api/attestation/issue?session_id=${session.id}`;
+        const pdfBuffer = Buffer.from(await pdfRes.arrayBuffer());
 
-        const pdfResponse = await fetch(issueUrl);
-        if (!pdfResponse.ok) {
-          throw new Error("PDF generation failed");
-        }
-
-        const pdfBuffer = Buffer.from(await pdfResponse.arrayBuffer());
-
-        await sendEmail({
+        await resend.emails.send({
+          from: "Certif-Scope <no-reply@certif-scope.com>",
+          replyTo: "contact@certif-scope.com",
           to: email,
           subject: "Your CO₂e Attestation (PDF) – Certif-Scope",
           text: `
@@ -145,21 +155,21 @@ Important:
 - Certif-Scope does not store a copy
 - Please archive it securely
 
-— Certif-Scope
-          `,
+Certif-Scope
+`,
           attachments: [
             {
               filename: `certif-scope-attestation-${session.id}.pdf`,
-              content: pdfBuffer.toString("base64"),
+              content: pdfBuffer, // ✅ BUFFER DIRECT — CORRECT
             },
           ],
         });
       } catch (err) {
-        console.error("❌ Attestation email flow failed:", err);
+        console.error("❌ Attestation email failed:", err);
       }
     }
   }
 
-  // ⚠️ Always acknowledge Stripe
+  // ⚠️ Always return 200 to Stripe
   return NextResponse.json({ received: true });
-        }
+}
