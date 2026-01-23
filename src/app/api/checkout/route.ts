@@ -87,6 +87,9 @@ export async function POST(req: Request) {
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
 
+      // 🔑 CRITIQUE : garantit email client exploitable (Resend)
+      customer_creation: "always",
+
       line_items: [
         {
           price: STRIPE_PRICE_ID,
@@ -120,4 +123,4 @@ export async function POST(req: Request) {
       { status: 500 }
     );
   }
-          }
+}
