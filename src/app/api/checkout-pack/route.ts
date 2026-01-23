@@ -5,6 +5,9 @@ export const runtime = "nodejs";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
+// ======================================================
+// CONFIG — PACKS (SOURCE DE VÉRITÉ)
+// ======================================================
 const PACKS: Record<
   string,
   { amount: number; credits: number; label: string }
@@ -26,6 +29,9 @@ const PACKS: Record<
   },
 };
 
+// ======================================================
+// CHECKOUT PACK — STRIPE
+// ======================================================
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const pack = searchParams.get("pack");
@@ -62,13 +68,14 @@ export async function GET(req: Request) {
 
     metadata: {
       product: "certif-scope-pack",
-      pack: pack,
+      pack,
       credits: String(credits),
     },
 
-    success_url: `${origin}/success`,
+    // ⚠️ IMPORTANT : conserver le session_id
+    success_url: `${origin}/success?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${origin}/pricing`,
   });
 
   return NextResponse.redirect(session.url!, 303);
-}
+                    }
