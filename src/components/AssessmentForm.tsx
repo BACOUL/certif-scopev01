@@ -50,8 +50,14 @@ const SECTORS = [
 ];
 
 /* ======================================================
-   CALCULATION
+   CALCULATION & UTILS
 ====================================================== */
+
+// ✅ PATCH 1: Fonction helper pour gérer les décimales (virgules)
+function toNumber(value: string): number {
+  if (!value) return 0;
+  return Number(value.replace(",", ".")) || 0;
+}
 
 function calculateTotalCO2e(expenses: Record<string, number>) {
   let totalKg = 0;
@@ -148,8 +154,9 @@ export default function AssessmentForm() {
     setExpenses((prev) => ({ ...prev, [field]: value }));
   };
 
+  // ✅ PATCH 2: Utilisation correcte de toNumber()
   const numericExpenses = Object.fromEntries(
-    Object.entries(expenses).map(([k, v]) => [k, Number(v) || 0])
+    Object.entries(expenses).map(([k, v]) => [k, toNumber(v)])
   );
 
   const totalCO2e = calculateTotalCO2e(numericExpenses);
