@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import crypto from "crypto";
+import { sendEmail } from "@/lib/mailer";
 
 export const runtime = "nodejs";
 
@@ -12,7 +13,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
  */
 function generateAccessKey() {
   const raw = crypto.randomBytes(9).toString("hex").toUpperCase();
-  return `CS-${raw.slice(0,4)}-${raw.slice(4,8)}-${raw.slice(8,12)}`;
+  return `CS-${raw.slice(0, 4)}-${raw.slice(4, 8)}-${raw.slice(8, 12)}`;
 }
 
 export async function POST(req: Request) {
@@ -53,46 +54,62 @@ export async function POST(req: Request) {
     const metadata = session.metadata || {};
 
     // ===================================================
-    // CAS 1 — PACK
+    // CAS — PACK DE CRÉDITS
     // ===================================================
     if (metadata.product === "certif-scope-pack") {
       const credits = Number(metadata.credits || 0);
       const pack = metadata.pack;
-      const email = session.customer_details?.email;
+      const email =
+        session.customer_details?.email || session.customer_email;
 
       if (!credits || !email) {
         console.error("❌ Pack delivery failed: missing credits or email");
         return NextResponse.json({ received: true });
       }
 
-      // 🔑 Génération des clés
+      // 🔑 Génération des clés (stateless)
       const keys = Array.from({ length: credits }, () =>
         generateAccessKey()
       );
 
       console.log("🔑 Generated keys:", keys);
 
-      // ✉️ Envoi email (stateless)
-      // 👉 À brancher sur ton provider (Resend / Postmark / SMTP)
-      // Pour l’instant: log only (conforme privacy-by-design)
+      // ✉️ Envoi email via Resend
+      try {
+        await sendEmail({
+          to: email,
+          subject: `Your Certif-Scope access keys (${pack})`,
+          html: `
+            <p>Hello,</p>
 
-      console.log("📧 Send email to:", email);
-      console.log(`
-Subject: Your Certif-Scope access keys (${pack})
+            <p>Thank you for your purchase.</p>
 
-Hello,
+            <p>
+              Here are your <strong>${credits} access keys</strong>:
+            </p>
 
-Thank you for your purchase.
-
-Here are your ${credits} access keys:
-
+            <pre style="font-size:14px; line-height:1.6;">
 ${keys.join("\n")}
+            </pre>
 
-Each key allows the generation of one CO₂e attestation.
-Keys are not stored by Certif-Scope. Please keep them safe.
+            <p>
+              Each key allows the generation of <strong>one CO₂e attestation</strong>.
+            </p>
 
-— Certif-Scope
-`);
+            <p style="font-size:12px;color:#666;">
+              Keys are not stored by Certif-Scope.<br/>
+              Please keep them safe — lost keys cannot be recovered.
+            </p>
+
+            <p>
+              — Certif-Scope
+            </p>
+          `,
+        });
+      } catch (err) {
+        // Fail-safe : on ne bloque JAMAIS Stripe
+        console.error("❌ Email send failed:", err);
+      }
 
       // ❗ AUCUN STOCKAGE
       // ❗ AUCUNE RÉCUPÉRATION POSSIBLE
@@ -101,4 +118,4 @@ Keys are not stored by Certif-Scope. Please keep them safe.
 
   // ⚠️ Toujours répondre 200 à Stripe
   return NextResponse.json({ received: true });
-}
+      }
