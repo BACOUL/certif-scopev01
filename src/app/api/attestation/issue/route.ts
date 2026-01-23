@@ -557,7 +557,7 @@ export async function GET(req: Request) {
 
         await resend.emails.send({
           from: "Certif-Scope <no-reply@certif-scope.com>",
-          reply_to: "contact@certif-scope.com",
+          replyTo: "contact@certif-scope.com",
           to: customerEmail,
           subject: "Your CO₂e Attestation (PDF) – Certif-Scope",
           text: `
