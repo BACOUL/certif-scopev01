@@ -113,9 +113,34 @@ export default function TermsPage() {
           </p>
         </section>
 
+        {/* NOUVELLE SECTION INSERÉE ICI */}
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-            5. No Right of Withdrawal
+            5. Reissuance and Lost Attestations
+          </h2>
+
+          <p className="text-gray-700 leading-relaxed mb-4">
+            Certif-Scope does not store any issued Attestations or the underlying user-provided financial data after issuance. Users are responsible for saving and archiving their Attestation PDF immediately upon receipt.
+          </p>
+
+          <p className="text-gray-700 leading-relaxed mb-4">
+            Upon request, Certif-Scope may, at its discretion, re-issue an Attestation under the following conditions:
+          </p>
+
+          <ul className="list-disc ml-6 text-gray-700 space-y-2">
+            <li>The original Attestation was generated but cannot be located by the user.</li>
+            <li>The request is made by the same user identifier or associated email.</li>
+            <li>The user accepts that re-issued Attestations will carry a new unique identifier and validity period.</li>
+          </ul>
+
+          <p className="text-gray-700 leading-relaxed mt-4">
+            Re-issuance is not guaranteed and may be subject to reasonable administrative verification. Certif-Scope is not liable for any damages arising from lost, misplaced, or mis-archived Attestations.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
+            6. No Right of Withdrawal
           </h2>
           <p className="text-gray-700 leading-relaxed">
             In accordance with EU Directive 2011/83/EU, the right of withdrawal
@@ -126,7 +151,7 @@ export default function TermsPage() {
 
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-            6. User Responsibilities
+            7. User Responsibilities
           </h2>
 
           <p className="text-gray-700 leading-relaxed mb-4">
@@ -144,7 +169,7 @@ export default function TermsPage() {
 
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-            7. Limitation of Liability
+            8. Limitation of Liability
           </h2>
 
           <p className="text-gray-700 leading-relaxed mb-4">
@@ -161,7 +186,7 @@ export default function TermsPage() {
 
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-            8. Intellectual Property
+            9. Intellectual Property
           </h2>
           <p className="text-gray-700 leading-relaxed">
             All content, calculation logic, document structure, branding and
@@ -173,7 +198,7 @@ export default function TermsPage() {
 
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-            9. Data Protection and ePrivacy
+            10. Data Protection and ePrivacy
           </h2>
           <p className="text-gray-700 leading-relaxed">
             Certif-Scope applies a strict privacy-by-design approach. Only data
@@ -190,7 +215,7 @@ export default function TermsPage() {
 
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-            10. Modification of the Terms
+            11. Modification of the Terms
           </h2>
           <p className="text-gray-700 leading-relaxed">
             These Terms may be updated to reflect legal, technical or operational
@@ -200,7 +225,7 @@ export default function TermsPage() {
 
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-            11. Applicable Law and Jurisdiction
+            12. Applicable Law and Jurisdiction
           </h2>
           <p className="text-gray-700 leading-relaxed">
             These Terms are governed by French law. Any dispute relating to their
@@ -211,7 +236,7 @@ export default function TermsPage() {
 
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-            12. Contact
+            13. Contact
           </h2>
           <p className="text-gray-700 leading-relaxed">
             For any legal or contractual inquiry, please contact:
@@ -223,4 +248,4 @@ export default function TermsPage() {
       </div>
     </section>
   );
-            }
+}
