@@ -1,15 +1,34 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 export default function SuccessClient({
-  sessionId,
+  sessionId: initialSessionId,
 }: {
   sessionId: string | null;
 }) {
-  const handleDownload = () => {
-    // UX-only : on ne bloque jamais
-    if (!sessionId) return;
+  // ======================================================
+  // SOURCE DE VÉRITÉ ROBUSTE — SERVER + CLIENT
+  // - Si le server n’a rien passé, on relit l’URL côté client
+  // - AUCUNE UX BLOQUANTE
+  // ======================================================
+  const [sessionId, setSessionId] = useState<string | null>(
+    initialSessionId
+  );
 
-    // Source de vérité = API
+  useEffect(() => {
+    if (sessionId) return;
+
+    const params = new URLSearchParams(window.location.search);
+    const sid = params.get("session_id");
+
+    if (sid && typeof sid === "string") {
+      setSessionId(sid);
+    }
+  }, [sessionId]);
+
+  const handleDownload = () => {
+    if (!sessionId) return;
     window.location.href = `/api/attestation/issue?session_id=${sessionId}`;
   };
 
@@ -26,9 +45,9 @@ export default function SuccessClient({
       </p>
 
       {/* ======================================================
-          DOWNLOAD ZONE — NEVER BLOCKING
+          DOWNLOAD ZONE — ROBUSTE (SERVER OU CLIENT)
       ====================================================== */}
-      {sessionId && (
+      {sessionId ? (
         <>
           <p className="text-sm text-gray-500">
             This attestation can only be generated once.
@@ -43,17 +62,11 @@ export default function SuccessClient({
             Download your attestation (PDF)
           </button>
         </>
-      )}
-
-      {/* ======================================================
-          FALLBACK — INFORMATIONAL ONLY (NO ERROR STATE)
-      ====================================================== */}
-      {!sessionId && (
+      ) : (
         <p className="text-sm text-gray-500 leading-relaxed">
-          Your payment was successfully processed.
+          Finalizing your attestation…
           <br />
-          If the download does not start automatically,
-          please contact support with your payment reference.
+          If this screen does not update, please refresh the page.
         </p>
       )}
 
