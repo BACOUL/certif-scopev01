@@ -1,4 +1,5 @@
 import GenerateAttestationButton from "@/components/GenerateAttestationButton";
+import Link from "next/link";
 
 export const metadata = {
   title: "Pricing — Certif-Scope",
@@ -13,7 +14,7 @@ export default function PricingPage() {
       data-section="pricing"
       className="max-w-7xl mx-auto px-6 pt-12 pb-24"
     >
-      {/* CANONICAL PAGE HEADER — ALIGNED WITH ALL SECONDARY PAGES */}
+      {/* HEADER */}
       <header className="mb-14">
         <p className="uppercase text-xs tracking-wider text-[#64748B] mb-3">
           CO₂e Attestations — Pricing
@@ -34,7 +35,7 @@ export default function PricingPage() {
       {/* GRID */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
 
-        {/* SINGLE ATTESTATION — ACTIVE */}
+        {/* SINGLE */}
         <div className="bg-white border border-gray-200 rounded-2xl shadow-lg p-10 text-center flex flex-col">
           <h3 className="text-2xl font-bold text-[#0B3A63] mb-3">
             Single Attestation
@@ -60,13 +61,13 @@ export default function PricingPage() {
           <GenerateAttestationButton />
         </div>
 
-        {/* PACK 5 — DISABLED */}
+        {/* PACK 5 */}
         <div className="bg-white border border-gray-200 rounded-2xl shadow-lg p-10 text-center flex flex-col">
           <h3 className="text-2xl font-bold text-[#0B3A63] mb-3">
             Pack of 5
           </h3>
 
-          <p className="text-4xl font-extrabold text-gray-400 mb-1">
+          <p className="text-4xl font-extrabold text-[#0B3A63] mb-1">
             349€
           </p>
           <p className="text-sm text-gray-500 mb-4">
@@ -77,21 +78,21 @@ export default function PricingPage() {
             For recurring or professional usage.
           </p>
 
-          <button
-            disabled
-            className="bg-gray-300 text-gray-600 font-semibold px-10 py-3 rounded-xl cursor-not-allowed mt-auto"
+          <Link
+            href="/api/checkout-pack?pack=5"
+            className="bg-[#0B3A63] hover:bg-[#092f50] text-white font-semibold px-10 py-3 rounded-xl mt-auto transition"
           >
-            Available after purchase
-          </button>
+            Buy pack of 5
+          </Link>
         </div>
 
-        {/* PACK 10 — DISABLED */}
+        {/* PACK 10 */}
         <div className="bg-white border border-gray-200 rounded-2xl shadow-lg p-10 text-center flex flex-col">
           <h3 className="text-2xl font-bold text-[#0B3A63] mb-3">
             Pack of 10
           </h3>
 
-          <p className="text-4xl font-extrabold text-gray-400 mb-1">
+          <p className="text-4xl font-extrabold text-[#0B3A63] mb-1">
             590€
           </p>
           <p className="text-sm text-gray-500 mb-4">
@@ -102,21 +103,21 @@ export default function PricingPage() {
             Ideal for steady annual demand.
           </p>
 
-          <button
-            disabled
-            className="bg-gray-300 text-gray-600 font-semibold px-10 py-3 rounded-xl cursor-not-allowed mt-auto"
+          <Link
+            href="/api/checkout-pack?pack=10"
+            className="bg-[#0B3A63] hover:bg-[#092f50] text-white font-semibold px-10 py-3 rounded-xl mt-auto transition"
           >
-            Available after purchase
-          </button>
+            Buy pack of 10
+          </Link>
         </div>
 
-        {/* PACK 50 — DISABLED */}
+        {/* PACK 50 */}
         <div className="bg-white border border-gray-200 rounded-2xl shadow-lg p-10 text-center flex flex-col col-span-full lg:col-span-1 mx-auto">
           <h3 className="text-2xl font-bold text-[#0B3A63] mb-3">
             Pack of 50
           </h3>
 
-          <p className="text-4xl font-extrabold text-gray-400 mb-1">
+          <p className="text-4xl font-extrabold text-[#0B3A63] mb-1">
             2,450€
           </p>
           <p className="text-sm text-gray-500 mb-4">
@@ -127,12 +128,12 @@ export default function PricingPage() {
             Designed for large supplier ecosystems.
           </p>
 
-          <button
-            disabled
-            className="bg-gray-300 text-gray-600 font-semibold px-10 py-3 rounded-xl cursor-not-allowed mt-auto"
+          <Link
+            href="/api/checkout-pack?pack=50"
+            className="bg-[#0B3A63] hover:bg-[#092f50] text-white font-semibold px-10 py-3 rounded-xl mt-auto transition"
           >
-            Available after purchase
-          </button>
+            Buy pack of 50
+          </Link>
         </div>
 
         {/* ENTERPRISE */}
@@ -158,10 +159,9 @@ export default function PricingPage() {
         </div>
       </div>
 
-      {/* FOOTER DISCLAIMER */}
       <p className="text-gray-600 text-center text-xs mt-12 leading-relaxed">
         Spend-based indicative calculation only. Not audited.
       </p>
     </section>
   );
-        }
+            }
