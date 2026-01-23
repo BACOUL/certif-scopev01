@@ -118,4 +118,4 @@ ${keys.join("\n")}
 
   // ⚠️ Toujours répondre 200 à Stripe
   return NextResponse.json({ received: true });
-      }
+    }
