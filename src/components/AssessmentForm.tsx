@@ -399,6 +399,10 @@ export default function AssessmentForm() {
           </p>
         )}
 
+        <p className="text-xs text-gray-500">
+          By generating an Attestation, you acknowledge that Certif-Scope does not retain issued PDFs. Lost attestations are not stored and cannot be recovered. Re-issuance may be requested but is not guaranteed.
+        </p>
+
         <button
           onClick={handleSubmit}
           disabled={isSubmitting}
@@ -449,4 +453,4 @@ function Input({
       <p className="text-xs text-gray-500 mt-1">{hint}</p>
     </div>
   );
-       }
+}
