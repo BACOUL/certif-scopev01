@@ -35,6 +35,16 @@ export async function GET(req: Request) {
     if (!sessionId) return new Response("Missing session_id", { status: 400 });
 
     const session = await stripe.checkout.sessions.retrieve(sessionId);
+
+    // ✅ SÉCURISATION ORIGINE STRIPE
+    if (session.mode !== "payment") {
+      return new Response("Invalid checkout mode", { status: 403 });
+    }
+
+    if (!session.metadata || session.metadata.product !== "certif-scope-attestation") {
+      return new Response("Invalid attestation session", { status: 403 });
+    }
+
     if (session.payment_status !== "paid") {
       return new Response("Payment not completed", { status: 403 });
     }
@@ -63,7 +73,8 @@ export async function GET(req: Request) {
     }
 
     // 3️⃣ CRYPTO & ID
-    const issuedDate = new Date().toISOString().slice(0, 10);
+    // ✅ issuedDate plus propre (ISO complet pour la crypto)
+    const issuedDate = new Date().toISOString();
 
     const canonicalPayload = {
       issuer: "Certif-Scope" as const,
@@ -103,7 +114,8 @@ export async function GET(req: Request) {
       year: escapeHtml(String(metadataRaw.year)),
       totalCO2e: escapeHtml(String(totalCO2eNum)),
       methodology: escapeHtml(String(metadataRaw.methodology || "Certif-Scope deterministic spend-based methodology v1.0")),
-      issuedDate: escapeHtml(issuedDate),
+      // On garde l'affichage YYYY-MM-DD pour le PDF, même si la donnée interne est ISO
+      issuedDate: escapeHtml(issuedDate.slice(0, 10)), 
       validUntil: "",
       validityMonths: escapeHtml(String(metadataRaw.validityMonths || "12")),
       standardRef: escapeHtml(String(metadataRaw.standardRef || "Certif-Scope CS-SB-v1")),
