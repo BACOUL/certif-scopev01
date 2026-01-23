@@ -5,15 +5,13 @@ export default function SuccessClient({
 }: {
   sessionId: string | null;
 }) {
-  function handleDownload() {
-    if (!sessionId) {
-      alert("Missing session reference");
-      return;
-    }
+  const handleDownload = () => {
+    // UX-only : on ne bloque jamais
+    if (!sessionId) return;
 
-    // Téléchargement direct — API = source de vérité
+    // Source de vérité = API
     window.location.href = `/api/attestation/issue?session_id=${sessionId}`;
-  }
+  };
 
   return (
     <section className="max-w-xl w-full bg-white border border-gray-200 rounded-2xl shadow-sm p-10 text-center space-y-6">
@@ -27,12 +25,15 @@ export default function SuccessClient({
         Your CO₂e attestation is ready.
       </p>
 
-      {sessionId ? (
+      {/* ======================================================
+          DOWNLOAD ZONE — NEVER BLOCKING
+      ====================================================== */}
+      {sessionId && (
         <>
           <p className="text-sm text-gray-500">
-            This attestation can only be downloaded once.
+            This attestation can only be generated once.
             <br />
-            Please save it immediately after download.
+            Please download and store it immediately.
           </p>
 
           <button
@@ -42,11 +43,17 @@ export default function SuccessClient({
             Download your attestation (PDF)
           </button>
         </>
-      ) : (
-        <p className="text-red-600">
-          Missing session reference.
+      )}
+
+      {/* ======================================================
+          FALLBACK — INFORMATIONAL ONLY (NO ERROR STATE)
+      ====================================================== */}
+      {!sessionId && (
+        <p className="text-sm text-gray-500 leading-relaxed">
+          Your payment was successfully processed.
           <br />
-          Please contact support.
+          If the download does not start automatically,
+          please contact support with your payment reference.
         </p>
       )}
 
