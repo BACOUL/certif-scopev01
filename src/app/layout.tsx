@@ -1,6 +1,10 @@
 import ClientLayout from "./client-layout";
 import "../styles/index.css";
 
+/* ⛔️ CRITIQUE — empêche le rendu statique global */
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export const metadata = {
   title: "Certif-Scope — Instant CO₂e Attestation for SMEs",
   description:
@@ -25,7 +29,12 @@ export const metadata = {
     url: "https://certif-scope.com/",
     siteName: "Certif-Scope",
     images: [
-      { url: "/og-image.png", width: 1200, height: 630, alt: "CO₂e Attestation Preview" }
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "CO₂e Attestation Preview",
+      },
     ],
     locale: "en_US",
     type: "website",
@@ -33,10 +42,14 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     images: ["/og-image.png"],
-  }
+  },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -48,7 +61,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="alternate" href="https://certif-scope.com/it/" hrefLang="it" />
         <link rel="alternate" href="https://certif-scope.com/" hrefLang="x-default" />
 
-        {/* STRUCTURED DATA COMBINED */}
+        {/* STRUCTURED DATA */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -72,7 +85,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   availability: "https://schema.org/InStock",
                   url: "https://certif-scope.com/pricing",
                 },
-              }
+              },
             }),
           }}
         />
@@ -83,4 +96,4 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </body>
     </html>
   );
-                  }
+                }
