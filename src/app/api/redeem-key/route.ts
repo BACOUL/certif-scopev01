@@ -3,74 +3,117 @@ import crypto from "crypto";
 
 export const runtime = "nodejs";
 
-/**
- * REDEEM ACCESS KEY — VERSION CORRIGÉE (COMPAT SUCCESS / DOWNLOAD)
- *
- * OBJECTIFS :
- * - ZÉRO stockage
- * - ZÉRO base de données
- * - UX STRICTEMENT IDENTIQUE AU FLOW STRIPE
- * - TOUJOURS fournir un session_id exploitable par /success
- *
- * RÈGLE :
- * 👉 TOUT succès doit produire un `session_id`
- */
+/* ======================================================
+   ACCESS KEY — VALIDATION SIGNÉE (SANS DB)
+   ======================================================
 
-/**
- * Génère un pseudo session_id compatible SuccessPage
- * Format volontairement distinct de Stripe
- */
-function generatePseudoSessionId() {
+FORMAT CLÉ (STRICT) :
+CS-{TYPE}-{PAYLOAD}-{SIGNATURE}
+
+TYPE :
+- PACK   → crédits limités
+- ADMIN  → illimité
+
+PAYLOAD :
+- PACK  → nombre de crédits (ex: 10, 50)
+- ADMIN → UNLIMITED
+
+SIGNATURE :
+HMAC-SHA256(secret, `${TYPE}:${PAYLOAD}`) tronqué
+
+====================================================== */
+
+const KEY_PREFIX = "CS";
+const SIGNATURE_LENGTH = 16; // hex chars
+const KEY_SECRET = process.env.KEY_SECRET!;
+
+if (!KEY_SECRET) {
+  throw new Error("KEY_SECRET is missing");
+}
+
+// ======================================================
+// UTILS
+// ======================================================
+function sign(type: string, payload: string) {
+  return crypto
+    .createHmac("sha256", KEY_SECRET)
+    .update(`${type}:${payload}`)
+    .digest("hex")
+    .slice(0, SIGNATURE_LENGTH)
+    .toUpperCase();
+}
+
+function generateSessionId() {
   return `key_${crypto.randomUUID()}`;
 }
 
+type ParsedKey =
+  | { valid: true; type: "ADMIN"; credits: "unlimited" }
+  | { valid: true; type: "PACK"; credits: number }
+  | { valid: false };
+
+// ======================================================
+// KEY PARSER / VALIDATOR
+// ======================================================
+function validateAccessKey(key: string): ParsedKey {
+  if (!key || typeof key !== "string") return { valid: false };
+
+  const parts = key.split("-");
+  if (parts.length !== 4) return { valid: false };
+
+  const [prefix, type, payload, signature] = parts;
+
+  if (prefix !== KEY_PREFIX) return { valid: false };
+
+  const expectedSig = sign(type, payload);
+  if (signature !== expectedSig) return { valid: false };
+
+  if (type === "ADMIN" && payload === "UNLIMITED") {
+    return { valid: true, type: "ADMIN", credits: "unlimited" };
+  }
+
+  if (type === "PACK") {
+    const credits = Number(payload);
+    if (!Number.isInteger(credits) || credits <= 0) {
+      return { valid: false };
+    }
+    return { valid: true, type: "PACK", credits };
+  }
+
+  return { valid: false };
+}
+
+// ======================================================
+// REDEEM ENDPOINT
+// ======================================================
 export async function POST(req: Request) {
   try {
     const body = await req.json();
     const { accessKey } = body;
 
-    if (!accessKey || typeof accessKey !== "string") {
+    const parsed = validateAccessKey(accessKey);
+
+    if (!parsed.valid) {
       return NextResponse.json(
-        { error: "Missing or invalid access key" },
-        { status: 400 }
+        { error: "Invalid access key" },
+        { status: 403 }
       );
     }
 
-    // ======================================================
-    // 🔐 DÉRIVATION DÉTERMINISTE (VALIDATION LOGIQUE)
-    // ======================================================
-    // NOTE :
-    // - Pas de stockage
-    // - Pas de décrément réel
-    // - La validité réelle est contractuelle / externe
-    crypto
-      .createHash("sha256")
-      .update(accessKey + process.env.KEY_SECRET!)
-      .digest("hex");
+    const session_id = generateSessionId();
 
-    // ======================================================
-    // ✅ GÉNÉRATION SESSION_ID (OBLIGATOIRE)
-    // ======================================================
-    const sessionId = generatePseudoSessionId();
-
-    // ======================================================
-    // 🌍 ORIGINE (STRICT)
-    // ======================================================
     const origin =
       req.headers.get("origin") ||
       process.env.NEXT_PUBLIC_BASE_URL ||
       "http://localhost:3000";
 
-    // ======================================================
-    // 🔁 CONTRAT DE SORTIE IDENTIQUE À STRIPE
-    // ======================================================
     return NextResponse.json({
       redeemed: true,
-      creditsConsumed: 1,
-      remainingCredits: "managed_externally",
-      message: "Access key redeemed successfully",
-      session_id: sessionId,
-      url: `${origin}/success?session_id=${sessionId}`,
+      keyType: parsed.type,
+      credits:
+        parsed.type === "ADMIN" ? "unlimited" : parsed.credits,
+      session_id,
+      url: `${origin}/success?session_id=${session_id}`,
     });
   } catch (err) {
     console.error(err);
@@ -79,4 +122,4 @@ export async function POST(req: Request) {
       { status: 500 }
     );
   }
-      }
+}
