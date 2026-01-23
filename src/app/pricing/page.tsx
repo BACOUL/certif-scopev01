@@ -1,5 +1,5 @@
 import GenerateAttestationButton from "@/components/GenerateAttestationButton";
-import Link from "next/link";
+// On n'importe plus Link car on utilise des balises <a> pour les API routes
 
 export const metadata = {
   title: "Pricing — Certif-Scope",
@@ -78,12 +78,12 @@ export default function PricingPage() {
             For recurring or professional usage.
           </p>
 
-          <Link
+          <a
             href="/api/checkout-pack?pack=5"
-            className="bg-[#0B3A63] hover:bg-[#092f50] text-white font-semibold px-10 py-3 rounded-xl mt-auto transition"
+            className="bg-[#0B3A63] hover:bg-[#092f50] text-white font-semibold px-10 py-3 rounded-xl mt-auto text-center"
           >
             Buy pack of 5
-          </Link>
+          </a>
         </div>
 
         {/* PACK 10 */}
@@ -103,12 +103,12 @@ export default function PricingPage() {
             Ideal for steady annual demand.
           </p>
 
-          <Link
+          <a
             href="/api/checkout-pack?pack=10"
-            className="bg-[#0B3A63] hover:bg-[#092f50] text-white font-semibold px-10 py-3 rounded-xl mt-auto transition"
+            className="bg-[#0B3A63] hover:bg-[#092f50] text-white font-semibold px-10 py-3 rounded-xl mt-auto text-center"
           >
             Buy pack of 10
-          </Link>
+          </a>
         </div>
 
         {/* PACK 50 */}
@@ -128,12 +128,12 @@ export default function PricingPage() {
             Designed for large supplier ecosystems.
           </p>
 
-          <Link
+          <a
             href="/api/checkout-pack?pack=50"
-            className="bg-[#0B3A63] hover:bg-[#092f50] text-white font-semibold px-10 py-3 rounded-xl mt-auto transition"
+            className="bg-[#0B3A63] hover:bg-[#092f50] text-white font-semibold px-10 py-3 rounded-xl mt-auto text-center"
           >
             Buy pack of 50
-          </Link>
+          </a>
         </div>
 
         {/* ENTERPRISE */}
@@ -164,4 +164,4 @@ export default function PricingPage() {
       </p>
     </section>
   );
-            }
+}
