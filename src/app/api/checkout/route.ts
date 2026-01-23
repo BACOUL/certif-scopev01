@@ -52,6 +52,7 @@ export async function POST(req: Request) {
       totalCO2e,
       methodology,
       attestationLocale,
+      emailForDelivery, // ✅ EMAIL OPTIONNEL
     } = body;
 
     // ───────────────── VALIDATION
@@ -87,7 +88,7 @@ export async function POST(req: Request) {
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
 
-      // 🔑 CRITIQUE : garantit email client exploitable (Resend)
+      // 🔑 Garantit un email client exploitable côté Stripe
       customer_creation: "always",
 
       line_items: [
@@ -109,6 +110,11 @@ export async function POST(req: Request) {
         methodology: String(methodology),
         attestationLocale,
         referenceLocale: "en",
+
+        // ✅ EMAIL OPTIONNEL — TRANSPORT SEULEMENT (PRIVACY SAFE)
+        ...(emailForDelivery && {
+          emailForDelivery: String(emailForDelivery),
+        }),
       },
 
       success_url: `${BASE_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
@@ -123,4 +129,4 @@ export async function POST(req: Request) {
       { status: 500 }
     );
   }
-}
+      }
