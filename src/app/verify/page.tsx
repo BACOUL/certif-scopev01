@@ -111,9 +111,9 @@ export default function VerifyPage() {
             </li>
           </ul>
 
+          {/* AJOUT 2 : Précision Authenticité / Intégrité */}
           <p className="text-gray-700 leading-relaxed mt-4">
-            If the signature verification succeeds and the document content has
-            not been altered, the attestation is authentic.
+            Verification confirms both the <strong>authenticity</strong> (the document was signed by Certif-Scope) and the <strong>integrity</strong> (no modifications since signing) of the attestation.
           </p>
         </section>
 
@@ -133,6 +133,12 @@ export default function VerifyPage() {
             Verification can be performed entirely offline and does not require
             access to Certif-Scope systems. Verification remains possible even if
             Certif-Scope becomes unavailable.
+          </p>
+
+          {/* AJOUT 1 : Instructions Outils Standards (Adobe/Foxit) */}
+          <p className="text-gray-700 leading-relaxed mt-4">
+            To verify the embedded digital signature, you can use any standard PDF viewer supporting digital signatures (e.g., Adobe Acrobat, Foxit, or similar).
+            Open the signed PDF, locate the signature panel and select “Validate Signature” to confirm that the document has not been altered and that the signature is valid.
           </p>
         </section>
 
@@ -165,9 +171,9 @@ export default function VerifyPage() {
             instructions for independent verification only.
           </p>
 
-          <p className="text-sm text-gray-600 mt-3">
-            Certif-Scope does not maintain a registry of issued attestations. Verification uses only the provided PDF and embedded signature.
-            Requests for re-issuance of lost documents must be made to support; recovery of previously issued attestations from Certif-Scope systems is not possible.
+          {/* AJOUT 3 : Reformulation Réémission / Perte */}
+          <p className="mt-3">
+            Certif-Scope does not maintain a registry of issued attestations. Verification uses only the provided PDF and its embedded signature. Requests for re-issuance of lost attestations must be made to support; recovery of previously issued attestations from Certif-Scope systems is not possible.
           </p>
 
           <p className="mt-3">
