@@ -135,6 +135,12 @@ export default function AssessmentForm() {
     other: "",
   });
 
+  // ACCESS KEY STATE
+  const [accessKey, setAccessKey] = useState("");
+  const [keyStatus, setKeyStatus] = useState<"idle" | "checking" | "valid" | "invalid">("idle");
+  const [remainingCredits, setRemainingCredits] = useState<number | null>(null);
+  const [keyError, setKeyError] = useState("");
+
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -165,13 +171,63 @@ export default function AssessmentForm() {
     return Object.keys(nextErrors).length === 0;
   };
 
+  // CHECK KEY LOGIC
+  const handleCheckKey = async () => {
+    if (!accessKey.trim()) return;
+    
+    setKeyStatus("checking");
+    setKeyError("");
+    setRemainingCredits(null);
+
+    try {
+      const res = await fetch("/api/check-key", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ key: accessKey }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || !data.valid) {
+        setKeyStatus("invalid");
+        setKeyError(data.error || "Invalid or expired access key.");
+      } else {
+        setKeyStatus("valid");
+        setRemainingCredits(data.remainingCredits);
+      }
+    } catch (e) {
+      setKeyStatus("invalid");
+      setKeyError("Unable to verify key. Please try again.");
+    }
+  };
+
+  // HELPER: RESET KEY (For "Pay instead" logic)
+  const clearKey = () => {
+    setAccessKey("");
+    setKeyStatus("idle");
+    setRemainingCredits(null);
+    setKeyError("");
+  };
+
   const handleSubmit = async () => {
     if (!validate()) return;
+
+    // FIX 1: Only block if checking or if user insists on using a key that has 0 credits.
+    // An 'invalid' key status is ignored here, allowing the user to proceed to Stripe.
+    if (keyStatus === "checking" || (keyStatus === "valid" && remainingCredits === 0)) {
+      return;
+    }
 
     setIsSubmitting(true);
     setErrors({});
 
-    const payload = {
+    // DECIDE MODE: REDEEM OR STRIPE CHECKOUT
+    // Only redeem if key is explicitly valid AND has credits
+    const isRedeeming = keyStatus === "valid" && remainingCredits !== null && remainingCredits > 0;
+    const endpoint = isRedeeming ? "/api/redeem-key" : "/api/checkout";
+
+    // FIX 3: CLEAN PAYLOAD CONSTRUCTION
+    const basePayload = {
       companyName,
       companySector: sector,
       entityIdentifier: companyId || "",
@@ -182,15 +238,21 @@ export default function AssessmentForm() {
       attestationLocale,
     };
 
+    // Add accessKey only if we are actually redeeming
+    const payload = {
+      ...basePayload,
+      ...(isRedeeming && { accessKey }),
+    };
+
     try {
-      const res = await fetch("/api/checkout", {
+      const res = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
 
       if (!res.ok) {
-        throw new Error("Payment initialization failed.");
+        throw new Error("Transaction initialization failed.");
       }
 
       const { url } = await res.json();
@@ -198,11 +260,21 @@ export default function AssessmentForm() {
     } catch {
       setErrors({
         submit:
-          "Unable to initiate payment. Please try again or refresh the page.",
+          "Unable to process request. Please try again or refresh the page.",
       });
       setIsSubmitting(false);
     }
   };
+
+  // Determine button label and blocked state
+  const isRedeeming = keyStatus === "valid" && remainingCredits !== null && remainingCredits > 0;
+  
+  // FIX 1 (UI): Block only on 'checking' or 'valid but empty'
+  const isButtonBlocked = keyStatus === "checking" || (keyStatus === "valid" && remainingCredits === 0);
+  
+  const buttonLabel = isRedeeming
+    ? "Generate my carbon attestation (1 credit)" 
+    : "Generate my carbon attestation — 89 €";
 
   return (
     <main className="min-h-screen bg-white">
@@ -399,23 +471,94 @@ export default function AssessmentForm() {
           </p>
         )}
 
+        {/* ======================================================
+            ACCESS KEY BLOCK (OPTIMIZED)
+        ====================================================== */}
+        <div className="bg-gray-50 border border-gray-200 rounded-xl p-5">
+          <h3 className="text-sm font-semibold text-[#0B3A63] mb-2">Access key (optional)</h3>
+          <p className="text-sm text-gray-600 mb-3">
+            Use an access key if you purchased a pack or were granted credits.
+          </p>
+          
+          <div className="flex gap-3">
+            <input 
+              type="text" 
+              placeholder="XXXX-XXXX-XXXX"
+              value={accessKey}
+              onChange={(e) => {
+                setAccessKey(e.target.value);
+                // FIX 2: Fully reset state on input change
+                if (keyStatus !== "idle") {
+                   setKeyStatus("idle");
+                   setRemainingCredits(null);
+                   setKeyError("");
+                }
+              }}
+              className="flex-1 border border-gray-300 rounded-md px-3 py-2 text-sm"
+            />
+            <button
+              type="button"
+              onClick={handleCheckKey}
+              disabled={!accessKey || keyStatus === "checking"}
+              className="bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-50"
+            >
+              {keyStatus === "checking" ? "..." : "Check key"}
+            </button>
+          </div>
+
+          {/* Key Status Feedback */}
+          {keyStatus === "invalid" && (
+            <p className="text-xs text-red-600 mt-2 font-medium">
+              {keyError}
+            </p>
+          )}
+
+          {keyStatus === "valid" && (
+            <div className="mt-2 text-xs">
+              <p className="text-green-700 font-bold">Key valid</p>
+              {remainingCredits === 0 ? (
+                <p className="text-red-600">This key has no remaining credits.</p>
+              ) : (
+                <p className="text-gray-600">Remaining credits: {remainingCredits}</p>
+              )}
+            </div>
+          )}
+        </div>
+        {/* ====================================================== */}
+
         <p className="text-xs text-gray-500">
           By generating an Attestation, you acknowledge that Certif-Scope does not retain issued PDFs. Lost attestations are not stored and cannot be recovered. Re-issuance may be requested but is not guaranteed.
         </p>
 
         <button
           onClick={handleSubmit}
-          disabled={isSubmitting}
+          disabled={isSubmitting || isButtonBlocked}
           className={`w-full py-4 rounded-xl font-semibold transition ${
-            isSubmitting
+            isSubmitting || isButtonBlocked
               ? "bg-gray-400 cursor-not-allowed"
               : "bg-[#0B3A63] hover:bg-[#092f50] text-white"
           }`}
         >
-          Generate my carbon attestation — 89 €
+          {buttonLabel}
         </button>
 
-        <p className="text-xs text-gray-500 leading-relaxed">
+        {/* FIX 4: UX "Pay Instead" Link */}
+        {isRedeeming && (
+          <button 
+            type="button" 
+            onClick={clearKey} 
+            className="w-full text-center text-xs text-gray-500 underline mt-2 hover:text-gray-700"
+          >
+            I prefer to pay 89 € instead
+          </button>
+        )}
+
+        {/* LEGAL MENTION FOR CREDITS */}
+        <p className="text-xs text-gray-500 leading-relaxed text-center mt-4">
+          When using an access key, one credit is consumed per attestation. Credits are non-refundable and non-transferable.
+        </p>
+
+        <p className="text-xs text-gray-500 leading-relaxed mt-4">
           This attestation is indicative, non-regulatory, and based solely on the
           information provided. It does not constitute a greenhouse gas audit
           or compliance report.
