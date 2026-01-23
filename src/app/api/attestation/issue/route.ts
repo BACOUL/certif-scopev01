@@ -2,7 +2,6 @@ export const runtime = "nodejs";
 
 import Stripe from "stripe";
 import QRCode from "qrcode";
-import { Resend } from "resend";
 import { signCanonicalPayload, makeAttestationId } from "@/lib/sign";
 import {
   ATTESTATION_I18N,
@@ -11,7 +10,6 @@ import {
 } from "@/lib/attestation-i18n/index";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
-const resend = new Resend(process.env.RESEND_API_KEY!);
 
 // Paste only the base64 content of your logo here (no data: prefix, no newlines)
 const CERTIF_SCOPE_LOGO_BASE64 = "";
@@ -37,7 +35,6 @@ export async function GET(req: Request) {
     if (!sessionId) return new Response("Missing session_id", { status: 400 });
 
     let metadataRaw: Record<string, any> = {};
-    let customerEmail: string | null = null;
 
     // MODE STRIPE
     if (!sessionId.startsWith("key_")) {
@@ -60,19 +57,11 @@ export async function GET(req: Request) {
       }
 
       metadataRaw = session.metadata;
-      
-      // Récupération Email Client (Priorité : Formulaire > Stripe Details > Stripe Billing)
-      customerEmail =
-        session.metadata?.emailForDelivery ||
-        session.customer_details?.email ||
-        session.customer_email ||
-        null;
     }
 
     // MODE ACCESS KEY (stateless)
     if (sessionId.startsWith("key_")) {
       metadataRaw = Object.fromEntries(new URL(req.url).searchParams.entries());
-      // Pas d'email garanti dans ce mode via URL params
     }
 
     // 2️⃣ LIRE LA LANGUE (STRICT)
@@ -408,7 +397,7 @@ export async function GET(req: Request) {
 
   <div class="footer-static">
     <div>${i18n.footerText}</div>
-    <div>${i18n.pageLabel} 2 / 2</div>
+    <div>${i18n.pageLabel} 1 / 2</div>
   </div>
 
   <div style="page-break-after: always;"></div>
@@ -518,3 +507,44 @@ export async function GET(req: Request) {
 </body>
 </html>
 `;
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 15000); 
+
+    const pdfResponse = await fetch("https://api.pdfshift.io/v3/convert/pdf", {
+      method: "POST",
+      headers: {
+        "X-API-Key": process.env.PDFSHIFT_API_KEY!,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        source: html,
+        format: "A4",
+        use_print: true,
+      }),
+      signal: controller.signal,
+    });
+    
+    clearTimeout(timeoutId);
+
+    if (!pdfResponse.ok) {
+      const error = await pdfResponse.text();
+      return new Response(error, { status: pdfResponse.status });
+    }
+
+    const pdfBuffer = Buffer.from(await pdfResponse.arrayBuffer());
+    
+    const safeIssuerName = metadata.issuerName.toLowerCase().replace(/[^a-z0-9\-]/g, "");
+    
+    return new Response(pdfBuffer, {
+      headers: {
+        "Content-Type": "application/pdf",
+        "Content-Disposition": `attachment; filename="${safeIssuerName}-${metadata.attestationId}.pdf"`,
+        "Cache-Control": "no-store",
+      },
+    });
+  } catch (err) {
+    console.error(err);
+    return new Response("Internal error", { status: 500 });
+  }
+}
