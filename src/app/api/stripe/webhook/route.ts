@@ -12,9 +12,9 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 const resend = new Resend(process.env.RESEND_API_KEY!);
 
 // ======================================================
-// I18N EMAILS (STRICT MINIMAL V1)
+// I18N EMAILS (FR / DE — V1 STRICT)
 // ======================================================
-type Locale = "en" | "fr";
+type Locale = "fr" | "de";
 
 const EMAIL_I18N: Record<
   Locale,
@@ -25,55 +25,72 @@ const EMAIL_I18N: Record<
     attestationBody: string;
   }
 > = {
-  en: {
-    packSubject: (pack) => `Your Certif-Scope access keys (${pack})`,
-    packBody: (credits, keys) => `
-<p>Hello,</p>
-<p>Thank you for your purchase.</p>
-<p>Here are your <strong>${credits} access keys</strong>:</p>
-<pre style="font-size:14px; line-height:1.6;">${keys.join("\n")}</pre>
-<p>Each key allows the generation of <strong>one CO₂e attestation</strong>.</p>
-<p style="font-size:12px;color:#666;">
-Keys are not stored by Certif-Scope.<br/>
-Please keep them safe — lost keys cannot be recovered.
-</p>
-<p>— Certif-Scope</p>
-`,
-    attestationSubject: "Your CO₂e Attestation (PDF) – Certif-Scope",
-    attestationBody: `
-<p>Your CO₂e attestation is attached to this email.</p>
-<p><strong>Important:</strong></p>
-<ul>
-  <li>This document is issued once</li>
-  <li>Certif-Scope does not store a copy</li>
-  <li>Please archive it securely</li>
-</ul>
-<p>— Certif-Scope</p>
-`,
-  },
   fr: {
     packSubject: (pack) => `Vos clés d’accès Certif-Scope (${pack})`,
     packBody: (credits, keys) => `
 <p>Bonjour,</p>
+
 <p>Merci pour votre achat.</p>
+
 <p>Voici vos <strong>${credits} clés d’accès</strong> :</p>
+
 <pre style="font-size:14px; line-height:1.6;">${keys.join("\n")}</pre>
+
 <p>Chaque clé permet de générer <strong>une attestation CO₂e</strong>.</p>
+
 <p style="font-size:12px;color:#666;">
 Les clés ne sont pas stockées par Certif-Scope.<br/>
 Veuillez les conserver soigneusement — aucune récupération possible.
 </p>
+
 <p>— Certif-Scope</p>
 `,
     attestationSubject: "Votre attestation CO₂e (PDF) – Certif-Scope",
     attestationBody: `
 <p>Votre attestation CO₂e est jointe à cet email.</p>
-<p><strong>Important :</strong></p>
+
+<p><strong>Informations importantes :</strong></p>
 <ul>
   <li>Ce document est émis une seule fois</li>
   <li>Certif-Scope n’en conserve aucune copie</li>
   <li>Veuillez l’archiver de manière sécurisée</li>
 </ul>
+
+<p>— Certif-Scope</p>
+`,
+  },
+
+  de: {
+    packSubject: (pack) => `Ihre Certif-Scope-Zugangsschlüssel (${pack})`,
+    packBody: (credits, keys) => `
+<p>Guten Tag,</p>
+
+<p>Vielen Dank für Ihren Kauf.</p>
+
+<p>Hier sind Ihre <strong>${credits} Zugangsschlüssel</strong>:</p>
+
+<pre style="font-size:14px; line-height:1.6;">${keys.join("\n")}</pre>
+
+<p>Jeder Schlüssel ermöglicht die Erstellung <strong>einer CO₂e-Bescheinigung</strong>.</p>
+
+<p style="font-size:12px;color:#666;">
+Die Schlüssel werden nicht von Certif-Scope gespeichert.<br/>
+Bitte bewahren Sie sie sicher auf — eine Wiederherstellung ist nicht möglich.
+</p>
+
+<p>— Certif-Scope</p>
+`,
+    attestationSubject: "Ihre CO₂e-Bescheinigung (PDF) – Certif-Scope",
+    attestationBody: `
+<p>Ihre CO₂e-Bescheinigung ist dieser E-Mail beigefügt.</p>
+
+<p><strong>Wichtige Hinweise:</strong></p>
+<ul>
+  <li>Dieses Dokument wird nur einmal ausgestellt</li>
+  <li>Certif-Scope speichert keine Kopie</li>
+  <li>Bitte archivieren Sie es sicher</li>
+</ul>
+
 <p>— Certif-Scope</p>
 `,
   },
@@ -125,7 +142,7 @@ export async function POST(req: Request) {
     const metadata = session.metadata || {};
 
     const locale: Locale =
-      metadata.attestationLocale === "fr" ? "fr" : "en";
+      metadata.attestationLocale === "de" ? "de" : "fr";
     const i18n = EMAIL_I18N[locale];
 
     // ===================================================
@@ -140,9 +157,6 @@ export async function POST(req: Request) {
         null;
 
       if (!credits || !email) {
-        console.error("PACK_EMAIL_SKIPPED_MISSING_DATA", {
-          sessionId: session.id,
-        });
         return NextResponse.json({ received: true });
       }
 
@@ -156,8 +170,6 @@ export async function POST(req: Request) {
           subject: i18n.packSubject(pack),
           html: i18n.packBody(credits, keys),
         });
-
-        console.log("PACK_EMAIL_SENT", { sessionId: session.id });
       } catch (err) {
         console.error("PACK_EMAIL_FAILED", err);
       }
@@ -174,15 +186,11 @@ export async function POST(req: Request) {
         null;
 
       if (!email) {
-        console.error("ATTESTATION_EMAIL_MISSING", {
-          sessionId: session.id,
-        });
         return NextResponse.json({ received: true });
       }
 
       const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
       if (!baseUrl) {
-        console.error("BASE_URL_MISSING");
         return NextResponse.json({ received: true });
       }
 
@@ -191,9 +199,6 @@ export async function POST(req: Request) {
         const pdfRes = await fetch(issueUrl);
 
         if (!pdfRes.ok) {
-          console.error("PDF_GENERATION_FAILED", {
-            sessionId: session.id,
-          });
           return NextResponse.json({ received: true });
         }
 
@@ -213,14 +218,12 @@ export async function POST(req: Request) {
             },
           ],
         });
-
-        console.log("ATTESTATION_EMAIL_SENT", { sessionId: session.id });
       } catch (err) {
         console.error("ATTESTATION_EMAIL_FAILED", err);
       }
     }
   }
 
-  // ⚠️ Always acknowledge Stripe
+  // ⚠️ Toujours répondre 200 à Stripe
   return NextResponse.json({ received: true });
-      }
+}
