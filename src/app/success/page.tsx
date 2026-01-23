@@ -1,6 +1,10 @@
 import { Suspense } from "react";
 import SuccessClient from "./SuccessClient";
 
+// ⛔️ OBLIGATOIRE — empêche le rendu statique
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "Payment successful — Certif-Scope",
   description: "Your CO₂e attestation has been issued.",
@@ -30,12 +34,6 @@ export default function SuccessPage({
           </section>
         }
       >
-        {/* 
-          IMPORTANT:
-          - sessionId is OPTIONAL
-          - never block rendering if null
-          - SuccessClient must stay UX-only
-        */}
         <SuccessClient sessionId={sessionId} />
       </Suspense>
     </main>
