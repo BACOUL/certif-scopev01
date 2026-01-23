@@ -10,30 +10,30 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
  * (ISO 639-1 – UE + anglais)
  */
 const ALLOWED_ATTESTATION_LOCALES = [
-  "en", // English (reference)
-  "fr", // French
-  "de", // German
-  "es", // Spanish
-  "it", // Italian
-  "pt", // Portuguese
-  "nl", // Dutch
-  "pl", // Polish
-  "cs", // Czech
-  "sk", // Slovak
-  "hu", // Hungarian
-  "ro", // Romanian
-  "bg", // Bulgarian
-  "hr", // Croatian
-  "sl", // Slovenian
-  "et", // Estonian
-  "lv", // Latvian
-  "lt", // Lithuanian
-  "mt", // Maltese
-  "el", // Greek
-  "fi", // Finnish
-  "sv", // Swedish
-  "da", // Danish
-  "ga", // Irish
+  "en",
+  "fr",
+  "de",
+  "es",
+  "it",
+  "pt",
+  "nl",
+  "pl",
+  "cs",
+  "sk",
+  "hu",
+  "ro",
+  "bg",
+  "hr",
+  "sl",
+  "et",
+  "lv",
+  "lt",
+  "mt",
+  "el",
+  "fi",
+  "sv",
+  "da",
+  "ga",
 ] as const;
 
 type AttestationLocale = (typeof ALLOWED_ATTESTATION_LOCALES)[number];
@@ -50,6 +50,7 @@ export async function POST(req: Request) {
     /**
      * EXPECTED PAYLOAD (FLAT — aligned with frontend)
      * {
+     *   priceId: string                // Stripe price_id (source of truth)
      *   companyName: string
      *   companySector: string
      *   entityIdentifier?: string
@@ -61,6 +62,7 @@ export async function POST(req: Request) {
      * }
      */
     const {
+      priceId,
       companyName,
       companySector,
       entityIdentifier,
@@ -74,6 +76,13 @@ export async function POST(req: Request) {
     // ─────────────────────────────────────────────
     // VALIDATION
     // ─────────────────────────────────────────────
+    if (!priceId) {
+      return NextResponse.json(
+        { error: "Missing Stripe priceId" },
+        { status: 400 }
+      );
+    }
+
     if (!companyName) {
       return NextResponse.json(
         { error: "Missing company name" },
@@ -128,6 +137,13 @@ export async function POST(req: Request) {
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
 
+      line_items: [
+        {
+          price: priceId, // Stripe product/price defines type (single vs pack)
+          quantity: 1,
+        },
+      ],
+
       metadata: {
         // internal
         draftId,
@@ -150,21 +166,6 @@ export async function POST(req: Request) {
         referenceLocale: "en",
       },
 
-      line_items: [
-        {
-          price_data: {
-            currency: "eur",
-            unit_amount: 8900,
-            product_data: {
-              name: "CO₂e Attestation — Certif-Scope",
-              description:
-                "Indicative spend-based CO₂e attestation (PDF, non-audited, one-time issuance)",
-            },
-          },
-          quantity: 1,
-        },
-      ],
-
       success_url: `${origin}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/generate`,
     });
@@ -178,4 +179,4 @@ export async function POST(req: Request) {
       { status: 500 }
     );
   }
-}
+        }
