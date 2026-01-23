@@ -58,26 +58,25 @@ export async function POST(req: Request) {
 
     console.log("✅ Payment confirmed:", session.id);
 
+    const email =
+      session.customer_details?.email ||
+      session.customer_email ||
+      null;
+
     // ===================================================
-    // PACK DE CRÉDITS
+    // CASE 1 — PACK DE CRÉDITS
     // ===================================================
     if (metadata.product === "certif-scope-pack") {
       const credits = Number(metadata.credits || 0);
       const pack = metadata.pack || "unknown";
-      const email =
-        session.customer_details?.email || session.customer_email;
 
       if (!credits || !email) {
         console.error("❌ Pack delivery failed: missing credits or email");
         return NextResponse.json({ received: true });
       }
 
-      // 🔑 Generate keys (stateless)
       const keys = Array.from({ length: credits }, generateAccessKey);
 
-      console.log("🔑 Generated keys:", keys);
-
-      // ✉️ Send email (fail-safe)
       try {
         await sendEmail({
           to: email,
@@ -107,12 +106,60 @@ Please keep them safe — lost keys cannot be recovered.
           `,
         });
       } catch (err) {
-        console.error("❌ Email send failed:", err);
-        // ❗ Never block Stripe webhook
+        console.error("❌ Pack email send failed:", err);
+      }
+    }
+
+    // ===================================================
+    // CASE 2 — ATTESTATION UNIQUE (PDF)
+    // ===================================================
+    if (metadata.product === "certif-scope-attestation") {
+      if (!email) {
+        console.error("❌ Attestation delivery failed: missing email");
+        return NextResponse.json({ received: true });
+      }
+
+      try {
+        const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+        if (!baseUrl) {
+          throw new Error("Missing NEXT_PUBLIC_BASE_URL");
+        }
+
+        const issueUrl = `${baseUrl}/api/attestation/issue?session_id=${session.id}`;
+
+        const pdfResponse = await fetch(issueUrl);
+        if (!pdfResponse.ok) {
+          throw new Error("PDF generation failed");
+        }
+
+        const pdfBuffer = Buffer.from(await pdfResponse.arrayBuffer());
+
+        await sendEmail({
+          to: email,
+          subject: "Your CO₂e Attestation (PDF) – Certif-Scope",
+          text: `
+Your CO₂e attestation is attached to this email.
+
+Important:
+- This document is issued once
+- Certif-Scope does not store a copy
+- Please archive it securely
+
+— Certif-Scope
+          `,
+          attachments: [
+            {
+              filename: `certif-scope-attestation-${session.id}.pdf`,
+              content: pdfBuffer.toString("base64"),
+            },
+          ],
+        });
+      } catch (err) {
+        console.error("❌ Attestation email flow failed:", err);
       }
     }
   }
 
-  // ⚠️ Always return 200 to Stripe
+  // ⚠️ Always acknowledge Stripe
   return NextResponse.json({ received: true });
-          }
+        }
