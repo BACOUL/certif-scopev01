@@ -8,7 +8,7 @@ type SendEmailParams = {
   html: string;
   attachments?: {
     filename: string;
-    content: Buffer;
+    content: string; // ✅ BASE64
     contentType: string;
   }[];
 };
@@ -20,7 +20,8 @@ export async function sendEmail({
   attachments,
 }: SendEmailParams) {
   return resend.emails.send({
-    from: "Certif-Scope <contact@certif-scope.com>",
+    from: "Certif-Scope <no-reply@certif-scope.com>",
+    replyTo: "contact@certif-scope.com",
     to,
     subject,
     html,
