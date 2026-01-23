@@ -1,18 +1,17 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
-
-export default function SuccessClient() {
-  const searchParams = useSearchParams();
-  const sessionId = searchParams?.get("session_id");
-
+export default function SuccessClient({
+  sessionId,
+}: {
+  sessionId: string | null;
+}) {
   function handleDownload() {
     if (!sessionId) {
       alert("Missing session reference");
       return;
     }
 
-    // Téléchargement direct via GET (API = vérité)
+    // Téléchargement direct — API = source de vérité
     window.location.href = `/api/attestation/issue?session_id=${sessionId}`;
   }
 
