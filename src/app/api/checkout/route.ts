@@ -1,14 +1,25 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
-export const runtime = "nodejs"; // required (Stripe)
+export const runtime = "nodejs"; // required for Stripe
 
+// ======================================================
+// STRIPE CLIENT
+// ======================================================
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
-/**
- * Langues autorisées pour l’attestation
- * (ISO 639-1 – UE + anglais)
- */
+// ======================================================
+// CONFIG — SOURCE DE VÉRITÉ
+// ======================================================
+const STRIPE_PRICE_ID = process.env.STRIPE_PRICE_ID!;
+
+if (!STRIPE_PRICE_ID) {
+  throw new Error("Missing STRIPE_PRICE_ID env variable");
+}
+
+// ======================================================
+// LANGUES AUTORISÉES (ISO 639-1)
+// ======================================================
 const ALLOWED_ATTESTATION_LOCALES = [
   "en",
   "fr",
@@ -38,6 +49,9 @@ const ALLOWED_ATTESTATION_LOCALES = [
 
 type AttestationLocale = (typeof ALLOWED_ATTESTATION_LOCALES)[number];
 
+// ======================================================
+// CHECKOUT ENDPOINT
+// ======================================================
 export async function POST(req: Request) {
   try {
     const origin =
@@ -48,9 +62,8 @@ export async function POST(req: Request) {
     const body = await req.json();
 
     /**
-     * EXPECTED PAYLOAD (FLAT — aligned with frontend)
+     * EXPECTED PAYLOAD (frontend)
      * {
-     *   priceId: string                // Stripe price_id (source of truth)
      *   companyName: string
      *   companySector: string
      *   entityIdentifier?: string
@@ -62,7 +75,6 @@ export async function POST(req: Request) {
      * }
      */
     const {
-      priceId,
       companyName,
       companySector,
       entityIdentifier,
@@ -73,16 +85,9 @@ export async function POST(req: Request) {
       attestationLocale,
     } = body;
 
-    // ─────────────────────────────────────────────
-    // VALIDATION
-    // ─────────────────────────────────────────────
-    if (!priceId) {
-      return NextResponse.json(
-        { error: "Missing Stripe priceId" },
-        { status: 400 }
-      );
-    }
-
+    // ==================================================
+    // VALIDATION STRICTE
+    // ==================================================
     if (!companyName) {
       return NextResponse.json(
         { error: "Missing company name" },
@@ -126,43 +131,43 @@ export async function POST(req: Request) {
       );
     }
 
-    // ─────────────────────────────────────────────
-    // BUSINESS CONTEXT (NON-PERSISTENT)
-    // ─────────────────────────────────────────────
+    // ==================================================
+    // CONTEXTE NON PERSISTANT
+    // ==================================================
     const draftId = `draft_${Date.now()}`;
 
-    // ─────────────────────────────────────────────
-    // STRIPE CHECKOUT (SOURCE OF TRUTH)
-    // ─────────────────────────────────────────────
+    // ==================================================
+    // STRIPE CHECKOUT (SOURCE DE VÉRITÉ UNIQUE)
+    // ==================================================
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
 
       line_items: [
         {
-          price: priceId, // Stripe product/price defines type (single vs pack)
+          price: STRIPE_PRICE_ID,
           quantity: 1,
         },
       ],
 
       metadata: {
-        // internal
+        // interne
         draftId,
 
-        // entity
+        // entité
         companyName: String(companyName),
         companySector: String(companySector),
         entityIdentifier: String(entityIdentifier || ""),
 
-        // context
+        // contexte
         year: String(year),
         country: String(country),
 
-        // result
+        // résultat
         totalCO2e: String(totalCO2e),
         methodology: String(methodology),
 
-        // language
-        attestationLocale: attestationLocale,
+        // langues
+        attestationLocale,
         referenceLocale: "en",
       },
 
@@ -179,4 +184,4 @@ export async function POST(req: Request) {
       { status: 500 }
     );
   }
-        }
+  }
