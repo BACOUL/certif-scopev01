@@ -2,6 +2,7 @@ export const runtime = "nodejs";
 
 import Stripe from "stripe";
 import QRCode from "qrcode";
+import { Resend } from "resend";
 import { signCanonicalPayload, makeAttestationId } from "@/lib/sign";
 import {
   ATTESTATION_I18N,
@@ -10,6 +11,7 @@ import {
 } from "@/lib/attestation-i18n/index";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+const resend = new Resend(process.env.RESEND_API_KEY!);
 
 // Paste only the base64 content of your logo here (no data: prefix, no newlines)
 const CERTIF_SCOPE_LOGO_BASE64 = "";
@@ -35,11 +37,13 @@ export async function GET(req: Request) {
     if (!sessionId) return new Response("Missing session_id", { status: 400 });
 
     let metadataRaw: Record<string, any> = {};
+    let customerEmail: string | null = null;
 
     // MODE STRIPE
     if (!sessionId.startsWith("key_")) {
       const session = await stripe.checkout.sessions.retrieve(sessionId);
 
+      // ✅ SÉCURISATION ORIGINE STRIPE
       if (session.mode !== "payment") {
         return new Response("Invalid checkout mode", { status: 403 });
       }
@@ -56,11 +60,18 @@ export async function GET(req: Request) {
       }
 
       metadataRaw = session.metadata;
+      
+      // Récupération Email Client (Stripe)
+      customerEmail =
+        session.customer_details?.email ||
+        session.customer_email ||
+        null;
     }
 
     // MODE ACCESS KEY (stateless)
     if (sessionId.startsWith("key_")) {
       metadataRaw = Object.fromEntries(new URL(req.url).searchParams.entries());
+      // Pas d'email garanti dans ce mode via URL params
     }
 
     // 2️⃣ LIRE LA LANGUE (STRICT)
@@ -532,8 +543,45 @@ export async function GET(req: Request) {
     }
 
     const pdfBuffer = Buffer.from(await pdfResponse.arrayBuffer());
-    
     const safeIssuerName = metadata.issuerName.toLowerCase().replace(/[^a-z0-9\-]/g, "");
+
+    // 📩 EMAIL ENVOI (FAIL SAFE)
+    // On n'envoie que si un email est détecté
+    if (customerEmail) {
+      try {
+        console.log("RESEND_SEND_ATTEMPT", {
+          customerEmail,
+          sessionId,
+          domain: "certif-scope.com",
+        });
+
+        await resend.emails.send({
+          from: "Certif-Scope <no-reply@certif-scope.com>",
+          reply_to: "contact@certif-scope.com",
+          to: customerEmail,
+          subject: "Your CO₂e Attestation (PDF) – Certif-Scope",
+          text: `
+Your CO₂e attestation is attached to this email.
+
+Important:
+- This document is issued once
+- Certif-Scope does not store a copy
+- Please archive it securely
+
+Certif-Scope
+`,
+          attachments: [
+            {
+              filename: `${safeIssuerName}-${metadata.attestationId}.pdf`,
+              content: pdfBuffer.toString("base64"),
+            },
+          ],
+        });
+      } catch (err) {
+        console.error("Email send failed:", err);
+        // ⚠️ NE BLOQUE JAMAIS LE FLOW
+      }
+    }
     
     return new Response(pdfBuffer, {
       headers: {
