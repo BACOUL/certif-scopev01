@@ -63,16 +63,6 @@ export async function POST(req: Request) {
 
     /**
      * EXPECTED PAYLOAD (frontend)
-     * {
-     *   companyName: string
-     *   companySector: string
-     *   entityIdentifier?: string
-     *   year: string
-     *   country: string
-     *   totalCO2e: number
-     *   methodology: string
-     *   attestationLocale: AttestationLocale
-     * }
      */
     const {
       companyName,
@@ -150,6 +140,9 @@ export async function POST(req: Request) {
       ],
 
       metadata: {
+        // 🔐 CONTRAT DE SÉCURITÉ (OBLIGATOIRE)
+        product: "certif-scope-attestation",
+
         // interne
         draftId,
 
@@ -184,4 +177,4 @@ export async function POST(req: Request) {
       { status: 500 }
     );
   }
-  }
+      }
