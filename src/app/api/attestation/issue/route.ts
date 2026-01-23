@@ -407,7 +407,7 @@ export async function GET(req: Request) {
 
   <div class="footer-static">
     <div>${i18n.footerText}</div>
-    <div>${i18n.pageLabel} 1 / 2</div>
+    <div>${i18n.pageLabel} 2 / 2</div>
   </div>
 
   <div style="page-break-after: always;"></div>
@@ -517,3 +517,81 @@ export async function GET(req: Request) {
 </body>
 </html>
 `;
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 15000); 
+
+    const pdfResponse = await fetch("https://api.pdfshift.io/v3/convert/pdf", {
+      method: "POST",
+      headers: {
+        "X-API-Key": process.env.PDFSHIFT_API_KEY!,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        source: html,
+        format: "A4",
+        use_print: true,
+      }),
+      signal: controller.signal,
+    });
+    
+    clearTimeout(timeoutId);
+
+    if (!pdfResponse.ok) {
+      const error = await pdfResponse.text();
+      return new Response(error, { status: pdfResponse.status });
+    }
+
+    const pdfBuffer = Buffer.from(await pdfResponse.arrayBuffer());
+    const safeIssuerName = metadata.issuerName.toLowerCase().replace(/[^a-z0-9\-]/g, "");
+
+    // 📩 EMAIL ENVOI (FAIL SAFE)
+    // On n'envoie que si un email est détecté
+    if (customerEmail) {
+      try {
+        console.log("RESEND_SEND_ATTEMPT", {
+          customerEmail,
+          sessionId,
+          domain: "certif-scope.com",
+        });
+
+        await resend.emails.send({
+          from: "Certif-Scope <no-reply@certif-scope.com>",
+          replyTo: "contact@certif-scope.com",
+          to: customerEmail,
+          subject: "Your CO₂e Attestation (PDF) – Certif-Scope",
+          text: `
+Your CO₂e attestation is attached to this email.
+
+Important:
+- This document is issued once
+- Certif-Scope does not store a copy
+- Please archive it securely
+
+Certif-Scope
+`,
+          attachments: [
+            {
+              filename: `${safeIssuerName}-${metadata.attestationId}.pdf`,
+              content: pdfBuffer.toString("base64"),
+            },
+          ],
+        });
+      } catch (err) {
+        console.error("Email send failed:", err);
+        // ⚠️ NE BLOQUE JAMAIS LE FLOW
+      }
+    }
+    
+    return new Response(pdfBuffer, {
+      headers: {
+        "Content-Type": "application/pdf",
+        "Content-Disposition": `attachment; filename="${safeIssuerName}-${metadata.attestationId}.pdf"`,
+        "Cache-Control": "no-store",
+      },
+    });
+  } catch (err) {
+    console.error(err);
+    return new Response("Internal error", { status: 500 });
+  }
+}
