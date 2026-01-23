@@ -5,17 +5,23 @@ import { sendEmail } from "@/lib/mailer";
 
 export const runtime = "nodejs";
 
+// ======================================================
+// STRIPE CLIENT
+// ======================================================
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
-/**
- * Génère une clé lisible et robuste
- * Format: CS-XXXX-XXXX-XXXX
- */
-function generateAccessKey() {
+// ======================================================
+// UTIL — ACCESS KEY GENERATOR
+// Format: CS-XXXX-XXXX-XXXX
+// ======================================================
+function generateAccessKey(): string {
   const raw = crypto.randomBytes(9).toString("hex").toUpperCase();
   return `CS-${raw.slice(0, 4)}-${raw.slice(4, 8)}-${raw.slice(8, 12)}`;
 }
 
+// ======================================================
+// STRIPE WEBHOOK
+// ======================================================
 export async function POST(req: Request) {
   let body: string;
 
@@ -44,21 +50,20 @@ export async function POST(req: Request) {
   }
 
   // =====================================================
-  // STRIPE CHECKOUT COMPLETED
+  // CHECKOUT COMPLETED
   // =====================================================
   if (event.type === "checkout.session.completed") {
     const session = event.data.object as Stripe.Checkout.Session;
+    const metadata = session.metadata || {};
 
     console.log("✅ Payment confirmed:", session.id);
 
-    const metadata = session.metadata || {};
-
     // ===================================================
-    // CAS — PACK DE CRÉDITS
+    // PACK DE CRÉDITS
     // ===================================================
     if (metadata.product === "certif-scope-pack") {
       const credits = Number(metadata.credits || 0);
-      const pack = metadata.pack;
+      const pack = metadata.pack || "unknown";
       const email =
         session.customer_details?.email || session.customer_email;
 
@@ -67,55 +72,47 @@ export async function POST(req: Request) {
         return NextResponse.json({ received: true });
       }
 
-      // 🔑 Génération des clés (stateless)
-      const keys = Array.from({ length: credits }, () =>
-        generateAccessKey()
-      );
+      // 🔑 Generate keys (stateless)
+      const keys = Array.from({ length: credits }, generateAccessKey);
 
       console.log("🔑 Generated keys:", keys);
 
-      // ✉️ Envoi email via Resend
+      // ✉️ Send email (fail-safe)
       try {
         await sendEmail({
           to: email,
           subject: `Your Certif-Scope access keys (${pack})`,
           html: `
-            <p>Hello,</p>
+<p>Hello,</p>
 
-            <p>Thank you for your purchase.</p>
+<p>Thank you for your purchase.</p>
 
-            <p>
-              Here are your <strong>${credits} access keys</strong>:
-            </p>
+<p>Here are your <strong>${credits} access keys</strong>:</p>
 
-            <pre style="font-size:14px; line-height:1.6;">
+<pre style="font-size:14px; line-height:1.6;">
 ${keys.join("\n")}
-            </pre>
+</pre>
 
-            <p>
-              Each key allows the generation of <strong>one CO₂e attestation</strong>.
-            </p>
+<p>
+Each key allows the generation of
+<strong>one CO₂e attestation</strong>.
+</p>
 
-            <p style="font-size:12px;color:#666;">
-              Keys are not stored by Certif-Scope.<br/>
-              Please keep them safe — lost keys cannot be recovered.
-            </p>
+<p style="font-size:12px;color:#666;">
+Keys are not stored by Certif-Scope.<br/>
+Please keep them safe — lost keys cannot be recovered.
+</p>
 
-            <p>
-              — Certif-Scope
-            </p>
+<p>— Certif-Scope</p>
           `,
         });
       } catch (err) {
-        // Fail-safe : on ne bloque JAMAIS Stripe
         console.error("❌ Email send failed:", err);
+        // ❗ Never block Stripe webhook
       }
-
-      // ❗ AUCUN STOCKAGE
-      // ❗ AUCUNE RÉCUPÉRATION POSSIBLE
     }
   }
 
-  // ⚠️ Toujours répondre 200 à Stripe
+  // ⚠️ Always return 200 to Stripe
   return NextResponse.json({ received: true });
-    }
+          }
