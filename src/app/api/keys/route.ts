@@ -48,7 +48,7 @@ async function putKV(params: {
 
   if (!res.ok) {
     const text = await res.text();
-    throw new Error(text);
+    throw new Error(`Cloudflare KV error: ${text}`);
   }
 }
 
@@ -64,7 +64,7 @@ export async function POST(req: Request) {
 
   if (!ACCOUNT_ID || !NAMESPACE_ID || !API_TOKEN || !KEY_SECRET) {
     return NextResponse.json(
-      { error: "Server misconfigured" },
+      { error: "SERVER_MISCONFIGURED" },
       { status: 500 }
     );
   }
@@ -75,7 +75,7 @@ export async function POST(req: Request) {
     payload = await req.json();
   } catch {
     return NextResponse.json(
-      { error: "Invalid JSON body" },
+      { error: "INVALID_JSON_BODY" },
       { status: 400 }
     );
   }
@@ -84,28 +84,39 @@ export async function POST(req: Request) {
 
   if (!Number.isInteger(quantity) || quantity < 1 || quantity > 100) {
     return NextResponse.json(
-      { error: "Invalid quantity (1–100)" },
+      { error: "INVALID_QUANTITY", allowed: "1–100" },
       { status: 400 }
     );
   }
 
   const keys: string[] = [];
 
-  for (let i = 0; i < quantity; i++) {
-    const key = generateKey(KEY_SECRET);
+  try {
+    for (let i = 0; i < quantity; i++) {
+      const key = generateKey(KEY_SECRET);
 
-    await putKV({
-      accountId: ACCOUNT_ID,
-      namespaceId: NAMESPACE_ID,
-      apiToken: API_TOKEN,
-      key,
-      value: {
-        used: false,
-        createdAt: new Date().toISOString(),
+      await putKV({
+        accountId: ACCOUNT_ID,
+        namespaceId: NAMESPACE_ID,
+        apiToken: API_TOKEN,
+        key,
+        value: {
+          used: false,
+          createdAt: new Date().toISOString(),
+        },
+      });
+
+      keys.push(key);
+    }
+  } catch (err) {
+    return NextResponse.json(
+      {
+        error: "KV_WRITE_FAILED",
+        message:
+          err instanceof Error ? err.message : "Unknown Cloudflare KV error",
       },
-    });
-
-    keys.push(key);
+      { status: 500 }
+    );
   }
 
   return NextResponse.json({
