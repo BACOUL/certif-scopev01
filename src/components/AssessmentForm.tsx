@@ -129,9 +129,6 @@ export default function AssessmentForm() {
   const [year, setYear] = useState(currentYear);
   const [country, setCountry] = useState("FR");
 
-  // ✅ 1️⃣ ETAT EMAIL OPTIONNEL
-  const [emailForDelivery, setEmailForDelivery] = useState("");
-
   const [attestationLocale, setAttestationLocale] =
     useState<AttestationLocale>("en");
 
@@ -236,7 +233,6 @@ export default function AssessmentForm() {
     const isRedeeming = keyStatus === "valid" && remainingCredits !== null && remainingCredits > 0;
     const endpoint = isRedeeming ? "/api/redeem-key" : "/api/checkout";
 
-    // ✅ 3️⃣ PAYLOAD AVEC EMAIL OPTIONNEL
     const basePayload = {
       companyName,
       companySector: sector,
@@ -246,11 +242,6 @@ export default function AssessmentForm() {
       totalCO2e,
       methodology: METHODOLOGY,
       attestationLocale,
-
-      // Ajout conditionnel
-      ...(emailForDelivery && {
-        emailForDelivery: emailForDelivery.trim(),
-      }),
     };
 
     // Add accessKey only if we are actually redeeming
@@ -544,27 +535,6 @@ export default function AssessmentForm() {
         <p className="text-xs text-gray-500">
           By generating an Attestation, you acknowledge that Certif-Scope does not retain issued PDFs. Lost attestations are not stored and cannot be recovered. Re-issuance may be requested but is not guaranteed.
         </p>
-
-        {/* ✅ 2️⃣ BLOC EMAIL OPTIONNEL */}
-        <div className="border rounded-xl p-5 bg-[#F8FAFC] space-y-2">
-          <label className="block text-sm font-medium text-[#0B3A63]">
-            Receive a copy by email (optional)
-          </label>
-
-          <input
-            type="email"
-            placeholder="name@company.com"
-            value={emailForDelivery}
-            onChange={(e) => setEmailForDelivery(e.target.value)}
-            className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm"
-          />
-
-          <p className="text-xs text-gray-500 leading-relaxed">
-            If provided, your email will be used once to send the attestation PDF.
-            <br />
-            No email is stored by Certif-Scope.
-          </p>
-        </div>
 
         <button
           onClick={handleSubmit}
