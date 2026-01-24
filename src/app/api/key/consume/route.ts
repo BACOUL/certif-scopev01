@@ -3,13 +3,46 @@ import crypto from "crypto";
 
 export const runtime = "nodejs";
 
-// Génère un session_id compatible SuccessPage
+/* ======================================================
+   UTILS
+====================================================== */
+
 function generateSessionId() {
   return `key_${crypto.randomUUID()}`;
 }
 
+function isValidKeyFormat(key: string) {
+  return /^CS-[A-Z0-9-]+$/.test(key);
+}
+
+/* ======================================================
+   API ROUTE — CONSUME KEY
+====================================================== */
+
 export async function POST(req: Request) {
-  const { key } = await req.json();
+  const ACCOUNT_ID = process.env.CLOUDFLARE_ACCOUNT_ID;
+  const NAMESPACE_ID = process.env.CF_KV_NAMESPACE_ID;
+  const API_TOKEN = process.env.CLOUDFLARE_API_TOKEN;
+
+  if (!ACCOUNT_ID || !NAMESPACE_ID || !API_TOKEN) {
+    return NextResponse.json(
+      { error: "SERVER_MISCONFIGURED" },
+      { status: 500 }
+    );
+  }
+
+  let payload: { key?: string };
+
+  try {
+    payload = await req.json();
+  } catch {
+    return NextResponse.json(
+      { error: "INVALID_JSON" },
+      { status: 400 }
+    );
+  }
+
+  const key = payload.key;
 
   if (!key) {
     return NextResponse.json(
@@ -18,49 +51,75 @@ export async function POST(req: Request) {
     );
   }
 
-  const res = await fetch(
-    `https://api.cloudflare.com/client/v4/accounts/${process.env.CF_ACCOUNT_ID}/storage/kv/namespaces/${process.env.CF_KV_NAMESPACE_ID}/values/${key}`,
-    {
-      headers: {
-        Authorization: `Bearer ${process.env.CF_API_TOKEN}`,
-      },
-    }
-  );
-
-  if (res.status === 404) {
+  if (!isValidKeyFormat(key)) {
     return NextResponse.json(
-      { error: "INVALID_KEY" },
-      { status: 403 }
+      { error: "INVALID_KEY_FORMAT" },
+      { status: 400 }
     );
   }
 
-  const data = await res.json();
+  const kvUrl = `https://api.cloudflare.com/client/v4/accounts/${ACCOUNT_ID}/storage/kv/namespaces/${NAMESPACE_ID}/values/${key}`;
+
+  const getRes = await fetch(kvUrl, {
+    headers: {
+      Authorization: `Bearer ${API_TOKEN}`,
+    },
+  });
+
+  if (getRes.status === 404) {
+    return NextResponse.json(
+      { error: "KEY_NOT_FOUND" },
+      { status: 404 }
+    );
+  }
+
+  if (!getRes.ok) {
+    return NextResponse.json(
+      { error: "KV_READ_FAILED" },
+      { status: 500 }
+    );
+  }
+
+  const text = await getRes.text();
+
+  let data: { used?: boolean; createdAt?: string };
+
+  try {
+    data = JSON.parse(text);
+  } catch {
+    return NextResponse.json(
+      { error: "KV_CORRUPTED_VALUE" },
+      { status: 500 }
+    );
+  }
 
   if (data.used === true) {
     return NextResponse.json(
       { error: "KEY_ALREADY_USED" },
-      { status: 403 }
+      { status: 409 }
     );
   }
 
-  // 🔒 Marque la clé comme consommée
-  await fetch(
-    `https://api.cloudflare.com/client/v4/accounts/${process.env.CF_ACCOUNT_ID}/storage/kv/namespaces/${process.env.CF_KV_NAMESPACE_ID}/values/${key}`,
-    {
-      method: "PUT",
-      headers: {
-        Authorization: `Bearer ${process.env.CF_API_TOKEN}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        ...data,
-        used: true,
-        usedAt: new Date().toISOString(),
-      }),
-    }
-  );
+  const putRes = await fetch(kvUrl, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${API_TOKEN}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      ...data,
+      used: true,
+      usedAt: new Date().toISOString(),
+    }),
+  });
 
-  // ✅ Génération session_id
+  if (!putRes.ok) {
+    return NextResponse.json(
+      { error: "KV_WRITE_FAILED" },
+      { status: 500 }
+    );
+  }
+
   const sessionId = generateSessionId();
 
   const origin =
@@ -68,10 +127,9 @@ export async function POST(req: Request) {
     process.env.NEXT_PUBLIC_BASE_URL ||
     "http://localhost:3000";
 
-  // 🔁 CONTRAT IDENTIQUE À STRIPE
   return NextResponse.json({
     redeemed: true,
     session_id: sessionId,
     url: `${origin}/success?session_id=${sessionId}`,
   });
-}
+    }
