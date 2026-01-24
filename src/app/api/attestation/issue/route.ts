@@ -36,32 +36,27 @@ export async function GET(req: Request) {
 
     let metadataRaw: Record<string, any> = {};
 
-    // MODE STRIPE
-    if (!sessionId.startsWith("key_")) {
+    // ==============================
+    // MODE CLÉ (PAS DE STRIPE)
+    // ==============================
+    if (sessionId.startsWith("key_")) {
+      // 👉 Les données viennent du formulaire / query params
+      metadataRaw = Object.fromEntries(
+        new URL(req.url).searchParams.entries()
+      );
+    }
+
+    // ==============================
+    // MODE STRIPE (NORMAL)
+    // ==============================
+    else {
       const session = await stripe.checkout.sessions.retrieve(sessionId);
-
-      // ✅ SÉCURISATION ORIGINE STRIPE
-      if (session.mode !== "payment") {
-        return new Response("Invalid checkout mode", { status: 403 });
-      }
-
-      if (
-        !session.metadata ||
-        session.metadata.product !== "certif-scope-attestation"
-      ) {
-        return new Response("Invalid attestation session", { status: 403 });
-      }
 
       if (session.payment_status !== "paid") {
         return new Response("Payment not completed", { status: 403 });
       }
 
-      metadataRaw = session.metadata;
-    }
-
-    // MODE ACCESS KEY (stateless)
-    if (sessionId.startsWith("key_")) {
-      metadataRaw = Object.fromEntries(new URL(req.url).searchParams.entries());
+      metadataRaw = session.metadata || {};
     }
 
     // 2️⃣ LIRE LA LANGUE (STRICT)
