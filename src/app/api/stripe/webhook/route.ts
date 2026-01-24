@@ -29,33 +29,25 @@ const EMAIL_I18N: Record<
     packSubject: (pack) => `Vos clés d’accès Certif-Scope (${pack})`,
     packBody: (credits, keys) => `
 <p>Bonjour,</p>
-
 <p>Merci pour votre achat.</p>
-
 <p>Voici vos <strong>${credits} clés d’accès</strong> :</p>
-
 <pre style="font-size:14px; line-height:1.6;">${keys.join("\n")}</pre>
-
 <p>Chaque clé permet de générer <strong>une attestation CO₂e</strong>.</p>
-
 <p style="font-size:12px;color:#666;">
 Les clés ne sont pas stockées par Certif-Scope.<br/>
 Veuillez les conserver soigneusement — aucune récupération possible.
 </p>
-
 <p>— Certif-Scope</p>
 `,
     attestationSubject: "Votre attestation CO₂e (PDF) – Certif-Scope",
     attestationBody: `
 <p>Votre attestation CO₂e est jointe à cet email.</p>
-
 <p><strong>Informations importantes :</strong></p>
 <ul>
   <li>Ce document est émis une seule fois</li>
   <li>Certif-Scope n’en conserve aucune copie</li>
   <li>Veuillez l’archiver de manière sécurisée</li>
 </ul>
-
 <p>— Certif-Scope</p>
 `,
   },
@@ -64,40 +56,32 @@ Veuillez les conserver soigneusement — aucune récupération possible.
     packSubject: (pack) => `Ihre Certif-Scope-Zugangsschlüssel (${pack})`,
     packBody: (credits, keys) => `
 <p>Guten Tag,</p>
-
 <p>Vielen Dank für Ihren Kauf.</p>
-
 <p>Hier sind Ihre <strong>${credits} Zugangsschlüssel</strong>:</p>
-
 <pre style="font-size:14px; line-height:1.6;">${keys.join("\n")}</pre>
-
 <p>Jeder Schlüssel ermöglicht die Erstellung <strong>einer CO₂e-Bescheinigung</strong>.</p>
-
 <p style="font-size:12px;color:#666;">
 Die Schlüssel werden nicht von Certif-Scope gespeichert.<br/>
 Bitte bewahren Sie sie sicher auf — eine Wiederherstellung ist nicht möglich.
 </p>
-
 <p>— Certif-Scope</p>
 `,
     attestationSubject: "Ihre CO₂e-Bescheinigung (PDF) – Certif-Scope",
     attestationBody: `
 <p>Ihre CO₂e-Bescheinigung ist dieser E-Mail beigefügt.</p>
-
 <p><strong>Wichtige Hinweise:</strong></p>
 <ul>
   <li>Dieses Dokument wird nur einmal ausgestellt</li>
   <li>Certif-Scope speichert keine Kopie</li>
   <li>Bitte archivieren Sie es sicher</li>
 </ul>
-
 <p>— Certif-Scope</p>
 `,
   },
 };
 
 // ======================================================
-// UTIL — ACCESS KEY GENERATOR
+// UTIL — ACCESS KEY GENERATOR (PACKS)
 // ======================================================
 function generateAccessKey(): string {
   const raw = crypto.randomBytes(9).toString("hex").toUpperCase();
@@ -146,7 +130,7 @@ export async function POST(req: Request) {
     const i18n = EMAIL_I18N[locale];
 
     // ===================================================
-    // PACK DE CRÉDITS
+    // PACK DE CLÉS — EMAIL SEUL
     // ===================================================
     if (metadata.product === "certif-scope-pack") {
       const credits = Number(metadata.credits || 0);
@@ -176,7 +160,7 @@ export async function POST(req: Request) {
     }
 
     // ===================================================
-    // ATTESTATION UNIQUE — EMAIL APRÈS PAIEMENT
+    // ATTESTATION UNIQUE — PDF + EMAIL
     // ===================================================
     if (metadata.product === "certif-scope-attestation") {
       const email =
@@ -189,16 +173,28 @@ export async function POST(req: Request) {
         return NextResponse.json({ received: true });
       }
 
-      const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-      if (!baseUrl) {
+      /**
+       * 🔑 CORRECTION CRITIQUE
+       * → on n’utilise PLUS NEXT_PUBLIC_BASE_URL
+       * → on dérive l’origin réel (Preview / Prod / Local)
+       */
+      const origin =
+        req.headers.get("origin") ||
+        req.headers.get("x-forwarded-proto") && req.headers.get("host")
+          ? `${req.headers.get("x-forwarded-proto")}://${req.headers.get("host")}`
+          : null;
+
+      if (!origin) {
+        console.error("ORIGIN_NOT_RESOLVED");
         return NextResponse.json({ received: true });
       }
 
       try {
-        const issueUrl = `${baseUrl}/api/attestation/issue?session_id=${session.id}`;
+        const issueUrl = `${origin}/api/attestation/issue?session_id=${session.id}`;
         const pdfRes = await fetch(issueUrl);
 
         if (!pdfRes.ok) {
+          console.error("PDF_ISSUE_FAILED", await pdfRes.text());
           return NextResponse.json({ received: true });
         }
 
