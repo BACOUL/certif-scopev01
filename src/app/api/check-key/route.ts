@@ -4,9 +4,13 @@ import crypto from "crypto";
 export const runtime = "nodejs";
 
 /**
- * FORMAT OFFICIEL
+ * FORMAT OFFICIEL STRICT
  * CS-XXXX-XXXX-XXXX-XXXX-SIGN
  */
+
+/* ======================================================
+   SIGNATURE
+====================================================== */
 
 function computeSignature(body: string, secret: string): string {
   return crypto
@@ -16,6 +20,10 @@ function computeSignature(body: string, secret: string): string {
     .slice(0, 8)
     .toUpperCase();
 }
+
+/* ======================================================
+   CHECK KEY
+====================================================== */
 
 export async function POST(req: Request) {
   try {
@@ -28,10 +36,11 @@ export async function POST(req: Request) {
       );
     }
 
+    // ⚠️ ALIGNEMENT STRICT AVEC redeem-key
     const KEY_SECRET = process.env.KEY_SECRET;
-    const ACCOUNT_ID = process.env.CLOUDFLARE_ACCOUNT_ID;
+    const ACCOUNT_ID = process.env.CF_ACCOUNT_ID;
     const NAMESPACE_ID = process.env.CF_KV_NAMESPACE_ID;
-    const API_TOKEN = process.env.CLOUDFLARE_API_TOKEN;
+    const API_TOKEN = process.env.CF_API_TOKEN;
 
     if (!KEY_SECRET || !ACCOUNT_ID || !NAMESPACE_ID || !API_TOKEN) {
       return NextResponse.json(
@@ -40,10 +49,10 @@ export async function POST(req: Request) {
       );
     }
 
-    /**
-     * 1️⃣ FORMAT STRICT
-     * CS-XXXX-XXXX-XXXX-XXXX-SIGN
-     */
+    /* ==================================================
+       1️⃣ FORMAT STRICT
+    ================================================== */
+
     const parts = key.split("-");
     if (parts.length !== 6 || parts[0] !== "CS") {
       return NextResponse.json(
@@ -55,9 +64,10 @@ export async function POST(req: Request) {
     const body = parts.slice(0, 5).join("-");
     const providedSignature = parts[5];
 
-    /**
-     * 2️⃣ SIGNATURE CHECK
-     */
+    /* ==================================================
+       2️⃣ SIGNATURE CHECK
+    ================================================== */
+
     const expectedSignature = computeSignature(body, KEY_SECRET);
 
     if (providedSignature !== expectedSignature) {
@@ -67,9 +77,10 @@ export async function POST(req: Request) {
       );
     }
 
-    /**
-     * 3️⃣ FETCH KEY FROM CLOUDFLARE KV
-     */
+    /* ==================================================
+       3️⃣ READ CLOUDFLARE KV
+    ================================================== */
+
     const kvRes = await fetch(
       `https://api.cloudflare.com/client/v4/accounts/${ACCOUNT_ID}/storage/kv/namespaces/${NAMESPACE_ID}/values/${key}`,
       {
@@ -95,9 +106,10 @@ export async function POST(req: Request) {
 
     const data = await kvRes.json();
 
-    /**
-     * 4️⃣ USAGE CHECK
-     */
+    /* ==================================================
+       4️⃣ USAGE CHECK
+    ================================================== */
+
     if (data.used === true) {
       return NextResponse.json(
         {
@@ -108,9 +120,10 @@ export async function POST(req: Request) {
       );
     }
 
-    /**
-     * ✅ KEY VALID
-     */
+    /* ==================================================
+       ✅ KEY VALID (1 CREDIT)
+    ================================================== */
+
     return NextResponse.json(
       {
         valid: true,
@@ -125,4 +138,4 @@ export async function POST(req: Request) {
       { status: 500 }
     );
   }
-}
+         }
