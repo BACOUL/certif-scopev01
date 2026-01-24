@@ -36,11 +36,11 @@ export async function POST(req: Request) {
       );
     }
 
-    // ⚠️ ALIGNEMENT STRICT AVEC redeem-key
+    // ✅ ALIGNEMENT STRICT AVEC redeem-key + webhook
     const KEY_SECRET = process.env.KEY_SECRET;
-    const ACCOUNT_ID = process.env.CF_ACCOUNT_ID;
+    const ACCOUNT_ID = process.env.CLOUDFLARE_ACCOUNT_ID;
     const NAMESPACE_ID = process.env.CF_KV_NAMESPACE_ID;
-    const API_TOKEN = process.env.CF_API_TOKEN;
+    const API_TOKEN = process.env.CLOUDFLARE_API_TOKEN;
 
     if (!KEY_SECRET || !ACCOUNT_ID || !NAMESPACE_ID || !API_TOKEN) {
       return NextResponse.json(
@@ -138,4 +138,4 @@ export async function POST(req: Request) {
       { status: 500 }
     );
   }
-         }
+}
