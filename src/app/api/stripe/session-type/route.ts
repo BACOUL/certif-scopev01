@@ -6,9 +6,13 @@ export const runtime = "nodejs";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 /**
- * Détermine le type de session Stripe
- * - "pack"
- * - "attestation"
+ * Détermine le type de succès
+ * - pack
+ * - attestation
+ *
+ * Règles :
+ * - session_id commençant par "key_" => attestation (redeem key)
+ * - sinon => session Stripe (pack ou attestation)
  */
 export async function GET(req: Request) {
   try {
@@ -22,6 +26,12 @@ export async function GET(req: Request) {
       );
     }
 
+    // ✅ CAS CLÉ (PAS STRIPE)
+    if (sessionId.startsWith("key_")) {
+      return NextResponse.json({ type: "attestation" });
+    }
+
+    // ✅ CAS STRIPE
     const session = await stripe.checkout.sessions.retrieve(sessionId);
 
     const product = session.metadata?.product;
@@ -30,14 +40,9 @@ export async function GET(req: Request) {
       return NextResponse.json({ type: "pack" });
     }
 
-    if (product === "certif-scope-attestation") {
-      return NextResponse.json({ type: "attestation" });
-    }
+    // Par défaut : attestation Stripe
+    return NextResponse.json({ type: "attestation" });
 
-    return NextResponse.json(
-      { error: "UNKNOWN_SESSION_TYPE" },
-      { status: 400 }
-    );
   } catch (err) {
     console.error("SESSION_TYPE_ERROR", err);
     return NextResponse.json(
