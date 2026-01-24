@@ -1,26 +1,28 @@
 import crypto from "crypto";
 
 const KEY_SECRET = process.env.KEY_SECRET!;
-if (!KEY_SECRET) {
-  throw new Error("KEY_SECRET missing");
-}
+if (!KEY_SECRET) throw new Error("KEY_SECRET missing");
 
-function generateKey() {
-  const a = crypto.randomBytes(2).toString("hex").toUpperCase(); // 4
-  const b = crypto.randomBytes(2).toString("hex").toUpperCase(); // 4
-  const c = crypto.randomBytes(2).toString("hex").toUpperCase(); // 4
-  const d = crypto.randomBytes(2).toString("hex").toUpperCase(); // 4
-
-  const keyBody = `CS-${a}-${b}-${c}-${d}`;
-
-  const signature = crypto
+function sign(body: string) {
+  return crypto
     .createHmac("sha256", KEY_SECRET)
-    .update(keyBody)
+    .update(body)
     .digest("hex")
     .slice(0, 8)
     .toUpperCase();
-
-  return `${keyBody}-${signature}`;
 }
 
+function generateKey() {
+  const p1 = crypto.randomBytes(2).toString("hex").toUpperCase();
+  const p2 = crypto.randomBytes(2).toString("hex").toUpperCase();
+  const p3 = crypto.randomBytes(2).toString("hex").toUpperCase();
+  const p4 = crypto.randomBytes(2).toString("hex").toUpperCase();
+
+  const body = `CS-${p1}-${p2}-${p3}-${p4}`;
+  const sig = sign(body);
+
+  return `${body}-${sig}`;
+}
+
+console.log("🔑 GENERATED KEY:");
 console.log(generateKey());
