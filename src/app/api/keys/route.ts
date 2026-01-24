@@ -22,6 +22,10 @@ function generateKey(secret: string): string {
   return `${body}-${sign(body, secret)}`;
 }
 
+/* ======================================================
+   CLOUDFLARE KV
+====================================================== */
+
 async function putKV(params: {
   accountId: string;
   namespaceId: string;
@@ -52,10 +56,10 @@ async function putKV(params: {
 ====================================================== */
 
 export async function POST(req: Request) {
-  const ACCOUNT_ID = process.env.CLOUDFLARE_ACCOUNT_ID;
-  const NAMESPACE_ID = process.env.CF_KV_NAMESPACE_ID; // ✅ CORRIGÉ
-  const API_TOKEN = process.env.CLOUDFLARE_API_TOKEN;
-  const KEY_SECRET = process.env.KEY_SECRET;
+  const ACCOUNT_ID = process.env.CLOUDFLARE_ACCOUNT_ID!;
+  const NAMESPACE_ID = process.env.CF_KV_NAMESPACE_ID!;
+  const API_TOKEN = process.env.CLOUDFLARE_API_TOKEN!;
+  const KEY_SECRET = process.env.KEY_SECRET!;
 
   if (!ACCOUNT_ID || !NAMESPACE_ID || !API_TOKEN || !KEY_SECRET) {
     return NextResponse.json(
@@ -64,7 +68,18 @@ export async function POST(req: Request) {
     );
   }
 
-  const { quantity } = await req.json();
+  let payload: { quantity?: number };
+
+  try {
+    payload = await req.json();
+  } catch {
+    return NextResponse.json(
+      { error: "Invalid JSON body" },
+      { status: 400 }
+    );
+  }
+
+  const quantity = Number(payload.quantity);
 
   if (!Number.isInteger(quantity) || quantity < 1 || quantity > 100) {
     return NextResponse.json(
@@ -92,5 +107,8 @@ export async function POST(req: Request) {
     keys.push(key);
   }
 
-  return NextResponse.json({ count: keys.length, keys });
-         }
+  return NextResponse.json({
+    count: keys.length,
+    keys,
+  });
+      }
