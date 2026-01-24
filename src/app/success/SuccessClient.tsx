@@ -15,7 +15,7 @@ export default function SuccessClient({
   const [type, setType] = useState<SuccessType>("loading");
 
   // ======================================================
-  // SESSION ID RESOLUTION (SERVER → CLIENT)
+  // SESSION ID RESOLUTION (SERVER → CLIENT FALLBACK)
   // ======================================================
   useEffect(() => {
     if (sessionId) return;
@@ -29,17 +29,10 @@ export default function SuccessClient({
   }, [sessionId]);
 
   // ======================================================
-  // TYPE RESOLUTION
-  // - key_*  → attestation
-  // - Stripe → detect via API
+  // STRIPE SESSION TYPE RESOLUTION (STRICT)
   // ======================================================
   useEffect(() => {
     if (!sessionId) return;
-
-    if (sessionId.startsWith("key_")) {
-      setType("attestation");
-      return;
-    }
 
     let cancelled = false;
 
@@ -67,43 +60,10 @@ export default function SuccessClient({
   }, [sessionId]);
 
   // ======================================================
-  // DOWNLOAD HANDLER (STRIPE vs KEY)
+  // DOWNLOAD HANDLER — STRIPE ONLY
   // ======================================================
-  const handleDownload = async () => {
+  const handleDownload = () => {
     if (!sessionId) return;
-
-    // 🔑 FLOW CLÉ → POST avec payload
-    if (sessionId.startsWith("key_")) {
-      const payload = JSON.parse(
-        sessionStorage.getItem("certifScopePayload") || "null"
-      );
-
-      if (!payload) {
-        alert("Missing attestation data. Please restart the process.");
-        return;
-      }
-
-      const res = await fetch("/api/attestation/issue", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          session_id: sessionId,
-          ...payload,
-        }),
-      });
-
-      if (!res.ok) {
-        alert("Failed to generate attestation.");
-        return;
-      }
-
-      const blob = await res.blob();
-      const url = URL.createObjectURL(blob);
-      window.open(url, "_blank");
-      return;
-    }
-
-    // 💳 FLOW STRIPE → GET classique
     window.location.href = `/api/attestation/issue?session_id=${sessionId}`;
   };
 
@@ -181,4 +141,4 @@ export default function SuccessClient({
       </div>
     </section>
   );
-    }
+  }
