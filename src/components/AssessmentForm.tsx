@@ -129,8 +129,6 @@ export default function AssessmentForm() {
   const [year, setYear] = useState(currentYear);
   const [country, setCountry] = useState("FR");
 
-  // 1️⃣ ÉTAT REACT SUPPRIMÉ (emailForDelivery)
-
   const [attestationLocale, setAttestationLocale] =
     useState<AttestationLocale>("en");
 
@@ -175,6 +173,16 @@ export default function AssessmentForm() {
     if (!sector) {
       nextErrors.sector =
         "Please select a main sector of activity.";
+    }
+
+    // ✅ NOUVEAU CONTRÔLE : AU MOINS UNE DÉPENSE > 0
+    const hasAtLeastOneExpense = Object.values(numericExpenses).some(
+      (value) => value > 0
+    );
+
+    if (!hasAtLeastOneExpense) {
+      nextErrors.submit =
+        "Please declare at least one expense amount greater than 0 €.";
     }
 
     setErrors(nextErrors);
@@ -235,7 +243,6 @@ export default function AssessmentForm() {
     const isRedeeming = keyStatus === "valid" && remainingCredits !== null && remainingCredits > 0;
     const endpoint = isRedeeming ? "/api/redeem-key" : "/api/checkout";
 
-    // 2️⃣ PAYLOAD NETTOYÉ (Plus d'email)
     const basePayload = {
       companyName,
       companySector: sector,
@@ -540,7 +547,6 @@ export default function AssessmentForm() {
                 <p className="text-gray-600">Remaining credits: {remainingCredits}</p>
               )}
               
-              {/* ➕ AJOUT DU TEXTE D'AVERTISSEMENT */}
               <p className="text-xs text-gray-500 mt-2 leading-relaxed">
                 When using an access key, no email delivery is provided.
                 <br />
@@ -554,8 +560,6 @@ export default function AssessmentForm() {
         <p className="text-xs text-gray-500">
           By generating an Attestation, you acknowledge that Certif-Scope does not retain issued PDFs. Lost attestations are not stored and cannot be recovered. Re-issuance may be requested but is not guaranteed.
         </p>
-
-        {/* 3️⃣ BLOC UI EMAIL SUPPRIMÉ ICI */}
 
         <button
           onClick={handleSubmit}
