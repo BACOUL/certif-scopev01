@@ -129,8 +129,7 @@ export default function AssessmentForm() {
   const [year, setYear] = useState(currentYear);
   const [country, setCountry] = useState("FR");
 
-  // ✅ RESTORATION 1 : État pour l'email
-  const [emailForDelivery, setEmailForDelivery] = useState("");
+  // 1️⃣ ÉTAT REACT SUPPRIMÉ (emailForDelivery)
 
   const [attestationLocale, setAttestationLocale] =
     useState<AttestationLocale>("en");
@@ -236,6 +235,7 @@ export default function AssessmentForm() {
     const isRedeeming = keyStatus === "valid" && remainingCredits !== null && remainingCredits > 0;
     const endpoint = isRedeeming ? "/api/redeem-key" : "/api/checkout";
 
+    // 2️⃣ PAYLOAD NETTOYÉ (Plus d'email)
     const basePayload = {
       companyName,
       companySector: sector,
@@ -245,11 +245,6 @@ export default function AssessmentForm() {
       totalCO2e,
       methodology: METHODOLOGY,
       attestationLocale,
-
-      // ✅ RESTORATION 2 : Payload conditionnel
-      ...(emailForDelivery && {
-        emailForDelivery: emailForDelivery.trim(),
-      }),
     };
 
     // Add accessKey only if we are actually redeeming
@@ -271,7 +266,7 @@ export default function AssessmentForm() {
 
       const { url } = await res.json();
 
-      // ✅ AJOUT : Stockage session avant redirection (UNIQUEMENT flow clé)
+      // ✅ STOCKAGE SESSION (UNIQUEMENT flow clé)
       if (isRedeeming) {
         sessionStorage.setItem(
           "certifScopePayload",
@@ -544,6 +539,13 @@ export default function AssessmentForm() {
               ) : (
                 <p className="text-gray-600">Remaining credits: {remainingCredits}</p>
               )}
+              
+              {/* ➕ AJOUT DU TEXTE D'AVERTISSEMENT */}
+              <p className="text-xs text-gray-500 mt-2 leading-relaxed">
+                When using an access key, no email delivery is provided.
+                <br />
+                Please download and save your attestation immediately after generation.
+              </p>
             </div>
           )}
         </div>
@@ -553,26 +555,7 @@ export default function AssessmentForm() {
           By generating an Attestation, you acknowledge that Certif-Scope does not retain issued PDFs. Lost attestations are not stored and cannot be recovered. Re-issuance may be requested but is not guaranteed.
         </p>
 
-        {/* ✅ RESTORATION 3 : Bloc UI Email */}
-        <div className="border rounded-xl p-5 bg-[#F8FAFC] space-y-2">
-          <label className="block text-sm font-medium text-[#0B3A63]">
-            Receive a copy by email (optional)
-          </label>
-
-          <input
-            type="email"
-            placeholder="name@company.com"
-            value={emailForDelivery}
-            onChange={(e) => setEmailForDelivery(e.target.value)}
-            className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm"
-          />
-
-          <p className="text-xs text-gray-500 leading-relaxed">
-            If provided, your email will be used once to send the attestation PDF.
-            <br />
-            No email is stored by Certif-Scope.
-          </p>
-        </div>
+        {/* 3️⃣ BLOC UI EMAIL SUPPRIMÉ ICI */}
 
         <button
           onClick={handleSubmit}
