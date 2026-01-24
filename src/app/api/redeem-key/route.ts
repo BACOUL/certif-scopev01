@@ -30,13 +30,13 @@ function sign(body: string, secret: string): string {
 
 export async function POST(req: Request) {
   try {
-    // ✅ ENV VARS — ALIGNÉES PARTOUT
+    // ENV — source de vérité unique
     const CLOUDFLARE_ACCOUNT_ID = getEnv("CLOUDFLARE_ACCOUNT_ID");
     const CF_KV_NAMESPACE_ID = getEnv("CF_KV_NAMESPACE_ID");
     const CLOUDFLARE_API_TOKEN = getEnv("CLOUDFLARE_API_TOKEN");
     const KEY_SECRET = getEnv("KEY_SECRET");
 
-    // ✅ PAYLOAD — le client envoie accessKey
+    // PAYLOAD — le front envoie accessKey
     const { accessKey: key } = await req.json();
 
     if (!key || typeof key !== "string") {
@@ -75,7 +75,7 @@ export async function POST(req: Request) {
     }
 
     /* ==================================================
-       3️⃣ FETCH KEY FROM CLOUDFLARE KV
+       3️⃣ READ KEY FROM CLOUDFLARE KV
     ================================================== */
 
     const kvRes = await fetch(
@@ -115,7 +115,7 @@ export async function POST(req: Request) {
     }
 
     /* ==================================================
-       5️⃣ MARK AS USED (ATOMIC)
+       5️⃣ MARK KEY AS USED
     ================================================== */
 
     await fetch(
@@ -135,7 +135,7 @@ export async function POST(req: Request) {
     );
 
     /* ==================================================
-       6️⃣ SESSION ID COMPATIBLE SUCCESS PAGE
+       6️⃣ REDIRECTION — CONTRAT FRONT STRICT
     ================================================== */
 
     const sessionId = `key_${crypto.randomUUID()}`;
@@ -151,13 +151,8 @@ export async function POST(req: Request) {
       );
     }
 
-    /* ==================================================
-       ✅ FINAL RESPONSE — STRICT CONTRACT
-    ================================================== */
-
+    // ✅ LE FRONT ATTEND UNIQUEMENT { url }
     return NextResponse.json({
-      redeemed: true,
-      session_id: sessionId,
       url: `${origin}/success?session_id=${sessionId}`,
     });
 
@@ -168,4 +163,4 @@ export async function POST(req: Request) {
       { status: 500 }
     );
   }
-      }
+         }
