@@ -1,11 +1,13 @@
 import { NextResponse } from "next/server";
 import crypto from "crypto";
 
+export const runtime = "nodejs";
+
 /* ======================================================
    KEY GENERATION (PURE / NO ENV AT LOAD TIME)
 ====================================================== */
 
-function sign(body: string, secret: string) {
+function sign(body: string, secret: string): string {
   return crypto
     .createHmac("sha256", secret)
     .update(body)
@@ -14,9 +16,9 @@ function sign(body: string, secret: string) {
     .toUpperCase();
 }
 
-function generateKey(secret: string) {
-  const p = () => crypto.randomBytes(2).toString("hex").toUpperCase();
-  const body = `CS-${p()}-${p()}-${p()}-${p()}`;
+function generateKey(secret: string): string {
+  const part = () => crypto.randomBytes(2).toString("hex").toUpperCase();
+  const body = `CS-${part()}-${part()}-${part()}-${part()}`;
   return `${body}-${sign(body, secret)}`;
 }
 
@@ -25,8 +27,8 @@ async function putKV(params: {
   namespaceId: string;
   apiToken: string;
   key: string;
-  value: any;
-}) {
+  value: unknown;
+}): Promise<void> {
   const { accountId, namespaceId, apiToken, key, value } = params;
 
   const url = `https://api.cloudflare.com/client/v4/accounts/${accountId}/storage/kv/namespaces/${namespaceId}/values/${key}`;
@@ -42,7 +44,7 @@ async function putKV(params: {
 
   if (!res.ok) {
     const txt = await res.text();
-    throw new Error(txt);
+    throw new Error(`Cloudflare KV error: ${txt}`);
   }
 }
 
@@ -56,21 +58,17 @@ export async function POST(req: Request) {
   const API_TOKEN = process.env.CLOUDFLARE_API_TOKEN;
   const KEY_SECRET = process.env.KEY_SECRET;
 
-  if (
-    !ACCOUNT_ID ||
-    !NAMESPACE_ID ||
-    !API_TOKEN ||
-    !KEY_SECRET
-  ) {
+  if (!ACCOUNT_ID || !NAMESPACE_ID || !API_TOKEN || !KEY_SECRET) {
     return NextResponse.json(
       { error: "Server misconfigured" },
       { status: 500 }
     );
   }
 
-  let body: any;
+  let payload: { quantity?: number };
+
   try {
-    body = await req.json();
+    payload = await req.json();
   } catch {
     return NextResponse.json(
       { error: "Invalid JSON body" },
@@ -78,7 +76,7 @@ export async function POST(req: Request) {
     );
   }
 
-  const quantity = Number(body.quantity);
+  const quantity = Number(payload.quantity);
 
   if (!Number.isInteger(quantity) || quantity < 1 || quantity > 100) {
     return NextResponse.json(
@@ -110,4 +108,4 @@ export async function POST(req: Request) {
     count: keys.length,
     keys,
   });
-      }
+         }
