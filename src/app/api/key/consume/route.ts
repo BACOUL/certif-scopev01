@@ -1,62 +1,41 @@
 import { NextResponse } from "next/server";
+import crypto from "crypto";
 
 export const runtime = "nodejs";
 
-const ACCOUNT_ID = process.env.CLOUDFLARE_ACCOUNT_ID!;
-const NAMESPACE_ID = process.env.CLOUDFLARE_KV_NAMESPACE_ID!;
-const API_TOKEN = process.env.CLOUDFLARE_API_TOKEN!;
-
-if (!ACCOUNT_ID || !NAMESPACE_ID || !API_TOKEN) {
-  throw new Error("Missing Cloudflare env vars");
+// Génère un session_id compatible SuccessPage
+function generateSessionId() {
+  return `key_${crypto.randomUUID()}`;
 }
-
-const KV_URL = `https://api.cloudflare.com/client/v4/accounts/${ACCOUNT_ID}/storage/kv/namespaces/${NAMESPACE_ID}/values`;
 
 export async function POST(req: Request) {
   const { key } = await req.json();
 
-  if (!key || typeof key !== "string") {
+  if (!key) {
     return NextResponse.json(
       { error: "MISSING_KEY" },
       { status: 400 }
     );
   }
 
-  /* 1️⃣ READ KEY */
-  const readRes = await fetch(`${KV_URL}/${key}`, {
-    headers: {
-      Authorization: `Bearer ${API_TOKEN}`,
-    },
-  });
+  const res = await fetch(
+    `https://api.cloudflare.com/client/v4/accounts/${process.env.CF_ACCOUNT_ID}/storage/kv/namespaces/${process.env.CF_KV_NAMESPACE_ID}/values/${key}`,
+    {
+      headers: {
+        Authorization: `Bearer ${process.env.CF_API_TOKEN}`,
+      },
+    }
+  );
 
-  if (readRes.status === 404) {
+  if (res.status === 404) {
     return NextResponse.json(
       { error: "INVALID_KEY" },
       { status: 403 }
     );
   }
 
-  if (!readRes.ok) {
-    const txt = await readRes.text();
-    return NextResponse.json(
-      { error: "KV_READ_ERROR", details: txt },
-      { status: 500 }
-    );
-  }
+  const data = await res.json();
 
-  const raw = await readRes.text();
-  let data: any;
-
-  try {
-    data = JSON.parse(raw);
-  } catch {
-    return NextResponse.json(
-      { error: "CORRUPTED_KEY_DATA" },
-      { status: 500 }
-    );
-  }
-
-  /* 2️⃣ CHECK USAGE */
   if (data.used === true) {
     return NextResponse.json(
       { error: "KEY_ALREADY_USED" },
@@ -64,30 +43,35 @@ export async function POST(req: Request) {
     );
   }
 
-  /* 3️⃣ CONSUME KEY */
-  const writeRes = await fetch(`${KV_URL}/${key}`, {
-    method: "PUT",
-    headers: {
-      Authorization: `Bearer ${API_TOKEN}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      ...data,
-      used: true,
-      usedAt: new Date().toISOString(),
-    }),
-  });
+  // 🔒 Marque la clé comme consommée
+  await fetch(
+    `https://api.cloudflare.com/client/v4/accounts/${process.env.CF_ACCOUNT_ID}/storage/kv/namespaces/${process.env.CF_KV_NAMESPACE_ID}/values/${key}`,
+    {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${process.env.CF_API_TOKEN}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ...data,
+        used: true,
+        usedAt: new Date().toISOString(),
+      }),
+    }
+  );
 
-  if (!writeRes.ok) {
-    const txt = await writeRes.text();
-    return NextResponse.json(
-      { error: "KV_WRITE_ERROR", details: txt },
-      { status: 500 }
-    );
-  }
+  // ✅ Génération session_id
+  const sessionId = generateSessionId();
 
+  const origin =
+    req.headers.get("origin") ||
+    process.env.NEXT_PUBLIC_BASE_URL ||
+    "http://localhost:3000";
+
+  // 🔁 CONTRAT IDENTIQUE À STRIPE
   return NextResponse.json({
-    ok: true,
-    key,
+    redeemed: true,
+    session_id: sessionId,
+    url: `${origin}/success?session_id=${sessionId}`,
   });
-      }
+}
