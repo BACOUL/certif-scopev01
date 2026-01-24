@@ -262,6 +262,15 @@ export default function AssessmentForm() {
       }
 
       const { url } = await res.json();
+
+      // ✅ AJOUT : Stockage session avant redirection (UNIQUEMENT flow clé)
+      if (isRedeeming) {
+        sessionStorage.setItem(
+          "certifScopePayload",
+          JSON.stringify(basePayload)
+        );
+      }
+
       // Redirect to Stripe or to the PDF generation URL (depending on API response)
       window.location.href = url;
     } catch {
