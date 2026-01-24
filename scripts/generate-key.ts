@@ -1,18 +1,26 @@
 import crypto from "crypto";
+import fetch from "node-fetch";
 
-/**
- * CONFIG
- * ➜ DOIT être IDENTIQUE côté redeem
- */
-const KEY_SECRET = process.env.KEY_SECRET!;
-if (!KEY_SECRET) {
-  throw new Error("Missing KEY_SECRET");
+/* ================= CONFIG ================= */
+
+const {
+  KEY_SECRET,
+  CLOUDFLARE_ACCOUNT_ID,
+  CF_KV_NAMESPACE_ID,
+  CLOUDFLARE_API_TOKEN,
+} = process.env;
+
+if (
+  !KEY_SECRET ||
+  !CLOUDFLARE_ACCOUNT_ID ||
+  !CF_KV_NAMESPACE_ID ||
+  !CLOUDFLARE_API_TOKEN
+) {
+  throw new Error("Missing ENV variables");
 }
 
-/**
- * FORMAT
- * CS-XXXX-XXXX-XXXX-SIGN
- */
+/* ================= HELPERS ================= */
+
 function generateAccessKey(): string {
   const body = crypto.randomBytes(6).toString("hex").toUpperCase(); // 12 chars
   const formatted = `CS-${body.slice(0,4)}-${body.slice(4,8)}-${body.slice(8,12)}`;
@@ -27,6 +35,37 @@ function generateAccessKey(): string {
   return `${formatted}-${signature}`;
 }
 
-// === USAGE ===
-console.log("NEW ACCESS KEY:");
-console.log(generateAccessKey());
+async function storeKey(key: string, credits: number) {
+  const url = `https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/storage/kv/namespaces/${CF_KV_NAMESPACE_ID}/values/${key}`;
+
+  const res = await fetch(url, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${CLOUDFLARE_API_TOKEN}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      credits,
+      usedCredits: 0,
+      createdAt: new Date().toISOString(),
+      source: "manual",
+    }),
+  });
+
+  if (!res.ok) {
+    throw new Error("KV write failed");
+  }
+}
+
+/* ================= MAIN ================= */
+
+const credits = Number(process.argv[2] || 1);
+const count = Number(process.argv[3] || 1);
+
+(async () => {
+  for (let i = 0; i < count; i++) {
+    const key = generateAccessKey();
+    await storeKey(key, credits);
+    console.log(key);
+  }
+})();
