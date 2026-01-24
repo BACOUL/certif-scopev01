@@ -6,7 +6,7 @@ export const runtime = "nodejs";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 // ======================================================
-// CONFIG — PACKS (SOURCE DE VÉRITÉ)
+// CONFIG — PACKS (SOURCE DE VÉRITÉ UNIQUE)
 // ======================================================
 const PACKS: Record<
   string,
@@ -74,11 +74,11 @@ export async function GET(req: Request) {
       credits: String(credits),
     },
 
-    // ✅ CORRECTION CRITIQUE
-    // Un pack NE DOIT PAS rediriger vers /success (attestation)
-    success_url: `${origin}/pack-success?session_id={CHECKOUT_SESSION_ID}`,
+    // ✅ CORRECT — on redirige TOUJOURS vers /success
+    // La page détecte ensuite "pack" vs "attestation"
+    success_url: `${origin}/success?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${origin}/pricing`,
   });
 
   return NextResponse.redirect(session.url!, 303);
-    }
+}
