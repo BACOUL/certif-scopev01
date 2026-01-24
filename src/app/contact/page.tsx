@@ -1,168 +1,82 @@
-export const metadata = {
-  title: "Contact Certif-Scope — Support, Partnerships & Institutional Inquiries",
-  description:
-    "Contact Certif-Scope for support, partnerships or institutional inquiries related to indicative spend-based CO₂e attestations. GDPR minimal-data processing.",
-};
+"use client";
 
-export default function ContactPage() {
+/* ======================================================
+   CERTIF-SCOPE — CONTACT & SUPPORT (PRODUCTION V1)
+   NO FORM · NO DATA COLLECTION · EMAIL ONLY
+====================================================== */
+
+const Contact = () => {
   return (
     <section
       id="contact"
-      data-section="contact"
-      className="max-w-7xl mx-auto px-6 pt-12 pb-24"
+      className="overflow-hidden py-16 md:py-20 lg:py-28 bg-[#F8FAFC]"
     >
-      {/* CANONICAL PAGE HEADER — IDENTICAL TO PRODUCT / PRICING / PRIVACY / PARTNERS */}
-      <header className="mb-14">
-        <p
-          data-i18n="contact.label"
-          className="uppercase text-xs tracking-wider text-[#64748B] mb-3"
-        >
-          Certif-Scope — Contact
-        </p>
+      <div className="container max-w-3xl mx-auto px-6">
+        <div className="rounded-xl bg-white border border-gray-200 shadow-sm px-8 py-12">
 
-        <h1
-          data-i18n="contact.title"
-          className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-6"
-        >
-          Contact Certif-Scope
-        </h1>
+          {/* TITLE */}
+          <h1 className="mb-4 text-2xl font-bold text-[#0B3A63] sm:text-3xl">
+            Contact & support
+          </h1>
 
-        <p
-          data-i18n="contact.description"
-          className="text-lg text-gray-700 leading-relaxed max-w-3xl"
-        >
-          Use this form for support requests, partnership discussions or
-          institutional inquiries related to Certif-Scope’s indicative,
-          spend-based CO₂e attestation. Messages are processed manually and
-          answered within 24–48 hours.
-        </p>
+          {/* INTRO */}
+          <p className="mb-8 text-base text-gray-600 leading-relaxed">
+            For any question regarding Certif-Scope, attestation issuance,
+            verification, or institutional usage, you can contact us by email.
+          </p>
 
-        <div className="w-20 h-[2px] bg-gray-300 mt-10" />
-      </header>
+          {/* EMAIL BLOCK */}
+          <div className="space-y-4">
+            <div>
+              <p className="text-sm font-medium text-gray-700">
+                General contact
+              </p>
+              <a
+                href="mailto:contact@certif-scope.io"
+                className="text-[#0B3A63] font-semibold underline"
+              >
+                contact@certif-scope.io
+              </a>
+            </div>
 
-      {/* FORM CONTAINER — CANONICAL WIDTH */}
-      <div className="max-w-3xl mx-auto bg-white shadow-lg rounded-2xl p-10 border border-gray-200">
-        <form
-          method="POST"
-          action="/api/contact"
-          role="form"
-          aria-label="Contact form"
-          className="space-y-6"
-        >
-          {/* HONEYPOT */}
-          <input
-            type="text"
-            name="website"
-            tabIndex={-1}
-            autoComplete="off"
-            className="hidden"
-          />
-
-          {/* NAME */}
-          <div>
-            <label
-              htmlFor="name"
-              data-i18n="contact.name.label"
-              className="block mb-2 font-semibold text-gray-700"
-            >
-              Name
-            </label>
-            <input
-              id="name"
-              name="name"
-              required
-              aria-required="true"
-              placeholder="John Doe"
-              className="w-full p-3 border rounded-md bg-white"
-            />
+            <div>
+              <p className="text-sm font-medium text-gray-700">
+                Technical support
+              </p>
+              <a
+                href="mailto:support@certif-scope.io"
+                className="text-[#0B3A63] font-semibold underline"
+              >
+                support@certif-scope.io
+              </a>
+            </div>
           </div>
 
-          {/* EMAIL */}
-          <div>
-            <label
-              htmlFor="email"
-              data-i18n="contact.email.label"
-              className="block mb-2 font-semibold text-gray-700"
-            >
-              Email
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              aria-required="true"
-              placeholder="you@company.com"
-              className="w-full p-3 border rounded-md bg-white"
-            />
-          </div>
+          {/* POLICY / CLARIFICATIONS */}
+          <div className="mt-10 space-y-3 text-sm text-gray-500 leading-relaxed">
+            <p>
+              Certif-Scope does not operate a ticketing system.
+              Requests are handled manually by email.
+            </p>
 
-          {/* SUBJECT */}
-          <div>
-            <label
-              htmlFor="topic"
-              data-i18n="contact.topic.label"
-              className="block mb-2 font-semibold text-gray-700"
-            >
-              Inquiry type
-            </label>
-            <select
-              id="topic"
-              name="topic"
-              required
-              aria-required="true"
-              className="w-full p-3 border rounded-md bg-white"
-            >
-              <option value="support">Support</option>
-              <option value="partnership">Partnership discussion</option>
-              <option value="institutional">
-                Institutional / compliance inquiry
-              </option>
-              <option value="billing">Billing</option>
-            </select>
-          </div>
+            <p>
+              Attestations generated using an access key are <strong>not sent by email</strong>.
+              In this case, the document must be downloaded and saved immediately after generation.
+            </p>
 
-          {/* MESSAGE */}
-          <div>
-            <label
-              htmlFor="message"
-              data-i18n="contact.message.label"
-              className="block mb-2 font-semibold text-gray-700"
-            >
-              Message
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              rows={6}
-              required
-              aria-required="true"
-              placeholder="Describe your request…"
-              className="w-full p-3 border rounded-md bg-white"
-            />
-          </div>
+            <p>
+              Certif-Scope does not store issued PDF documents and cannot retrieve
+              a lost attestation.
+            </p>
 
-          {/* SUBMIT */}
-          <button
-            type="submit"
-            data-i18n="contact.submit"
-            className="w-full bg-[#0B3A63] hover:bg-[#083253] text-white font-semibold px-8 py-4 rounded-xl shadow-md transition text-base"
-          >
-            Send inquiry
-          </button>
-        </form>
+            <p>
+              Please do not send sensitive or confidential data by email.
+            </p>
+          </div>
+        </div>
       </div>
-
-      {/* LEGAL / GDPR — CANONICAL FOOTNOTE */}
-      <p
-        data-i18n="contact.footer.disclaimer"
-        className="text-gray-600 mt-10 text-xs text-center leading-relaxed max-w-xl mx-auto"
-      >
-        Messages are processed solely to respond to your inquiry. Certif-Scope
-        does not store personal or financial data beyond what is strictly
-        necessary. No user accounts or historical records are created. GDPR
-        minimal-data processing applies.
-      </p>
     </section>
   );
-}
+};
+
+export default Contact;
