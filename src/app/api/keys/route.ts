@@ -1,37 +1,40 @@
 import { NextResponse } from "next/server";
 import crypto from "crypto";
 
-const ACCOUNT_ID = process.env.CLOUDFLARE_ACCOUNT_ID!;
-const NAMESPACE_ID = process.env.CLOUDFLARE_KV_NAMESPACE_ID!;
-const API_TOKEN = process.env.CLOUDFLARE_API_TOKEN!;
-const KEY_SECRET = process.env.KEY_SECRET!;
+/* ======================================================
+   KEY GENERATION (PURE / NO ENV AT LOAD TIME)
+====================================================== */
 
-if (!ACCOUNT_ID || !NAMESPACE_ID || !API_TOKEN || !KEY_SECRET) {
-  throw new Error("Missing Cloudflare / Key env vars");
-}
-
-function sign(body: string) {
+function sign(body: string, secret: string) {
   return crypto
-    .createHmac("sha256", KEY_SECRET)
+    .createHmac("sha256", secret)
     .update(body)
     .digest("hex")
     .slice(0, 8)
     .toUpperCase();
 }
 
-function generateKey() {
+function generateKey(secret: string) {
   const p = () => crypto.randomBytes(2).toString("hex").toUpperCase();
   const body = `CS-${p()}-${p()}-${p()}-${p()}`;
-  return `${body}-${sign(body)}`;
+  return `${body}-${sign(body, secret)}`;
 }
 
-async function putKV(key: string, value: any) {
-  const url = `https://api.cloudflare.com/client/v4/accounts/${ACCOUNT_ID}/storage/kv/namespaces/${NAMESPACE_ID}/values/${key}`;
+async function putKV(params: {
+  accountId: string;
+  namespaceId: string;
+  apiToken: string;
+  key: string;
+  value: any;
+}) {
+  const { accountId, namespaceId, apiToken, key, value } = params;
+
+  const url = `https://api.cloudflare.com/client/v4/accounts/${accountId}/storage/kv/namespaces/${namespaceId}/values/${key}`;
 
   const res = await fetch(url, {
     method: "PUT",
     headers: {
-      Authorization: `Bearer ${API_TOKEN}`,
+      Authorization: `Bearer ${apiToken}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify(value),
@@ -43,12 +46,43 @@ async function putKV(key: string, value: any) {
   }
 }
 
-export async function POST(req: Request) {
-  const { quantity } = await req.json();
+/* ======================================================
+   API ROUTE
+====================================================== */
 
-  if (!quantity || quantity < 1 || quantity > 100) {
+export async function POST(req: Request) {
+  const ACCOUNT_ID = process.env.CLOUDFLARE_ACCOUNT_ID;
+  const NAMESPACE_ID = process.env.CLOUDFLARE_KV_NAMESPACE_ID;
+  const API_TOKEN = process.env.CLOUDFLARE_API_TOKEN;
+  const KEY_SECRET = process.env.KEY_SECRET;
+
+  if (
+    !ACCOUNT_ID ||
+    !NAMESPACE_ID ||
+    !API_TOKEN ||
+    !KEY_SECRET
+  ) {
     return NextResponse.json(
-      { error: "Invalid quantity" },
+      { error: "Server misconfigured" },
+      { status: 500 }
+    );
+  }
+
+  let body: any;
+  try {
+    body = await req.json();
+  } catch {
+    return NextResponse.json(
+      { error: "Invalid JSON body" },
+      { status: 400 }
+    );
+  }
+
+  const quantity = Number(body.quantity);
+
+  if (!Number.isInteger(quantity) || quantity < 1 || quantity > 100) {
+    return NextResponse.json(
+      { error: "Invalid quantity (1–100)" },
       { status: 400 }
     );
   }
@@ -56,11 +90,19 @@ export async function POST(req: Request) {
   const keys: string[] = [];
 
   for (let i = 0; i < quantity; i++) {
-    const key = generateKey();
-    await putKV(key, {
-      used: false,
-      createdAt: new Date().toISOString(),
+    const key = generateKey(KEY_SECRET);
+
+    await putKV({
+      accountId: ACCOUNT_ID,
+      namespaceId: NAMESPACE_ID,
+      apiToken: API_TOKEN,
+      key,
+      value: {
+        used: false,
+        createdAt: new Date().toISOString(),
+      },
     });
+
     keys.push(key);
   }
 
@@ -68,4 +110,4 @@ export async function POST(req: Request) {
     count: keys.length,
     keys,
   });
-}
+      }
