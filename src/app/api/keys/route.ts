@@ -4,7 +4,7 @@ import crypto from "crypto";
 export const runtime = "nodejs";
 
 /* ======================================================
-   KEY GENERATION (PURE / NO ENV AT LOAD TIME)
+   KEY GENERATION
 ====================================================== */
 
 function sign(body: string, secret: string): string {
@@ -43,8 +43,7 @@ async function putKV(params: {
   });
 
   if (!res.ok) {
-    const txt = await res.text();
-    throw new Error(`Cloudflare KV error: ${txt}`);
+    throw new Error(await res.text());
   }
 }
 
@@ -54,7 +53,7 @@ async function putKV(params: {
 
 export async function POST(req: Request) {
   const ACCOUNT_ID = process.env.CLOUDFLARE_ACCOUNT_ID;
-  const NAMESPACE_ID = process.env.CLOUDFLARE_KV_NAMESPACE_ID;
+  const NAMESPACE_ID = process.env.CF_KV_NAMESPACE_ID; // ✅ CORRIGÉ
   const API_TOKEN = process.env.CLOUDFLARE_API_TOKEN;
   const KEY_SECRET = process.env.KEY_SECRET;
 
@@ -65,18 +64,7 @@ export async function POST(req: Request) {
     );
   }
 
-  let payload: { quantity?: number };
-
-  try {
-    payload = await req.json();
-  } catch {
-    return NextResponse.json(
-      { error: "Invalid JSON body" },
-      { status: 400 }
-    );
-  }
-
-  const quantity = Number(payload.quantity);
+  const { quantity } = await req.json();
 
   if (!Number.isInteger(quantity) || quantity < 1 || quantity > 100) {
     return NextResponse.json(
@@ -104,8 +92,5 @@ export async function POST(req: Request) {
     keys.push(key);
   }
 
-  return NextResponse.json({
-    count: keys.length,
-    keys,
-  });
+  return NextResponse.json({ count: keys.length, keys });
          }
