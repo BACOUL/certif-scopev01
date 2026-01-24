@@ -3,104 +3,55 @@ import crypto from "crypto";
 
 export const runtime = "nodejs";
 
-/* ======================================================
-   ACCESS KEY — VALIDATION SIGNÉE (SANS DB)
-   ======================================================
-
-FORMAT CLÉ (STRICT) :
-CS-{TYPE}-{PAYLOAD}-{SIGNATURE}
-
-TYPE :
-- PACK   → crédits limités
-- ADMIN  → illimité
-
-PAYLOAD :
-- PACK  → nombre de crédits (ex: 10, 50)
-- ADMIN → UNLIMITED
-
-SIGNATURE :
-HMAC-SHA256(secret, `${TYPE}:${PAYLOAD}`) tronqué
-
-====================================================== */
-
-const KEY_PREFIX = "CS";
-const SIGNATURE_LENGTH = 16; // hex chars
+/**
+ * CONFIG
+ * ➜ DOIT être IDENTIQUE côté génération
+ */
 const KEY_SECRET = process.env.KEY_SECRET!;
-
 if (!KEY_SECRET) {
-  throw new Error("KEY_SECRET is missing");
+  throw new Error("Missing KEY_SECRET");
 }
 
-// ======================================================
-// UTILS
-// ======================================================
-function sign(type: string, payload: string) {
+/**
+ * Recalcule la signature officielle
+ */
+function computeSignature(keyBody: string): string {
   return crypto
     .createHmac("sha256", KEY_SECRET)
-    .update(`${type}:${payload}`)
+    .update(keyBody)
     .digest("hex")
-    .slice(0, SIGNATURE_LENGTH)
+    .slice(0, 8)
     .toUpperCase();
 }
 
-function generateSessionId() {
+function generatePseudoSessionId() {
   return `key_${crypto.randomUUID()}`;
 }
 
-type ParsedKey =
-  | { valid: true; type: "ADMIN"; credits: "unlimited" }
-  | { valid: true; type: "PACK"; credits: number }
-  | { valid: false };
-
-// ======================================================
-// KEY PARSER / VALIDATOR
-// ======================================================
-function validateAccessKey(key: string): ParsedKey {
-  if (!key || typeof key !== "string") return { valid: false };
-
-  const parts = key.split("-");
-  if (parts.length !== 4) return { valid: false };
-
-  const [prefix, type, payload, signature] = parts;
-
-  if (prefix !== KEY_PREFIX) return { valid: false };
-
-  const expectedSig = sign(type, payload);
-  if (signature !== expectedSig) return { valid: false };
-
-  if (type === "ADMIN" && payload === "UNLIMITED") {
-    return { valid: true, type: "ADMIN", credits: "unlimited" };
-  }
-
-  if (type === "PACK") {
-    const credits = Number(payload);
-    if (!Number.isInteger(credits) || credits <= 0) {
-      return { valid: false };
-    }
-    return { valid: true, type: "PACK", credits };
-  }
-
-  return { valid: false };
-}
-
-// ======================================================
-// REDEEM ENDPOINT
-// ======================================================
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
-    const { accessKey } = body;
+    const { accessKey } = await req.json();
 
-    const parsed = validateAccessKey(accessKey);
-
-    if (!parsed.valid) {
-      return NextResponse.json(
-        { error: "Invalid access key" },
-        { status: 403 }
-      );
+    if (!accessKey || typeof accessKey !== "string") {
+      return NextResponse.json({ error: "Invalid key" }, { status: 400 });
     }
 
-    const session_id = generateSessionId();
+    const parts = accessKey.split("-");
+    if (parts.length !== 6 || parts[0] !== "CS") {
+      return NextResponse.json({ error: "Invalid key format" }, { status: 403 });
+    }
+
+    const keyBody = parts.slice(0, 5).join("-");
+    const providedSignature = parts[5];
+
+    const expectedSignature = computeSignature(keyBody);
+
+    if (providedSignature !== expectedSignature) {
+      return NextResponse.json({ error: "Invalid key signature" }, { status: 403 });
+    }
+
+    // ✅ CLÉ VALIDE
+    const sessionId = generatePseudoSessionId();
 
     const origin =
       req.headers.get("origin") ||
@@ -109,17 +60,12 @@ export async function POST(req: Request) {
 
     return NextResponse.json({
       redeemed: true,
-      keyType: parsed.type,
-      credits:
-        parsed.type === "ADMIN" ? "unlimited" : parsed.credits,
-      session_id,
-      url: `${origin}/success?session_id=${session_id}`,
+      creditsConsumed: 1,
+      remainingCredits: "managed_externally",
+      session_id: sessionId,
+      url: `${origin}/success?session_id=${sessionId}`,
     });
-  } catch (err) {
-    console.error(err);
-    return NextResponse.json(
-      { error: "Redeem failed" },
-      { status: 500 }
-    );
+  } catch {
+    return NextResponse.json({ error: "Redeem failed" }, { status: 500 });
   }
 }
