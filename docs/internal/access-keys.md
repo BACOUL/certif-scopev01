@@ -1,3 +1,7 @@
+cd certif-scopev01
+
+export KEY_SECRET="une-cle-secrete-longue-et-aleatoire"
+
 # 1 clé – 1 crédit
 node scripts/generate-key.ts 1 1
 
