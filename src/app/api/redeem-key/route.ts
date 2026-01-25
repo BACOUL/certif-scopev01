@@ -27,13 +27,12 @@ function sign(body: string, secret: string): string {
    FORMAT: CS-XXXX-XXXX-XXXX-XXXX-SIGN
    KV MODEL:
    {
-     credits?: number,
-     usedCredits?: number,
-     used?: boolean,          // legacy
-     createdAt?: string,
-     expiresAt?: string,
-     source?: string,
-     _locked?: boolean
+     credits: number,
+     usedCredits: number,
+     createdAt: ISOString,
+     expiresAt: ISOString,
+     used?: boolean,        // legacy single-use
+     source?: string
    }
 ====================================================== */
 
@@ -126,7 +125,7 @@ export async function POST(req: Request) {
     const data = await kvRes.json();
 
     /* ==================================================
-       3️⃣ LEGACY KEY SUPPORT (old single-use keys)
+       3️⃣ LEGACY SINGLE-USE KEY
     ================================================== */
 
     if (data.used === true) {
@@ -137,11 +136,11 @@ export async function POST(req: Request) {
     }
 
     /* ==================================================
-       4️⃣ EXPIRATION CHECK (1 YEAR)
+       4️⃣ EXPIRATION CHECK
     ================================================== */
 
     if (data.expiresAt) {
-      const expiresAt = new Date(data.expiresAt).getTime();
+      const expiresAt = Date.parse(data.expiresAt);
       if (!Number.isNaN(expiresAt) && Date.now() > expiresAt) {
         return NextResponse.json(
           { error: "KEY_EXPIRED" },
@@ -151,20 +150,19 @@ export async function POST(req: Request) {
     }
 
     /* ==================================================
-       5️⃣ CREDIT & LOCK CHECK
+       5️⃣ CREDIT VALIDATION
     ================================================== */
 
-    if (data._locked === true) {
-      return NextResponse.json(
-        { error: "KEY_IN_USE" },
-        { status: 409 }
-      );
-    }
+    const credits = Number(data.credits);
+    const usedCredits = Number(data.usedCredits);
 
-    const credits = Number(data.credits ?? 1);
-    const usedCredits = Number(data.usedCredits ?? 0);
-
-    if (usedCredits >= credits) {
+    if (
+      !Number.isInteger(credits) ||
+      credits <= 0 ||
+      !Number.isInteger(usedCredits) ||
+      usedCredits < 0 ||
+      usedCredits >= credits
+    ) {
       return NextResponse.json(
         { error: "NO_CREDITS_LEFT" },
         { status: 403 }
@@ -172,7 +170,7 @@ export async function POST(req: Request) {
     }
 
     /* ==================================================
-       6️⃣ CONSUME ONE CREDIT (LOCKED WRITE)
+       6️⃣ CONSUME ONE CREDIT
     ================================================== */
 
     const updated = {
@@ -180,7 +178,6 @@ export async function POST(req: Request) {
       credits,
       usedCredits: usedCredits + 1,
       lastUsedAt: new Date().toISOString(),
-      _locked: true,
     };
 
     const writeRes = await fetch(kvUrl, {
@@ -237,4 +234,4 @@ export async function POST(req: Request) {
       { status: 500 }
     );
   }
-       }
+         }
