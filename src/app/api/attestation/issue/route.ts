@@ -40,7 +40,11 @@ export async function GET(req: Request) {
     // MODE CLÉ (PAS DE STRIPE)
     // ==============================
     if (sessionId.startsWith("key_")) {
-      // 👉 Les données viennent du formulaire / query params
+      // Mode test uniquement — interdit en production
+      if (process.env.NODE_ENV === "production") {
+        return new Response("Forbidden", { status: 403 });
+      }
+
       metadataRaw = Object.fromEntries(
         new URL(req.url).searchParams.entries()
       );
@@ -566,10 +570,13 @@ export async function GET(req: Request) {
         "Content-Type": "application/pdf",
         "Content-Disposition": `attachment; filename="${safeIssuerName}-${metadata.attestationId}.pdf"`,
         "Cache-Control": "no-store",
+        "X-Content-Type-Options": "nosniff",
       },
     });
   } catch (err) {
-    console.error(err);
-    return new Response("Internal error", { status: 500 });
+    if (process.env.NODE_ENV !== "production") {
+      console.error(err);
+    }
+    return new Response("Internal Server Error", { status: 500 });
   }
 }
