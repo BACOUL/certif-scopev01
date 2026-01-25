@@ -1,8 +1,29 @@
-export const metadata = {
+import type { Metadata } from "next";
+
+/* ======================================================
+   SEO METADATA — LEGAL NOTICE
+====================================================== */
+
+export const metadata: Metadata = {
   title: "Legal Notice — Certif-Scope",
   description:
-    "Official legal information regarding the operator, hosting provider, liability limitations and legal framework of Certif-Scope.",
+    "Official legal information regarding the operator, hosting provider, liability limitations and legal framework applicable to Certif-Scope.",
+  alternates: {
+    canonical: "https://www.certif-scope.com/legal",
+  },
+  openGraph: {
+    title: "Legal Notice — Certif-Scope",
+    description:
+      "Mandatory legal information regarding the operator, hosting provider, liability limitations and data handling principles of Certif-Scope.",
+    url: "https://www.certif-scope.com/legal",
+    siteName: "Certif-Scope",
+    type: "website",
+  },
 };
+
+/* ======================================================
+   PAGE
+====================================================== */
 
 export default function LegalPage() {
   return (
@@ -11,26 +32,37 @@ export default function LegalPage() {
       data-section="legal"
       className="max-w-7xl mx-auto px-6 pt-12 pb-24"
     >
-      {/* CANONICAL PAGE HEADER — IDENTICAL TO ALL SECONDARY PAGES */}
+      {/* JSON-LD — WebPage (LEGAL / NON-COMMERCIAL) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: "Legal Notice",
+            url: "https://www.certif-scope.com/legal",
+            description:
+              "Legal notice and mandatory information regarding the operator and legal framework of Certif-Scope.",
+            isPartOf: {
+              "@type": "WebSite",
+              name: "Certif-Scope",
+              url: "https://www.certif-scope.com",
+            },
+          }),
+        }}
+      />
+
+      {/* CANONICAL PAGE HEADER */}
       <header className="mb-14">
-        <p
-          data-i18n="legal.label"
-          className="uppercase text-xs tracking-wider text-[#64748B] mb-3"
-        >
+        <p className="uppercase text-xs tracking-wider text-[#64748B] mb-3">
           Legal Information
         </p>
 
-        <h1
-          data-i18n="legal.title"
-          className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-6"
-        >
+        <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-6">
           Legal Notice
         </h1>
 
-        <p
-          data-i18n="legal.description"
-          className="text-lg text-gray-700 leading-relaxed max-w-3xl"
-        >
+        <p className="text-lg text-gray-700 leading-relaxed max-w-3xl">
           Mandatory legal information regarding the operator, hosting provider,
           intellectual property, liability limitations and data handling
           principles applicable to Certif-Scope.
@@ -39,9 +71,8 @@ export default function LegalPage() {
         <div className="w-20 h-[2px] bg-gray-300 mt-10" />
       </header>
 
-      {/* CONTENT — CANONICAL WIDTH */}
+      {/* CONTENT */}
       <div className="max-w-4xl mx-auto space-y-16">
-        {/* 1. OPERATOR */}
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
             1. Operator Information
@@ -65,7 +96,6 @@ export default function LegalPage() {
           </ul>
         </section>
 
-        {/* 2. PUBLICATION */}
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
             2. Publication Responsibility
@@ -79,7 +109,6 @@ export default function LegalPage() {
           </p>
         </section>
 
-        {/* 3. HOSTING */}
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
             3. Hosting Provider
@@ -97,7 +126,6 @@ export default function LegalPage() {
           </p>
         </section>
 
-        {/* 4. IP */}
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
             4. Intellectual Property
@@ -112,7 +140,6 @@ export default function LegalPage() {
           </p>
         </section>
 
-        {/* 5. LIABILITY */}
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
             5. Liability Limitations
@@ -138,7 +165,6 @@ export default function LegalPage() {
           </p>
         </section>
 
-        {/* 6. DATA */}
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
             6. Data Storage and Processing
@@ -153,7 +179,6 @@ export default function LegalPage() {
           </p>
         </section>
 
-        {/* 7. ABUSE */}
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
             7. Abuse, Misuse and Technical Reporting
@@ -169,4 +194,4 @@ export default function LegalPage() {
       </div>
     </section>
   );
-          }
+        }
