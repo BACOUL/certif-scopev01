@@ -1,26 +1,64 @@
-"use client";
-
-import { useEffect } from "react";
+import type { Metadata } from "next";
 
 /**
  * Certif-Scope public verification key (Ed25519)
  * This key is immutable and used to verify all attestations.
- * Fixed: Single line string to ensure no line-break issues.
  */
 const CERTIFSCOPE_PUBLIC_KEY_BASE64 =
   "MCowBQYDK2VwAyEAbKp2pg4wmzE5Kqo9tEwv7JJjxQyT2cBmwiLLHp4cSac=";
 
-export default function VerifyPage() {
-  useEffect(() => {
-    // Informational page only
-  }, []);
+/* ======================================================
+   SEO METADATA — VERIFY PAGE (CANONICAL)
+====================================================== */
 
+export const metadata: Metadata = {
+  title: "Verify a CO₂e Attestation — Certif-Scope",
+  description:
+    "Learn how to independently verify the authenticity and integrity of a Certif-Scope CO₂e attestation using standard PDF tools or manual cryptographic verification.",
+  alternates: {
+    canonical: "https://www.certif-scope.com/verify",
+  },
+  openGraph: {
+    title: "Verify a CO₂e Attestation — Certif-Scope",
+    description:
+      "Independent verification of Certif-Scope CO₂e attestations using digitally signed PDF documents.",
+    url: "https://www.certif-scope.com/verify",
+    siteName: "Certif-Scope",
+    type: "website",
+  },
+};
+
+/* ======================================================
+   PAGE
+====================================================== */
+
+export default function VerifyPage() {
   return (
     <section
       id="verify"
       data-section="verify"
       className="max-w-7xl mx-auto px-6 pt-12 pb-24"
     >
+      {/* JSON-LD — WebPage (STRICT) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: "Verify a CO₂e Attestation",
+            url: "https://www.certif-scope.com/verify",
+            description:
+              "Instructions to independently verify the authenticity and integrity of a Certif-Scope CO₂e attestation.",
+            isPartOf: {
+              "@type": "WebSite",
+              name: "Certif-Scope",
+              url: "https://www.certif-scope.com",
+            },
+          }),
+        }}
+      />
+
       {/* TOP ANCHOR */}
       <div id="top" />
 
@@ -58,7 +96,7 @@ export default function VerifyPage() {
           </p>
         </section>
 
-        {/* VALIDITY NOTICE — CANONICAL */}
+        {/* VALIDITY NOTICE */}
         <section className="mb-12">
           <div className="bg-[#F8FAFC] border-l-4 border-[#0B3A63] p-4">
             <p className="text-sm text-gray-700 leading-relaxed">
@@ -71,7 +109,7 @@ export default function VerifyPage() {
           </div>
         </section>
 
-        {/* STEP 1: DOWNLOAD */}
+        {/* STEP 1 */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-3">
             1. Download the attestation PDF
@@ -83,7 +121,7 @@ export default function VerifyPage() {
           </p>
         </section>
 
-        {/* STEP 2: STANDARD TOOLS */}
+        {/* STEP 2 */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-3">
             2. Verify with standard tools
@@ -111,7 +149,7 @@ export default function VerifyPage() {
           </div>
         </section>
 
-        {/* STEP 3: ADVANCED VERIFICATION */}
+        {/* STEP 3 */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-3">
             3. Advanced / Manual verification
@@ -142,7 +180,7 @@ export default function VerifyPage() {
           </p>
         </section>
 
-        {/* IMPORTANT NOTICE */}
+        {/* FINAL NOTICE */}
         <div className="text-sm text-gray-600 leading-relaxed border-t border-gray-200 pt-8">
           <p className="mb-3">
             <strong>Important notice:</strong> Certif-Scope does not maintain a
@@ -161,4 +199,4 @@ export default function VerifyPage() {
       </div>
     </section>
   );
-            }
+      }
