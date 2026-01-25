@@ -116,7 +116,7 @@ export async function POST(req: Request) {
     const data = await kvRes.json();
 
     /* ==================================================
-       4️⃣ EXPIRATION CHECK (1 AN)
+       4️⃣ EXPIRATION CHECK
     ================================================== */
 
     if (data.expiresAt) {
@@ -130,10 +130,10 @@ export async function POST(req: Request) {
     }
 
     /* ==================================================
-       5️⃣ CREDIT CHECK (MULTI + LEGACY)
+       5️⃣ CREDIT CHECK (LEGACY + MULTI)
     ================================================== */
 
-    // Compat ancienne clé "used: true"
+    // 🔒 Legacy clé à usage unique
     if (data.used === true) {
       return NextResponse.json(
         { valid: true, remainingCredits: 0 },
@@ -141,8 +141,21 @@ export async function POST(req: Request) {
       );
     }
 
-    const credits = Number(data.credits ?? 1);
-    const usedCredits = Number(data.usedCredits ?? 0);
+    const credits = Number(data.credits);
+    const usedCredits = Number(data.usedCredits);
+
+    if (
+      !Number.isInteger(credits) ||
+      credits <= 0 ||
+      !Number.isInteger(usedCredits) ||
+      usedCredits < 0
+    ) {
+      return NextResponse.json(
+        { valid: false, error: "INVALID_KEY_STATE" },
+        { status: 500 }
+      );
+    }
+
     const remainingCredits = Math.max(0, credits - usedCredits);
 
     return NextResponse.json(
@@ -159,4 +172,4 @@ export async function POST(req: Request) {
       { status: 500 }
     );
   }
-         }
+                             }
