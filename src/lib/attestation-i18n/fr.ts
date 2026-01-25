@@ -1,6 +1,8 @@
 /* =========================================================
    Certif-Scope — Attestation i18n (FR)
-   Traduction STRICTE et CANONIQUE alignée sur ATTESTATION_EN
+   Version CANONIQUE
+   STRICTE cohérence 1:1 avec ATTESTATION_EN et ATTESTATION_DE
+   Références normatives officielles incluses
    ========================================================= */
 
 export const ATTESTATION_FR = {
@@ -80,12 +82,14 @@ export const ATTESTATION_FR = {
   =============================== */
   referencesSectionTitle: "5. Références normatives",
   normativeText:
-    "Les normes et cadres suivants sont mentionnés à titre d’alignement méthodologique et de cohérence contextuelle :",
+    "Les normes et cadres réglementaires suivants sont mentionnés à titre d’alignement méthodologique et de cohérence contextuelle :",
   referencesList: [
-    "GHG Protocol – Scope 3 (méthode basée sur les dépenses)",
-    "ISO 14064-1 (référence)",
-    "ISO 14083 (référence)",
-    "CSRD / ESRS / Taxonomie UE (contexte)",
+    "GHG Protocol – Scope 3 (méthode basée sur les dépenses) — https://ghgprotocol.org/scope-3-calculation-guidance",
+    "ISO 14064-1:2018 — https://www.iso.org/standard/66453.html",
+    "ISO 14083:2023 — https://www.iso.org/standard/80924.html",
+    "Directive (UE) 2022/2464 – CSRD — https://eur-lex.europa.eu/eli/dir/2022/2464",
+    "Normes européennes de reporting de durabilité (ESRS) — https://www.efrag.org/lab6",
+    "Règlement (UE) 2020/852 – Taxonomie européenne — https://eur-lex.europa.eu/eli/reg/2020/852",
   ],
 
   /* ===============================
@@ -168,10 +172,6 @@ export const ATTESTATION_FR = {
   liabilityLabel: "Responsabilité",
   liabilityText:
     "Les résultats sont exclusivement dérivés des données fournies par l’entité, sous sa seule responsabilité.",
-
-  validityExplanationLabel: "Validité",
-  validityText:
-    "La période de validité reflète la pertinence temporelle des données et de la méthodologie.",
 
   noAuditText:
     "Certif-Scope ne réalise aucune mission d’audit, de validation, de vérification ou d’assurance.",
