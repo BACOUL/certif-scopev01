@@ -7,12 +7,13 @@ export const runtime = "nodejs";
  * FORMAT OFFICIEL STRICT
  * CS-XXXX-XXXX-XXXX-XXXX-SIGN
  *
- * Modèle KV attendu :
+ * MODÈLE KV ATTENDU :
  * {
  *   credits: number,
  *   usedCredits: number,
  *   createdAt: ISOString,
  *   expiresAt: ISOString,
+ *   used?: boolean,          // legacy compat
  *   source: string
  * }
  */
@@ -129,11 +130,19 @@ export async function POST(req: Request) {
     }
 
     /* ==================================================
-       5️⃣ CREDIT CHECK
+       5️⃣ CREDIT CHECK (MULTI + LEGACY)
     ================================================== */
 
-    const credits = Number(data.credits || 1);
-    const usedCredits = Number(data.usedCredits || 0);
+    // Compat ancienne clé "used: true"
+    if (data.used === true) {
+      return NextResponse.json(
+        { valid: true, remainingCredits: 0 },
+        { status: 200 }
+      );
+    }
+
+    const credits = Number(data.credits ?? 1);
+    const usedCredits = Number(data.usedCredits ?? 0);
     const remainingCredits = Math.max(0, credits - usedCredits);
 
     return NextResponse.json(
@@ -150,4 +159,4 @@ export async function POST(req: Request) {
       { status: 500 }
     );
   }
-}
+         }
