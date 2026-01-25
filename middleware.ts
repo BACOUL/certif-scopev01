@@ -4,7 +4,7 @@ import type { NextRequest } from "next/server";
 export function middleware(req: NextRequest) {
   const res = NextResponse.next();
 
-  // Sécurité HTTP minimale (safe Edge)
+  // Sécurité HTTP de base
   res.headers.set("X-Content-Type-Options", "nosniff");
   res.headers.set("Referrer-Policy", "no-referrer");
   res.headers.set(
@@ -12,10 +12,10 @@ export function middleware(req: NextRequest) {
     "camera=(), microphone=(), geolocation=(), payment=()"
   );
 
-  // Données sensibles : jamais en cache
+  // Cache strict pour routes sensibles
   if (
-    req.nextUrl.pathname.startsWith("/api") ||
-    req.nextUrl.pathname.startsWith("/verify")
+    req.nextUrl.pathname.startsWith("/verify") ||
+    req.nextUrl.pathname.startsWith("/api")
   ) {
     res.headers.set("Cache-Control", "no-store");
   }
@@ -23,6 +23,7 @@ export function middleware(req: NextRequest) {
   return res;
 }
 
+// Routes concernées
 export const config = {
-  matcher: ["/api/:path*", "/verify/:path*"],
+  matcher: ["/verify/:path*", "/api/:path*"],
 };
