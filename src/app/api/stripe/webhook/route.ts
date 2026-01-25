@@ -160,19 +160,6 @@ async function kvPut(key: string, value: unknown) {
   }
 }
 
-async function kvGet(key: string) {
-  const res = await fetch(`${KV_BASE}/${key}`, {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${CLOUDFLARE_API_TOKEN}`,
-    },
-  });
-
-  if (res.status === 404) return null;
-  if (!res.ok) throw new Error(await res.text());
-  return res.json();
-}
-
 /* ======================================================
    STRIPE WEBHOOK
 ====================================================== */
@@ -203,22 +190,11 @@ export async function POST(req: Request) {
   const session = event.data.object as Stripe.Checkout.Session;
   const metadata = session.metadata || {};
 
-  /* ===================================================
-     ANTI DOUBLE WEBHOOK — IDEMPOTENCE
-  =================================================== */
-
-  const processedKey = `processed:${session.id}`;
-  const alreadyProcessed = await kvGet(processedKey);
-
-  if (alreadyProcessed) {
-    return NextResponse.json({ received: true });
-  }
-
   const locale: Locale = metadata.attestationLocale === "de" ? "de" : "fr";
   const i18n = EMAIL_I18N[locale];
 
   /* ===================================================
-     PACK DE CLÉS
+     PACK DE CLÉS — ALIGNÉ AVEC generate-key.ts
   =================================================== */
 
   if (metadata.product === "certif-scope-pack") {
@@ -229,35 +205,37 @@ export async function POST(req: Request) {
       session.customer_email ||
       null;
 
-    if (credits && email) {
-      const keys: string[] = [];
-
-      for (let i = 0; i < credits; i++) {
-        const key = generateAccessKey();
-
-        await kvPut(key, {
-          credits: 1,
-          usedCredits: 0,
-          createdAt: new Date().toISOString(),
-          expiresAt: computeExpiryDate(),
-          used: false,
-          source: "stripe",
-          pack,
-          stripeSessionId: session.id,
-          version: "v1",
-        });
-
-        keys.push(key);
-      }
-
-      await resend.emails.send({
-        from: "Certif-Scope <no-reply@certif-scope.com>",
-        replyTo: "contact@certif-scope.com",
-        to: email,
-        subject: i18n.packSubject(pack),
-        html: i18n.packBody(keys.length, keys),
-      });
+    if (!credits || !email) {
+      return NextResponse.json({ received: true });
     }
+
+    const keys: string[] = [];
+
+    for (let i = 0; i < credits; i++) {
+      const key = generateAccessKey();
+
+      await kvPut(key, {
+        credits: 1,
+        usedCredits: 0,
+        createdAt: new Date().toISOString(),
+        expiresAt: computeExpiryDate(),
+        used: false,
+        source: "stripe",
+        pack,
+        stripeSessionId: session.id,
+        version: "v1",
+      });
+
+      keys.push(key);
+    }
+
+    await resend.emails.send({
+      from: "Certif-Scope <no-reply@certif-scope.com>",
+      replyTo: "contact@certif-scope.com",
+      to: email,
+      subject: i18n.packSubject(pack),
+      html: i18n.packBody(keys.length, keys),
+    });
   }
 
   /* ===================================================
@@ -271,45 +249,42 @@ export async function POST(req: Request) {
       session.customer_email ||
       null;
 
-    if (email) {
-      const proto = req.headers.get("x-forwarded-proto");
-      const host = req.headers.get("host");
-      const origin = proto && host ? `${proto}://${host}` : null;
-
-      if (origin) {
-        const issueUrl = `${origin}/api/attestation/issue?session_id=${session.id}`;
-        const pdfRes = await fetch(issueUrl);
-
-        if (pdfRes.ok) {
-          const pdfBuffer = Buffer.from(await pdfRes.arrayBuffer());
-
-          await resend.emails.send({
-            from: "Certif-Scope <no-reply@certif-scope.com>",
-            replyTo: "contact@certif-scope.com",
-            to: email,
-            subject: i18n.attestationSubject,
-            html: i18n.attestationBody,
-            attachments: [
-              {
-                filename: `certif-scope-attestation-${session.id}.pdf`,
-                content: pdfBuffer,
-                contentType: "application/pdf",
-              },
-            ],
-          });
-        }
-      }
+    if (!email) {
+      return NextResponse.json({ received: true });
     }
+
+    const proto = req.headers.get("x-forwarded-proto");
+    const host = req.headers.get("host");
+    const origin = proto && host ? `${proto}://${host}` : null;
+
+    if (!origin) {
+      return NextResponse.json({ received: true });
+    }
+
+    const issueUrl = `${origin}/api/attestation/issue?session_id=${session.id}`;
+    const pdfRes = await fetch(issueUrl);
+
+    if (!pdfRes.ok) {
+      return NextResponse.json({ received: true });
+    }
+
+    const pdfBuffer = Buffer.from(await pdfRes.arrayBuffer());
+
+    await resend.emails.send({
+      from: "Certif-Scope <no-reply@certif-scope.com>",
+      replyTo: "contact@certif-scope.com",
+      to: email,
+      subject: i18n.attestationSubject,
+      html: i18n.attestationBody,
+      attachments: [
+        {
+          filename: `certif-scope-attestation-${session.id}.pdf`,
+          content: pdfBuffer,
+          contentType: "application/pdf",
+        },
+      ],
+    });
   }
 
-  /* ===================================================
-     MARQUAGE TRAITÉ
-  =================================================== */
-
-  await kvPut(processedKey, {
-    processedAt: new Date().toISOString(),
-    product: metadata.product || "unknown",
-  });
-
   return NextResponse.json({ received: true });
-   }
+}
