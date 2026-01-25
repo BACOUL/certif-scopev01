@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://certif-scope.com/sitemap.xml
+Sitemap: https://www.certif-scope.com/sitemap.xml
