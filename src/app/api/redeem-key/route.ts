@@ -47,10 +47,10 @@ export async function POST(req: Request) {
     } = payload;
 
     /* ==================================================
-       0️⃣ METADATA STRICT — OBLIGATOIRE
+       0️⃣ METADATA MINIMALE
     ================================================== */
 
-    if (!companyName || !year || totalCO2e === undefined) {
+    if (!key || !companyName || !year || totalCO2e === undefined) {
       return NextResponse.json(
         { error: "MISSING_METADATA" },
         { status: 400 }
@@ -58,11 +58,12 @@ export async function POST(req: Request) {
     }
 
     /* ==================================================
-       1️⃣ FORMAT & SIGNATURE
+       1️⃣ FORMAT & SIGNATURE STRICTS
+       FORMAT: CS-XXXX-XXXX-XXXX-XXXX-SIGN
     ================================================== */
 
-    const parts = key?.split("-");
-    if (!parts || parts.length !== 6 || parts[0] !== "CS") {
+    const parts = key.split("-");
+    if (parts.length !== 6 || parts[0] !== "CS") {
       return NextResponse.json(
         { error: "INVALID_KEY_FORMAT" },
         { status: 400 }
@@ -80,47 +81,89 @@ export async function POST(req: Request) {
     }
 
     /* ==================================================
-       2️⃣ READ KEY
+       2️⃣ READ KEY FROM KV
     ================================================== */
 
     const kvUrl = `https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/storage/kv/namespaces/${CF_KV_NAMESPACE_ID}/values/${key}`;
 
     const kvRes = await fetch(kvUrl, {
-      headers: { Authorization: `Bearer ${CLOUDFLARE_API_TOKEN}` },
+      headers: {
+        Authorization: `Bearer ${CLOUDFLARE_API_TOKEN}`,
+      },
     });
 
     if (kvRes.status === 404) {
-      return NextResponse.json({ error: "KEY_NOT_FOUND" }, { status: 403 });
+      return NextResponse.json(
+        { error: "KEY_NOT_FOUND" },
+        { status: 403 }
+      );
+    }
+
+    if (!kvRes.ok) {
+      return NextResponse.json(
+        { error: "KV_READ_FAILED" },
+        { status: 500 }
+      );
     }
 
     const data = await kvRes.json();
 
-    if (data.used === true) {
+    /* ==================================================
+       3️⃣ VALIDITY & CREDIT CHECK
+    ================================================== */
+
+    if (!data.credits || typeof data.usedCredits !== "number") {
       return NextResponse.json(
-        { error: "KEY_ALREADY_USED" },
+        { error: "INVALID_KEY_STATE" },
+        { status: 500 }
+      );
+    }
+
+    if (data.expiresAt) {
+      const expiresAt = new Date(data.expiresAt).getTime();
+      if (Date.now() > expiresAt) {
+        return NextResponse.json(
+          { error: "KEY_EXPIRED" },
+          { status: 403 }
+        );
+      }
+    }
+
+    if (data.usedCredits >= data.credits) {
+      return NextResponse.json(
+        { error: "NO_CREDITS_LEFT" },
         { status: 403 }
       );
     }
 
     /* ==================================================
-       3️⃣ CONSUME KEY (ATOMIC)
+       4️⃣ CONSUME ONE CREDIT (ATOMIC OVERWRITE)
     ================================================== */
 
-    await fetch(kvUrl, {
+    const updated = {
+      ...data,
+      usedCredits: data.usedCredits + 1,
+      lastUsedAt: new Date().toISOString(),
+    };
+
+    const writeRes = await fetch(kvUrl, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${CLOUDFLARE_API_TOKEN}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        ...data,
-        used: true,
-        usedAt: new Date().toISOString(),
-      }),
+      body: JSON.stringify(updated),
     });
 
+    if (!writeRes.ok) {
+      return NextResponse.json(
+        { error: "KV_WRITE_FAILED" },
+        { status: 500 }
+      );
+    }
+
     /* ==================================================
-       4️⃣ REDIRECT → PDF DIRECT
+       5️⃣ REDIRECT TO ATTESTATION ISSUE (STATELESS)
     ================================================== */
 
     const proto = req.headers.get("x-forwarded-proto");
@@ -150,11 +193,11 @@ export async function POST(req: Request) {
       url: `${origin}/api/attestation/issue?${params.toString()}`,
     });
 
-  } catch (err: any) {
+  } catch (err) {
     console.error("REDEEM_KEY_ERROR", err);
     return NextResponse.json(
       { error: "SERVER_ERROR" },
       { status: 500 }
     );
   }
-       }
+    }
