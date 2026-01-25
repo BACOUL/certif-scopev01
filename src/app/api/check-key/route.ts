@@ -6,6 +6,15 @@ export const runtime = "nodejs";
 /**
  * FORMAT OFFICIEL STRICT
  * CS-XXXX-XXXX-XXXX-XXXX-SIGN
+ *
+ * Modèle KV attendu :
+ * {
+ *   credits: number,
+ *   usedCredits: number,
+ *   createdAt: ISOString,
+ *   expiresAt: ISOString,
+ *   source: string
+ * }
  */
 
 /* ======================================================
@@ -36,7 +45,6 @@ export async function POST(req: Request) {
       );
     }
 
-    // ✅ ALIGNEMENT STRICT AVEC redeem-key + webhook
     const KEY_SECRET = process.env.KEY_SECRET;
     const ACCOUNT_ID = process.env.CLOUDFLARE_ACCOUNT_ID;
     const NAMESPACE_ID = process.env.CF_KV_NAMESPACE_ID;
@@ -107,27 +115,31 @@ export async function POST(req: Request) {
     const data = await kvRes.json();
 
     /* ==================================================
-       4️⃣ USAGE CHECK
+       4️⃣ EXPIRATION CHECK (1 AN)
     ================================================== */
 
-    if (data.used === true) {
-      return NextResponse.json(
-        {
-          valid: true,
-          remainingCredits: 0,
-        },
-        { status: 200 }
-      );
+    if (data.expiresAt) {
+      const expiresAt = Date.parse(data.expiresAt);
+      if (!Number.isNaN(expiresAt) && Date.now() > expiresAt) {
+        return NextResponse.json(
+          { valid: false, error: "KEY_EXPIRED" },
+          { status: 403 }
+        );
+      }
     }
 
     /* ==================================================
-       ✅ KEY VALID (1 CREDIT)
+       5️⃣ CREDIT CHECK
     ================================================== */
+
+    const credits = Number(data.credits || 1);
+    const usedCredits = Number(data.usedCredits || 0);
+    const remainingCredits = Math.max(0, credits - usedCredits);
 
     return NextResponse.json(
       {
         valid: true,
-        remainingCredits: 1,
+        remainingCredits,
       },
       { status: 200 }
     );
