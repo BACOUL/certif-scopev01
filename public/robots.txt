@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
 
+Disallow: /api/
+Disallow: /verify
+Disallow: /generate
+Disallow: /*?*
+
 Sitemap: https://www.certif-scope.com/sitemap.xml
