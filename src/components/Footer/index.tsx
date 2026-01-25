@@ -66,14 +66,6 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link
-                  data-i18n="footer.link.format"
-                  href="#attestation-preview"
-                >
-                  Attestation format
-                </Link>
-              </li>
-              <li>
                 <Link data-i18n="footer.link.verify" href="/verify">
                   Verify Attestation
                 </Link>
@@ -181,4 +173,4 @@ export default function Footer() {
       </div>
     </footer>
   );
-            }
+}
