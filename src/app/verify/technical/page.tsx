@@ -7,6 +7,7 @@ import Section4 from "./sections/Section4";
 import Section5 from "./sections/Section5";
 import Section6 from "./sections/Section6";
 import Section7 from "./sections/Section7";
+import Section8 from "./sections/Section8";
 
 /* ======================================================
    SEO METADATA — TECHNICAL VERIFICATION (CANONICAL)
@@ -95,7 +96,16 @@ export default function VerifyTechnicalPage() {
           <li><a href="#public-key-and-trust">4. Public Key & Trust Model</a></li>
           <li><a href="#verification-scope">5. What Is Verified (and What Is Not)</a></li>
           <li><a href="#verification-workflows">6. Verification Workflows</a></li>
-          <li><a href="#step-by-step-verification">7. Step-by-Step Verification (CLI & Code)</a></li>
+          <li>
+            <a href="#step-by-step-verification">
+              7. Step-by-Step Verification (CLI & Code)
+            </a>
+          </li>
+          <li>
+            <a href="#security-assumptions">
+              8. Security Assumptions & Threat Model
+            </a>
+          </li>
         </ul>
       </nav>
 
@@ -108,6 +118,7 @@ export default function VerifyTechnicalPage() {
         <Section5 />
         <Section6 />
         <Section7 />
+        <Section8 />
       </div>
     </section>
   );
