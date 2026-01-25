@@ -1,7 +1,7 @@
 /* =========================================================
    Certif-Scope — Attestation i18n (DE)
    Vollständige Übersetzung
-   STRICTE 1:1 SCHLÜSSELKOHÄRENZ MIT ATTESTATION_EN
+   STRICT 1:1 SCHLÜSSELKOHÄRENZ MIT ATTESTATION_EN
    ========================================================= */
 
 export const ATTESTATION_DE = {
@@ -72,7 +72,7 @@ export const ATTESTATION_DE = {
   scopeSectionTitle: "4. Geltungsbereich",
   scopeDescriptionLabel: "Beschreibung des Geltungsbereichs",
   scopeText:
-    "Diese Bescheinigung liefert eine indikative Schätzung der Treibhausgasemissionen, die ausschließlich aus aggregierten Ausgabendaten mittels einer ausgabenbasierten Methodik (Spend-Based) abgeleitet wird.",
+    "Diese Bescheinigung liefert eine indikative Schätzung der Treibhausgasemissionen, die ausschließlich aus aggregierten Finanzdaten mittels einer ausgabenbasierten Methodik (spend-based) abgeleitet wird.",
   noteLabel: "Hinweis",
   scopeNote:
     "Dieses Dokument stellt weder ein Treibhausgasinventar noch ein Audit, eine Verifizierung oder eine regulatorische Offenlegung im Sinne der CSRD, ESRS oder vergleichbarer Rahmenwerke dar.",
@@ -82,13 +82,11 @@ export const ATTESTATION_DE = {
   =============================== */
   referencesSectionTitle: "5. Normative Referenzen",
   normativeText:
-    "Die folgenden Normen und regulatorischen Rahmenwerke werden zur methodischen Ausrichtung und kontextuellen Einordnung herangezogen:",
+    "Die folgenden Normen und Rahmenwerke werden zur methodischen Ausrichtung und kontextuellen Konsistenz herangezogen:",
   referencesList: [
-    "GHG Protocol – Scope 3 (Spend-Based Method) — https://ghgprotocol.org/scope-3-calculation-guidance",
-    "ISO 14064-1:2018 — https://www.iso.org/standard/66453.html",
-    "EU-Richtlinie zur Nachhaltigkeitsberichterstattung von Unternehmen (CSRD) — https://eur-lex.europa.eu/eli/dir/2022/2464",
-    "Europäische Nachhaltigkeitsberichterstattungsstandards (ESRS) — https://www.efrag.org/lab6",
-    "EU-Taxonomie-Verordnung — https://eur-lex.europa.eu/eli/reg/2020/852",
+    "GHG Protocol – Scope 3 (spend-based)",
+    "ISO 14064-1 (Referenz)",
+    "CSRD / ESRS / EU-Taxonomie (Kontext)",
   ],
 
   /* ===============================
