@@ -32,12 +32,18 @@ const KEY_VALIDITY_DAYS = 365;
 ====================================================== */
 
 /**
- * FORMAT STRICT
- * CS-XXXX-XXXX-XXXX-SIGN
+ * FORMAT CANONIQUE STRICT
+ * CS-XXXX-XXXX-XXXX-XXXX-SIGN
  */
 function generateAccessKey(): string {
-  const body = crypto.randomBytes(6).toString("hex").toUpperCase(); // 12 chars
-  const formatted = `CS-${body.slice(0, 4)}-${body.slice(4, 8)}-${body.slice(8, 12)}`;
+  // 8 bytes = 16 hex chars
+  const body = crypto.randomBytes(8).toString("hex").toUpperCase();
+
+  const formatted =
+    `CS-${body.slice(0, 4)}` +
+    `-${body.slice(4, 8)}` +
+    `-${body.slice(8, 12)}` +
+    `-${body.slice(12, 16)}`;
 
   const signature = crypto
     .createHmac("sha256", KEY_SECRET!)
@@ -63,7 +69,7 @@ async function storeKey(key: string, credits: number) {
     usedCredits: 0,          // crédits consommés
     createdAt: new Date().toISOString(),
     expiresAt: computeExpiryDate(), // ⏳ VALIDITÉ 1 AN
-    used: false,             // compatibilité redeem-key
+    used: false,             // compat legacy
     source: "manual",
     version: "v1",
   };
@@ -105,8 +111,8 @@ async function storeKey(key: string, credits: number) {
 const credits = Number(process.argv[2] || 1);
 const count = Number(process.argv[3] || 1);
 
-if (credits <= 0 || count <= 0) {
-  throw new Error("credits and count must be positive numbers");
+if (!Number.isInteger(credits) || !Number.isInteger(count) || credits <= 0 || count <= 0) {
+  throw new Error("credits and count must be positive integers");
 }
 
 (async () => {
