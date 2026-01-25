@@ -1,36 +1,28 @@
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+
 export function middleware(req: NextRequest) {
-  const pathname = req.nextUrl.pathname;
-
-  // ⛔️ NE JAMAIS INTERCEPTER issue
-  if (pathname === "/api/attestation/issue") {
-    return NextResponse.next();
-  }
-
   const res = NextResponse.next();
 
-  const ip =
-    req.ip ??
-    req.headers.get("x-forwarded-for")?.split(",")[0] ??
-    "unknown";
+  // Sécurité HTTP minimale (safe Edge)
+  res.headers.set("X-Content-Type-Options", "nosniff");
+  res.headers.set("Referrer-Policy", "no-referrer");
+  res.headers.set(
+    "Permissions-Policy",
+    "camera=(), microphone=(), geolocation=(), payment=()"
+  );
 
-  // Cache strict pour routes sensibles
-  if (pathname.startsWith("/verify") || pathname.startsWith("/api")) {
+  // Données sensibles : jamais en cache
+  if (
+    req.nextUrl.pathname.startsWith("/api") ||
+    req.nextUrl.pathname.startsWith("/verify")
+  ) {
     res.headers.set("Cache-Control", "no-store");
-  }
-
-  // Rate-limit VERIFY
-  if (pathname.startsWith("/verify")) {
-    if (rateLimit(`verify:${ip}`, RATE_LIMIT.maxVerify)) {
-      return new NextResponse("Too Many Requests", { status: 429 });
-    }
-  }
-
-  // Rate-limit API (SAUF issue)
-  if (pathname.startsWith("/api")) {
-    if (rateLimit(`api:${ip}`, RATE_LIMIT.maxApi)) {
-      return new NextResponse("Too Many Requests", { status: 429 });
-    }
   }
 
   return res;
 }
+
+export const config = {
+  matcher: ["/api/:path*", "/verify/:path*"],
+};
