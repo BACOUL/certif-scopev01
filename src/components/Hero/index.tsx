@@ -12,35 +12,56 @@ export default function Hero() {
       className="relative max-w-6xl mx-auto px-6 pt-8 md:pt-14 pb-14 md:pb-20 text-center"
     >
       <span className="sr-only" itemProp="alternativeHeadline">
-        Instant spend-based CO2e attestation for SMEs across Europe
+        Standardized CO₂e attestation for external business requests across Europe
       </span>
 
       <div className="absolute inset-0 bg-gradient-to-b from-white to-[#F3FBFC] -z-10" />
 
-      {/* SUBTITLE */}
+      {/* CONTEXT LINE */}
       <p
         className="text-xs md:text-sm font-semibold tracking-wide text-[#0B3A63]/70 mb-3 uppercase"
         itemProp="about"
         data-i18n="hero.subtitle"
       >
-        Instant, verifiable CO₂e attestations
+        Standardized CO₂e attestations for external requests
       </p>
 
-      {/* H1 */}
+      {/* H1 — CORE VALUE */}
       <h1
         itemProp="headline"
         data-i18n="hero.title"
-        className="text-[1.9rem] md:text-[3rem] font-extrabold text-[#0B3A63] leading-tight tracking-tight"
+        className="text-[2rem] md:text-[3rem] font-extrabold text-[#0B3A63] leading-tight tracking-tight"
       >
-        Instant spend-based CO₂e attestation for SMEs.
+        A CO₂e attestation
         <br />
-        <span className="text-[#1FB6C1]">
-          Standardized and independently verifiable.
-        </span>
+        <span className="text-[#1FB6C1]">you can share.</span>
       </h1>
 
-      {/* LEGAL + PRIVACY */}
-      <div className="mt-4 max-w-xl mx-auto space-y-1">
+      {/* SUPPORTING LINE */}
+      <p
+        className="text-base md:text-lg text-[#475569] max-w-xl mx-auto mt-4 leading-relaxed"
+        itemProp="description"
+        data-i18n="hero.description"
+      >
+        For supplier requests, tenders, client questionnaires and due diligence
+        processes across the EU.
+      </p>
+
+      {/* PRIMARY CTA */}
+      <div className="flex justify-center mt-6 md:mt-7">
+        <Link
+          href="/generate"
+          itemProp="url"
+          aria-label="Generate CO₂e Attestation"
+          data-i18n="hero.cta.generate"
+          className="bg-[#1FB6C1] hover:bg-[#17a2a8] text-white font-semibold px-12 py-4 rounded-xl shadow-md transition"
+        >
+          Generate Attestation
+        </Link>
+      </div>
+
+      {/* SECONDARY GUARANTEES */}
+      <div className="mt-5 max-w-xl mx-auto space-y-1">
         <p
           className="text-xs text-slate-500 leading-relaxed"
           data-i18n="hero.legal"
@@ -59,35 +80,12 @@ export default function Hero() {
         </p>
       </div>
 
-      {/* DESCRIPTION */}
-      <p
-        itemProp="description"
-        data-i18n="hero.description"
-        className="text-base md:text-lg text-[#475569] max-w-2xl mx-auto mt-4 leading-relaxed"
-      >
-        Generate a standardized CO₂e attestation used in procurement, banking and
-        insurer screening workflows. Fast, verifiable and consistent across the EU.
-      </p>
-
-      {/* PRIMARY CTA — UNIQUE (SPACING OPTIMIZED FOR MOBILE) */}
-      <div className="flex justify-center mt-6 md:mt-7">
-        <Link
-          href="/generate"
-          itemProp="url"
-          aria-label="Generate CO₂e Attestation"
-          data-i18n="hero.cta.generate"
-          className="bg-[#1FB6C1] hover:bg-[#17a2a8] text-white font-semibold px-12 py-4 rounded-xl shadow-md text-center transition"
-        >
-          Generate Attestation
-        </Link>
-      </div>
-
       {/* IMAGE */}
       <div className="flex justify-center mt-7 md:mt-8">
         <Image
           itemProp="primaryImageOfPage"
           src="/hero-attestation.webp"
-          alt="Preview of a standardized spend-based CO₂e attestation issued by Certif-Scope, including independent verification information."
+          alt="Preview of a standardized CO₂e attestation issued by Certif-Scope, independently verifiable and designed for external business use."
           width={900}
           height={600}
           priority
@@ -100,7 +98,7 @@ export default function Hero() {
         className="text-sm text-[#0B3A63]/80 font-medium mt-6"
         data-i18n="hero.verify"
       >
-        Verifiable independently by third parties.
+        Independently verifiable by third parties.
       </p>
     </section>
   );
