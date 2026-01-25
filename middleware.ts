@@ -24,15 +24,21 @@ function rateLimit(ip: string, limit: number) {
 }
 
 export function middleware(req: NextRequest) {
+  const path = req.nextUrl.pathname;
+
+  // 🔓 EXCEPTION ABSOLUE — NE JAMAIS TOUCHER
+  if (path === "/api/attestation/issue") {
+    return NextResponse.next();
+  }
+
   const res = NextResponse.next();
+
   const ip =
     req.ip ??
     req.headers.get("x-forwarded-for")?.split(",")[0] ??
     "unknown";
 
-  const path = req.nextUrl.pathname;
-
-  // Cache strict pour données sensibles
+  // Cache strict pour routes sensibles
   if (path.startsWith("/verify") || path.startsWith("/api")) {
     res.headers.set("Cache-Control", "no-store");
   }
@@ -44,7 +50,7 @@ export function middleware(req: NextRequest) {
     }
   }
 
-  // Rate-limit API
+  // Rate-limit API (SAUF issue)
   if (path.startsWith("/api")) {
     if (rateLimit(`api:${ip}`, RATE_LIMIT.maxApi)) {
       return new NextResponse("Too Many Requests", { status: 429 });
