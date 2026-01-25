@@ -16,14 +16,40 @@ const nextConfig = {
   },
 
   experimental: {
-    // 🔴 Désactivé pour éviter la dépendance critters
+    // Désactivé volontairement
     optimizeCss: false,
-
     optimizePackageImports: ["react", "react-dom"],
   },
 
   compiler: {
+    // Supprime tous les console.* en production
     removeConsole: process.env.NODE_ENV === "production",
+  },
+
+  async headers() {
+    return [
+      {
+        source: "/(.*)",
+        headers: [
+          {
+            key: "X-Content-Type-Options",
+            value: "nosniff",
+          },
+          {
+            key: "Referrer-Policy",
+            value: "strict-origin-when-cross-origin",
+          },
+          {
+            key: "Permissions-Policy",
+            value: "interest-cohort=()",
+          },
+          {
+            key: "X-Frame-Options",
+            value: "DENY",
+          },
+        ],
+      },
+    ];
   },
 };
 
