@@ -24,6 +24,17 @@ function sign(body: string, secret: string): string {
 
 /* ======================================================
    POST /api/redeem-key
+   FORMAT: CS-XXXX-XXXX-XXXX-XXXX-SIGN
+   KV MODEL:
+   {
+     credits?: number,
+     usedCredits?: number,
+     used?: boolean,          // legacy
+     createdAt?: string,
+     expiresAt?: string,
+     source?: string,
+     _locked?: boolean
+   }
 ====================================================== */
 
 export async function POST(req: Request) {
@@ -47,10 +58,17 @@ export async function POST(req: Request) {
     } = payload;
 
     /* ==================================================
-       0️⃣ METADATA MINIMALE
+       0️⃣ VALIDATION MÉTIER MINIMALE
     ================================================== */
 
-    if (!key || !companyName || !year || totalCO2e === undefined) {
+    if (
+      !key ||
+      !companyName ||
+      !year ||
+      totalCO2e === undefined ||
+      !methodology ||
+      !attestationLocale
+    ) {
       return NextResponse.json(
         { error: "MISSING_METADATA" },
         { status: 400 }
@@ -59,7 +77,6 @@ export async function POST(req: Request) {
 
     /* ==================================================
        1️⃣ FORMAT & SIGNATURE STRICTS
-       FORMAT: CS-XXXX-XXXX-XXXX-XXXX-SIGN
     ================================================== */
 
     const parts = key.split("-");
@@ -81,7 +98,7 @@ export async function POST(req: Request) {
     }
 
     /* ==================================================
-       2️⃣ READ KEY FROM KV
+       2️⃣ READ KEY FROM CLOUDFLARE KV
     ================================================== */
 
     const kvUrl = `https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/storage/kv/namespaces/${CF_KV_NAMESPACE_ID}/values/${key}`;
@@ -109,27 +126,10 @@ export async function POST(req: Request) {
     const data = await kvRes.json();
 
     /* ==================================================
-       3️⃣ VALIDITY & CREDIT CHECK
+       3️⃣ LEGACY KEY SUPPORT (old single-use keys)
     ================================================== */
 
-    if (!data.credits || typeof data.usedCredits !== "number") {
-      return NextResponse.json(
-        { error: "INVALID_KEY_STATE" },
-        { status: 500 }
-      );
-    }
-
-    if (data.expiresAt) {
-      const expiresAt = new Date(data.expiresAt).getTime();
-      if (Date.now() > expiresAt) {
-        return NextResponse.json(
-          { error: "KEY_EXPIRED" },
-          { status: 403 }
-        );
-      }
-    }
-
-    if (data.usedCredits >= data.credits) {
+    if (data.used === true) {
       return NextResponse.json(
         { error: "NO_CREDITS_LEFT" },
         { status: 403 }
@@ -137,13 +137,50 @@ export async function POST(req: Request) {
     }
 
     /* ==================================================
-       4️⃣ CONSUME ONE CREDIT (ATOMIC OVERWRITE)
+       4️⃣ EXPIRATION CHECK (1 YEAR)
+    ================================================== */
+
+    if (data.expiresAt) {
+      const expiresAt = new Date(data.expiresAt).getTime();
+      if (!Number.isNaN(expiresAt) && Date.now() > expiresAt) {
+        return NextResponse.json(
+          { error: "KEY_EXPIRED" },
+          { status: 403 }
+        );
+      }
+    }
+
+    /* ==================================================
+       5️⃣ CREDIT & LOCK CHECK
+    ================================================== */
+
+    if (data._locked === true) {
+      return NextResponse.json(
+        { error: "KEY_IN_USE" },
+        { status: 409 }
+      );
+    }
+
+    const credits = Number(data.credits ?? 1);
+    const usedCredits = Number(data.usedCredits ?? 0);
+
+    if (usedCredits >= credits) {
+      return NextResponse.json(
+        { error: "NO_CREDITS_LEFT" },
+        { status: 403 }
+      );
+    }
+
+    /* ==================================================
+       6️⃣ CONSUME ONE CREDIT (LOCKED WRITE)
     ================================================== */
 
     const updated = {
       ...data,
-      usedCredits: data.usedCredits + 1,
+      credits,
+      usedCredits: usedCredits + 1,
       lastUsedAt: new Date().toISOString(),
+      _locked: true,
     };
 
     const writeRes = await fetch(kvUrl, {
@@ -163,7 +200,7 @@ export async function POST(req: Request) {
     }
 
     /* ==================================================
-       5️⃣ REDIRECT TO ATTESTATION ISSUE (STATELESS)
+       7️⃣ REDIRECT → ATTESTATION ISSUE (STATELESS)
     ================================================== */
 
     const proto = req.headers.get("x-forwarded-proto");
@@ -200,4 +237,4 @@ export async function POST(req: Request) {
       { status: 500 }
     );
   }
-    }
+       }
