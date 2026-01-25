@@ -13,7 +13,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 const resend = new Resend(process.env.RESEND_API_KEY!);
 
 /* ======================================================
-   CONFIG
+   CONFIG — ENV OBLIGATOIRES
 ====================================================== */
 
 const {
@@ -34,7 +34,7 @@ if (
   throw new Error("Missing ENV variables");
 }
 
-// Validité clé : 1 an
+// Validité des clés : 1 an
 const KEY_VALIDITY_DAYS = 365;
 
 /* ======================================================
@@ -62,12 +62,12 @@ const EMAIL_I18N: Record<
 <p>Chaque clé permet de générer <strong>une attestation CO₂e</strong>.</p>
 <p style="font-size:12px;color:#666;">
 Chaque clé est valide <strong>12 mois</strong> à compter de sa date d’émission.<br/>
-Les clés ne sont pas stockées par Certif-Scope.<br/>
-Veuillez les conserver soigneusement — aucune récupération possible.
+Certif-Scope ne conserve aucune copie des clés.<br/>
+Veuillez les conserver soigneusement — aucune récupération n’est possible.
 </p>
 <p>— Certif-Scope</p>
 `,
-    attestationSubject: "Votre attestation CO₂e (PDF) – Certif-Scope",
+    attestationSubject: "Votre attestation CO₂e (PDF) — Certif-Scope",
     attestationBody: `
 <p>Votre attestation CO₂e est jointe à cet email.</p>
 <p><strong>Informations importantes :</strong></p>
@@ -94,7 +94,7 @@ Bitte bewahren Sie sie sicher auf — eine Wiederherstellung ist nicht möglich.
 </p>
 <p>— Certif-Scope</p>
 `,
-    attestationSubject: "Ihre CO₂e-Bescheinigung (PDF) – Certif-Scope",
+    attestationSubject: "Ihre CO₂e-Bescheinigung (PDF) — Certif-Scope",
     attestationBody: `
 <p>Ihre CO₂e-Bescheinigung ist dieser E-Mail beigefügt.</p>
 <p><strong>Wichtige Hinweise:</strong></p>
@@ -109,7 +109,7 @@ Bitte bewahren Sie sie sicher auf — eine Wiederherstellung ist nicht möglich.
 };
 
 /* ======================================================
-   HELPERS — KEY (SOURCE UNIQUE)
+   HELPERS — KEYS (SOURCE DE VÉRITÉ UNIQUE)
 ====================================================== */
 
 function sign(body: string): string {
@@ -122,13 +122,13 @@ function sign(body: string): string {
 }
 
 function generateAccessKey(): string {
-  const body = crypto.randomBytes(8).toString("hex").toUpperCase();
+  const raw = crypto.randomBytes(8).toString("hex").toUpperCase();
 
   const formatted =
-    `CS-${body.slice(0, 4)}` +
-    `-${body.slice(4, 8)}` +
-    `-${body.slice(8, 12)}` +
-    `-${body.slice(12, 16)}`;
+    `CS-${raw.slice(0, 4)}` +
+    `-${raw.slice(4, 8)}` +
+    `-${raw.slice(8, 12)}` +
+    `-${raw.slice(12, 16)}`;
 
   return `${formatted}-${sign(formatted)}`;
 }
@@ -154,15 +154,10 @@ async function kvPut(key: string, value: unknown) {
     },
     body: JSON.stringify(value),
   });
-  if (!res.ok) throw new Error(await res.text());
-}
 
-async function kvGet(key: string) {
-  const res = await fetch(`${KV_BASE}/${key}`, {
-    headers: { Authorization: `Bearer ${CLOUDFLARE_API_TOKEN}` },
-  });
-  if (!res.ok) return null;
-  return res.json();
+  if (!res.ok) {
+    throw new Error(await res.text());
+  }
 }
 
 /* ======================================================
@@ -172,7 +167,10 @@ async function kvGet(key: string) {
 export async function POST(req: Request) {
   const rawBody = await req.text();
   const sig = req.headers.get("stripe-signature");
-  if (!sig) return new NextResponse("Missing signature", { status: 400 });
+
+  if (!sig) {
+    return new NextResponse("Missing signature", { status: 400 });
+  }
 
   let event: Stripe.Event;
   try {
@@ -196,7 +194,7 @@ export async function POST(req: Request) {
   const i18n = EMAIL_I18N[locale];
 
   /* ===================================================
-     PACK DE CLÉS (SOURCE DE VÉRITÉ UNIQUE)
+     PACK DE CLÉS — ALIGNÉ AVEC generate-key.ts
   =================================================== */
 
   if (metadata.product === "certif-scope-pack") {
@@ -221,16 +219,12 @@ export async function POST(req: Request) {
         usedCredits: 0,
         createdAt: new Date().toISOString(),
         expiresAt: computeExpiryDate(),
+        used: false,
         source: "stripe",
         pack,
         stripeSessionId: session.id,
         version: "v1",
       });
-
-      const check = await kvGet(key);
-      if (!check) {
-        throw new Error("KEY_WRITE_VERIFICATION_FAILED");
-      }
 
       keys.push(key);
     }
@@ -255,16 +249,24 @@ export async function POST(req: Request) {
       session.customer_email ||
       null;
 
-    if (!email) return NextResponse.json({ received: true });
+    if (!email) {
+      return NextResponse.json({ received: true });
+    }
 
     const proto = req.headers.get("x-forwarded-proto");
     const host = req.headers.get("host");
     const origin = proto && host ? `${proto}://${host}` : null;
-    if (!origin) return NextResponse.json({ received: true });
+
+    if (!origin) {
+      return NextResponse.json({ received: true });
+    }
 
     const issueUrl = `${origin}/api/attestation/issue?session_id=${session.id}`;
     const pdfRes = await fetch(issueUrl);
-    if (!pdfRes.ok) return NextResponse.json({ received: true });
+
+    if (!pdfRes.ok) {
+      return NextResponse.json({ received: true });
+    }
 
     const pdfBuffer = Buffer.from(await pdfRes.arrayBuffer());
 
@@ -285,4 +287,4 @@ export async function POST(req: Request) {
   }
 
   return NextResponse.json({ received: true });
-     }
+}
