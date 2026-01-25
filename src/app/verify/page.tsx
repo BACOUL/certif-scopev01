@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 /**
  * Certif-Scope public verification key (Ed25519)
@@ -84,15 +85,27 @@ export default function VerifyPage() {
       {/* CONTENT */}
       <div className="max-w-4xl mx-auto">
         {/* INTRO */}
-        <section className="mb-12">
+        <section className="mb-10">
           <p className="text-gray-700 leading-relaxed">
             Certif-Scope attestations are issued as digitally signed PDF documents.
             The PDF file itself is the only verifiable object.
           </p>
+
           <p className="text-gray-700 leading-relaxed mt-4">
             Certif-Scope does not operate a public registry, online validator, or
             verification API. Authenticity and integrity are verified directly
             from the document.
+          </p>
+
+          {/* TECH LINK — DISCREET, FOR EXPERTS */}
+          <p className="mt-4 text-sm text-gray-600">
+            Looking for technical verification details?{" "}
+            <Link
+              href="/verify/technical"
+              className="text-[#0B3A63] underline underline-offset-4 hover:no-underline"
+            >
+              Technical verification documentation
+            </Link>
           </p>
         </section>
 
@@ -163,7 +176,7 @@ export default function VerifyPage() {
 
           <ul className="list-disc pl-6 text-gray-700 space-y-1 mb-6">
             <li>Extract the signed payload and the signature from the PDF</li>
-            <li>Verify the signature using the key provided below</li>
+            <li>Verify the signature using the public key below</li>
             <li>Confirm the Attestation ID matches the signed payload</li>
           </ul>
 
@@ -190,13 +203,24 @@ export default function VerifyPage() {
             attestations from Certif-Scope systems is not possible.
           </p>
 
-          <p>
+          <p className="mb-4">
             Certif-Scope attestations are indicative, spend-based CO₂e estimates.
             They do not constitute an audit, certification, regulatory
             compliance (including CSRD or ESRS), or assurance engagement.
+          </p>
+
+          {/* FINAL TECH LINK — COMPLIANCE / AUDIT READERS */}
+          <p className="text-xs">
+            Technical verification and cryptographic details are available{" "}
+            <Link
+              href="/verify/technical"
+              className="text-[#0B3A63] underline underline-offset-4 hover:no-underline"
+            >
+              here
+            </Link>.
           </p>
         </div>
       </div>
     </section>
   );
-      }
+        }
