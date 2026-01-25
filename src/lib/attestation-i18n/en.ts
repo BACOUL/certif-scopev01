@@ -79,11 +79,13 @@ export const ATTESTATION_EN = {
   =============================== */
   referencesSectionTitle: "5. Normative references",
   normativeText:
-    "The following standards and frameworks are referenced for methodological alignment and contextual consistency:",
+    "The following standards and regulatory frameworks are referenced for methodological alignment and contextual consistency:",
   referencesList: [
-    "GHG Protocol – Scope 3 (spend-based)",
-    "ISO 14064-1 (reference)",
-    "CSRD / ESRS / EU Taxonomy (context)",
+    "GHG Protocol – Scope 3 (Spend-Based Method) — https://ghgprotocol.org/scope-3-calculation-guidance",
+    "ISO 14064-1:2018 — https://www.iso.org/standard/66453.html",
+    "EU Corporate Sustainability Reporting Directive (CSRD) — https://eur-lex.europa.eu/eli/dir/2022/2464",
+    "European Sustainability Reporting Standards (ESRS) — https://www.efrag.org/lab6",
+    "EU Taxonomy Regulation — https://eur-lex.europa.eu/eli/reg/2020/852",
   ],
 
   /* ===============================
