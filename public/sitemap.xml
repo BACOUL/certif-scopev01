@@ -8,11 +8,30 @@
     <priority>1.0</priority>
   </url>
 
+  <!-- CORE BUSINESS -->
+  <url>
+    <loc>https://www.certif-scope.com/pricing</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.certif-scope.com/generate</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.certif-scope.com/verify</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
   <!-- PRODUCT -->
   <url>
     <loc>https://www.certif-scope.com/product</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
   </url>
 
   <url>
@@ -24,10 +43,10 @@
   <url>
     <loc>https://www.certif-scope.com/product/methodology/compliance</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
 
-  <!-- CORE PAGES -->
+  <!-- TRUST / INSTITUTIONAL -->
   <url>
     <loc>https://www.certif-scope.com/why-companies-ask</loc>
     <changefreq>monthly</changefreq>
@@ -41,19 +60,24 @@
   </url>
 
   <url>
-    <loc>https://www.certif-scope.com/verify</loc>
+    <loc>https://www.certif-scope.com/about</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
 
-  <!-- CONVERSION -->
   <url>
-    <loc>https://www.certif-scope.com/generate</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://www.certif-scope.com/contact</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
 
-  <!-- LEGAL / INSTITUTIONAL -->
+  <url>
+    <loc>https://www.certif-scope.com/faq</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <!-- LEGAL -->
   <url>
     <loc>https://www.certif-scope.com/legal</loc>
     <changefreq>yearly</changefreq>
