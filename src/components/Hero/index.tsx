@@ -12,20 +12,20 @@ export default function Hero() {
       className="relative max-w-6xl mx-auto px-6 pt-8 md:pt-14 pb-14 md:pb-20 text-center"
     >
       <span className="sr-only" itemProp="alternativeHeadline">
-        Instant spend-based CO2e attestation for SMEs across Europe
+        Standardized and verifiable CO₂e attestation for SMEs
       </span>
 
       <div className="absolute inset-0 bg-gradient-to-b from-white to-[#F3FBFC] -z-10" />
 
-      {/* SUBTITLE — CONTEXT, NOT MARKETING */}
+      {/* SURTITRE */}
       <p
         className="text-xs md:text-sm font-semibold tracking-wide text-[#0B3A63]/70 mb-3 uppercase"
         itemProp="about"
       >
-        Standardized CO₂e attestations for external requests
+        Standardized and verifiable CO₂e attestations
       </p>
 
-      {/* H1 — CIBLE + VALEUR IMMÉDIATE */}
+      {/* TITRE (H1) */}
       <h1
         itemProp="headline"
         className="text-[1.9rem] md:text-[3rem] font-extrabold text-[#0B3A63] leading-tight tracking-tight"
@@ -33,34 +33,35 @@ export default function Hero() {
         A CO₂e attestation for SMEs
         <br />
         <span className="text-[#1FB6C1]">
-          ready to share when asked.
+          standardized and independently verifiable
         </span>
       </h1>
 
-      {/* SHORT VALUE LINE — DÉBLOQUE LA SITUATION */}
+      {/* DESCRIPTION PRINCIPALE */}
       <p
         className="text-base md:text-lg text-[#475569] max-w-2xl mx-auto mt-4 leading-relaxed"
         itemProp="description"
       >
-        Answer supplier requests, tenders and client questionnaires
-        with a clear, standardized CO₂e document —
-        without running a full carbon audit.
+        Respond to supplier requests, tenders and requests from banks and insurers
+        with a clear, standardized CO₂e document — without carrying out a full
+        carbon audit.
       </p>
 
-      {/* LEGAL + PRIVACY — COURT, LISIBLE, NON ANGOISSANT */}
+      {/* LEGAL NOTICE */}
       <div className="mt-4 max-w-xl mx-auto space-y-1">
         <p className="text-xs text-slate-500 leading-relaxed">
-          Indicative spend-based estimate.  
-          Not a CSRD/ESRS report or an audited emissions inventory.
+          Based on recognized frameworks (GHG Protocol, ISO 14064-1) and used in
+          European procurement, banking and insurance practices.
         </p>
 
+        {/* PRIVACY / TRUST */}
         <p className="text-xs text-slate-500 italic flex items-center justify-center gap-1">
           <span aria-hidden>🔒</span>
-          Calculations run locally in your browser. No financial data is stored.
+          Calculations run locally in your browser. No financial input data is stored.
         </p>
       </div>
 
-      {/* CTA — SIMPLE, DIRECT, SANS PROMESSE */}
+      {/* CTA */}
       <div className="flex justify-center mt-6 md:mt-7">
         <Link
           href="/generate"
@@ -71,7 +72,7 @@ export default function Hero() {
         </Link>
       </div>
 
-      {/* IMAGE — PREUVE CONCRÈTE */}
+      {/* IMAGE */}
       <div className="flex justify-center mt-7 md:mt-8">
         <Image
           itemProp="primaryImageOfPage"
@@ -84,7 +85,7 @@ export default function Hero() {
         />
       </div>
 
-      {/* TRUST LINE — SOBRE, FACTUEL */}
+      {/* TRUST LINE */}
       <p className="text-sm text-[#0B3A63]/80 font-medium mt-6">
         Independently verifiable by any third party.
       </p>
