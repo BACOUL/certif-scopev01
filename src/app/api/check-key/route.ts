@@ -10,9 +10,9 @@ export const runtime = "nodejs";
  * MODÈLE KV ATTENDU :
  * {
  *   credits: number,
- *   usedCredits: number,
+ *   usedCredits?: number,
  *   createdAt: ISOString,
- *   expiresAt: ISOString,
+ *   expiresAt?: ISOString,
  *   used?: boolean,          // legacy compat
  *   source: string
  * }
@@ -142,7 +142,9 @@ export async function POST(req: Request) {
     }
 
     const credits = Number(data.credits);
-    const usedCredits = Number(data.usedCredits);
+    const usedCredits = Number.isInteger(Number(data.usedCredits))
+      ? Number(data.usedCredits)
+      : 0;
 
     if (
       !Number.isInteger(credits) ||
@@ -172,4 +174,4 @@ export async function POST(req: Request) {
       { status: 500 }
     );
   }
-                             }
+         }
