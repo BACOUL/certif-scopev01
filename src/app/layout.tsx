@@ -49,7 +49,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* JSON-LD — HOME ONLY (Organization + WebSite) */}
+        {/* JSON-LD — Organization */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -61,6 +61,32 @@ export default function RootLayout({
               logo: "https://www.certif-scope.com/logo.png",
               description:
                 "Spend-based CO₂e attestations used in procurement, banking and ESG workflows across Europe.",
+            }),
+          }}
+        />
+
+        {/* JSON-LD — Product */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Product",
+              name: "CO₂e Attestation",
+              description:
+                "Instantly generated spend-based CO₂e attestation based on annual spending (€). Includes verification ID and integrity hash.",
+              image: "https://www.certif-scope.com/preview.png",
+              brand: {
+                "@type": "Brand",
+                name: "Certif-Scope",
+              },
+              offers: {
+                "@type": "Offer",
+                url: "https://www.certif-scope.com/pricing",
+                priceCurrency: "EUR",
+                price: "49",
+                availability: "https://schema.org/InStock",
+              },
             }),
           }}
         />
