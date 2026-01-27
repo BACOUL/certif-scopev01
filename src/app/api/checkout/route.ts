@@ -19,7 +19,7 @@ const ALLOWED_ATTESTATION_LOCALES = [
 type AttestationLocale = (typeof ALLOWED_ATTESTATION_LOCALES)[number];
 
 /* ======================================================
-   CHECKOUT STRIPE
+   CHECKOUT STRIPE — ATTESTATION (FACTURE AUTO)
 ====================================================== */
 export async function POST(req: Request) {
   try {
@@ -94,12 +94,16 @@ export async function POST(req: Request) {
     }
 
     /* ─────────────────────────────────────────────
-       STRIPE SESSION
+       STRIPE SESSION (FACTURE ACTIVÉE)
     ───────────────────────────────────────────── */
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
 
       customer_creation: "always",
+
+      invoice_creation: {
+        enabled: true, // ✅ FACTURE STRIPE AUTOMATIQUE
+      },
 
       line_items: [
         {
@@ -138,4 +142,4 @@ export async function POST(req: Request) {
       { status: 500 }
     );
   }
-      }
+}
