@@ -35,7 +35,7 @@ if (
 const KEY_VALIDITY_DAYS = 365;
 
 /* ======================================================
-   EMAIL I18N (MINIMAL V1)
+   EMAIL I18N (PROD)
 ====================================================== */
 type Locale = "fr" | "de";
 
@@ -154,12 +154,11 @@ async function kvGet(key: string) {
 }
 
 /* ======================================================
-   STRIPE WEBHOOK (PROD SAFE)
+   STRIPE WEBHOOK — PROD SAFE
 ====================================================== */
 export async function POST(req: Request) {
   const rawBody = await req.text();
   const sig = req.headers.get("stripe-signature");
-
   if (!sig) return new NextResponse("Missing signature", { status: 400 });
 
   let event: Stripe.Event;
@@ -204,13 +203,9 @@ export async function POST(req: Request) {
   if (metadata.product === "certif-scope-pack") {
     const credits = Number(metadata.credits || 0);
     const pack = metadata.pack || "standard";
-
-    if (!email || credits <= 0) {
-      throw new Error("INVALID_PACK_METADATA");
-    }
+    if (!email || credits <= 0) throw new Error("INVALID_PACK_METADATA");
 
     const keys: string[] = [];
-
     for (let i = 0; i < credits; i++) {
       const key = generateAccessKey();
       await kvPut(key, {
@@ -226,17 +221,22 @@ export async function POST(req: Request) {
       keys.push(key);
     }
 
-    await resend.emails.send({
-      from: "Certif-Scope <no-reply@certif-scope.com>",
-      replyTo: "contact@certif-scope.com",
-      to: email,
-      subject: i18n.packSubject(pack),
-      html: i18n.packBody(keys.length, keys),
-    });
+    try {
+      await resend.emails.send({
+        from: "Certif-Scope <no-reply@send.certif-scope.com>",
+        replyTo: "contact@certif-scope.com",
+        to: email,
+        subject: i18n.packSubject(pack),
+        html: i18n.packBody(keys.length, keys),
+      });
+    } catch (err) {
+      console.error("EMAIL_SEND_FAILED_PACK", err);
+      throw new Error("EMAIL_SEND_FAILED_PACK");
+    }
   }
 
   /* ==================================================
-     ATTESTATION DIRECTE (89 €)
+     ATTESTATION DIRECTE
   ================================================== */
   if (metadata.product === "certif-scope-attestation") {
     if (!email) throw new Error("MISSING_EMAIL");
@@ -251,24 +251,29 @@ export async function POST(req: Request) {
 
     const pdfBuffer = Buffer.from(await pdfRes.arrayBuffer());
 
-    await resend.emails.send({
-      from: "Certif-Scope <no-reply@certif-scope.com>",
-      replyTo: "contact@certif-scope.com",
-      to: email,
-      subject: i18n.attestationSubject,
-      html: i18n.attestationBody,
-      attachments: [
-        {
-          filename: `certif-scope-attestation-${session.id}.pdf`,
-          content: pdfBuffer,
-          contentType: "application/pdf",
-        },
-      ],
-    });
+    try {
+      await resend.emails.send({
+        from: "Certif-Scope <no-reply@send.certif-scope.com>",
+        replyTo: "contact@certif-scope.com",
+        to: email,
+        subject: i18n.attestationSubject,
+        html: i18n.attestationBody,
+        attachments: [
+          {
+            filename: `certif-scope-attestation-${session.id}.pdf`,
+            content: pdfBuffer,
+            contentType: "application/pdf",
+          },
+        ],
+      });
+    } catch (err) {
+      console.error("EMAIL_SEND_FAILED_ATTESTATION", err);
+      throw new Error("EMAIL_SEND_FAILED_ATTESTATION");
+    }
   }
 
   /* ==================================================
-     MARQUAGE TRAITÉ (APRÈS SUCCÈS SEULEMENT)
+     MARQUAGE TRAITÉ (SEULEMENT APRÈS SUCCÈS TOTAL)
   ================================================== */
   await kvPut(processedKey, {
     processedAt: new Date().toISOString(),
