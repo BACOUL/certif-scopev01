@@ -3,44 +3,49 @@ import Stripe from "stripe";
 
 export const runtime = "nodejs";
 
-// ======================================================
-// STRIPE CLIENT (OK au build)
-// ======================================================
+/* ======================================================
+   STRIPE CLIENT
+====================================================== */
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
-// ======================================================
-// LANGUES AUTORISÉES
-// ======================================================
+/* ======================================================
+   LANGUES AUTORISÉES
+====================================================== */
 const ALLOWED_ATTESTATION_LOCALES = [
-  "en","fr","de","es","it","pt","nl","pl","cs","sk","hu",
-  "ro","bg","hr","sl","et","lv","lt","mt","el","fi","sv","da","ga",
+  "en", "fr", "de", "es", "it", "pt", "nl", "pl", "cs", "sk", "hu",
+  "ro", "bg", "hr", "sl", "et", "lv", "lt", "mt", "el", "fi", "sv", "da", "ga",
 ] as const;
 
 type AttestationLocale = (typeof ALLOWED_ATTESTATION_LOCALES)[number];
 
-// ======================================================
-// CHECKOUT
-// ======================================================
+/* ======================================================
+   CHECKOUT STRIPE
+====================================================== */
 export async function POST(req: Request) {
   try {
-    // 🔐 ENV — vérifiées AU RUNTIME
+    /* ─────────────────────────────────────────────
+       ENV (runtime)
+    ───────────────────────────────────────────── */
     const STRIPE_PRICE_ID = process.env.STRIPE_PRICE_ID;
     const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
     if (!STRIPE_PRICE_ID) {
       return NextResponse.json(
-        { error: "Missing STRIPE_PRICE_ID" },
+        { error: "MISSING_STRIPE_PRICE_ID" },
         { status: 500 }
       );
     }
 
     if (!BASE_URL) {
       return NextResponse.json(
-        { error: "Missing NEXT_PUBLIC_BASE_URL" },
+        { error: "MISSING_BASE_URL" },
         { status: 500 }
       );
     }
 
+    /* ─────────────────────────────────────────────
+       PAYLOAD
+    ───────────────────────────────────────────── */
     const body = await req.json();
 
     const {
@@ -52,13 +57,15 @@ export async function POST(req: Request) {
       totalCO2e,
       methodology,
       attestationLocale,
-      emailForDelivery, // ✅ EMAIL OPTIONNEL
+      emailForDelivery,
     } = body;
 
-    // ───────────────── VALIDATION
+    /* ─────────────────────────────────────────────
+       VALIDATION
+    ───────────────────────────────────────────── */
     if (!companyName || !companySector || !year || !country) {
       return NextResponse.json(
-        { error: "Missing required fields" },
+        { error: "MISSING_REQUIRED_FIELDS" },
         { status: 400 }
       );
     }
@@ -69,26 +76,29 @@ export async function POST(req: Request) {
       !methodology
     ) {
       return NextResponse.json(
-        { error: "Invalid result" },
+        { error: "INVALID_CO2_RESULT" },
         { status: 400 }
       );
     }
 
     if (
       !attestationLocale ||
-      !ALLOWED_ATTESTATION_LOCALES.includes(attestationLocale)
+      !ALLOWED_ATTESTATION_LOCALES.includes(
+        attestationLocale as AttestationLocale
+      )
     ) {
       return NextResponse.json(
-        { error: "Invalid language" },
+        { error: "INVALID_LOCALE" },
         { status: 400 }
       );
     }
 
-    // ───────────────── STRIPE CHECKOUT
+    /* ─────────────────────────────────────────────
+       STRIPE SESSION
+    ───────────────────────────────────────────── */
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
 
-      // 🔑 Garantit un email client exploitable côté Stripe
       customer_creation: "always",
 
       line_items: [
@@ -108,10 +118,9 @@ export async function POST(req: Request) {
         country: String(country),
         totalCO2e: String(totalCO2e),
         methodology: String(methodology),
-        attestationLocale,
+        attestationLocale: String(attestationLocale),
         referenceLocale: "en",
 
-        // ✅ EMAIL OPTIONNEL — TRANSPORT SEULEMENT (PRIVACY SAFE)
         ...(emailForDelivery && {
           emailForDelivery: String(emailForDelivery),
         }),
@@ -123,9 +132,9 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ url: session.url });
   } catch (err) {
-    console.error(err);
+    console.error("STRIPE_CHECKOUT_ERROR", err);
     return NextResponse.json(
-      { error: "Stripe checkout failed" },
+      { error: "STRIPE_CHECKOUT_FAILED" },
       { status: 500 }
     );
   }
