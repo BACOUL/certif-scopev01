@@ -35,9 +35,9 @@ if (
 const KEY_VALIDITY_DAYS = 365;
 
 /* ======================================================
-   EMAIL I18N (PROD)
+   EMAIL I18N (FR / DE / EN)
 ====================================================== */
-type Locale = "fr" | "de";
+type Locale = "fr" | "de" | "en";
 
 const EMAIL_I18N: Record<
   Locale,
@@ -54,11 +54,8 @@ const EMAIL_I18N: Record<
 <p>Bonjour,</p>
 <p>Merci pour votre achat.</p>
 <p>Voici vos <strong>${credits} clés d’accès</strong> :</p>
-<pre style="font-size:14px;line-height:1.6;">${keys.join("\n")}</pre>
+<pre>${keys.join("\n")}</pre>
 <p>Chaque clé permet de générer <strong>une attestation CO₂e</strong>.</p>
-<p style="font-size:12px;color:#666;">
-Clés valides 12 mois. Aucune conservation par Certif-Scope.
-</p>
 <p>— Certif-Scope</p>
 `,
     attestationSubject: "Votre attestation CO₂e — Certif-Scope",
@@ -78,11 +75,8 @@ Clés valides 12 mois. Aucune conservation par Certif-Scope.
 <p>Guten Tag,</p>
 <p>Vielen Dank für Ihren Kauf.</p>
 <p>Hier sind Ihre <strong>${credits} Zugangsschlüssel</strong>:</p>
-<pre style="font-size:14px;line-height:1.6;">${keys.join("\n")}</pre>
+<pre>${keys.join("\n")}</pre>
 <p>Jeder Schlüssel ermöglicht <strong>eine CO₂e-Bescheinigung</strong>.</p>
-<p style="font-size:12px;color:#666;">
-Gültigkeit 12 Monate. Keine Speicherung durch Certif-Scope.
-</p>
 <p>— Certif-Scope</p>
 `,
     attestationSubject: "Ihre CO₂e-Bescheinigung — Certif-Scope",
@@ -92,6 +86,27 @@ Gültigkeit 12 Monate. Keine Speicherung durch Certif-Scope.
   <li>Einmalige Ausstellung</li>
   <li>Keine Speicherung</li>
   <li>Bitte sicher archivieren</li>
+</ul>
+<p>— Certif-Scope</p>
+`,
+  },
+  en: {
+    packSubject: (pack) => `Your Certif-Scope access keys (${pack})`,
+    packBody: (credits, keys) => `
+<p>Hello,</p>
+<p>Thank you for your purchase.</p>
+<p>Here are your <strong>${credits} access keys</strong>:</p>
+<pre>${keys.join("\n")}</pre>
+<p>Each key allows the generation of <strong>one CO₂e attestation</strong>.</p>
+<p>— Certif-Scope</p>
+`,
+    attestationSubject: "Your CO₂e Attestation — Certif-Scope",
+    attestationBody: `
+<p>Your CO₂e attestation is attached to this email.</p>
+<ul>
+  <li>Issued once</li>
+  <li>No storage by Certif-Scope</li>
+  <li>Please archive it securely</li>
 </ul>
 <p>— Certif-Scope</p>
 `,
@@ -154,7 +169,7 @@ async function kvGet(key: string) {
 }
 
 /* ======================================================
-   STRIPE WEBHOOK — PROD SAFE
+   STRIPE WEBHOOK — FINAL
 ====================================================== */
 export async function POST(req: Request) {
   const rawBody = await req.text();
@@ -190,31 +205,29 @@ export async function POST(req: Request) {
     metadata.emailForDelivery ||
     null;
 
+  if (!email) throw new Error("MISSING_EMAIL");
+
   const locale: Locale =
-    metadata.attestationLocale === "de" || session.locale === "de"
+    metadata.attestationLocale === "de"
       ? "de"
+      : metadata.attestationLocale === "en"
+      ? "en"
       : "fr";
 
   const i18n = EMAIL_I18N[locale];
 
-  /* ==================================================
-     PACK DE KEYS
-  ================================================== */
   if (metadata.product === "certif-scope-pack") {
     const credits = Number(metadata.credits || 0);
     const pack = metadata.pack || "standard";
-    if (!email || credits <= 0) throw new Error("INVALID_PACK_METADATA");
+    if (credits <= 0) throw new Error("INVALID_PACK_METADATA");
 
     const keys: string[] = [];
     for (let i = 0; i < credits; i++) {
       const key = generateAccessKey();
       await kvPut(key, {
         credits: 1,
-        usedCredits: 0,
         createdAt: new Date().toISOString(),
         expiresAt: computeExpiryDate(),
-        source: "stripe-pack",
-        pack,
         stripeSessionId: session.id,
         version: "v1",
       });
@@ -223,19 +236,13 @@ export async function POST(req: Request) {
 
     await resend.emails.send({
       from: "Certif-Scope <no-reply@certif-scope.com>",
-      replyTo: "contact@certif-scope.com",
       to: email,
       subject: i18n.packSubject(pack),
       html: i18n.packBody(keys.length, keys),
     });
   }
 
-  /* ==================================================
-     ATTESTATION DIRECTE
-  ================================================== */
   if (metadata.product === "certif-scope-attestation") {
-    if (!email) throw new Error("MISSING_EMAIL");
-
     const proto = req.headers.get("x-forwarded-proto");
     const host = req.headers.get("host");
     if (!proto || !host) throw new Error("INVALID_ORIGIN");
@@ -248,7 +255,6 @@ export async function POST(req: Request) {
 
     await resend.emails.send({
       from: "Certif-Scope <no-reply@certif-scope.com>",
-      replyTo: "contact@certif-scope.com",
       to: email,
       subject: i18n.attestationSubject,
       html: i18n.attestationBody,
@@ -262,9 +268,6 @@ export async function POST(req: Request) {
     });
   }
 
-  /* ==================================================
-     MARQUAGE TRAITÉ (SEULEMENT APRÈS SUCCÈS TOTAL)
-  ================================================== */
   await kvPut(processedKey, {
     processedAt: new Date().toISOString(),
     product: metadata.product || "unknown",
