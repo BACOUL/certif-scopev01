@@ -221,18 +221,13 @@ export async function POST(req: Request) {
       keys.push(key);
     }
 
-    try {
-      await resend.emails.send({
-        from: "Certif-Scope <no-reply@send.certif-scope.com>",
-        replyTo: "contact@certif-scope.com",
-        to: email,
-        subject: i18n.packSubject(pack),
-        html: i18n.packBody(keys.length, keys),
-      });
-    } catch (err) {
-      console.error("EMAIL_SEND_FAILED_PACK", err);
-      throw new Error("EMAIL_SEND_FAILED_PACK");
-    }
+    await resend.emails.send({
+      from: "Certif-Scope <no-reply@certif-scope.com>",
+      replyTo: "contact@certif-scope.com",
+      to: email,
+      subject: i18n.packSubject(pack),
+      html: i18n.packBody(keys.length, keys),
+    });
   }
 
   /* ==================================================
@@ -251,25 +246,20 @@ export async function POST(req: Request) {
 
     const pdfBuffer = Buffer.from(await pdfRes.arrayBuffer());
 
-    try {
-      await resend.emails.send({
-        from: "Certif-Scope <no-reply@send.certif-scope.com>",
-        replyTo: "contact@certif-scope.com",
-        to: email,
-        subject: i18n.attestationSubject,
-        html: i18n.attestationBody,
-        attachments: [
-          {
-            filename: `certif-scope-attestation-${session.id}.pdf`,
-            content: pdfBuffer,
-            contentType: "application/pdf",
-          },
-        ],
-      });
-    } catch (err) {
-      console.error("EMAIL_SEND_FAILED_ATTESTATION", err);
-      throw new Error("EMAIL_SEND_FAILED_ATTESTATION");
-    }
+    await resend.emails.send({
+      from: "Certif-Scope <no-reply@certif-scope.com>",
+      replyTo: "contact@certif-scope.com",
+      to: email,
+      subject: i18n.attestationSubject,
+      html: i18n.attestationBody,
+      attachments: [
+        {
+          filename: `certif-scope-attestation-${session.id}.pdf`,
+          content: pdfBuffer,
+          contentType: "application/pdf",
+        },
+      ],
+    });
   }
 
   /* ==================================================
@@ -281,4 +271,4 @@ export async function POST(req: Request) {
   });
 
   return NextResponse.json({ received: true });
-}
+     }
