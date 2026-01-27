@@ -8,14 +8,12 @@ export const runtime = "nodejs";
 /* ======================================================
    CLIENTS
 ====================================================== */
-
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 const resend = new Resend(process.env.RESEND_API_KEY!);
 
 /* ======================================================
-   CONFIG — ENV OBLIGATOIRES
+   ENV OBLIGATOIRES
 ====================================================== */
-
 const {
   STRIPE_WEBHOOK_SECRET,
   CLOUDFLARE_ACCOUNT_ID,
@@ -37,9 +35,8 @@ if (
 const KEY_VALIDITY_DAYS = 365;
 
 /* ======================================================
-   I18N EMAILS
+   EMAIL I18N (MINIMAL V1)
 ====================================================== */
-
 type Locale = "fr" | "de";
 
 const EMAIL_I18N: Record<
@@ -60,16 +57,13 @@ const EMAIL_I18N: Record<
 <pre style="font-size:14px;line-height:1.6;">${keys.join("\n")}</pre>
 <p>Chaque clé permet de générer <strong>une attestation CO₂e</strong>.</p>
 <p style="font-size:12px;color:#666;">
-Chaque clé est valide <strong>12 mois</strong>.<br/>
-Certif-Scope ne conserve aucune copie des clés.<br/>
-Aucune récupération n’est possible.
+Clés valides 12 mois. Aucune conservation par Certif-Scope.
 </p>
 <p>— Certif-Scope</p>
 `,
-    attestationSubject: "Votre attestation CO₂e (PDF) — Certif-Scope",
+    attestationSubject: "Votre attestation CO₂e — Certif-Scope",
     attestationBody: `
 <p>Votre attestation CO₂e est jointe à cet email.</p>
-<p><strong>Informations importantes :</strong></p>
 <ul>
   <li>Document émis une seule fois</li>
   <li>Aucune conservation côté Certif-Scope</li>
@@ -87,13 +81,11 @@ Aucune récupération n’est possible.
 <pre style="font-size:14px;line-height:1.6;">${keys.join("\n")}</pre>
 <p>Jeder Schlüssel ermöglicht <strong>eine CO₂e-Bescheinigung</strong>.</p>
 <p style="font-size:12px;color:#666;">
-Gültigkeit <strong>12 Monate</strong>.<br/>
-Keine Speicherung durch Certif-Scope.<br/>
-Keine Wiederherstellung möglich.
+Gültigkeit 12 Monate. Keine Speicherung durch Certif-Scope.
 </p>
 <p>— Certif-Scope</p>
 `,
-    attestationSubject: "Ihre CO₂e-Bescheinigung (PDF) — Certif-Scope",
+    attestationSubject: "Ihre CO₂e-Bescheinigung — Certif-Scope",
     attestationBody: `
 <p>Ihre CO₂e-Bescheinigung ist beigefügt.</p>
 <ul>
@@ -109,7 +101,6 @@ Keine Wiederherstellung möglich.
 /* ======================================================
    HELPERS — KEYS
 ====================================================== */
-
 function sign(body: string): string {
   return crypto
     .createHmac("sha256", KEY_SECRET!)
@@ -121,12 +112,12 @@ function sign(body: string): string {
 
 function generateAccessKey(): string {
   const raw = crypto.randomBytes(8).toString("hex").toUpperCase();
-  const formatted =
+  const body =
     `CS-${raw.slice(0, 4)}` +
     `-${raw.slice(4, 8)}` +
     `-${raw.slice(8, 12)}` +
     `-${raw.slice(12, 16)}`;
-  return `${formatted}-${sign(formatted)}`;
+  return `${body}-${sign(body)}`;
 }
 
 function computeExpiryDate(): string {
@@ -138,7 +129,6 @@ function computeExpiryDate(): string {
 /* ======================================================
    CLOUDFLARE KV
 ====================================================== */
-
 const KV_BASE = `https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/storage/kv/namespaces/${CF_KV_NAMESPACE_ID}/values`;
 
 async function kvPut(key: string, value: unknown) {
@@ -156,9 +146,7 @@ async function kvPut(key: string, value: unknown) {
 async function kvGet(key: string) {
   const res = await fetch(`${KV_BASE}/${key}`, {
     method: "GET",
-    headers: {
-      Authorization: `Bearer ${CLOUDFLARE_API_TOKEN}`,
-    },
+    headers: { Authorization: `Bearer ${CLOUDFLARE_API_TOKEN}` },
   });
   if (res.status === 404) return null;
   if (!res.ok) throw new Error(await res.text());
@@ -166,9 +154,8 @@ async function kvGet(key: string) {
 }
 
 /* ======================================================
-   STRIPE WEBHOOK (IDEMPOTENT)
+   STRIPE WEBHOOK (PROD SAFE)
 ====================================================== */
-
 export async function POST(req: Request) {
   const rawBody = await req.text();
   const sig = req.headers.get("stripe-signature");
@@ -193,95 +180,96 @@ export async function POST(req: Request) {
   const session = event.data.object as Stripe.Checkout.Session;
   const metadata = session.metadata || {};
 
-  /* ---------- IDEMPOTENCE ---------- */
-
   const processedKey = `processed:${session.id}`;
   if (await kvGet(processedKey)) {
     return NextResponse.json({ received: true });
   }
 
-  const locale: Locale = metadata.attestationLocale === "de" ? "de" : "fr";
+  const email =
+    session.customer_details?.email ||
+    session.customer_email ||
+    metadata.emailForDelivery ||
+    null;
+
+  const locale: Locale =
+    metadata.attestationLocale === "de" || session.locale === "de"
+      ? "de"
+      : "fr";
+
   const i18n = EMAIL_I18N[locale];
 
-  /* ---------- PACK DE CLÉS ---------- */
-
+  /* ==================================================
+     PACK DE KEYS
+  ================================================== */
   if (metadata.product === "certif-scope-pack") {
     const credits = Number(metadata.credits || 0);
     const pack = metadata.pack || "standard";
-    const email =
-      session.customer_details?.email || session.customer_email || null;
 
-    if (credits && email) {
-      const keys: string[] = [];
+    if (!email || credits <= 0) {
+      throw new Error("INVALID_PACK_METADATA");
+    }
 
-      for (let i = 0; i < credits; i++) {
-        const key = generateAccessKey();
-        await kvPut(key, {
-          credits: 1,
-          usedCredits: 0,
-          createdAt: new Date().toISOString(),
-          expiresAt: computeExpiryDate(),
-          used: false,
-          source: "stripe",
-          pack,
-          stripeSessionId: session.id,
-          version: "v1",
-        });
-        keys.push(key);
-      }
+    const keys: string[] = [];
 
-      await resend.emails.send({
-        from: "Certif-Scope <no-reply@certif-scope.com>",
-        replyTo: "contact@certif-scope.com",
-        to: email,
-        subject: i18n.packSubject(pack),
-        html: i18n.packBody(keys.length, keys),
+    for (let i = 0; i < credits; i++) {
+      const key = generateAccessKey();
+      await kvPut(key, {
+        credits: 1,
+        usedCredits: 0,
+        createdAt: new Date().toISOString(),
+        expiresAt: computeExpiryDate(),
+        source: "stripe-pack",
+        pack,
+        stripeSessionId: session.id,
+        version: "v1",
       });
+      keys.push(key);
     }
+
+    await resend.emails.send({
+      from: "Certif-Scope <no-reply@certif-scope.com>",
+      replyTo: "contact@certif-scope.com",
+      to: email,
+      subject: i18n.packSubject(pack),
+      html: i18n.packBody(keys.length, keys),
+    });
   }
 
-  /* ---------- ATTESTATION ---------- */
-
+  /* ==================================================
+     ATTESTATION DIRECTE (89 €)
+  ================================================== */
   if (metadata.product === "certif-scope-attestation") {
-    const email =
-      metadata.emailForDelivery ||
-      session.customer_details?.email ||
-      session.customer_email ||
-      null;
+    if (!email) throw new Error("MISSING_EMAIL");
 
-    if (email) {
-      const proto = req.headers.get("x-forwarded-proto");
-      const host = req.headers.get("host");
-      const origin = proto && host ? `${proto}://${host}` : null;
+    const proto = req.headers.get("x-forwarded-proto");
+    const host = req.headers.get("host");
+    if (!proto || !host) throw new Error("INVALID_ORIGIN");
 
-      if (origin) {
-        const issueUrl = `${origin}/api/attestation/issue?session_id=${session.id}`;
-        const pdfRes = await fetch(issueUrl);
+    const issueUrl = `${proto}://${host}/api/attestation/issue?session_id=${session.id}`;
+    const pdfRes = await fetch(issueUrl);
+    if (!pdfRes.ok) throw new Error("PDF_GENERATION_FAILED");
 
-        if (pdfRes.ok) {
-          const pdfBuffer = Buffer.from(await pdfRes.arrayBuffer());
+    const pdfBuffer = Buffer.from(await pdfRes.arrayBuffer());
 
-          await resend.emails.send({
-            from: "Certif-Scope <no-reply@certif-scope.com>",
-            replyTo: "contact@certif-scope.com",
-            to: email,
-            subject: i18n.attestationSubject,
-            html: i18n.attestationBody,
-            attachments: [
-              {
-                filename: `certif-scope-attestation-${session.id}.pdf`,
-                content: pdfBuffer,
-                contentType: "application/pdf",
-              },
-            ],
-          });
-        }
-      }
-    }
+    await resend.emails.send({
+      from: "Certif-Scope <no-reply@certif-scope.com>",
+      replyTo: "contact@certif-scope.com",
+      to: email,
+      subject: i18n.attestationSubject,
+      html: i18n.attestationBody,
+      attachments: [
+        {
+          filename: `certif-scope-attestation-${session.id}.pdf`,
+          content: pdfBuffer,
+          contentType: "application/pdf",
+        },
+      ],
+    });
   }
 
-  /* ---------- MARQUAGE TRAITÉ ---------- */
-
+  /* ==================================================
+     MARQUAGE TRAITÉ (APRÈS SUCCÈS SEULEMENT)
+  ================================================== */
   await kvPut(processedKey, {
     processedAt: new Date().toISOString(),
     product: metadata.product || "unknown",
