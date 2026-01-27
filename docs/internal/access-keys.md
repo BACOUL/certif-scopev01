@@ -1,12 +1,11 @@
 cd certif-scopev01
 
-export KEY_SECRET="une-cle-secrete-longue-et-aleatoire"
-
-# 1 clé – 1 crédit
-node scripts/generate-key.ts 1 1
-
-# 1 clé – 10 crédits
-node scripts/generate-key.ts 10 1
 
 # 10 clés – 1 crédit chacune
-node scripts/generate-key.ts 1 10
+
+for i in {1..10}; do
+  curl -s -X POST https://www.certif-scope.com/api/admin/create-key \
+    -H "Content-Type: application/json" \
+    -d '{"credits":1,"note":"manual-termux"}'
+  echo
+done
