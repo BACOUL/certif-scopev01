@@ -1,22 +1,9 @@
 import { NextResponse } from "next/server";
-import crypto from "crypto";
 
 export const runtime = "nodejs";
 
 /* ======================================================
-   UTILS
-====================================================== */
-
-function generateSessionId() {
-  return `key_${crypto.randomUUID()}`;
-}
-
-function isValidKeyFormat(key: string) {
-  return /^CS-[A-Z0-9-]+$/.test(key);
-}
-
-/* ======================================================
-   API ROUTE — CONSUME KEY
+   API ROUTE — CONSUME KEY (V1 — MULTI CREDITS SAFE)
 ====================================================== */
 
 export async function POST(req: Request) {
@@ -44,21 +31,18 @@ export async function POST(req: Request) {
 
   const key = payload.key;
 
-  if (!key) {
+  if (!key || typeof key !== "string") {
     return NextResponse.json(
       { error: "MISSING_KEY" },
       { status: 400 }
     );
   }
 
-  if (!isValidKeyFormat(key)) {
-    return NextResponse.json(
-      { error: "INVALID_KEY_FORMAT" },
-      { status: 400 }
-    );
-  }
-
   const kvUrl = `https://api.cloudflare.com/client/v4/accounts/${ACCOUNT_ID}/storage/kv/namespaces/${NAMESPACE_ID}/values/${key}`;
+
+  /* ==================================================
+     READ KEY
+  ================================================== */
 
   const getRes = await fetch(kvUrl, {
     headers: {
@@ -80,12 +64,14 @@ export async function POST(req: Request) {
     );
   }
 
-  const text = await getRes.text();
-
-  let data: { used?: boolean; createdAt?: string };
+  let data: {
+    credits?: number;
+    usedCredits?: number;
+    expiresAt?: string;
+  };
 
   try {
-    data = JSON.parse(text);
+    data = await getRes.json();
   } catch {
     return NextResponse.json(
       { error: "KV_CORRUPTED_VALUE" },
@@ -93,12 +79,28 @@ export async function POST(req: Request) {
     );
   }
 
-  if (data.used === true) {
+  const credits = Number(data.credits);
+  const usedCredits = Number.isInteger(Number(data.usedCredits))
+    ? Number(data.usedCredits)
+    : 0;
+
+  if (!Number.isInteger(credits) || credits <= 0) {
     return NextResponse.json(
-      { error: "KEY_ALREADY_USED" },
+      { error: "INVALID_KEY_STATE" },
+      { status: 500 }
+    );
+  }
+
+  if (usedCredits >= credits) {
+    return NextResponse.json(
+      { error: "NO_REMAINING_CREDITS" },
       { status: 409 }
     );
   }
+
+  /* ==================================================
+     CONSUME ONE CREDIT (ATOMIC LOGIC)
+  ================================================== */
 
   const putRes = await fetch(kvUrl, {
     method: "PUT",
@@ -108,8 +110,9 @@ export async function POST(req: Request) {
     },
     body: JSON.stringify({
       ...data,
-      used: true,
-      usedAt: new Date().toISOString(),
+      credits,
+      usedCredits: usedCredits + 1,
+      lastUsedAt: new Date().toISOString(),
     }),
   });
 
@@ -120,16 +123,8 @@ export async function POST(req: Request) {
     );
   }
 
-  const sessionId = generateSessionId();
-
-  const origin =
-    req.headers.get("origin") ||
-    process.env.NEXT_PUBLIC_BASE_URL ||
-    "http://localhost:3000";
-
   return NextResponse.json({
     redeemed: true,
-    session_id: sessionId,
-    url: `${origin}/success?session_id=${sessionId}`,
+    remainingCredits: Math.max(0, credits - (usedCredits + 1)),
   });
-    }
+     }
