@@ -30,7 +30,7 @@ const PACKS: Record<
 };
 
 // ======================================================
-// CHECKOUT PACK — STRIPE
+// CHECKOUT PACK — STRIPE (FACTURE AUTO)
 // ======================================================
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
@@ -55,6 +55,11 @@ export async function GET(req: Request) {
   const session = await stripe.checkout.sessions.create({
     mode: "payment",
 
+    // ✅ FACTURE STRIPE AUTOMATIQUE
+    invoice_creation: {
+      enabled: true,
+    },
+
     line_items: [
       {
         price_data: {
@@ -74,8 +79,6 @@ export async function GET(req: Request) {
       credits: String(credits),
     },
 
-    // ✅ CORRECT — on redirige TOUJOURS vers /success
-    // La page détecte ensuite "pack" vs "attestation"
     success_url: `${origin}/success?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${origin}/pricing`,
   });
