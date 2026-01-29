@@ -16,7 +16,7 @@ export const metadata = {
     canonical: "https://www.certif-scope.com/",
   },
   icons: {
-    icon: "/favicon.png",
+    icon: "/favicon.ico",
   },
   openGraph: {
     title: "Certif-Scope — Instant CO₂e Attestation",
