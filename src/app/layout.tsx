@@ -9,9 +9,9 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export const metadata = {
-  title: "Certif-Scope — Instant CO₂e Attestation for SMEs",
+  title: "CO₂e Attestation for SMEs | Banks & Procurement – Certif-Scope",
   description:
-    "Generate a standardized, verifiable, spend-based CO₂e attestation in seconds for procurement, banking and insurer workflows.",
+    "Generate a standardized, spend-based CO₂e attestation for SMEs. Used to respond to requests from banks, insurers and procurement — without a full carbon audit.",
   alternates: {
     canonical: "https://www.certif-scope.com/",
   },
@@ -19,9 +19,9 @@ export const metadata = {
     icon: "/favicon.ico",
   },
   openGraph: {
-    title: "Certif-Scope — Instant CO₂e Attestation",
+    title: "CO₂e Attestation for SMEs – Certif-Scope",
     description:
-      "Instant spend-based CO₂e attestation. Standardized, verifiable and ready for procurement workflows.",
+      "Standardized, spend-based CO₂e attestation for SMEs. Independently verifiable and used in banking, insurance and procurement workflows.",
     url: "https://www.certif-scope.com/",
     siteName: "Certif-Scope",
     images: [
