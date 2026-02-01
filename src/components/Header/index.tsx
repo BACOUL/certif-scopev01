@@ -78,7 +78,8 @@ export default function Header() {
         border-b border-gray-200 dark:border-gray-700
       "
     >
-      <div className="w-full px-5 py-2 md:py-4 flex items-center justify-between">
+      {/* ⬇️ MOBILE HEIGHT REDUCED HERE */}
+      <div className="w-full px-5 py-1.5 md:py-4 flex items-center justify-between">
 
         {/* LOGO */}
         <Link href="/" onClick={closeAll} aria-label="Home" data-i18n="nav.home">
@@ -88,7 +89,7 @@ export default function Header() {
             width={150}
             height={45}
             priority
-            className="h-auto w-[140px] sm:w-[150px] md:w-[180px]"
+            className="h-auto w-[120px] sm:w-[140px] md:w-[180px]"
           />
         </Link>
 
@@ -124,7 +125,7 @@ export default function Header() {
           id="main-navigation"
           aria-label="Main navigation"
           className={`
-            absolute lg:static top-[60px] right-4
+            absolute lg:static top-[52px] right-4
             bg-white dark:bg-gray-900
             border border-gray-200 dark:border-gray-700
             rounded-xl shadow-lg lg:shadow-none
@@ -175,7 +176,7 @@ export default function Header() {
                   id="dropdown-attestation"
                   role="menu"
                   className="
-                    absolute left-0 top-[55px] w-56 z-50
+                    absolute left-0 top-[48px] w-56 z-50
                     bg-white dark:bg-gray-900
                     border border-gray-200 dark:border-gray-700
                     rounded-lg shadow-lg p-3
@@ -269,4 +270,4 @@ export default function Header() {
       </div>
     </header>
   );
-                                   }
+          }
