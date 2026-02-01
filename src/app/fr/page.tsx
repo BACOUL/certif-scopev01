@@ -8,11 +8,11 @@ import ProblemSolutionFR from "@/components/fr/ProblemSolution";
 import DifferentiationFR from "@/components/fr/Differentiation";
 import TrustFR from "@/components/fr/Trust";
 import AttestationPreviewFR from "@/components/fr/AttestationPreview";
+import TestimonialsFR from "@/components/fr/Testimonials";
 
 // EN — temporaire (build-safe, fichiers existants)
 import HowItWorks from "@/components/HowItWorks";
 import Features from "@/components/Features";
-import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
 
 /* ======================================================
@@ -56,13 +56,13 @@ export default function HomeFR() {
         <DifferentiationFR />
         <TrustFR />
         <AttestationPreviewFR />
+        <TestimonialsFR />
 
         {/* EN — temporaire, build-safe */}
         <HowItWorks />
         <Features />
-        <Testimonials />
         <FAQ />
       </main>
     </>
   );
-         }
+           }
