@@ -77,17 +77,17 @@ export default function Header() {
     >
       <div className="w-full px-5 py-1 md:py-4 flex items-center justify-between">
 
-        {/* LOGO — HEIGHT LOCKED (AI-DECLARED EQUIVALENT) */}
+        {/* LOGO — MATCH AI-DECLARED VISUAL SIZE */}
         <Link href="/" onClick={closeAll} aria-label="Home">
           <Image
             src="/logo.png"
             alt="Certif-Scope Logo"
-            width={180}
-            height={45}
+            width={200}
+            height={60}
             priority
             className="
-              h-[32px] w-auto
-              sm:h-[36px]
+              h-[42px] w-auto
+              sm:h-[44px]
               md:h-auto md:w-[180px]
             "
           />
@@ -125,7 +125,7 @@ export default function Header() {
           id="main-navigation"
           aria-label="Main navigation"
           className={`
-            absolute lg:static top-[48px] right-4
+            absolute lg:static top-[56px] right-4
             bg-white dark:bg-gray-900
             border border-gray-200 dark:border-gray-700
             rounded-xl shadow-lg lg:shadow-none
@@ -137,11 +137,7 @@ export default function Header() {
         >
           <ul className="flex flex-col lg:flex-row gap-4 lg:gap-10">
 
-            <li>
-              <Link href="/" onClick={closeAll} className="font-medium">
-                Home
-              </Link>
-            </li>
+            <li><Link href="/" onClick={closeAll}>Home</Link></li>
 
             <li className="relative">
               <button
@@ -149,37 +145,25 @@ export default function Header() {
                 onClick={() => setDropdown(!dropdown)}
                 aria-haspopup="true"
                 aria-expanded={dropdown}
-                className="font-medium flex items-center gap-1"
+                className="flex items-center gap-1"
               >
                 CO₂e Attestation
-                <span className={`transition-transform ${dropdown ? "rotate-180" : ""}`}>
-                  ▼
-                </span>
+                <span className={`transition-transform ${dropdown ? "rotate-180" : ""}`}>▼</span>
               </button>
 
               {dropdown && (
                 <div
                   ref={dropdownRef}
                   className="
-                    absolute left-0 top-[44px] w-56 z-50
+                    absolute left-0 top-[48px] w-56 z-50
                     bg-white dark:bg-gray-900
                     border border-gray-200 dark:border-gray-700
                     rounded-lg shadow-lg p-3
                   "
                 >
-                  <Link href="/product" onClick={closeAll} className="block py-2 text-sm">
-                    Overview
-                  </Link>
-                  <Link href="/product/methodology" onClick={closeAll} className="block py-2 text-sm">
-                    Methodology
-                  </Link>
-                  <Link
-                    href="/product/methodology/compliance"
-                    onClick={closeAll}
-                    className="block py-2 text-sm"
-                  >
-                    Compliance
-                  </Link>
+                  <Link href="/product" onClick={closeAll} className="block py-2 text-sm">Overview</Link>
+                  <Link href="/product/methodology" onClick={closeAll} className="block py-2 text-sm">Methodology</Link>
+                  <Link href="/product/methodology/compliance" onClick={closeAll} className="block py-2 text-sm">Compliance</Link>
                 </div>
               )}
             </li>
