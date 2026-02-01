@@ -75,18 +75,21 @@ export default function Header() {
         border-b border-gray-200 dark:border-gray-700
       "
     >
-      {/* MOBILE HEIGHT = AI-DECLARED */}
       <div className="w-full px-5 py-1 md:py-4 flex items-center justify-between">
 
-        {/* LOGO — SAME MOBILE SIZE AS AI-DECLARED */}
+        {/* LOGO — HEIGHT LOCKED (AI-DECLARED EQUIVALENT) */}
         <Link href="/" onClick={closeAll} aria-label="Home">
           <Image
             src="/logo.png"
             alt="Certif-Scope Logo"
-            width={120}
-            height={36}
+            width={180}
+            height={45}
             priority
-            className="h-auto w-[110px] sm:w-[130px] md:w-[180px]"
+            className="
+              h-[32px] w-auto
+              sm:h-[36px]
+              md:h-auto md:w-[180px]
+            "
           />
         </Link>
 
