@@ -5,9 +5,9 @@ import ScrollUp from "@/components/Common/ScrollUp";
 // FR — fichiers existants
 import HeroFR from "@/components/fr/Hero";
 import ProblemSolutionFR from "@/components/fr/ProblemSolution";
+import DifferentiationFR from "@/components/fr/Differentiation";
 
-// EN — temporaire (fichiers existants, build-safe)
-import Differentiation from "@/components/Differentiation";
+// EN — temporaire (build-safe)
 import HowItWorks from "@/components/HowItWorks";
 import Features from "@/components/Features";
 import Trust from "@/components/Trust";
@@ -53,9 +53,9 @@ export default function HomeFR() {
         {/* FR */}
         <HeroFR />
         <ProblemSolutionFR />
+        <DifferentiationFR />
 
-        {/* EN temporaire — à wrapper FR plus tard */}
-        <Differentiation />
+        {/* EN temporaire — build-safe */}
         <HowItWorks />
         <Features />
         <Trust />
