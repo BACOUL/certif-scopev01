@@ -77,20 +77,18 @@ export default function Header() {
     >
       <div className="w-full px-5 py-1 md:py-4 flex items-center justify-between">
 
-        {/* LOGO — MATCH AI-DECLARED VISUAL SIZE */}
+        {/* LOGO — VISUAL SIZE MATCH AI-DECLARED */}
         <Link href="/" onClick={closeAll} aria-label="Home">
-          <Image
-            src="/logo.png"
-            alt="Certif-Scope Logo"
-            width={200}
-            height={60}
-            priority
-            className="
-              h-[42px] w-auto
-              sm:h-[44px]
-              md:h-auto md:w-[180px]
-            "
-          />
+          <div className="origin-left scale-[1.25] md:scale-100">
+            <Image
+              src="/logo.png"
+              alt="Certif-Scope Logo"
+              width={180}
+              height={45}
+              priority
+              className="h-[34px] w-auto md:h-auto md:w-[180px]"
+            />
+          </div>
         </Link>
 
         {/* BURGER */}
@@ -102,21 +100,9 @@ export default function Header() {
           aria-controls="main-navigation"
           className="lg:hidden w-8 h-8 flex flex-col justify-center items-center"
         >
-          <span
-            className={`h-[3px] w-7 bg-gray-900 dark:bg-gray-200 rounded transition-all ${
-              open ? "rotate-45 translate-y-1" : ""
-            }`}
-          />
-          <span
-            className={`h-[3px] w-7 bg-gray-900 dark:bg-gray-200 rounded my-1 transition-all ${
-              open ? "opacity-0" : "opacity-100"
-            }`}
-          />
-          <span
-            className={`h-[3px] w-7 bg-gray-900 dark:bg-gray-200 rounded transition-all ${
-              open ? "-rotate-45 -translate-y-1" : ""
-            }`}
-          />
+          <span className={`h-[3px] w-7 bg-gray-900 dark:bg-gray-200 rounded transition-all ${open ? "rotate-45 translate-y-1" : ""}`} />
+          <span className={`h-[3px] w-7 bg-gray-900 dark:bg-gray-200 rounded my-1 transition-all ${open ? "opacity-0" : "opacity-100"}`} />
+          <span className={`h-[3px] w-7 bg-gray-900 dark:bg-gray-200 rounded transition-all ${open ? "-rotate-45 -translate-y-1" : ""}`} />
         </button>
 
         {/* NAV */}
@@ -136,43 +122,10 @@ export default function Header() {
           `}
         >
           <ul className="flex flex-col lg:flex-row gap-4 lg:gap-10">
-
             <li><Link href="/" onClick={closeAll}>Home</Link></li>
-
-            <li className="relative">
-              <button
-                ref={dropdownButtonRef}
-                onClick={() => setDropdown(!dropdown)}
-                aria-haspopup="true"
-                aria-expanded={dropdown}
-                className="flex items-center gap-1"
-              >
-                CO₂e Attestation
-                <span className={`transition-transform ${dropdown ? "rotate-180" : ""}`}>▼</span>
-              </button>
-
-              {dropdown && (
-                <div
-                  ref={dropdownRef}
-                  className="
-                    absolute left-0 top-[48px] w-56 z-50
-                    bg-white dark:bg-gray-900
-                    border border-gray-200 dark:border-gray-700
-                    rounded-lg shadow-lg p-3
-                  "
-                >
-                  <Link href="/product" onClick={closeAll} className="block py-2 text-sm">Overview</Link>
-                  <Link href="/product/methodology" onClick={closeAll} className="block py-2 text-sm">Methodology</Link>
-                  <Link href="/product/methodology/compliance" onClick={closeAll} className="block py-2 text-sm">Compliance</Link>
-                </div>
-              )}
-            </li>
-
             <li><Link href="/verify" onClick={closeAll}>Verify</Link></li>
             <li><Link href="/pricing" onClick={closeAll}>Pricing</Link></li>
-            <li><Link href="/partners" onClick={closeAll}>Partnerships</Link></li>
             <li><Link href="/generate" onClick={closeAll}>Generate</Link></li>
-
           </ul>
         </nav>
       </div>
