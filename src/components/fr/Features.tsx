@@ -1,6 +1,6 @@
 "use client";
 
-export default function Features() {
+export default function FeaturesFR() {
   return (
     <section
       id="features"
@@ -9,37 +9,40 @@ export default function Features() {
     >
       <div className="max-w-6xl mx-auto px-6">
 
-        {/* SECTION HEADER — HOME */}
+        {/* EN-TÊTE DE SECTION */}
         <header className="max-w-3xl mx-auto text-center mb-20">
           <p
             className="uppercase text-xs tracking-wider text-[#64748B] mb-3"
+            data-i18n="features.label"
           >
             Attestation CO₂e — Contenu
           </p>
 
           <h2
             className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-4"
+            data-i18n="features.title"
           >
-            Ce que contient l’attestation CO₂e
+            Contenu de l’attestation CO₂e
           </h2>
 
           <p
             className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed"
+            data-i18n="features.intro"
           >
             Une attestation CO₂e indicative et standardisée, conçue pour les contextes
-            d’appels d’offres, de financement bancaire, d’assurance et de screening ESG.
-            Chaque document suit une structure fixe et reproductible, dérivée exclusivement
-            des dépenses annuelles déclarées (€).
+            d’appels d’offres, bancaires, assurantiels et de screening ESG.
+            Chaque document suit une structure fixe et reproductible, fondée exclusivement
+            sur les dépenses annuelles déclarées (€).
           </p>
 
           <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto mt-10" />
         </header>
 
-        {/* GRID */}
+        {/* GRILLE */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-14">
 
-          {/* SUMMARY PAGE */}
-          <div className="flex items-start gap-5">
+          {/* PAGE DE SYNTHÈSE */}
+          <div className="flex items-start gap-5" data-i18n="features.summary">
             <div className="h-12 w-12 flex items-center justify-center rounded-xl bg-[#1FB6C1]/10 text-[#1FB6C1] flex-shrink-0">
               <svg
                 className="w-7 h-7"
@@ -54,18 +57,18 @@ export default function Features() {
             </div>
             <div>
               <h3 className="text-lg font-semibold text-[#0B3A63]">
-                Page de synthèse
+                Fiche de synthèse
               </h3>
               <p className="text-gray-600 dark:text-gray-300 mt-2 text-sm leading-relaxed">
-                Résultat CO₂e agrégé, année de référence, périmètre méthodologique et métadonnées
-                essentielles présentés dans un format uniforme, prêt à être examiné et comparé
-                par des institutions.
+                Résultat CO₂e agrégé, année de référence, périmètre méthodologique et
+                métadonnées essentielles présentés dans un format uniforme,
+                prêt pour l’analyse institutionnelle et la comparaison.
               </p>
             </div>
           </div>
 
-          {/* METHODOLOGY OVERVIEW */}
-          <div className="flex items-start gap-5">
+          {/* APERÇU MÉTHODOLOGIQUE */}
+          <div className="flex items-start gap-5" data-i18n="features.methodology">
             <div className="h-12 w-12 flex items-center justify-center rounded-xl bg-[#1FB6C1]/10 text-[#1FB6C1] flex-shrink-0">
               <svg
                 className="w-7 h-7"
@@ -83,15 +86,15 @@ export default function Features() {
                 Aperçu de la méthodologie
               </h3>
               <p className="text-gray-600 dark:text-gray-300 mt-2 text-sm leading-relaxed">
-                Description synthétique de l’approche « spend-based » appliquée, incluant
-                le périmètre, les hypothèses et les références utilisées. Les détails
-                techniques et formules complètes sont documentés séparément.
+                Description synthétique de l’approche spend-based appliquée,
+                incluant le périmètre, les hypothèses et les références.
+                Les détails techniques complets sont documentés séparément.
               </p>
             </div>
           </div>
 
-          {/* EMISSION FACTOR SOURCES */}
-          <div className="flex items-start gap-5">
+          {/* SOURCES DES FACTEURS D’ÉMISSION */}
+          <div className="flex items-start gap-5" data-i18n="features.sources">
             <div className="h-12 w-12 flex items-center justify-center rounded-xl bg-[#1FB6C1]/10 text-[#1FB6C1] flex-shrink-0">
               <svg
                 className="w-7 h-7"
@@ -109,15 +112,15 @@ export default function Features() {
                 Sources des facteurs d’émission
               </h3>
               <p className="text-gray-600 dark:text-gray-300 mt-2 text-sm leading-relaxed">
-                Références explicites des bases de facteurs d’émission utilisées, avec version
-                des jeux de données et année de publication (ADEME, DEFRA, IPCC), garantissant
-                transparence, reproductibilité et acceptation institutionnelle.
+                Sources de facteurs d’émission référencées avec version des jeux
+                de données et année de publication (ADEME, DEFRA, IPCC),
+                garantissant transparence, reproductibilité et acceptation institutionnelle.
               </p>
             </div>
           </div>
 
-          {/* VERIFICATION & INTEGRITY */}
-          <div className="flex items-start gap-5">
+          {/* VÉRIFICATION & INTÉGRITÉ */}
+          <div className="flex items-start gap-5" data-i18n="features.verification">
             <div className="h-12 w-12 flex items-center justify-center rounded-xl bg-[#1FB6C1]/10 text-[#1FB6C1] flex-shrink-0">
               <svg
                 className="w-7 h-7"
@@ -135,35 +138,37 @@ export default function Features() {
                 Bloc de vérification et d’intégrité
               </h3>
               <p className="text-gray-600 dark:text-gray-300 mt-2 text-sm leading-relaxed">
-                Des éléments de vérification intégrés permettent à un tiers de contrôler
-                l’authenticité et l’intégrité du document, sans dépendance à la plateforme
-                ni conservation des données. Aucune donnée financière détaillée n’est stockée.
+                Éléments intégrés permettant à des tiers de vérifier
+                l’authenticité et l’intégrité du document de manière indépendante,
+                sans dépendance à une plateforme ni conservation des données financières.
               </p>
             </div>
           </div>
 
         </div>
 
-        {/* INTERNAL LINK */}
+        {/* LIEN INTERNE */}
         <div className="text-center mt-14">
           <a
-            href="/product/methodology"
+            href="/fr/product/methodology"
+            data-i18n="features.link.methodology"
             className="text-[#0B3A63] dark:text-gray-300 underline text-sm hover:text-[#1FB6C1]"
           >
             Consulter la méthodologie complète →
           </a>
         </div>
 
-        {/* DISCLAIMER */}
+        {/* AVERTISSEMENT */}
         <p
           className="mt-10 text-center text-xs text-gray-500 dark:text-gray-400 max-w-xl mx-auto leading-relaxed"
+          data-i18n="features.disclaimer"
         >
-          Estimation indicative basée sur les dépenses. Ce document n’est ni conforme CSRD/ESRS,
-          ni un inventaire GES audité. Les résultats dépendent exclusivement des données
-          financières déclarées par l’utilisateur.
+          Estimation indicative basée sur les dépenses.
+          Ne constitue ni un rapport CSRD/ESRS ni un inventaire GES audité.
+          Les résultats dépendent exclusivement des données financières déclarées par l’utilisateur.
         </p>
 
       </div>
     </section>
   );
-        }
+}
