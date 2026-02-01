@@ -1,13 +1,18 @@
 import ClientLayout from "./client-layout";
 import "../styles/index.css";
 
-/* ⛔️ NOTE
-   Le mode force-dynamic est conservé volontairement.
-   Optimisation SEO/statique à traiter plus tard.
-*/
+/* ======================================================
+   GLOBAL APP CONFIG
+   - force-dynamic conservé volontairement
+   - un seul layout pour EN + FR
+====================================================== */
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
+/* ======================================================
+   DEFAULT METADATA (EN — langue canonique)
+   Les pages /fr ont leur propre metadata
+====================================================== */
 export const metadata = {
   title: "CO₂e Attestation for SMEs | Banks & Procurement – Certif-Scope",
   description:
@@ -41,13 +46,17 @@ export const metadata = {
   },
 };
 
+/* ======================================================
+   ROOT LAYOUT
+   ⚠️ Pas de lang ici → géré dynamiquement dans ClientLayout
+====================================================== */
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html suppressHydrationWarning>
       <head>
         {/* JSON-LD — Organization */}
         <script
@@ -97,4 +106,4 @@ export default function RootLayout({
       </body>
     </html>
   );
-}
+   }
