@@ -6,11 +6,11 @@ import ScrollUp from "@/components/Common/ScrollUp";
 import HeroFR from "@/components/fr/Hero";
 import ProblemSolutionFR from "@/components/fr/ProblemSolution";
 import DifferentiationFR from "@/components/fr/Differentiation";
+import TrustFR from "@/components/fr/Trust";
 
 // EN — temporaire (build-safe, fichiers existants)
 import HowItWorks from "@/components/HowItWorks";
 import Features from "@/components/Features";
-import Trust from "@/components/Trust";
 import AttestationPreview from "@/components/AttestationPreview";
 import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
@@ -54,15 +54,15 @@ export default function HomeFR() {
         <HeroFR />
         <ProblemSolutionFR />
         <DifferentiationFR />
+        <TrustFR />
 
         {/* EN — temporaire, build-safe */}
         <HowItWorks />
         <Features />
-        <Trust />
         <AttestationPreview />
         <Testimonials />
         <FAQ />
       </main>
     </>
   );
-}
+        }
