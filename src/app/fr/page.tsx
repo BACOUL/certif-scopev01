@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 
 import ScrollUp from "@/components/Common/ScrollUp";
 
-// FR
-import HeroFR from "@/components/fr/HeroFR";
+// FR — fichiers existants
+import HeroFR from "@/components/fr/Hero";
 import ProblemSolutionFR from "@/components/fr/ProblemSolution";
-import DifferentiationFR from "@/components/fr/Differentiation";
 
-// EN (temporaire)
+// EN — temporaire (fichiers existants)
+import Differentiation from "@/components/Differentiation";
 import HowItWorks from "@/components/HowItWorks";
 import Features from "@/components/Features";
 import Trust from "@/components/Trust";
@@ -52,7 +52,7 @@ export default function HomeFR() {
       <main id="main-content" role="main">
         <HeroFR />
         <ProblemSolutionFR />
-        <DifferentiationFR />
+        <Differentiation />
 
         {/* Sections EN temporaires */}
         <HowItWorks />
