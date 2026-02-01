@@ -2,18 +2,16 @@ import type { Metadata } from "next";
 
 import ScrollUp from "@/components/Common/ScrollUp";
 
-// FR — fichiers existants
+// FR — composants définitifs
 import HeroFR from "@/components/fr/Hero";
 import ProblemSolutionFR from "@/components/fr/ProblemSolution";
 import DifferentiationFR from "@/components/fr/Differentiation";
+import HowItWorksFR from "@/components/fr/HowItWorks";
+import FeaturesFR from "@/components/fr/Features";
 import TrustFR from "@/components/fr/Trust";
 import AttestationPreviewFR from "@/components/fr/AttestationPreview";
 import TestimonialsFR from "@/components/fr/Testimonials";
-import HowItWorksFR from "@/components/fr/HowItWorks";
-
-// EN — temporaire (build-safe)
-import Features from "@/components/Features";
-import FAQ from "@/components/FAQ";
+import FAQ from "@/components/FAQ"; // OK en EN temporairement si pas encore traduit
 
 /* ======================================================
    SEO / IA — META FR (HOME)
@@ -50,17 +48,14 @@ export default function HomeFR() {
       <ScrollUp />
 
       <main id="main-content" role="main">
-        {/* FR — prioritaire */}
         <HeroFR />
         <ProblemSolutionFR />
         <DifferentiationFR />
         <HowItWorksFR />
+        <FeaturesFR />
         <TrustFR />
         <AttestationPreviewFR />
         <TestimonialsFR />
-
-        {/* EN — temporaire, build-safe */}
-        <Features />
         <FAQ />
       </main>
     </>
