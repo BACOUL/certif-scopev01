@@ -1,4 +1,3 @@
-import ClientLayout from "../client-layout";
 import "../../styles/index.css";
 
 /* ======================================================
@@ -8,7 +7,7 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 /* ======================================================
-   METADATA FR
+   METADATA FR — SEO GOOGLE
 ====================================================== */
 export const metadata = {
   title: "Attestation CO₂e pour PME | Certif-Scope",
@@ -33,7 +32,9 @@ export const metadata = {
 };
 
 /* ======================================================
-   LAYOUT FR — CRITIQUE POUR GOOGLE
+   LAYOUT FR
+   ⚠️ AUCUN ClientLayout ICI
+   ⚠️ PAS DE HEADER / FOOTER
 ====================================================== */
 export default function FRLayout({
   children,
@@ -43,7 +44,7 @@ export default function FRLayout({
   return (
     <html lang="fr" suppressHydrationWarning>
       <body className="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200">
-        <ClientLayout>{children}</ClientLayout>
+        {children}
       </body>
     </html>
   );
