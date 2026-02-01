@@ -2,16 +2,16 @@ import type { Metadata } from "next";
 
 import ScrollUp from "@/components/Common/ScrollUp";
 
-// FR — fichiers existants (déjà créés)
+// FR — fichiers existants
 import HeroFR from "@/components/fr/Hero";
 import ProblemSolutionFR from "@/components/fr/ProblemSolution";
 import DifferentiationFR from "@/components/fr/Differentiation";
 import TrustFR from "@/components/fr/Trust";
 import AttestationPreviewFR from "@/components/fr/AttestationPreview";
 import TestimonialsFR from "@/components/fr/Testimonials";
+import HowItWorksFR from "@/components/fr/HowItWorks";
 
-// EN — temporaire (build-safe, fichiers existants)
-import HowItWorks from "@/components/HowItWorks";
+// EN — temporaire (build-safe)
 import Features from "@/components/Features";
 import FAQ from "@/components/FAQ";
 
@@ -54,15 +54,15 @@ export default function HomeFR() {
         <HeroFR />
         <ProblemSolutionFR />
         <DifferentiationFR />
+        <HowItWorksFR />
         <TrustFR />
         <AttestationPreviewFR />
         <TestimonialsFR />
 
         {/* EN — temporaire, build-safe */}
-        <HowItWorks />
         <Features />
         <FAQ />
       </main>
     </>
   );
-           }
+}
