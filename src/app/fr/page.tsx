@@ -11,7 +11,7 @@ import FeaturesFR from "@/components/fr/Features";
 import TrustFR from "@/components/fr/Trust";
 import AttestationPreviewFR from "@/components/fr/AttestationPreview";
 import TestimonialsFR from "@/components/fr/Testimonials";
-import FAQ from "@/components/FAQ"; // OK en EN temporairement si pas encore traduit
+import FAQFR from "@/components/fr/FAQ";
 
 /* ======================================================
    SEO / IA — META FR (HOME)
@@ -56,7 +56,7 @@ export default function HomeFR() {
         <TrustFR />
         <AttestationPreviewFR />
         <TestimonialsFR />
-        <FAQ />
+        <FAQFR />
       </main>
     </>
   );
