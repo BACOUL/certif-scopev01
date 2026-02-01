@@ -20,14 +20,12 @@ export default function Header() {
     setOpen(false);
   };
 
-  // Close menu when navigation event dispatched by ClientLayout
   useEffect(() => {
     const handler = () => closeAll();
     window.addEventListener("close-mobile-menu", handler);
     return () => window.removeEventListener("close-mobile-menu", handler);
   }, []);
 
-  // Close menu when clicking outside
   useEffect(() => {
     if (!open && !dropdown) return;
 
@@ -52,7 +50,6 @@ export default function Header() {
     };
   }, [open, dropdown]);
 
-  // Close dropdown on Escape key
   useEffect(() => {
     if (!dropdown) return;
 
@@ -78,22 +75,22 @@ export default function Header() {
         border-b border-gray-200 dark:border-gray-700
       "
     >
-      {/* ⬇️ MOBILE HEIGHT REDUCED HERE */}
-      <div className="w-full px-5 py-1.5 md:py-4 flex items-center justify-between">
+      {/* MOBILE HEIGHT = AI-DECLARED */}
+      <div className="w-full px-5 py-1 md:py-4 flex items-center justify-between">
 
-        {/* LOGO */}
-        <Link href="/" onClick={closeAll} aria-label="Home" data-i18n="nav.home">
+        {/* LOGO — SAME MOBILE SIZE AS AI-DECLARED */}
+        <Link href="/" onClick={closeAll} aria-label="Home">
           <Image
             src="/logo.png"
             alt="Certif-Scope Logo"
-            width={150}
-            height={45}
+            width={120}
+            height={36}
             priority
-            className="h-auto w-[120px] sm:w-[140px] md:w-[180px]"
+            className="h-auto w-[110px] sm:w-[130px] md:w-[180px]"
           />
         </Link>
 
-        {/* BURGER BUTTON */}
+        {/* BURGER */}
         <button
           ref={burgerRef}
           onClick={() => setOpen(!open)}
@@ -119,13 +116,13 @@ export default function Header() {
           />
         </button>
 
-        {/* NAVIGATION */}
+        {/* NAV */}
         <nav
           ref={navRef}
           id="main-navigation"
           aria-label="Main navigation"
           className={`
-            absolute lg:static top-[52px] right-4
+            absolute lg:static top-[48px] right-4
             bg-white dark:bg-gray-900
             border border-gray-200 dark:border-gray-700
             rounded-xl shadow-lg lg:shadow-none
@@ -138,34 +135,21 @@ export default function Header() {
           <ul className="flex flex-col lg:flex-row gap-4 lg:gap-10">
 
             <li>
-              <Link
-                href="/"
-                onClick={closeAll}
-                data-i18n="nav.home"
-                className={`font-medium ${
-                  pathname === "/" ? "text-primary" : "text-gray-800 dark:text-gray-200"
-                }`}
-              >
+              <Link href="/" onClick={closeAll} className="font-medium">
                 Home
               </Link>
             </li>
 
-            {/* ATTESTATION DROPDOWN */}
             <li className="relative">
               <button
                 ref={dropdownButtonRef}
                 onClick={() => setDropdown(!dropdown)}
                 aria-haspopup="true"
                 aria-expanded={dropdown}
-                aria-controls="dropdown-attestation"
-                data-i18n="nav.attestation"
-                className="font-medium text-gray-800 dark:text-gray-200 flex items-center gap-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1FB6C1]"
+                className="font-medium flex items-center gap-1"
               >
                 CO₂e Attestation
-                <span
-                  aria-hidden="true"
-                  className={`transition-transform ${dropdown ? "rotate-180" : ""}`}
-                >
+                <span className={`transition-transform ${dropdown ? "rotate-180" : ""}`}>
                   ▼
                 </span>
               </button>
@@ -173,39 +157,23 @@ export default function Header() {
               {dropdown && (
                 <div
                   ref={dropdownRef}
-                  id="dropdown-attestation"
-                  role="menu"
                   className="
-                    absolute left-0 top-[48px] w-56 z-50
+                    absolute left-0 top-[44px] w-56 z-50
                     bg-white dark:bg-gray-900
                     border border-gray-200 dark:border-gray-700
                     rounded-lg shadow-lg p-3
                   "
                 >
-                  <Link
-                    href="/product"
-                    onClick={closeAll}
-                    role="menuitem"
-                    data-i18n="nav.overview"
-                    className="block py-2 text-sm hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1FB6C1]"
-                  >
+                  <Link href="/product" onClick={closeAll} className="block py-2 text-sm">
                     Overview
                   </Link>
-                  <Link
-                    href="/product/methodology"
-                    onClick={closeAll}
-                    role="menuitem"
-                    data-i18n="nav.methodology"
-                    className="block py-2 text-sm hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1FB6C1]"
-                  >
+                  <Link href="/product/methodology" onClick={closeAll} className="block py-2 text-sm">
                     Methodology
                   </Link>
                   <Link
                     href="/product/methodology/compliance"
                     onClick={closeAll}
-                    role="menuitem"
-                    data-i18n="nav.compliance"
-                    className="block py-2 text-sm hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1FB6C1]"
+                    className="block py-2 text-sm"
                   >
                     Compliance
                   </Link>
@@ -213,61 +181,14 @@ export default function Header() {
               )}
             </li>
 
-            <li>
-              <Link
-                href="/verify"
-                onClick={closeAll}
-                data-i18n="nav.verify"
-                className={`font-medium ${
-                  pathname === "/verify" ? "text-primary" : "text-gray-800 dark:text-gray-200"
-                }`}
-              >
-                Verify Attestation
-              </Link>
-            </li>
-
-            <li>
-              <Link
-                href="/pricing"
-                onClick={closeAll}
-                data-i18n="nav.pricing"
-                className={`font-medium ${
-                  pathname === "/pricing" ? "text-primary" : "text-gray-800 dark:text-gray-200"
-                }`}
-              >
-                Pricing
-              </Link>
-            </li>
-
-            <li>
-              <Link
-                href="/partners"
-                onClick={closeAll}
-                data-i18n="nav.partners"
-                className={`font-medium ${
-                  pathname === "/partners" ? "text-primary" : "text-gray-800 dark:text-gray-200"
-                }`}
-              >
-                Partnerships
-              </Link>
-            </li>
-
-            <li>
-              <Link
-                href="/generate"
-                onClick={closeAll}
-                data-i18n="nav.generate"
-                className={`font-medium ${
-                  pathname === "/generate" ? "text-primary" : "text-gray-800 dark:text-gray-200"
-                }`}
-              >
-                Generate Attestation
-              </Link>
-            </li>
+            <li><Link href="/verify" onClick={closeAll}>Verify</Link></li>
+            <li><Link href="/pricing" onClick={closeAll}>Pricing</Link></li>
+            <li><Link href="/partners" onClick={closeAll}>Partnerships</Link></li>
+            <li><Link href="/generate" onClick={closeAll}>Generate</Link></li>
 
           </ul>
         </nav>
       </div>
     </header>
   );
-          }
+}
