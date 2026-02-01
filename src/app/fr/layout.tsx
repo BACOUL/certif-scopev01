@@ -7,34 +7,19 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 /* ======================================================
-   METADATA FR — SEO GOOGLE
+   METADATA FR — BLOQUÉ SEO TEMPORAIREMENT
 ====================================================== */
 export const metadata = {
-  title: "Attestation CO₂e pour PME | Certif-Scope",
-  description:
-    "Générez une attestation CO₂e indicative basée sur les dépenses, utilisée pour les appels d’offres, les banques et le screening ESG. Format standardisé, vérifiable indépendamment. Document non réglementaire.",
-  alternates: {
-    canonical: "https://www.certif-scope.com/fr",
-    languages: {
-      en: "https://www.certif-scope.com/",
-      fr: "https://www.certif-scope.com/fr",
-    },
-  },
-  openGraph: {
-    title: "Attestation CO₂e pour PME | Certif-Scope",
-    description:
-      "Attestation CO₂e indicative pour appels d’offres, banques et analyses ESG. Format standardisé, vérifiable indépendamment.",
-    url: "https://www.certif-scope.com/fr",
-    siteName: "Certif-Scope",
-    locale: "fr_FR",
-    type: "website",
+  robots: {
+    index: false,
+    follow: false,
   },
 };
 
 /* ======================================================
    LAYOUT FR
-   ⚠️ AUCUN ClientLayout ICI
-   ⚠️ PAS DE HEADER / FOOTER
+   - volontairement minimal
+   - aucun header/footer
 ====================================================== */
 export default function FRLayout({
   children,
