@@ -77,18 +77,20 @@ export default function Header() {
     >
       <div className="w-full px-5 py-1 md:py-4 flex items-center justify-between">
 
-        {/* LOGO — VISUAL SIZE MATCH AI-DECLARED */}
+        {/* LOGO — FORCE SAME VISUAL PRESENCE AS AI-DECLARED */}
         <Link href="/" onClick={closeAll} aria-label="Home">
-          <div className="origin-left scale-[1.25] md:scale-100">
-            <Image
-              src="/logo.png"
-              alt="Certif-Scope Logo"
-              width={180}
-              height={45}
-              priority
-              className="h-[34px] w-auto md:h-auto md:w-[180px]"
-            />
-          </div>
+          <Image
+            src="/logo.png"
+            alt="Certif-Scope Logo"
+            width={260}
+            height={80}
+            priority
+            className="
+              h-[48px] w-auto
+              sm:h-[52px]
+              md:h-auto md:w-[180px]
+            "
+          />
         </Link>
 
         {/* BURGER */}
@@ -111,7 +113,7 @@ export default function Header() {
           id="main-navigation"
           aria-label="Main navigation"
           className={`
-            absolute lg:static top-[56px] right-4
+            absolute lg:static top-[60px] right-4
             bg-white dark:bg-gray-900
             border border-gray-200 dark:border-gray-700
             rounded-xl shadow-lg lg:shadow-none
