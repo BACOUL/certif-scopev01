@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
 
 import ScrollUp from "@/components/Common/ScrollUp";
-import HeroFR from "@/components/HeroFR";
-import ProblemSolution from "@/components/ProblemSolution";
-import Differentiation from "@/components/Differentiation";
-import HowItWorks from "@/components/HowItWorks";
-import Features from "@/components/Features";
-import Trust from "@/components/Trust";
-import AttestationPreview from "@/components/AttestationPreview";
-import Testimonials from "@/components/Testimonials";
-import FAQ from "@/components/FAQ";
+
+// FR components
+import Hero from "@/components/fr/Hero";
+import ProblemSolution from "@/components/fr/ProblemSolution";
+import Differentiation from "@/components/fr/Differentiation";
+import HowItWorks from "@/components/fr/HowItWorks";
+import Features from "@/components/fr/Features";
+import Trust from "@/components/fr/Trust";
+import AttestationPreview from "@/components/fr/AttestationPreview";
+import Testimonials from "@/components/fr/Testimonials";
+import FAQ from "@/components/fr/FAQ";
 
 /* ======================================================
    SEO / IA — META FR (HOME)
@@ -46,7 +48,7 @@ export default function HomeFR() {
       <ScrollUp />
 
       <main id="main-content" role="main">
-        <HeroFR />
+        <Hero />
         <ProblemSolution />
         <Differentiation />
         <HowItWorks />
@@ -58,4 +60,4 @@ export default function HomeFR() {
       </main>
     </>
   );
-         }
+}
