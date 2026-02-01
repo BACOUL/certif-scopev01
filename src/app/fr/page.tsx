@@ -7,11 +7,11 @@ import HeroFR from "@/components/fr/Hero";
 import ProblemSolutionFR from "@/components/fr/ProblemSolution";
 import DifferentiationFR from "@/components/fr/Differentiation";
 import TrustFR from "@/components/fr/Trust";
+import AttestationPreviewFR from "@/components/fr/AttestationPreview";
 
 // EN — temporaire (build-safe, fichiers existants)
 import HowItWorks from "@/components/HowItWorks";
 import Features from "@/components/Features";
-import AttestationPreview from "@/components/AttestationPreview";
 import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
 
@@ -55,14 +55,14 @@ export default function HomeFR() {
         <ProblemSolutionFR />
         <DifferentiationFR />
         <TrustFR />
+        <AttestationPreviewFR />
 
         {/* EN — temporaire, build-safe */}
         <HowItWorks />
         <Features />
-        <AttestationPreview />
         <Testimonials />
         <FAQ />
       </main>
     </>
   );
-        }
+         }
