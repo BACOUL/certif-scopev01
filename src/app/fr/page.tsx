@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import ScrollUp from "@/components/Common/ScrollUp";
-import Hero from "@/components/Hero";
+import HeroFR from "@/components/HeroFR";
 import ProblemSolution from "@/components/ProblemSolution";
 import Differentiation from "@/components/Differentiation";
 import HowItWorks from "@/components/HowItWorks";
@@ -21,8 +21,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://certif-scope.com/fr/",
     languages: {
-      "en": "https://certif-scope.com/",
-      "fr": "https://certif-scope.com/fr/",
+      en: "https://certif-scope.com/",
+      fr: "https://certif-scope.com/fr/",
     },
   },
   openGraph: {
@@ -46,7 +46,7 @@ export default function HomeFR() {
       <ScrollUp />
 
       <main id="main-content" role="main">
-        <Hero />
+        <HeroFR />
         <ProblemSolution />
         <Differentiation />
         <HowItWorks />
@@ -58,4 +58,4 @@ export default function HomeFR() {
       </main>
     </>
   );
-}
+         }
