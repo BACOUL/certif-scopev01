@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 
 import ScrollUp from "@/components/Common/ScrollUp";
 
-// FR — fichiers existants
+// FR — fichiers existants (déjà créés)
 import HeroFR from "@/components/fr/Hero";
 import ProblemSolutionFR from "@/components/fr/ProblemSolution";
 import DifferentiationFR from "@/components/fr/Differentiation";
 
-// EN — temporaire (build-safe)
+// EN — temporaire (build-safe, fichiers existants)
 import HowItWorks from "@/components/HowItWorks";
 import Features from "@/components/Features";
 import Trust from "@/components/Trust";
@@ -50,12 +50,12 @@ export default function HomeFR() {
       <ScrollUp />
 
       <main id="main-content" role="main">
-        {/* FR */}
+        {/* FR — prioritaire */}
         <HeroFR />
         <ProblemSolutionFR />
         <DifferentiationFR />
 
-        {/* EN temporaire — build-safe */}
+        {/* EN — temporaire, build-safe */}
         <HowItWorks />
         <Features />
         <Trust />
