@@ -1,3 +1,5 @@
+// PATH: src/app/product/page.tsx
+
 import type { Metadata } from "next";
 
 import Section1 from "./sections/Section1";
@@ -9,7 +11,7 @@ import Section6 from "./sections/Section6";
 import Section7 from "./sections/Section7";
 
 /* ======================================================
-   SEO METADATA — PRODUCT PAGE (CANONICAL)
+   SEO METADATA — PRODUCT PAGE (CANONICAL + HREFLANG)
 ====================================================== */
 
 export const metadata: Metadata = {
@@ -17,15 +19,20 @@ export const metadata: Metadata = {
   description:
     "Discover the Certif-Scope CO₂e Attestation: a standardized, spend-based carbon estimate designed for procurement, banking and insurer verification workflows.",
   alternates: {
-    canonical: "https://www.certif-scope.com/product",
+    canonical: "https://certif-scope.com/product",
+    languages: {
+      en: "https://certif-scope.com/product",
+      fr: "https://certif-scope.com/fr/product",
+    },
   },
   openGraph: {
     title: "CO₂e Attestation Product — Certif-Scope",
     description:
       "A standardized, verification-ready CO₂e attestation based on annual spending. Designed for institutional and procurement use cases.",
-    url: "https://www.certif-scope.com/product",
+    url: "https://certif-scope.com/product",
     siteName: "Certif-Scope",
     type: "website",
+    locale: "en_US",
   },
 };
 
@@ -53,14 +60,14 @@ export default function ProductPage() {
             brand: {
               "@type": "Organization",
               name: "Certif-Scope",
-              url: "https://www.certif-scope.com",
+              url: "https://certif-scope.com",
             },
             offers: {
               "@type": "Offer",
               priceCurrency: "EUR",
               price: "89",
               availability: "https://schema.org/InStock",
-              url: "https://www.certif-scope.com/pricing",
+              url: "https://certif-scope.com/pricing",
             },
           }),
         }}
@@ -94,13 +101,56 @@ export default function ProductPage() {
         className="mb-16 max-w-4xl p-6 bg-[#F8FAFC] border border-gray-200 rounded-xl shadow-sm"
       >
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-[#0B3A63] font-medium">
-          <li><a href="#product-overview">1. Product Overview</a></li>
-          <li><a href="#key-benefits">2. Key Benefits Summary</a></li>
-          <li><a href="#why-the-product-exists">3. Why the Product Exists</a></li>
-          <li><a href="#attestation-pdf-contents">4. What’s Included in the PDF</a></li>
-          <li><a href="#verification-and-integrity">5. Verification & Integrity</a></li>
-          <li><a href="#usage-scenarios">6. Usage Scenarios</a></li>
-          <li><a href="#limitations-and-fit">7. Limitations & Fit</a></li>
+          <li>
+            <a href="#product-overview" className="hover:text-[#15B097] transition">
+              1. Product Overview
+            </a>
+          </li>
+          <li>
+            <a href="#key-benefits" className="hover:text-[#15B097] transition">
+              2. Key Benefits Summary
+            </a>
+          </li>
+          <li>
+            <a
+              href="#why-the-product-exists"
+              className="hover:text-[#15B097] transition"
+            >
+              3. Why the Product Exists
+            </a>
+          </li>
+          <li>
+            <a
+              href="#attestation-pdf-contents"
+              className="hover:text-[#15B097] transition"
+            >
+              4. What’s Included in the PDF
+            </a>
+          </li>
+          <li>
+            <a
+              href="#verification-and-integrity"
+              className="hover:text-[#15B097] transition"
+            >
+              5. Verification & Integrity
+            </a>
+          </li>
+          <li>
+            <a
+              href="#usage-scenarios"
+              className="hover:text-[#15B097] transition"
+            >
+              6. Usage Scenarios
+            </a>
+          </li>
+          <li>
+            <a
+              href="#limitations-and-fit"
+              className="hover:text-[#15B097] transition"
+            >
+              7. Limitations & Fit
+            </a>
+          </li>
         </ul>
       </nav>
 
@@ -116,4 +166,4 @@ export default function ProductPage() {
       </div>
     </section>
   );
-              }
+}
