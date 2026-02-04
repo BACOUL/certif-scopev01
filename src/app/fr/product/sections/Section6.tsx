@@ -131,4 +131,3 @@ export default function Section6FR() {
     </section>
   );
 }
-```0
