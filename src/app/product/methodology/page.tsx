@@ -20,10 +20,8 @@ export default function MethodologyPage() {
       data-section="methodology"
       className="max-w-7xl mx-auto px-6 pt-12 pb-24"
     >
-      {/* TOP ANCHOR */}
       <div id="top" />
 
-      {/* CANONICAL PAGE HEADER — IDENTICAL TO ALL SECONDARY PAGES */}
       <header className="mb-14">
         <p
           data-i18n="methodology.label"
@@ -51,7 +49,6 @@ export default function MethodologyPage() {
         <div className="w-20 h-[2px] bg-gray-300 mt-10" />
       </header>
 
-      {/* TABLE OF CONTENTS — CANONICAL & LOCKED */}
       <nav
         aria-label="Methodology sections"
         className="mb-16 max-w-4xl p-6 bg-[#F8FAFC] border border-gray-200 rounded-xl shadow-sm"
@@ -120,7 +117,6 @@ export default function MethodologyPage() {
         </ol>
       </nav>
 
-      {/* CONTENT — CANONICAL WIDTH & ORDER */}
       <div className="max-w-4xl mx-auto space-y-24">
         <Section1 />
         <Section2 />
@@ -137,4 +133,4 @@ export default function MethodologyPage() {
       </div>
     </section>
   );
-            }
+}
