@@ -19,17 +19,17 @@ export const metadata: Metadata = {
   description:
     "Découvrez l’attestation CO₂e Certif-Scope : une estimation carbone spend-based standardisée, conçue pour les appels d’offres, les banques et les workflows de vérification. Document indicatif, non CSRD/ESRS, non audit.",
   alternates: {
-    canonical: "https://certif-scope.com/fr/product",
+    canonical: "https://www.certif-scope.com/fr/product",
     languages: {
-      en: "https://certif-scope.com/product",
-      fr: "https://certif-scope.com/fr/product",
+      en: "https://www.certif-scope.com/product",
+      fr: "https://www.certif-scope.com/fr/product",
     },
   },
   openGraph: {
     title: "Attestation CO₂e — Produit | Certif-Scope",
     description:
       "Attestation CO₂e indicative basée sur les dépenses : format standardisé, vérifiable, adapté aux usages institutionnels et procurement. Non réglementaire.",
-    url: "https://certif-scope.com/fr/product",
+    url: "https://www.certif-scope.com/fr/product",
     siteName: "Certif-Scope",
     type: "website",
     locale: "fr_FR",
@@ -47,27 +47,26 @@ export default function ProductPageFR() {
       data-section="product"
       className="max-w-7xl mx-auto px-6 pt-12 pb-24"
     >
-      {/* JSON-LD — PRODUCT (FR, CANONICAL) */}
+      {/* JSON-LD — SERVICE (FR, CANONICAL) */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "Product",
+            "@type": "Service",
             name: "Attestation CO₂e Certif-Scope",
             description:
               "Attestation CO₂e indicative et standardisée, basée sur les dépenses (spend-based), conçue pour la vérification dans les workflows procurement, bancaires et assurantiels.",
-            brand: {
+            provider: {
               "@type": "Organization",
               name: "Certif-Scope",
-              url: "https://certif-scope.com",
+              url: "https://www.certif-scope.com",
             },
             offers: {
               "@type": "Offer",
               priceCurrency: "EUR",
               price: "89",
-              availability: "https://schema.org/InStock",
-              url: "https://certif-scope.com/fr/pricing",
+              url: "https://www.certif-scope.com/fr/pricing",
             },
           }),
         }}
@@ -102,7 +101,10 @@ export default function ProductPageFR() {
       >
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-[#0B3A63] font-medium">
           <li>
-            <a href="#product-overview" className="hover:text-[#15B097] transition">
+            <a
+              href="#product-overview"
+              className="hover:text-[#15B097] transition"
+            >
               1. Présentation du produit
             </a>
           </li>
