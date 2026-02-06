@@ -1,229 +1,142 @@
-"use client";
+// src/app/fr/verify/page.tsx
 
-import Image from "next/image";
+import type { Metadata } from "next";
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
-import { usePathname } from "next/navigation";
 
-export default function HeaderFR() {
-  const pathname = usePathname();
-  const [open, setOpen] = useState(false);
-  const [dropdown, setDropdown] = useState(false);
+/* ======================================================
+   SEO METADATA — VERIFY (FR)
+====================================================== */
 
-  const navRef = useRef<HTMLDivElement | null>(null);
-  const burgerRef = useRef<HTMLButtonElement | null>(null);
-  const dropdownButtonRef = useRef<HTMLButtonElement | null>(null);
+export const metadata: Metadata = {
+  title: "Vérifier une attestation — Certif-Scope",
+  description:
+    "Vérifiez l’authenticité et l’intégrité d’une attestation CO₂e Certif-Scope. Vérification publique, indépendante et possible hors ligne.",
+  alternates: {
+    canonical: "https://www.certif-scope.com/fr/verify",
+  },
+  openGraph: {
+    title: "Vérifier une attestation — Certif-Scope",
+    description:
+      "Vérification publique d’une attestation CO₂e Certif-Scope : authenticité, intégrité et limites de la vérification.",
+    url: "https://www.certif-scope.com/fr/verify",
+    siteName: "Certif-Scope",
+    type: "website",
+  },
+};
 
-  const closeAll = () => {
-    setDropdown(false);
-    setOpen(false);
-  };
+/* ======================================================
+   PAGE
+====================================================== */
 
-  // Fermeture automatique lors d’un changement de page
-  useEffect(() => {
-    const handler = () => closeAll();
-    window.addEventListener("close-mobile-menu", handler);
-    return () => window.removeEventListener("close-mobile-menu", handler);
-  }, []);
-
-  // Click extérieur
-  useEffect(() => {
-    if (!open && !dropdown) return;
-
-    const handleClickOutside = (event: MouseEvent | TouchEvent) => {
-      const target = event.target as Node;
-      if (
-        navRef.current &&
-        !navRef.current.contains(target) &&
-        burgerRef.current &&
-        !burgerRef.current.contains(target)
-      ) {
-        closeAll();
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    document.addEventListener("touchstart", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("touchstart", handleClickOutside);
-    };
-  }, [open, dropdown]);
-
-  // Escape
-  useEffect(() => {
-    if (!dropdown) return;
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setDropdown(false);
-        dropdownButtonRef.current?.focus();
-      }
-    };
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [dropdown]);
-
+export default function VerifyFRPage() {
   return (
-    <header
-      id="site-header"
-      role="banner"
-      className="
-        fixed top-0 left-0 w-full z-50
-        bg-white/95 dark:bg-gray-900/90
-        backdrop-blur-md
-        border-b border-gray-200 dark:border-gray-700
-      "
+    <section
+      id="verify"
+      data-section="verify"
+      className="max-w-7xl mx-auto px-6 pt-12 pb-24"
     >
-      <div className="w-full px-5 py-2 md:py-4 flex items-center justify-between">
-        {/* LOGO */}
-        <Link href="/fr" onClick={closeAll} aria-label="Accueil">
-          <Image
-            src="/logo.png"
-            alt="Certif-Scope"
-            width={180}
-            height={50}
-            priority
-            className="h-auto w-[140px] sm:w-[150px] md:w-[180px]"
-          />
-        </Link>
+      {/* JSON-LD — WEBPAGE */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: "Vérifier une attestation CO₂e",
+            description:
+              "Page publique de vérification d’une attestation CO₂e Certif-Scope, avec explication des garanties techniques et de leurs limites.",
+            url: "https://www.certif-scope.com/fr/verify",
+            isPartOf: {
+              "@type": "WebSite",
+              name: "Certif-Scope",
+              url: "https://www.certif-scope.com",
+            },
+          }),
+        }}
+      />
 
-        {/* BURGER */}
-        <button
-          ref={burgerRef}
-          onClick={() => setOpen(!open)}
-          aria-label="Ouvrir le menu"
-          aria-expanded={open}
-          aria-controls="main-navigation"
-          className="lg:hidden w-8 h-8 flex flex-col justify-center items-center"
-        >
-          <span
-            className={`h-[3px] w-7 bg-gray-900 dark:bg-gray-200 rounded transition-all ${
-              open ? "rotate-45 translate-y-1" : ""
-            }`}
-          />
-          <span
-            className={`h-[3px] w-7 bg-gray-900 dark:bg-gray-200 rounded my-1 transition-all ${
-              open ? "opacity-0" : ""
-            }`}
-          />
-          <span
-            className={`h-[3px] w-7 bg-gray-900 dark:bg-gray-200 rounded transition-all ${
-              open ? "-rotate-45 -translate-y-1" : ""
-            }`}
-          />
-        </button>
+      {/* TOP ANCHOR */}
+      <div id="top" />
 
-        {/* NAV */}
-        <nav
-          ref={navRef}
-          id="main-navigation"
-          aria-label="Navigation principale"
-          className={`
-            absolute lg:static top-[60px] right-4
-            bg-white dark:bg-gray-900
-            border border-gray-200 dark:border-gray-700
-            rounded-xl shadow-lg lg:shadow-none
-            p-5 lg:p-0
-            w-64 lg:w-auto
-            transition-all
-            ${open ? "block" : "hidden lg:block"}
-          `}
-        >
-          <ul className="flex flex-col lg:flex-row gap-4 lg:gap-10">
+      {/* HEADER */}
+      <header className="mb-14">
+        <p className="uppercase text-xs tracking-wider text-[#64748B] mb-3">
+          Attestation CO₂e — Vérification
+        </p>
+
+        <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-6">
+          Vérifier une attestation
+        </h1>
+
+        <p className="text-lg text-gray-700 leading-relaxed max-w-3xl">
+          Cette page explique comment vérifier l’authenticité et l’intégrité
+          d’une attestation CO₂e Certif-Scope. La vérification confirme que le
+          document n’a pas été modifié depuis son émission et qu’il provient de
+          Certif-Scope. Elle ne valide pas l’exactitude des données financières
+          fournies par l’utilisateur et ne constitue pas un audit.
+        </p>
+
+        <div className="w-20 h-[2px] bg-gray-300 mt-10" />
+      </header>
+
+      {/* CONTENT */}
+      <div className="max-w-4xl mx-auto space-y-12">
+        <div className="p-10 bg-[#F8FAFC] border border-gray-200 rounded-2xl shadow-sm">
+          <h2 className="text-2xl font-extrabold text-[#0B3A63] mb-4">
+            Vérification simple (lecteur PDF)
+          </h2>
+          <p className="text-gray-700 leading-relaxed">
+            Ouvrez le PDF dans un lecteur supportant les signatures numériques
+            (ex. Adobe Acrobat, Foxit). Accédez au panneau “Signature” ou
+            “Sécurité” et vérifiez que le document est indiqué comme “signé” et
+            “non modifié”.
+          </p>
+        </div>
+
+        <div className="p-10 bg-white border border-gray-200 rounded-2xl shadow-md">
+          <h2 className="text-2xl font-extrabold text-[#0B3A63] mb-4">
+            Vérification technique (hors ligne)
+          </h2>
+          <p className="text-gray-700 leading-relaxed">
+            Pour les équipes techniques (audit, sécurité, développeurs), une
+            procédure de vérification complète (modèle de signature, clé
+            publique, structure signée, étapes CLI & code) est disponible.
+          </p>
+
+          <div className="mt-6">
+            <Link
+              href="/fr/verify/techincal"
+              className="inline-flex items-center justify-center px-5 py-3 rounded-lg bg-[#0B3A63] text-white font-semibold hover:opacity-95 transition"
+            >
+              Ouvrir le guide de vérification technique
+            </Link>
+            <p className="mt-3 text-sm text-gray-600">
+              Vérification indépendante, possible hors ligne, sans API ni compte.
+            </p>
+          </div>
+        </div>
+
+        <div className="p-10 bg-[#0B3A63] text-white rounded-2xl shadow-md relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#15B097]/25 to-transparent opacity-20 pointer-events-none" />
+          <h2 className="text-2xl font-extrabold relative z-10 mb-4">
+            Limites de la vérification
+          </h2>
+          <ul className="relative z-10 space-y-2 text-white/90 leading-relaxed">
             <li>
-              <Link
-                href="/fr"
-                onClick={closeAll}
-                className={`font-medium ${
-                  pathname === "/fr"
-                    ? "text-primary"
-                    : "text-gray-800 dark:text-gray-200"
-                }`}
-              >
-                Accueil
-              </Link>
-            </li>
-
-            {/* DROPDOWN */}
-            <li className="relative">
-              <button
-                ref={dropdownButtonRef}
-                onClick={() => setDropdown(!dropdown)}
-                aria-haspopup="true"
-                aria-expanded={dropdown}
-                className="font-medium text-gray-800 dark:text-gray-200 flex items-center gap-1"
-              >
-                Attestation CO₂e
-                <span
-                  className={`transition-transform ${
-                    dropdown ? "rotate-180" : ""
-                  }`}
-                >
-                  ▼
-                </span>
-              </button>
-
-              {dropdown && (
-                <div
-                  role="menu"
-                  className="
-                    absolute left-0 top-[55px] w-64 z-50
-                    bg-white dark:bg-gray-900
-                    border border-gray-200 dark:border-gray-700
-                    rounded-lg shadow-lg p-3
-                  "
-                >
-                  <Link
-                    href="/fr/product"
-                    onClick={closeAll}
-                    className="block py-2 text-sm hover:text-primary"
-                  >
-                    Présentation
-                  </Link>
-                  <Link
-                    href="/fr/product/methodology"
-                    onClick={closeAll}
-                    className="block py-2 text-sm hover:text-primary"
-                  >
-                    Méthodologie
-                  </Link>
-
-                  {/* FIX: Compliance FR route */}
-                  <Link
-                    href="/fr/product/compliance"
-                    onClick={closeAll}
-                    className="block py-2 text-sm hover:text-primary"
-                  >
-                    Cadre &amp; conformité
-                  </Link>
-                </div>
-              )}
-            </li>
-
-            <li>
-              <Link href="/fr/verify" onClick={closeAll}>
-                Vérifier une attestation
-              </Link>
+              • La vérification confirme l’intégrité et l’authenticité du
+              document.
             </li>
             <li>
-              <Link href="/fr/pricing" onClick={closeAll}>
-                Tarification
-              </Link>
+              • Elle ne confirme pas l’exactitude ni l’exhaustivité des données
+              de dépenses fournies.
             </li>
             <li>
-              <Link href="/fr/partners" onClick={closeAll}>
-                Partenariats
-              </Link>
-            </li>
-            <li>
-              <Link href="/fr/generate" onClick={closeAll}>
-                Générer une attestation
-              </Link>
+              • Elle ne constitue pas une conformité CSRD/ESRS, ni un inventaire
+              GES ISO 14064-1, ni un audit.
             </li>
           </ul>
-        </nav>
+        </div>
       </div>
-    </header>
+    </section>
   );
 }
-```0
