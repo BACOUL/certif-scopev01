@@ -75,7 +75,6 @@ export default function HeaderFR() {
       "
     >
       <div className="w-full px-5 py-2 md:py-4 flex items-center justify-between">
-
         {/* LOGO */}
         <Link href="/fr" onClick={closeAll} aria-label="Accueil">
           <Image
@@ -97,9 +96,21 @@ export default function HeaderFR() {
           aria-controls="main-navigation"
           className="lg:hidden w-8 h-8 flex flex-col justify-center items-center"
         >
-          <span className={`h-[3px] w-7 bg-gray-900 dark:bg-gray-200 rounded transition-all ${open ? "rotate-45 translate-y-1" : ""}`} />
-          <span className={`h-[3px] w-7 bg-gray-900 dark:bg-gray-200 rounded my-1 transition-all ${open ? "opacity-0" : ""}`} />
-          <span className={`h-[3px] w-7 bg-gray-900 dark:bg-gray-200 rounded transition-all ${open ? "-rotate-45 -translate-y-1" : ""}`} />
+          <span
+            className={`h-[3px] w-7 bg-gray-900 dark:bg-gray-200 rounded transition-all ${
+              open ? "rotate-45 translate-y-1" : ""
+            }`}
+          />
+          <span
+            className={`h-[3px] w-7 bg-gray-900 dark:bg-gray-200 rounded my-1 transition-all ${
+              open ? "opacity-0" : ""
+            }`}
+          />
+          <span
+            className={`h-[3px] w-7 bg-gray-900 dark:bg-gray-200 rounded transition-all ${
+              open ? "-rotate-45 -translate-y-1" : ""
+            }`}
+          />
         </button>
 
         {/* NAV */}
@@ -119,7 +130,6 @@ export default function HeaderFR() {
           `}
         >
           <ul className="flex flex-col lg:flex-row gap-4 lg:gap-10">
-
             <li>
               <Link
                 href="/fr"
@@ -144,7 +154,13 @@ export default function HeaderFR() {
                 className="font-medium text-gray-800 dark:text-gray-200 flex items-center gap-1"
               >
                 Attestation CO₂e
-                <span className={`transition-transform ${dropdown ? "rotate-180" : ""}`}>▼</span>
+                <span
+                  className={`transition-transform ${
+                    dropdown ? "rotate-180" : ""
+                  }`}
+                >
+                  ▼
+                </span>
               </button>
 
               {dropdown && (
@@ -157,27 +173,56 @@ export default function HeaderFR() {
                     rounded-lg shadow-lg p-3
                   "
                 >
-                  <Link href="/fr/product" onClick={closeAll} className="block py-2 text-sm hover:text-primary">
+                  <Link
+                    href="/fr/product"
+                    onClick={closeAll}
+                    className="block py-2 text-sm hover:text-primary"
+                  >
                     Présentation
                   </Link>
-                  <Link href="/fr/product/methodology" onClick={closeAll} className="block py-2 text-sm hover:text-primary">
+                  <Link
+                    href="/fr/product/methodology"
+                    onClick={closeAll}
+                    className="block py-2 text-sm hover:text-primary"
+                  >
                     Méthodologie
                   </Link>
-                  <Link href="/fr/product/methodology/compliance" onClick={closeAll} className="block py-2 text-sm hover:text-primary">
-                    Cadre & conformité
+
+                  {/* FIX: Compliance FR route */}
+                  <Link
+                    href="/fr/product/compliance"
+                    onClick={closeAll}
+                    className="block py-2 text-sm hover:text-primary"
+                  >
+                    Cadre &amp; conformité
                   </Link>
                 </div>
               )}
             </li>
 
-            <li><Link href="/fr/verify" onClick={closeAll}>Vérifier une attestation</Link></li>
-            <li><Link href="/fr/pricing" onClick={closeAll}>Tarification</Link></li>
-            <li><Link href="/fr/partners" onClick={closeAll}>Partenariats</Link></li>
-            <li><Link href="/fr/generate" onClick={closeAll}>Générer une attestation</Link></li>
-
+            <li>
+              <Link href="/fr/verify" onClick={closeAll}>
+                Vérifier une attestation
+              </Link>
+            </li>
+            <li>
+              <Link href="/fr/pricing" onClick={closeAll}>
+                Tarification
+              </Link>
+            </li>
+            <li>
+              <Link href="/fr/partners" onClick={closeAll}>
+                Partenariats
+              </Link>
+            </li>
+            <li>
+              <Link href="/fr/generate" onClick={closeAll}>
+                Générer une attestation
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>
     </header>
   );
-      }
+}
