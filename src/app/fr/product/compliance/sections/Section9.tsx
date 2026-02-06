@@ -123,4 +123,3 @@ export default function Section9() {
     </section>
   );
 }
-```0
