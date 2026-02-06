@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 
 export default function HeaderFR() {
@@ -63,6 +63,12 @@ export default function HeaderFR() {
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [dropdown]);
 
+  const isActive = (href: string) => pathname === href;
+
+  const linkBase =
+    "font-medium text-gray-800 dark:text-gray-200 hover:text-[#15B097] transition-colors";
+  const linkActive = "font-medium text-[#15B097]";
+
   return (
     <header
       id="site-header"
@@ -90,7 +96,7 @@ export default function HeaderFR() {
         {/* BURGER */}
         <button
           ref={burgerRef}
-          onClick={() => setOpen(!open)}
+          onClick={() => setOpen((v) => !v)}
           aria-label="Ouvrir le menu"
           aria-expanded={open}
           aria-controls="main-navigation"
@@ -124,7 +130,7 @@ export default function HeaderFR() {
             border border-gray-200 dark:border-gray-700
             rounded-xl shadow-lg lg:shadow-none
             p-5 lg:p-0
-            w-64 lg:w-auto
+            w-72 lg:w-auto
             transition-all
             ${open ? "block" : "hidden lg:block"}
           `}
@@ -134,11 +140,8 @@ export default function HeaderFR() {
               <Link
                 href="/fr"
                 onClick={closeAll}
-                className={`font-medium ${
-                  pathname === "/fr"
-                    ? "text-primary"
-                    : "text-gray-800 dark:text-gray-200"
-                }`}
+                aria-current={isActive("/fr") ? "page" : undefined}
+                className={isActive("/fr") ? linkActive : linkBase}
               >
                 Accueil
               </Link>
@@ -148,17 +151,13 @@ export default function HeaderFR() {
             <li className="relative">
               <button
                 ref={dropdownButtonRef}
-                onClick={() => setDropdown(!dropdown)}
+                onClick={() => setDropdown((v) => !v)}
                 aria-haspopup="true"
                 aria-expanded={dropdown}
-                className="font-medium text-gray-800 dark:text-gray-200 flex items-center gap-1"
+                className={`${linkBase} flex items-center gap-1`}
               >
                 Attestation CO₂e
-                <span
-                  className={`transition-transform ${
-                    dropdown ? "rotate-180" : ""
-                  }`}
-                >
+                <span className={`transition-transform ${dropdown ? "rotate-180" : ""}`}>
                   ▼
                 </span>
               </button>
@@ -176,23 +175,23 @@ export default function HeaderFR() {
                   <Link
                     href="/fr/product"
                     onClick={closeAll}
-                    className="block py-2 text-sm hover:text-primary"
+                    className="block py-2 text-sm text-gray-800 dark:text-gray-200 hover:text-[#15B097] transition-colors"
                   >
                     Présentation
                   </Link>
+
                   <Link
                     href="/fr/product/methodology"
                     onClick={closeAll}
-                    className="block py-2 text-sm hover:text-primary"
+                    className="block py-2 text-sm text-gray-800 dark:text-gray-200 hover:text-[#15B097] transition-colors"
                   >
                     Méthodologie
                   </Link>
 
-                  {/* FIX: Compliance FR route */}
                   <Link
-                    href="/fr/product/compliance"
+                    href="/fr/product/methodology/compliance"
                     onClick={closeAll}
-                    className="block py-2 text-sm hover:text-primary"
+                    className="block py-2 text-sm text-gray-800 dark:text-gray-200 hover:text-[#15B097] transition-colors"
                   >
                     Cadre &amp; conformité
                   </Link>
@@ -201,22 +200,45 @@ export default function HeaderFR() {
             </li>
 
             <li>
-              <Link href="/fr/verify" onClick={closeAll}>
+              <Link
+                href="/fr/verify"
+                onClick={closeAll}
+                aria-current={isActive("/fr/verify") ? "page" : undefined}
+                className={isActive("/fr/verify") ? linkActive : linkBase}
+              >
                 Vérifier une attestation
               </Link>
             </li>
+
             <li>
-              <Link href="/fr/pricing" onClick={closeAll}>
+              <Link
+                href="/fr/pricing"
+                onClick={closeAll}
+                aria-current={isActive("/fr/pricing") ? "page" : undefined}
+                className={isActive("/fr/pricing") ? linkActive : linkBase}
+              >
                 Tarification
               </Link>
             </li>
+
             <li>
-              <Link href="/fr/partners" onClick={closeAll}>
+              <Link
+                href="/fr/partners"
+                onClick={closeAll}
+                aria-current={isActive("/fr/partners") ? "page" : undefined}
+                className={isActive("/fr/partners") ? linkActive : linkBase}
+              >
                 Partenariats
               </Link>
             </li>
+
             <li>
-              <Link href="/fr/generate" onClick={closeAll}>
+              <Link
+                href="/fr/generate"
+                onClick={closeAll}
+                aria-current={isActive("/fr/generate") ? "page" : undefined}
+                className={isActive("/fr/generate") ? linkActive : linkBase}
+              >
                 Générer une attestation
               </Link>
             </li>
