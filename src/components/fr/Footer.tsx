@@ -103,34 +103,22 @@ export default function FooterFR() {
 
             <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
               <li>
-                <Link href={routes.understandHub}>
-                  Vue d’ensemble (guide)
-                </Link>
+                <Link href={routes.understandHub}>Vue d’ensemble (guide)</Link>
               </li>
               <li>
-                <Link href={routes.understand1}>
-                  Attestation carbone fournisseur
-                </Link>
+                <Link href={routes.understand1}>Attestation carbone fournisseur</Link>
               </li>
               <li>
-                <Link href={routes.understand2}>
-                  Attestation carbone appel d’offres
-                </Link>
+                <Link href={routes.understand2}>Attestation carbone appel d’offres</Link>
               </li>
               <li>
-                <Link href={routes.understand3}>
-                  Exigences CO₂e banques &amp; assurances
-                </Link>
+                <Link href={routes.understand3}>Exigences CO₂e banques &amp; assurances</Link>
               </li>
               <li>
-                <Link href={routes.understand4}>
-                  Attestation carbone pour PME
-                </Link>
+                <Link href={routes.understand4}>Attestation carbone pour PME</Link>
               </li>
               <li>
-                <Link href={routes.understand5}>
-                  Preuve carbone d’entreprise
-                </Link>
+                <Link href={routes.understand5}>Preuve carbone d’entreprise</Link>
               </li>
             </ul>
           </nav>
@@ -193,3 +181,4 @@ export default function FooterFR() {
     </footer>
   );
 }
+```0
