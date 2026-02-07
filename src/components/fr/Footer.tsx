@@ -20,6 +20,14 @@ export default function FooterFR() {
     terms: "/fr/terms",
     cookies: "/fr/cookies",
     dataProcessing: "/fr/data-processing",
+
+    // ✅ HUB + 5 PAGES “Comprendre les demandes CO₂e”
+    understandHub: "/fr/why-companies-ask",
+    understand1: "/fr/why-companies-ask/attestation-carbone-fournisseur",
+    understand2: "/fr/why-companies-ask/attestation-carbone-appel-offres",
+    understand3: "/fr/why-companies-ask/exigences-co2e-banques-assurances",
+    understand4: "/fr/why-companies-ask/attestation-carbone-pme",
+    understand5: "/fr/why-companies-ask/preuve-carbone-entreprise",
   };
 
   return (
@@ -29,9 +37,10 @@ export default function FooterFR() {
       className="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 pt-14 pb-10"
     >
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+        {/* GRID */}
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-12">
           {/* BRANDING */}
-          <div>
+          <div className="md:col-span-1">
             <h2 className="text-xl font-bold text-[#0B3A63] dark:text-gray-100 mb-4">
               Certif-Scope
             </h2>
@@ -82,6 +91,46 @@ export default function FooterFR() {
               </li>
               <li>
                 <Link href={routes.contact}>Contact</Link>
+              </li>
+            </ul>
+          </nav>
+
+          {/* COMPRENDRE */}
+          <nav aria-label="Comprendre les demandes CO₂e">
+            <h3 className="text-lg font-semibold text-[#0B3A63] dark:text-gray-100 mb-4">
+              Comprendre les demandes CO₂e
+            </h3>
+
+            <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+              <li>
+                <Link href={routes.understandHub}>
+                  Vue d’ensemble (guide)
+                </Link>
+              </li>
+              <li>
+                <Link href={routes.understand1}>
+                  Attestation carbone fournisseur
+                </Link>
+              </li>
+              <li>
+                <Link href={routes.understand2}>
+                  Attestation carbone appel d’offres
+                </Link>
+              </li>
+              <li>
+                <Link href={routes.understand3}>
+                  Exigences CO₂e banques &amp; assurances
+                </Link>
+              </li>
+              <li>
+                <Link href={routes.understand4}>
+                  Attestation carbone pour PME
+                </Link>
+              </li>
+              <li>
+                <Link href={routes.understand5}>
+                  Preuve carbone d’entreprise
+                </Link>
               </li>
             </ul>
           </nav>
