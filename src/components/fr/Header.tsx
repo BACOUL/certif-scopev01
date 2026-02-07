@@ -19,14 +19,12 @@ export default function HeaderFR() {
     setOpen(false);
   };
 
-  // Fermeture automatique lors d’un changement de page
   useEffect(() => {
     const handler = () => closeAll();
     window.addEventListener("close-mobile-menu", handler);
     return () => window.removeEventListener("close-mobile-menu", handler);
   }, []);
 
-  // Click extérieur
   useEffect(() => {
     if (!open && !dropdown) return;
 
@@ -44,21 +42,23 @@ export default function HeaderFR() {
 
     document.addEventListener("mousedown", handleClickOutside);
     document.addEventListener("touchstart", handleClickOutside);
+
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
       document.removeEventListener("touchstart", handleClickOutside);
     };
   }, [open, dropdown]);
 
-  // Escape
   useEffect(() => {
     if (!dropdown) return;
+
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setDropdown(false);
         dropdownButtonRef.current?.focus();
       }
     };
+
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [dropdown]);
@@ -69,15 +69,11 @@ export default function HeaderFR() {
     "font-medium text-gray-800 dark:text-gray-200 hover:text-[#15B097] transition-colors";
   const linkActive = "font-medium text-[#15B097]";
 
-  // ✅ ROUTES FR — alignées avec ton arborescence GitHub (partners/pages.tsx + generate/AssessmentForm.tsx)
-  // => /fr/partners (folder) + /fr/generate (folder)
-  // ✅ COMPLIANCE: tu as un mismatch entre header et footer. Ici on aligne sur le footer initial:
-  // => /fr/product/methodology/compliance
   const routes = {
     home: "/fr",
     product: "/fr/product",
     methodology: "/fr/product/methodology",
-    compliance: "/fr/product/methodology/compliance",
+    compliance: "/fr/product/compliance",
     verify: "/fr/verify",
     pricing: "/fr/pricing",
     partners: "/fr/partners",
@@ -96,7 +92,6 @@ export default function HeaderFR() {
       "
     >
       <div className="w-full px-5 py-2 md:py-4 flex items-center justify-between">
-        {/* LOGO */}
         <Link href={routes.home} onClick={closeAll} aria-label="Accueil">
           <Image
             src="/logo.png"
@@ -108,7 +103,6 @@ export default function HeaderFR() {
           />
         </Link>
 
-        {/* BURGER */}
         <button
           ref={burgerRef}
           onClick={() => setOpen((v) => !v)}
@@ -134,7 +128,6 @@ export default function HeaderFR() {
           />
         </button>
 
-        {/* NAV */}
         <nav
           ref={navRef}
           id="main-navigation"
@@ -162,7 +155,6 @@ export default function HeaderFR() {
               </Link>
             </li>
 
-            {/* DROPDOWN */}
             <li className="relative">
               <button
                 ref={dropdownButtonRef}
@@ -173,7 +165,9 @@ export default function HeaderFR() {
               >
                 Attestation CO₂e
                 <span
-                  className={`transition-transform ${dropdown ? "rotate-180" : ""}`}
+                  className={`transition-transform ${
+                    dropdown ? "rotate-180" : ""
+                  }`}
                 >
                   ▼
                 </span>
