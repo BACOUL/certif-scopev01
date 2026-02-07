@@ -69,6 +69,21 @@ export default function HeaderFR() {
     "font-medium text-gray-800 dark:text-gray-200 hover:text-[#15B097] transition-colors";
   const linkActive = "font-medium text-[#15B097]";
 
+  // ✅ ROUTES FR — alignées avec ton arborescence GitHub (partners/pages.tsx + generate/AssessmentForm.tsx)
+  // => /fr/partners (folder) + /fr/generate (folder)
+  // ✅ COMPLIANCE: tu as un mismatch entre header et footer. Ici on aligne sur le footer initial:
+  // => /fr/product/methodology/compliance
+  const routes = {
+    home: "/fr",
+    product: "/fr/product",
+    methodology: "/fr/product/methodology",
+    compliance: "/fr/product/methodology/compliance",
+    verify: "/fr/verify",
+    pricing: "/fr/pricing",
+    partners: "/fr/partners",
+    generate: "/fr/generate",
+  };
+
   return (
     <header
       id="site-header"
@@ -82,7 +97,7 @@ export default function HeaderFR() {
     >
       <div className="w-full px-5 py-2 md:py-4 flex items-center justify-between">
         {/* LOGO */}
-        <Link href="/fr" onClick={closeAll} aria-label="Accueil">
+        <Link href={routes.home} onClick={closeAll} aria-label="Accueil">
           <Image
             src="/logo.png"
             alt="Certif-Scope"
@@ -138,10 +153,10 @@ export default function HeaderFR() {
           <ul className="flex flex-col lg:flex-row gap-4 lg:gap-10">
             <li>
               <Link
-                href="/fr"
+                href={routes.home}
                 onClick={closeAll}
-                aria-current={isActive("/fr") ? "page" : undefined}
-                className={isActive("/fr") ? linkActive : linkBase}
+                aria-current={isActive(routes.home) ? "page" : undefined}
+                className={isActive(routes.home) ? linkActive : linkBase}
               >
                 Accueil
               </Link>
@@ -157,7 +172,9 @@ export default function HeaderFR() {
                 className={`${linkBase} flex items-center gap-1`}
               >
                 Attestation CO₂e
-                <span className={`transition-transform ${dropdown ? "rotate-180" : ""}`}>
+                <span
+                  className={`transition-transform ${dropdown ? "rotate-180" : ""}`}
+                >
                   ▼
                 </span>
               </button>
@@ -173,7 +190,7 @@ export default function HeaderFR() {
                   "
                 >
                   <Link
-                    href="/fr/product"
+                    href={routes.product}
                     onClick={closeAll}
                     className="block py-2 text-sm text-gray-800 dark:text-gray-200 hover:text-[#15B097] transition-colors"
                   >
@@ -181,7 +198,7 @@ export default function HeaderFR() {
                   </Link>
 
                   <Link
-                    href="/fr/product/methodology"
+                    href={routes.methodology}
                     onClick={closeAll}
                     className="block py-2 text-sm text-gray-800 dark:text-gray-200 hover:text-[#15B097] transition-colors"
                   >
@@ -189,7 +206,7 @@ export default function HeaderFR() {
                   </Link>
 
                   <Link
-                    href="/fr/product/methodology/compliance"
+                    href={routes.compliance}
                     onClick={closeAll}
                     className="block py-2 text-sm text-gray-800 dark:text-gray-200 hover:text-[#15B097] transition-colors"
                   >
@@ -201,10 +218,10 @@ export default function HeaderFR() {
 
             <li>
               <Link
-                href="/fr/verify"
+                href={routes.verify}
                 onClick={closeAll}
-                aria-current={isActive("/fr/verify") ? "page" : undefined}
-                className={isActive("/fr/verify") ? linkActive : linkBase}
+                aria-current={isActive(routes.verify) ? "page" : undefined}
+                className={isActive(routes.verify) ? linkActive : linkBase}
               >
                 Vérifier une attestation
               </Link>
@@ -212,10 +229,10 @@ export default function HeaderFR() {
 
             <li>
               <Link
-                href="/fr/pricing"
+                href={routes.pricing}
                 onClick={closeAll}
-                aria-current={isActive("/fr/pricing") ? "page" : undefined}
-                className={isActive("/fr/pricing") ? linkActive : linkBase}
+                aria-current={isActive(routes.pricing) ? "page" : undefined}
+                className={isActive(routes.pricing) ? linkActive : linkBase}
               >
                 Tarification
               </Link>
@@ -223,10 +240,10 @@ export default function HeaderFR() {
 
             <li>
               <Link
-                href="/fr/partners"
+                href={routes.partners}
                 onClick={closeAll}
-                aria-current={isActive("/fr/partners") ? "page" : undefined}
-                className={isActive("/fr/partners") ? linkActive : linkBase}
+                aria-current={isActive(routes.partners) ? "page" : undefined}
+                className={isActive(routes.partners) ? linkActive : linkBase}
               >
                 Partenariats
               </Link>
@@ -234,10 +251,10 @@ export default function HeaderFR() {
 
             <li>
               <Link
-                href="/fr/generate"
+                href={routes.generate}
                 onClick={closeAll}
-                aria-current={isActive("/fr/generate") ? "page" : undefined}
-                className={isActive("/fr/generate") ? linkActive : linkBase}
+                aria-current={isActive(routes.generate) ? "page" : undefined}
+                className={isActive(routes.generate) ? linkActive : linkBase}
               >
                 Générer une attestation
               </Link>
