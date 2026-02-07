@@ -7,12 +7,12 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 /* ======================================================
-   METADATA FR — BLOQUÉ SEO TEMPORAIREMENT
+   METADATA FR — SEO ON
 ====================================================== */
 export const metadata = {
   robots: {
-    index: false,
-    follow: false,
+    index: true,
+    follow: true,
   },
 };
 
