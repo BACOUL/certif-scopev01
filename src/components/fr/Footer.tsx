@@ -3,16 +3,13 @@
 import Link from "next/link";
 
 export default function FooterFR() {
-  // ✅ ROUTES FR — centralisées (évite les 404 par mismatch d’URL)
-  // Aligné avec le HeaderFR corrigé:
-  // - compliance: /fr/product/methodology/compliance
-  // - partners: /fr/partners
-  // - generate: /fr/generate (si tu l’ajoutes plus tard au footer)
+  // ✅ ROUTES FR — alignées avec HeaderFR refait
+  // compliance => /fr/product/compliance
   const routes = {
     home: "/fr",
     product: "/fr/product",
     methodology: "/fr/product/methodology",
-    compliance: "/fr/product/methodology/compliance",
+    compliance: "/fr/product/compliance",
     verify: "/fr/verify",
     pricing: "/fr/pricing",
     partners: "/fr/partners",
@@ -32,7 +29,6 @@ export default function FooterFR() {
       className="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 pt-14 pb-10"
     >
       <div className="max-w-7xl mx-auto px-6">
-        {/* GRID */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* BRANDING */}
           <div>
@@ -147,4 +143,4 @@ export default function FooterFR() {
       </div>
     </footer>
   );
-                  }
+}
