@@ -507,26 +507,27 @@ export default function AssessmentForm() {
             Utilisez une clé d'accès si vous avez acheté un pack ou reçu des crédits.
           </p>
           
-          <div className="flex gap-3">
-            <input 
-              type="text" 
+          <div className="flex flex-col sm:flex-row gap-3 sm:items-center min-w-0">
+            <input
+              type="text"
               placeholder="XXXX-XXXX-XXXX"
               value={accessKey}
               onChange={(e) => {
                 setAccessKey(e.target.value);
                 if (keyStatus !== "idle") {
-                   setKeyStatus("idle");
-                   setRemainingCredits(null);
-                   setKeyError("");
+                  setKeyStatus("idle");
+                  setRemainingCredits(null);
+                  setKeyError("");
                 }
               }}
-              className="flex-1 border border-gray-300 rounded-md px-3 py-2 text-sm"
+              className="w-full sm:flex-1 min-w-0 border border-gray-300 rounded-md px-3 py-2 text-sm"
             />
+
             <button
               type="button"
               onClick={handleCheckKey}
               disabled={!accessKey || keyStatus === "checking"}
-              className="bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-50"
+              className="w-full sm:w-auto shrink-0 bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-50"
             >
               {keyStatus === "checking" ? "..." : "Vérifier"}
             </button>
