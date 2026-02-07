@@ -3,6 +3,28 @@
 import Link from "next/link";
 
 export default function FooterFR() {
+  // ✅ ROUTES FR — centralisées (évite les 404 par mismatch d’URL)
+  // Aligné avec le HeaderFR corrigé:
+  // - compliance: /fr/product/methodology/compliance
+  // - partners: /fr/partners
+  // - generate: /fr/generate (si tu l’ajoutes plus tard au footer)
+  const routes = {
+    home: "/fr",
+    product: "/fr/product",
+    methodology: "/fr/product/methodology",
+    compliance: "/fr/product/methodology/compliance",
+    verify: "/fr/verify",
+    pricing: "/fr/pricing",
+    partners: "/fr/partners",
+    whyCompaniesAsk: "/fr/why-companies-ask",
+    contact: "/fr/contact",
+    legal: "/fr/legal",
+    privacy: "/fr/privacy",
+    terms: "/fr/terms",
+    cookies: "/fr/cookies",
+    dataProcessing: "/fr/data-processing",
+  };
+
   return (
     <footer
       id="footer"
@@ -10,10 +32,8 @@ export default function FooterFR() {
       className="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 pt-14 pb-10"
     >
       <div className="max-w-7xl mx-auto px-6">
-
         {/* GRID */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
-
           {/* BRANDING */}
           <div>
             <h2 className="text-xl font-bold text-[#0B3A63] dark:text-gray-100 mb-4">
@@ -35,18 +55,16 @@ export default function FooterFR() {
 
             <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
               <li>
-                <Link href="/fr/product">Présentation</Link>
+                <Link href={routes.product}>Présentation</Link>
               </li>
               <li>
-                <Link href="/fr/product/methodology">Méthodologie</Link>
+                <Link href={routes.methodology}>Méthodologie</Link>
               </li>
               <li>
-                <Link href="/fr/product/methodology/compliance">
-                  Cadre & conformité
-                </Link>
+                <Link href={routes.compliance}>Cadre &amp; conformité</Link>
               </li>
               <li>
-                <Link href="/fr/verify">Vérifier une attestation</Link>
+                <Link href={routes.verify}>Vérifier une attestation</Link>
               </li>
             </ul>
           </nav>
@@ -59,15 +77,15 @@ export default function FooterFR() {
 
             <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
               <li>
-                <Link href="/fr/partners">Partenariats</Link>
+                <Link href={routes.partners}>Partenariats</Link>
               </li>
               <li>
-                <Link href="/fr/why-companies-ask">
+                <Link href={routes.whyCompaniesAsk}>
                   Pourquoi les entreprises le demandent
                 </Link>
               </li>
               <li>
-                <Link href="/fr/contact">Contact</Link>
+                <Link href={routes.contact}>Contact</Link>
               </li>
             </ul>
           </nav>
@@ -80,21 +98,19 @@ export default function FooterFR() {
 
             <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
               <li>
-                <Link href="/fr/legal">Mentions légales</Link>
+                <Link href={routes.legal}>Mentions légales</Link>
               </li>
               <li>
-                <Link href="/fr/privacy">Politique de confidentialité</Link>
+                <Link href={routes.privacy}>Politique de confidentialité</Link>
               </li>
               <li>
-                <Link href="/fr/terms">Conditions d’utilisation</Link>
+                <Link href={routes.terms}>Conditions d’utilisation</Link>
               </li>
               <li>
-                <Link href="/fr/cookies">Politique cookies</Link>
+                <Link href={routes.cookies}>Politique cookies</Link>
               </li>
               <li>
-                <Link href="/fr/data-processing">
-                  Traitement des données
-                </Link>
+                <Link href={routes.dataProcessing}>Traitement des données</Link>
               </li>
             </ul>
           </nav>
@@ -102,10 +118,10 @@ export default function FooterFR() {
 
         {/* DISCLAIMER */}
         <div className="mt-10 text-center text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
-          Estimation CO₂e indicative basée sur les dépenses.
-          Ne constitue ni un rapport CSRD/ESRS, ni un inventaire GES audité.
-          Aucun Scope 1–2. Les résultats dépendent exclusivement des données
-          financières déclarées par l’utilisateur.
+          Estimation CO₂e indicative basée sur les dépenses. Ne constitue ni un
+          rapport CSRD/ESRS, ni un inventaire GES audité. Aucun Scope 1–2. Les
+          résultats dépendent exclusivement des données financières déclarées
+          par l’utilisateur.
         </div>
 
         {/* COPYRIGHT */}
@@ -131,4 +147,4 @@ export default function FooterFR() {
       </div>
     </footer>
   );
-          }
+                  }
