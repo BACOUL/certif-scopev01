@@ -1,4 +1,4 @@
-// PATH: src/app/partners/page.tsx
+// PATH: src/app/fr/partners/page.tsx
 
 import type { Metadata } from "next";
 
@@ -10,28 +10,28 @@ import Section5 from "./sections/Section5";
 import Section6 from "./sections/Section6";
 
 /* ======================================================
-   SEO METADATA — PARTNERS
+   SEO METADATA — PARTENAIRES (FR)
 ====================================================== */
 
 export const metadata: Metadata = {
-  title: "Partners & Packs — Certif-Scope",
+  title: "Partenariats & Packs — Certif-Scope",
   description:
-    "Learn how partners use Certif-Scope through prepaid packs and partner keys to generate CO₂e attestations on demand, without APIs or integrations.",
+    "Découvrez comment les partenaires utilisent Certif-Scope via des packs prépayés et des clés partenaires pour générer des attestations CO₂e à la demande, sans API ni intégration.",
   alternates: {
-    canonical: "https://www.certif-scope.com/partners",
+    canonical: "https://www.certif-scope.com/fr/partners",
     languages: {
       en: "https://www.certif-scope.com/partners",
       fr: "https://www.certif-scope.com/fr/partners",
     },
   },
   openGraph: {
-    title: "Partners & Packs — Certif-Scope",
+    title: "Partenariats & Packs — Certif-Scope",
     description:
-      "Partner model for generating CO₂e attestations using prepaid packs and partner keys. No API, no accounts, no integrations.",
-    url: "https://www.certif-scope.com/partners",
+      "Modèle partenaire pour générer des attestations CO₂e via des packs prépayés et une clé partenaire. Sans API, sans compte, sans intégration.",
+    url: "https://www.certif-scope.com/fr/partners",
     siteName: "Certif-Scope",
     type: "website",
-    locale: "en_US",
+    locale: "fr_FR",
   },
 };
 
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
    PAGE
 ====================================================== */
 
-export default function PartnersPage() {
+export default function PartnersPageFR() {
   return (
     <section
       id="partners"
@@ -53,15 +53,16 @@ export default function PartnersPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebPage",
-            name: "Certif-Scope Partners",
-            url: "https://www.certif-scope.com/partners",
+            name: "Partenaires Certif-Scope",
+            url: "https://www.certif-scope.com/fr/partners",
             description:
-              "Explanation of the Certif-Scope partner model using prepaid packs and partner keys to generate CO₂e attestations.",
+              "Explication du modèle partenaire Certif-Scope via des packs prépayés et des clés partenaires pour générer des attestations CO₂e.",
             isPartOf: {
               "@type": "WebSite",
               name: "Certif-Scope",
               url: "https://www.certif-scope.com",
             },
+            inLanguage: "fr-FR",
           }),
         }}
       />
@@ -72,17 +73,18 @@ export default function PartnersPage() {
       {/* CANONICAL PAGE HEADER */}
       <header className="mb-14">
         <p className="uppercase text-xs tracking-wider text-[#64748B] mb-3">
-          CO₂e Attestations — Partners
+          Attestations CO₂e — Partenaires
         </p>
 
         <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-6">
-          Partners — Packs & Partner Key Model
+          Partenaires — Packs & modèle de clé partenaire
         </h1>
 
         <p className="text-lg text-gray-700 leading-relaxed max-w-3xl">
-          This page explains how partners use Certif-Scope in V1: purchasing
-          prepaid packs, receiving a partner key, and generating CO₂e
-          attestations on demand. No API, no accounts, no integrations.
+          Cette page explique comment les partenaires utilisent Certif-Scope en
+          V1 : achat de packs prépayés, réception d’une clé partenaire, et
+          génération d’attestations CO₂e à la demande. Sans API, sans compte,
+          sans intégration.
         </p>
 
         <div className="w-20 h-[2px] bg-gray-300 mt-10" />
@@ -90,38 +92,38 @@ export default function PartnersPage() {
 
       {/* TABLE OF CONTENTS */}
       <nav
-        aria-label="Partner sections"
+        aria-label="Sections partenaires"
         className="mb-16 max-w-4xl p-6 bg-[#F8FAFC] border border-gray-200 rounded-xl shadow-sm"
       >
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-[#0B3A63] font-medium">
           <li>
             <a href="#s1" className="hover:text-[#15B097] transition">
-              1. Partner Overview
+              1. Présentation du modèle partenaire
             </a>
           </li>
           <li>
             <a href="#s2" className="hover:text-[#15B097] transition">
-              2. Packs & Credits
+              2. Packs & crédits
             </a>
           </li>
           <li>
             <a href="#s3" className="hover:text-[#15B097] transition">
-              3. Partner Key Issuance
+              3. Émission de la clé partenaire
             </a>
           </li>
           <li>
             <a href="#s4" className="hover:text-[#15B097] transition">
-              4. Key Validity & Usage Limits
+              4. Validité de la clé & limites d’usage
             </a>
           </li>
           <li>
             <a href="#s5" className="hover:text-[#15B097] transition">
-              5. Recovery & Security Model
+              5. Modèle de sécurité & récupération
             </a>
           </li>
           <li>
             <a href="#s6" className="hover:text-[#15B097] transition">
-              6. API & High-Volume Access (Coming Soon)
+              6. API & accès volume élevé (à venir)
             </a>
           </li>
         </ul>
