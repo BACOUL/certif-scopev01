@@ -3,158 +3,150 @@
 import Link from "next/link";
 
 export default function FooterFR() {
-  // ✅ ROUTES FR — alignées avec HeaderFR refait
-  // compliance => /fr/product/compliance
-  const routes = {
-    home: "/fr",
-    product: "/fr/product",
-    methodology: "/fr/product/methodology",
-    compliance: "/fr/product/compliance",
-    verify: "/fr/verify",
-    pricing: "/fr/pricing",
-    partners: "/fr/partners",
-    whyCompaniesAsk: "/fr/why-companies-ask",
-    contact: "/fr/contact",
-    legal: "/fr/legal",
-    privacy: "/fr/privacy",
-    terms: "/fr/terms",
-    cookies: "/fr/cookies",
-    dataProcessing: "/fr/data-processing",
-
-    // ✅ HUB + 5 PAGES “Comprendre les demandes CO₂e”
-    understandHub: "/fr/why-companies-ask",
-    understand1: "/fr/why-companies-ask/attestation-carbone-fournisseur",
-    understand2: "/fr/why-companies-ask/attestation-carbone-appel-offres",
-    understand3: "/fr/why-companies-ask/exigences-co2e-banques-assurances",
-    understand4: "/fr/why-companies-ask/attestation-carbone-pme",
-    understand5: "/fr/why-companies-ask/preuve-carbone-entreprise",
-  };
-
   return (
     <footer
       id="footer"
       role="contentinfo"
+      data-section="footer"
       className="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 pt-14 pb-10"
     >
       <div className="max-w-7xl mx-auto px-6">
         {/* GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* BRANDING */}
-          <div className="md:col-span-1">
-            <h2 className="text-xl font-bold text-[#0B3A63] dark:text-gray-100 mb-4">
+          <div>
+            <h2
+              data-i18n="footer.brand"
+              className="text-xl font-bold text-[#0B3A63] dark:text-gray-100 mb-4"
+            >
               Certif-Scope
             </h2>
 
-            <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
-              Attestation CO₂e indicative basée sur les dépenses, conçue pour les
-              appels d’offres, les banques et les processus de screening ESG.
-              Format standardisé, cohérent et vérifiable.
+            <p
+              data-i18n="footer.brand.desc"
+              className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed"
+            >
+              Attestation CO₂e spend-based conçue pour les workflows d’achats,
+              banques, assurances et screening ESG. Documentation standardisée,
+              cohérente et vérifiable.
             </p>
           </div>
 
-          {/* PRODUIT */}
+          {/* PRODUCT */}
           <nav aria-label="Navigation produit">
-            <h3 className="text-lg font-semibold text-[#0B3A63] dark:text-gray-100 mb-4">
+            <h3
+              data-i18n="footer.product"
+              className="text-lg font-semibold text-[#0B3A63] dark:text-gray-100 mb-4"
+            >
               Produit
             </h3>
 
             <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
               <li>
-                <Link href={routes.product}>Présentation</Link>
+                <Link data-i18n="footer.link.overview" href="/fr/product">
+                  Présentation
+                </Link>
               </li>
               <li>
-                <Link href={routes.methodology}>Méthodologie</Link>
+                <Link
+                  data-i18n="footer.link.methodology"
+                  href="/fr/product/methodology"
+                >
+                  Méthodologie
+                </Link>
               </li>
               <li>
-                <Link href={routes.compliance}>Cadre &amp; conformité</Link>
+                <Link
+                  data-i18n="footer.link.compliance"
+                  href="/fr/product/methodology/compliance"
+                >
+                  Conformité & périmètre
+                </Link>
               </li>
               <li>
-                <Link href={routes.verify}>Vérifier une attestation</Link>
+                <Link data-i18n="footer.link.verify" href="/fr/verify">
+                  Vérifier une attestation
+                </Link>
               </li>
             </ul>
           </nav>
 
-          {/* ENTREPRISE */}
+          {/* COMPANY */}
           <nav aria-label="Navigation entreprise">
-            <h3 className="text-lg font-semibold text-[#0B3A63] dark:text-gray-100 mb-4">
+            <h3
+              data-i18n="footer.company"
+              className="text-lg font-semibold text-[#0B3A63] dark:text-gray-100 mb-4"
+            >
               Entreprise
             </h3>
 
             <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
               <li>
-                <Link href={routes.partners}>Partenariats</Link>
-              </li>
-              <li>
-                <Link href={routes.whyCompaniesAsk}>
-                  Pourquoi les entreprises le demandent
+                <Link data-i18n="footer.link.partners" href="/fr/partners">
+                  Partenariats
                 </Link>
               </li>
               <li>
-                <Link href={routes.contact}>Contact</Link>
+                <Link data-i18n="footer.link.why" href="/fr/why-companies-ask">
+                  Pourquoi c’est demandé
+                </Link>
+              </li>
+              <li>
+                <Link data-i18n="footer.link.contact" href="/fr/contact">
+                  Contact
+                </Link>
               </li>
             </ul>
           </nav>
 
-          {/* COMPRENDRE */}
-          <nav aria-label="Comprendre les demandes CO₂e">
-            <h3 className="text-lg font-semibold text-[#0B3A63] dark:text-gray-100 mb-4">
-              Comprendre les demandes CO₂e
+          {/* LEGAL */}
+          <nav aria-label="Navigation légale">
+            <h3
+              data-i18n="footer.legal"
+              className="text-lg font-semibold text-[#0B3A63] dark:text-gray-100 mb-4"
+            >
+              Légal
             </h3>
 
             <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
               <li>
-                <Link href={routes.understandHub}>Vue d’ensemble (guide)</Link>
+                <Link data-i18n="footer.link.legal" href="/fr/legal">
+                  Mentions légales
+                </Link>
               </li>
               <li>
-                <Link href={routes.understand1}>Attestation carbone fournisseur</Link>
+                <Link data-i18n="footer.link.privacy" href="/fr/privacy">
+                  Politique de confidentialité
+                </Link>
               </li>
               <li>
-                <Link href={routes.understand2}>Attestation carbone appel d’offres</Link>
+                <Link data-i18n="footer.link.terms" href="/fr/terms">
+                  Conditions d’utilisation
+                </Link>
               </li>
               <li>
-                <Link href={routes.understand3}>Exigences CO₂e banques &amp; assurances</Link>
+                <Link data-i18n="footer.link.cookies" href="/fr/cookies">
+                  Politique cookies
+                </Link>
               </li>
               <li>
-                <Link href={routes.understand4}>Attestation carbone pour PME</Link>
-              </li>
-              <li>
-                <Link href={routes.understand5}>Preuve carbone d’entreprise</Link>
-              </li>
-            </ul>
-          </nav>
-
-          {/* JURIDIQUE */}
-          <nav aria-label="Navigation juridique">
-            <h3 className="text-lg font-semibold text-[#0B3A63] dark:text-gray-100 mb-4">
-              Juridique
-            </h3>
-
-            <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
-              <li>
-                <Link href={routes.legal}>Mentions légales</Link>
-              </li>
-              <li>
-                <Link href={routes.privacy}>Politique de confidentialité</Link>
-              </li>
-              <li>
-                <Link href={routes.terms}>Conditions d’utilisation</Link>
-              </li>
-              <li>
-                <Link href={routes.cookies}>Politique cookies</Link>
-              </li>
-              <li>
-                <Link href={routes.dataProcessing}>Traitement des données</Link>
+                <Link data-i18n="footer.link.dpo" href="/fr/data-processing">
+                  Traitement des données (aperçu)
+                </Link>
               </li>
             </ul>
           </nav>
         </div>
 
         {/* DISCLAIMER */}
-        <div className="mt-10 text-center text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
-          Estimation CO₂e indicative basée sur les dépenses. Ne constitue ni un
-          rapport CSRD/ESRS, ni un inventaire GES audité. Aucun Scope 1–2. Les
-          résultats dépendent exclusivement des données financières déclarées
-          par l’utilisateur.
+        <div
+          data-i18n="footer.disclaimer"
+          className="mt-10 text-center text-xs text-gray-500 dark:text-gray-400 leading-relaxed"
+        >
+          Estimation CO₂e indicative en spend-based. Non auditée, non conforme
+          CSRD/ESRS, sans Scopes 1–2, et ne remplace pas un inventaire complet
+          des émissions de GES. Les résultats dépendent entièrement des données
+          fournies par l’utilisateur.
         </div>
 
         {/* COPYRIGHT */}
@@ -164,7 +156,7 @@ export default function FooterFR() {
           </p>
         </div>
 
-        {/* JSON-LD — ORGANIZATION */}
+        {/* JSON-LD — ORGANIZATION (MINIMAL, IA-SAFE) */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -172,7 +164,7 @@ export default function FooterFR() {
               "@context": "https://schema.org",
               "@type": "Organization",
               name: "Certif-Scope",
-              url: "https://www.certif-scope.com/fr",
+              url: "https://www.certif-scope.com",
               logo: "https://www.certif-scope.com/logo.png",
             }),
           }}
@@ -180,5 +172,4 @@ export default function FooterFR() {
       </div>
     </footer>
   );
-}
-
+        }
