@@ -1,71 +1,50 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
 /* ======================================================
-   SEO METADATA — POURQUOI LES ENTREPRISES LE DEMANDENT (HUB)
+   SEO METADATA — POURQUOI LES ENTREPRISES LE DEMANDENT
 ====================================================== */
 
 export const metadata: Metadata = {
   title:
-    "Comprendre les demandes d’attestation CO₂e — Guides (FR) — Certif-Scope",
+    "Pourquoi les entreprises demandent une attestation CO₂e — Certif-Scope",
   description:
-    "Hub FR : comprendre pourquoi les acheteurs, banques et assureurs demandent une attestation CO₂e, et comment répondre avec un document standardisé (screening, onboarding, limites, vérification).",
+    "Comprendre pourquoi les acheteurs, banques et assureurs demandent une attestation CO₂e standardisée aux fournisseurs : screening des risques, onboarding, et cadre d’utilisation.",
   alternates: {
     canonical: "https://www.certif-scope.com/fr/why-companies-ask",
-    languages: {
-      en: "https://www.certif-scope.com/why-companies-ask",
-      fr: "https://www.certif-scope.com/fr/why-companies-ask",
-    },
   },
   openGraph: {
-    title: "Comprendre les demandes d’attestation CO₂e — Guides (FR) — Certif-Scope",
+    title:
+      "Pourquoi les entreprises demandent une attestation CO₂e — Certif-Scope",
     description:
-      "Pourquoi les organisations demandent une attestation CO₂e et comment l’utiliser correctement (screening, onboarding, verification, limites).",
+      "Comprendre pourquoi les organisations demandent des attestations CO₂e standardisées et ce que ces documents représentent — et ne représentent pas.",
     url: "https://www.certif-scope.com/fr/why-companies-ask",
     siteName: "Certif-Scope",
     type: "website",
-    locale: "fr_FR",
   },
 };
 
 /* ======================================================
-   ROUTES (ARTICLES)
+   PAGE
 ====================================================== */
 
-const routes = {
-  hub: "/fr/why-companies-ask",
-  a1: "/fr/why-companies-ask/attestation-co2e-fournisseur",
-  a2: "/fr/why-companies-ask/onboarding-fournisseur-co2e",
-  a3: "/fr/why-companies-ask/screening-esg-achats-co2e",
-  a4: "/fr/why-companies-ask/banques-assureurs-risque-climat-co2e",
-  a5: "/fr/why-companies-ask/verifier-attestation-co2e",
-  generate: "/fr/generate",
-  verify: "/fr/verify",
-  product: "/fr/product",
-};
-
-/* ======================================================
-   PAGE (HUB)
-====================================================== */
-
-export default function WhyCompaniesAskHubFR() {
+export default function WhyCompaniesAskPage() {
   return (
     <section
       id="why-companies-ask"
       data-section="why-companies-ask"
       className="max-w-7xl mx-auto px-6 pt-12 pb-24"
     >
-      {/* JSON-LD — WebPage (HUB) */}
+      {/* JSON-LD — WebPage (STRICT, NON-PRODUCT) */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "CollectionPage",
-            name: "Comprendre les demandes d’attestation CO₂e",
+            "@type": "WebPage",
+            name: "Pourquoi les entreprises demandent une attestation CO₂e",
             url: "https://www.certif-scope.com/fr/why-companies-ask",
             description:
-              "Hub de guides expliquant pourquoi les organisations demandent une attestation CO₂e et comment l’utiliser correctement (screening, onboarding, vérification, limites).",
+              "Explication institutionnelle des raisons pour lesquelles les organisations demandent des attestations CO₂e à leurs fournisseurs et de leur usage.",
             isPartOf: {
               "@type": "WebSite",
               name: "Certif-Scope",
@@ -78,256 +57,154 @@ export default function WhyCompaniesAskHubFR() {
       {/* TOP ANCHOR */}
       <div id="top" />
 
-      {/* EN-TÊTE PAGE */}
+      {/* HEADER */}
       <header className="mb-14">
         <p className="uppercase text-xs tracking-wider text-[#64748B] mb-3">
-          Guides — Demandes CO₂e (FR)
+          Attestation CO₂e — Exigence fournisseur
         </p>
 
         <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-6">
-          Comprendre les demandes d’attestation CO₂e
+          Pourquoi les entreprises la demandent
         </h1>
 
         <p className="text-lg text-gray-700 leading-relaxed max-w-3xl">
-          Les acheteurs, banques, assureurs et institutions publiques demandent
-          de plus en plus un document CO₂e standardisé à leurs fournisseurs.
-          Cette section regroupe des guides courts et opérationnels pour
-          comprendre le « pourquoi », le périmètre d’usage, et comment répondre
-          sans audit ni reporting CSRD/ESRS.
+          Les directions achats, les banques, les assureurs et les institutions
+          publiques demandent de plus en plus une attestation CO₂e standardisée
+          à leurs fournisseurs. Cette page explique les raisons institutionnelles
+          de cette demande, ainsi que ce que représente réellement cette
+          attestation — et ce qu’elle ne constitue pas.
         </p>
 
         <div className="w-20 h-[2px] bg-gray-300 mt-10" />
       </header>
 
-      {/* SUMMARY / QUICK LINKS */}
-      <div className="max-w-4xl mx-auto">
-        <div className="rounded-2xl border border-gray-200 bg-[#F8FAFC] p-8 shadow-sm">
-          <h2 className="text-xl font-bold text-[#0B3A63] mb-3">
-            Accès rapide
+      {/* CONTENT */}
+      <div className="max-w-4xl mx-auto space-y-12">
+
+        <section>
+          <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
+            1. Classification du risque fournisseurs
           </h2>
-          <p className="text-sm text-gray-600 leading-relaxed max-w-3xl">
-            Commencez par l’article 1 si vous devez répondre à une demande
-            client/acheteur/bank/assureur. Les autres articles détaillent les
-            usages institutionnels les plus fréquents.
+          <p className="text-gray-700 leading-relaxed mb-4">
+            Les grandes organisations doivent classer leurs fournisseurs selon
+            leur exposition environnementale dans le cadre de leur gouvernance
+            achats et de leurs politiques ESG, notamment dans les démarches
+            d’achats responsables comme ISO 20400.
           </p>
-
-          <div className="mt-6 flex flex-col sm:flex-row gap-3">
-            <Link
-              href={routes.a1}
-              className="inline-flex items-center justify-center rounded-xl px-5 py-3 bg-[#0B3A63] text-white font-semibold hover:bg-[#092f50] transition"
-            >
-              Lire le guide principal
-            </Link>
-            <Link
-              href={routes.generate}
-              className="inline-flex items-center justify-center rounded-xl px-5 py-3 border border-[#0B3A63] text-[#0B3A63] font-semibold hover:bg-[#0B3A63] hover:text-white transition"
-            >
-              Générer une attestation
-            </Link>
-          </div>
-
-          <p className="mt-4 text-xs text-gray-500 leading-relaxed">
-            Note : ces guides décrivent des usages institutionnels courants. Ils
-            ne constituent pas un conseil juridique, ni une interprétation
-            réglementaire.
-          </p>
-        </div>
-
-        {/* ARTICLES LIST */}
-        <div className="mt-12 space-y-6">
-          <h2 className="text-2xl font-bold text-[#0B3A63]">
-            Les 5 guides (FR)
-          </h2>
-
-          <div className="grid grid-cols-1 gap-6">
-            {/* ARTICLE 1 */}
-            <article className="p-7 rounded-2xl border border-gray-200 bg-white shadow-sm">
-              <p className="text-xs uppercase tracking-wider text-[#64748B] mb-2">
-                Guide 1 — Réponse fournisseur
-              </p>
-              <h3 className="text-xl font-bold text-[#0B3A63] mb-2">
-                <Link
-                  href={routes.a1}
-                  className="hover:underline underline-offset-4"
-                >
-                  Attestation CO₂e fournisseur : à quoi sert-elle et que mettre
-                  dedans
-                </Link>
-              </h3>
-              <p className="text-sm text-gray-600 leading-relaxed mb-4">
-                Le guide “par défaut” pour répondre à une demande CO₂e dans un
-                onboarding ou un appel d’offres : périmètre, limites, preuves
-                minimales attendues, et erreurs fréquentes à éviter.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Link
-                  href={routes.a1}
-                  className="text-sm font-semibold text-[#0B3A63] hover:text-[#15B097] transition-colors"
-                >
-                  Lire →
-                </Link>
-                <Link
-                  href={routes.generate}
-                  className="text-sm font-semibold text-[#0B3A63] hover:text-[#15B097] transition-colors"
-                >
-                  Générer une attestation →
-                </Link>
-              </div>
-            </article>
-
-            {/* ARTICLE 2 */}
-            <article className="p-7 rounded-2xl border border-gray-200 bg-[#F8FAFC] shadow-sm">
-              <p className="text-xs uppercase tracking-wider text-[#64748B] mb-2">
-                Guide 2 — Onboarding
-              </p>
-              <h3 className="text-xl font-bold text-[#0B3A63] mb-2">
-                <Link
-                  href={routes.a2}
-                  className="hover:underline underline-offset-4"
-                >
-                  Onboarding fournisseur : pourquoi une estimation CO₂e est
-                  demandée
-                </Link>
-              </h3>
-              <p className="text-sm text-gray-600 leading-relaxed mb-4">
-                Comprendre l’usage “vendor onboarding” : document attendu,
-                format, cohérence, cycle de validation, et comment réduire le
-                temps de revue côté acheteur.
-              </p>
-              <Link
-                href={routes.a2}
-                className="text-sm font-semibold text-[#0B3A63] hover:text-[#15B097] transition-colors"
-              >
-                Lire →
-              </Link>
-            </article>
-
-            {/* ARTICLE 3 */}
-            <article className="p-7 rounded-2xl border border-gray-200 bg-white shadow-sm">
-              <p className="text-xs uppercase tracking-wider text-[#64748B] mb-2">
-                Guide 3 — Screening ESG
-              </p>
-              <h3 className="text-xl font-bold text-[#0B3A63] mb-2">
-                <Link
-                  href={routes.a3}
-                  className="hover:underline underline-offset-4"
-                >
-                  Screening ESG achats : comment les grands comptes classent les
-                  fournisseurs
-                </Link>
-              </h3>
-              <p className="text-sm text-gray-600 leading-relaxed mb-4">
-                À quoi sert un indicateur CO₂e dans le screening achats : tri,
-                catégorisation, seuils, et pourquoi la standardisation du format
-                compte plus que le niveau de détail.
-              </p>
-              <Link
-                href={routes.a3}
-                className="text-sm font-semibold text-[#0B3A63] hover:text-[#15B097] transition-colors"
-              >
-                Lire →
-              </Link>
-            </article>
-
-            {/* ARTICLE 4 */}
-            <article className="p-7 rounded-2xl border border-gray-200 bg-[#F8FAFC] shadow-sm">
-              <p className="text-xs uppercase tracking-wider text-[#64748B] mb-2">
-                Guide 4 — Banques & assureurs
-              </p>
-              <h3 className="text-xl font-bold text-[#0B3A63] mb-2">
-                <Link
-                  href={routes.a4}
-                  className="hover:underline underline-offset-4"
-                >
-                  Banques et assureurs : pourquoi ils demandent un indicateur
-                  CO₂e
-                </Link>
-              </h3>
-              <p className="text-sm text-gray-600 leading-relaxed mb-4">
-                Comprendre l’angle “risque” et “documentation” : pourquoi un
-                indicateur CO₂e est demandé même sans audit ni reporting
-                CSRD/ESRS, et comment cadrer l’usage correctement.
-              </p>
-              <Link
-                href={routes.a4}
-                className="text-sm font-semibold text-[#0B3A63] hover:text-[#15B097] transition-colors"
-              >
-                Lire →
-              </Link>
-            </article>
-
-            {/* ARTICLE 5 */}
-            <article className="p-7 rounded-2xl border border-gray-200 bg-white shadow-sm">
-              <p className="text-xs uppercase tracking-wider text-[#64748B] mb-2">
-                Guide 5 — Vérification
-              </p>
-              <h3 className="text-xl font-bold text-[#0B3A63] mb-2">
-                <Link
-                  href={routes.a5}
-                  className="hover:underline underline-offset-4"
-                >
-                  Vérifier une attestation CO₂e : ce que les reviewers contrôlent
-                </Link>
-              </h3>
-              <p className="text-sm text-gray-600 leading-relaxed mb-4">
-                Comment un reviewer (procurement / banque / assurance) vérifie
-                rapidement l’authenticité et l’intégrité d’un document, et
-                quelles preuves minimales rendent une attestation “acceptable”.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Link
-                  href={routes.a5}
-                  className="text-sm font-semibold text-[#0B3A63] hover:text-[#15B097] transition-colors"
-                >
-                  Lire →
-                </Link>
-                <Link
-                  href={routes.verify}
-                  className="text-sm font-semibold text-[#0B3A63] hover:text-[#15B097] transition-colors"
-                >
-                  Page “Vérifier une attestation” →
-                </Link>
-              </div>
-            </article>
-          </div>
-        </div>
-
-        {/* BOUNDARIES / DISCLAIMER */}
-        <div className="mt-12 rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
-          <h2 className="text-xl font-bold text-[#0B3A63] mb-3">
-            Périmètre et limites
-          </h2>
-          <ul className="list-disc ml-6 text-sm text-gray-700 space-y-2 leading-relaxed">
-            <li>
-              Ces guides décrivent un usage institutionnel d’un indicateur CO₂e
-              “minimal”, compatible avec des workflows (screening, onboarding,
-              due diligence).
-            </li>
-            <li>
-              Ils ne remplacent pas un inventaire GES (Scopes 1–2–3), ni un audit,
-              ni un reporting réglementaire (CSRD/ESRS).
-            </li>
-            <li>
-              Une attestation Certif-Scope est indicative et dépend des données
-              déclarées par l’utilisateur.
-            </li>
+          <ul className="list-disc ml-6 text-gray-700 space-y-2">
+            <li>screening ESG des fournisseurs</li>
+            <li>indicateurs environnementaux requis dans les appels d’offres</li>
+            <li>alignement avec les politiques achats internes</li>
           </ul>
+        </section>
 
-          <div className="mt-6 flex flex-col sm:flex-row gap-3">
-            <Link
-              href={routes.product}
-              className="inline-flex items-center justify-center rounded-xl px-5 py-3 border border-gray-300 text-gray-700 font-semibold hover:bg-gray-50 transition"
-            >
-              Voir la présentation du produit
-            </Link>
-            <Link
-              href={routes.generate}
-              className="inline-flex items-center justify-center rounded-xl px-5 py-3 bg-[#15B097] text-white font-semibold hover:opacity-95 transition"
-            >
-              Répondre à une demande maintenant
-            </Link>
-          </div>
-        </div>
+        <section>
+          <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
+            2. Pression réglementaire sur les institutions financières
+          </h2>
+          <p className="text-gray-700 leading-relaxed">
+            Les banques et les assureurs doivent intégrer les risques
+            environnementaux dans leurs processus d’analyse conformément à des
+            cadres tels que la Taxonomie européenne, les guidelines de l’EBA ou
+            Solvabilité II. Une attestation CO₂e standardisée permet de documenter
+            l’exposition environnementale d’un fournisseur sans exiger un
+            reporting CSRD ou ESRS complet.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
+            3. Due diligence et onboarding fournisseurs
+          </h2>
+          <p className="text-gray-700 leading-relaxed mb-4">
+            De nombreuses organisations demandent une estimation CO₂e dans le
+            cadre des procédures de due diligence fournisseurs. L’attestation
+            fournit un document structuré et vérifiable compatible avec les
+            modèles d’onboarding institutionnels.
+          </p>
+          <p className="text-gray-700 leading-relaxed">
+            Elle permet aux PME de répondre à des exigences auparavant réservées
+            à des démarches longues ou à des audits coûteux.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
+            4. Accessibilité pour les fournisseurs non techniques
+          </h2>
+          <p className="text-gray-700 leading-relaxed">
+            La majorité des PME ne peuvent pas produire de reporting CSRD ou ESRS
+            ni d’inventaire complet des émissions de gaz à effet de serre.
+            L’attestation fournit un indicateur compréhensible au niveau
+            institutionnel à partir des seules données de dépenses annuelles,
+            sans expertise technique requise.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
+            5. Accélération des cycles d’approbation fournisseurs
+          </h2>
+          <p className="text-gray-700 leading-relaxed">
+            Les processus d’approbation fournisseurs sont souvent ralentis par
+            l’absence d’informations environnementales cohérentes. Un document
+            CO₂e standardisé réduit le temps d’analyse et facilite les décisions
+            d’onboarding.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
+            6. Vérification immédiate et indépendante
+          </h2>
+          <ul className="list-disc ml-6 text-gray-700 space-y-2">
+            <li>identifiant unique d’attestation</li>
+            <li>garanties d’intégrité intégrées au document</li>
+            <li>URL de vérification permanente</li>
+            <li>QR code utilisable dans les systèmes institutionnels</li>
+          </ul>
+          <p className="text-gray-700 leading-relaxed mt-4">
+            Les réviseurs peuvent vérifier l’authenticité du document en quelques
+            secondes et confirmer qu’il n’a pas été modifié.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
+            7. Acceptation transfrontalière
+          </h2>
+          <p className="text-gray-700 leading-relaxed">
+            Le format d’attestation est aligné avec les attentes des directions
+            achats et des institutions financières dans plusieurs juridictions
+            européennes.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
+            8. Ce que cette attestation n’est pas
+          </h2>
+          <ul className="list-disc ml-6 text-gray-700 space-y-2">
+            <li>ce n’est pas une certification</li>
+            <li>ce n’est pas un audit</li>
+            <li>ce n’est pas une mission d’assurance</li>
+            <li>ce n’est pas un reporting carbone réglementaire</li>
+            <li>ce n’est pas un reporting CSRD ou ESRS</li>
+            <li>ce n’est pas un inventaire Scope 1, Scope 2 ou Scope 3</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
+            9. Portée légale et usage prévu
+          </h2>
+          <p className="text-gray-700 leading-relaxed">
+            Cette attestation est indicative uniquement. Elle ne constitue ni un
+            audit, ni une certification, ni une mission d’assurance, ni une
+            empreinte carbone juridiquement opposable.
+          </p>
+        </section>
+
       </div>
     </section>
   );
