@@ -88,7 +88,55 @@ export default function FooterFR() {
               </li>
               <li>
                 <Link data-i18n="footer.link.why" href="/fr/why-companies-ask">
-                  Pourquoi c’est demandé
+                  Pourquoi les entreprises le demandent
+                </Link>
+              </li>
+              <li>
+                <Link
+                  data-i18n="footer.link.why.overview"
+                  href="/fr/why-companies-ask"
+                >
+                  Vue d’ensemble (guide)
+                </Link>
+              </li>
+              <li>
+                <Link
+                  data-i18n="footer.link.why.supplier"
+                  href="/fr/why-companies-ask/attestation-carbone-fournisseur"
+                >
+                  Attestation carbone fournisseur
+                </Link>
+              </li>
+              <li>
+                <Link
+                  data-i18n="footer.link.why.tender"
+                  href="/fr/why-companies-ask/attestation-carbone-appel-offres"
+                >
+                  Attestation carbone appel d’offres
+                </Link>
+              </li>
+              <li>
+                <Link
+                  data-i18n="footer.link.why.finance"
+                  href="/fr/why-companies-ask/exigences-co2-banques-assurances"
+                >
+                  Exigences CO₂e banques & assurances
+                </Link>
+              </li>
+              <li>
+                <Link
+                  data-i18n="footer.link.why.sme"
+                  href="/fr/why-companies-ask/attestation-carbone-pme"
+                >
+                  Attestation carbone pour PME
+                </Link>
+              </li>
+              <li>
+                <Link
+                  data-i18n="footer.link.why.proof"
+                  href="/fr/why-companies-ask/preuve-carbone-entreprise"
+                >
+                  Preuve carbone d’entreprise
                 </Link>
               </li>
               <li>
@@ -172,4 +220,4 @@ export default function FooterFR() {
       </div>
     </footer>
   );
-      }
+                }
