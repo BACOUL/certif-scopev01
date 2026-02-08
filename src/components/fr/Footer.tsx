@@ -93,14 +93,6 @@ export default function FooterFR() {
               </li>
               <li>
                 <Link
-                  data-i18n="footer.link.why.overview"
-                  href="/fr/why-companies-ask"
-                >
-                  Vue d’ensemble (guide)
-                </Link>
-              </li>
-              <li>
-                <Link
                   data-i18n="footer.link.why.supplier"
                   href="/fr/why-companies-ask/attestation-carbone-fournisseur"
                 >
@@ -220,4 +212,4 @@ export default function FooterFR() {
       </div>
     </footer>
   );
-                }
+      }
