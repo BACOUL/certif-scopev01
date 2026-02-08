@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-export default function Footer() {
+export default function FooterEN() {
   return (
     <footer
       id="footer"
@@ -11,10 +11,8 @@ export default function Footer() {
       className="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 pt-14 pb-10"
     >
       <div className="max-w-7xl mx-auto px-6">
-
         {/* GRID */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
-
           {/* BRANDING */}
           <div>
             <h2
@@ -28,9 +26,9 @@ export default function Footer() {
               data-i18n="footer.brand.desc"
               className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed"
             >
-              Spend-based CO₂e attestation designed for procurement, banking and
-              ESG screening workflows. Standardized, consistent and verifiable
-              documentation.
+              Spend-based CO₂e attestation designed for procurement, banking,
+              insurance and ESG screening workflows. Standardized, consistent and
+              verifiable documentation.
             </p>
           </div>
 
@@ -60,14 +58,14 @@ export default function Footer() {
               <li>
                 <Link
                   data-i18n="footer.link.compliance"
-                  href="/product/methodology/compliance"
+                  href="/product/compliance"
                 >
-                  Compliance
+                  Compliance & scope
                 </Link>
               </li>
               <li>
                 <Link data-i18n="footer.link.verify" href="/verify">
-                  Verify Attestation
+                  Verify an attestation
                 </Link>
               </li>
             </ul>
@@ -90,7 +88,47 @@ export default function Footer() {
               </li>
               <li>
                 <Link data-i18n="footer.link.why" href="/why-companies-ask">
-                  Why Companies Ask for It
+                  Why companies ask
+                </Link>
+              </li>
+              <li>
+                <Link
+                  data-i18n="footer.link.why.supplier"
+                  href="/why-companies-ask/supplier-carbon-attestation"
+                >
+                  Supplier carbon attestation
+                </Link>
+              </li>
+              <li>
+                <Link
+                  data-i18n="footer.link.why.tender"
+                  href="/why-companies-ask/carbon-attestation-tender"
+                >
+                  Carbon attestation for tenders
+                </Link>
+              </li>
+              <li>
+                <Link
+                  data-i18n="footer.link.why.finance"
+                  href="/why-companies-ask/co2-requirements-banks-insurers"
+                >
+                  CO₂ requirements for banks & insurers
+                </Link>
+              </li>
+              <li>
+                <Link
+                  data-i18n="footer.link.why.sme"
+                  href="/why-companies-ask/carbon-attestation-smes"
+                >
+                  Carbon attestation for SMEs
+                </Link>
+              </li>
+              <li>
+                <Link
+                  data-i18n="footer.link.why.proof"
+                  href="/why-companies-ask/company-carbon-proof"
+                >
+                  Company carbon proof
                 </Link>
               </li>
               <li>
@@ -113,27 +151,27 @@ export default function Footer() {
             <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
               <li>
                 <Link data-i18n="footer.link.legal" href="/legal">
-                  Legal Notice
+                  Legal notice
                 </Link>
               </li>
               <li>
                 <Link data-i18n="footer.link.privacy" href="/privacy">
-                  Privacy Policy
+                  Privacy policy
                 </Link>
               </li>
               <li>
                 <Link data-i18n="footer.link.terms" href="/terms">
-                  Terms of Service
+                  Terms of use
                 </Link>
               </li>
               <li>
                 <Link data-i18n="footer.link.cookies" href="/cookies">
-                  Cookie Policy
+                  Cookies policy
                 </Link>
               </li>
               <li>
                 <Link data-i18n="footer.link.dpo" href="/data-processing">
-                  Data Processing Overview
+                  Data processing (overview)
                 </Link>
               </li>
             </ul>
@@ -145,9 +183,9 @@ export default function Footer() {
           data-i18n="footer.disclaimer"
           className="mt-10 text-center text-xs text-gray-500 dark:text-gray-400 leading-relaxed"
         >
-          Indicative spend-based CO₂e estimate. Not audited, not CSRD/ESRS-compliant,
-          no Scope 1–2, and not a substitute for a full greenhouse gas emissions
-          inventory. Results depend entirely on user-provided data.
+          Indicative spend-based CO₂e estimate. Not audited, not CSRD/ESRS
+          compliant, excludes Scopes 1–2, and does not replace a full greenhouse
+          gas inventory. Results fully depend on user-provided data.
         </div>
 
         {/* COPYRIGHT */}
@@ -165,12 +203,12 @@ export default function Footer() {
               "@context": "https://schema.org",
               "@type": "Organization",
               name: "Certif-Scope",
-              url: "https://certif-scope.com",
-              logo: "https://certif-scope.com/logo.png",
+              url: "https://www.certif-scope.com",
+              logo: "https://www.certif-scope.com/logo.png",
             }),
           }}
         />
       </div>
     </footer>
   );
-}
+                }
