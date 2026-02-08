@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import ClientLayout from "./client-layout";
 import "../styles/index.css";
 
@@ -13,7 +14,7 @@ export const revalidate = 0;
    DEFAULT METADATA (EN — langue canonique)
    Les pages /fr ont leur propre metadata
 ====================================================== */
-export const metadata = {
+export const metadata: Metadata = {
   title: "CO₂e Attestation for SMEs | Banks & Procurement – Certif-Scope",
   description:
     "Generate a standardized, spend-based CO₂e attestation for SMEs. Used to respond to requests from banks, insurers and procurement — without a full carbon audit.",
@@ -74,28 +75,16 @@ export default function RootLayout({
           }}
         />
 
-        {/* JSON-LD — Product */}
+        {/* JSON-LD — WebSite (minimal) */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Product",
-              name: "CO₂e Attestation",
-              description:
-                "Instantly generated spend-based CO₂e attestation based on annual spending (€). Includes verification ID and integrity hash.",
-              image: "https://www.certif-scope.com/preview.png",
-              brand: {
-                "@type": "Brand",
-                name: "Certif-Scope",
-              },
-              offers: {
-                "@type": "Offer",
-                url: "https://www.certif-scope.com/pricing",
-                priceCurrency: "EUR",
-                price: "49",
-                availability: "https://schema.org/InStock",
-              },
+              "@type": "WebSite",
+              name: "Certif-Scope",
+              url: "https://www.certif-scope.com/",
+              inLanguage: "en",
             }),
           }}
         />
@@ -106,4 +95,4 @@ export default function RootLayout({
       </body>
     </html>
   );
-   }
+}
