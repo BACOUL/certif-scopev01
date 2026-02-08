@@ -5,19 +5,24 @@ import type { Metadata } from "next";
 ====================================================== */
 
 export const metadata: Metadata = {
-  title: "Why Companies Ask for a CO₂e Attestation — Certif-Scope",
+  title: "Why companies ask for a CO₂e attestation — Certif-Scope",
   description:
-    "Institutional reasons why procurement teams, banks and insurers require CO₂e attestations from suppliers, including risk screening, onboarding and scope limits.",
+    "Understand why procurement teams, banks and insurers request standardized CO₂e attestations from suppliers: risk screening, onboarding, and acceptable use boundaries.",
   alternates: {
     canonical: "https://www.certif-scope.com/why-companies-ask",
+    languages: {
+      en: "https://www.certif-scope.com/why-companies-ask",
+      fr: "https://www.certif-scope.com/fr/why-companies-ask",
+    },
   },
   openGraph: {
-    title: "Why Companies Ask for a CO₂e Attestation — Certif-Scope",
+    title: "Why companies ask for a CO₂e attestation — Certif-Scope",
     description:
-      "Understand why organizations require standardized CO₂e attestations from suppliers and what these documents are intended — and not intended — to represent.",
+      "Institutional reasons behind standardized CO₂e attestation requests, and what these documents represent — and do not represent.",
     url: "https://www.certif-scope.com/why-companies-ask",
     siteName: "Certif-Scope",
     type: "website",
+    locale: "en_US",
   },
 };
 
@@ -39,10 +44,10 @@ export default function WhyCompaniesAskPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebPage",
-            name: "Why Companies Ask for a CO₂e Attestation",
+            name: "Why companies ask for a CO₂e attestation",
             url: "https://www.certif-scope.com/why-companies-ask",
             description:
-              "Institutional rationale explaining why organizations require CO₂e attestations from suppliers and how they are used.",
+              "Institutional explanation of why organizations request standardized CO₂e attestations from suppliers, and how these documents are used.",
             isPartOf: {
               "@type": "WebSite",
               name: "Certif-Scope",
@@ -55,21 +60,21 @@ export default function WhyCompaniesAskPage() {
       {/* TOP ANCHOR */}
       <div id="top" />
 
-      {/* CANONICAL PAGE HEADER */}
+      {/* HEADER */}
       <header className="mb-14">
         <p className="uppercase text-xs tracking-wider text-[#64748B] mb-3">
-          CO₂e Attestation — Supplier Requirement
+          CO₂e attestation — Supplier requirement
         </p>
 
         <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-6">
-          Why Companies Ask for It
+          Why companies ask for it
         </h1>
 
         <p className="text-lg text-gray-700 leading-relaxed max-w-3xl">
           Procurement teams, banks, insurers and public institutions increasingly
-          require a standardized CO₂e attestation from their suppliers. This page
-          explains the institutional rationale behind this request, as well as
-          what the attestation represents — and what it does not.
+          request a standardized CO₂e attestation from their suppliers. This page
+          explains the institutional reasons behind this request, and what this
+          attestation truly represents — and what it does not.
         </p>
 
         <div className="w-20 h-[2px] bg-gray-300 mt-10" />
@@ -77,124 +82,124 @@ export default function WhyCompaniesAskPage() {
 
       {/* CONTENT */}
       <div className="max-w-4xl mx-auto space-y-12">
-
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-            1. Procurement Risk Classification
+            1. Supplier risk classification
           </h2>
           <p className="text-gray-700 leading-relaxed mb-4">
-            Large organizations must classify suppliers according to environmental
-            exposure as part of procurement governance and ESG risk frameworks,
-            including sustainable procurement standards such as ISO 20400.
+            Large organizations must classify suppliers based on environmental
+            exposure as part of procurement governance and ESG policies, including
+            responsible purchasing frameworks such as ISO 20400.
           </p>
           <ul className="list-disc ml-6 text-gray-700 space-y-2">
-            <li>supplier ESG risk screening</li>
-            <li>mandatory environmental indicators in tenders</li>
+            <li>ESG supplier screening</li>
+            <li>environmental indicators required in tenders</li>
             <li>alignment with internal procurement policies</li>
           </ul>
         </section>
 
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-            2. Financial Institutions and Regulatory Pressure
+            2. Regulatory pressure on financial institutions
           </h2>
           <p className="text-gray-700 leading-relaxed">
-            Banks and insurers are subject to increasing environmental risk
-            assessment obligations under frameworks such as the EU Taxonomy,
-            EBA Guidelines and Solvency II. A standardized CO₂e attestation
-            enables documentation of supplier exposure without requiring full
-            CSRD or ESRS inventories.
+            Banks and insurers are expected to integrate environmental risks into
+            their analysis processes under frameworks such as the EU Taxonomy,
+            EBA guidelines, or Solvency II. A standardized CO₂e attestation helps
+            document exposure without requiring full CSRD or ESRS reporting.
           </p>
         </section>
 
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-            3. Due Diligence and Vendor Onboarding
+            3. Due diligence and supplier onboarding
           </h2>
           <p className="text-gray-700 leading-relaxed mb-4">
-            Many organizations require a CO₂e estimate as part of mandatory
-            supplier due diligence. The attestation provides a structured and
-            verifiable document aligned with institutional onboarding templates.
+            Many organizations request a CO₂e estimate as part of supplier due
+            diligence. The attestation provides a structured and verifiable
+            document compatible with institutional onboarding patterns.
           </p>
           <p className="text-gray-700 leading-relaxed">
-            This allows small and mid-sized suppliers to meet requirements that
-            previously required consultants or complex audits.
+            It enables SMEs to respond to requirements that previously implied
+            long processes or costly audits.
           </p>
         </section>
 
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-            4. Accessibility for Non-Technical Suppliers
+            4. Accessibility for non-technical suppliers
           </h2>
           <p className="text-gray-700 leading-relaxed">
-            Most SMEs cannot produce CSRD or ESRS reports, nor detailed greenhouse
-            gas inventories. The attestation delivers an institutional-grade
-            indicator using only annual spending data, without technical expertise.
+            Most SMEs cannot produce CSRD/ESRS reporting or a full greenhouse gas
+            inventory. The attestation provides an institutional-grade indicator
+            derived from annual spending data only, without requiring technical
+            expertise.
           </p>
         </section>
 
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-            5. Faster Supplier Approval Cycles
+            5. Faster supplier approval cycles
           </h2>
           <p className="text-gray-700 leading-relaxed">
-            Supplier approval is often delayed due to missing or inconsistent
-            environmental information. A standardized CO₂e document significantly
-            reduces review time and accelerates onboarding decisions.
+            Supplier approval is often delayed by missing or inconsistent
+            environmental information. A standardized CO₂e document reduces
+            review time and supports onboarding decisions.
           </p>
         </section>
 
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-            6. Immediate and Independent Verification
+            6. Immediate and independent verification
           </h2>
           <ul className="list-disc ml-6 text-gray-700 space-y-2">
-            <li>a unique attestation identifier</li>
-            <li>embedded document integrity safeguards</li>
-            <li>a permanent verification URL</li>
-            <li>a QR code usable in institutional systems</li>
+            <li>unique attestation identifier</li>
+            <li>integrity guarantees embedded in the document</li>
+            <li>permanent verification URL</li>
+            <li>QR code usable in institutional workflows</li>
           </ul>
           <p className="text-gray-700 leading-relaxed mt-4">
-            Reviewers can verify authenticity within seconds and confirm that
-            the document has not been altered.
+            Reviewers can verify the authenticity in seconds and confirm that the
+            document has not been altered.
           </p>
         </section>
 
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-            7. Cross-Border Acceptance
+            7. Cross-border usability
           </h2>
           <p className="text-gray-700 leading-relaxed">
-            The attestation format is aligned with procurement expectations
-            across multiple European jurisdictions.
+            The attestation format is aligned with expectations from procurement
+            teams and financial institutions across multiple European
+            jurisdictions.
           </p>
         </section>
 
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-            8. What This Attestation Is Not
+            8. What this attestation is not
           </h2>
           <ul className="list-disc ml-6 text-gray-700 space-y-2">
-            <li>not a certification</li>
-            <li>not an audit</li>
-            <li>not an assurance engagement</li>
-            <li>not a regulatory carbon report</li>
-            <li>not CSRD or ESRS reporting</li>
-            <li>not a Scope 1, Scope 2 or Scope 3 inventory</li>
+            <li>it is not a certification</li>
+            <li>it is not an audit</li>
+            <li>it is not an assurance engagement</li>
+            <li>it is not a regulatory carbon report</li>
+            <li>it is not CSRD or ESRS reporting</li>
+            <li>it is not a Scope 1, Scope 2 or Scope 3 inventory</li>
           </ul>
         </section>
 
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-            9. Legal Scope and Intended Use
+            9. Legal scope and intended use
           </h2>
           <p className="text-gray-700 leading-relaxed">
-            This attestation is indicative only. It does not constitute an audit,
-            certification, assurance engagement or legally binding footprint.
+            This attestation is indicative only. It is not an audit, not a
+            certification, not an assurance engagement, and not a legally binding
+            carbon footprint.
           </p>
         </section>
-
       </div>
     </section>
   );
-      }
+             }
