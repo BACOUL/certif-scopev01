@@ -58,7 +58,7 @@ export default function FooterFR() {
               <li>
                 <Link
                   data-i18n="footer.link.compliance"
-                  href="/fr/product/methodology/compliance"
+                  href="/fr/product/compliance"
                 >
                   Conformité & périmètre
                 </Link>
@@ -172,4 +172,4 @@ export default function FooterFR() {
       </div>
     </footer>
   );
-        }
+      }
