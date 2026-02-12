@@ -20,10 +20,22 @@ export const metadata: Metadata = {
     "Generate a standardized, spend-based CO₂e attestation for SMEs. Used to respond to requests from banks, insurers and procurement — without a full carbon audit.",
   alternates: {
     canonical: "https://www.certif-scope.com/",
+    languages: {
+      en: "https://www.certif-scope.com/",
+      fr: "https://www.certif-scope.com/fr",
+      // de: "https://www.certif-scope.com/de", // si tu l’actives plus tard
+    },
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon.ico" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+    shortcut: ["/favicon.ico"],
   },
+  manifest: "/site.webmanifest",
   openGraph: {
     title: "CO₂e Attestation for SMEs – Certif-Scope",
     description:
@@ -49,15 +61,12 @@ export const metadata: Metadata = {
 
 /* ======================================================
    ROOT LAYOUT
-   ⚠️ Pas de lang ici → géré dynamiquement dans ClientLayout
+   ⚠️ lang par défaut ici (EN). Les pages /fr peuvent
+   idéalement avoir leur propre layout plus tard.
 ====================================================== */
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
         {/* JSON-LD — Organization */}
         <script
@@ -95,4 +104,4 @@ export default function RootLayout({
       </body>
     </html>
   );
-}
+        }
