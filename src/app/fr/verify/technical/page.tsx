@@ -1,4 +1,4 @@
-// src/app/fr/verify/techincal/page.tsx
+// PATH: src/app/fr/verify/technical/page.tsx
 
 import type { Metadata } from "next";
 
@@ -12,23 +12,28 @@ import Section7 from "./sections/Section7";
 import Section8 from "./sections/Section8";
 
 /* ======================================================
-   SEO METADATA — TECHNICAL VERIFICATION (FR)
+   SEO METADATA — VÉRIFICATION TECHNIQUE (FR)
 ====================================================== */
 
 export const metadata: Metadata = {
   title: "Vérification technique — Attestation CO₂e | Certif-Scope",
   description:
-    "Documentation technique complète expliquant comment vérifier une attestation CO₂e Certif-Scope de manière indépendante, y compris la vérification cryptographique et hors ligne.",
+    "Documentation technique complète expliquant comment vérifier indépendamment une attestation CO₂e Certif-Scope, incluant la validation cryptographique et les procédures de vérification hors ligne.",
   alternates: {
-    canonical: "https://www.certif-scope.com/fr/verify/techincal",
+    canonical: "https://www.certif-scope.com/fr/verify/technical",
+    languages: {
+      en: "https://www.certif-scope.com/verify/technical",
+      fr: "https://www.certif-scope.com/fr/verify/technical",
+    },
   },
   openGraph: {
     title: "Vérification technique — Attestation CO₂e | Certif-Scope",
     description:
-      "Guide pas à pas pour développeurs, auditeurs et équipes sécurité afin de vérifier des attestations CO₂e Certif-Scope de façon indépendante et hors ligne.",
-    url: "https://www.certif-scope.com/fr/verify/techincal",
+      "Documentation technique étape par étape permettant aux développeurs et auditeurs de vérifier indépendamment et hors ligne les attestations CO₂e Certif-Scope.",
+    url: "https://www.certif-scope.com/fr/verify/technical",
     siteName: "Certif-Scope",
     type: "website",
+    locale: "fr_FR",
   },
 };
 
@@ -36,7 +41,7 @@ export const metadata: Metadata = {
    PAGE
 ====================================================== */
 
-export default function VerifyTechnicalFRPage() {
+export default function VerifyTechnicalPageFR() {
   return (
     <section
       id="verify-technical"
@@ -52,8 +57,8 @@ export default function VerifyTechnicalFRPage() {
             "@type": "WebPage",
             name: "Vérification technique des attestations CO₂e",
             description:
-              "Documentation technique pour vérifier de manière indépendante l’authenticité et l’intégrité des attestations CO₂e Certif-Scope.",
-            url: "https://www.certif-scope.com/fr/verify/techincal",
+              "Documentation technique permettant de vérifier indépendamment l’authenticité et l’intégrité des attestations CO₂e Certif-Scope.",
+            url: "https://www.certif-scope.com/fr/verify/technical",
             isPartOf: {
               "@type": "WebSite",
               name: "Certif-Scope",
@@ -66,7 +71,7 @@ export default function VerifyTechnicalFRPage() {
       {/* TOP ANCHOR */}
       <div id="top" />
 
-      {/* CANONICAL PAGE HEADER */}
+      {/* EN-TÊTE */}
       <header className="mb-14">
         <p className="uppercase text-xs tracking-wider text-[#64748B] mb-3">
           Attestation CO₂e — Vérification technique
@@ -77,58 +82,66 @@ export default function VerifyTechnicalFRPage() {
         </h1>
 
         <p className="text-lg text-gray-700 leading-relaxed max-w-3xl">
-          Cette page fournit une explication complète, au niveau
-          implémentation, pour vérifier techniquement une attestation CO₂e
-          Certif-Scope. Elle est destinée aux développeurs, auditeurs, équipes
-          sécurité et relecteurs techniques ayant besoin d’une vérification
-          indépendante, reproductible et possible hors ligne.
+          Cette page fournit une explication complète, au niveau implémentation,
+          de la manière de vérifier techniquement une attestation CO₂e
+          Certif-Scope. Elle s’adresse aux développeurs, auditeurs, équipes
+          sécurité et relecteurs techniques nécessitant une vérification hors
+          ligne, indépendante et reproductible.
         </p>
 
         <div className="w-20 h-[2px] bg-gray-300 mt-10" />
       </header>
 
-      {/* TABLE OF CONTENTS */}
+      {/* TABLE DES MATIÈRES */}
       <nav
         aria-label="Sections de vérification technique"
         className="mb-16 max-w-4xl p-6 bg-[#F8FAFC] border border-gray-200 rounded-xl shadow-sm"
       >
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-[#0B3A63] font-medium">
           <li>
-            <a href="#verification-model">1. Modèle de vérification</a>
+            <a href="#verification-model">
+              1. Vue d’ensemble du modèle de vérification
+            </a>
           </li>
           <li>
             <a href="#cryptographic-foundations">
-              2. Fondations cryptographiques
+              2. Fondements cryptographiques
             </a>
           </li>
           <li>
-            <a href="#signed-data-structure">3. Structure des données signées</a>
+            <a href="#signed-data-structure">
+              3. Structure des données signées
+            </a>
           </li>
           <li>
             <a href="#public-key-and-trust">
-              4. Clé publique & modèle de confiance
+              4. Clé publique et modèle de confiance
             </a>
           </li>
           <li>
-            <a href="#verification-scope">5. Ce qui est vérifié (et ce qui ne l’est pas)</a>
+            <a href="#verification-scope">
+              5. Ce qui est vérifié (et ce qui ne l’est pas)
+            </a>
           </li>
           <li>
-            <a href="#verification-workflows">6. Parcours de vérification</a>
+            <a href="#verification-workflows">
+              6. Flux de vérification
+            </a>
           </li>
           <li>
             <a href="#step-by-step-verification">
-              7. Vérification pas à pas (CLI & code)
+              7. Vérification étape par étape (CLI & code)
             </a>
           </li>
           <li>
             <a href="#security-assumptions">
-              8. Hypothèses de sécurité & modèle de menace
+              8. Hypothèses de sécurité et modèle de menace
             </a>
           </li>
         </ul>
       </nav>
 
-      {/* CONTENT */}
+      {/* CONTENU */}
       <div className="max-w-4xl mx-auto space-y-24">
         <Section1 />
         <Section2 />
@@ -141,4 +154,4 @@ export default function VerifyTechnicalFRPage() {
       </div>
     </section>
   );
-}
+       }
