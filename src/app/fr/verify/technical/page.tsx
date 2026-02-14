@@ -2,14 +2,14 @@
 
 import type { Metadata } from "next";
 
-import Section1 from "./sections/Section1";
-import Section2 from "./sections/Section2";
-import Section3 from "./sections/Section3";
-import Section4 from "./sections/Section4";
-import Section5 from "./sections/Section5";
-import Section6 from "./sections/Section6";
-import Section7 from "./sections/Section7";
-import Section8 from "./sections/Section8";
+import Section1 from "./Sections/Section1";
+import Section2 from "./Sections/Section2";
+import Section3 from "./Sections/Section3";
+import Section4 from "./Sections/Section4";
+import Section5 from "./Sections/Section5";
+import Section6 from "./Sections/Section6";
+import Section7 from "./Sections/Section7";
+import Section8 from "./Sections/Section8";
 
 /* ======================================================
    SEO METADATA — VÉRIFICATION TECHNIQUE (FR)
@@ -68,10 +68,8 @@ export default function VerifyTechnicalPageFR() {
         }}
       />
 
-      {/* TOP ANCHOR */}
       <div id="top" />
 
-      {/* EN-TÊTE */}
       <header className="mb-14">
         <p className="uppercase text-xs tracking-wider text-[#64748B] mb-3">
           Attestation CO₂e — Vérification technique
@@ -92,7 +90,6 @@ export default function VerifyTechnicalPageFR() {
         <div className="w-20 h-[2px] bg-gray-300 mt-10" />
       </header>
 
-      {/* TABLE DES MATIÈRES */}
       <nav
         aria-label="Sections de vérification technique"
         className="mb-16 max-w-4xl p-6 bg-[#F8FAFC] border border-gray-200 rounded-xl shadow-sm"
@@ -124,9 +121,7 @@ export default function VerifyTechnicalPageFR() {
             </a>
           </li>
           <li>
-            <a href="#verification-workflows">
-              6. Flux de vérification
-            </a>
+            <a href="#verification-workflows">6. Flux de vérification</a>
           </li>
           <li>
             <a href="#step-by-step-verification">
@@ -141,7 +136,6 @@ export default function VerifyTechnicalPageFR() {
         </ul>
       </nav>
 
-      {/* CONTENU */}
       <div className="max-w-4xl mx-auto space-y-24">
         <Section1 />
         <Section2 />
@@ -154,4 +148,4 @@ export default function VerifyTechnicalPageFR() {
       </div>
     </section>
   );
-       }
+}
