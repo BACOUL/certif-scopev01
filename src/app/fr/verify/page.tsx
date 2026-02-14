@@ -47,7 +47,7 @@ export default function VerifyPageFR() {
       data-section="verify"
       className="max-w-7xl mx-auto px-6 pt-12 pb-24"
     >
-      {/* JSON-LD — WebPage */}
+      {/* JSON-LD — WebPage (STRICT) */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -95,7 +95,7 @@ export default function VerifyPageFR() {
         <section className="mb-10">
           <p className="text-gray-700 leading-relaxed">
             Les attestations Certif-Scope sont émises sous forme de documents PDF
-            signés numériquement. Le fichier PDF constitue l’unique élément
+            signés numériquement. Le fichier PDF constitue l’unique objet
             vérifiable.
           </p>
 
@@ -105,6 +105,7 @@ export default function VerifyPageFR() {
             vérifiées directement à partir du document.
           </p>
 
+          {/* LIEN TECH — DISCRET, POUR EXPERTS */}
           <p className="mt-4 text-sm text-gray-600">
             Vous recherchez les détails techniques de vérification ?{" "}
             <Link
@@ -163,7 +164,7 @@ export default function VerifyPageFR() {
             <p className="text-sm text-gray-700">
               Cette vérification confirme à la fois l’{" "}
               <strong>authenticité</strong> du signataire (Certif-Scope) et
-              l’<strong>intégrité</strong> du contenu signé, garantissant que le
+              l’<strong>intégrité</strong> du contenu signé — garantissant que le
               document n’a pas été modifié depuis son émission.
             </p>
           </div>
@@ -177,8 +178,8 @@ export default function VerifyPageFR() {
 
           <p className="text-gray-700 leading-relaxed mb-4">
             Pour une vérification avancée ou une intégration dans des workflows
-            automatisés, la signature Ed25519 peut être vérifiée directement à
-            l’aide de la clé publique ci-dessous.
+            de conformité automatisés, la signature Ed25519 peut être vérifiée
+            directement à l’aide de la clé publique ci-dessous.
           </p>
 
           <ul className="list-disc pl-6 text-gray-700 space-y-1 mb-6">
@@ -218,6 +219,7 @@ export default function VerifyPageFR() {
             mission d’assurance.
           </p>
 
+          {/* LIEN TECH FINAL — LECTEURS COMPLIANCE / AUDIT */}
           <p className="text-xs">
             Les détails techniques et cryptographiques sont disponibles{" "}
             <Link
