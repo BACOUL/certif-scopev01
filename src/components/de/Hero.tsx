@@ -1,0 +1,94 @@
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+
+export default function Hero() {
+  return (
+    <section
+      id="hero"
+      itemScope
+      itemType="https://schema.org/WebPage"
+      className="relative max-w-6xl mx-auto px-6 pt-8 md:pt-14 pb-14 md:pb-20 text-center"
+    >
+      <span className="sr-only" itemProp="alternativeHeadline">
+        Standardisierter und überprüfbarer CO₂e-Nachweis für Unternehmen und KMU
+      </span>
+
+      <div className="absolute inset-0 bg-gradient-to-b from-white to-[#F3FBFC] -z-10" />
+
+      {/* SURTITRE */}
+      <p
+        className="text-xs md:text-sm font-semibold tracking-wide text-[#0B3A63]/70 mb-3 uppercase"
+        itemProp="about"
+      >
+        Standardisierter CO₂e-Nachweis für Unternehmen
+      </p>
+
+      {/* H1 */}
+      <h1
+        itemProp="headline"
+        className="text-[1.9rem] md:text-[3rem] font-extrabold text-[#0B3A63] leading-tight tracking-tight"
+      >
+        CO₂e-Nachweis für KMU
+        <br />
+        <span className="text-[#1FB6C1]">
+          standardisiert und überprüfbar
+        </span>
+      </h1>
+
+      {/* DESCRIPTION */}
+      <p
+        className="text-base md:text-lg text-[#475569] max-w-2xl mx-auto mt-4 leading-relaxed"
+        itemProp="description"
+      >
+        Reagieren Sie auf Anforderungen von Kunden, Ausschreibungen,
+        Banken oder Versicherungen mit einem klaren und standardisierten
+        CO₂e-Dokument — ohne vollständige CO₂-Bilanzierung.
+      </p>
+
+      {/* LEGAL NOTICE */}
+      <div className="mt-4 max-w-xl mx-auto space-y-1">
+        <p className="text-xs text-slate-500 leading-relaxed">
+          Basierend auf anerkannten Methoden (GHG Protocol, ISO 14064-1).
+          Entwickelt für Lieferantenanforderungen und Beschaffungsprozesse
+          in Europa.
+        </p>
+
+        <p className="text-xs text-slate-500 italic flex items-center justify-center gap-1">
+          <span aria-hidden>🔒</span>
+          Berechnung erfolgt lokal im Browser. Keine finanziellen Eingabedaten werden gespeichert.
+        </p>
+      </div>
+
+      {/* CTA */}
+      <div className="flex justify-center mt-6 md:mt-7">
+        <Link
+          href="/generate"
+          aria-label="CO₂e-Nachweis erstellen"
+          className="bg-[#1FB6C1] hover:bg-[#17a2a8] text-white font-semibold px-12 py-4 rounded-xl shadow-md transition"
+        >
+          Nachweis erstellen
+        </Link>
+      </div>
+
+      {/* IMAGE */}
+      <div className="flex justify-center mt-7 md:mt-8">
+        <Image
+          itemProp="primaryImageOfPage"
+          src="/hero-attestation.webp"
+          alt="Beispiel eines standardisierten CO₂e-Nachweises für ein Unternehmen mit überprüfbaren Angaben."
+          width={900}
+          height={600}
+          priority
+          className="w-full max-w-xs sm:max-w-sm md:max-w-xl rounded-2xl shadow-lg border border-slate-100"
+        />
+      </div>
+
+      {/* TRUST LINE */}
+      <p className="text-sm text-[#0B3A63]/80 font-medium mt-6">
+        Von Dritten unabhängig überprüfbar.
+      </p>
+    </section>
+  );
+}
