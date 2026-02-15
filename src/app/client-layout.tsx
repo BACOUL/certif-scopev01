@@ -1,5 +1,4 @@
 // PATH: src/app/client-layout.tsx
-
 "use client";
 
 import { useEffect, useMemo } from "react";
@@ -23,14 +22,11 @@ export default function ClientLayout({
 }) {
   const pathname = usePathname();
 
-  const isFR = useMemo(() => {
-    if (!pathname) return false;
-    return pathname === "/fr" || pathname.startsWith("/fr/");
-  }, [pathname]);
-
-  const isDE = useMemo(() => {
-    if (!pathname) return false;
-    return pathname === "/de" || pathname.startsWith("/de/");
+  const lang = useMemo<"en" | "fr" | "de">(() => {
+    if (!pathname) return "en";
+    if (pathname === "/fr" || pathname.startsWith("/fr/")) return "fr";
+    if (pathname === "/de" || pathname.startsWith("/de/")) return "de";
+    return "en";
   }, [pathname]);
 
   useEffect(() => {
@@ -38,19 +34,16 @@ export default function ClientLayout({
     window.dispatchEvent(closeEvent);
   }, [pathname]);
 
-  const HeaderComponent = isDE ? HeaderDE : isFR ? HeaderFR : Header;
-  const FooterComponent = isDE ? FooterDE : isFR ? FooterFR : Footer;
-
   return (
     <>
-      {/* HEADER — EN/FR/DE */}
-      <HeaderComponent />
+      {/* HEADER */}
+      {lang === "fr" ? <HeaderFR /> : lang === "de" ? <HeaderDE /> : <Header />}
 
       {/* CONTENT */}
       <main className="pt-[110px]">{children}</main>
 
-      {/* FOOTER — EN/FR/DE */}
-      <FooterComponent />
+      {/* FOOTER */}
+      {lang === "fr" ? <FooterFR /> : lang === "de" ? <FooterDE /> : <Footer />}
 
       <ScrollToTop />
     </>
