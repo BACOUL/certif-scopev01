@@ -59,7 +59,9 @@ export default function FooterDE() {
                 <Link href="/de/partners">Partnerschaften</Link>
               </li>
               <li>
-                <Link href="/de/why-companies-ask">Warum Unternehmen danach fragen</Link>
+                <Link href="/de/why-companies-ask">
+                  Warum Unternehmen danach fragen
+                </Link>
               </li>
               <li>
                 <Link href="/de/why-companies-ask/supplier-carbon-attestation">
@@ -112,7 +114,9 @@ export default function FooterDE() {
                 <Link href="/de/cookies">Cookie-Richtlinie</Link>
               </li>
               <li>
-                <Link href="/de/data-processing">Datenverarbeitung (Überblick)</Link>
+                <Link href="/de/data-processing">
+                  Datenverarbeitung (Überblick)
+                </Link>
               </li>
             </ul>
           </nav>
@@ -121,9 +125,9 @@ export default function FooterDE() {
         {/* DISCLAIMER */}
         <div className="mt-10 text-center text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
           Indikative CO₂e-Schätzung auf Ausgabenbasis. Nicht geprüft, nicht
-          CSRD-/ESRS-konform, ohne Scopes 1–2 und kein Ersatz für ein vollständiges
-          Treibhausgasinventar. Ergebnisse hängen vollständig von den angegebenen
-          Daten ab.
+          CSRD-/ESRS-konform, ohne Scopes 1–2 und kein Ersatz für ein
+          vollständiges Treibhausgasinventar. Ergebnisse hängen vollständig von
+          den angegebenen Daten ab.
         </div>
 
         {/* COPYRIGHT */}
@@ -149,4 +153,4 @@ export default function FooterDE() {
       </div>
     </footer>
   );
-          }
+      }
