@@ -25,6 +25,7 @@ export const metadata: Metadata = {
     languages: {
       en: "https://certif-scope.com/",
       fr: "https://certif-scope.com/fr/",
+      de: "https://certif-scope.com/de/",
     },
   },
   openGraph: {
