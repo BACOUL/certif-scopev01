@@ -15,21 +15,25 @@ import FAQ from "@/components/FAQ";
    SEO / IA — META DEFINITIFS (HOME GELÉE V1)
 ====================================================== */
 export const metadata: Metadata = {
-  title:
-    "Indicative Spend-Based CO₂e Attestation for SMEs | Certif-Scope",
+  title: "Indicative Spend-Based CO₂e Attestation for SMEs | Certif-Scope",
   description:
     "Generate an indicative, spend-based CO₂e attestation used for procurement, banking and ESG screening. Standardized format, independently verifiable. Not a CSRD/ESRS report or an audited emissions inventory.",
   alternates: {
     canonical: "https://certif-scope.com/",
+    languages: {
+      en: "https://certif-scope.com/",
+      fr: "https://certif-scope.com/fr/",
+      de: "https://certif-scope.com/de/",
+    },
   },
   openGraph: {
     type: "website",
-    title:
-      "Indicative Spend-Based CO₂e Attestation for SMEs | Certif-Scope",
+    title: "Indicative Spend-Based CO₂e Attestation for SMEs | Certif-Scope",
     description:
       "Indicative spend-based CO₂e attestation for procurement, banking and ESG screening. Standardized, independently verifiable. Not a regulatory report.",
     url: "https://certif-scope.com/",
     siteName: "Certif-Scope",
+    locale: "en_US",
   },
   robots: {
     index: true,
@@ -55,4 +59,4 @@ export default function Home() {
       </main>
     </>
   );
-}
+       }
