@@ -11,6 +11,11 @@ export const metadata: Metadata = {
     "Comprendre pourquoi les acheteurs, banques et assureurs demandent une attestation CO₂e standardisée aux fournisseurs : screening des risques, onboarding, et cadre d’utilisation.",
   alternates: {
     canonical: "https://www.certif-scope.com/fr/why-companies-ask",
+    languages: {
+      en: "https://www.certif-scope.com/why-companies-ask",
+      fr: "https://www.certif-scope.com/fr/why-companies-ask",
+      de: "https://www.certif-scope.com/de/why-companies-ask",
+    },
   },
   openGraph: {
     title:
@@ -20,6 +25,7 @@ export const metadata: Metadata = {
     url: "https://www.certif-scope.com/fr/why-companies-ask",
     siteName: "Certif-Scope",
     type: "website",
+    locale: "fr_FR",
   },
 };
 
@@ -80,7 +86,6 @@ export default function WhyCompaniesAskPage() {
 
       {/* CONTENT */}
       <div className="max-w-4xl mx-auto space-y-12">
-
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
             1. Classification du risque fournisseurs
@@ -204,8 +209,7 @@ export default function WhyCompaniesAskPage() {
             empreinte carbone juridiquement opposable.
           </p>
         </section>
-
       </div>
     </section>
   );
-}
+             }
