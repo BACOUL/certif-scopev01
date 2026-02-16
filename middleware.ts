@@ -3,29 +3,20 @@ import type { NextRequest } from "next/server";
 
 const SUPPORTED_LOCALES = ["de", "fr"] as const;
 
-// Mets ici uniquement les pages réellement traduites par langue
+// Pages réellement traduites (routes après le préfixe langue)
 const ALLOWED: Record<(typeof SUPPORTED_LOCALES)[number], string[]> = {
-  de: [
-    "/", // /de
-    "/pricing",
-    "/why-companies-ask",
-    // ajoute au fur et à mesure: "/legal", "/privacy", etc.
-  ],
-  fr: [
-    // si tu veux aussi éviter les 404 en FR, remplis ici
-    // sinon laisse vide et FR ne redirigera pas (mais config matcher inclut /fr)
-  ],
+  de: ["/", "/pricing", "/why-companies-ask"],
+  fr: [], // FR: pas de fallback vers EN
 };
 
 export function middleware(req: NextRequest) {
   const pathname = req.nextUrl.pathname;
 
   // ======================================================
-  // 1) Base response
+  // 1) Base response + security headers
   // ======================================================
   const res = NextResponse.next();
 
-  // Sécurité HTTP de base
   res.headers.set("X-Content-Type-Options", "nosniff");
   res.headers.set("Referrer-Policy", "no-referrer");
   res.headers.set(
@@ -33,15 +24,15 @@ export function middleware(req: NextRequest) {
     "camera=(), microphone=(), geolocation=(), payment=()"
   );
 
-  // Cache strict pour routes sensibles
+  // Cache strict routes sensibles
   if (pathname.startsWith("/verify") || pathname.startsWith("/api")) {
     res.headers.set("Cache-Control", "no-store");
     return res;
   }
 
   // ======================================================
-  // 2) Locale fallback: /de/* (and optionally /fr/*) -> EN
-  //    if page is not translated
+  // 2) Fallback /de/* -> EN si page non traduite
+  //    (FR reste tel quel)
   // ======================================================
   const locale = SUPPORTED_LOCALES.find(
     (l) => pathname === `/${l}` || pathname.startsWith(`/${l}/`)
@@ -49,26 +40,20 @@ export function middleware(req: NextRequest) {
 
   if (!locale) return res;
 
-  // Path after locale prefix
-  const rest = pathname.replace(`/${locale}`, "") || "/"; // "/" or "/pricing"...
-  const isAllowed = ALLOWED[locale]?.includes(rest);
+  const rest = pathname.replace(`/${locale}`, "") || "/"; // "/" ou "/pricing"
+  const isAllowed = ALLOWED[locale].includes(rest);
 
   if (isAllowed) return res;
 
-  // If FR list is empty, don't redirect FR (optional behavior)
-  // Comment this block if you DO want FR fallback too.
-  if (locale === "fr" && ALLOWED.fr.length === 0) {
-    return res;
-  }
+  // Ne pas rediriger FR si tu ne veux pas de fallback
+  if (locale === "fr" && ALLOWED.fr.length === 0) return res;
 
-  // Redirect to EN equivalent (remove locale prefix)
   const url = req.nextUrl.clone();
   url.pathname = rest === "/" ? "/" : rest;
 
   return NextResponse.redirect(url, 307);
 }
 
-// Routes concernées
 export const config = {
   matcher: ["/verify/:path*", "/api/:path*", "/de/:path*", "/fr/:path*"],
 };
