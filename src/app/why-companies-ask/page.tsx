@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     languages: {
       en: "https://www.certif-scope.com/why-companies-ask",
       fr: "https://www.certif-scope.com/fr/why-companies-ask",
+      de: "https://www.certif-scope.com/de/why-companies-ask",
     },
   },
   openGraph: {
@@ -202,4 +203,4 @@ export default function WhyCompaniesAskPage() {
       </div>
     </section>
   );
-             }
+               }
