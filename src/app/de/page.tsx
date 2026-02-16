@@ -21,11 +21,11 @@ export const metadata: Metadata = {
   description:
     "Erstellen Sie einen indikativen, ausgabenbasierten CO₂e-Nachweis für Ausschreibungen, Banken und ESG-Screening. Standardisiertes Format, unabhängig überprüfbar. Kein CSRD-/ESRS-Bericht und kein CO₂-Audit.",
   alternates: {
-    canonical: "https://certif-scope.com/de/",
+    canonical: "https://www.certif-scope.com/de",
     languages: {
-      en: "https://certif-scope.com/",
-      fr: "https://certif-scope.com/fr/",
-      de: "https://certif-scope.com/de/",
+      en: "https://www.certif-scope.com",
+      fr: "https://www.certif-scope.com/fr",
+      de: "https://www.certif-scope.com/de",
     },
   },
   openGraph: {
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     title: "CO₂e-Nachweis für KMU | Certif-Scope",
     description:
       "Indikativer, ausgabenbasierter CO₂e-Nachweis für Ausschreibungen, Banken und ESG-Analysen. Standardisiert und unabhängig überprüfbar. Nicht regulatorisch.",
-    url: "https://certif-scope.com/de/",
+    url: "https://www.certif-scope.com/de",
     siteName: "Certif-Scope",
     locale: "de_DE",
   },
