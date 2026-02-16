@@ -1,19 +1,67 @@
+import type { Metadata } from "next";
 import GenerateAttestationButton from "@/components/GenerateAttestationButton";
-// On n'importe plus Link car on utilise des balises <a> pour les API routes
 
-export const metadata = {
+/* ======================================================
+   SEO METADATA — PRICING (DE)
+====================================================== */
+
+export const metadata: Metadata = {
   title: "Preise — Certif-Scope",
   description:
     "Transparente Preise für standardisierte CO₂e-Bescheinigungen. Kein Abonnement. Gültigkeit 1 Jahr.",
+  alternates: {
+    canonical: "https://www.certif-scope.com/de/pricing",
+    languages: {
+      en: "https://www.certif-scope.com/pricing",
+      fr: "https://www.certif-scope.com/fr/pricing",
+      de: "https://www.certif-scope.com/de/pricing",
+    },
+  },
+  openGraph: {
+    title: "Preise — Certif-Scope",
+    description:
+      "Transparente Preise für standardisierte CO₂e-Bescheinigungen. Kein Abonnement. Gültigkeit 1 Jahr.",
+    url: "https://www.certif-scope.com/de/pricing",
+    siteName: "Certif-Scope",
+    type: "website",
+    locale: "de_DE",
+  },
 };
 
-export default function PricingPage() {
+/* ======================================================
+   PAGE
+====================================================== */
+
+export default function PricingPageDE() {
   return (
     <section
       id="pricing"
       data-section="pricing"
       className="max-w-7xl mx-auto px-6 pt-12 pb-24"
     >
+      {/* JSON-LD — WebPage (STRICT, NON-PRODUCT) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: "Preise — Certif-Scope",
+            url: "https://www.certif-scope.com/de/pricing",
+            description:
+              "Preisinformationen für standardisierte, indikative CO₂e-Bescheinigungen (spend-based). Keine Abonnements. Gültigkeit 1 Jahr.",
+            isPartOf: {
+              "@type": "WebSite",
+              name: "Certif-Scope",
+              url: "https://www.certif-scope.com",
+            },
+          }),
+        }}
+      />
+
+      {/* TOP ANCHOR */}
+      <div id="top" />
+
       {/* HEADER */}
       <header className="mb-14">
         <p className="uppercase text-xs tracking-wider text-[#64748B] mb-3">
@@ -37,9 +85,9 @@ export default function PricingPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {/* SINGLE */}
         <div className="bg-white border border-gray-200 rounded-2xl shadow-lg p-10 text-center flex flex-col">
-          <h3 className="text-2xl font-bold text-[#0B3A63] mb-3">
+          <h2 className="text-2xl font-bold text-[#0B3A63] mb-3">
             Einzelbescheinigung
-          </h3>
+          </h2>
 
           <p className="text-5xl font-extrabold text-[#1FB6C1] mb-1 tracking-tight">
             89€
@@ -63,9 +111,9 @@ export default function PricingPage() {
 
         {/* PACK 5 */}
         <div className="bg-white border border-gray-200 rounded-2xl shadow-lg p-10 text-center flex flex-col">
-          <h3 className="text-2xl font-bold text-[#0B3A63] mb-3">
+          <h2 className="text-2xl font-bold text-[#0B3A63] mb-3">
             Paket mit 5
-          </h3>
+          </h2>
 
           <p className="text-4xl font-extrabold text-[#0B3A63] mb-1">349€</p>
           <p className="text-sm text-gray-500 mb-4">(69€ pro Bescheinigung)</p>
@@ -76,7 +124,7 @@ export default function PricingPage() {
 
           <a
             href="/api/checkout-pack?pack=5"
-            className="bg-[#0B3A63] hover:bg-[#092f50] text-white font-semibold px-10 py-3 rounded-xl mt-auto text-center"
+            className="bg-[#0B3A63] hover:bg-[#092f50] text-white font-semibold px-10 py-3 rounded-xl mt-auto text-center rounded-xl"
           >
             Paket mit 5 kaufen
           </a>
@@ -84,9 +132,9 @@ export default function PricingPage() {
 
         {/* PACK 10 */}
         <div className="bg-white border border-gray-200 rounded-2xl shadow-lg p-10 text-center flex flex-col">
-          <h3 className="text-2xl font-bold text-[#0B3A63] mb-3">
+          <h2 className="text-2xl font-bold text-[#0B3A63] mb-3">
             Paket mit 10
-          </h3>
+          </h2>
 
           <p className="text-4xl font-extrabold text-[#0B3A63] mb-1">590€</p>
           <p className="text-sm text-gray-500 mb-4">(59€ pro Bescheinigung)</p>
@@ -97,7 +145,7 @@ export default function PricingPage() {
 
           <a
             href="/api/checkout-pack?pack=10"
-            className="bg-[#0B3A63] hover:bg-[#092f50] text-white font-semibold px-10 py-3 rounded-xl mt-auto text-center"
+            className="bg-[#0B3A63] hover:bg-[#092f50] text-white font-semibold px-10 py-3 rounded-xl mt-auto text-center rounded-xl"
           >
             Paket mit 10 kaufen
           </a>
@@ -105,9 +153,9 @@ export default function PricingPage() {
 
         {/* PACK 50 */}
         <div className="bg-white border border-gray-200 rounded-2xl shadow-lg p-10 text-center flex flex-col col-span-full lg:col-span-1 mx-auto">
-          <h3 className="text-2xl font-bold text-[#0B3A63] mb-3">
+          <h2 className="text-2xl font-bold text-[#0B3A63] mb-3">
             Paket mit 50
-          </h3>
+          </h2>
 
           <p className="text-4xl font-extrabold text-[#0B3A63] mb-1">2,450€</p>
           <p className="text-sm text-gray-500 mb-4">(49€ pro Bescheinigung)</p>
@@ -118,7 +166,7 @@ export default function PricingPage() {
 
           <a
             href="/api/checkout-pack?pack=50"
-            className="bg-[#0B3A63] hover:bg-[#092f50] text-white font-semibold px-10 py-3 rounded-xl mt-auto text-center"
+            className="bg-[#0B3A63] hover:bg-[#092f50] text-white font-semibold px-10 py-3 rounded-xl mt-auto text-center rounded-xl"
           >
             Paket mit 50 kaufen
           </a>
@@ -126,9 +174,9 @@ export default function PricingPage() {
 
         {/* ENTERPRISE */}
         <div className="bg-gray-100 border-2 border-dashed border-gray-300 rounded-xl p-10 text-center col-span-full flex flex-col">
-          <h3 className="text-2xl font-bold text-[#0B3A63] mb-3">
+          <h2 className="text-2xl font-bold text-[#0B3A63] mb-3">
             Enterprise & API
-          </h3>
+          </h2>
 
           <p className="text-4xl font-extrabold text-gray-400 mb-3">
             Demnächst verfügbar
