@@ -3,14 +3,49 @@ import type { NextRequest } from "next/server";
 
 const SUPPORTED_LOCALES = ["de", "fr"] as const;
 
-// Pages réellement traduites (routes après le préfixe langue)
 const ALLOWED: Record<(typeof SUPPORTED_LOCALES)[number], string[]> = {
   de: ["/", "/pricing", "/why-companies-ask"],
   fr: [], // FR: pas de fallback vers EN
 };
 
+// Ne jamais toucher aux assets / fichiers / routes techniques
+function isBypassPath(pathname: string) {
+  if (
+    pathname.startsWith("/_next") ||
+    pathname.startsWith("/assets") ||
+    pathname.startsWith("/fonts") ||
+    pathname.startsWith("/images")
+  ) {
+    return true;
+  }
+
+  // Fichiers statiques classiques
+  if (
+    pathname === "/favicon.ico" ||
+    pathname === "/robots.txt" ||
+    pathname === "/sitemap.xml" ||
+    pathname === "/manifest.webmanifest"
+  ) {
+    return true;
+  }
+
+  // Toute URL avec extension (.png, .jpg, .svg, .css, .js, .map, etc.)
+  if (/\.[a-zA-Z0-9]+$/.test(pathname)) {
+    return true;
+  }
+
+  return false;
+}
+
 export function middleware(req: NextRequest) {
   const pathname = req.nextUrl.pathname;
+
+  // ======================================================
+  // 0) Bypass assets / fichiers
+  // ======================================================
+  if (isBypassPath(pathname)) {
+    return NextResponse.next();
+  }
 
   // ======================================================
   // 1) Base response + security headers
@@ -31,8 +66,7 @@ export function middleware(req: NextRequest) {
   }
 
   // ======================================================
-  // 2) Fallback /de/* -> EN si page non traduite
-  //    (FR reste tel quel)
+  // 2) Locale detection
   // ======================================================
   const locale = SUPPORTED_LOCALES.find(
     (l) => pathname === `/${l}` || pathname.startsWith(`/${l}/`)
@@ -40,6 +74,10 @@ export function middleware(req: NextRequest) {
 
   if (!locale) return res;
 
+  // ======================================================
+  // 3) Fallback: /de/* -> EN si page non traduite
+  //    FR reste tel quel
+  // ======================================================
   const rest = pathname.replace(`/${locale}`, "") || "/"; // "/" ou "/pricing"
   const isAllowed = ALLOWED[locale].includes(rest);
 
