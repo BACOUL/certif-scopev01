@@ -13,7 +13,6 @@ export default function FooterDE() {
       <div className="max-w-7xl mx-auto px-6">
         {/* GRID */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
-
           {/* BRANDING */}
           <div>
             <h2 className="text-xl font-bold text-[#0B3A63] dark:text-gray-100 mb-4">
@@ -35,16 +34,16 @@ export default function FooterDE() {
 
             <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
               <li>
-                <Link href="/product">Überblick</Link>
+                <Link href="/product">Überblick (EN)</Link>
               </li>
               <li>
-                <Link href="/product/methodology">Methodik</Link>
+                <Link href="/product/methodology">Methodik (EN)</Link>
               </li>
               <li>
-                <Link href="/product/compliance">Compliance & Umfang</Link>
+                <Link href="/product/compliance">Compliance & Umfang (EN)</Link>
               </li>
               <li>
-                <Link href="/verify">Nachweis verifizieren</Link>
+                <Link href="/verify">Nachweis verifizieren (EN)</Link>
               </li>
             </ul>
           </nav>
@@ -57,7 +56,7 @@ export default function FooterDE() {
 
             <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
               <li>
-                <Link href="/partners">Partnerschaften</Link>
+                <Link href="/partners">Partnerschaften (EN)</Link>
               </li>
               <li>
                 <Link href="/de/why-companies-ask">
@@ -65,7 +64,7 @@ export default function FooterDE() {
                 </Link>
               </li>
               <li>
-                <Link href="/contact">Kontakt</Link>
+                <Link href="/contact">Kontakt (EN)</Link>
               </li>
             </ul>
           </nav>
@@ -78,20 +77,20 @@ export default function FooterDE() {
 
             <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
               <li>
-                <Link href="/legal">Impressum / Rechtlicher Hinweis</Link>
+                <Link href="/legal">Impressum / Rechtlicher Hinweis (EN)</Link>
               </li>
               <li>
-                <Link href="/privacy">Datenschutzerklärung</Link>
+                <Link href="/privacy">Datenschutzerklärung (EN)</Link>
               </li>
               <li>
-                <Link href="/terms">Nutzungsbedingungen</Link>
+                <Link href="/terms">Nutzungsbedingungen (EN)</Link>
               </li>
               <li>
-                <Link href="/cookies">Cookie-Richtlinie</Link>
+                <Link href="/cookies">Cookie-Richtlinie (EN)</Link>
               </li>
               <li>
                 <Link href="/data-processing">
-                  Datenverarbeitung (Überblick)
+                  Datenverarbeitung (Überblick) (EN)
                 </Link>
               </li>
             </ul>
@@ -113,6 +112,7 @@ export default function FooterDE() {
           </p>
         </div>
 
+        {/* JSON-LD — ORGANIZATION (MINIMAL, IA-SAFE) */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -128,4 +128,4 @@ export default function FooterDE() {
       </div>
     </footer>
   );
-            }
+      }
