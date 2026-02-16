@@ -132,7 +132,11 @@ export default function HeaderDE() {
             p-5 lg:p-0
             w-60 lg:w-auto
             transition-all duration-200
-            ${open ? "block opacity-100" : "hidden opacity-0 lg:block lg:opacity-100"}
+            ${
+              open
+                ? "block opacity-100"
+                : "hidden opacity-0 lg:block lg:opacity-100"
+            }
           `}
         >
           <ul className="flex flex-col lg:flex-row gap-4 lg:gap-10">
@@ -178,7 +182,9 @@ export default function HeaderDE() {
                 CO₂e-Nachweis
                 <span
                   aria-hidden="true"
-                  className={`transition-transform ${dropdown ? "rotate-180" : ""}`}
+                  className={`transition-transform ${
+                    dropdown ? "rotate-180" : ""
+                  }`}
                 >
                   ▼
                 </span>
@@ -215,7 +221,7 @@ export default function HeaderDE() {
                     href="/product/compliance"
                     onClick={closeAll}
                     role="menuitem"
-                    className="block py-2 text-sm hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-offset-2 focus-visible:outline-[#1FB6C1]"
+                    className="block py-2 text-sm hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1FB6C1]"
                   >
                     Compliance & Umfang (EN)
                   </Link>
@@ -287,4 +293,4 @@ export default function HeaderDE() {
       </div>
     </header>
   );
-    }
+        }
