@@ -66,6 +66,7 @@ export default function HeaderDE() {
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [dropdown]);
 
+  // Active state helper (kept simple)
   const isActive = (href: string) => pathname === href;
 
   return (
@@ -149,7 +150,22 @@ export default function HeaderDE() {
               </Link>
             </li>
 
-            {/* ATTESTATION DROPDOWN */}
+            {/* WHY (DE exists) */}
+            <li>
+              <Link
+                href="/de/why-companies-ask"
+                onClick={closeAll}
+                className={`font-medium ${
+                  isActive("/de/why-companies-ask")
+                    ? "text-primary"
+                    : "text-gray-800 dark:text-gray-200"
+                }`}
+              >
+                Warum wird es verlangt?
+              </Link>
+            </li>
+
+            {/* ATTESTATION DROPDOWN (EN fallback: /product/* not translated in DE) */}
             <li className="relative">
               <button
                 ref={dropdownButtonRef}
@@ -180,39 +196,40 @@ export default function HeaderDE() {
                   "
                 >
                   <Link
-                    href="/de/product"
+                    href="/product"
                     onClick={closeAll}
                     role="menuitem"
                     className="block py-2 text-sm hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1FB6C1]"
                   >
-                    Überblick
+                    Überblick (EN)
                   </Link>
                   <Link
-                    href="/de/product/methodology"
+                    href="/product/methodology"
                     onClick={closeAll}
                     role="menuitem"
                     className="block py-2 text-sm hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1FB6C1]"
                   >
-                    Methodik
+                    Methodik (EN)
                   </Link>
                   <Link
-                    href="/de/product/compliance"
+                    href="/product/compliance"
                     onClick={closeAll}
                     role="menuitem"
-                    className="block py-2 text-sm hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1FB6C1]"
+                    className="block py-2 text-sm hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-offset-2 focus-visible:outline-[#1FB6C1]"
                   >
-                    Compliance & Umfang
+                    Compliance & Umfang (EN)
                   </Link>
                 </div>
               )}
             </li>
 
+            {/* VERIFY (EN fallback) */}
             <li>
               <Link
-                href="/de/verify"
+                href="/verify"
                 onClick={closeAll}
                 className={`font-medium ${
-                  isActive("/de/verify")
+                  isActive("/verify")
                     ? "text-primary"
                     : "text-gray-800 dark:text-gray-200"
                 }`}
@@ -221,6 +238,7 @@ export default function HeaderDE() {
               </Link>
             </li>
 
+            {/* PRICING (DE exists) */}
             <li>
               <Link
                 href="/de/pricing"
@@ -235,12 +253,13 @@ export default function HeaderDE() {
               </Link>
             </li>
 
+            {/* PARTNERS (EN fallback) */}
             <li>
               <Link
-                href="/de/partners"
+                href="/partners"
                 onClick={closeAll}
                 className={`font-medium ${
-                  isActive("/de/partners")
+                  isActive("/partners")
                     ? "text-primary"
                     : "text-gray-800 dark:text-gray-200"
                 }`}
@@ -249,12 +268,13 @@ export default function HeaderDE() {
               </Link>
             </li>
 
+            {/* GENERATE (EN fallback) */}
             <li>
               <Link
-                href="/de/generate"
+                href="/generate"
                 onClick={closeAll}
                 className={`font-medium ${
-                  isActive("/de/generate")
+                  isActive("/generate")
                     ? "text-primary"
                     : "text-gray-800 dark:text-gray-200"
                 }`}
@@ -267,4 +287,4 @@ export default function HeaderDE() {
       </div>
     </header>
   );
-              }
+    }
