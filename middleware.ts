@@ -37,6 +37,13 @@ function isBypassPath(pathname: string) {
   return false;
 }
 
+function normalizeRestPath(rest: string) {
+  // Garantit un format stable: "/" ou "/pricing" (sans trailing slash)
+  let out = rest || "/";
+  if (out.length > 1 && out.endsWith("/")) out = out.slice(0, -1);
+  return out;
+}
+
 export function middleware(req: NextRequest) {
   const pathname = req.nextUrl.pathname;
 
@@ -78,14 +85,16 @@ export function middleware(req: NextRequest) {
   // 3) Fallback: /de/* -> EN si page non traduite
   //    FR reste tel quel
   // ======================================================
-  const rest = pathname.replace(`/${locale}`, "") || "/"; // "/" ou "/pricing"
-  const isAllowed = ALLOWED[locale].includes(rest);
+  const rawRest = pathname.replace(`/${locale}`, "") || "/";
+  const rest = normalizeRestPath(rawRest); // ✅ gère /pricing/ -> /pricing
 
+  const isAllowed = ALLOWED[locale].includes(rest);
   if (isAllowed) return res;
 
   // Ne pas rediriger FR si tu ne veux pas de fallback
   if (locale === "fr" && ALLOWED.fr.length === 0) return res;
 
+  // Redirect to EN equivalent (remove locale prefix)
   const url = req.nextUrl.clone();
   url.pathname = rest === "/" ? "/" : rest;
 
