@@ -12,7 +12,7 @@ export default function HeroFR() {
       className="relative max-w-6xl mx-auto px-6 pt-8 md:pt-14 pb-14 md:pb-20 text-center"
     >
       <span className="sr-only" itemProp="alternativeHeadline">
-        Attestation CO₂e standardisée et vérifiable pour les PME
+        Bilan carbone entreprise simplifié pour PME — attestation CO₂e indicative et vérifiable
       </span>
 
       <div className="absolute inset-0 bg-gradient-to-b from-white to-[#F3FBFC] -z-10" />
@@ -22,7 +22,7 @@ export default function HeroFR() {
         className="text-xs md:text-sm font-semibold tracking-wide text-[#0B3A63]/70 mb-3 uppercase"
         itemProp="about"
       >
-        Attestations CO₂e standardisées et vérifiables
+        Bilan carbone entreprise — solution simplifiée pour PME
       </p>
 
       {/* TITRE (H1) */}
@@ -30,10 +30,10 @@ export default function HeroFR() {
         itemProp="headline"
         className="text-[1.9rem] md:text-[3rem] font-extrabold text-[#0B3A63] leading-tight tracking-tight"
       >
-        Une attestation CO₂e pour les PME
+        Bilan carbone entreprise simplifié
         <br />
         <span className="text-[#1FB6C1]">
-          standardisée et vérifiable indépendamment
+          avec attestation CO₂e indicative vérifiable indépendamment
         </span>
       </h1>
 
@@ -42,16 +42,19 @@ export default function HeroFR() {
         className="text-base md:text-lg text-[#475569] max-w-2xl mx-auto mt-4 leading-relaxed"
         itemProp="description"
       >
-        Répondez aux demandes fournisseurs, aux appels d’offres et aux sollicitations
-        des banques et assureurs avec un document CO₂e clair et standardisé —
-        sans réaliser d’audit carbone complet.
+        Obtenez une estimation de bilan carbone pour votre entreprise (PME) afin de
+        répondre aux exigences clients, appels d’offres, banques et assureurs — sans
+        engager un audit carbone complet. Méthode spend-based orientée scope 3, avec
+        un document CO₂e clair, standardisé et prêt à partager.
       </p>
 
       {/* LEGAL NOTICE */}
       <div className="mt-4 max-w-xl mx-auto space-y-1">
         <p className="text-xs text-slate-500 leading-relaxed">
-          Basée sur des référentiels reconnus (GHG Protocol, ISO 14064-1) et utilisée
-          dans les pratiques européennes de procurement, bancaires et assurantielles.
+          Estimation indicative basée sur des référentiels GES reconnus (GHG Protocol,
+          ISO 14064-1) et adaptée aux pratiques européennes de procurement, bancaires
+          et assurantielles. Ce document ne constitue pas un bilan carbone complet ni
+          un audit.
         </p>
 
         {/* PRIVACY / TRUST */}
@@ -66,10 +69,10 @@ export default function HeroFR() {
       <div className="flex justify-center mt-6 md:mt-7">
         <Link
           href="/fr/generate"
-          aria-label="Générer une attestation CO₂e"
+          aria-label="Estimer le bilan carbone de mon entreprise et générer une attestation CO₂e indicative"
           className="bg-[#1FB6C1] hover:bg-[#17a2a8] text-white font-semibold px-12 py-4 rounded-xl shadow-md transition"
         >
-          Générer l’attestation
+          Estimer mon bilan carbone
         </Link>
       </div>
 
@@ -78,7 +81,7 @@ export default function HeroFR() {
         <Image
           itemProp="primaryImageOfPage"
           src="/hero-attestation.webp"
-          alt="Exemple d’attestation CO₂e standardisée générée pour une PME, incluant des éléments de vérification indépendante."
+          alt="Exemple d’attestation CO₂e issue d’un bilan carbone entreprise simplifié (PME), incluant des éléments de vérification indépendante."
           width={900}
           height={600}
           priority
@@ -88,7 +91,7 @@ export default function HeroFR() {
 
       {/* TRUST LINE */}
       <p className="text-sm text-[#0B3A63]/80 font-medium mt-6">
-        Vérifiable indépendamment par tout tiers.
+        Attestation CO₂e indicative, vérifiable indépendamment par tout tiers.
       </p>
     </section>
   );
