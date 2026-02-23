@@ -49,8 +49,21 @@ export default function FooterFR() {
 
             <ul className="space-y-2">
               <li>
-                <Link className={linkBase} data-i18n="footer.link.overview" href="/fr/product">
+                <Link
+                  className={linkBase}
+                  data-i18n="footer.link.overview"
+                  href="/fr/product"
+                >
                   Présentation
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className={linkBase}
+                  data-i18n="footer.link.pricing"
+                  href="/fr/pricing"
+                >
+                  Prix
                 </Link>
               </li>
               <li>
@@ -72,13 +85,12 @@ export default function FooterFR() {
                 </Link>
               </li>
               <li>
-                <Link className={linkBase} data-i18n="footer.link.verify" href="/fr/verify">
+                <Link
+                  className={linkBase}
+                  data-i18n="footer.link.verify"
+                  href="/fr/verify"
+                >
                   Vérifier un document
-                </Link>
-              </li>
-              <li>
-                <Link className={linkBase} data-i18n="footer.link.pricing" href="/fr/pricing">
-                  Prix
                 </Link>
               </li>
             </ul>
@@ -93,32 +105,47 @@ export default function FooterFR() {
             <ul className="space-y-2">
               <li>
                 <Link className={linkBase} href="/fr/why-companies-ask">
-                  Pourquoi un client le demande
+                  Pourquoi les entreprises le demandent
                 </Link>
               </li>
               <li>
-                <Link className={linkBase} href="/fr/why-companies-ask/attestation-carbone-fournisseur">
-                  Justificatif CO₂ fournisseur
+                <Link
+                  className={linkBase}
+                  href="/fr/why-companies-ask/attestation-carbone-fournisseur"
+                >
+                  Bilan carbone fournisseur : ce qui est réellement demandé
                 </Link>
               </li>
               <li>
-                <Link className={linkBase} href="/fr/why-companies-ask/attestation-carbone-appel-offres">
-                  Justificatif CO₂ pour appel d’offres
+                <Link
+                  className={linkBase}
+                  href="/fr/why-companies-ask/attestation-carbone-appel-offres"
+                >
+                  Bilan carbone en appel d’offres : ce qui est réellement demandé
                 </Link>
               </li>
               <li>
-                <Link className={linkBase} href="/fr/why-companies-ask/exigences-co2-banques-assurances">
-                  Exigences CO₂ banque & assurance
+                <Link
+                  className={linkBase}
+                  href="/fr/why-companies-ask/exigences-co2-banques-assurances"
+                >
+                  Bilan carbone demandé par une banque ou un assureur : pourquoi, et quoi fournir
                 </Link>
               </li>
               <li>
-                <Link className={linkBase} href="/fr/why-companies-ask/attestation-carbone-pme">
-                  Que fournir quand on est une PME
+                <Link
+                  className={linkBase}
+                  href="/fr/why-companies-ask/attestation-carbone-pme"
+                >
+                  Bilan carbone PME : que fournir quand on n’a pas de bilan carbone complet
                 </Link>
               </li>
               <li>
-                <Link className={linkBase} href="/fr/why-companies-ask/preuve-carbone-entreprise">
-                  Preuve carbone / justificatif : format minimal
+                <Link
+                  className={linkBase}
+                  href="/fr/why-companies-ask/preuve-carbone-entreprise"
+                >
+                  Justificatif CO₂ entreprise : ce que cela signifie (et ce qu’il faut fournir)
                 </Link>
               </li>
             </ul>
