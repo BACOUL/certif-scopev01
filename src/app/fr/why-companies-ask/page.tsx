@@ -1,14 +1,19 @@
+// PATH: src/app/fr/why-companies-ask/page.tsx
+
 import type { Metadata } from "next";
+import Link from "next/link";
 
 /* ======================================================
-   SEO METADATA — POURQUOI LES ENTREPRISES LE DEMANDENT
+   SEO METADATA — POURQUOI LES ENTREPRISES LE DEMANDENT (FR)
+   Objectif SEO FR : capter les intentions "demandé par client / exigence / justificatif"
+   sans promettre audit ni CSRD/ESRS.
 ====================================================== */
 
 export const metadata: Metadata = {
   title:
-    "Pourquoi les entreprises demandent une attestation CO₂e — Certif-Scope",
+    "Pourquoi un client demande un justificatif CO₂ — Exigence fournisseurs — Certif-Scope (FR)",
   description:
-    "Comprendre pourquoi les acheteurs, banques et assureurs demandent une attestation CO₂e standardisée aux fournisseurs : screening des risques, onboarding, et cadre d’utilisation.",
+    "Pourquoi les clients, acheteurs, banques et assureurs demandent un justificatif CO₂ (preuve carbone) aux fournisseurs : screening ESG, onboarding et gestion du risque. Ce que ce document est — et n’est pas.",
   alternates: {
     canonical: "https://www.certif-scope.com/fr/why-companies-ask",
     languages: {
@@ -18,10 +23,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title:
-      "Pourquoi les entreprises demandent une attestation CO₂e — Certif-Scope",
+    title: "Pourquoi un client demande un justificatif CO₂ — Exigence fournisseurs",
     description:
-      "Comprendre pourquoi les organisations demandent des attestations CO₂e standardisées et ce que ces documents représentent — et ne représentent pas.",
+      "Comprendre pourquoi les organisations demandent un justificatif CO₂ (preuve carbone) et ce que ces documents représentent — et ne représentent pas.",
     url: "https://www.certif-scope.com/fr/why-companies-ask",
     siteName: "Certif-Scope",
     type: "website",
@@ -34,6 +38,8 @@ export const metadata: Metadata = {
 ====================================================== */
 
 export default function WhyCompaniesAskPage() {
+  const pageUrl = "https://www.certif-scope.com/fr/why-companies-ask";
+
   return (
     <section
       id="why-companies-ask"
@@ -47,14 +53,31 @@ export default function WhyCompaniesAskPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebPage",
-            name: "Pourquoi les entreprises demandent une attestation CO₂e",
-            url: "https://www.certif-scope.com/fr/why-companies-ask",
+            name: "Pourquoi un client demande un justificatif CO₂",
+            url: pageUrl,
             description:
-              "Explication institutionnelle des raisons pour lesquelles les organisations demandent des attestations CO₂e à leurs fournisseurs et de leur usage.",
+              "Explication institutionnelle des raisons pour lesquelles les organisations demandent un justificatif CO₂ (preuve carbone) à leurs fournisseurs et de son usage (screening).",
             isPartOf: {
               "@type": "WebSite",
               name: "Certif-Scope",
               url: "https://www.certif-scope.com",
+            },
+            breadcrumb: {
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: "Accueil",
+                  item: "https://www.certif-scope.com/fr",
+                },
+                {
+                  "@type": "ListItem",
+                  position: 2,
+                  name: "Pourquoi les entreprises le demandent",
+                  item: pageUrl,
+                },
+              ],
             },
           }),
         }}
@@ -66,128 +89,164 @@ export default function WhyCompaniesAskPage() {
       {/* HEADER */}
       <header className="mb-14">
         <p className="uppercase text-xs tracking-wider text-[#64748B] mb-3">
-          Attestation CO₂e — Exigence fournisseur
+          Exigence CO₂ fournisseurs — justificatif / preuve carbone
         </p>
 
         <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-6">
-          Pourquoi les entreprises la demandent
+          Pourquoi un client demande un justificatif CO₂
         </h1>
 
         <p className="text-lg text-gray-700 leading-relaxed max-w-3xl">
-          Les directions achats, les banques, les assureurs et les institutions
-          publiques demandent de plus en plus une attestation CO₂e standardisée
-          à leurs fournisseurs. Cette page explique les raisons institutionnelles
-          de cette demande, ainsi que ce que représente réellement cette
-          attestation — et ce qu’elle ne constitue pas.
+          Les directions achats, les banques, les assureurs et parfois les acteurs publics
+          demandent de plus en plus un justificatif CO₂ (preuve carbone) aux fournisseurs.
+          Cette page explique les raisons opérationnelles et institutionnelles de cette demande,
+          ainsi que ce que ce document représente réellement — et ce qu’il ne constitue pas.
         </p>
+
+        <div className="mt-8 flex flex-wrap gap-3">
+          <Link
+            href="/fr/why-companies-ask/attestation-carbone-fournisseur"
+            className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
+          >
+            Cas n°1 : fournisseur
+          </Link>
+          <Link
+            href="/fr/why-companies-ask/attestation-carbone-appel-offres"
+            className="inline-block text-sm px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
+          >
+            Cas n°2 : appel d’offres
+          </Link>
+          <Link
+            href="/fr/why-companies-ask/exigences-co2-banques-assurances"
+            className="inline-block text-sm px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
+          >
+            Cas n°3 : banque & assurance
+          </Link>
+          <Link
+            href="/fr/why-companies-ask/attestation-carbone-pme"
+            className="inline-block text-sm px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
+          >
+            Cas n°4 : PME
+          </Link>
+          <Link
+            href="/fr/why-companies-ask/preuve-carbone-entreprise"
+            className="inline-block text-sm px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
+          >
+            Synthèse : “preuve / justificatif”
+          </Link>
+        </div>
 
         <div className="w-20 h-[2px] bg-gray-300 mt-10" />
       </header>
 
       {/* CONTENT */}
       <div className="max-w-4xl mx-auto space-y-12">
-        <section>
+        {/* 1 */}
+        <section id="risk-classification">
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
             1. Classification du risque fournisseurs
           </h2>
           <p className="text-gray-700 leading-relaxed mb-4">
-            Les grandes organisations doivent classer leurs fournisseurs selon
-            leur exposition environnementale dans le cadre de leur gouvernance
-            achats et de leurs politiques ESG, notamment dans les démarches
-            d’achats responsables comme ISO 20400.
+            Les grandes organisations doivent classer leurs fournisseurs selon leur exposition
+            environnementale dans le cadre de leur gouvernance achats et de leurs politiques ESG.
+            En pratique, cela se traduit par une collecte d’informations CO₂e à l’onboarding
+            et lors des consultations (RFP / appels d’offres).
           </p>
           <ul className="list-disc ml-6 text-gray-700 space-y-2">
-            <li>screening ESG des fournisseurs</li>
-            <li>indicateurs environnementaux requis dans les appels d’offres</li>
-            <li>alignement avec les politiques achats internes</li>
+            <li>screening ESG des fournisseurs (pré-qualification)</li>
+            <li>indicateurs environnementaux demandés dans les consultations</li>
+            <li>comparabilité et archivage d’un document dans un dossier interne</li>
           </ul>
         </section>
 
-        <section>
+        {/* 2 */}
+        <section id="finance-pressure">
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-            2. Pression réglementaire sur les institutions financières
+            2. Pression réglementaire indirecte via les acteurs financiers
           </h2>
           <p className="text-gray-700 leading-relaxed">
-            Les banques et les assureurs doivent intégrer les risques
-            environnementaux dans leurs processus d’analyse conformément à des
-            cadres tels que la Taxonomie européenne, les guidelines de l’EBA ou
-            Solvabilité II. Une attestation CO₂e standardisée permet de documenter
-            l’exposition environnementale d’un fournisseur sans exiger un
-            reporting CSRD ou ESRS complet.
+            Les banques et assureurs intègrent progressivement des facteurs environnementaux
+            dans leurs analyses internes (risque, exposition sectorielle, cohérence ESG).
+            Cela crée une demande “en cascade” : même si une PME n’est pas soumise à un
+            reporting ESG complet, elle peut devoir fournir un indicateur CO₂e simple pour
+            documenter un dossier.
           </p>
         </section>
 
-        <section>
+        {/* 3 */}
+        <section id="due-diligence">
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
             3. Due diligence et onboarding fournisseurs
           </h2>
           <p className="text-gray-700 leading-relaxed mb-4">
-            De nombreuses organisations demandent une estimation CO₂e dans le
-            cadre des procédures de due diligence fournisseurs. L’attestation
-            fournit un document structuré et vérifiable compatible avec les
-            modèles d’onboarding institutionnels.
+            De nombreuses organisations demandent une information CO₂e dans le cadre des procédures
+            de due diligence fournisseurs. Le besoin opérationnel est clair : un document structuré,
+            lisible, et réutilisable, compatible avec des workflows institutionnels.
           </p>
           <p className="text-gray-700 leading-relaxed">
-            Elle permet aux PME de répondre à des exigences auparavant réservées
-            à des démarches longues ou à des audits coûteux.
+            Pour un fournisseur, l’enjeu est d’éviter les échanges interminables : un justificatif
+            CO₂ standard réduit la friction et accélère les cycles d’approbation.
           </p>
         </section>
 
-        <section>
+        {/* 4 */}
+        <section id="accessibility">
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-            4. Accessibilité pour les fournisseurs non techniques
+            4. Accessibilité pour les fournisseurs non spécialisés
           </h2>
           <p className="text-gray-700 leading-relaxed">
-            La majorité des PME ne peuvent pas produire de reporting CSRD ou ESRS
-            ni d’inventaire complet des émissions de gaz à effet de serre.
-            L’attestation fournit un indicateur compréhensible au niveau
-            institutionnel à partir des seules données de dépenses annuelles,
-            sans expertise technique requise.
+            Beaucoup de PME ne peuvent pas produire un inventaire d’émissions complet ni mobiliser
+            un cabinet. Dans la majorité des demandes “terrain”, il s’agit de fournir un indicateur
+            indicatif pour screening. Un justificatif CO₂ cadré permet de répondre sans surdimensionner
+            la démarche.
           </p>
         </section>
 
-        <section>
+        {/* 5 */}
+        <section id="cycle-acceleration">
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-            5. Accélération des cycles d’approbation fournisseurs
+            5. Accélération des cycles d’approbation
           </h2>
           <p className="text-gray-700 leading-relaxed">
-            Les processus d’approbation fournisseurs sont souvent ralentis par
-            l’absence d’informations environnementales cohérentes. Un document
-            CO₂e standardisé réduit le temps d’analyse et facilite les décisions
-            d’onboarding.
+            Les processus d’approbation fournisseurs ralentissent lorsque les informations CO₂e sont
+            hétérogènes (format, périmètre, absence de date, absence de méthode). Un document standardisé
+            réduit le temps de traitement interne et limite les demandes répétées.
           </p>
         </section>
 
-        <section>
+        {/* 6 */}
+        <section id="verification">
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-            6. Vérification immédiate et indépendante
+            6. Vérification rapide et indépendante
           </h2>
           <ul className="list-disc ml-6 text-gray-700 space-y-2">
-            <li>identifiant unique d’attestation</li>
-            <li>garanties d’intégrité intégrées au document</li>
-            <li>URL de vérification permanente</li>
-            <li>QR code utilisable dans les systèmes institutionnels</li>
+            <li>identifiant unique du document</li>
+            <li>mentions de périmètre et limites (lisibles)</li>
+            <li>URL de vérification publique</li>
+            <li>QR code exploitable dans des dossiers et outils</li>
           </ul>
           <p className="text-gray-700 leading-relaxed mt-4">
-            Les réviseurs peuvent vérifier l’authenticité du document en quelques
-            secondes et confirmer qu’il n’a pas été modifié.
+            En screening, ce que cherche un tiers est un document archivable et contrôlable en quelques
+            secondes : origine, intégrité, date, version.
           </p>
         </section>
 
-        <section>
+        {/* 7 */}
+        <section id="cross-border">
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-            7. Acceptation transfrontalière
+            7. Acceptation transfrontalière (logique “format”)
           </h2>
           <p className="text-gray-700 leading-relaxed">
-            Le format d’attestation est aligné avec les attentes des directions
-            achats et des institutions financières dans plusieurs juridictions
-            européennes.
+            Les demandes CO₂e apparaissent dans des contextes similaires dans plusieurs pays européens.
+            Le facteur clé n’est pas une norme locale unique, mais la capacité à fournir un format
+            clair, stable et réutilisable dans des processus B2B (achats / finance / assurance).
           </p>
         </section>
 
-        <section>
+        {/* 8 */}
+        <section id="what-it-is-not">
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-            8. Ce que cette attestation n’est pas
+            8. Ce que ce justificatif CO₂ n’est pas
           </h2>
           <ul className="list-disc ml-6 text-gray-700 space-y-2">
             <li>ce n’est pas une certification</li>
@@ -199,17 +258,62 @@ export default function WhyCompaniesAskPage() {
           </ul>
         </section>
 
-        <section>
+        {/* 9 */}
+        <section id="legal-scope">
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-            9. Portée légale et usage prévu
+            9. Portée d’usage : screening et documentation interne
           </h2>
           <p className="text-gray-700 leading-relaxed">
-            Cette attestation est indicative uniquement. Elle ne constitue ni un
-            audit, ni une certification, ni une mission d’assurance, ni une
-            empreinte carbone juridiquement opposable.
+            Le justificatif CO₂ visé ici est indicatif uniquement. Il est adapté au screening et à la
+            documentation interne (achats, banque, assurance). Il ne constitue ni un audit, ni une
+            certification, ni une mission d’assurance, ni une empreinte carbone juridiquement opposable.
           </p>
+        </section>
+
+        {/* CTA */}
+        <section id="cta" className="pt-2">
+          <div className="rounded-2xl border border-gray-200 bg-[#0B3A63] p-8 text-white">
+            <h2 className="text-2xl font-extrabold mb-3">
+              Répondre à une exigence CO₂ fournisseur avec un document clair
+            </h2>
+            <p className="text-white/90 leading-relaxed max-w-2xl">
+              Si un client vous demande un “justificatif CO₂” (preuve carbone), le besoin est
+              souvent un document de screening : lisible, archivable et contrôlable. Certif-Scope
+              produit un document CO₂e indicatif, standardisé et vérifiable.
+            </p>
+
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link
+                href="/fr/pricing"
+                className="inline-block text-sm px-5 py-2.5 rounded-md bg-white text-[#0B3A63] hover:bg-gray-100 transition-colors font-semibold"
+              >
+                Voir le prix
+              </Link>
+              <Link
+                href="/fr/product"
+                className="inline-block text-sm px-5 py-2.5 rounded-md border border-white/40 text-white hover:bg-white/10 transition-colors"
+              >
+                Comprendre le produit
+              </Link>
+              <Link
+                href="/fr/generate"
+                className="inline-block text-sm px-5 py-2.5 rounded-md border border-white/40 text-white hover:bg-white/10 transition-colors"
+              >
+                Générer un document
+              </Link>
+            </div>
+          </div>
+
+          <div className="mt-8">
+            <Link
+              href="#top"
+              className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
+            >
+              Retour en haut
+            </Link>
+          </div>
         </section>
       </div>
     </section>
   );
-             }
+}
