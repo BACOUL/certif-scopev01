@@ -1,3 +1,5 @@
+// PATH: src/app/fr/page.tsx
+
 import type { Metadata } from "next";
 
 import ScrollUp from "@/components/Common/ScrollUp";
@@ -15,25 +17,28 @@ import FAQFR from "@/components/fr/FAQ";
 
 /* ======================================================
    SEO / IA — META FR (HOME)
+   Objectif : capter les requêtes “bilan carbone entreprise / PME” sans mentir.
+   Positionnement : indicateur CO₂e indicatif (spend-based) + attestation vérifiable.
 ====================================================== */
+
 export const metadata: Metadata = {
-  title: "Attestation CO₂e pour PME | Certif-Scope",
+  title: "Bilan carbone PME : attestation CO₂e indicative | Certif-Scope",
   description:
-    "Générez une attestation CO₂e indicative basée sur les dépenses, utilisée pour les appels d’offres, les banques et le screening ESG. Format standardisé, vérifiable indépendamment. Ce document n’est ni un rapport CSRD/ESRS ni un audit carbone.",
+    "Bilan carbone PME / entreprise : fournissez un indicateur CO₂e indicatif (spend-based : dépenses × facteurs d’émission) avec une attestation standardisée et vérifiable. Utile pour appels d’offres, banques, assurances et screening ESG. Ce document n’est ni un bilan carbone complet, ni un audit, ni un reporting CSRD/ESRS.",
   alternates: {
-    canonical: "https://certif-scope.com/fr/",
+    canonical: "https://www.certif-scope.com/fr/",
     languages: {
-      en: "https://certif-scope.com/",
-      fr: "https://certif-scope.com/fr/",
-      de: "https://certif-scope.com/de/",
+      en: "https://www.certif-scope.com/",
+      fr: "https://www.certif-scope.com/fr/",
+      de: "https://www.certif-scope.com/de/",
     },
   },
   openGraph: {
     type: "website",
-    title: "Attestation CO₂e pour PME | Certif-Scope",
+    title: "Bilan carbone PME : attestation CO₂e indicative | Certif-Scope",
     description:
-      "Attestation CO₂e indicative basée sur les dépenses, destinée aux appels d’offres, banques et analyses ESG. Format standardisé et vérifiable indépendamment. Non réglementaire.",
-    url: "https://certif-scope.com/fr/",
+      "Indicateur CO₂e indicatif (spend-based) + attestation standardisée et vérifiable, pour appels d’offres, banques, assurances et screening ESG. Non audit, non CSRD/ESRS.",
+    url: "https://www.certif-scope.com/fr/",
     siteName: "Certif-Scope",
     locale: "fr_FR",
   },
