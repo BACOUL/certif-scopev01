@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   compress: true,
-
   reactStrictMode: true,
 
   images: {
@@ -16,13 +15,11 @@ const nextConfig = {
   },
 
   experimental: {
-    // Désactivé volontairement
     optimizeCss: false,
     optimizePackageImports: ["react", "react-dom"],
   },
 
   compiler: {
-    // Supprime tous les console.* en production
     removeConsole: process.env.NODE_ENV === "production",
   },
 
@@ -42,16 +39,34 @@ const nextConfig = {
 
   async redirects() {
     return [
-      // Si /en existe encore dans l’index Google ou dans des backlinks,
-      // on le redirige définitivement vers la version anglaise canonique (/).
+      // 💥 Redirections propres pour anciens chemins EN
+      {
+        source: "/en/about",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/en/data-processing",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/en/legal",
+        destination: "/",
+        permanent: true,
+      },
+
+      // 🧭 /en as alias redirect vers /
       {
         source: "/en",
         destination: "/",
         permanent: true,
       },
+
+      // 📦 tous les autres anciens /en/* redirigent vers / (anglais canonique)
       {
         source: "/en/:path*",
-        destination: "/:path*",
+        destination: "/",
         permanent: true,
       },
     ];
