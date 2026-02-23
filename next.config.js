@@ -3,6 +3,9 @@ const nextConfig = {
   compress: true,
   reactStrictMode: true,
 
+  // ✅ Normalise les URLs en /fr/ /de/ etc.
+  trailingSlash: true,
+
   images: {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 31536000,
@@ -39,36 +42,20 @@ const nextConfig = {
 
   async redirects() {
     return [
+      // ✅ Normalisation i18n (évite erreurs "redirection" /de)
+      { source: "/fr", destination: "/fr/", permanent: true },
+      { source: "/de", destination: "/de/", permanent: true },
+
       // 💥 Redirections propres pour anciens chemins EN
-      {
-        source: "/en/about",
-        destination: "/",
-        permanent: true,
-      },
-      {
-        source: "/en/data-processing",
-        destination: "/",
-        permanent: true,
-      },
-      {
-        source: "/en/legal",
-        destination: "/",
-        permanent: true,
-      },
+      { source: "/en/about", destination: "/", permanent: true },
+      { source: "/en/data-processing", destination: "/", permanent: true },
+      { source: "/en/legal", destination: "/", permanent: true },
 
       // 🧭 /en as alias redirect vers /
-      {
-        source: "/en",
-        destination: "/",
-        permanent: true,
-      },
+      { source: "/en", destination: "/", permanent: true },
 
       // 📦 tous les autres anciens /en/* redirigent vers / (anglais canonique)
-      {
-        source: "/en/:path*",
-        destination: "/",
-        permanent: true,
-      },
+      { source: "/en/:path*", destination: "/", permanent: true },
     ];
   },
 };
