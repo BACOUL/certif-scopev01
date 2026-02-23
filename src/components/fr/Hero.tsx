@@ -11,68 +11,70 @@ export default function HeroFR() {
       itemType="https://schema.org/WebPage"
       className="relative max-w-6xl mx-auto px-6 pt-8 md:pt-14 pb-14 md:pb-20 text-center"
     >
+      {/* SEO helper (non-visible) */}
       <span className="sr-only" itemProp="alternativeHeadline">
-        Bilan carbone entreprise simplifié pour PME — attestation CO₂e indicative et vérifiable
+        Bilan carbone entreprise pour PME — estimation CO₂e avec attestation indicative vérifiable
       </span>
 
       <div className="absolute inset-0 bg-gradient-to-b from-white to-[#F3FBFC] -z-10" />
 
-      {/* SURTITRE */}
+      {/* SURTITRE (exact match) */}
       <p
         className="text-xs md:text-sm font-semibold tracking-wide text-[#0B3A63]/70 mb-3 uppercase"
         itemProp="about"
       >
-        Bilan carbone entreprise — solution simplifiée pour PME
+        Bilan carbone entreprise pour PME
       </p>
 
       {/* TITRE (H1) */}
       <h1
         itemProp="headline"
-        className="text-[1.9rem] md:text-[3rem] font-extrabold text-[#0B3A63] leading-tight tracking-tight"
+        className="text-[2rem] md:text-[3.1rem] font-extrabold text-[#0B3A63] leading-tight tracking-tight"
       >
         Bilan carbone entreprise simplifié
         <br />
-        <span className="text-[#1FB6C1]">
-          avec attestation CO₂e indicative vérifiable indépendamment
-        </span>
+        <span className="text-[#1FB6C1]">Estimation CO₂e avec attestation vérifiable</span>
       </h1>
 
-      {/* DESCRIPTION PRINCIPALE */}
+      {/* DESCRIPTION PRINCIPALE (SEO + intent) */}
       <p
         className="text-base md:text-lg text-[#475569] max-w-2xl mx-auto mt-4 leading-relaxed"
         itemProp="description"
       >
-        Obtenez une estimation de bilan carbone pour votre entreprise (PME) afin de
-        répondre aux exigences clients, appels d’offres, banques et assureurs — sans
-        engager un audit carbone complet. Méthode spend-based orientée scope 3, avec
-        un document CO₂e clair, standardisé et prêt à partager.
+        Réalisez une estimation de bilan carbone entreprise (PME) en quelques minutes pour répondre
+        aux exigences clients, aux appels d’offres et aux demandes bancaires — sans audit carbone
+        complet.
       </p>
 
-      {/* LEGAL NOTICE */}
+      {/* TRUST / METHOD / LEGAL (light, non-jargon) */}
       <div className="mt-4 max-w-xl mx-auto space-y-1">
         <p className="text-xs text-slate-500 leading-relaxed">
-          Estimation indicative basée sur des référentiels GES reconnus (GHG Protocol,
-          ISO 14064-1) et adaptée aux pratiques européennes de procurement, bancaires
-          et assurantielles. Ce document ne constitue pas un bilan carbone complet ni
-          un audit.
+          Méthode spend-based orientée Scope 3, basée sur des référentiels reconnus (GHG Protocol,
+          ISO 14064-1). Document CO₂e clair, standardisé, prêt à partager.
         </p>
 
-        {/* PRIVACY / TRUST */}
         <p className="text-xs text-slate-500 italic flex items-center justify-center gap-1">
           <span aria-hidden>🔒</span>
-          Les calculs sont effectués localement dans votre navigateur. Aucune donnée
-          financière n’est conservée.
+          Calculs effectués localement dans votre navigateur. Aucune donnée financière conservée.
         </p>
       </div>
 
       {/* CTA */}
-      <div className="flex justify-center mt-6 md:mt-7">
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-6 md:mt-7">
         <Link
           href="/fr/generate"
-          aria-label="Estimer le bilan carbone de mon entreprise et générer une attestation CO₂e indicative"
-          className="bg-[#1FB6C1] hover:bg-[#17a2a8] text-white font-semibold px-12 py-4 rounded-xl shadow-md transition"
+          aria-label="Calculer mon bilan carbone entreprise"
+          className="bg-[#1FB6C1] hover:bg-[#17a2a8] text-white font-semibold px-10 py-4 rounded-xl shadow-md transition"
         >
-          Estimer mon bilan carbone
+          Calculer mon bilan carbone
+        </Link>
+
+        <Link
+          href="/fr/verify"
+          aria-label="Vérifier une attestation CO₂e"
+          className="inline-flex items-center justify-center font-semibold px-10 py-4 rounded-xl border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
+        >
+          Vérifier une attestation
         </Link>
       </div>
 
@@ -81,7 +83,7 @@ export default function HeroFR() {
         <Image
           itemProp="primaryImageOfPage"
           src="/hero-attestation.webp"
-          alt="Exemple d’attestation CO₂e issue d’un bilan carbone entreprise simplifié (PME), incluant des éléments de vérification indépendante."
+          alt="Exemple de document CO₂e : estimation de bilan carbone entreprise avec attestation indicative vérifiable."
           width={900}
           height={600}
           priority
@@ -91,7 +93,7 @@ export default function HeroFR() {
 
       {/* TRUST LINE */}
       <p className="text-sm text-[#0B3A63]/80 font-medium mt-6">
-        Attestation CO₂e indicative, vérifiable indépendamment par tout tiers.
+        Attestation indicative vérifiable indépendamment, valable 1 an.
       </p>
     </section>
   );
