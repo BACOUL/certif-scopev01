@@ -8,6 +8,9 @@ const ALLOWED: Record<(typeof SUPPORTED_LOCALES)[number], string[]> = {
   fr: [], // FR: pas de fallback vers EN
 };
 
+// Ton site est en trailingSlash: true
+const TRAILING_SLASH = true;
+
 // Ne jamais toucher aux assets / fichiers / routes techniques
 function isBypassPath(pathname: string) {
   if (
@@ -19,7 +22,6 @@ function isBypassPath(pathname: string) {
     return true;
   }
 
-  // Fichiers statiques classiques
   if (
     pathname === "/favicon.ico" ||
     pathname === "/robots.txt" ||
@@ -29,7 +31,6 @@ function isBypassPath(pathname: string) {
     return true;
   }
 
-  // Toute URL avec extension (.png, .jpg, .svg, .css, .js, .map, etc.)
   if (/\.[a-zA-Z0-9]+$/.test(pathname)) {
     return true;
   }
@@ -38,33 +39,31 @@ function isBypassPath(pathname: string) {
 }
 
 function normalizeRestPath(rest: string) {
-  // Garantit un format stable: "/" ou "/pricing" (sans trailing slash)
+  // Format stable: "/" ou "/pricing" (sans trailing slash)
   let out = rest || "/";
   if (out.length > 1 && out.endsWith("/")) out = out.slice(0, -1);
   return out;
 }
 
+function withTrailingSlash(pathname: string) {
+  if (!TRAILING_SLASH) return pathname;
+  if (pathname === "/") return "/";
+  return pathname.endsWith("/") ? pathname : `${pathname}/`;
+}
+
 export function middleware(req: NextRequest) {
   const pathname = req.nextUrl.pathname;
 
-  // ======================================================
   // 0) Bypass assets / fichiers
-  // ======================================================
   if (isBypassPath(pathname)) {
     return NextResponse.next();
   }
 
-  // ======================================================
-  // 1) Base response + security headers
-  // ======================================================
+  // 1) Base response + security headers (cohérents avec next.config)
   const res = NextResponse.next();
-
   res.headers.set("X-Content-Type-Options", "nosniff");
-  res.headers.set("Referrer-Policy", "no-referrer");
-  res.headers.set(
-    "Permissions-Policy",
-    "camera=(), microphone=(), geolocation=(), payment=()"
-  );
+  res.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+  res.headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=(), payment=()");
 
   // Cache strict routes sensibles
   if (pathname.startsWith("/verify") || pathname.startsWith("/api")) {
@@ -72,33 +71,27 @@ export function middleware(req: NextRequest) {
     return res;
   }
 
-  // ======================================================
   // 2) Locale detection
-  // ======================================================
   const locale = SUPPORTED_LOCALES.find(
     (l) => pathname === `/${l}` || pathname.startsWith(`/${l}/`)
   );
-
   if (!locale) return res;
 
-  // ======================================================
-  // 3) Fallback: /de/* -> EN si page non traduite
-  //    FR reste tel quel
-  // ======================================================
+  // 3) Fallback: /de/* -> EN si page non traduite ; FR reste tel quel
   const rawRest = pathname.replace(`/${locale}`, "") || "/";
-  const rest = normalizeRestPath(rawRest); // ✅ gère /pricing/ -> /pricing
+  const rest = normalizeRestPath(rawRest); // "/" ou "/pricing"
 
   const isAllowed = ALLOWED[locale].includes(rest);
   if (isAllowed) return res;
 
-  // Ne pas rediriger FR si tu ne veux pas de fallback
+  // FR: aucun fallback
   if (locale === "fr" && ALLOWED.fr.length === 0) return res;
 
-  // Redirect to EN equivalent (remove locale prefix)
+  // DE: redirect permanent vers EN canonique, avec trailing slash stable
   const url = req.nextUrl.clone();
-  url.pathname = rest === "/" ? "/" : rest;
+  url.pathname = withTrailingSlash(rest === "/" ? "/" : rest);
 
-  return NextResponse.redirect(url, 307);
+  return NextResponse.redirect(url, 308);
 }
 
 export const config = {
