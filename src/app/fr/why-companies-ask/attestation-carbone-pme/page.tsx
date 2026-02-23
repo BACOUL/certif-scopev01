@@ -4,14 +4,16 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 /* ======================================================
-   SEO METADATA — ATTESTATION CARBONE POUR PME
+   SEO METADATA — BILAN CARBONE PME (PAGE EXISTANTE)
+   Objectif : se positionner sur "bilan carbone PME" / "bilan carbone entreprise PME"
+   tout en restant subtil (attestation = livrable / preuve).
 ====================================================== */
 
 export const metadata: Metadata = {
   title:
-    "Attestation carbone pour PME — Que fournir quand on n’a pas de bilan carbone — Certif-Scope (FR)",
+    "Bilan carbone PME — Que fournir quand on n’a pas de bilan complet — Certif-Scope (FR)",
   description:
-    "Guide PME : pourquoi une attestation CO₂e est demandée, ce qui est réellement attendu (screening), et comment répondre avec une estimation indicative standardisée sans audit.",
+    "Guide PME : comprendre les demandes “bilan carbone”, ce qui est attendu en pratique (screening), et comment répondre avec une estimation indicative standardisée sans audit complet.",
   alternates: {
     canonical:
       "https://www.certif-scope.com/fr/why-companies-ask/attestation-carbone-pme",
@@ -21,9 +23,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Attestation carbone pour PME — Que fournir quand on n’a pas de bilan",
+    title: "Bilan carbone PME — Que fournir quand on n’a pas de bilan complet",
     description:
-      "Pourquoi les PME reçoivent des demandes CO₂e et comment répondre avec une attestation indicative, cadrée et réutilisable.",
+      "Pourquoi les PME reçoivent des demandes “bilan carbone” et comment répondre avec un document CO₂e indicatif, cadré et réutilisable.",
     url: "https://www.certif-scope.com/fr/why-companies-ask/attestation-carbone-pme",
     siteName: "Certif-Scope",
     type: "website",
@@ -36,6 +38,9 @@ export const metadata: Metadata = {
 ====================================================== */
 
 export default function CarbonAttestationSMEsFR() {
+  const pageUrl =
+    "https://www.certif-scope.com/fr/why-companies-ask/attestation-carbone-pme";
+
   return (
     <section
       id="carbon-attestation-smes"
@@ -49,10 +54,10 @@ export default function CarbonAttestationSMEsFR() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebPage",
-            name: "Attestation carbone pour PME",
-            url: "https://www.certif-scope.com/fr/why-companies-ask/attestation-carbone-pme",
+            name: "Bilan carbone PME",
+            url: pageUrl,
             description:
-              "Guide PME : comprendre pourquoi on vous demande une attestation CO₂e, ce qui est attendu en pratique et comment répondre avec une estimation indicative standardisée.",
+              "Guide PME : comprendre pourquoi on vous demande un “bilan carbone”, ce qui est attendu en pratique (screening) et comment répondre avec une estimation CO₂e indicative standardisée.",
             isPartOf: {
               "@type": "WebSite",
               name: "Certif-Scope",
@@ -70,8 +75,8 @@ export default function CarbonAttestationSMEsFR() {
                 {
                   "@type": "ListItem",
                   position: 2,
-                  name: "Attestation carbone pour PME",
-                  item: "https://www.certif-scope.com/fr/why-companies-ask/attestation-carbone-pme",
+                  name: "Bilan carbone PME",
+                  item: pageUrl,
                 },
               ],
             },
@@ -85,18 +90,19 @@ export default function CarbonAttestationSMEsFR() {
       {/* PAGE HEADER */}
       <header className="mb-14">
         <p className="uppercase text-xs tracking-wider text-[#64748B] mb-3">
-          Comprendre les demandes CO₂e — Cas n°4
+          Comprendre les demandes “bilan carbone” — Cas n°4
         </p>
 
         <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-6">
-          Attestation carbone pour PME : que fournir quand on n’a pas de bilan carbone
+          Bilan carbone PME : que fournir quand on n’a pas de bilan carbone complet
         </h1>
 
         <p className="text-lg text-gray-700 leading-relaxed max-w-3xl">
-          Beaucoup de PME reçoivent aujourd’hui des demandes CO₂e de la part de clients,
-          acheteurs, banques ou assureurs. Dans la majorité des cas, il ne s’agit pas
-          d’une obligation réglementaire ni d’un audit : on vous demande un indicateur
-          simple pour le screening et la documentation interne.
+          Beaucoup de PME reçoivent aujourd’hui des demandes “bilan carbone” de la
+          part de clients, acheteurs, banques ou assureurs. Dans la majorité des
+          cas, il ne s’agit pas d’une obligation réglementaire ni d’un audit : on
+          vous demande un indicateur CO₂e simple pour le screening et la
+          documentation interne.
         </p>
 
         <div className="mt-8 flex flex-wrap gap-3">
@@ -118,7 +124,7 @@ export default function CarbonAttestationSMEsFR() {
             href="/fr/verify"
             className="inline-block text-sm px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
           >
-            Vérifier une attestation
+            Vérifier un document
           </Link>
         </div>
 
@@ -132,7 +138,7 @@ export default function CarbonAttestationSMEsFR() {
           {/* 1 */}
           <section id="why">
             <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-              1. Pourquoi les PME reçoivent des demandes CO₂e
+              1. Pourquoi les PME reçoivent des demandes “bilan carbone”
             </h2>
 
             <p className="text-gray-700 leading-relaxed mb-4">
@@ -162,9 +168,10 @@ export default function CarbonAttestationSMEsFR() {
             </h2>
 
             <p className="text-gray-700 leading-relaxed mb-6">
-              Une demande “attestation carbone” est souvent floue. En pratique, le
-              besoin est simple : un document qui permet à un tiers de cocher une case
-              “information CO₂e disponible” et d’archiver une preuve minimale.
+              Une demande “bilan carbone PME” est souvent formulée de manière
+              générique. En pratique, le besoin est simple : un document qui permet
+              à un tiers de cocher une case “information CO₂e disponible” et
+              d’archiver une preuve minimale.
             </p>
 
             <div className="rounded-2xl border border-gray-200 bg-white p-6">
@@ -185,19 +192,20 @@ export default function CarbonAttestationSMEsFR() {
           {/* 3 */}
           <section id="difference">
             <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-              3. Attestation indicative vs bilan carbone : comprendre la différence
+              3. Estimation indicative vs bilan carbone complet : comprendre la différence
             </h2>
 
             <p className="text-gray-700 leading-relaxed mb-6">
-              Une PME confond souvent “attestation carbone” et “bilan carbone audité”.
-              Ce sont deux objets différents. L’attestation indicative sert au screening.
-              Le bilan carbone complet sert à un inventaire détaillé (souvent coûteux).
+              Une PME confond souvent “bilan carbone” et “bilan carbone audité”.
+              Ce sont deux objets différents. Une estimation indicative est adaptée
+              au screening. Un bilan complet sert à un inventaire détaillé (souvent
+              coûteux et long).
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="rounded-2xl border border-gray-200 bg-white p-6">
                 <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
-                  Attestation indicative (screening)
+                  Estimation / document indicatif (screening)
                 </h3>
                 <ul className="list-disc ml-6 text-gray-700 space-y-2">
                   <li>objectif : répondre vite à une demande tiers</li>
@@ -221,8 +229,8 @@ export default function CarbonAttestationSMEsFR() {
             </div>
 
             <p className="text-gray-700 leading-relaxed mt-6">
-              Dans un contexte “onboarding / screening”, un audit complet est rarement
-              exigé. Si un standard audit est explicitement imposé, il faut demander le
+              En contexte “onboarding / screening”, un audit complet est rarement
+              exigé. Si un standard audit est explicitement imposé, demandez le
               cadre attendu (norme, périmètre, scopes).
             </p>
           </section>
@@ -234,8 +242,8 @@ export default function CarbonAttestationSMEsFR() {
             </h2>
 
             <p className="text-gray-700 leading-relaxed mb-6">
-              La bonne réponse est celle qui réduit la friction : un document standard,
-              lisible, réutilisable, qui annonce clairement son périmètre et ses limites.
+              La bonne réponse réduit la friction : un document standard, lisible,
+              réutilisable, qui annonce clairement son périmètre et ses limites.
               Cela évite d’être “bloqué” sur des demandes répétées.
             </p>
 
@@ -245,12 +253,12 @@ export default function CarbonAttestationSMEsFR() {
               </h3>
               <ul className="space-y-3 text-gray-700">
                 <li>
-                  <strong>À utiliser :</strong> “attestation CO₂e indicative”, “estimation
-                  spend-based”, “usage screening ESG”, “non auditée”.
+                  <strong>À utiliser :</strong> “estimation CO₂e indicative”,
+                  “estimation spend-based”, “usage screening ESG”, “non auditée”.
                 </li>
                 <li>
-                  <strong>À éviter :</strong> “certifiée”, “conforme CSRD/ESRS”, “audit carbone”,
-                  “inventaire réglementaire”.
+                  <strong>À éviter :</strong> “certifiée”, “conforme CSRD/ESRS”,
+                  “audit carbone”, “inventaire réglementaire”.
                 </li>
               </ul>
 
@@ -271,9 +279,10 @@ export default function CarbonAttestationSMEsFR() {
             </h2>
 
             <p className="text-gray-700 leading-relaxed mb-4">
-              Les PME perdent du temps quand elles répondent “au cas par cas” : fichiers différents,
-              méthodes non expliquées, absence de date ou de périmètre. Un document standardisé permet
-              de répondre plus vite et d’éviter des allers-retours.
+              Les PME perdent du temps quand elles répondent “au cas par cas” :
+              fichiers différents, méthodes non expliquées, absence de date ou de
+              périmètre. Un document standardisé permet de répondre plus vite et
+              d’éviter des allers-retours.
             </p>
 
             <ul className="list-disc ml-6 text-gray-700 space-y-2">
@@ -290,7 +299,7 @@ export default function CarbonAttestationSMEsFR() {
               <ul className="space-y-2 text-gray-700">
                 <li>
                   <Link className="underline" href="/fr/product">
-                    Produit : attestation standardisée
+                    Produit : document CO₂e standardisé
                   </Link>
                 </li>
                 <li>
@@ -305,7 +314,7 @@ export default function CarbonAttestationSMEsFR() {
                 </li>
                 <li>
                   <Link className="underline" href="/fr/verify">
-                    Vérifier une attestation
+                    Vérifier un document
                   </Link>
                 </li>
               </ul>
@@ -325,7 +334,7 @@ export default function CarbonAttestationSMEsFR() {
                 </h3>
                 <p className="text-gray-700 leading-relaxed">
                   Pas dans la majorité des cas. Les demandes reçues par les PME sont le plus
-                  souvent liées à du screening (achats, banque, assurance). Si un audit ou une norme
+                  souvent liées au screening (achats, banque, assurance). Si un audit ou une norme
                   est exigée explicitement, le cahier des charges doit le préciser.
                 </p>
               </div>
@@ -345,9 +354,9 @@ export default function CarbonAttestationSMEsFR() {
                   Que faire si mon client insiste sur “scope 1/2/3” ?
                 </h3>
                 <p className="text-gray-700 leading-relaxed">
-                  Demander si l’objectif est une information de screening ou un inventaire complet.
-                  Si un inventaire complet est exigé, l’attestation indicative n’est pas le bon outil.
-                  Si c’est du screening, une attestation cadrée et standardisée répond généralement au besoin.
+                  Demandez si l’objectif est une information de screening ou un inventaire complet.
+                  Si un inventaire complet est exigé, un document indicatif n’est pas le bon outil.
+                  Si c’est du screening, une estimation cadrée et standardisée répond généralement au besoin.
                 </p>
               </div>
             </div>
@@ -357,12 +366,12 @@ export default function CarbonAttestationSMEsFR() {
           <section id="cta" className="pt-2">
             <div className="rounded-2xl border border-gray-200 bg-[#0B3A63] p-8 text-white">
               <h2 className="text-2xl font-extrabold mb-3">
-                Répondre aux demandes CO₂e sans audit, avec un document clair
+                Répondre aux demandes “bilan carbone” sans audit, avec un document clair
               </h2>
               <p className="text-white/90 leading-relaxed max-w-2xl">
-                Si vous êtes une PME et qu’on vous demande une “attestation carbone”, le besoin est
-                souvent un indicateur simple pour screening. Certif-Scope produit une attestation
-                indicative, standardisée, traçable et vérifiable.
+                Si vous êtes une PME et qu’on vous demande un “bilan carbone”, le besoin est
+                souvent un indicateur simple pour screening. Certif-Scope produit un document
+                CO₂e indicatif, standardisé, traçable et vérifiable.
               </p>
 
               <div className="mt-6 flex flex-wrap gap-3">
@@ -399,7 +408,7 @@ export default function CarbonAttestationSMEsFR() {
               <p className="text-xs uppercase tracking-wider text-[#64748B] mb-3">
                 Sommaire
               </p>
-              <nav aria-label="Sommaire attestation PME">
+              <nav aria-label="Sommaire bilan carbone PME">
                 <ul className="space-y-2 text-sm">
                   <li>
                     <a className="text-[#0B3A63] hover:underline" href="#why">
@@ -415,8 +424,11 @@ export default function CarbonAttestationSMEsFR() {
                     </a>
                   </li>
                   <li>
-                    <a className="text-[#0B3A63] hover:underline" href="#difference">
-                      3. Attestation vs bilan carbone
+                    <a
+                      className="text-[#0B3A63] hover:underline"
+                      href="#difference"
+                    >
+                      3. Estimation vs bilan complet
                     </a>
                   </li>
                   <li>
@@ -454,10 +466,9 @@ export default function CarbonAttestationSMEsFR() {
                 Rappel de périmètre
               </h3>
               <p className="text-sm text-gray-700 leading-relaxed">
-                La majorité des demandes adressées aux PME sont du screening (achats,
-                banque, assurance). Une attestation indicative est acceptable si elle
-                annonce clairement ses limites. Elle ne remplace pas un audit ni un
-                inventaire complet des émissions.
+                Ce guide traite des demandes “bilan carbone PME” liées au screening (achats,
+                banque, assurance). Un document indicatif est acceptable s’il annonce clairement
+                ses limites. Il ne remplace pas un audit ni un inventaire complet des émissions.
               </p>
 
               <div className="mt-5">
@@ -474,4 +485,4 @@ export default function CarbonAttestationSMEsFR() {
       </div>
     </section>
   );
-        }
+}
