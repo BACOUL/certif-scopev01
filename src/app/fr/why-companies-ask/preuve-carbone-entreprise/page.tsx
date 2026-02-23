@@ -4,14 +4,16 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 /* ======================================================
-   SEO METADATA — PREUVE CARBONE D’ENTREPRISE
+   SEO METADATA — JUSTIFICATIF / PREUVE CARBONE ENTREPRISE
+   Objectif : capter "justificatif CO2 entreprise" / "preuve carbone entreprise"
+   + variantes "document carbone", "justificatif carbone".
 ====================================================== */
 
 export const metadata: Metadata = {
   title:
-    "Preuve carbone d’entreprise — Format de preuve minimal CO₂e — Certif-Scope (FR)",
+    "Justificatif CO₂ entreprise — Preuve carbone : quoi fournir (sans audit) — Certif-Scope (FR)",
   description:
-    "Comprendre ce qu’est une preuve carbone d’entreprise (preuve minimale CO₂e), quand elle est demandée, et comment fournir un document standardisé, indicatif et vérifiable sans prétendre à un audit.",
+    "Comprendre ce qu’on appelle un “justificatif CO₂” (preuve carbone) : quand il est demandé, le contenu minimal attendu (screening) et comment fournir un document standardisé, indicatif et vérifiable sans prétendre à un audit.",
   alternates: {
     canonical:
       "https://www.certif-scope.com/fr/why-companies-ask/preuve-carbone-entreprise",
@@ -21,9 +23,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Preuve carbone d’entreprise — Format de preuve minimal CO₂e",
+    title: "Justificatif CO₂ entreprise — Preuve carbone : quoi fournir (sans audit)",
     description:
-      "Pourquoi on demande une “preuve carbone” et comment répondre avec un document indicatif, standardisé et vérifiable (screening).",
+      "Pourquoi on demande un “justificatif CO₂” et comment répondre avec un document indicatif, standardisé et vérifiable (screening).",
     url: "https://www.certif-scope.com/fr/why-companies-ask/preuve-carbone-entreprise",
     siteName: "Certif-Scope",
     type: "website",
@@ -36,6 +38,9 @@ export const metadata: Metadata = {
 ====================================================== */
 
 export default function CompanyCarbonProofFR() {
+  const pageUrl =
+    "https://www.certif-scope.com/fr/why-companies-ask/preuve-carbone-entreprise";
+
   return (
     <section
       id="company-carbon-proof"
@@ -49,10 +54,10 @@ export default function CompanyCarbonProofFR() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebPage",
-            name: "Preuve carbone d’entreprise",
-            url: "https://www.certif-scope.com/fr/why-companies-ask/preuve-carbone-entreprise",
+            name: "Justificatif CO₂ entreprise",
+            url: pageUrl,
             description:
-              "Guide : comprendre la notion de preuve carbone d’entreprise (preuve minimale CO₂e) et comment fournir un document standardisé, indicatif et vérifiable.",
+              "Guide : comprendre la notion de justificatif CO₂ (preuve carbone) et comment fournir un document standardisé, indicatif et vérifiable pour le screening.",
             isPartOf: {
               "@type": "WebSite",
               name: "Certif-Scope",
@@ -70,8 +75,8 @@ export default function CompanyCarbonProofFR() {
                 {
                   "@type": "ListItem",
                   position: 2,
-                  name: "Preuve carbone d’entreprise",
-                  item: "https://www.certif-scope.com/fr/why-companies-ask/preuve-carbone-entreprise",
+                  name: "Justificatif CO₂ entreprise",
+                  item: pageUrl,
                 },
               ],
             },
@@ -85,18 +90,18 @@ export default function CompanyCarbonProofFR() {
       {/* PAGE HEADER */}
       <header className="mb-14">
         <p className="uppercase text-xs tracking-wider text-[#64748B] mb-3">
-          Comprendre les demandes CO₂e — Synthèse “preuve”
+          Comprendre les demandes CO₂e — Synthèse “justificatif”
         </p>
 
         <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-6">
-          Preuve carbone d’entreprise : ce que cela signifie (et ce qu’il faut fournir)
+          Justificatif CO₂ entreprise : ce que cela signifie (et ce qu’il faut fournir)
         </h1>
 
         <p className="text-lg text-gray-700 leading-relaxed max-w-3xl">
-          Une “preuve carbone” n’est pas forcément un audit ni un bilan carbone complet.
-          Dans de nombreux workflows (achats, banque, assurance), il s’agit d’une preuve
-          minimale : un document lisible et archivable indiquant un résultat CO₂e
-          indicatif, une méthode déclarée, et des limites explicites.
+          Un “justificatif CO₂” (ou “preuve carbone”) n’est pas forcément un audit ni un bilan
+          carbone complet. Dans de nombreux workflows (achats, banque, assurance), il s’agit
+          d’une preuve minimale : un document lisible et archivable indiquant un résultat CO₂e
+          indicatif, une méthode déclarée et des limites explicites.
         </p>
 
         <div className="mt-8 flex flex-wrap gap-3">
@@ -118,7 +123,7 @@ export default function CompanyCarbonProofFR() {
             href="/fr/verify"
             className="inline-block text-sm px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
           >
-            Vérifier une attestation
+            Vérifier un document
           </Link>
         </div>
 
@@ -132,14 +137,14 @@ export default function CompanyCarbonProofFR() {
           {/* 1 */}
           <section id="definition">
             <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-              1. Définition : qu’appelle-t-on “preuve carbone” en pratique ?
+              1. Définition : qu’appelle-t-on “justificatif CO₂” en pratique ?
             </h2>
 
             <p className="text-gray-700 leading-relaxed mb-4">
-              Dans les échanges B2B, “preuve carbone” est souvent une expression non standard.
-              Elle désigne généralement un document qui permet à un tiers de constater qu’un
-              indicateur CO₂e existe, qu’il a été produit selon une méthode annoncée, et
-              qu’il peut être archivé dans un dossier.
+              Dans les échanges B2B, “justificatif CO₂”, “preuve carbone” ou “document carbone”
+              sont souvent des expressions non standard. Elles désignent généralement un document
+              qui permet à un tiers de constater qu’un indicateur CO₂e existe, qu’il a été produit
+              selon une méthode annoncée, et qu’il peut être archivé dans un dossier.
             </p>
 
             <div className="rounded-2xl border border-gray-200 bg-[#F8FAFC] p-6">
@@ -160,14 +165,15 @@ export default function CompanyCarbonProofFR() {
           {/* 2 */}
           <section id="why-requested">
             <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-              2. Pourquoi on vous demande une preuve carbone
+              2. Pourquoi on vous demande un justificatif CO₂
             </h2>
 
             <p className="text-gray-700 leading-relaxed mb-6">
               La demande vise rarement la “perfection carbone”. Elle vise la capacité à produire
               un document réutilisable pour des workflows : qualification fournisseur, dossier
-              crédit, analyse assureur, ou réponses à des questionnaires ESG. Sans preuve minimale,
-              les organisations se retrouvent avec des déclarations informelles difficiles à comparer.
+              crédit, analyse assureur, réponses à des questionnaires ESG, ou appels d’offres.
+              Sans preuve minimale, les organisations se retrouvent avec des déclarations informelles
+              difficiles à comparer et à archiver.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -206,12 +212,12 @@ export default function CompanyCarbonProofFR() {
           {/* 3 */}
           <section id="what-to-provide">
             <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-              3. Ce qu’il faut fournir : le contenu minimal d’une preuve acceptable
+              3. Quoi fournir : le contenu minimal d’un justificatif acceptable
             </h2>
 
             <p className="text-gray-700 leading-relaxed mb-4">
-              Pour être réellement utile, la preuve carbone doit être lisible et comparable.
-              Elle doit aussi être cadrée : indiquer explicitement qu’il s’agit d’une estimation
+              Pour être réellement utile, le justificatif CO₂ doit être lisible et comparable.
+              Il doit aussi être cadré : indiquer explicitement qu’il s’agit d’une estimation
               indicative (screening), sans prétendre à un audit ni à un reporting réglementaire.
             </p>
 
@@ -240,13 +246,13 @@ export default function CompanyCarbonProofFR() {
           {/* 4 */}
           <section id="verification">
             <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-              4. Ce qui rend une preuve “crédible” : traçabilité et vérification
+              4. Ce qui rend un justificatif “crédible” : traçabilité et vérification
             </h2>
 
             <p className="text-gray-700 leading-relaxed mb-6">
-              La crédibilité, en screening, n’est pas l’audit : c’est la capacité à fournir un document
-              standard, stable, et contrôlable. Les tiers veulent pouvoir vérifier l’intégrité et l’origine
-              du document sans devoir contacter quelqu’un.
+              La crédibilité, en screening, n’est pas l’audit : c’est la capacité à fournir un
+              document standard, stable et contrôlable. Les tiers veulent pouvoir vérifier
+              l’intégrité et l’origine du document sans devoir contacter quelqu’un.
             </p>
 
             <div className="rounded-2xl border border-gray-200 bg-[#F8FAFC] p-6">
@@ -254,7 +260,7 @@ export default function CompanyCarbonProofFR() {
                 Signaux simples de confiance (screening)
               </h3>
               <ul className="list-disc ml-6 text-gray-700 space-y-2">
-                <li>identifiant unique d’attestation</li>
+                <li>identifiant unique du document</li>
                 <li>lien de vérification public</li>
                 <li>date et version du format</li>
                 <li>mentions explicites de périmètre et limites</li>
@@ -265,7 +271,7 @@ export default function CompanyCarbonProofFR() {
                   href="/fr/verify"
                   className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
                 >
-                  Vérifier une attestation
+                  Vérifier un document
                 </Link>
               </div>
             </div>
@@ -274,11 +280,11 @@ export default function CompanyCarbonProofFR() {
           {/* 5 */}
           <section id="when-not-enough">
             <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-              5. Quand une preuve minimale ne suffit pas (cas à cadrer)
+              5. Quand un justificatif CO₂ minimal ne suffit pas (cas à cadrer)
             </h2>
 
             <p className="text-gray-700 leading-relaxed mb-6">
-              Une preuve minimale est utile en screening. Elle n’est pas adaptée lorsque la demande
+              Un justificatif minimal est utile en screening. Il n’est pas adapté lorsque la demande
               impose explicitement un standard, une vérification externe ou un inventaire détaillé.
               Dans ce cas, il faut demander le cadre exact (norme, périmètre, scopes, niveau d’assurance).
             </p>
@@ -311,17 +317,26 @@ export default function CompanyCarbonProofFR() {
                   </Link>
                 </li>
                 <li>
-                  <Link className="underline" href="/fr/why-companies-ask/attestation-carbone-fournisseur">
+                  <Link
+                    className="underline"
+                    href="/fr/why-companies-ask/attestation-carbone-fournisseur"
+                  >
                     Cas fournisseur
                   </Link>
                 </li>
                 <li>
-                  <Link className="underline" href="/fr/why-companies-ask/attestation-carbone-appel-offres">
+                  <Link
+                    className="underline"
+                    href="/fr/why-companies-ask/attestation-carbone-appel-offres"
+                  >
                     Cas appel d’offres
                   </Link>
                 </li>
                 <li>
-                  <Link className="underline" href="/fr/why-companies-ask/exigences-co2-banques-assurances">
+                  <Link
+                    className="underline"
+                    href="/fr/why-companies-ask/exigences-co2-banques-assurances"
+                  >
                     Cas banques & assurances
                   </Link>
                 </li>
@@ -332,17 +347,17 @@ export default function CompanyCarbonProofFR() {
           {/* 6 */}
           <section id="faq">
             <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-              6. Questions fréquentes (preuve carbone)
+              6. Questions fréquentes (justificatif CO₂)
             </h2>
 
             <div className="space-y-6">
               <div className="rounded-2xl border border-gray-200 bg-white p-6">
                 <h3 className="font-semibold text-[#0B3A63] mb-2">
-                  “Preuve carbone” veut-elle dire “bilan carbone audité” ?
+                  “Justificatif CO₂” veut-il dire “bilan carbone audité” ?
                 </h3>
                 <p className="text-gray-700 leading-relaxed">
                   Non, pas automatiquement. Le terme est souvent utilisé de manière générique.
-                  La première étape est de comprendre le niveau attendu : screening (preuve minimale)
+                  La première étape est d’identifier le niveau attendu : screening (preuve minimale)
                   ou audit (preuve forte). Dans beaucoup de cas, il s’agit de screening.
                 </p>
               </div>
@@ -373,12 +388,12 @@ export default function CompanyCarbonProofFR() {
           <section id="cta" className="pt-2">
             <div className="rounded-2xl border border-gray-200 bg-[#0B3A63] p-8 text-white">
               <h2 className="text-2xl font-extrabold mb-3">
-                Fournir une preuve carbone minimale, claire et vérifiable
+                Fournir un justificatif CO₂ minimal, clair et vérifiable
               </h2>
               <p className="text-white/90 leading-relaxed max-w-2xl">
-                Si l’on vous demande une “preuve carbone”, le besoin est souvent un document de screening :
-                indicatif, standardisé, archivable et contrôlable. Certif-Scope produit une attestation CO₂e
-                cadrée, traçable et vérifiable.
+                Si l’on vous demande un “justificatif CO₂”, le besoin est souvent un document de screening :
+                indicatif, standardisé, archivable et contrôlable. Certif-Scope produit un document CO₂e
+                cadré, traçable et vérifiable.
               </p>
 
               <div className="mt-6 flex flex-wrap gap-3">
@@ -415,7 +430,7 @@ export default function CompanyCarbonProofFR() {
               <p className="text-xs uppercase tracking-wider text-[#64748B] mb-3">
                 Sommaire
               </p>
-              <nav aria-label="Sommaire preuve carbone">
+              <nav aria-label="Sommaire justificatif CO2">
                 <ul className="space-y-2 text-sm">
                   <li>
                     <a className="text-[#0B3A63] hover:underline" href="#definition">
@@ -461,9 +476,9 @@ export default function CompanyCarbonProofFR() {
                 Rappel de périmètre
               </h3>
               <p className="text-sm text-gray-700 leading-relaxed">
-                Une preuve carbone minimale est utile pour le screening (achats, banque, assurance)
-                lorsqu’elle est présentée comme une estimation indicative avec limites explicites.
-                Elle ne remplace pas un audit ni un inventaire complet des émissions.
+                Un justificatif CO₂ minimal est utile pour le screening (achats, banque, assurance)
+                lorsqu’il est présenté comme une estimation indicative avec limites explicites.
+                Il ne remplace pas un audit ni un inventaire complet des émissions.
               </p>
 
               <div className="mt-5">
@@ -480,4 +495,4 @@ export default function CompanyCarbonProofFR() {
       </div>
     </section>
   );
-                  }
+}
