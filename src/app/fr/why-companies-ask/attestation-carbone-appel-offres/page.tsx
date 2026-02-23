@@ -4,14 +4,16 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 /* ======================================================
-   SEO METADATA — ATTESTATION CARBONE APPEL D’OFFRES
+   SEO METADATA — BILAN CARBONE APPEL D’OFFRES (PAGE EXISTANTE)
+   Objectif : se positionner sur les requêtes "bilan carbone appel d’offres"
+   tout en restant subtil (attestation = livrable).
 ====================================================== */
 
 export const metadata: Metadata = {
   title:
-    "Attestation carbone appel d’offres — Ce qui est réellement demandé — Certif-Scope (FR)",
+    "Bilan carbone appel d’offres — Ce qui est réellement demandé — Certif-Scope (FR)",
   description:
-    "Comprendre pourquoi un indicateur CO₂e est demandé dans un appel d’offres, ce qui est attendu en pratique et dans quels cas une attestation indicative est acceptable.",
+    "Comprendre ce que signifie “bilan carbone” dans un appel d’offres : indicateur CO₂e attendu, niveaux d’exigence, et quand un document indicatif standardisé suffit.",
   alternates: {
     canonical:
       "https://www.certif-scope.com/fr/why-companies-ask/attestation-carbone-appel-offres",
@@ -21,10 +23,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title:
-      "Attestation carbone appel d’offres — Ce qui est réellement demandé",
+    title: "Bilan carbone appel d’offres — Ce qui est réellement demandé",
     description:
-      "Pourquoi un indicateur CO₂e apparaît dans les appels d’offres et comment répondre avec un document indicatif adapté au screening.",
+      "Pourquoi un “bilan carbone” apparaît dans les appels d’offres, ce qui est attendu en pratique et comment répondre avec un document CO₂e indicatif adapté au screening.",
     url: "https://www.certif-scope.com/fr/why-companies-ask/attestation-carbone-appel-offres",
     siteName: "Certif-Scope",
     type: "website",
@@ -37,6 +38,9 @@ export const metadata: Metadata = {
 ====================================================== */
 
 export default function CarbonAttestationTenderFR() {
+  const pageUrl =
+    "https://www.certif-scope.com/fr/why-companies-ask/attestation-carbone-appel-offres";
+
   return (
     <section
       id="carbon-attestation-tender"
@@ -50,10 +54,10 @@ export default function CarbonAttestationTenderFR() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebPage",
-            name: "Attestation carbone appel d’offres",
-            url: "https://www.certif-scope.com/fr/why-companies-ask/attestation-carbone-appel-offres",
+            name: "Bilan carbone appel d’offres",
+            url: pageUrl,
             description:
-              "Guide pratique : pourquoi un indicateur CO₂e est demandé dans un appel d’offres et comment répondre avec une attestation indicative adaptée au screening.",
+              "Guide pratique : comprendre ce que recouvre la demande de “bilan carbone” dans un appel d’offres et comment répondre avec un indicateur CO₂e cohérent et un document indicatif adapté au screening.",
             isPartOf: {
               "@type": "WebSite",
               name: "Certif-Scope",
@@ -71,8 +75,8 @@ export default function CarbonAttestationTenderFR() {
                 {
                   "@type": "ListItem",
                   position: 2,
-                  name: "Attestation carbone appel d’offres",
-                  item: "https://www.certif-scope.com/fr/why-companies-ask/attestation-carbone-appel-offres",
+                  name: "Bilan carbone appel d’offres",
+                  item: pageUrl,
                 },
               ],
             },
@@ -86,18 +90,20 @@ export default function CarbonAttestationTenderFR() {
       {/* PAGE HEADER */}
       <header className="mb-14">
         <p className="uppercase text-xs tracking-wider text-[#64748B] mb-3">
-          Comprendre les demandes CO₂e — Cas n°2
+          Comprendre les demandes “bilan carbone” — Cas n°2
         </p>
 
         <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-6">
-          Attestation carbone appel d’offres : ce qui est réellement demandé
+          Bilan carbone en appel d’offres : ce qui est réellement demandé
         </h1>
 
         <p className="text-lg text-gray-700 leading-relaxed max-w-3xl">
-          La présence d’un critère carbone dans un appel d’offres ne signifie pas
-          nécessairement qu’un bilan carbone complet est exigé. Dans la majorité
-          des cas, l’acheteur cherche un indicateur CO₂e comparable entre
-          candidats, utilisable pour la notation ou la documentation interne.
+          Dans un appel d’offres, la mention “bilan carbone” ne signifie pas
+          automatiquement qu’un inventaire complet (avec audit) est exigé. Le
+          plus souvent, l’acheteur cherche un{" "}
+          <strong>indicateur CO₂e comparable</strong> entre candidats, utile
+          pour une note environnementale ou pour la documentation interne des
+          achats.
         </p>
 
         <div className="mt-8 flex flex-wrap gap-3">
@@ -119,7 +125,7 @@ export default function CarbonAttestationTenderFR() {
             href="/fr/verify"
             className="inline-block text-sm px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
           >
-            Vérifier une attestation
+            Vérifier un document
           </Link>
         </div>
 
@@ -133,26 +139,26 @@ export default function CarbonAttestationTenderFR() {
           {/* 1 */}
           <section id="why">
             <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-              1. Pourquoi le carbone apparaît dans les appels d’offres
+              1. Pourquoi “bilan carbone” apparaît dans les appels d’offres
             </h2>
 
             <p className="text-gray-700 leading-relaxed mb-4">
-              Les critères environnementaux sont progressivement intégrés dans
-              les appels d’offres publics et privés. Cette évolution provient
-              principalement des politiques d’achats responsables et de la
-              nécessité pour les organisations de documenter l’impact
-              environnemental de leurs fournisseurs.
+              Les politiques d’achats responsables se généralisent dans le
+              secteur public et privé. Les acheteurs doivent de plus en plus
+              <strong> démontrer</strong> qu’ils comparent les offres avec des
+              éléments environnementaux, notamment un indicateur CO₂e, afin de
+              justifier une décision et d’alimenter leur reporting interne.
             </p>
 
             <div className="rounded-2xl border border-gray-200 bg-[#F8FAFC] p-6">
               <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
-                Objectif réel du critère carbone
+                Ce que l’acheteur cherche (en pratique)
               </h3>
               <ul className="list-disc ml-6 text-gray-700 space-y-2">
-                <li>comparer les candidats sur un indicateur commun</li>
-                <li>documenter une décision d’achat</li>
-                <li>répondre à des exigences ESG internes</li>
-                <li>anticiper des obligations futures</li>
+                <li>un indicateur CO₂e lisible et comparable</li>
+                <li>un justificatif à joindre au dossier</li>
+                <li>un élément de notation environnementale</li>
+                <li>une base simple pour suivre les progrès fournisseurs</li>
               </ul>
             </div>
           </section>
@@ -160,15 +166,17 @@ export default function CarbonAttestationTenderFR() {
           {/* 2 */}
           <section id="selection">
             <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-              2. Critère de notation vs obligation réglementaire
+              2. Critère de notation vs exigence “bilan carbone” formelle
             </h2>
 
             <p className="text-gray-700 leading-relaxed mb-6">
-              Dans la majorité des appels d’offres, le carbone constitue un
-              critère de notation ou un élément informatif, et non une exigence
-              réglementaire. La différence est importante : un critère de
-              notation accepte généralement une estimation cohérente, tandis
-              qu’une obligation réglementaire exige un cadre normatif précis.
+              Le mot “bilan carbone” est souvent employé de manière générique.
+              Dans beaucoup de dossiers, il s’agit d’un{" "}
+              <strong>critère de comparaison</strong>, pas d’une obligation
+              réglementaire ou d’un audit. La différence est essentielle : un
+              critère de comparaison accepte une estimation cohérente si la
+              méthode est explicitée, alors qu’une exigence formelle impose un
+              cadre méthodologique et des justificatifs précis.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -179,8 +187,8 @@ export default function CarbonAttestationTenderFR() {
                 <ul className="list-disc ml-6 text-green-900/90 space-y-2">
                   <li>critère environnemental pondéré</li>
                   <li>indicateur demandé à titre comparatif</li>
-                  <li>information jointe au dossier</li>
-                  <li>aucune méthode imposée</li>
+                  <li>format libre (si cohérent)</li>
+                  <li>méthode non imposée ou peu détaillée</li>
                 </ul>
               </div>
 
@@ -189,10 +197,10 @@ export default function CarbonAttestationTenderFR() {
                   Cas plus rare
                 </h3>
                 <ul className="list-disc ml-6 text-red-900/90 space-y-2">
-                  <li>exigence explicite ISO ou audit externe</li>
-                  <li>bilan carbone complet demandé</li>
-                  <li>justificatifs techniques détaillés</li>
-                  <li>publication réglementaire attendue</li>
+                  <li>référentiel imposé (norme / méthode explicitée)</li>
+                  <li>périmètre détaillé demandé</li>
+                  <li>éléments de preuve exhaustifs</li>
+                  <li>attente d’un audit ou d’une vérification tierce</li>
                 </ul>
               </div>
             </div>
@@ -201,27 +209,29 @@ export default function CarbonAttestationTenderFR() {
           {/* 3 */}
           <section id="expected">
             <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-              3. Ce que les acheteurs attendent réellement
+              3. Ce qui est attendu dans le dossier : lisibilité, cohérence,
+              traçabilité
             </h2>
 
             <p className="text-gray-700 leading-relaxed mb-4">
-              Dans un appel d’offres, le document carbone doit surtout être
-              lisible, comparable et vérifiable. L’objectif n’est pas une
-              précision scientifique maximale, mais une cohérence entre les
-              candidats.
+              En appel d’offres, l’enjeu est moins la précision scientifique que
+              la capacité à fournir un indicateur{" "}
+              <strong>compréhensible, comparable et traçable</strong>. Un
+              document clair, daté, avec une méthode expliquée et des limites
+              explicites est souvent préférable à un contenu trop technique.
             </p>
 
             <div className="rounded-2xl border border-gray-200 bg-white p-6">
               <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
-                Format généralement accepté
+                Éléments généralement appréciés
               </h3>
               <ul className="list-disc ml-6 text-gray-700 space-y-2">
-                <li>résultat CO₂e agrégé</li>
-                <li>année et date d’émission</li>
-                <li>méthode déclarée</li>
-                <li>document PDF identifiable</li>
-                <li>mentions claires des limites</li>
-                <li>éléments de vérification</li>
+                <li>résultat CO₂e agrégé (un indicateur unique)</li>
+                <li>année de référence + date d’émission</li>
+                <li>méthode déclarée (principe et version)</li>
+                <li>périmètre et limites clairement indiqués</li>
+                <li>document PDF identifiable et partageable</li>
+                <li>mécanisme de vérification (intégrité / authenticité)</li>
               </ul>
             </div>
           </section>
@@ -229,21 +239,23 @@ export default function CarbonAttestationTenderFR() {
           {/* 4 */}
           <section id="acceptable">
             <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-              4. Quand une attestation indicative suffit
+              4. Quand un document indicatif “bilan carbone” suffit
             </h2>
 
             <p className="text-gray-700 leading-relaxed mb-4">
-              Une attestation indicative est généralement suffisante lorsque le
-              critère carbone sert à différencier les offres ou à documenter une
-              décision. Elle devient insuffisante uniquement lorsque le cahier
-              des charges impose explicitement un standard audité.
+              Un document indicatif est généralement suffisant lorsque la demande
+              vise un <strong>screening</strong> (comparaison des candidats) ou
+              une justification interne. Il devient insuffisant uniquement quand
+              le cahier des charges impose explicitement un dispositif complet
+              (périmètre détaillé, preuves, vérification tierce).
             </p>
 
             <ul className="list-disc ml-6 text-gray-700 space-y-2">
               <li>critère environnemental non éliminatoire</li>
               <li>pondération limitée dans la note finale</li>
-              <li>absence de standard imposé</li>
-              <li>demande d’un indicateur estimatif</li>
+              <li>méthode non imposée ou formulée de manière générale</li>
+              <li>demande d’un indicateur CO₂e estimatif</li>
+              <li>objectif : comparaison et documentation des achats</li>
             </ul>
           </section>
 
@@ -254,50 +266,55 @@ export default function CarbonAttestationTenderFR() {
             </h2>
 
             <p className="text-gray-700 leading-relaxed">
-              Un bilan carbone complet est requis uniquement lorsque le donneur
-              d’ordre exige explicitement un cadre normatif ou un audit externe.
-              Cela reste minoritaire dans les appels d’offres standards, mais
-              peut apparaître dans certains secteurs fortement réglementés.
+              Un bilan carbone complet est généralement requis lorsque l’appel
+              d’offres impose un cadre détaillé, des justificatifs techniques ou
+              une vérification externe. Ce cas existe, mais il reste minoritaire
+              dans la plupart des consultations généralistes. Lorsqu’une exigence
+              formelle est explicitée, il faut aligner le livrable sur le cadre
+              demandé et prévoir un délai et un budget adaptés.
             </p>
           </section>
 
           {/* FAQ */}
           <section id="faq">
             <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-              6. Questions fréquentes (appels d’offres)
+              6. Questions fréquentes (bilan carbone & appels d’offres)
             </h2>
 
             <div className="space-y-6">
               <div className="rounded-2xl border border-gray-200 bg-white p-6">
                 <h3 className="font-semibold text-[#0B3A63] mb-2">
-                  Est-ce éliminatoire de ne pas avoir de bilan carbone ?
+                  Est-ce éliminatoire de ne pas avoir de “bilan carbone” ?
                 </h3>
                 <p className="text-gray-700 leading-relaxed">
-                  Dans la majorité des cas, non. Le critère carbone sert à
-                  comparer les offres. Une estimation cohérente est souvent
-                  suffisante si elle est clairement présentée.
+                  Le plus souvent, non. Dans de nombreux dossiers, l’indicateur
+                  CO₂e sert à comparer les offres. Une estimation cohérente,
+                  claire et traçable peut suffire si aucune exigence formelle
+                  n’est imposée.
                 </p>
               </div>
 
               <div className="rounded-2xl border border-gray-200 bg-white p-6">
                 <h3 className="font-semibold text-[#0B3A63] mb-2">
-                  Peut-on fournir une estimation spend-based ?
+                  Une estimation spend-based peut-elle être acceptée ?
                 </h3>
                 <p className="text-gray-700 leading-relaxed">
-                  Oui, lorsque aucune méthode spécifique n’est imposée. La
-                  condition est de présenter clairement la méthode et ses
-                  limites.
+                  Oui, lorsque l’appel d’offres ne fixe pas une méthode unique.
+                  La condition est d’indiquer explicitement la méthode et les
+                  limites, afin que l’acheteur comprenne ce que représente
+                  l’indicateur.
                 </p>
               </div>
 
               <div className="rounded-2xl border border-gray-200 bg-white p-6">
                 <h3 className="font-semibold text-[#0B3A63] mb-2">
-                  Pourquoi les critères carbone deviennent-ils fréquents ?
+                  Pourquoi ces critères apparaissent-ils de plus en plus ?
                 </h3>
                 <p className="text-gray-700 leading-relaxed">
-                  Les organisations doivent documenter leurs décisions
-                  d’achats responsables et anticiper les exigences ESG futures,
-                  ce qui entraîne l’apparition progressive d’indicateurs CO₂e.
+                  Les organisations doivent documenter des achats responsables,
+                  répondre à des attentes ESG internes et structurer la relation
+                  fournisseurs. L’indicateur CO₂e devient un élément simple à
+                  comparer et à archiver.
                 </p>
               </div>
             </div>
@@ -307,12 +324,13 @@ export default function CarbonAttestationTenderFR() {
           <section id="cta" className="pt-2">
             <div className="rounded-2xl border border-gray-200 bg-[#0B3A63] p-8 text-white">
               <h2 className="text-2xl font-extrabold mb-3">
-                Répondre rapidement à un appel d’offres avec un document clair
+                Répondre rapidement à une demande “bilan carbone” dans un appel
+                d’offres
               </h2>
               <p className="text-white/90 leading-relaxed max-w-2xl">
-                Lorsqu’un indicateur carbone est demandé dans un appel d’offres,
-                l’objectif est généralement une comparaison entre candidats.
-                Une attestation indicative standardisée permet de répondre sans
+                Quand la demande porte sur un indicateur CO₂e pour comparer les
+                candidats, l’objectif est souvent de fournir un document clair,
+                daté, avec une méthode explicite et des limites visibles — sans
                 surdimensionner la démarche.
               </p>
 
@@ -350,7 +368,7 @@ export default function CarbonAttestationTenderFR() {
               <p className="text-xs uppercase tracking-wider text-[#64748B] mb-3">
                 Sommaire
               </p>
-              <nav aria-label="Sommaire appel d’offres">
+              <nav aria-label="Sommaire bilan carbone appel d’offres">
                 <ul className="space-y-2 text-sm">
                   <li>
                     <a className="text-[#0B3A63] hover:underline" href="#why">
@@ -362,7 +380,7 @@ export default function CarbonAttestationTenderFR() {
                       className="text-[#0B3A63] hover:underline"
                       href="#selection"
                     >
-                      2. Critère vs obligation
+                      2. Critère vs exigence
                     </a>
                   </li>
                   <li>
@@ -386,7 +404,7 @@ export default function CarbonAttestationTenderFR() {
                       className="text-[#0B3A63] hover:underline"
                       href="#full-carbon"
                     >
-                      5. Quand un bilan est requis
+                      5. Quand un bilan complet est requis
                     </a>
                   </li>
                   <li>
@@ -408,10 +426,10 @@ export default function CarbonAttestationTenderFR() {
                 Rappel de périmètre
               </h3>
               <p className="text-sm text-gray-700 leading-relaxed">
-                Une attestation CO₂e indicative peut être utilisée pour répondre
-                à un critère carbone dans un appel d’offres lorsque la demande
-                concerne un indicateur informatif. Elle ne remplace pas un audit
-                ni un bilan carbone réglementaire.
+                Ce guide traite des demandes “bilan carbone” rencontrées en
+                appel d’offres et des formats indicatifs généralement utilisés
+                pour le screening. Il ne remplace pas un audit ni un dispositif
+                réglementaire lorsque ceux-ci sont explicitement exigés.
               </p>
 
               <div className="mt-5">
@@ -428,4 +446,4 @@ export default function CarbonAttestationTenderFR() {
       </div>
     </section>
   );
-          }
+}
