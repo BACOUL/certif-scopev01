@@ -3,18 +3,15 @@ const nextConfig = {
   compress: true,
   reactStrictMode: true,
 
-  // ✅ Normalise les URLs en /fr/ /de/ etc.
+  // Choix possible :
+  // - soit tu gardes trailingSlash true partout
+  // - soit tu reviens à false (souvent plus simple SEO)
   trailingSlash: true,
 
   images: {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 31536000,
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "cdn.sanity.io",
-      },
-    ],
+    remotePatterns: [{ protocol: "https", hostname: "cdn.sanity.io" }],
   },
 
   experimental: {
@@ -42,19 +39,21 @@ const nextConfig = {
 
   async redirects() {
     return [
-      // ✅ Normalisation i18n (évite erreurs "redirection" /de)
-      { source: "/fr", destination: "/fr/", permanent: true },
-      { source: "/de", destination: "/de/", permanent: true },
-
-      // 💥 Redirections propres pour anciens chemins EN
-      { source: "/en/about", destination: "/", permanent: true },
-      { source: "/en/data-processing", destination: "/", permanent: true },
-      { source: "/en/legal", destination: "/", permanent: true },
-
-      // 🧭 /en as alias redirect vers /
+      // Legacy EN -> canonique (EN = /)
       { source: "/en", destination: "/", permanent: true },
+      { source: "/en/", destination: "/", permanent: true },
 
-      // 📦 tous les autres anciens /en/* redirigent vers / (anglais canonique)
+      // Anciennes pages EN (si elles existent dans l'index / backlinks)
+      { source: "/en/about", destination: "/", permanent: true },
+      { source: "/en/about/", destination: "/", permanent: true },
+
+      { source: "/en/data-processing", destination: "/", permanent: true },
+      { source: "/en/data-processing/", destination: "/", permanent: true },
+
+      { source: "/en/legal", destination: "/", permanent: true },
+      { source: "/en/legal/", destination: "/", permanent: true },
+
+      // Tout le reste sous /en/* -> /
       { source: "/en/:path*", destination: "/", permanent: true },
     ];
   },
