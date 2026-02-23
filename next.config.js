@@ -31,23 +31,28 @@ const nextConfig = {
       {
         source: "/(.*)",
         headers: [
-          {
-            key: "X-Content-Type-Options",
-            value: "nosniff",
-          },
-          {
-            key: "Referrer-Policy",
-            value: "strict-origin-when-cross-origin",
-          },
-          {
-            key: "Permissions-Policy",
-            value: "interest-cohort=()",
-          },
-          {
-            key: "X-Frame-Options",
-            value: "DENY",
-          },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          { key: "Permissions-Policy", value: "interest-cohort=()" },
+          { key: "X-Frame-Options", value: "DENY" },
         ],
+      },
+    ];
+  },
+
+  async redirects() {
+    return [
+      // Si /en existe encore dans l’index Google ou dans des backlinks,
+      // on le redirige définitivement vers la version anglaise canonique (/).
+      {
+        source: "/en",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/en/:path*",
+        destination: "/:path*",
+        permanent: true,
       },
     ];
   },
