@@ -4,14 +4,17 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 /* ======================================================
-   SEO METADATA — EXIGENCES CO₂e BANQUES & ASSURANCES
+   SEO METADATA — BILAN CARBONE BANQUE / ASSURANCE (PAGE EXISTANTE)
+   Objectif : se positionner sur "bilan carbone banque" / "attestation carbone banque"
+   mais surtout capter l’intention "bilan carbone demandé banque / assureur"
+   (bilan carbone = mot recherché ; document = livrable).
 ====================================================== */
 
 export const metadata: Metadata = {
   title:
-    "Exigences CO₂e banques & assurances — Pourquoi c’est demandé — Certif-Scope (FR)",
+    "Bilan carbone demandé par une banque ou un assureur — Pourquoi et quoi fournir — Certif-Scope (FR)",
   description:
-    "Comprendre pourquoi les banques et assurances demandent un indicateur CO₂e, ce qui est attendu en pratique (screening ESG / risque), et dans quels cas une attestation indicative est acceptable.",
+    "Comprendre pourquoi une banque ou un assureur demande un “bilan carbone” : usage screening ESG / risque, ce qui est attendu en pratique, et quand un document CO₂e indicatif est acceptable.",
   alternates: {
     canonical:
       "https://www.certif-scope.com/fr/why-companies-ask/exigences-co2-banques-assurances",
@@ -21,9 +24,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Exigences CO₂e banques & assurances — Pourquoi c’est demandé",
+    title: "Bilan carbone demandé par une banque ou un assureur — Pourquoi et quoi fournir",
     description:
-      "Pourquoi les acteurs financiers demandent un indicateur CO₂e et comment répondre avec un document indicatif, standardisé et cadré.",
+      "Pourquoi les acteurs financiers demandent un “bilan carbone” et comment répondre avec un document CO₂e indicatif, standardisé et cadré.",
     url: "https://www.certif-scope.com/fr/why-companies-ask/exigences-co2-banques-assurances",
     siteName: "Certif-Scope",
     type: "website",
@@ -36,6 +39,9 @@ export const metadata: Metadata = {
 ====================================================== */
 
 export default function FinanceCO2RequirementsFR() {
+  const pageUrl =
+    "https://www.certif-scope.com/fr/why-companies-ask/exigences-co2-banques-assurances";
+
   return (
     <section
       id="finance-co2-requirements"
@@ -49,10 +55,10 @@ export default function FinanceCO2RequirementsFR() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebPage",
-            name: "Exigences CO₂e banques & assurances",
-            url: "https://www.certif-scope.com/fr/why-companies-ask/exigences-co2-banques-assurances",
+            name: "Bilan carbone demandé par une banque ou un assureur",
+            url: pageUrl,
             description:
-              "Guide pratique : pourquoi les banques et assurances demandent un indicateur CO₂e (screening ESG / risque) et quand une attestation indicative est acceptable.",
+              "Guide pratique : pourquoi une banque ou un assureur demande un “bilan carbone” (screening ESG / analyse de risque), ce qui est attendu en pratique et quand un document indicatif est acceptable.",
             isPartOf: {
               "@type": "WebSite",
               name: "Certif-Scope",
@@ -70,8 +76,8 @@ export default function FinanceCO2RequirementsFR() {
                 {
                   "@type": "ListItem",
                   position: 2,
-                  name: "Exigences CO₂e banques & assurances",
-                  item: "https://www.certif-scope.com/fr/why-companies-ask/exigences-co2-banques-assurances",
+                  name: "Bilan carbone demandé par une banque ou un assureur",
+                  item: pageUrl,
                 },
               ],
             },
@@ -85,19 +91,19 @@ export default function FinanceCO2RequirementsFR() {
       {/* PAGE HEADER */}
       <header className="mb-14">
         <p className="uppercase text-xs tracking-wider text-[#64748B] mb-3">
-          Comprendre les demandes CO₂e — Cas n°3
+          Comprendre les demandes “bilan carbone” — Cas n°3
         </p>
 
         <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-6">
-          Exigences CO₂e banques & assurances : pourquoi c’est demandé
+          Bilan carbone demandé par une banque ou un assureur : pourquoi, et quoi fournir
         </h1>
 
         <p className="text-lg text-gray-700 leading-relaxed max-w-3xl">
           Les banques et assureurs demandent de plus en plus des informations
-          environnementales pour leurs analyses internes : compréhension du
-          profil de risque, cohérence ESG, et documentation des décisions. Dans
-          la majorité des cas, il s’agit d’un usage informatif (screening) et
-          non d’un audit carbone.
+          environnementales dans leurs dossiers. La mention “bilan carbone” est
+          souvent utilisée de manière générique : dans la majorité des cas, il
+          s’agit d’un <strong>usage informatif</strong> (screening ESG / analyse de
+          risque) et non d’un audit carbone complet.
         </p>
 
         <div className="mt-8 flex flex-wrap gap-3">
@@ -119,7 +125,7 @@ export default function FinanceCO2RequirementsFR() {
             href="/fr/verify"
             className="inline-block text-sm px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
           >
-            Vérifier une attestation
+            Vérifier un document
           </Link>
         </div>
 
@@ -133,7 +139,7 @@ export default function FinanceCO2RequirementsFR() {
           {/* 1 */}
           <section id="why">
             <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-              1. Pourquoi les acteurs financiers demandent un indicateur CO₂e
+              1. Pourquoi une banque ou un assureur demande un “bilan carbone”
             </h2>
 
             <p className="text-gray-700 leading-relaxed mb-4">
@@ -150,17 +156,9 @@ export default function FinanceCO2RequirementsFR() {
                 En pratique, la question derrière la demande
               </h3>
               <ul className="list-disc ml-6 text-gray-700 space-y-2">
-                <li>
-                  l’activité est-elle fortement exposée à des risques de
-                  transition ?
-                </li>
-                <li>
-                  existe-t-il un minimum de suivi environnemental côté
-                  entreprise ?
-                </li>
-                <li>
-                  peut-on documenter une décision interne de manière cohérente ?
-                </li>
+                <li>l’activité est-elle exposée à des risques de transition ?</li>
+                <li>existe-t-il un minimum de suivi environnemental ?</li>
+                <li>peut-on archiver une preuve cohérente dans le dossier ?</li>
               </ul>
             </div>
           </section>
@@ -168,15 +166,15 @@ export default function FinanceCO2RequirementsFR() {
           {/* 2 */}
           <section id="what-it-is-not">
             <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-              2. Ce que la demande n’est pas (dans la majorité des cas)
+              2. Ce que la demande n’est pas (le plus souvent)
             </h2>
 
             <p className="text-gray-700 leading-relaxed mb-6">
-              Une demande “CO₂e” par une banque ou un assureur est souvent perçue
-              comme une exigence réglementaire. En réalité, elle vise
-              principalement la collecte d’un indicateur pour des politiques ESG
-              internes et des grilles d’analyse. Cela ne correspond pas à un
-              reporting CSRD/ESRS ni à un audit ISO.
+              Une demande “bilan carbone” par une banque ou un assureur est
+              souvent perçue comme une exigence réglementaire. Dans la majorité
+              des cas, elle vise surtout la collecte d’un indicateur pour des
+              grilles ESG internes. Cela ne correspond pas à un reporting CSRD/ESRS
+              ni à un audit ISO.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -198,7 +196,7 @@ export default function FinanceCO2RequirementsFR() {
                 </h3>
                 <ul className="list-disc ml-6 text-red-900/90 space-y-2">
                   <li>exigence d’audit ou d’assurance externe</li>
-                  <li>exigence explicite ISO 14064-1 / audit GES</li>
+                  <li>exigence explicite ISO 14064-1 / inventaire GES</li>
                   <li>reporting CSRD/ESRS officiel</li>
                   <li>demande de scopes complets vérifiés</li>
                 </ul>
@@ -209,14 +207,13 @@ export default function FinanceCO2RequirementsFR() {
           {/* 3 */}
           <section id="expected">
             <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-              3. Ce qui est attendu : un document lisible et réutilisable
+              3. Ce qui est attendu : un document lisible, archivable, réutilisable
             </h2>
 
             <p className="text-gray-700 leading-relaxed mb-4">
-              Dans un contexte finance/assurance, les équipes veulent un document
-              simple qui se lit vite et s’archive facilement. La qualité
-              perçue vient d’un format standard, d’une méthode explicite et
-              d’un périmètre clairement annoncé.
+              Les équipes finance/assurance veulent un document qui se lit vite
+              et s’archive facilement. La crédibilité vient d’un format standard,
+              d’une méthode explicitée et d’un périmètre clairement annoncé.
             </p>
 
             <div className="rounded-2xl border border-gray-200 bg-white p-6">
@@ -225,10 +222,10 @@ export default function FinanceCO2RequirementsFR() {
               </h3>
               <ul className="list-disc ml-6 text-gray-700 space-y-2">
                 <li>résultat CO₂e agrégé (tCO₂e) + année couverte</li>
-                <li>méthode déclarée (spend-based) et version des facteurs</li>
+                <li>méthode déclarée + version des facteurs</li>
                 <li>mentions visibles : indicatif, non audit, non CSRD/ESRS</li>
                 <li>identifiant unique et date d’émission</li>
-                <li>lien/QR de vérification pour contrôle indépendant</li>
+                <li>lien/QR de vérification (contrôle indépendant)</li>
               </ul>
             </div>
           </section>
@@ -241,10 +238,10 @@ export default function FinanceCO2RequirementsFR() {
 
             <p className="text-gray-700 leading-relaxed mb-6">
               La meilleure stratégie est de répondre avec un document cadré :
-              dire clairement qu’il s’agit d’une estimation indicative, préciser
-              le périmètre, et fournir des éléments de traçabilité. Cela évite
-              les interprétations “audit / conformité” tout en répondant au
-              besoin opérationnel.
+              indiquer qu’il s’agit d’une estimation indicative, préciser le
+              périmètre et fournir des éléments de traçabilité. Cela évite les
+              interprétations “audit / conformité”, tout en répondant au besoin
+              opérationnel.
             </p>
 
             <div className="rounded-2xl border border-gray-200 bg-[#F8FAFC] p-6">
@@ -266,8 +263,8 @@ export default function FinanceCO2RequirementsFR() {
                 <p className="text-sm text-gray-600 leading-relaxed">
                   Si la demande devient “audit” ou “standard ISO”, demander le
                   cadre attendu (norme, assurance externe, scopes) avant de
-                  produire un document. L’attestation indicative n’est pas le
-                  bon outil pour un inventaire complet.
+                  produire un document. Un document indicatif n’est pas un
+                  inventaire complet.
                 </p>
               </div>
             </div>
@@ -294,12 +291,12 @@ export default function FinanceCO2RequirementsFR() {
               <ul className="space-y-2 text-gray-700">
                 <li>
                   <Link className="underline" href="/fr/product">
-                    Produit : attestation standardisée
+                    Produit : document CO₂e standardisé
                   </Link>
                 </li>
                 <li>
                   <Link className="underline" href="/fr/product/compliance">
-                    Conformité & périmètre (ce que l’attestation n’est pas)
+                    Conformité & périmètre (ce que le document n’est pas)
                   </Link>
                 </li>
                 <li>
@@ -309,7 +306,7 @@ export default function FinanceCO2RequirementsFR() {
                 </li>
                 <li>
                   <Link className="underline" href="/fr/verify">
-                    Vérifier une attestation (public)
+                    Vérifier un document (public)
                   </Link>
                 </li>
               </ul>
@@ -329,21 +326,20 @@ export default function FinanceCO2RequirementsFR() {
                 </h3>
                 <p className="text-gray-700 leading-relaxed">
                   Pas en tant qu’obligation directe de reporting. La demande
-                  intervient le plus souvent dans le cadre d’une politique ESG
-                  interne (screening) ou d’une collecte d’informations de chaîne
-                  de valeur. Si un reporting réglementaire est exigé, le cahier
-                  des charges doit le préciser.
+                  intervient le plus souvent dans une politique ESG interne
+                  (screening) ou une collecte d’informations. Si un reporting
+                  réglementaire est exigé, le cadre doit être précisé.
                 </p>
               </div>
 
               <div className="rounded-2xl border border-gray-200 bg-white p-6">
                 <h3 className="font-semibold text-[#0B3A63] mb-2">
-                  Une attestation indicative est-elle acceptée ?
+                  Une estimation indicative est-elle acceptée ?
                 </h3>
                 <p className="text-gray-700 leading-relaxed">
-                  Oui, si la demande vise un indicateur informatif pour dossier
-                  interne et si le document annonce explicitement ses limites :
-                  estimation, non auditée, non CSRD/ESRS.
+                  Oui, si la demande vise un indicateur informatif et si le
+                  document annonce explicitement ses limites : estimation, non
+                  auditée, non CSRD/ESRS.
                 </p>
               </div>
 
@@ -352,11 +348,9 @@ export default function FinanceCO2RequirementsFR() {
                   Que faire si on me demande “ISO 14064-1” ?
                 </h3>
                 <p className="text-gray-700 leading-relaxed">
-                  C’est un cadre différent. Demander le périmètre exact (scopes,
-                  exigences d’assurance externe, périmètre organisationnel) et
-                  indiquer qu’une attestation indicative n’est pas un inventaire
-                  ISO. Dans ce cas, l’entreprise doit envisager une démarche
-                  dédiée.
+                  C’est un cadre différent. Demandez le périmètre exact (scopes,
+                  niveau d’assurance externe, périmètre organisationnel) et
+                  précisez qu’un document indicatif n’est pas un inventaire ISO.
                 </p>
               </div>
             </div>
@@ -366,12 +360,12 @@ export default function FinanceCO2RequirementsFR() {
           <section id="cta" className="pt-2">
             <div className="rounded-2xl border border-gray-200 bg-[#0B3A63] p-8 text-white">
               <h2 className="text-2xl font-extrabold mb-3">
-                Répondre aux demandes ESG finance/assurance sans surdimensionner
+                Répondre à une demande “bilan carbone” en finance/assurance sans surdimensionner
               </h2>
               <p className="text-white/90 leading-relaxed max-w-2xl">
-                Si votre banque ou assureur demande un indicateur CO₂e, le besoin
+                Si votre banque ou assureur demande un “bilan carbone”, le besoin
                 est souvent un document lisible et archivable pour screening ESG.
-                Certif-Scope produit une attestation indicative, structurée,
+                Certif-Scope produit un document CO₂e indicatif, structuré,
                 traçable et vérifiable.
               </p>
 
@@ -409,7 +403,7 @@ export default function FinanceCO2RequirementsFR() {
               <p className="text-xs uppercase tracking-wider text-[#64748B] mb-3">
                 Sommaire
               </p>
-              <nav aria-label="Sommaire banques & assurances">
+              <nav aria-label="Sommaire bilan carbone banque assureur">
                 <ul className="space-y-2 text-sm">
                   <li>
                     <a className="text-[#0B3A63] hover:underline" href="#why">
@@ -467,11 +461,11 @@ export default function FinanceCO2RequirementsFR() {
                 Rappel de périmètre
               </h3>
               <p className="text-sm text-gray-700 leading-relaxed">
-                Dans la majorité des cas, la demande CO₂e finance/assurance vise
-                un usage informatif (screening ESG). Une attestation indicative
-                est acceptable si elle annonce clairement ses limites. Elle ne
-                remplace pas un audit, une certification, ni un reporting
-                réglementaire.
+                Dans la majorité des cas, la demande “bilan carbone” en
+                finance/assurance vise un usage informatif (screening ESG). Un
+                document indicatif est acceptable s’il annonce clairement ses
+                limites. Il ne remplace pas un audit, une certification, ni un
+                reporting réglementaire.
               </p>
 
               <div className="mt-5">
@@ -488,4 +482,4 @@ export default function FinanceCO2RequirementsFR() {
       </div>
     </section>
   );
-          }
+       }
