@@ -31,10 +31,11 @@ export default function Hero() {
         itemProp="headline"
         className="text-[1.9rem] md:text-[3rem] font-extrabold text-[#0B3A63] leading-tight tracking-tight"
       >
-        Votre bilan carbone,{" "}
-        <span className="whitespace-nowrap">en document</span>
+        Votre bilan carbone,
         <br />
-        <span className="text-[#15B097]">standardisé et vérifiable</span>
+        <span className="text-[#1FB6C1]">
+          standardisé et vérifiable
+        </span>
       </h1>
 
       {/* DESCRIPTION PRINCIPALE */}
@@ -42,51 +43,38 @@ export default function Hero() {
         className="text-base md:text-lg text-[#475569] max-w-2xl mx-auto mt-4 leading-relaxed"
         itemProp="description"
       >
-        Générez une <strong>attestation de bilan carbone (CO₂e)</strong> claire pour
-        répondre aux demandes de clients, appels d’offres, banques et assurances —
-        <span className="font-semibold"> sans réaliser un audit carbone complet</span>.
+        Générez une <strong>attestation de bilan carbone (CO₂e)</strong> claire
+        pour répondre aux demandes de clients, appels d’offres, banques et
+        assurances — sans réaliser un audit carbone complet.
       </p>
 
-      {/* PROOF / BENEFITS (micro-copy vendeur, sans alourdir) */}
-      <div className="mt-5 max-w-2xl mx-auto">
-        <ul className="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-center text-sm text-[#0B3A63]/80">
-          <li className="inline-flex items-center justify-center gap-2 px-3 py-2 rounded-xl border border-slate-200 bg-white/70">
-            <span aria-hidden>⚡</span> Génération en quelques minutes
-          </li>
-          <li className="inline-flex items-center justify-center gap-2 px-3 py-2 rounded-xl border border-slate-200 bg-white/70">
-            <span aria-hidden>🧾</span> Format prêt procurement
-          </li>
-          <li className="inline-flex items-center justify-center gap-2 px-3 py-2 rounded-xl border border-slate-200 bg-white/70">
-            <span aria-hidden>✅</span> Vérification tierce possible
-          </li>
-        </ul>
-      </div>
-
-      {/* LEGAL / FRAMEWORKS / PRIVACY */}
-      <div className="mt-5 max-w-xl mx-auto space-y-1.5">
+      {/* LEGAL NOTICE */}
+      <div className="mt-4 max-w-xl mx-auto space-y-1">
         <p className="text-xs text-slate-500 leading-relaxed">
-          Aligné sur des référentiels reconnus (GHG Protocol, ISO 14064-1) et
-          compatible avec les pratiques européennes (achats, banques, assurances).
+          Basé sur des référentiels reconnus (GHG Protocol, ISO 14064-1) et
+          compatible avec les pratiques européennes (achats, banques,
+          assurances).
         </p>
 
+        {/* PRIVACY / TRUST */}
         <p className="text-xs text-slate-500 italic flex items-center justify-center gap-1">
           <span aria-hidden>🔒</span>
-          Calculs exécutés localement dans votre navigateur. Aucune donnée financière
-          d’entrée n’est stockée.
+          Calculs exécutés localement dans votre navigateur. Aucune donnée
+          financière d’entrée n’est stockée.
         </p>
 
         <p className="text-[11px] text-slate-500 leading-relaxed">
-          Attestation indicative (modèle spend-based) : ne constitue pas un inventaire
-          GES, un audit, ni un reporting CSRD/ESRS.
+          Attestation indicative (méthode spend-based) : ne constitue pas un
+          inventaire GES, un audit, ni un reporting CSRD/ESRS.
         </p>
       </div>
 
       {/* CTA */}
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-7">
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-6 md:mt-7">
         <Link
           href="/fr/generate"
           aria-label="Générer une attestation de bilan carbone (CO₂e)"
-          className="bg-[#15B097] hover:bg-[#129780] text-white font-semibold px-12 py-4 rounded-xl shadow-md transition"
+          className="bg-[#1FB6C1] hover:bg-[#17a2a8] text-white font-semibold px-12 py-4 rounded-xl shadow-md transition"
         >
           Générer mon attestation
         </Link>
@@ -115,7 +103,7 @@ export default function Hero() {
 
       {/* TRUST LINE */}
       <p className="text-sm text-[#0B3A63]/80 font-medium mt-6">
-        Vérifiable par un tiers, sans compte, sans dépendre d’un système privé.
+        Vérifiable indépendamment par tout tiers.
       </p>
     </section>
   );
