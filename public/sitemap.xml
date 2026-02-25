@@ -12,80 +12,79 @@
   </url>
 
   <url>
-    <loc>https://www.certif-scope.com/pricing</loc>
+    <loc>https://www.certif-scope.com/pricing/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://www.certif-scope.com/product</loc>
+    <loc>https://www.certif-scope.com/product/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://www.certif-scope.com/product/methodology</loc>
+    <loc>https://www.certif-scope.com/product/methodology/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://www.certif-scope.com/product/methodology/compliance</loc>
+    <loc>https://www.certif-scope.com/product/methodology/compliance/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://www.certif-scope.com/why-companies-ask</loc>
+    <loc>https://www.certif-scope.com/why-companies-ask/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://www.certif-scope.com/partners</loc>
+    <loc>https://www.certif-scope.com/partners/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
-  <!-- Si ces pages existent vraiment en EN (sans /en), garde-les. Sinon supprime-les du sitemap. -->
   <url>
-    <loc>https://www.certif-scope.com/contact</loc>
+    <loc>https://www.certif-scope.com/contact/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
 
   <url>
-    <loc>https://www.certif-scope.com/faq</loc>
+    <loc>https://www.certif-scope.com/faq/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
 
   <url>
-    <loc>https://www.certif-scope.com/legal</loc>
+    <loc>https://www.certif-scope.com/legal/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
-    <loc>https://www.certif-scope.com/privacy</loc>
+    <loc>https://www.certif-scope.com/privacy/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
-    <loc>https://www.certif-scope.com/terms</loc>
+    <loc>https://www.certif-scope.com/terms/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
-    <loc>https://www.certif-scope.com/cookies</loc>
+    <loc>https://www.certif-scope.com/cookies/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
 
   <url>
-    <loc>https://www.certif-scope.com/data-processing</loc>
+    <loc>https://www.certif-scope.com/data-processing/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -101,102 +100,93 @@
   </url>
 
   <url>
-    <loc>https://www.certif-scope.com/fr/pricing</loc>
+    <loc>https://www.certif-scope.com/fr/pricing/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://www.certif-scope.com/fr/product</loc>
+    <loc>https://www.certif-scope.com/fr/product/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://www.certif-scope.com/fr/product/methodology</loc>
+    <loc>https://www.certif-scope.com/fr/product/methodology/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://www.certif-scope.com/fr/product/methodology/compliance</loc>
+    <loc>https://www.certif-scope.com/fr/product/methodology/compliance/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://www.certif-scope.com/fr/why-companies-ask</loc>
+    <loc>https://www.certif-scope.com/fr/why-companies-ask/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://www.certif-scope.com/fr/partners</loc>
+    <loc>https://www.certif-scope.com/fr/why-companies-ask/attestation-carbone-pme/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.certif-scope.com/fr/partners/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
-  <!-- IMPORTANT :
-       Si tu veux supprimer /fr/about, supprime ce bloc du sitemap.
-       Sinon garde-le. -->
   <url>
-    <loc>https://www.certif-scope.com/fr/about</loc>
+    <loc>https://www.certif-scope.com/fr/about/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
 
   <url>
-    <loc>https://www.certif-scope.com/fr/contact</loc>
+    <loc>https://www.certif-scope.com/fr/contact/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
 
   <url>
-    <loc>https://www.certif-scope.com/fr/faq</loc>
+    <loc>https://www.certif-scope.com/fr/faq/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
 
   <url>
-    <loc>https://www.certif-scope.com/fr/legal</loc>
+    <loc>https://www.certif-scope.com/fr/legal/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
-    <loc>https://www.certif-scope.com/fr/privacy</loc>
+    <loc>https://www.certif-scope.com/fr/privacy/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
-    <loc>https://www.certif-scope.com/fr/terms</loc>
+    <loc>https://www.certif-scope.com/fr/terms/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
-    <loc>https://www.certif-scope.com/fr/cookies</loc>
+    <loc>https://www.certif-scope.com/fr/cookies/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
 
   <url>
-    <loc>https://www.certif-scope.com/fr/data-processing</loc>
+    <loc>https://www.certif-scope.com/fr/data-processing/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
-
-  <!-- ========================= -->
-  <!-- GERMAN ( /de/ )           -->
-  <!-- Ajoute seulement si /de/ existe en prod -->
-  <!-- ========================= -->
-  <!--
-  <url>
-    <loc>https://www.certif-scope.com/de/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  -->
 
 </urlset>
