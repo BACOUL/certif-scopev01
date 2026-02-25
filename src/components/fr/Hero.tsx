@@ -10,101 +10,121 @@ export default function HeroFR() {
       id="hero"
       className="relative max-w-6xl mx-auto px-6 pt-10 md:pt-16 pb-16 md:pb-24 text-center"
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-white to-[#F3FBFC] -z-10" />
+      {/* Fond (premium, léger) */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white to-[#F8FAFC] -z-10" />
 
-      {/* SURTITRE SEO */}
+      {/* Sur-titre SEO */}
       <p className="text-xs md:text-sm font-semibold tracking-wide text-[#0B3A63]/70 uppercase mb-3">
         Bilan carbone entreprise (PME) — solution en ligne
       </p>
 
-      {/* H1 PRINCIPAL */}
+      {/* H1 (bleu dominant, accent turquoise court uniquement) */}
       <h1 className="text-[2.2rem] md:text-[3.2rem] font-extrabold text-[#0B3A63] leading-tight tracking-tight">
         Bilan carbone PME en ligne
         <br />
-        <span className="text-[#15B097]">
-          indicateur CO₂e prêt en 10 minutes
+        <span className="text-[#0B3A63]">
+          indicateur{" "}
+          <span className="text-[#15B097]">CO₂e</span> prêt en 10 minutes
         </span>
       </h1>
 
-      {/* SOUS-TITRE BUSINESS */}
+      {/* Sous-titre business (intent) */}
       <p className="text-base md:text-lg text-[#475569] max-w-2xl mx-auto mt-5 leading-relaxed">
-        Document CO₂e prêt à transmettre pour <strong>appels d’offres</strong>, 
-        <strong> fournisseurs</strong>, <strong>banques</strong> et 
-        <strong> screening ESG</strong>.
+        Document CO₂e prêt à transmettre pour{" "}
+        <strong>appels d’offres</strong>, <strong>fournisseurs</strong>,{" "}
+        <strong>banques</strong> et <strong>screening ESG</strong>.
       </p>
 
-      {/* PARAGRAPHE POSITIONNEMENT */}
+      {/* Positionnement (clair, non trompeur) */}
       <p className="text-sm md:text-base text-slate-600 max-w-2xl mx-auto mt-4 leading-relaxed">
-        Certif-Scope calcule votre indicateur CO₂e (méthode spend-based : dépenses × facteurs d’émission) 
-        et génère une <strong>attestation PDF professionnelle, archivable et vérifiable</strong>. 
-        Alternative simplifiée au bilan carbone complet (3 000 € à 10 000 €).
+        Certif-Scope calcule un indicateur CO₂e indicatif (méthode spend-based : dépenses ×
+        facteurs d’émission) et génère une{" "}
+        <strong>attestation PDF professionnelle, archivable et vérifiable</strong>.
+        Alternative simplifiée quand un bilan carbone complet n’est pas exigé explicitement.
       </p>
 
-      {/* PREUVES */}
-      <div className="mt-6 space-y-2 text-sm text-slate-600 max-w-xl mx-auto">
-        <p>✓ Format standardisé prêt à transmettre</p>
-        <p>✓ Vérification indépendante (QR + identifiant unique)</p>
-        <p>✓ Calcul local — aucune donnée financière stockée</p>
-        <p>✓ Validité 1 an</p>
+      {/* Preuves (lisibles, compactes) */}
+      <div className="mt-6 max-w-3xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left">
+          <div className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-white/90 p-4">
+            <span
+              className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-[#F8FAFC] text-[#0B3A63]"
+              aria-hidden="true"
+            >
+              ✓
+            </span>
+            <p className="text-sm text-slate-700 leading-relaxed">
+              Format standardisé prêt à transmettre (PDF).
+            </p>
+          </div>
+
+          <div className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-white/90 p-4">
+            <span
+              className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-[#F8FAFC] text-[#0B3A63]"
+              aria-hidden="true"
+            >
+              ✓
+            </span>
+            <p className="text-sm text-slate-700 leading-relaxed">
+              Vérification simple par un tiers (QR + identifiant).
+            </p>
+          </div>
+
+          <div className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-white/90 p-4">
+            <span
+              className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-[#F8FAFC] text-[#0B3A63]"
+              aria-hidden="true"
+            >
+              ✓
+            </span>
+            <p className="text-sm text-slate-700 leading-relaxed">
+              Calcul local dans votre navigateur (aucune donnée financière stockée).
+            </p>
+          </div>
+
+          <div className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-white/90 p-4">
+            <span
+              className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-[#F8FAFC] text-[#0B3A63]"
+              aria-hidden="true"
+            >
+              ✓
+            </span>
+            <p className="text-sm text-slate-700 leading-relaxed">
+              Validité 1 an (document daté, stable, identifiable).
+            </p>
+          </div>
+        </div>
       </div>
 
-      {/* PRIX */}
+      {/* Ligne prix (bleu autorité) */}
       <p className="mt-6 text-sm md:text-base font-semibold text-[#0B3A63]">
         À partir de 89 € • Sans abonnement • Validité 1 an
       </p>
 
-      {/* CTA */}
+      {/* CTA (retire “Voir un exemple d’attestation”) */}
       <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-6">
         <Link
-          href="/fr/generate"
+          href="/fr/generate/"
+          aria-label="Générer un indicateur CO₂e et une attestation indicative"
           className="bg-[#15B097] hover:bg-[#0FA08A] text-white font-semibold px-10 py-4 rounded-xl shadow-lg transition-colors text-base"
         >
           Générer mon bilan carbone PME
         </Link>
 
         <Link
-          href="/fr/why-companies-ask/attestation-carbone-pme"
+          href="/fr/pricing/"
+          aria-label="Voir les tarifs Certif-Scope"
           className="border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white font-semibold px-10 py-4 rounded-xl transition-colors text-base"
         >
-          Voir un exemple d’attestation
+          Voir les tarifs
         </Link>
       </div>
 
-      {/* MINI TABLEAU COMPARATIF */}
-      <div className="mt-12 max-w-3xl mx-auto">
-        <div className="border border-slate-200 rounded-2xl bg-white shadow-sm p-6 text-sm">
-          <p className="uppercase text-xs tracking-wider text-slate-500 mb-4">
-            Comparaison rapide
-          </p>
-
-          <div className="grid grid-cols-2 gap-4 text-left">
-            <div className="font-semibold text-slate-500">
-              Bilan carbone cabinet
-            </div>
-            <div className="font-semibold text-[#0B3A63]">
-              Certif-Scope
-            </div>
-
-            <div>3 000 € – 10 000 €</div>
-            <div className="text-[#15B097] font-semibold">89 €</div>
-
-            <div>4 à 8 semaines</div>
-            <div className="text-[#15B097] font-semibold">10 minutes</div>
-
-            <div>Audit complet Scopes 1–2–3</div>
-            <div>Indicateur CO₂e indicatif</div>
-
-            <div>Collecte complexe</div>
-            <div>Données globales de dépenses</div>
-          </div>
-        </div>
-      </div>
-
-      {/* IMAGE */}
+      {/* Image (conserve l’exemple visuel, sans CTA “exemple”) */}
       <div className="flex justify-center mt-12">
         <Image
           src="/hero-attestation.webp"
-          alt="Exemple d’attestation CO₂e indicative pour bilan carbone PME — PDF vérifiable"
+          alt="Attestation CO₂e indicative pour bilan carbone PME — PDF standardisé, archivable et vérifiable"
           width={900}
           height={600}
           priority
@@ -112,11 +132,11 @@ export default function HeroFR() {
         />
       </div>
 
-      {/* DISCLAIMER SEO */}
+      {/* Disclaimer (court, clair) */}
       <p className="text-xs text-slate-500 mt-6 max-w-2xl mx-auto leading-relaxed">
-        Estimation CO₂e indicative basée sur les dépenses (GHG Protocol — approche spend-based).
-        Ne constitue pas un audit carbone complet, ni un inventaire GES, ni un reporting CSRD/ESRS.
+        Estimation CO₂e indicative basée sur les dépenses (approche spend-based). Ne constitue pas un
+        bilan carbone complet, ni un inventaire GES, ni un audit, ni un reporting CSRD/ESRS.
       </p>
     </section>
   );
-}
+        }
