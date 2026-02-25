@@ -1,140 +1,111 @@
-// PATH: src/components/fr/Hero.tsx
 "use client";
 
 import Image from "next/image";
 import Link from "next/link";
 
-export default function HeroFR() {
+export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative max-w-6xl mx-auto px-6 pt-10 md:pt-16 pb-16 md:pb-24 text-center"
+      itemScope
+      itemType="https://schema.org/WebPage"
+      className="relative max-w-6xl mx-auto px-6 pt-8 md:pt-14 pb-14 md:pb-20 text-center"
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-white to-[#F8FAFC] -z-10" />
+      {/* SEO (accessible, non-visible) */}
+      <span className="sr-only" itemProp="alternativeHeadline">
+        Bilan carbone PME : attestation CO₂e standardisée, signée et vérifiable
+      </span>
 
-      {/* SURTITRE SEO */}
-      <p className="text-xs md:text-sm font-semibold tracking-wide text-[#0B3A63]/70 uppercase mb-3">
-        Bilan carbone entreprise (PME) — document CO₂e pour dossiers (screening)
+      <div className="absolute inset-0 bg-gradient-to-b from-white to-[#F3FBFC] -z-10" />
+
+      {/* SURTITRE */}
+      <p
+        className="text-xs md:text-sm font-semibold tracking-wide text-[#0B3A63]/70 mb-3 uppercase"
+        itemProp="about"
+      >
+        Bilan carbone PME • attestation CO₂e vérifiable
       </p>
 
-      {/* H1 (Bleu dominant, accent turquoise court) */}
-      <h1 className="text-[2.1rem] md:text-[3.15rem] font-extrabold text-[#0B3A63] leading-tight tracking-tight">
-        Bilan carbone PME&nbsp;:
+      {/* TITRE (H1) */}
+      <h1
+        itemProp="headline"
+        className="text-[1.9rem] md:text-[3rem] font-extrabold text-[#0B3A63] leading-tight tracking-tight"
+      >
+        Votre bilan carbone,{" "}
+        <span className="whitespace-nowrap">en document</span>
         <br />
-        une attestation CO₂e{" "}
-        <span className="text-[#15B097]">vérifiable</span>
+        <span className="text-[#15B097]">standardisé et vérifiable</span>
       </h1>
 
-      {/* PROMESSE BUSINESS (premium, pas “10 minutes”) */}
-      <p className="text-base md:text-lg text-[#475569] max-w-2xl mx-auto mt-5 leading-relaxed">
-        Un document CO₂e clair, <strong>standardisé</strong> et <strong>archivable</strong> pour{" "}
-        <strong>appels d’offres</strong>, <strong>onboarding fournisseurs</strong>,{" "}
-        <strong>banques</strong> et <strong>screening ESG</strong>.
+      {/* DESCRIPTION PRINCIPALE */}
+      <p
+        className="text-base md:text-lg text-[#475569] max-w-2xl mx-auto mt-4 leading-relaxed"
+        itemProp="description"
+      >
+        Générez une <strong>attestation de bilan carbone (CO₂e)</strong> claire pour
+        répondre aux demandes de clients, appels d’offres, banques et assurances —
+        <span className="font-semibold"> sans réaliser un audit carbone complet</span>.
       </p>
 
-      {/* POSITIONNEMENT (honnête, institutionnel) */}
-      <p className="text-sm md:text-base text-slate-600 max-w-2xl mx-auto mt-4 leading-relaxed">
-        Certif-Scope calcule un <strong>indicateur CO₂e indicatif</strong> (méthode spend-based&nbsp;:
-        dépenses × facteurs d’émission) et génère une{" "}
-        <strong>attestation PDF professionnelle</strong> avec identifiant et vérification.{" "}
-        Alternative simplifiée quand un bilan carbone complet n’est pas exigé explicitement.
-      </p>
-
-      {/* PREUVES (visuel premium, sans “vert”) */}
-      <div className="mt-7 max-w-3xl mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left">
-          <div className="rounded-2xl border border-slate-200 bg-white p-4">
-            <p className="text-sm font-semibold text-[#0B3A63]">Standardisé</p>
-            <p className="mt-1 text-sm text-slate-600 leading-relaxed">
-              Format stable, lisible, prêt à intégrer dans un dossier.
-            </p>
-          </div>
-          <div className="rounded-2xl border border-slate-200 bg-white p-4">
-            <p className="text-sm font-semibold text-[#0B3A63]">Vérifiable</p>
-            <p className="mt-1 text-sm text-slate-600 leading-relaxed">
-              Identifiant + page de vérification pour un tiers.
-            </p>
-          </div>
-          <div className="rounded-2xl border border-slate-200 bg-white p-4">
-            <p className="text-sm font-semibold text-[#0B3A63]">Confidentiel</p>
-            <p className="mt-1 text-sm text-slate-600 leading-relaxed">
-              Calcul local dans le navigateur. Aucune donnée financière détaillée stockée.
-            </p>
-          </div>
-          <div className="rounded-2xl border border-slate-200 bg-white p-4">
-            <p className="text-sm font-semibold text-[#0B3A63]">Valable 12 mois</p>
-            <p className="mt-1 text-sm text-slate-600 leading-relaxed">
-              Document daté, stable, conçu pour des workflows institutionnels.
-            </p>
-          </div>
-        </div>
+      {/* PROOF / BENEFITS (micro-copy vendeur, sans alourdir) */}
+      <div className="mt-5 max-w-2xl mx-auto">
+        <ul className="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-center text-sm text-[#0B3A63]/80">
+          <li className="inline-flex items-center justify-center gap-2 px-3 py-2 rounded-xl border border-slate-200 bg-white/70">
+            <span aria-hidden>⚡</span> Génération en quelques minutes
+          </li>
+          <li className="inline-flex items-center justify-center gap-2 px-3 py-2 rounded-xl border border-slate-200 bg-white/70">
+            <span aria-hidden>🧾</span> Format prêt procurement
+          </li>
+          <li className="inline-flex items-center justify-center gap-2 px-3 py-2 rounded-xl border border-slate-200 bg-white/70">
+            <span aria-hidden>✅</span> Vérification tierce possible
+          </li>
+        </ul>
       </div>
 
-      {/* PRIX (ligne premium) */}
-      <p className="mt-7 text-sm md:text-base font-semibold text-[#0B3A63]">
-        À partir de 89&nbsp;€ • Sans abonnement • Validité 1 an
-      </p>
+      {/* LEGAL / FRAMEWORKS / PRIVACY */}
+      <div className="mt-5 max-w-xl mx-auto space-y-1.5">
+        <p className="text-xs text-slate-500 leading-relaxed">
+          Aligné sur des référentiels reconnus (GHG Protocol, ISO 14064-1) et
+          compatible avec les pratiques européennes (achats, banques, assurances).
+        </p>
 
-      {/* CTA (sans “voir exemple”) */}
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-6">
+        <p className="text-xs text-slate-500 italic flex items-center justify-center gap-1">
+          <span aria-hidden>🔒</span>
+          Calculs exécutés localement dans votre navigateur. Aucune donnée financière
+          d’entrée n’est stockée.
+        </p>
+
+        <p className="text-[11px] text-slate-500 leading-relaxed">
+          Attestation indicative (modèle spend-based) : ne constitue pas un inventaire
+          GES, un audit, ni un reporting CSRD/ESRS.
+        </p>
+      </div>
+
+      {/* CTA */}
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-7">
         <Link
-          href="/fr/generate/"
-          className="bg-[#15B097] hover:bg-[#109A86] text-white font-semibold px-10 py-4 rounded-xl shadow-lg transition-colors text-base"
-          aria-label="Générer une attestation CO₂e indicative"
+          href="/fr/generate"
+          aria-label="Générer une attestation de bilan carbone (CO₂e)"
+          className="bg-[#15B097] hover:bg-[#129780] text-white font-semibold px-12 py-4 rounded-xl shadow-md transition"
         >
-          Générer mon attestation CO₂e
+          Générer mon attestation
         </Link>
 
         <Link
-          href="/fr/verify/"
-          className="border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white font-semibold px-10 py-4 rounded-xl transition-colors text-base"
-          aria-label="Vérifier une attestation CO₂e"
+          href="/fr/pricing"
+          aria-label="Voir le prix de l’attestation de bilan carbone"
+          className="text-[#0B3A63] font-semibold px-8 py-4 rounded-xl border border-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition"
         >
-          Vérifier une attestation
+          Voir le prix
         </Link>
       </div>
 
-      {/* MINI COMPARAISON (turquoise en accent seulement) */}
-      <div className="mt-12 max-w-3xl mx-auto">
-        <div className="border border-slate-200 rounded-2xl bg-white shadow-sm p-6 text-sm">
-          <p className="uppercase text-xs tracking-wider text-slate-500 mb-4">
-            Comparaison rapide
-          </p>
-
-          <div className="grid grid-cols-2 gap-4 text-left">
-            <div className="font-semibold text-slate-500">Bilan carbone cabinet</div>
-            <div className="font-semibold text-[#0B3A63]">Certif-Scope</div>
-
-            <div>3&nbsp;000&nbsp;€ – 10&nbsp;000&nbsp;€</div>
-            <div className="font-semibold text-[#0B3A63]">
-              89&nbsp;€{" "}
-              <span className="ml-2 inline-flex items-center rounded-full border border-[#15B097]/30 bg-[#15B097]/10 px-2 py-0.5 text-xs font-semibold text-[#0B3A63]">
-                prix fixe
-              </span>
-            </div>
-
-            <div>4 à 8 semaines</div>
-            <div className="font-semibold text-[#0B3A63]">
-              En quelques minutes{" "}
-              <span className="ml-2 inline-flex items-center rounded-full border border-slate-200 bg-[#F8FAFC] px-2 py-0.5 text-xs font-semibold text-slate-600">
-                sans audit
-              </span>
-            </div>
-
-            <div>Audit complet (selon mission)</div>
-            <div>Indicateur CO₂e indicatif</div>
-
-            <div>Collecte complexe</div>
-            <div>Données globales de dépenses</div>
-          </div>
-        </div>
-      </div>
-
-      {/* IMAGE (optionnelle, premium) */}
-      <div className="flex justify-center mt-12">
+      {/* IMAGE */}
+      <div className="flex justify-center mt-7 md:mt-8">
         <Image
+          itemProp="primaryImageOfPage"
           src="/hero-attestation.webp"
-          alt="Attestation CO₂e indicative Certif-Scope : document standardisé, archivable et vérifiable."
+          alt="Exemple d’attestation de bilan carbone (CO₂e) standardisée pour une PME, avec informations de vérification indépendante."
           width={900}
           height={600}
           priority
@@ -142,10 +113,9 @@ export default function HeroFR() {
         />
       </div>
 
-      {/* DISCLAIMER (honnêteté + SEO safe) */}
-      <p className="text-xs text-slate-500 mt-6 max-w-2xl mx-auto leading-relaxed">
-        Estimation CO₂e indicative basée sur les dépenses (approche spend-based). Ne constitue pas un audit carbone complet,
-        ni un inventaire GES, ni un reporting CSRD/ESRS.
+      {/* TRUST LINE */}
+      <p className="text-sm text-[#0B3A63]/80 font-medium mt-6">
+        Vérifiable par un tiers, sans compte, sans dépendre d’un système privé.
       </p>
     </section>
   );
