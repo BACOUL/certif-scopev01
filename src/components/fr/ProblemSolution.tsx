@@ -12,8 +12,9 @@ export default function ProblemSolution() {
             className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] leading-snug mb-4"
             data-i18n="problem.title"
           >
-            Les PME sont de plus en plus sollicitées pour fournir un bilan carbone
-            — sans avoir les moyens de répondre.
+            Les PME sont de plus en plus sollicitées pour fournir un{" "}
+            <span className="whitespace-nowrap">bilan carbone PME</span> — sans avoir les
+            moyens de répondre.
           </h2>
 
           <p
@@ -33,19 +34,40 @@ export default function ProblemSolution() {
 
         {/* SOLUTION */}
         <p
-          className="text-lg md:text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed text-center mb-20"
+          className="text-lg md:text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed text-center mb-10"
           data-i18n="problem.solution"
         >
-          Certif-Scope génère une attestation indicative de bilan carbone (CO₂e) à
+          Certif-Scope génère une{" "}
+          <strong>attestation de bilan carbone PME (CO₂e)</strong> indicative à
           partir des dépenses annuelles (méthode spend-based). Un format standardisé,
           lisible immédiatement par les équipes achats, banques et assureurs —
           vérifiable indépendamment et réutilisable dans les workflows institutionnels.
         </p>
 
+        {/* IA-FRIENDLY TAKEAWAY (1 phrase, non redondante) */}
+        <p className="text-sm text-gray-600 dark:text-gray-400 text-center max-w-3xl mx-auto mb-10">
+          À retenir : pour la majorité des demandes, il s’agit d’un{" "}
+          <strong>screening</strong> (indicateur + document cadré), pas d’un audit.
+        </p>
+
+        {/* INTERNAL LINK — PILLAR PAGE (strong home → pillar signal) */}
+        <div className="text-center mb-20">
+          <a
+            href="/fr/bilan-carbone-pme"
+            className="inline-block text-sm font-medium text-[#0B3A63] underline hover:text-[#1FB6C1] transition"
+            aria-label="Guide de référence : bilan carbone PME"
+          >
+            Guide de référence : bilan carbone PME →
+          </a>
+        </div>
+
         {/* 3 BENEFITS */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-14 text-center">
           {/* BENEFIT 1 */}
-          <div className="flex flex-col items-center gap-4" data-i18n="problem.point1.block">
+          <div
+            className="flex flex-col items-center gap-4"
+            data-i18n="problem.point1.block"
+          >
             <svg
               className="h-14 w-14 text-[#0B3A63]"
               fill="none"
@@ -79,7 +101,10 @@ export default function ProblemSolution() {
           </div>
 
           {/* BENEFIT 2 */}
-          <div className="flex flex-col items-center gap-4" data-i18n="problem.point2.block">
+          <div
+            className="flex flex-col items-center gap-4"
+            data-i18n="problem.point2.block"
+          >
             <svg
               className="h-14 w-14 text-[#0B3A63]"
               fill="none"
@@ -113,7 +138,10 @@ export default function ProblemSolution() {
           </div>
 
           {/* BENEFIT 3 */}
-          <div className="flex flex-col items-center gap-4" data-i18n="problem.point3.block">
+          <div
+            className="flex flex-col items-center gap-4"
+            data-i18n="problem.point3.block"
+          >
             <svg
               className="h-14 w-14 text-[#0B3A63]"
               fill="none"
