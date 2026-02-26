@@ -36,6 +36,17 @@ export default function FooterFR() {
               banques, assurances et screening ESG. Documentation standardisée,
               cohérente et vérifiable.
             </p>
+
+            {/* PRIMARY FR SEO LINK (PILLAR) */}
+            <div className="mt-5">
+              <Link
+                href="/fr/bilan-carbone-pme"
+                className="inline-block text-sm font-semibold text-[#0B3A63] underline hover:text-[#1FB6C1] transition"
+                aria-label="Bilan carbone PME : guide de référence (page pilier)"
+              >
+                Bilan carbone PME : guide de référence →
+              </Link>
+            </div>
           </div>
 
           {/* PRODUCT */}
@@ -81,7 +92,7 @@ export default function FooterFR() {
                   data-i18n="footer.link.compliance"
                   href="/fr/product/compliance"
                 >
-                  Conformité & périmètre
+                  Conformité &amp; périmètre
                 </Link>
               </li>
               <li>
@@ -93,43 +104,66 @@ export default function FooterFR() {
                   Vérifier un document
                 </Link>
               </li>
+
+              {/* Institutional trust shortcuts (FR-first) */}
+              <li className="pt-2">
+                <Link className={linkBase} href="/fr/verification-attestation">
+                  Vérification : principes &amp; usage
+                </Link>
+              </li>
+              <li>
+                <Link className={linkBase} href="/fr/sources-facteurs-emission">
+                  Sources des facteurs d’émission
+                </Link>
+              </li>
+              <li>
+                <Link className={linkBase} href="/fr/limites-du-modele">
+                  Limites du modèle (important)
+                </Link>
+              </li>
             </ul>
           </nav>
 
           {/* GUIDES */}
-          <nav aria-label="Guides exigences CO₂e">
+          <nav aria-label="Guides bilan carbone et exigences CO₂e">
             <h3 className="text-lg font-semibold text-[#0B3A63] dark:text-gray-100 mb-4">
-              Guides (exigences CO₂e)
+              Guides (bilan carbone)
             </h3>
 
             <ul className="space-y-2">
+              {/* Pillar first (strong internal signal) */}
               <li>
+                <Link className={linkBase} href="/fr/bilan-carbone-pme">
+                  Bilan carbone PME : guide de référence
+                </Link>
+              </li>
+
+              {/* Cluster (satellites) */}
+              <li>
+                <Link className={linkBase} href="/fr/bilan-carbone-fournisseur">
+                  Bilan carbone fournisseur : quoi fournir, quoi dire
+                </Link>
+              </li>
+              <li>
+                <Link className={linkBase} href="/fr/bilan-carbone-appel-offres">
+                  Bilan carbone en appel d’offres : répondre sans surdimensionner
+                </Link>
+              </li>
+              <li>
+                <Link className={linkBase} href="/fr/scope-1-2-3-explication">
+                  Scopes 1/2/3 : explication simple (PME)
+                </Link>
+              </li>
+              <li>
+                <Link className={linkBase} href="/fr/difference-bilan-carbone-attestation">
+                  Différence : attestation vs bilan carbone complet
+                </Link>
+              </li>
+
+              {/* Existing guide hub (kept for long-tail) */}
+              <li className="pt-2">
                 <Link className={linkBase} href="/fr/why-companies-ask">
-                  Pourquoi les entreprises le demandent
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className={linkBase}
-                  href="/fr/why-companies-ask/attestation-carbone-fournisseur"
-                >
-                  Bilan carbone fournisseur : ce qui est réellement demandé
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className={linkBase}
-                  href="/fr/why-companies-ask/attestation-carbone-appel-offres"
-                >
-                  Bilan carbone en appel d’offres : ce qui est réellement demandé
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className={linkBase}
-                  href="/fr/why-companies-ask/exigences-co2-banques-assurances"
-                >
-                  Bilan carbone demandé par une banque ou un assureur : pourquoi, et quoi fournir
+                  Guides : pourquoi les entreprises le demandent
                 </Link>
               </li>
               <li>
@@ -137,15 +171,7 @@ export default function FooterFR() {
                   className={linkBase}
                   href="/fr/why-companies-ask/attestation-carbone-pme"
                 >
-                  Bilan carbone PME : que fournir quand on n’a pas de bilan carbone complet
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className={linkBase}
-                  href="/fr/why-companies-ask/preuve-carbone-entreprise"
-                >
-                  Justificatif CO₂ entreprise : ce que cela signifie (et ce qu’il faut fournir)
+                  Cas pratique : que fournir quand on n’a pas de bilan complet
                 </Link>
               </li>
             </ul>
@@ -154,7 +180,7 @@ export default function FooterFR() {
           {/* COMPANY & LEGAL */}
           <nav aria-label="Navigation entreprise et légal">
             <h3 className="text-lg font-semibold text-[#0B3A63] dark:text-gray-100 mb-4">
-              Entreprise & légal
+              Entreprise &amp; légal
             </h3>
 
             <ul className="space-y-2">
@@ -168,6 +194,19 @@ export default function FooterFR() {
                   Contact
                 </Link>
               </li>
+
+              {/* Compliance / trust pages (FR-first) */}
+              <li className="pt-2">
+                <Link className={linkBase} href="/fr/product/compliance">
+                  Cadre &amp; conformité (périmètre légal)
+                </Link>
+              </li>
+              <li>
+                <Link className={linkBase} href="/fr/product/methodology">
+                  Méthodologie (détails)
+                </Link>
+              </li>
+
               <li className="pt-2">
                 <Link className={linkBase} href="/fr/legal">
                   Mentions légales
@@ -242,4 +281,4 @@ export default function FooterFR() {
       </div>
     </footer>
   );
-}
+      }
