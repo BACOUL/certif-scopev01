@@ -71,6 +71,7 @@ export default function HeaderFR() {
 
   const routes = {
     home: "/fr",
+    pillarBilanCarbonePME: "/fr/bilan-carbone-pme",
     product: "/fr/product",
     methodology: "/fr/product/methodology",
     compliance: "/fr/product/compliance",
@@ -79,6 +80,8 @@ export default function HeaderFR() {
     partners: "/fr/partners",
     generate: "/fr/generate",
   };
+
+  const isPillarActive = pathname === routes.pillarBilanCarbonePME;
 
   return (
     <header
@@ -152,6 +155,17 @@ export default function HeaderFR() {
                 className={isActive(routes.home) ? linkActive : linkBase}
               >
                 Accueil
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                href={routes.pillarBilanCarbonePME}
+                onClick={closeAll}
+                aria-current={isPillarActive ? "page" : undefined}
+                className={isPillarActive ? linkActive : linkBase}
+              >
+                Bilan carbone PME
               </Link>
             </li>
 
@@ -258,4 +272,4 @@ export default function HeaderFR() {
       </div>
     </header>
   );
-}
+              }
