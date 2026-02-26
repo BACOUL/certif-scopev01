@@ -86,6 +86,17 @@ export default function Hero() {
         </Link>
       </div>
 
+      {/* INTERNAL LINK — PILAR PAGE */}
+      <div className="mt-4 text-center">
+        <Link
+          href="/fr/bilan-carbone-pme"
+          aria-label="Comprendre : bilan carbone PME (guide de référence)"
+          className="inline-block text-sm font-medium text-[#0B3A63] underline hover:text-[#1FB6C1] transition"
+        >
+          Comprendre : bilan carbone PME →
+        </Link>
+      </div>
+
       {/* IMAGE */}
       <div className="flex justify-center mt-7 md:mt-8">
         <Image
@@ -120,4 +131,4 @@ export default function Hero() {
       </div>
     </section>
   );
-        }
+      }
