@@ -1,8 +1,9 @@
+// PATH: src/components/Header/index.tsx
 "use client";
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { usePathname } from "next/navigation";
 
 export default function Header() {
@@ -14,6 +15,33 @@ export default function Header() {
   const burgerRef = useRef<HTMLButtonElement | null>(null);
   const dropdownButtonRef = useRef<HTMLButtonElement | null>(null);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
+
+  const isFR = useMemo(() => {
+    if (!pathname) return false;
+    return pathname === "/fr" || pathname.startsWith("/fr/");
+  }, [pathname]);
+
+  const href = useMemo(() => {
+    const base = isFR ? "/fr" : "";
+    return {
+      home: `${base}/`,
+      product: `${base}/product`,
+      methodology: `${base}/product/methodology`,
+      compliance: `${base}/product/compliance`,
+      verify: `${base}/verify`,
+      pricing: `${base}/pricing`,
+      partners: `${base}/partners`,
+      generate: `${base}/generate`,
+    };
+  }, [isFR]);
+
+  const isActive = (target: string) => {
+    if (!pathname) return false;
+    // Normalize trailing slash issues
+    const p = pathname.endsWith("/") && pathname.length > 1 ? pathname.slice(0, -1) : pathname;
+    const t = target.endsWith("/") && target.length > 1 ? target.slice(0, -1) : target;
+    return p === t;
+  };
 
   const closeAll = () => {
     setDropdown(false);
@@ -79,9 +107,13 @@ export default function Header() {
       "
     >
       <div className="w-full px-5 py-2 md:py-4 flex items-center justify-between">
-
         {/* LOGO */}
-        <Link href="/" onClick={closeAll} aria-label="Home" data-i18n="nav.home">
+        <Link
+          href={href.home}
+          onClick={closeAll}
+          aria-label="Home"
+          data-i18n="nav.home"
+        >
           <Image
             src="/logo.png"
             alt="Certif-Scope Logo"
@@ -135,14 +167,15 @@ export default function Header() {
           `}
         >
           <ul className="flex flex-col lg:flex-row gap-4 lg:gap-10">
-
             <li>
               <Link
-                href="/"
+                href={href.home}
                 onClick={closeAll}
                 data-i18n="nav.home"
                 className={`font-medium ${
-                  pathname === "/" ? "text-primary" : "text-gray-800 dark:text-gray-200"
+                  isActive(href.home)
+                    ? "text-[#15B097]"
+                    : "text-gray-800 dark:text-gray-200"
                 }`}
               >
                 Home
@@ -158,7 +191,7 @@ export default function Header() {
                 aria-expanded={dropdown}
                 aria-controls="dropdown-attestation"
                 data-i18n="nav.attestation"
-                className="font-medium text-gray-800 dark:text-gray-200 flex items-center gap-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1FB6C1]"
+                className="font-medium text-gray-800 dark:text-gray-200 flex items-center gap-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#15B097]"
               >
                 CO₂e Attestation
                 <span
@@ -182,29 +215,29 @@ export default function Header() {
                   "
                 >
                   <Link
-                    href="/product"
+                    href={href.product}
                     onClick={closeAll}
                     role="menuitem"
                     data-i18n="nav.overview"
-                    className="block py-2 text-sm hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1FB6C1]"
+                    className="block py-2 text-sm hover:text-[#15B097] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#15B097]"
                   >
                     Overview
                   </Link>
                   <Link
-                    href="/product/methodology"
+                    href={href.methodology}
                     onClick={closeAll}
                     role="menuitem"
                     data-i18n="nav.methodology"
-                    className="block py-2 text-sm hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1FB6C1]"
+                    className="block py-2 text-sm hover:text-[#15B097] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#15B097]"
                   >
                     Methodology
                   </Link>
                   <Link
-                    href="/product/methodology/compliance"
+                    href={href.compliance}
                     onClick={closeAll}
                     role="menuitem"
                     data-i18n="nav.compliance"
-                    className="block py-2 text-sm hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1FB6C1]"
+                    className="block py-2 text-sm hover:text-[#15B097] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#15B097]"
                   >
                     Compliance
                   </Link>
@@ -214,11 +247,13 @@ export default function Header() {
 
             <li>
               <Link
-                href="/verify"
+                href={href.verify}
                 onClick={closeAll}
                 data-i18n="nav.verify"
                 className={`font-medium ${
-                  pathname === "/verify" ? "text-primary" : "text-gray-800 dark:text-gray-200"
+                  isActive(href.verify)
+                    ? "text-[#15B097]"
+                    : "text-gray-800 dark:text-gray-200"
                 }`}
               >
                 Verify Attestation
@@ -227,11 +262,13 @@ export default function Header() {
 
             <li>
               <Link
-                href="/pricing"
+                href={href.pricing}
                 onClick={closeAll}
                 data-i18n="nav.pricing"
                 className={`font-medium ${
-                  pathname === "/pricing" ? "text-primary" : "text-gray-800 dark:text-gray-200"
+                  isActive(href.pricing)
+                    ? "text-[#15B097]"
+                    : "text-gray-800 dark:text-gray-200"
                 }`}
               >
                 Pricing
@@ -240,11 +277,13 @@ export default function Header() {
 
             <li>
               <Link
-                href="/partners"
+                href={href.partners}
                 onClick={closeAll}
                 data-i18n="nav.partners"
                 className={`font-medium ${
-                  pathname === "/partners" ? "text-primary" : "text-gray-800 dark:text-gray-200"
+                  isActive(href.partners)
+                    ? "text-[#15B097]"
+                    : "text-gray-800 dark:text-gray-200"
                 }`}
               >
                 Partnerships
@@ -253,20 +292,21 @@ export default function Header() {
 
             <li>
               <Link
-                href="/generate"
+                href={href.generate}
                 onClick={closeAll}
                 data-i18n="nav.generate"
                 className={`font-medium ${
-                  pathname === "/generate" ? "text-primary" : "text-gray-800 dark:text-gray-200"
+                  isActive(href.generate)
+                    ? "text-[#15B097]"
+                    : "text-gray-800 dark:text-gray-200"
                 }`}
               >
                 Generate Attestation
               </Link>
             </li>
-
           </ul>
         </nav>
       </div>
     </header>
   );
-}
+        }
