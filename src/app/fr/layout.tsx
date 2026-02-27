@@ -19,8 +19,9 @@ export const metadata = {
 
 /* ======================================================
    LAYOUT FR
-   - volontairement minimal
-   - aucun header/footer
+   IMPORTANT (Next.js App Router):
+   - Un seul <html>/<body> autorisé : dans le root layout (src/app/layout.tsx)
+   - Un layout segmenté (/fr) doit retourner un wrapper simple (div/section) + children
 ====================================================== */
 export default function FRLayout({
   children,
@@ -28,10 +29,11 @@ export default function FRLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fr" suppressHydrationWarning>
-      <body className="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200">
-        {children}
-      </body>
-    </html>
+    <div
+      lang="fr"
+      className="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200"
+    >
+      {children}
+    </div>
   );
 }
