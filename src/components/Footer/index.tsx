@@ -1,8 +1,41 @@
+// PATH: src/components/Footer/index.tsx
 "use client";
 
 import Link from "next/link";
+import { useMemo } from "react";
+import { usePathname } from "next/navigation";
 
 export default function FooterEN() {
+  const pathname = usePathname();
+
+  const isFR = useMemo(() => {
+    if (!pathname) return false;
+    return pathname === "/fr" || pathname.startsWith("/fr/");
+  }, [pathname]);
+
+  const href = useMemo(() => {
+    const base = isFR ? "/fr" : "";
+    return {
+      product: `${base}/product`,
+      methodology: `${base}/product/methodology`,
+      compliance: `${base}/product/compliance`,
+      verify: `${base}/verify`,
+      partners: `${base}/partners`,
+      why: `${base}/why-companies-ask`,
+      whySupplier: `${base}/why-companies-ask/supplier-carbon-attestation`,
+      whyTender: `${base}/why-companies-ask/carbon-attestation-tender`,
+      whyFinance: `${base}/why-companies-ask/co2-requirements-banks-insurers`,
+      whySme: `${base}/why-companies-ask/carbon-attestation-smes`,
+      whyProof: `${base}/why-companies-ask/company-carbon-proof`,
+      contact: `${base}/contact`,
+      legal: `${base}/legal`,
+      privacy: `${base}/privacy`,
+      terms: `${base}/terms`,
+      cookies: `${base}/cookies`,
+      dpo: `${base}/data-processing`,
+    };
+  }, [isFR]);
+
   return (
     <footer
       id="footer"
@@ -43,28 +76,22 @@ export default function FooterEN() {
 
             <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
               <li>
-                <Link data-i18n="footer.link.overview" href="/product">
+                <Link data-i18n="footer.link.overview" href={href.product}>
                   Overview
                 </Link>
               </li>
               <li>
-                <Link
-                  data-i18n="footer.link.methodology"
-                  href="/product/methodology"
-                >
+                <Link data-i18n="footer.link.methodology" href={href.methodology}>
                   Methodology
                 </Link>
               </li>
               <li>
-                <Link
-                  data-i18n="footer.link.compliance"
-                  href="/product/compliance"
-                >
+                <Link data-i18n="footer.link.compliance" href={href.compliance}>
                   Compliance & scope
                 </Link>
               </li>
               <li>
-                <Link data-i18n="footer.link.verify" href="/verify">
+                <Link data-i18n="footer.link.verify" href={href.verify}>
                   Verify an attestation
                 </Link>
               </li>
@@ -82,57 +109,42 @@ export default function FooterEN() {
 
             <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
               <li>
-                <Link data-i18n="footer.link.partners" href="/partners">
+                <Link data-i18n="footer.link.partners" href={href.partners}>
                   Partnerships
                 </Link>
               </li>
               <li>
-                <Link data-i18n="footer.link.why" href="/why-companies-ask">
+                <Link data-i18n="footer.link.why" href={href.why}>
                   Why companies ask
                 </Link>
               </li>
               <li>
-                <Link
-                  data-i18n="footer.link.why.supplier"
-                  href="/why-companies-ask/supplier-carbon-attestation"
-                >
+                <Link data-i18n="footer.link.why.supplier" href={href.whySupplier}>
                   Supplier carbon attestation
                 </Link>
               </li>
               <li>
-                <Link
-                  data-i18n="footer.link.why.tender"
-                  href="/why-companies-ask/carbon-attestation-tender"
-                >
+                <Link data-i18n="footer.link.why.tender" href={href.whyTender}>
                   Carbon attestation for tenders
                 </Link>
               </li>
               <li>
-                <Link
-                  data-i18n="footer.link.why.finance"
-                  href="/why-companies-ask/co2-requirements-banks-insurers"
-                >
+                <Link data-i18n="footer.link.why.finance" href={href.whyFinance}>
                   CO₂ requirements for banks & insurers
                 </Link>
               </li>
               <li>
-                <Link
-                  data-i18n="footer.link.why.sme"
-                  href="/why-companies-ask/carbon-attestation-smes"
-                >
+                <Link data-i18n="footer.link.why.sme" href={href.whySme}>
                   Carbon attestation for SMEs
                 </Link>
               </li>
               <li>
-                <Link
-                  data-i18n="footer.link.why.proof"
-                  href="/why-companies-ask/company-carbon-proof"
-                >
+                <Link data-i18n="footer.link.why.proof" href={href.whyProof}>
                   Company carbon proof
                 </Link>
               </li>
               <li>
-                <Link data-i18n="footer.link.contact" href="/contact">
+                <Link data-i18n="footer.link.contact" href={href.contact}>
                   Contact
                 </Link>
               </li>
@@ -150,27 +162,27 @@ export default function FooterEN() {
 
             <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
               <li>
-                <Link data-i18n="footer.link.legal" href="/legal">
+                <Link data-i18n="footer.link.legal" href={href.legal}>
                   Legal notice
                 </Link>
               </li>
               <li>
-                <Link data-i18n="footer.link.privacy" href="/privacy">
+                <Link data-i18n="footer.link.privacy" href={href.privacy}>
                   Privacy policy
                 </Link>
               </li>
               <li>
-                <Link data-i18n="footer.link.terms" href="/terms">
+                <Link data-i18n="footer.link.terms" href={href.terms}>
                   Terms of use
                 </Link>
               </li>
               <li>
-                <Link data-i18n="footer.link.cookies" href="/cookies">
+                <Link data-i18n="footer.link.cookies" href={href.cookies}>
                   Cookies policy
                 </Link>
               </li>
               <li>
-                <Link data-i18n="footer.link.dpo" href="/data-processing">
+                <Link data-i18n="footer.link.dpo" href={href.dpo}>
                   Data processing (overview)
                 </Link>
               </li>
@@ -211,4 +223,4 @@ export default function FooterEN() {
       </div>
     </footer>
   );
-                }
+              }
