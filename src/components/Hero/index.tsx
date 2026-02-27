@@ -1,9 +1,23 @@
+// PATH: src/components/Hero/index.tsx
 "use client";
 
 import Image from "next/image";
 import Link from "next/link";
+import { useMemo } from "react";
+import { usePathname } from "next/navigation";
 
 export default function Hero() {
+  const pathname = usePathname();
+
+  const isFR = useMemo(() => {
+    if (!pathname) return false;
+    return pathname === "/fr" || pathname.startsWith("/fr/");
+  }, [pathname]);
+
+  const generateHref = useMemo(() => {
+    return isFR ? "/fr/generate" : "/generate";
+  }, [isFR]);
+
   return (
     <section
       id="hero"
@@ -64,7 +78,7 @@ export default function Hero() {
       {/* CTA */}
       <div className="flex justify-center mt-6 md:mt-7">
         <Link
-          href="/generate"
+          href={generateHref}
           aria-label="Generate CO₂e Attestation"
           className="bg-[#1FB6C1] hover:bg-[#17a2a8] text-white font-semibold px-12 py-4 rounded-xl shadow-md transition"
         >
