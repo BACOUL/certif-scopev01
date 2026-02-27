@@ -1,7 +1,23 @@
+// PATH: src/components/AttestationPreview/index.tsx
 "use client";
+
 import Image from "next/image";
+import Link from "next/link";
+import { useMemo } from "react";
+import { usePathname } from "next/navigation";
 
 export default function AttestationPreview() {
+  const pathname = usePathname();
+
+  const isFR = useMemo(() => {
+    if (!pathname) return false;
+    return pathname === "/fr" || pathname.startsWith("/fr/");
+  }, [pathname]);
+
+  const productHref = useMemo(() => {
+    return isFR ? "/fr/product" : "/product";
+  }, [isFR]);
+
   return (
     <section
       id="attestation-preview"
@@ -56,13 +72,13 @@ export default function AttestationPreview() {
         {/* INTERNAL LINK + DISCLAIMER */}
         <div className="mt-12 flex flex-col items-center">
           {/* INTERNAL NAVIGATION LINK */}
-          <a
-            href="/product"
+          <Link
+            href={productHref}
             data-i18n="preview.methodologyLink"
             className="text-sm text-[#0B3A63] dark:text-gray-300 underline hover:text-[#1FB6C1]"
           >
             See full methodology →
-          </a>
+          </Link>
 
           {/* DISCLAIMER */}
           <p
@@ -76,4 +92,4 @@ export default function AttestationPreview() {
       </div>
     </section>
   );
-          }
+}
