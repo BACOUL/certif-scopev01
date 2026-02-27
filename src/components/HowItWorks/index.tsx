@@ -1,8 +1,22 @@
+// PATH: src/components/HowItWorks/index.tsx
 "use client";
 
 import Link from "next/link";
+import { useMemo } from "react";
+import { usePathname } from "next/navigation";
 
 export default function HowItWorks() {
+  const pathname = usePathname();
+
+  const isFR = useMemo(() => {
+    if (!pathname) return false;
+    return pathname === "/fr" || pathname.startsWith("/fr/");
+  }, [pathname]);
+
+  const generateHref = useMemo(() => {
+    return isFR ? "/fr/generate" : "/generate";
+  }, [isFR]);
+
   return (
     <section
       id="how-it-works"
@@ -10,7 +24,6 @@ export default function HowItWorks() {
       className="py-24 bg-[#F8FAFC] dark:bg-gray-900"
     >
       <div className="max-w-6xl mx-auto px-6">
-
         {/* MICRO LABEL */}
         <p
           className="uppercase text-xs md:text-sm font-medium text-[#64748B] tracking-wider text-center mb-3"
@@ -41,7 +54,6 @@ export default function HowItWorks() {
 
         {/* 3 STEPS GRID */}
         <div className="grid md:grid-cols-3 gap-14">
-
           {/* STEP 1 */}
           <div className="text-center px-4" data-i18n="howitworks.step1">
             <div className="h-14 w-14 mx-auto rounded-full bg-[#1FB6C1] text-white flex items-center justify-center text-xl font-bold shadow-md">
@@ -83,7 +95,6 @@ export default function HowItWorks() {
               key metadata and built-in verification information in a review-ready format.
             </p>
           </div>
-
         </div>
 
         {/* PRIVACY BY DESIGN — KEY STATEMENT */}
@@ -99,7 +110,7 @@ export default function HowItWorks() {
         {/* SECONDARY CTA — DISCREET */}
         <div className="mt-10 text-center">
           <Link
-            href="/generate"
+            href={generateHref}
             data-i18n="howitworks.cta"
             className="inline-block text-sm font-medium text-[#0B3A63] underline hover:text-[#1FB6C1] transition"
           >
@@ -114,8 +125,7 @@ export default function HowItWorks() {
         >
           The entire process takes less than one minute.
         </p>
-
       </div>
     </section>
   );
-          }
+            }
