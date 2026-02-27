@@ -32,9 +32,9 @@ export default function HowItWorks() {
           className="mt-4 text-center text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed"
           data-i18n="howitworks.intro"
         >
-          Un processus simple en 3 étapes pour générer une attestation de bilan carbone
-          (CO₂e) à partir des dépenses annuelles (€), dans un format standardisé utilisé
-          en achats, banque, assurance et revue ESG.
+          Un processus simple en 3 étapes pour générer une attestation de bilan
+          carbone (CO₂e) à partir des dépenses annuelles (€), dans un format
+          standardisé utilisé en achats, banque, assurance et revue ESG.
         </p>
 
         {/* SEPARATOR */}
@@ -51,9 +51,9 @@ export default function HowItWorks() {
               Renseignez vos dépenses annuelles
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Indiquez vos dépenses par catégories prédéfinies. Seules des informations
-              financières sont nécessaires — pas de données d’activité (kWh, km, litres),
-              pas de documents, pas d’audit.
+              Indiquez vos dépenses par catégories prédéfinies. Seules des
+              informations financières sont nécessaires — pas de données
+              d’activité (kWh, km, litres), pas de documents, pas d’audit.
             </p>
           </div>
 
@@ -66,9 +66,9 @@ export default function HowItWorks() {
               Calcul automatique
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              La méthode spend-based est appliquée automatiquement pour produire un
-              résultat CO₂e cohérent (dépenses € × facteur d’émission), à partir de
-              sources de facteurs reconnues.
+              La méthode spend-based est appliquée automatiquement pour produire
+              un résultat CO₂e cohérent (dépenses € × facteur d’émission), à
+              partir de sources de facteurs reconnues.
             </p>
           </div>
 
@@ -82,8 +82,8 @@ export default function HowItWorks() {
             </h3>
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
               Recevez un PDF standardisé présentant un résultat CO₂e agrégé, les
-              métadonnées essentielles et des informations de vérification intégrées —
-              dans un format prêt à être revu.
+              métadonnées essentielles et des informations de vérification
+              intégrées — dans un format prêt à être revu.
             </p>
           </div>
         </div>
@@ -95,8 +95,8 @@ export default function HowItWorks() {
         >
           Les calculs sont effectués localement dans votre navigateur.
           <br />
-          Les dépenses détaillées ne sont pas envoyées : seul le résultat CO₂e final
-          agrégé est transmis pour émettre l’attestation.
+          Les dépenses détaillées ne sont pas envoyées : seul le résultat CO₂e
+          final agrégé est transmis pour émettre l’attestation.
         </p>
 
         {/* SECONDARY CTA — DISCREET */}
@@ -120,4 +120,4 @@ export default function HowItWorks() {
       </div>
     </section>
   );
-      }
+          }
