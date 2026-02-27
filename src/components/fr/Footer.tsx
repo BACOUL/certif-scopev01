@@ -41,15 +41,37 @@ export default function FooterFR() {
             <div className="mt-5">
               <Link
                 href="/fr/bilan-carbone-pme"
-                className="inline-block text-sm font-semibold text-[#0B3A63] underline hover:text-[#1FB6C1] transition"
+                className="inline-block text-sm font-semibold text-[#0B3A63] underline hover:text-[#15B097] transition-colors"
                 aria-label="Bilan carbone PME : guide de référence (page pilier)"
               >
                 Bilan carbone PME : guide de référence →
               </Link>
             </div>
+
+            {/* QUICK ACTIONS (EXISTING) */}
+            <div className="mt-5 flex flex-wrap gap-3">
+              <Link
+                href="/fr/generate"
+                className="inline-flex items-center justify-center text-sm px-4 py-2 rounded-md bg-[#15B097] text-white hover:bg-[#12967f] transition-colors font-semibold"
+              >
+                Générer →
+              </Link>
+              <Link
+                href="/fr/pricing"
+                className="inline-flex items-center justify-center text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
+              >
+                Prix
+              </Link>
+              <Link
+                href="/fr/verify"
+                className="inline-flex items-center justify-center text-sm px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800"
+              >
+                Vérifier
+              </Link>
+            </div>
           </div>
 
-          {/* PRODUCT */}
+          {/* PRODUCT (EXISTING ONLY) */}
           <nav aria-label="Navigation produit">
             <h3
               data-i18n="footer.product"
@@ -78,21 +100,8 @@ export default function FooterFR() {
                 </Link>
               </li>
               <li>
-                <Link
-                  className={linkBase}
-                  data-i18n="footer.link.methodology"
-                  href="/fr/product/methodology"
-                >
-                  Méthodologie (spend-based)
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className={linkBase}
-                  data-i18n="footer.link.compliance"
-                  href="/fr/product/compliance"
-                >
-                  Conformité &amp; périmètre
+                <Link className={linkBase} href="/fr/generate">
+                  Générer une attestation
                 </Link>
               </li>
               <li>
@@ -105,62 +114,45 @@ export default function FooterFR() {
                 </Link>
               </li>
 
-              {/* Institutional trust shortcuts (FR-first) */}
               <li className="pt-2">
-                <Link className={linkBase} href="/fr/verification-attestation">
-                  Vérification : principes &amp; usage
+                <Link
+                  className={linkBase}
+                  data-i18n="footer.link.compliance"
+                  href="/fr/product/compliance"
+                >
+                  Conformité &amp; périmètre
                 </Link>
               </li>
               <li>
-                <Link className={linkBase} href="/fr/sources-facteurs-emission">
-                  Sources des facteurs d’émission
-                </Link>
-              </li>
-              <li>
-                <Link className={linkBase} href="/fr/limites-du-modele">
-                  Limites du modèle (important)
+                <Link
+                  className={linkBase}
+                  data-i18n="footer.link.methodology"
+                  href="/fr/product/methodology"
+                >
+                  Méthodologie (spend-based)
                 </Link>
               </li>
             </ul>
           </nav>
 
-          {/* GUIDES */}
+          {/* GUIDES (EXISTING ONLY) */}
           <nav aria-label="Guides bilan carbone et exigences CO₂e">
             <h3 className="text-lg font-semibold text-[#0B3A63] dark:text-gray-100 mb-4">
-              Guides (bilan carbone)
+              Guides (France)
             </h3>
 
             <ul className="space-y-2">
-              {/* Pillar first (strong internal signal) */}
               <li>
                 <Link className={linkBase} href="/fr/bilan-carbone-pme">
                   Bilan carbone PME : guide de référence
                 </Link>
               </li>
-
-              {/* Cluster (satellites) */}
-              <li>
-                <Link className={linkBase} href="/fr/bilan-carbone-fournisseur">
-                  Bilan carbone fournisseur : quoi fournir, quoi dire
-                </Link>
-              </li>
               <li>
                 <Link className={linkBase} href="/fr/bilan-carbone-appel-offres">
-                  Bilan carbone en appel d’offres : répondre sans surdimensionner
-                </Link>
-              </li>
-              <li>
-                <Link className={linkBase} href="/fr/scope-1-2-3-explication">
-                  Scopes 1/2/3 : explication simple (PME)
-                </Link>
-              </li>
-              <li>
-                <Link className={linkBase} href="/fr/difference-bilan-carbone-attestation">
-                  Différence : attestation vs bilan carbone complet
+                  Bilan carbone en appel d’offres
                 </Link>
               </li>
 
-              {/* Existing guide hub (kept for long-tail) */}
               <li className="pt-2">
                 <Link className={linkBase} href="/fr/why-companies-ask">
                   Guides : pourquoi les entreprises le demandent
@@ -169,15 +161,15 @@ export default function FooterFR() {
               <li>
                 <Link
                   className={linkBase}
-                  href="/fr/why-companies-ask/attestation-carbone-pme"
+                  href="/fr/why-companies-ask/attestation-carbone-appel-offres"
                 >
-                  Cas pratique : que fournir quand on n’a pas de bilan complet
+                  Cas pratique : appel d’offres (guide complémentaire)
                 </Link>
               </li>
             </ul>
           </nav>
 
-          {/* COMPANY & LEGAL */}
+          {/* COMPANY & LEGAL (EXISTING ONLY) */}
           <nav aria-label="Navigation entreprise et légal">
             <h3 className="text-lg font-semibold text-[#0B3A63] dark:text-gray-100 mb-4">
               Entreprise &amp; légal
@@ -192,18 +184,6 @@ export default function FooterFR() {
               <li>
                 <Link className={linkBase} href="/fr/contact">
                   Contact
-                </Link>
-              </li>
-
-              {/* Compliance / trust pages (FR-first) */}
-              <li className="pt-2">
-                <Link className={linkBase} href="/fr/product/compliance">
-                  Cadre &amp; conformité (périmètre légal)
-                </Link>
-              </li>
-              <li>
-                <Link className={linkBase} href="/fr/product/methodology">
-                  Méthodologie (détails)
                 </Link>
               </li>
 
@@ -241,10 +221,10 @@ export default function FooterFR() {
           data-i18n="footer.disclaimer"
           className="mt-10 text-center text-xs text-gray-500 dark:text-gray-400 leading-relaxed"
         >
-          Estimation CO₂e indicative en spend-based (dépenses × facteurs d’émission).
-          Non auditée, non CSRD/ESRS, sans calcul des Scopes 1–2, et ne remplace pas
-          un inventaire complet des émissions de GES. Les résultats dépendent
-          entièrement des données fournies par l’utilisateur.
+          Estimation CO₂e indicative en spend-based (dépenses × facteurs
+          d’émission). Non auditée, non CSRD/ESRS, sans calcul des Scopes 1–2, et
+          ne remplace pas un inventaire complet des émissions de GES. Les
+          résultats dépendent entièrement des données fournies par l’utilisateur.
         </div>
 
         {/* BACK TO TOP BUTTON (SITE COLORS) */}
@@ -265,7 +245,7 @@ export default function FooterFR() {
           </p>
         </div>
 
-        {/* JSON-LD — ORGANIZATION (MINIMAL, IA-SAFE) */}
+        {/* JSON-LD — ORGANIZATION (MINIMAL) */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
