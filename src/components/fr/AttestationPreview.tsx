@@ -1,6 +1,8 @@
+// PATH: src/components/fr/AttestationPreview.tsx
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 export default function AttestationPreviewFR() {
   return (
@@ -10,11 +12,8 @@ export default function AttestationPreviewFR() {
       className="py-24 bg-[#F8FAFC] dark:bg-gray-900"
     >
       <div className="max-w-6xl mx-auto px-6 text-center">
-
         {/* SECTION LABEL */}
-        <p
-          className="text-xs md:text-sm font-medium text-gray-500 dark:text-gray-400 tracking-wider uppercase mb-3"
-        >
+        <p className="text-xs md:text-sm font-medium text-gray-500 dark:text-gray-400 tracking-wider uppercase mb-3">
           Format de l’attestation CO₂e — Standardisé • Dépenses • Vérifiable
         </p>
 
@@ -30,9 +29,8 @@ export default function AttestationPreviewFR() {
           Cette image illustre la structure standardisée et la mise en forme visuelle
           d’une attestation CO₂e Certif-Scope. Elle est fournie uniquement à titre
           illustratif pour présenter le format du document et ne correspond pas
-          à une attestation réellement émise.  
-          Chaque attestation est générée individuellement à partir des données
-          financières déclarées par l’utilisateur.
+          à une attestation réellement émise. Chaque attestation est générée
+          individuellement à partir des données financières déclarées par l’utilisateur.
         </p>
 
         {/* IMAGE */}
@@ -52,14 +50,13 @@ export default function AttestationPreviewFR() {
 
         {/* INTERNAL LINK + DISCLAIMER */}
         <div className="mt-12 flex flex-col items-center">
-
           {/* INTERNAL NAVIGATION LINK */}
-          <a
-            href="/product"
+          <Link
+            href="/fr/product"
             className="text-sm text-[#0B3A63] dark:text-gray-300 underline hover:text-[#1FB6C1]"
           >
             Voir la méthodologie complète →
-          </a>
+          </Link>
 
           {/* DISCLAIMER */}
           <p className="mt-4 text-xs text-gray-500 dark:text-gray-400 max-w-sm leading-relaxed">
@@ -67,9 +64,8 @@ export default function AttestationPreviewFR() {
             Ce document n’est ni conforme CSRD/ESRS ni un inventaire d’émissions
             de gaz à effet de serre audité.
           </p>
-
         </div>
       </div>
     </section>
   );
-          }
+}
