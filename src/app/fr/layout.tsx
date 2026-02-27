@@ -1,3 +1,4 @@
+// PATH: src/app/fr/layout.tsx
 import "../../styles/index.css";
 
 /* ======================================================
