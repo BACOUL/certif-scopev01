@@ -24,7 +24,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Bilan carbone demandé par une banque ou un assureur — Pourquoi et quoi fournir",
+    title:
+      "Bilan carbone demandé par une banque ou un assureur — Pourquoi et quoi fournir",
     description:
       "Pourquoi les acteurs financiers demandent un “bilan carbone” et comment répondre avec un document CO₂e indicatif, standardisé et cadré.",
     url: "https://www.certif-scope.com/fr/why-companies-ask/exigences-co2-banques-assurances",
@@ -32,6 +33,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "fr_FR",
   },
+  robots: { index: true, follow: true },
 };
 
 /* ======================================================
@@ -42,47 +44,144 @@ export default function FinanceCO2RequirementsFR() {
   const pageUrl =
     "https://www.certif-scope.com/fr/why-companies-ask/exigences-co2-banques-assurances";
 
+  const jsonLdBreadcrumb = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Accueil (FR)",
+        item: "https://www.certif-scope.com/fr",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Pourquoi les entreprises le demandent",
+        item: "https://www.certif-scope.com/fr/why-companies-ask",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "Bilan carbone demandé par une banque ou un assureur",
+        item: pageUrl,
+      },
+    ],
+  };
+
+  const jsonLdWebPage = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "Bilan carbone demandé par une banque ou un assureur",
+    url: pageUrl,
+    description:
+      "Guide pratique : pourquoi une banque ou un assureur demande un “bilan carbone” (screening ESG / analyse de risque), ce qui est attendu en pratique et quand un document indicatif est acceptable.",
+    isPartOf: {
+      "@type": "WebSite",
+      name: "Certif-Scope",
+      url: "https://www.certif-scope.com",
+    },
+    breadcrumb: jsonLdBreadcrumb,
+  };
+
+  const jsonLdOrganization = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Certif-Scope",
+    url: "https://www.certif-scope.com",
+    logo: "https://www.certif-scope.com/assets/logo.png",
+    sameAs: [],
+  };
+
+  const jsonLdFAQ = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "Est-ce obligatoire légalement pour une PME ?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            "Pas en tant qu’obligation directe de reporting. La demande intervient le plus souvent dans une politique ESG interne (screening) ou une collecte d’informations. Si un reporting réglementaire est exigé, le cadre doit être précisé.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Une estimation indicative est-elle acceptée ?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            "Oui, si la demande vise un indicateur informatif et si le document annonce explicitement ses limites : estimation, non auditée, non CSRD/ESRS.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Que faire si on me demande “ISO 14064-1” ?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            "C’est un cadre différent. Demandez le périmètre exact (scopes, niveau d’assurance externe, périmètre organisationnel) et précisez qu’un document indicatif n’est pas un inventaire ISO.",
+        },
+      },
+    ],
+  };
+
+  const jsonLdHowTo = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "Comment répondre à une demande de “bilan carbone” par une banque ou un assureur",
+    description:
+      "Process simple pour répondre au bon niveau (screening) avec un document archivable, sans sur-promesse d’audit.",
+    totalTime: "PT10M",
+    step: [
+      {
+        "@type": "HowToStep",
+        name: "Identifier le niveau attendu",
+        text:
+          "Vérifiez si la demande impose un référentiel, un périmètre, des preuves, une ventilation par scopes ou une assurance externe. Sans ces éléments, il s’agit le plus souvent de screening ESG.",
+      },
+      {
+        "@type": "HowToStep",
+        name: "Fournir un document de screening cadré",
+        text:
+          "Fournissez un résultat CO₂e agrégé, l’année couverte, une date d’émission, une méthode déclarée et des limites visibles (non audit, non inventaire complet, non CSRD/ESRS).",
+      },
+      {
+        "@type": "HowToStep",
+        name: "Éviter l’ambiguïté",
+        text:
+          "Utilisez des formulations “indicateur CO₂e indicatif / screening” et évitez “certifié / audit / conforme CSRD/ESRS”. Demandez une clarification écrite si l’exigence devient formelle.",
+      },
+    ],
+  };
+
   return (
     <section
       id="finance-co2-requirements"
       data-section="finance-co2-requirements"
       className="max-w-7xl mx-auto px-6 pt-12 pb-24"
     >
-      {/* JSON-LD — WebPage (GUIDE) */}
+      {/* JSON-LD — Organization + WebPage + Breadcrumb + HowTo + FAQ */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            name: "Bilan carbone demandé par une banque ou un assureur",
-            url: pageUrl,
-            description:
-              "Guide pratique : pourquoi une banque ou un assureur demande un “bilan carbone” (screening ESG / analyse de risque), ce qui est attendu en pratique et quand un document indicatif est acceptable.",
-            isPartOf: {
-              "@type": "WebSite",
-              name: "Certif-Scope",
-              url: "https://www.certif-scope.com",
-            },
-            breadcrumb: {
-              "@type": "BreadcrumbList",
-              itemListElement: [
-                {
-                  "@type": "ListItem",
-                  position: 1,
-                  name: "Pourquoi les entreprises le demandent",
-                  item: "https://www.certif-scope.com/fr/why-companies-ask",
-                },
-                {
-                  "@type": "ListItem",
-                  position: 2,
-                  name: "Bilan carbone demandé par une banque ou un assureur",
-                  item: pageUrl,
-                },
-              ],
-            },
-          }),
-        }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdOrganization) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebPage) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdHowTo) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFAQ) }}
       />
 
       {/* TOP ANCHOR */}
@@ -95,15 +194,16 @@ export default function FinanceCO2RequirementsFR() {
         </p>
 
         <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-6">
-          Bilan carbone demandé par une banque ou un assureur : pourquoi, et quoi fournir
+          Bilan carbone demandé par une banque ou un assureur : pourquoi, et quoi
+          fournir
         </h1>
 
         <p className="text-lg text-gray-700 leading-relaxed max-w-3xl">
           Les banques et assureurs demandent de plus en plus des informations
           environnementales dans leurs dossiers. La mention “bilan carbone” est
           souvent utilisée de manière générique : dans la majorité des cas, il
-          s’agit d’un <strong>usage informatif</strong> (screening ESG / analyse de
-          risque) et non d’un audit carbone complet.
+          s’agit d’un <strong>usage informatif</strong> (screening ESG / analyse
+          de risque) et non d’un audit carbone complet.
         </p>
 
         <div className="mt-8 flex flex-wrap gap-3">
@@ -137,7 +237,7 @@ export default function FinanceCO2RequirementsFR() {
         {/* MAIN */}
         <div className="lg:col-span-8 space-y-14">
           {/* 1 */}
-          <section id="why">
+          <section id="why" className="scroll-mt-24">
             <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
               1. Pourquoi une banque ou un assureur demande un “bilan carbone”
             </h2>
@@ -164,7 +264,7 @@ export default function FinanceCO2RequirementsFR() {
           </section>
 
           {/* 2 */}
-          <section id="what-it-is-not">
+          <section id="what-it-is-not" className="scroll-mt-24">
             <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
               2. Ce que la demande n’est pas (le plus souvent)
             </h2>
@@ -173,16 +273,16 @@ export default function FinanceCO2RequirementsFR() {
               Une demande “bilan carbone” par une banque ou un assureur est
               souvent perçue comme une exigence réglementaire. Dans la majorité
               des cas, elle vise surtout la collecte d’un indicateur pour des
-              grilles ESG internes. Cela ne correspond pas à un reporting CSRD/ESRS
-              ni à un audit ISO.
+              grilles ESG internes. Cela ne correspond pas à un reporting
+              CSRD/ESRS ni à un audit ISO.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="rounded-2xl border border-green-200 bg-green-50 p-6">
-                <h3 className="text-lg font-semibold text-green-900 mb-3">
+              <div className="rounded-2xl border border-gray-200 bg-white p-6">
+                <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
                   Usage le plus fréquent
                 </h3>
-                <ul className="list-disc ml-6 text-green-900/90 space-y-2">
+                <ul className="list-disc ml-6 text-gray-700 space-y-2">
                   <li>screening ESG / onboarding</li>
                   <li>documentation d’un dossier crédit</li>
                   <li>analyse interne de risque</li>
@@ -190,11 +290,11 @@ export default function FinanceCO2RequirementsFR() {
                 </ul>
               </div>
 
-              <div className="rounded-2xl border border-red-200 bg-red-50 p-6">
-                <h3 className="text-lg font-semibold text-red-900 mb-3">
+              <div className="rounded-2xl border border-gray-200 bg-white p-6">
+                <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
                   Usage à cadrer / refuser
                 </h3>
-                <ul className="list-disc ml-6 text-red-900/90 space-y-2">
+                <ul className="list-disc ml-6 text-gray-700 space-y-2">
                   <li>exigence d’audit ou d’assurance externe</li>
                   <li>exigence explicite ISO 14064-1 / inventaire GES</li>
                   <li>reporting CSRD/ESRS officiel</li>
@@ -205,9 +305,10 @@ export default function FinanceCO2RequirementsFR() {
           </section>
 
           {/* 3 */}
-          <section id="expected">
+          <section id="expected" className="scroll-mt-24">
             <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-              3. Ce qui est attendu : un document lisible, archivable, réutilisable
+              3. Ce qui est attendu : un document lisible, archivable,
+              réutilisable
             </h2>
 
             <p className="text-gray-700 leading-relaxed mb-4">
@@ -231,7 +332,7 @@ export default function FinanceCO2RequirementsFR() {
           </section>
 
           {/* 4 */}
-          <section id="how-to-answer">
+          <section id="how-to-answer" className="scroll-mt-24">
             <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
               4. Comment répondre sans créer d’ambiguïté
             </h2>
@@ -271,7 +372,7 @@ export default function FinanceCO2RequirementsFR() {
           </section>
 
           {/* 5 */}
-          <section id="why-standard">
+          <section id="why-standard" className="scroll-mt-24">
             <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
               5. Pourquoi standardiser : réduction de friction et de coûts
             </h2>
@@ -314,7 +415,7 @@ export default function FinanceCO2RequirementsFR() {
           </section>
 
           {/* 6 */}
-          <section id="faq">
+          <section id="faq" className="scroll-mt-24">
             <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
               6. Questions fréquentes (banques & assurances)
             </h2>
@@ -357,10 +458,11 @@ export default function FinanceCO2RequirementsFR() {
           </section>
 
           {/* CTA */}
-          <section id="cta" className="pt-2">
+          <section id="cta" className="pt-2 scroll-mt-24">
             <div className="rounded-2xl border border-gray-200 bg-[#0B3A63] p-8 text-white">
               <h2 className="text-2xl font-extrabold mb-3">
-                Répondre à une demande “bilan carbone” en finance/assurance sans surdimensionner
+                Répondre à une demande “bilan carbone” en finance/assurance sans
+                surdimensionner
               </h2>
               <p className="text-white/90 leading-relaxed max-w-2xl">
                 Si votre banque ou assureur demande un “bilan carbone”, le besoin
@@ -419,10 +521,7 @@ export default function FinanceCO2RequirementsFR() {
                     </a>
                   </li>
                   <li>
-                    <a
-                      className="text-[#0B3A63] hover:underline"
-                      href="#expected"
-                    >
+                    <a className="text-[#0B3A63] hover:underline" href="#expected">
                       3. Ce qui est attendu
                     </a>
                   </li>
@@ -480,6 +579,16 @@ export default function FinanceCO2RequirementsFR() {
           </div>
         </aside>
       </div>
+
+      {/* RETURN */}
+      <div className="mt-14">
+        <Link
+          href="/fr/why-companies-ask"
+          className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
+        >
+          Retour au guide (vue d’ensemble)
+        </Link>
+      </div>
     </section>
   );
-       }
+     }
