@@ -47,7 +47,6 @@ export default function PricingPageFR() {
         "Nom + version des facteurs",
         "Mentions de périmètre (indicatif / non audit)",
       ],
-      cta: "Générer mon attestation",
       ctaNode: <GenerateAttestationButton />,
       foot: "Téléchargement immédiat après paiement. Pas d’abonnement.",
     },
@@ -100,7 +99,6 @@ export default function PricingPageFR() {
       ],
       cta: "Acheter le pack de 50",
       href: "/api/checkout-pack?pack=50",
-      wide: true,
       foot: "Pensé pour les volumes et la standardisation multi-dossiers.",
     },
   ];
@@ -134,7 +132,7 @@ export default function PricingPageFR() {
       data-section="pricing-fr"
       className="max-w-7xl mx-auto px-6 pt-12 pb-24"
     >
-      {/* JSON-LD — WebPage + Service (pricing intent) */}
+      {/* JSON-LD — WebPage */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -160,10 +158,9 @@ export default function PricingPageFR() {
           Bilan carbone PME pas cher — Prix & packs
         </p>
 
+        {/* H1: 100% bleu (pas de turquoise sur une ligne entière) */}
         <h1 className="text-3xl md:text-5xl font-extrabold text-[#0B3A63] mb-6 leading-tight">
-          Prix d’un bilan carbone PME simplifié : 89€{" "}
-          <span className="text-[#0B3A63]">+</span>{" "}
-          <span className="text-[#15B097]">packs</span>
+          Prix d’un bilan carbone PME simplifié : 89€ + packs
         </h1>
 
         <p className="text-lg text-gray-700 leading-relaxed max-w-3xl">
@@ -177,9 +174,10 @@ export default function PricingPageFR() {
         </p>
 
         <div className="mt-8 flex flex-wrap gap-3">
+          {/* CTA primaire : turquoise uniquement ici */}
           <a
             href="#offres"
-            className="inline-block text-sm px-5 py-2.5 rounded-md bg-[#15B097] text-white hover:opacity-90 transition-colors font-semibold"
+            className="inline-block text-sm px-5 py-2.5 rounded-md bg-[#15B097] text-white hover:bg-[#12967f] transition-colors font-semibold"
           >
             Voir les offres
           </a>
@@ -281,41 +279,31 @@ export default function PricingPageFR() {
             >
               FAQ prix
             </a>
-            <a
-              href="/fr/generate"
-              className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
-            >
-              Générer (accès)
-            </a>
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {/* Cards 1..3 */}
           {offers.slice(0, 3).map((o) => (
             <div
               key={o.name}
               className={[
                 "bg-white border rounded-2xl shadow-lg p-10 text-center flex flex-col",
-                o.accent ? "border-[#15B097]/30" : "border-gray-200",
+                o.accent ? "border-[#15B097]/20" : "border-gray-200",
               ].join(" ")}
             >
               <div className="flex items-center justify-center gap-2 mb-3">
                 <h3 className="text-2xl font-bold text-[#0B3A63]">{o.name}</h3>
               </div>
 
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold border border-gray-200 text-gray-700 bg-white">
+              {/* Badge discret : turquoise très léger */}
+              <div className="flex items-center justify-center gap-2 mb-4">
+                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold border border-[#15B097]/25 text-[#0B3A63] bg-white">
                   {o.badge}
                 </span>
               </div>
 
-              <p
-                className={[
-                  "font-extrabold mb-1 tracking-tight",
-                  o.accent ? "text-5xl text-[#15B097]" : "text-4xl text-[#0B3A63]",
-                ].join(" ")}
-              >
+              {/* Prix: bleu (évite effet “vert”) */}
+              <p className="text-4xl md:text-5xl font-extrabold text-[#0B3A63] mb-1 tracking-tight">
                 {o.price}
               </p>
               <p className="text-sm text-gray-500 mb-5">{o.sub}</p>
@@ -347,14 +335,14 @@ export default function PricingPageFR() {
             </div>
           ))}
 
-          {/* Pack 50 (wide on desktop like EN intent) */}
+          {/* Pack 50 */}
           <div className="bg-white border border-gray-200 rounded-2xl shadow-lg p-10 text-center flex flex-col md:col-span-2 lg:col-span-1">
             <h3 className="text-2xl font-bold text-[#0B3A63] mb-3">
               {offers[3].name}
             </h3>
 
-            <div className="flex items-center justify-center gap-2 mb-3">
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold border border-gray-200 text-gray-700 bg-white">
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold border border-[#15B097]/25 text-[#0B3A63] bg-white">
                 {offers[3].badge}
               </span>
             </div>
@@ -414,19 +402,6 @@ export default function PricingPageFR() {
             </p>
           </div>
         </div>
-
-        <div className="mt-12 rounded-2xl border border-gray-200 bg-white p-6">
-          <h3 className="text-lg font-semibold text-[#0B3A63] mb-2">
-            Note importante sur l’usage “bilan carbone pas cher”
-          </h3>
-          <p className="text-sm text-gray-700 leading-relaxed">
-            Cette page est orientée “prix” car beaucoup de PME cherchent une
-            réponse rapide à une demande. Le livrable Certif-Scope est une{" "}
-            <strong>attestation CO₂e indicative</strong> (screening) : utile pour
-            des dossiers et questionnaires, mais non substituable à un inventaire
-            complet lorsque celui-ci est explicitement exigé.
-          </p>
-        </div>
       </section>
 
       {/* FAQ */}
@@ -466,12 +441,6 @@ export default function PricingPageFR() {
           >
             Banque / assurance : exigences
           </a>
-          <a
-            href="#top"
-            className="inline-block text-sm px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
-          >
-            Haut de page
-          </a>
         </div>
       </section>
 
@@ -481,4 +450,4 @@ export default function PricingPageFR() {
       </p>
     </section>
   );
-      }
+              }
