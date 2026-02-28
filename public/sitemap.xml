@@ -99,6 +99,7 @@
     <priority>0.9</priority>
   </url>
 
+  <!-- FR — pages business / conversion -->
   <url>
     <loc>https://www.certif-scope.com/fr/pricing/</loc>
     <changefreq>monthly</changefreq>
@@ -123,6 +124,26 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- FR — pillar + satellites SEO -->
+  <url>
+    <loc>https://www.certif-scope.com/fr/bilan-carbone-pme/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <url>
+    <loc>https://www.certif-scope.com/fr/bilan-carbone-appel-offres/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://www.certif-scope.com/fr/scope-1-2-3-explication/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- FR — cluster "why companies ask" -->
   <url>
     <loc>https://www.certif-scope.com/fr/why-companies-ask/</loc>
     <changefreq>monthly</changefreq>
@@ -135,6 +156,19 @@
     <priority>0.8</priority>
   </url>
 
+  <url>
+    <loc>https://www.certif-scope.com/fr/why-companies-ask/attestation-carbone-appel-offres/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.certif-scope.com/fr/why-companies-ask/exigences-co2-banques-assurances/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- FR — general pages -->
   <url>
     <loc>https://www.certif-scope.com/fr/partners/</loc>
     <changefreq>monthly</changefreq>
