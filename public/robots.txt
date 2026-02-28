@@ -1,9 +1,15 @@
 User-agent: *
+
+# Autorisation générale
 Allow: /
 
+# Bloquer routes techniques / sensibles
 Disallow: /api/
-Disallow: /verify
-Disallow: /generate
+Disallow: /verify/
+Disallow: /generate/
+
+# Bloquer URLs avec paramètres (évite duplication)
 Disallow: /*?*
 
+# Sitemap
 Sitemap: https://www.certif-scope.com/sitemap.xml
