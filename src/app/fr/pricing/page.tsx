@@ -1,24 +1,33 @@
 // PATH: src/app/fr/pricing/page.tsx
 
 import type { Metadata } from "next";
+import Link from "next/link";
 import GenerateAttestationButton from "@/components/GenerateAttestationButton";
 
+/* ======================================================
+   SEO — PRICING FR (FR-FIRST)
+   Objectif : capter intention "prix bilan carbone PME / pas cher / coût"
+   Sans mentir : attestation CO₂e indicative spend-based (screening), pas audit.
+====================================================== */
+
 export const metadata: Metadata = {
-  title: "Bilan carbone PME pas cher : prix fixe 89€ + packs — Certif-Scope",
+  title:
+    "Prix bilan carbone PME : 89€ + packs (alternative pas chère, sans audit) — Certif-Scope",
   description:
-    "Bilan carbone PME pas cher : alternative spend-based (dépenses × facteurs d’émission) à 89€. Attestation CO₂e indicative en PDF, standardisée, vérifiable, valable 1 an. Packs pour besoins récurrents.",
+    "Prix bilan carbone PME : alternative spend-based à 89€ (dépenses × facteurs d’émission). Attestation CO₂e indicative en PDF, standardisée et vérifiable, utile pour appels d’offres, référencement fournisseur, banque/assurance (screening). Sans abonnement. Valable 1 an.",
   alternates: {
     canonical: "https://www.certif-scope.com/fr/pricing/",
     languages: {
       fr: "https://www.certif-scope.com/fr/pricing/",
       en: "https://www.certif-scope.com/pricing/",
+      de: "https://www.certif-scope.com/de/pricing/",
     },
   },
   openGraph: {
     type: "website",
-    title: "Bilan carbone PME pas cher : prix fixe 89€ + packs — Certif-Scope",
+    title: "Prix bilan carbone PME : 89€ + packs — Certif-Scope",
     description:
-      "Attestation CO₂e indicative spend-based pour PME : PDF standardisé, vérifiable, valable 1 an. Utile pour appel d’offres, référencement fournisseur, banque/assurance (screening).",
+      "Alternative spend-based à 89€ : attestation CO₂e indicative en PDF, standardisée et vérifiable (screening). Utile pour appels d’offres, fournisseurs, banque/assurance. Sans abonnement. Validité 1 an.",
     url: "https://www.certif-scope.com/fr/pricing/",
     siteName: "Certif-Scope",
     locale: "fr_FR",
@@ -30,424 +39,344 @@ export const metadata: Metadata = {
 };
 
 export default function PricingPageFR() {
-  const pageUrl = "https://www.certif-scope.com/fr/pricing/";
-
-  const offers = [
-    {
-      name: "Attestation unique",
-      price: "89€",
-      sub: "Validité 1 an",
-      badge: "Prix fixe",
-      accent: true,
-      desc: "Pour répondre vite à une demande “bilan carbone” de screening (appel d’offres, client, banque, assurance).",
-      bullets: [
-        "PDF CO₂e standardisé",
-        "Identifiant unique (référence dossier)",
-        "QR de vérification (contrôle tiers)",
-        "Nom + version des facteurs",
-        "Mentions de périmètre (indicatif / non audit)",
-      ],
-      ctaNode: <GenerateAttestationButton />,
-      foot: "Téléchargement immédiat après paiement. Pas d’abonnement.",
-    },
-    {
-      name: "Pack de 5",
-      price: "349€",
-      sub: "69€ par attestation",
-      badge: "Usage récurrent",
-      desc: "Pour plusieurs réponses dans l’année (fournisseurs, appels d’offres, dossiers banque/assurance).",
-      bullets: [
-        "5 attestations CO₂e",
-        "Même format standardisé",
-        "Réutilisable sur plusieurs dossiers",
-        "Vérification publique (sans compte)",
-        "Prix unitaire réduit",
-      ],
-      cta: "Acheter le pack de 5",
-      href: "/api/checkout-pack?pack=5",
-      foot: "Convient aux PME avec plusieurs demandes par an.",
-    },
-    {
-      name: "Pack de 10",
-      price: "590€",
-      sub: "59€ par attestation",
-      badge: "Meilleur coût",
-      desc: "Pour un flux régulier de demandes CO₂e (procurement, renouvellements, dossiers multiples).",
-      bullets: [
-        "10 attestations CO₂e",
-        "Format unique, facile à archiver",
-        "Versionning méthode + facteurs",
-        "Vérification rapide via QR",
-        "Prix unitaire optimisé",
-      ],
-      cta: "Acheter le pack de 10",
-      href: "/api/checkout-pack?pack=10",
-      foot: "Idéal quand la demande revient plusieurs fois.",
-    },
-    {
-      name: "Pack de 50",
-      price: "2 450€",
-      sub: "49€ par attestation",
-      badge: "Écosystèmes fournisseurs",
-      desc: "Pour plateformes, réseaux de fournisseurs, grands volumes d’émission (usage interne B2B).",
-      bullets: [
-        "50 attestations CO₂e",
-        "Adapté à des écosystèmes fournisseurs",
-        "Format homogène pour comparaisons",
-        "Vérification indépendante",
-        "Prix unitaire très réduit",
-      ],
-      cta: "Acheter le pack de 50",
-      href: "/api/checkout-pack?pack=50",
-      foot: "Pensé pour les volumes et la standardisation multi-dossiers.",
-    },
-  ];
-
-  const faq = [
-    {
-      q: "Est-ce un bilan carbone réglementaire (CSRD/ESRS) ?",
-      a: "Non. Certif-Scope produit une attestation CO₂e indicative (screening), basée sur un modèle spend-based (dépenses × facteurs d’émission). Ce document n’est ni un audit, ni un inventaire complet, ni un reporting CSRD/ESRS.",
-    },
-    {
-      q: "Pourquoi “bilan carbone PME pas cher” : qu’est-ce qui change ?",
-      a: "Le prix est bas parce que la démarche vise le screening : pas de collecte de données physiques (kWh, km, litres), pas de périmètre exhaustif par scopes, pas d’assurance externe. L’objectif est un document clair, archivable et réutilisable.",
-    },
-    {
-      q: "Le document est-il acceptable en appel d’offres ?",
-      a: "Souvent oui, lorsque la demande vise un indicateur CO₂e comparable (screening). Si le cahier des charges impose une norme, un périmètre détaillé ou une vérification tierce, il faut suivre ce cadre.",
-    },
-    {
-      q: "Pourquoi la validité est-elle d’1 an ?",
-      a: "Les demandes se font généralement par année de référence. Une validité annuelle facilite l’archivage et la comparaison. Il est recommandé de réémettre lorsque l’année couverte ou les données changent.",
-    },
-    {
-      q: "Mes données de dépenses sont-elles envoyées ?",
-      a: "Non. Les calculs sont réalisés localement dans le navigateur. Les dépenses détaillées ne sont pas envoyées. Seuls le résultat CO₂e agrégé et des métadonnées non sensibles servent à émettre l’attestation.",
-    },
-  ];
-
   return (
     <section
-      id="pricing-fr"
-      data-section="pricing-fr"
+      id="pricing"
+      data-section="pricing"
       className="max-w-7xl mx-auto px-6 pt-12 pb-24"
     >
-      {/* JSON-LD — WebPage */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            name: "Bilan carbone PME pas cher : prix fixe 89€ + packs",
-            url: pageUrl,
-            description:
-              "Page prix FR : attestation CO₂e indicative spend-based pour PME (screening) avec packs. Document PDF standardisé, vérifiable, valable 1 an. Non audit, non inventaire complet, non CSRD/ESRS.",
-            isPartOf: {
-              "@type": "WebSite",
-              name: "Certif-Scope",
-              url: "https://www.certif-scope.com",
-            },
-          }),
-        }}
-      />
+      {/* TOP ANCHOR */}
+      <div id="top" />
 
       {/* HEADER */}
       <header className="mb-14">
-        <p className="uppercase text-xs tracking-wider text-[#0B3A63]/70 mb-3 font-semibold">
+        <p className="uppercase text-xs tracking-wider text-[#64748B] mb-3">
           Bilan carbone PME pas cher — Prix & packs
         </p>
 
-        {/* H1: 100% bleu (pas de turquoise sur une ligne entière) */}
-        <h1 className="text-3xl md:text-5xl font-extrabold text-[#0B3A63] mb-6 leading-tight">
-          Prix d’un bilan carbone PME simplifié : 89€ + packs
+        <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-6">
+          Prix d’un bilan carbone PME : 89€ + packs
         </h1>
 
         <p className="text-lg text-gray-700 leading-relaxed max-w-3xl">
-          Un bilan carbone complet pour une PME peut coûter plusieurs milliers
-          d’euros (collecte, périmètres, hypothèses, vérification). Certif-Scope
-          cible un autre besoin : une{" "}
-          <strong>attestation CO₂e indicative</strong> (spend-based) utile pour
-          les demandes de <strong>screening</strong> et de{" "}
-          <strong>preuve minimale</strong> (appel d’offres, référencement
-          fournisseur, banque/assurance). Prix fixe, sans abonnement.
+          Un <strong>bilan carbone complet</strong> pour une PME peut coûter{" "}
+          <strong>plusieurs milliers d’euros</strong> (collecte, périmètres,
+          hypothèses, vérification). Certif-Scope répond à un besoin différent :{" "}
+          <strong>une attestation CO₂e indicative</strong> (modèle spend-based :{" "}
+          <strong>dépenses × facteurs d’émission</strong>) pour{" "}
+          <strong>screening</strong> et <strong>preuve minimale</strong> (appel
+          d’offres, référencement fournisseur, banque/assurance). Prix fixe,{" "}
+          <strong>sans abonnement</strong>. Validité <strong>1 an</strong>.
         </p>
 
         <div className="mt-8 flex flex-wrap gap-3">
-          {/* CTA primaire : turquoise uniquement ici */}
-          <a
-            href="#offres"
+          <Link
+            href="/fr/generate"
             className="inline-block text-sm px-5 py-2.5 rounded-md bg-[#15B097] text-white hover:bg-[#12967f] transition-colors font-semibold"
           >
-            Voir les offres
-          </a>
+            Générer mon attestation →
+          </Link>
 
-          <a
+          <Link
             href="/fr/bilan-carbone-pme"
             className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
           >
             Guide : bilan carbone PME
-          </a>
+          </Link>
 
-          <a
+          <Link
             href="/fr/verify"
             className="inline-block text-sm px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
           >
             Vérifier un document
-          </a>
+          </Link>
         </div>
 
         <div className="w-20 h-[2px] bg-gray-300 mt-10" />
       </header>
 
-      {/* WHY CHEAPER */}
-      <section className="mb-16">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          <div className="lg:col-span-7">
-            <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-              Pourquoi 89€ au lieu de plusieurs milliers d’euros ?
-            </h2>
-
-            <p className="text-gray-700 leading-relaxed mb-6 max-w-2xl">
-              Le prix est bas car l’objectif est le{" "}
-              <strong>screening documentaire</strong> : produire un indicateur
-              CO₂e agrégé, lisible et archivable, avec méthode déclarée et limites
-              visibles — sans engager une démarche d’inventaire complet.
+      {/* VALUE STRIP — WHY THIS PRICE */}
+      <section className="mb-14">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="rounded-2xl border border-gray-200 bg-white p-5">
+            <p className="text-xs uppercase tracking-wider text-[#64748B] mb-2">
+              Pourquoi moins cher
             </p>
-
-            <ul className="space-y-3 text-gray-700">
-              <li>• Pas d’audit terrain ni collecte de données physiques</li>
-              <li>• Modèle spend-based (dépenses × facteurs d’émission)</li>
-              <li>• Résultat CO₂e agrégé (document de screening)</li>
-              <li>• Format PDF standardisé, réutilisable et archivable</li>
-              <li>• Vérification indépendante (ID + QR)</li>
-            </ul>
-          </div>
-
-          <div className="lg:col-span-5">
-            <div className="rounded-2xl border border-gray-200 bg-[#F8FAFC] p-6">
-              <p className="text-xs uppercase tracking-wider text-[#64748B] mb-3">
-                Périmètre (important)
-              </p>
-              <p className="text-sm text-gray-700 leading-relaxed">
-                Certif-Scope fournit une attestation CO₂e{" "}
-                <strong>indicative</strong> destinée au screening (achats,
-                banque/assurance, appels d’offres lorsque la demande est
-                générique). Ce document n’est{" "}
-                <strong>ni un audit</strong>,{" "}
-                <strong>ni un inventaire complet</strong>,{" "}
-                <strong>ni un reporting CSRD/ESRS</strong>. Les données d’entrée
-                relèvent de la responsabilité de l’entreprise utilisatrice.
-              </p>
-
-              <div className="mt-5 flex flex-wrap gap-3">
-                <a
-                  href="/fr/product/methodology"
-                  className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
-                >
-                  Méthodologie
-                </a>
-                <a
-                  href="/fr/product/compliance"
-                  className="inline-block text-sm px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
-                >
-                  Conformité & limites
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* OFFERS */}
-      <section id="offres" className="scroll-mt-24">
-        <div className="flex items-end justify-between gap-6 flex-wrap mb-8">
-          <div>
-            <h2 className="text-2xl font-bold text-[#0B3A63]">
-              Offres & packs
-            </h2>
-            <p className="text-gray-700 mt-2 max-w-2xl">
-              Même document, même format, même mécanisme de vérification. Choisissez
-              selon le volume de demandes.
+            <p className="text-gray-700 leading-relaxed">
+              Pas d’audit terrain. Pas de collecte de données physiques (kWh, km,
+              litres). Modèle spend-based pour une réponse rapide de screening.
             </p>
           </div>
-
-          <div className="flex flex-wrap gap-3">
-            <a
-              href="#faq"
-              className="inline-block text-sm px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
-            >
-              FAQ prix
-            </a>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {offers.slice(0, 3).map((o) => (
-            <div
-              key={o.name}
-              className={[
-                "bg-white border rounded-2xl shadow-lg p-10 text-center flex flex-col",
-                o.accent ? "border-[#15B097]/20" : "border-gray-200",
-              ].join(" ")}
-            >
-              <div className="flex items-center justify-center gap-2 mb-3">
-                <h3 className="text-2xl font-bold text-[#0B3A63]">{o.name}</h3>
-              </div>
-
-              {/* Badge discret : turquoise très léger */}
-              <div className="flex items-center justify-center gap-2 mb-4">
-                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold border border-[#15B097]/25 text-[#0B3A63] bg-white">
-                  {o.badge}
-                </span>
-              </div>
-
-              {/* Prix: bleu (évite effet “vert”) */}
-              <p className="text-4xl md:text-5xl font-extrabold text-[#0B3A63] mb-1 tracking-tight">
-                {o.price}
-              </p>
-              <p className="text-sm text-gray-500 mb-5">{o.sub}</p>
-
-              <p className="text-gray-700 text-sm leading-relaxed mb-6">
-                {o.desc}
-              </p>
-
-              <ul className="text-left mx-auto w-full max-w-sm space-y-2 text-gray-700 text-sm mb-8">
-                {o.bullets.map((b) => (
-                  <li key={b}>• {b}</li>
-                ))}
-              </ul>
-
-              {o.ctaNode ? (
-                <div className="mt-auto">{o.ctaNode}</div>
-              ) : (
-                <a
-                  href={o.href}
-                  className="bg-[#0B3A63] hover:bg-[#092f50] text-white font-semibold px-10 py-3 rounded-xl mt-auto text-center"
-                >
-                  {o.cta}
-                </a>
-              )}
-
-              <p className="text-xs text-gray-500 mt-4 leading-relaxed">
-                {o.foot}
-              </p>
-            </div>
-          ))}
-
-          {/* Pack 50 */}
-          <div className="bg-white border border-gray-200 rounded-2xl shadow-lg p-10 text-center flex flex-col md:col-span-2 lg:col-span-1">
-            <h3 className="text-2xl font-bold text-[#0B3A63] mb-3">
-              {offers[3].name}
-            </h3>
-
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold border border-[#15B097]/25 text-[#0B3A63] bg-white">
-                {offers[3].badge}
-              </span>
-            </div>
-
-            <p className="text-4xl font-extrabold text-[#0B3A63] mb-1">
-              {offers[3].price}
+          <div className="rounded-2xl border border-gray-200 bg-white p-5">
+            <p className="text-xs uppercase tracking-wider text-[#64748B] mb-2">
+              Ce que vous obtenez
             </p>
-            <p className="text-sm text-gray-500 mb-5">{offers[3].sub}</p>
-
-            <p className="text-gray-700 text-sm leading-relaxed mb-6">
-              {offers[3].desc}
-            </p>
-
-            <ul className="text-left mx-auto w-full max-w-sm space-y-2 text-gray-700 text-sm mb-8">
-              {offers[3].bullets.map((b) => (
-                <li key={b}>• {b}</li>
-              ))}
-            </ul>
-
-            <a
-              href={offers[3].href}
-              className="bg-[#0B3A63] hover:bg-[#092f50] text-white font-semibold px-10 py-3 rounded-xl mt-auto text-center"
-            >
-              {offers[3].cta}
-            </a>
-
-            <p className="text-xs text-gray-500 mt-4 leading-relaxed">
-              {offers[3].foot}
+            <p className="text-gray-700 leading-relaxed">
+              Un PDF standardisé, daté, archivable, avec résultat CO₂e agrégé,
+              méthode déclarée, limites explicites et vérification.
             </p>
           </div>
-
-          {/* Enterprise / API */}
-          <div className="bg-[#F8FAFC] border-2 border-dashed border-gray-300 rounded-2xl p-10 text-center col-span-full flex flex-col">
-            <h3 className="text-2xl font-bold text-[#0B3A63] mb-3">
-              Enterprise & API
-            </h3>
-
-            <p className="text-4xl font-extrabold text-gray-400 mb-3">
-              Bientôt disponible
+          <div className="rounded-2xl border border-gray-200 bg-white p-5">
+            <p className="text-xs uppercase tracking-wider text-[#64748B] mb-2">
+              Cadre (important)
             </p>
-
-            <p className="text-gray-700 mb-8 max-w-2xl mx-auto text-sm leading-relaxed">
-              Émission automatisée et intégrations pour plateformes, cabinets, et
-              grands volumes (workflows fournisseurs). Accès sur demande.
-            </p>
-
-            <button
-              disabled
-              className="px-10 py-3 rounded-xl font-semibold text-white bg-gray-400 cursor-not-allowed mx-auto"
-            >
-              Accès Enterprise — 2026
-            </button>
-
-            <p className="text-xs text-gray-500 mt-4 leading-relaxed">
-              Objectif : standardiser l’émission à grande échelle, sans complexifier
-              l’usage PME.
+            <p className="text-gray-700 leading-relaxed">
+              Document indicatif pour screening (achats, banque/assurance, AO si
+              demande générique). Ce n’est pas un audit ni un inventaire complet.
             </p>
           </div>
         </div>
       </section>
 
-      {/* FAQ */}
-      <section id="faq" className="mt-20 max-w-4xl scroll-mt-24">
+      {/* PRICING GRID — SAME DESIGN AS EN */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        {/* SINGLE */}
+        <div className="bg-white border border-gray-200 rounded-2xl shadow-lg p-10 text-center flex flex-col">
+          <h2 className="text-2xl font-bold text-[#0B3A63] mb-3">
+            Attestation unique
+          </h2>
+
+          <p className="text-5xl font-extrabold text-[#15B097] mb-1 tracking-tight">
+            89€
+          </p>
+          <p className="text-sm text-gray-500 mb-4">Validité 1 an</p>
+
+          <p className="text-gray-600 text-sm mb-6 leading-relaxed">
+            PDF instantané • Vérification QR • Garanties d’intégrité intégrées
+          </p>
+
+          <ul className="text-left mx-auto max-w-xs space-y-2 text-gray-700 text-sm mb-8">
+            <li>• PDF CO₂e standardisé</li>
+            <li>• Identifiant de vérification unique</li>
+            <li>• Vérification via QR code</li>
+            <li>• Méthode + version des facteurs</li>
+            <li>• Validité 1 an</li>
+          </ul>
+
+          <GenerateAttestationButton />
+        </div>
+
+        {/* PACK 5 */}
+        <div className="bg-white border border-gray-200 rounded-2xl shadow-lg p-10 text-center flex flex-col">
+          <h2 className="text-2xl font-bold text-[#0B3A63] mb-3">
+            Pack de 5
+          </h2>
+
+          <p className="text-4xl font-extrabold text-[#0B3A63] mb-1">349€</p>
+          <p className="text-sm text-gray-500 mb-4">(69€ par attestation)</p>
+
+          <p className="text-gray-600 text-sm mb-6 leading-relaxed">
+            Pour un usage récurrent (multi-dossiers, multi-acheteurs).
+          </p>
+
+          <a
+            href="/api/checkout-pack?pack=5"
+            className="bg-[#0B3A63] hover:bg-[#092f50] text-white font-semibold px-10 py-3 rounded-xl mt-auto text-center"
+          >
+            Acheter le pack de 5
+          </a>
+        </div>
+
+        {/* PACK 10 */}
+        <div className="bg-white border border-gray-200 rounded-2xl shadow-lg p-10 text-center flex flex-col">
+          <h2 className="text-2xl font-bold text-[#0B3A63] mb-3">
+            Pack de 10
+          </h2>
+
+          <p className="text-4xl font-extrabold text-[#0B3A63] mb-1">590€</p>
+          <p className="text-sm text-gray-500 mb-4">(59€ par attestation)</p>
+
+          <p className="text-gray-600 text-sm mb-6 leading-relaxed">
+            Idéal pour une demande régulière sur l’année.
+          </p>
+
+          <a
+            href="/api/checkout-pack?pack=10"
+            className="bg-[#0B3A63] hover:bg-[#092f50] text-white font-semibold px-10 py-3 rounded-xl mt-auto text-center"
+          >
+            Acheter le pack de 10
+          </a>
+        </div>
+
+        {/* PACK 50 */}
+        <div className="bg-white border border-gray-200 rounded-2xl shadow-lg p-10 text-center flex flex-col col-span-full lg:col-span-1 mx-auto">
+          <h2 className="text-2xl font-bold text-[#0B3A63] mb-3">
+            Pack de 50
+          </h2>
+
+          <p className="text-4xl font-extrabold text-[#0B3A63] mb-1">2,450€</p>
+          <p className="text-sm text-gray-500 mb-4">(49€ par attestation)</p>
+
+          <p className="text-gray-600 text-sm mb-6 leading-relaxed">
+            Conçu pour des écosystèmes fournisseurs étendus.
+          </p>
+
+          <a
+            href="/api/checkout-pack?pack=50"
+            className="bg-[#0B3A63] hover:bg-[#092f50] text-white font-semibold px-10 py-3 rounded-xl mt-auto text-center"
+          >
+            Acheter le pack de 50
+          </a>
+        </div>
+
+        {/* ENTERPRISE */}
+        <div className="bg-gray-100 border-2 border-dashed border-gray-300 rounded-xl p-10 text-center col-span-full flex flex-col">
+          <h2 className="text-2xl font-bold text-[#0B3A63] mb-3">
+            Enterprise & API
+          </h2>
+
+          <p className="text-4xl font-extrabold text-gray-400 mb-3">
+            Bientôt disponible
+          </p>
+
+          <p className="text-gray-600 mb-8 max-w-2xl mx-auto text-sm leading-relaxed">
+            Émission automatisée et intégrations pour plateformes et grands
+            comptes.
+          </p>
+
+          <button
+            disabled
+            className="px-10 py-3 rounded-xl font-semibold text-white bg-gray-400 cursor-not-allowed mx-auto"
+          >
+            Accès Enterprise — 2026
+          </button>
+        </div>
+      </div>
+
+      {/* TRUST / COMPARISON — SIMPLE, NO OVERPROMISE */}
+      <section className="mt-16">
+        <div className="rounded-2xl border border-gray-200 bg-[#F8FAFC] p-6">
+          <h2 className="text-lg font-semibold text-[#0B3A63] mb-3">
+            Comparer rapidement : “pas cher” veut dire “bon niveau”
+          </h2>
+          <ul className="list-disc ml-6 text-gray-700 space-y-2">
+            <li>
+              <strong>Certif-Scope (89€)</strong> : attestation CO₂e{" "}
+              <strong>indicative</strong> spend-based, résultat agrégé, limites
+              explicites, document vérifiable, prêt à transmettre.
+            </li>
+            <li>
+              <strong>Cabinet (plusieurs milliers d’€)</strong> : inventaire plus
+              détaillé, collecte de données d’activité, périmètres et hypothèses
+              approfondis, parfois vérification/assurance.
+            </li>
+          </ul>
+          <p className="mt-3 text-sm text-gray-600 leading-relaxed">
+            Si un cahier des charges impose explicitement une norme, un périmètre
+            ou une vérification, il faut suivre ce cadre. Sinon, une attestation
+            de screening répond souvent au besoin documentaire.
+          </p>
+        </div>
+      </section>
+
+      {/* FAQ — SEO */}
+      <section className="mt-16" id="faq">
         <h2 className="text-2xl font-bold text-[#0B3A63] mb-6">
-          Questions fréquentes (prix)
+          Questions fréquentes sur le prix d’un bilan carbone PME
         </h2>
 
-        <div className="space-y-6 text-gray-700">
-          {faq.map((item) => (
-            <div
-              key={item.q}
-              className="rounded-2xl border border-gray-200 bg-white p-6"
-            >
-              <h3 className="font-semibold text-[#0B3A63] mb-2">{item.q}</h3>
-              <p className="leading-relaxed">{item.a}</p>
-            </div>
-          ))}
-        </div>
+        <div className="space-y-6">
+          <div className="rounded-2xl border border-gray-200 bg-white p-6">
+            <h3 className="font-semibold text-[#0B3A63] mb-2">
+              Est-ce un bilan carbone réglementaire / certifié ?
+            </h3>
+            <p className="text-gray-700 leading-relaxed">
+              Non. C’est une <strong>estimation indicative</strong> (screening)
+              basée sur les dépenses (spend-based). Elle ne constitue pas un
+              audit, ni un inventaire complet des émissions, ni un reporting
+              CSRD/ESRS.
+            </p>
+          </div>
 
-        <div className="mt-8 flex flex-wrap gap-3">
-          <a
-            href="/fr/bilan-carbone-pme"
-            className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
-          >
-            Guide : bilan carbone PME
-          </a>
-          <a
-            href="/fr/bilan-carbone-appel-offres"
-            className="inline-block text-sm px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
-          >
-            Appel d’offres : quoi fournir
-          </a>
-          <a
-            href="/fr/why-companies-ask/exigences-co2-banques-assurances"
-            className="inline-block text-sm px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
-          >
-            Banque / assurance : exigences
-          </a>
+          <div className="rounded-2xl border border-gray-200 bg-white p-6">
+            <h3 className="font-semibold text-[#0B3A63] mb-2">
+              Pourquoi c’est “pas cher” par rapport à un cabinet ?
+            </h3>
+            <p className="text-gray-700 leading-relaxed">
+              Parce que l’objectif est différent : pas de collecte de données
+              d’activité (kWh, km, litres), pas d’audit terrain, et un livrable
+              standardisé conçu pour répondre vite à des demandes de preuve
+              minimale.
+            </p>
+          </div>
+
+          <div className="rounded-2xl border border-gray-200 bg-white p-6">
+            <h3 className="font-semibold text-[#0B3A63] mb-2">
+              Est-ce acceptable en appel d’offres ?
+            </h3>
+            <p className="text-gray-700 leading-relaxed">
+              Souvent oui si la demande vise un indicateur de screening et si le
+              document annonce clairement son périmètre et ses limites. Si
+              l’appel d’offres impose explicitement un standard, un périmètre ou
+              une vérification, il faut s’y conformer.
+            </p>
+          </div>
+
+          <div className="rounded-2xl border border-gray-200 bg-white p-6">
+            <h3 className="font-semibold text-[#0B3A63] mb-2">
+              Pourquoi la validité est-elle de 1 an ?
+            </h3>
+            <p className="text-gray-700 leading-relaxed">
+              Les demandes CO₂e et critères ESG sont généralement revus sur une
+              base annuelle. Une attestation par année couverte facilite
+              l’archivage et la comparaison.
+            </p>
+          </div>
+
+          <div className="rounded-2xl border border-gray-200 bg-white p-6">
+            <h3 className="font-semibold text-[#0B3A63] mb-2">
+              Est-ce que vous stockez mes dépenses ou mon PDF ?
+            </h3>
+            <p className="text-gray-700 leading-relaxed">
+              Les calculs sont effectués localement dans le navigateur. Les
+              dépenses détaillées ne sont pas envoyées. Le serveur ne conserve
+              pas le PDF. La conservation du document reste côté entreprise ;
+              une réémission est possible.
+            </p>
+          </div>
         </div>
       </section>
 
-      <p className="text-gray-600 text-center text-xs mt-16 leading-relaxed">
+      {/* CTA FINAL */}
+      <section className="mt-16">
+        <div className="rounded-2xl border border-gray-200 bg-[#0B3A63] p-8 text-white">
+          <h2 className="text-2xl font-extrabold mb-3">
+            Obtenir une attestation CO₂e indicative à 89€ (sans abonnement)
+          </h2>
+          <p className="text-white/90 leading-relaxed max-w-2xl">
+            Pour répondre rapidement à une demande “bilan carbone” (screening)
+            avec un PDF clair, standardisé, daté, archivable et vérifiable — sans
+            audit complet.
+          </p>
+
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link
+              href="/fr/generate"
+              className="inline-block text-sm px-5 py-2.5 rounded-md bg-white text-[#0B3A63] hover:bg-gray-100 transition-colors font-semibold"
+            >
+              Générer mon attestation
+            </Link>
+            <Link
+              href="/fr/bilan-carbone-pme"
+              className="inline-block text-sm px-5 py-2.5 rounded-md border border-white/40 text-white hover:bg-white/10 transition-colors"
+            >
+              Lire le guide “bilan carbone PME”
+            </Link>
+            <a
+              href="#top"
+              className="inline-block text-sm px-5 py-2.5 rounded-md border border-white/40 text-white hover:bg-white/10 transition-colors"
+            >
+              Haut de page
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <p className="text-gray-600 text-center text-xs mt-12 leading-relaxed">
         Estimation CO₂e indicative basée sur les dépenses (spend-based). Non
-        auditée. Non inventaire complet. Non reporting CSRD/ESRS.
+        auditée. Ne constitue pas un inventaire GES complet, un audit, ni un
+        reporting CSRD/ESRS.
       </p>
     </section>
   );
-              }
+            }
