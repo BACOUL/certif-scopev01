@@ -1,3 +1,6 @@
+// PATH: src/components/fr/ProblemSolution.tsx
+"use client";
+
 export default function ProblemSolution() {
   return (
     <section
@@ -9,24 +12,24 @@ export default function ProblemSolution() {
         {/* SECTION HEADER — CANONICAL HOME */}
         <header className="max-w-3xl mx-auto text-center mb-20">
           <h2
-            className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] leading-snug mb-4"
+            className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] leading-snug mb-4 tracking-tight"
             data-i18n="problem.title"
           >
             Les PME sont de plus en plus sollicitées pour fournir un{" "}
-            <span className="whitespace-nowrap">bilan carbone PME</span> — sans avoir les
-            moyens de répondre.
+            <span className="whitespace-nowrap">bilan carbone PME</span> — sans
+            avoir les moyens de répondre.
           </h2>
 
           <p
             className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed"
             data-i18n="problem.description"
           >
-            Acheteurs, banques et assureurs demandent de plus en plus des éléments
-            de bilan carbone lors d’un référencement fournisseur, d’un appel d’offres
-            ou d’un contrôle de risque. Réaliser un inventaire carbone complet
-            nécessite des données d’activité détaillées, du temps, parfois un cabinet
-            et des itérations — des ressources que la majorité des PME ne peut pas
-            mobiliser à la demande.
+            Acheteurs, banques et assureurs demandent de plus en plus des
+            éléments de bilan carbone lors d’un référencement fournisseur, d’un
+            appel d’offres ou d’un contrôle de risque. Réaliser un inventaire
+            carbone complet nécessite des données d’activité détaillées, du
+            temps, parfois un cabinet et des itérations — des ressources que la
+            majorité des PME ne peut pas mobiliser à la demande.
           </p>
 
           <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto mt-10" />
@@ -39,22 +42,24 @@ export default function ProblemSolution() {
         >
           Certif-Scope génère une{" "}
           <strong>attestation de bilan carbone PME (CO₂e)</strong> indicative à
-          partir des dépenses annuelles (méthode spend-based). Un format standardisé,
-          lisible immédiatement par les équipes achats, banques et assureurs —
-          vérifiable indépendamment et réutilisable dans les workflows institutionnels.
+          partir des dépenses annuelles (méthode spend-based). Un format
+          standardisé, lisible immédiatement par les équipes achats, banques et
+          assureurs — vérifiable indépendamment et réutilisable dans les
+          workflows institutionnels.
         </p>
 
         {/* IA-FRIENDLY TAKEAWAY (1 phrase, non redondante) */}
         <p className="text-sm text-gray-600 dark:text-gray-400 text-center max-w-3xl mx-auto mb-10">
           À retenir : pour la majorité des demandes, il s’agit d’un{" "}
-          <strong>screening</strong> (indicateur + document cadré), pas d’un audit.
+          <strong>screening</strong> (indicateur + document cadré), pas d’un
+          audit.
         </p>
 
         {/* INTERNAL LINK — PILLAR PAGE (strong home → pillar signal) */}
         <div className="text-center mb-20">
           <a
-            href="/fr/bilan-carbone-pme"
-            className="inline-block text-sm font-medium text-[#0B3A63] underline hover:text-[#1FB6C1] transition"
+            href="/fr/bilan-carbone-pme/"
+            className="inline-block text-sm font-medium text-[#0B3A63] underline underline-offset-4 hover:text-[#15B097] transition-colors"
             aria-label="Guide de référence : bilan carbone PME"
           >
             Guide de référence : bilan carbone PME →
@@ -91,12 +96,12 @@ export default function ProblemSolution() {
             </h3>
 
             <p
-              className="text-sm text-gray-600 dark:text-gray-400 max-w-xs"
+              className="text-sm text-gray-600 dark:text-gray-400 max-w-xs leading-relaxed"
               data-i18n="problem.point1.text"
             >
-              Un document adapté aux usages réels : référencement fournisseur, appels
-              d’offres, demandes de banques et d’assureurs — avec un résultat lisible
-              rapidement.
+              Un document adapté aux usages réels : référencement fournisseur,
+              appels d’offres, demandes de banques et d’assureurs — avec un
+              résultat lisible rapidement.
             </p>
           </div>
 
@@ -128,12 +133,12 @@ export default function ProblemSolution() {
             </h3>
 
             <p
-              className="text-sm text-gray-600 dark:text-gray-400 max-w-xs"
+              className="text-sm text-gray-600 dark:text-gray-400 max-w-xs leading-relaxed"
               data-i18n="problem.point2.text"
             >
-              Basé sur les dépenses annuelles (€) et des facteurs d’émission stables.
-              Pas d’audit, pas d’enquêtes internes, pas de collecte de données
-              opérationnelles.
+              Basé sur les dépenses annuelles (€) et des facteurs d’émission
+              stables. Pas d’audit, pas d’enquêtes internes, pas de collecte de
+              données opérationnelles.
             </p>
           </div>
 
@@ -165,11 +170,11 @@ export default function ProblemSolution() {
             </h3>
 
             <p
-              className="text-sm text-gray-600 dark:text-gray-400 max-w-xs"
+              className="text-sm text-gray-600 dark:text-gray-400 max-w-xs leading-relaxed"
               data-i18n="problem.point3.text"
             >
-              Une structure constante pour comparer des prestataires rapidement, réduire
-              l’ambiguïté et accélérer la revue des dossiers.
+              Une structure constante pour comparer des prestataires rapidement,
+              réduire l’ambiguïté et accélérer la revue des dossiers.
             </p>
           </div>
         </div>
@@ -177,7 +182,7 @@ export default function ProblemSolution() {
         {/* LINK */}
         <a
           href="#how-it-works"
-          className="block mt-20 text-xs text-center text-[#0B3A63] hover:text-[#1FB6C1] underline"
+          className="block mt-20 text-xs text-center text-[#0B3A63] hover:text-[#15B097] underline underline-offset-4 transition-colors"
           data-i18n="problem.link.how"
         >
           Comment l’attestation est générée →
@@ -185,4 +190,4 @@ export default function ProblemSolution() {
       </div>
     </section>
   );
-}
+              }
