@@ -54,7 +54,7 @@ export default function PricingPageFR() {
           Bilan carbone PME pas cher — Prix & packs
         </p>
 
-        <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-6">
+        <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-6 tracking-tight">
           Prix d’un bilan carbone PME : 89€ + packs
         </h1>
 
@@ -71,21 +71,21 @@ export default function PricingPageFR() {
 
         <div className="mt-8 flex flex-wrap gap-3">
           <Link
-            href="/fr/generate"
-            className="inline-block text-sm px-5 py-2.5 rounded-md bg-[#15B097] text-white hover:bg-[#12967f] transition-colors font-semibold"
+            href="/fr/generate/"
+            className="inline-block text-sm px-5 py-2.5 rounded-md bg-[#0B3A63] text-white hover:bg-[#0B3A63]/90 transition-colors font-semibold"
           >
             Générer mon attestation →
           </Link>
 
           <Link
-            href="/fr/bilan-carbone-pme"
+            href="/fr/bilan-carbone-pme/"
             className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
           >
             Guide : bilan carbone PME
           </Link>
 
           <Link
-            href="/fr/verify"
+            href="/verify"
             className="inline-block text-sm px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
           >
             Vérifier un document
@@ -158,9 +158,7 @@ export default function PricingPageFR() {
 
         {/* PACK 5 */}
         <div className="bg-white border border-gray-200 rounded-2xl shadow-lg p-10 text-center flex flex-col">
-          <h2 className="text-2xl font-bold text-[#0B3A63] mb-3">
-            Pack de 5
-          </h2>
+          <h2 className="text-2xl font-bold text-[#0B3A63] mb-3">Pack de 5</h2>
 
           <p className="text-4xl font-extrabold text-[#0B3A63] mb-1">349€</p>
           <p className="text-sm text-gray-500 mb-4">(69€ par attestation)</p>
@@ -171,7 +169,7 @@ export default function PricingPageFR() {
 
           <a
             href="/api/checkout-pack?pack=5"
-            className="bg-[#0B3A63] hover:bg-[#092f50] text-white font-semibold px-10 py-3 rounded-xl mt-auto text-center"
+            className="bg-[#0B3A63] hover:bg-[#0B3A63]/90 text-white font-semibold px-10 py-3 rounded-xl mt-auto text-center transition-colors"
           >
             Acheter le pack de 5
           </a>
@@ -179,9 +177,7 @@ export default function PricingPageFR() {
 
         {/* PACK 10 */}
         <div className="bg-white border border-gray-200 rounded-2xl shadow-lg p-10 text-center flex flex-col">
-          <h2 className="text-2xl font-bold text-[#0B3A63] mb-3">
-            Pack de 10
-          </h2>
+          <h2 className="text-2xl font-bold text-[#0B3A63] mb-3">Pack de 10</h2>
 
           <p className="text-4xl font-extrabold text-[#0B3A63] mb-1">590€</p>
           <p className="text-sm text-gray-500 mb-4">(59€ par attestation)</p>
@@ -192,7 +188,7 @@ export default function PricingPageFR() {
 
           <a
             href="/api/checkout-pack?pack=10"
-            className="bg-[#0B3A63] hover:bg-[#092f50] text-white font-semibold px-10 py-3 rounded-xl mt-auto text-center"
+            className="bg-[#0B3A63] hover:bg-[#0B3A63]/90 text-white font-semibold px-10 py-3 rounded-xl mt-auto text-center transition-colors"
           >
             Acheter le pack de 10
           </a>
@@ -200,9 +196,7 @@ export default function PricingPageFR() {
 
         {/* PACK 50 */}
         <div className="bg-white border border-gray-200 rounded-2xl shadow-lg p-10 text-center flex flex-col col-span-full lg:col-span-1 mx-auto">
-          <h2 className="text-2xl font-bold text-[#0B3A63] mb-3">
-            Pack de 50
-          </h2>
+          <h2 className="text-2xl font-bold text-[#0B3A63] mb-3">Pack de 50</h2>
 
           <p className="text-4xl font-extrabold text-[#0B3A63] mb-1">2,450€</p>
           <p className="text-sm text-gray-500 mb-4">(49€ par attestation)</p>
@@ -213,7 +207,7 @@ export default function PricingPageFR() {
 
           <a
             href="/api/checkout-pack?pack=50"
-            className="bg-[#0B3A63] hover:bg-[#092f50] text-white font-semibold px-10 py-3 rounded-xl mt-auto text-center"
+            className="bg-[#0B3A63] hover:bg-[#0B3A63]/90 text-white font-semibold px-10 py-3 rounded-xl mt-auto text-center transition-colors"
           >
             Acheter le pack de 50
           </a>
@@ -351,13 +345,13 @@ export default function PricingPageFR() {
 
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
-              href="/fr/generate"
+              href="/fr/generate/"
               className="inline-block text-sm px-5 py-2.5 rounded-md bg-white text-[#0B3A63] hover:bg-gray-100 transition-colors font-semibold"
             >
               Générer mon attestation
             </Link>
             <Link
-              href="/fr/bilan-carbone-pme"
+              href="/fr/bilan-carbone-pme/"
               className="inline-block text-sm px-5 py-2.5 rounded-md border border-white/40 text-white hover:bg-white/10 transition-colors"
             >
               Lire le guide “bilan carbone PME”
@@ -379,4 +373,4 @@ export default function PricingPageFR() {
       </p>
     </section>
   );
-            }
+       }
