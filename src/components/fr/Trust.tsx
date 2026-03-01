@@ -1,3 +1,4 @@
+// PATH: src/components/fr/TrustFR.tsx
 "use client";
 
 export default function TrustFR() {
@@ -8,7 +9,6 @@ export default function TrustFR() {
       className="py-24 bg-[#F8FAFC] dark:bg-gray-900"
     >
       <div className="max-w-6xl mx-auto px-6 text-center">
-
         {/* MICRO LABEL */}
         <p
           className="uppercase text-xs md:text-sm font-medium text-[#64748B] dark:text-gray-400 tracking-wider mb-3"
@@ -19,7 +19,7 @@ export default function TrustFR() {
 
         {/* TITLE */}
         <h2
-          className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] dark:text-gray-100 leading-tight"
+          className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] dark:text-gray-100 leading-tight tracking-tight"
           data-i18n="trust.title"
         >
           Conçue pour l’examen institutionnel et la vérification indépendante
@@ -30,10 +30,11 @@ export default function TrustFR() {
           className="mt-4 text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed"
           data-i18n="trust.intro"
         >
-          Certif-Scope repose sur une structure documentaire fixe, des références de facteurs
-          d’émission stables et des éléments de vérification intégrés. Les examinateurs disposent
-          d’un document cohérent et comparable entre fournisseurs, réduisant les contrôles manuels
-          et les zones d’interprétation.
+          Certif-Scope repose sur une structure documentaire fixe, des références
+          de facteurs d’émission stables et des éléments de vérification intégrés.
+          Les examinateurs disposent d’un document cohérent et comparable entre
+          fournisseurs, réduisant les contrôles manuels et les zones
+          d’interprétation.
         </p>
 
         {/* SEPARATOR */}
@@ -50,7 +51,6 @@ export default function TrustFR() {
 
         {/* PILLARS */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-
           {/* INTEGRITY */}
           <div
             className="flex flex-col items-center text-center transition-transform duration-200 hover:-translate-y-1"
@@ -76,9 +76,10 @@ export default function TrustFR() {
             </h3>
 
             <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Chaque attestation intègre des éléments de vérification permettant à un tiers
-              de confirmer l’authenticité et l’intégrité du document, sans dépendre de comptes
-              utilisateurs, de bases de données ou du stockage de données financières.
+              Chaque attestation intègre des éléments de vérification permettant
+              à un tiers de confirmer l’authenticité et l’intégrité du document,
+              sans dépendre de comptes utilisateurs, de bases de données ou du
+              stockage de données financières.
             </p>
           </div>
 
@@ -95,7 +96,11 @@ export default function TrustFR() {
               strokeWidth="1.5"
               viewBox="0 0 24 24"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M4 7h16M4 12h16M4 17h16" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4 7h16M4 12h16M4 17h16"
+              />
             </svg>
 
             <h3 className="text-lg font-semibold text-[#0B3A63] dark:text-gray-100 mb-2">
@@ -103,9 +108,9 @@ export default function TrustFR() {
             </h3>
 
             <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Les données d’entrée, le résumé méthodologique et les résultats suivent
-              une présentation prévisible, conforme aux pratiques d’analyse des équipes
-              achats, bancaires et ESG.
+              Les données d’entrée, le résumé méthodologique et les résultats
+              suivent une présentation prévisible, conforme aux pratiques
+              d’analyse des équipes achats, bancaires et ESG.
             </p>
           </div>
 
@@ -134,12 +139,12 @@ export default function TrustFR() {
             </h3>
 
             <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Des références de facteurs d’émission documentées et stables garantissent
-              des résultats comparables d’une évaluation à l’autre, facilitant le
-              filtrage institutionnel et les comparaisons automatisées.
+              Des références de facteurs d’émission documentées et stables
+              garantissent des résultats comparables d’une évaluation à l’autre,
+              facilitant le filtrage institutionnel et les comparaisons
+              automatisées.
             </p>
           </div>
-
         </div>
 
         {/* FOOTNOTE */}
@@ -147,11 +152,10 @@ export default function TrustFR() {
           className="mt-12 text-center text-xs text-gray-500 dark:text-gray-400"
           data-i18n="trust.footnote"
         >
-          Document indicatif basé sur les dépenses — ne constitue ni un rapport CSRD/ESRS,
-          ni un inventaire d’émissions audité.
+          Document indicatif basé sur les dépenses — ne constitue ni un rapport
+          CSRD/ESRS, ni un inventaire d’émissions audité.
         </p>
-
       </div>
     </section>
   );
-          }
+}
