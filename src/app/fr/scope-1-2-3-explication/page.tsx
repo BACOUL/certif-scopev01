@@ -63,8 +63,8 @@ export default function Scopes123ExplanationFR() {
     "@type": "Organization",
     name: "Certif-Scope",
     url: "https://www.certif-scope.com",
-    logo: "https://www.certif-scope.com/assets/logo.png",
-    sameAs: [],
+    logo: "https://www.certif-scope.com/logo.png",
+    sameAs: [] as string[],
   };
 
   const jsonLdBreadcrumb = {
@@ -199,14 +199,18 @@ export default function Scopes123ExplanationFR() {
 
         <h1 className="text-3xl md:text-5xl font-extrabold text-[#0B3A63] mb-6 leading-tight">
           Scopes 1, 2, 3 : explication simple (PME) <br />
-          <span className="text-[#0B3A63]/90">et quoi répondre quand on vous les demande</span>
+          <span className="text-[#0B3A63]/90">
+            et quoi répondre quand on vous les demande
+          </span>
         </h1>
 
         <p className="text-lg text-gray-700 leading-relaxed max-w-3xl">
-          Beaucoup de demandes “bilan carbone” mentionnent les <strong>scopes 1/2/3</strong>. Le point clé : distinguer
-          un <strong>screening</strong> (document archivable, indicateur comparable) d’un <strong>inventaire complet</strong>{" "}
-          (collecte de données d’activité, périmètres, hypothèses, preuves). Cette page donne une lecture claire et une
-          réponse sûre.
+          Beaucoup de demandes “bilan carbone” mentionnent les{" "}
+          <strong>scopes 1/2/3</strong>. Le point clé : distinguer un{" "}
+          <strong>screening</strong> (document archivable, indicateur comparable)
+          d’un <strong>inventaire complet</strong> (collecte de données
+          d’activité, périmètres, hypothèses, preuves). Cette page donne une
+          lecture claire et une réponse sûre.
         </p>
 
         <div className="mt-8 flex flex-wrap gap-3">
@@ -234,21 +238,30 @@ export default function Scopes123ExplanationFR() {
 
         <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="rounded-2xl border border-gray-200 bg-white p-5">
-            <p className="text-xs uppercase tracking-wider text-[#64748B] mb-2">Objectif</p>
+            <p className="text-xs uppercase tracking-wider text-[#64748B] mb-2">
+              Objectif
+            </p>
             <p className="text-gray-700 leading-relaxed">
-              Comprendre scopes 1/2/3 et répondre au niveau attendu, sans sur-promesse.
+              Comprendre scopes 1/2/3 et répondre au niveau attendu, sans
+              sur-promesse.
             </p>
           </div>
           <div className="rounded-2xl border border-gray-200 bg-white p-5">
-            <p className="text-xs uppercase tracking-wider text-[#64748B] mb-2">Ce que vous évitez</p>
+            <p className="text-xs uppercase tracking-wider text-[#64748B] mb-2">
+              Ce que vous évitez
+            </p>
             <p className="text-gray-700 leading-relaxed">
-              Confondre “scope” (structure d’inventaire) avec “document de screening” (dossier-ready).
+              Confondre “scope” (structure d’inventaire) avec “document de
+              screening” (dossier-ready).
             </p>
           </div>
           <div className="rounded-2xl border border-gray-200 bg-white p-5">
-            <p className="text-xs uppercase tracking-wider text-[#64748B] mb-2">Quand escalader</p>
+            <p className="text-xs uppercase tracking-wider text-[#64748B] mb-2">
+              Quand escalader
+            </p>
             <p className="text-gray-700 leading-relaxed">
-              Si un standard, un périmètre, des preuves ou une assurance sont explicitement exigés.
+              Si un standard, un périmètre, des preuves ou une assurance sont
+              explicitement exigés.
             </p>
           </div>
         </div>
@@ -263,7 +276,9 @@ export default function Scopes123ExplanationFR() {
           {/* MOBILE TOC */}
           <section className="lg:hidden">
             <div className="rounded-2xl border border-gray-200 bg-[#F8FAFC] p-6">
-              <p className="text-xs uppercase tracking-wider text-[#64748B] mb-3">Sommaire</p>
+              <p className="text-xs uppercase tracking-wider text-[#64748B] mb-3">
+                Sommaire
+              </p>
               <nav aria-label="Sommaire scopes 1/2/3 (mobile)">
                 <ol className="space-y-2 text-sm list-decimal ml-5">
                   <TocItem href="#definition" label="Définition : scopes en une phrase" />
@@ -286,21 +301,29 @@ export default function Scopes123ExplanationFR() {
 
             <div className="rounded-2xl border border-gray-200 bg-[#F8FAFC] p-6">
               <p className="text-gray-700 leading-relaxed">
-                Les <strong>scopes 1/2/3</strong> sont une manière de <strong>structurer un inventaire</strong>{" "}
-                d’émissions (CO₂e) : <strong>direct</strong> (Scope 1), <strong>énergie achetée</strong> (Scope 2), et{" "}
+                Les <strong>scopes 1/2/3</strong> sont une manière de{" "}
+                <strong>structurer un inventaire</strong> d’émissions (CO₂e) :{" "}
+                <strong>direct</strong> (Scope 1),{" "}
+                <strong>énergie achetée</strong> (Scope 2), et{" "}
                 <strong>chaîne de valeur</strong> (Scope 3).
               </p>
               <p className="mt-3 text-sm text-gray-600 leading-relaxed">
-                Important : une demande qui cite “scopes” ne signifie pas automatiquement qu’un inventaire complet est
-                exigé. Beaucoup de demandes restent du <strong>screening</strong> (dossier, comparabilité, archivage).
+                Important : une demande qui cite “scopes” ne signifie pas
+                automatiquement qu’un inventaire complet est exigé. Beaucoup de
+                demandes restent du <strong>screening</strong> (dossier,
+                comparabilité, archivage).
               </p>
             </div>
 
             <div className="mt-6 rounded-2xl border border-gray-200 bg-white p-6">
-              <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">Cadre (référence)</h3>
+              <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
+                Cadre (référence)
+              </h3>
               <p className="text-gray-700 leading-relaxed">
-                Les scopes sont utilisés dans de nombreux workflows (achats, ESG, banque/assurance) et apparaissent
-                fréquemment dans des questionnaires standard, même lorsque la demande ne porte pas sur une vérification.
+                Les scopes sont utilisés dans de nombreux workflows (achats, ESG,
+                banque/assurance) et apparaissent fréquemment dans des
+                questionnaires standard, même lorsque la demande ne porte pas sur
+                une vérification.
               </p>
             </div>
 
@@ -317,8 +340,12 @@ export default function Scopes123ExplanationFR() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="rounded-2xl border border-gray-200 bg-white p-6">
-                <p className="text-xs uppercase tracking-wider text-[#64748B] mb-2">Scope 1</p>
-                <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">Émissions directes</h3>
+                <p className="text-xs uppercase tracking-wider text-[#64748B] mb-2">
+                  Scope 1
+                </p>
+                <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
+                  Émissions directes
+                </h3>
                 <ul className="list-disc ml-5 text-gray-700 space-y-2">
                   <li>chauffage au gaz / fioul</li>
                   <li>véhicules détenus (carburant)</li>
@@ -327,8 +354,12 @@ export default function Scopes123ExplanationFR() {
               </div>
 
               <div className="rounded-2xl border border-gray-200 bg-white p-6">
-                <p className="text-xs uppercase tracking-wider text-[#64748B] mb-2">Scope 2</p>
-                <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">Énergie achetée</h3>
+                <p className="text-xs uppercase tracking-wider text-[#64748B] mb-2">
+                  Scope 2
+                </p>
+                <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
+                  Énergie achetée
+                </h3>
                 <ul className="list-disc ml-5 text-gray-700 space-y-2">
                   <li>électricité des bureaux / sites</li>
                   <li>chaleur/vapeur achetée (si applicable)</li>
@@ -336,8 +367,12 @@ export default function Scopes123ExplanationFR() {
               </div>
 
               <div className="rounded-2xl border border-gray-200 bg-white p-6">
-                <p className="text-xs uppercase tracking-wider text-[#64748B] mb-2">Scope 3</p>
-                <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">Chaîne de valeur</h3>
+                <p className="text-xs uppercase tracking-wider text-[#64748B] mb-2">
+                  Scope 3
+                </p>
+                <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
+                  Chaîne de valeur
+                </h3>
                 <ul className="list-disc ml-5 text-gray-700 space-y-2">
                   <li>achats & sous-traitance</li>
                   <li>transport & logistique</li>
@@ -351,26 +386,46 @@ export default function Scopes123ExplanationFR() {
               <table className="min-w-[760px] w-full text-sm">
                 <thead>
                   <tr className="bg-[#F8FAFC]">
-                    <th className="text-left p-4 font-semibold text-[#0B3A63]">Ce qui est demandé</th>
-                    <th className="text-left p-4 font-semibold text-[#0B3A63]">Ce que ça implique</th>
-                    <th className="text-left p-4 font-semibold text-[#0B3A63]">Risque PME</th>
+                    <th className="text-left p-4 font-semibold text-[#0B3A63]">
+                      Ce qui est demandé
+                    </th>
+                    <th className="text-left p-4 font-semibold text-[#0B3A63]">
+                      Ce que ça implique
+                    </th>
+                    <th className="text-left p-4 font-semibold text-[#0B3A63]">
+                      Risque PME
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200">
                   <tr>
                     <td className="p-4 text-gray-700">“Scopes 1/2/3 (oui/non)”</td>
-                    <td className="p-4 text-gray-700">Souvent un questionnaire de screening</td>
-                    <td className="p-4 text-gray-700">Sur-interpréter comme un audit exigé</td>
+                    <td className="p-4 text-gray-700">
+                      Souvent un questionnaire de screening
+                    </td>
+                    <td className="p-4 text-gray-700">
+                      Sur-interpréter comme un audit exigé
+                    </td>
                   </tr>
                   <tr>
                     <td className="p-4 text-gray-700">“Détail par scopes + preuves”</td>
-                    <td className="p-4 text-gray-700">Inventaire structuré, collecte d’activité</td>
-                    <td className="p-4 text-gray-700">Sous-estimer l’effort et le délai</td>
+                    <td className="p-4 text-gray-700">
+                      Inventaire structuré, collecte d’activité
+                    </td>
+                    <td className="p-4 text-gray-700">
+                      Sous-estimer l’effort et le délai
+                    </td>
                   </tr>
                   <tr>
-                    <td className="p-4 text-gray-700">“Référentiel + périmètre + assurance”</td>
-                    <td className="p-4 text-gray-700">Exigence formelle (cadre explicite)</td>
-                    <td className="p-4 text-gray-700">Fournir un document non conforme au cahier des charges</td>
+                    <td className="p-4 text-gray-700">
+                      “Référentiel + périmètre + assurance”
+                    </td>
+                    <td className="p-4 text-gray-700">
+                      Exigence formelle (cadre explicite)
+                    </td>
+                    <td className="p-4 text-gray-700">
+                      Fournir un document non conforme au cahier des charges
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -388,14 +443,17 @@ export default function Scopes123ExplanationFR() {
             </h2>
 
             <p className="text-gray-700 leading-relaxed mb-6">
-              Les scopes structurent un inventaire. Mais une grande partie des demandes reçues par une PME est orientée{" "}
-              <strong>dossier</strong> : un indicateur, une date, une méthode, des limites, et un document archivable. Pour
-              décider, cherchez des signaux d’exigence formelle.
+              Les scopes structurent un inventaire. Mais une grande partie des
+              demandes reçues par une PME est orientée <strong>dossier</strong> :
+              un indicateur, une date, une méthode, des limites, et un document
+              archivable. Pour décider, cherchez des signaux d’exigence formelle.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="rounded-2xl border border-gray-200 bg-[#F8FAFC] p-6">
-                <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">Screening (le plus fréquent)</h3>
+                <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
+                  Screening (le plus fréquent)
+                </h3>
                 <ul className="list-disc ml-6 text-gray-700 space-y-2">
                   <li>objectif : comparabilité / archivage</li>
                   <li>format : document simple + limites</li>
@@ -405,7 +463,9 @@ export default function Scopes123ExplanationFR() {
               </div>
 
               <div className="rounded-2xl border border-gray-200 bg-[#F8FAFC] p-6">
-                <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">Inventaire complet (moins fréquent)</h3>
+                <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
+                  Inventaire complet (moins fréquent)
+                </h3>
                 <ul className="list-disc ml-6 text-gray-700 space-y-2">
                   <li>cadre/référentiel imposé + périmètre détaillé</li>
                   <li>collecte de données d’activité</li>
@@ -418,8 +478,10 @@ export default function Scopes123ExplanationFR() {
             <div className="mt-6 rounded-2xl border border-gray-200 bg-[#0B3A63] p-6 text-white">
               <h3 className="text-lg font-semibold mb-2">Phrase anti-erreur</h3>
               <p className="text-white/90 leading-relaxed">
-                Si le cahier des charges n’impose pas explicitement une méthode + un périmètre + des preuves, traitez la
-                demande comme du screening et répondez avec un document clair : date, méthode, limites visibles.
+                Si le cahier des charges n’impose pas explicitement une méthode +
+                un périmètre + des preuves, traitez la demande comme du screening
+                et répondez avec un document clair : date, méthode, limites
+                visibles.
               </p>
             </div>
 
@@ -435,17 +497,21 @@ export default function Scopes123ExplanationFR() {
             </h2>
 
             <p className="text-gray-700 leading-relaxed mb-6">
-              L’objectif : être <strong>honnête</strong>, <strong>cadré</strong> et <strong>dossier-ready</strong>. Vous
-              évitez deux erreurs : “ne rien fournir” (blocage) et “sur-promettre” (risque contractuel).
+              L’objectif : être <strong>honnête</strong>, <strong>cadré</strong>{" "}
+              et <strong>dossier-ready</strong>. Vous évitez deux erreurs : “ne
+              rien fournir” (blocage) et “sur-promettre” (risque contractuel).
             </p>
 
             <div className="rounded-2xl border border-gray-200 bg-white p-6">
-              <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">Template A — demande floue (screening)</h3>
+              <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
+                Template A — demande floue (screening)
+              </h3>
               <div className="rounded-xl border border-gray-200 bg-[#F8FAFC] p-5">
                 <p className="text-gray-700 leading-relaxed">
-                  “Nous fournissons un indicateur CO₂e <strong>indicatif</strong> pour l’année [AAAA], destiné au
-                  screening. La méthode est déclarée, les limites sont explicites (non audit, non inventaire complet, non
-                  CSRD/ESRS), et le document est daté et archivable.”
+                  “Nous fournissons un indicateur CO₂e <strong>indicatif</strong>{" "}
+                  pour l’année [AAAA], destiné au screening. La méthode est
+                  déclarée, les limites sont explicites (non audit, non inventaire
+                  complet, non CSRD/ESRS), et le document est daté et archivable.”
                 </p>
               </div>
 
@@ -472,19 +538,23 @@ export default function Scopes123ExplanationFR() {
             </div>
 
             <div className="mt-6 rounded-2xl border border-gray-200 bg-white p-6">
-              <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">Template B — on vous demande “scopes”</h3>
+              <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
+                Template B — on vous demande “scopes”
+              </h3>
 
               <div className="rounded-xl border border-gray-200 bg-[#F8FAFC] p-5">
                 <p className="text-gray-700 leading-relaxed">
-                  “La demande mentionne scopes 1/2/3. Pouvez-vous confirmer si un <strong>inventaire complet</strong>{" "}
-                  ventilé par scopes est exigé (périmètre, méthode, preuves, niveau d’assurance), ou si un{" "}
-                  <strong>document de screening</strong> avec un résultat CO₂e agrégé, méthode + limites explicites est
-                  acceptable à ce stade ?”
+                  “La demande mentionne scopes 1/2/3. Pouvez-vous confirmer si un{" "}
+                  <strong>inventaire complet</strong> ventilé par scopes est exigé
+                  (périmètre, méthode, preuves, niveau d’assurance), ou si un{" "}
+                  <strong>document de screening</strong> avec un résultat CO₂e
+                  agrégé, méthode + limites explicites est acceptable à ce stade ?”
                 </p>
               </div>
 
               <p className="mt-4 text-sm text-gray-600 leading-relaxed">
-                Ce template protège la PME : clarification écrite, sans bloquer le dossier.
+                Ce template protège la PME : clarification écrite, sans bloquer le
+                dossier.
               </p>
             </div>
 
@@ -500,7 +570,9 @@ export default function Scopes123ExplanationFR() {
             </h2>
 
             <div className="rounded-2xl border border-gray-200 bg-white p-6">
-              <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">Check-list “exigence formelle”</h3>
+              <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
+                Check-list “exigence formelle”
+              </h3>
               <ul className="list-disc ml-6 text-gray-700 space-y-2">
                 <li>référentiel imposé (méthode, norme, cadre)</li>
                 <li>périmètre défini (organisation, sites, frontières)</li>
@@ -511,9 +583,10 @@ export default function Scopes123ExplanationFR() {
 
               <div className="mt-5 border-t border-gray-200 pt-5">
                 <p className="text-gray-700 leading-relaxed">
-                  Si ces éléments apparaissent, il ne s’agit plus d’un simple “scope” cité dans un questionnaire. Vous
-                  êtes face à une exigence d’inventaire. Dans ce cas, une estimation indicative agrégée ne doit pas être
-                  présentée comme un inventaire complet.
+                  Si ces éléments apparaissent, il ne s’agit plus d’un simple
+                  “scope” cité dans un questionnaire. Vous êtes face à une exigence
+                  d’inventaire. Dans ce cas, une estimation indicative agrégée ne
+                  doit pas être présentée comme un inventaire complet.
                 </p>
 
                 <div className="mt-4 flex flex-wrap gap-3">
@@ -545,15 +618,18 @@ export default function Scopes123ExplanationFR() {
             </h2>
 
             <p className="text-gray-700 leading-relaxed mb-6">
-              Même vocabulaire (“scopes”), objectifs différents. Identifier le scénario évite les réponses incohérentes.
+              Même vocabulaire (“scopes”), objectifs différents. Identifier le
+              scénario évite les réponses incohérentes.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="rounded-2xl border border-gray-200 bg-white p-6">
-                <h3 className="text-lg font-semibold text-[#0B3A63] mb-2">Référencement fournisseur</h3>
+                <h3 className="text-lg font-semibold text-[#0B3A63] mb-2">
+                  Référencement fournisseur
+                </h3>
                 <p className="text-gray-700 leading-relaxed">
-                  Souvent : questionnaire standard + archivage interne. Priorité : fournir un document clair (méthode,
-                  limites, date).
+                  Souvent : questionnaire standard + archivage interne. Priorité :
+                  fournir un document clair (méthode, limites, date).
                 </p>
                 <div className="mt-4">
                   <Link className="underline text-[#0B3A63]" href="/fr/bilan-carbone-fournisseur">
@@ -563,10 +639,13 @@ export default function Scopes123ExplanationFR() {
               </div>
 
               <div className="rounded-2xl border border-gray-200 bg-white p-6">
-                <h3 className="text-lg font-semibold text-[#0B3A63] mb-2">Appel d’offres</h3>
+                <h3 className="text-lg font-semibold text-[#0B3A63] mb-2">
+                  Appel d’offres
+                </h3>
                 <p className="text-gray-700 leading-relaxed">
-                  Souvent : critère de notation (comparabilité). Si aucun référentiel n’est imposé, un document de
-                  screening est généralement acceptable.
+                  Souvent : critère de notation (comparabilité). Si aucun
+                  référentiel n’est imposé, un document de screening est
+                  généralement acceptable.
                 </p>
                 <div className="mt-4">
                   <Link className="underline text-[#0B3A63]" href="/fr/bilan-carbone-appel-offres">
@@ -576,22 +655,32 @@ export default function Scopes123ExplanationFR() {
               </div>
 
               <div className="rounded-2xl border border-gray-200 bg-white p-6">
-                <h3 className="text-lg font-semibold text-[#0B3A63] mb-2">Banque / assurance (screening ESG)</h3>
+                <h3 className="text-lg font-semibold text-[#0B3A63] mb-2">
+                  Banque / assurance (screening ESG)
+                </h3>
                 <p className="text-gray-700 leading-relaxed">
-                  Souvent : documentation minimale (date, méthode, limites) pour un screening interne et l’archivage.
+                  Souvent : documentation minimale (date, méthode, limites) pour
+                  un screening interne et l’archivage.
                 </p>
                 <div className="mt-4">
-                  <Link className="underline text-[#0B3A63]" href="/fr/why-companies-ask/exigences-co2-banques-assurances">
+                  <Link
+                    className="underline text-[#0B3A63]"
+                    href="/fr/why-companies-ask/exigences-co2-banques-assurances"
+                  >
                     Aller plus loin : banque / assurance →
                   </Link>
                 </div>
               </div>
 
               <div className="rounded-2xl border border-gray-200 bg-[#F8FAFC] p-6">
-                <h3 className="text-lg font-semibold text-[#0B3A63] mb-2">Quand il faut refuser une confusion</h3>
+                <h3 className="text-lg font-semibold text-[#0B3A63] mb-2">
+                  Quand il faut refuser une confusion
+                </h3>
                 <p className="text-gray-700 leading-relaxed">
-                  Si on exige une ventilation complète par scopes + preuves + assurance, il faut l’indiquer clairement et
-                  demander une clarification sur le niveau attendu, ou aligner une démarche complète.
+                  Si on exige une ventilation complète par scopes + preuves +
+                  assurance, il faut l’indiquer clairement et demander une
+                  clarification sur le niveau attendu, ou aligner une démarche
+                  complète.
                 </p>
               </div>
             </div>
@@ -608,9 +697,10 @@ export default function Scopes123ExplanationFR() {
                 Répondre “scopes 1/2/3” sans se piéger : document clair, limites visibles
               </h2>
               <p className="text-white/90 leading-relaxed max-w-2xl">
-                Si la demande est du screening, l’objectif est un document archivable : résultat CO₂e, date, méthode,
-                limites explicites, et vérification. Si l’exigence est formelle (périmètre + preuves + assurance), il
-                faut suivre le cahier des charges.
+                Si la demande est du screening, l’objectif est un document archivable :
+                résultat CO₂e, date, méthode, limites explicites, et vérification. Si
+                l’exigence est formelle (périmètre + preuves + assurance), il faut
+                suivre le cahier des charges.
               </p>
 
               <div className="mt-6 flex flex-wrap gap-3">
@@ -653,11 +743,16 @@ export default function Scopes123ExplanationFR() {
 
           {/* FAQ */}
           <section id="faq" className="scroll-mt-24">
-            <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">FAQ — Scopes 1/2/3 (PME)</h2>
+            <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
+              FAQ — Scopes 1/2/3 (PME)
+            </h2>
 
             <div className="space-y-6">
               {faq.map((item, idx) => (
-                <div key={`${idx}-${item.q}`} className="rounded-2xl border border-gray-200 bg-white p-6">
+                <div
+                  key={`${idx}-${item.q}`}
+                  className="rounded-2xl border border-gray-200 bg-white p-6"
+                >
                   <h3 className="font-semibold text-[#0B3A63] mb-2">{item.q}</h3>
                   <p className="text-gray-700 leading-relaxed">{item.a}</p>
                 </div>
@@ -674,7 +769,9 @@ export default function Scopes123ExplanationFR() {
         <aside className="lg:col-span-4">
           <div className="sticky top-6 space-y-6">
             <div className="rounded-2xl border border-gray-200 bg-white p-6">
-              <p className="text-xs uppercase tracking-wider text-[#64748B] mb-3">Sommaire</p>
+              <p className="text-xs uppercase tracking-wider text-[#64748B] mb-3">
+                Sommaire
+              </p>
               <nav aria-label="Sommaire scopes 1/2/3">
                 <ol className="space-y-2 text-sm list-decimal ml-5">
                   <TocItem href="#definition" label="Définition" />
@@ -689,11 +786,15 @@ export default function Scopes123ExplanationFR() {
             </div>
 
             <div className="rounded-2xl border border-gray-200 bg-[#F8FAFC] p-6">
-              <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">Rappel de périmètre</h3>
+              <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
+                Rappel de périmètre
+              </h3>
               <p className="text-sm text-gray-700 leading-relaxed">
-                Cette page aide à répondre aux demandes “scopes 1/2/3” dans des contextes de screening (achats, AO,
-                banque/assurance). Certif-Scope produit une estimation CO₂e indicative spend-based (dépenses × facteurs)
-                avec un résultat agrégé et des limites explicites. Ce n’est pas un inventaire complet ventilé par scopes.
+                Cette page aide à répondre aux demandes “scopes 1/2/3” dans des
+                contextes de screening (achats, AO, banque/assurance). Certif-Scope
+                produit une estimation CO₂e indicative spend-based (dépenses ×
+                facteurs) avec un résultat agrégé et des limites explicites. Ce
+                n’est pas un inventaire complet ventilé par scopes.
               </p>
               <div className="mt-5 flex flex-wrap gap-3">
                 <Link
@@ -712,7 +813,9 @@ export default function Scopes123ExplanationFR() {
             </div>
 
             <div className="rounded-2xl border border-gray-200 bg-white p-6">
-              <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">Pages liées (cluster FR)</h3>
+              <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
+                Pages liées (cluster FR)
+              </h3>
               <ul className="space-y-2 text-sm text-gray-700">
                 <li>
                   <Link className="underline" href="/fr/bilan-carbone-pme">
@@ -738,7 +841,9 @@ export default function Scopes123ExplanationFR() {
             </div>
 
             <div className="rounded-2xl border border-gray-200 bg-white p-6">
-              <p className="text-xs uppercase tracking-wider text-[#64748B] mb-3">Accès rapide</p>
+              <p className="text-xs uppercase tracking-wider text-[#64748B] mb-3">
+                Accès rapide
+              </p>
               <div className="flex flex-wrap gap-3">
                 <Link
                   href="/fr"
@@ -759,4 +864,4 @@ export default function Scopes123ExplanationFR() {
       </div>
     </section>
   );
-                     }
+           }
