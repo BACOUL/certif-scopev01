@@ -40,8 +40,8 @@ export default function FooterFR() {
             {/* PRIMARY FR SEO LINK (PILLAR) */}
             <div className="mt-5">
               <Link
-                href="/fr/bilan-carbone-pme"
-                className="inline-block text-sm font-semibold text-[#0B3A63] underline hover:text-[#15B097] transition-colors"
+                href="/fr/bilan-carbone-pme/"
+                className="inline-block text-sm font-semibold text-[#0B3A63] underline underline-offset-4 hover:text-[#15B097] transition-colors"
                 aria-label="Bilan carbone PME : guide de référence (page pilier)"
               >
                 Bilan carbone PME : guide de référence →
@@ -51,19 +51,19 @@ export default function FooterFR() {
             {/* QUICK ACTIONS (EXISTING) */}
             <div className="mt-5 flex flex-wrap gap-3">
               <Link
-                href="/fr/generate"
-                className="inline-flex items-center justify-center text-sm px-4 py-2 rounded-md bg-[#15B097] text-white hover:bg-[#12967f] transition-colors font-semibold"
+                href="/fr/generate/"
+                className="inline-flex items-center justify-center text-sm px-4 py-2 rounded-md bg-[#0B3A63] text-white hover:bg-[#0B3A63]/90 transition-colors font-semibold"
               >
                 Générer →
               </Link>
               <Link
-                href="/fr/pricing"
+                href="/fr/pricing/"
                 className="inline-flex items-center justify-center text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
               >
                 Prix
               </Link>
               <Link
-                href="/fr/verify"
+                href="/verify"
                 className="inline-flex items-center justify-center text-sm px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800"
               >
                 Vérifier
@@ -85,7 +85,7 @@ export default function FooterFR() {
                 <Link
                   className={linkBase}
                   data-i18n="footer.link.overview"
-                  href="/fr/product"
+                  href="/fr/product/"
                 >
                   Présentation
                 </Link>
@@ -94,13 +94,13 @@ export default function FooterFR() {
                 <Link
                   className={linkBase}
                   data-i18n="footer.link.pricing"
-                  href="/fr/pricing"
+                  href="/fr/pricing/"
                 >
                   Prix
                 </Link>
               </li>
               <li>
-                <Link className={linkBase} href="/fr/generate">
+                <Link className={linkBase} href="/fr/generate/">
                   Générer une attestation
                 </Link>
               </li>
@@ -108,7 +108,7 @@ export default function FooterFR() {
                 <Link
                   className={linkBase}
                   data-i18n="footer.link.verify"
-                  href="/fr/verify"
+                  href="/verify"
                 >
                   Vérifier un document
                 </Link>
@@ -118,7 +118,7 @@ export default function FooterFR() {
                 <Link
                   className={linkBase}
                   data-i18n="footer.link.compliance"
-                  href="/fr/product/compliance"
+                  href="/fr/product/compliance/"
                 >
                   Conformité &amp; périmètre
                 </Link>
@@ -127,7 +127,7 @@ export default function FooterFR() {
                 <Link
                   className={linkBase}
                   data-i18n="footer.link.methodology"
-                  href="/fr/product/methodology"
+                  href="/fr/product/methodology/"
                 >
                   Méthodologie (spend-based)
                 </Link>
@@ -143,25 +143,25 @@ export default function FooterFR() {
 
             <ul className="space-y-2">
               <li>
-                <Link className={linkBase} href="/fr/bilan-carbone-pme">
+                <Link className={linkBase} href="/fr/bilan-carbone-pme/">
                   Bilan carbone PME : guide de référence
                 </Link>
               </li>
               <li>
-                <Link className={linkBase} href="/fr/bilan-carbone-appel-offres">
+                <Link className={linkBase} href="/fr/bilan-carbone-appel-offres/">
                   Bilan carbone en appel d’offres
                 </Link>
               </li>
 
               <li className="pt-2">
-                <Link className={linkBase} href="/fr/why-companies-ask">
+                <Link className={linkBase} href="/fr/why-companies-ask/">
                   Guides : pourquoi les entreprises le demandent
                 </Link>
               </li>
               <li>
                 <Link
                   className={linkBase}
-                  href="/fr/why-companies-ask/attestation-carbone-appel-offres"
+                  href="/fr/why-companies-ask/attestation-carbone-appel-offres/"
                 >
                   Cas pratique : appel d’offres (guide complémentaire)
                 </Link>
@@ -177,38 +177,38 @@ export default function FooterFR() {
 
             <ul className="space-y-2">
               <li>
-                <Link className={linkBase} href="/fr/partners">
+                <Link className={linkBase} href="/fr/partners/">
                   Partenariats
                 </Link>
               </li>
               <li>
-                <Link className={linkBase} href="/fr/contact">
+                <Link className={linkBase} href="/fr/contact/">
                   Contact
                 </Link>
               </li>
 
               <li className="pt-2">
-                <Link className={linkBase} href="/fr/legal">
+                <Link className={linkBase} href="/fr/legal/">
                   Mentions légales
                 </Link>
               </li>
               <li>
-                <Link className={linkBase} href="/fr/privacy">
+                <Link className={linkBase} href="/fr/privacy/">
                   Politique de confidentialité
                 </Link>
               </li>
               <li>
-                <Link className={linkBase} href="/fr/terms">
+                <Link className={linkBase} href="/fr/terms/">
                   Conditions d’utilisation
                 </Link>
               </li>
               <li>
-                <Link className={linkBase} href="/fr/cookies">
+                <Link className={linkBase} href="/fr/cookies/">
                   Politique cookies
                 </Link>
               </li>
               <li>
-                <Link className={linkBase} href="/fr/data-processing">
+                <Link className={linkBase} href="/fr/data-processing/">
                   Traitement des données (aperçu)
                 </Link>
               </li>
@@ -261,4 +261,4 @@ export default function FooterFR() {
       </div>
     </footer>
   );
-      }
+            }
