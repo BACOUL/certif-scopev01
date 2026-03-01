@@ -1,3 +1,4 @@
+// PATH: src/components/fr/TestimonialsFR.tsx
 "use client";
 
 export default function TestimonialsFR() {
@@ -26,7 +27,6 @@ export default function TestimonialsFR() {
       className="w-full bg-[#F8FAFC] dark:bg-gray-900 py-24"
     >
       <div className="max-w-4xl mx-auto px-6 text-center mb-14">
-
         {/* MICRO LABEL */}
         <p
           data-i18n="testimonials.label"
@@ -38,7 +38,7 @@ export default function TestimonialsFR() {
         {/* TITLE */}
         <h2
           data-i18n="testimonials.title"
-          className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-3"
+          className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-3 tracking-tight"
         >
           Cas d’usage fréquemment rencontrés par les entreprises
         </h2>
@@ -48,9 +48,9 @@ export default function TestimonialsFR() {
           data-i18n="testimonials.intro"
           className="text-[#475569] dark:text-gray-300 text-base md:text-lg max-w-xl mx-auto leading-relaxed"
         >
-          Exemples illustratifs reflétant la manière dont les PME européennes utilisent
-          Certif-Scope pour répondre aux demandes CO₂e des acheteurs, banques et équipes ESG
-          à l’aide d’une attestation standardisée.
+          Exemples illustratifs reflétant la manière dont les PME européennes
+          utilisent Certif-Scope pour répondre aux demandes CO₂e des acheteurs,
+          banques et équipes ESG à l’aide d’une attestation standardisée.
         </p>
       </div>
 
@@ -58,13 +58,13 @@ export default function TestimonialsFR() {
       <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
         {items.map((item, idx) => (
           <div
-            key={idx}
+            key={`testimonial-fr-${idx}-${item.role}`}
             className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 p-7 flex flex-col h-full"
           >
             {/* INITIALS */}
             <div
               aria-hidden="true"
-              className="w-14 h-14 rounded-full bg-[#1FB6C1] flex items-center justify-center text-sm font-semibold text-white mb-5 shadow-md"
+              className="w-14 h-14 rounded-full bg-[#15B097] flex items-center justify-center text-sm font-semibold text-white mb-5 shadow-md"
             >
               {item.initials}
             </div>
@@ -93,9 +93,9 @@ export default function TestimonialsFR() {
         data-i18n="testimonials.disclaimer"
         className="mt-12 text-center text-xs text-[#64748B] dark:text-gray-400 max-w-xl mx-auto leading-relaxed"
       >
-        Exemples illustratifs uniquement. Estimation indicative basée sur les dépenses.
-        Non auditée, non conforme CSRD/ESRS et ne constituant pas un inventaire
-        d’émissions de gaz à effet de serre.
+        Exemples illustratifs uniquement. Estimation indicative basée sur les
+        dépenses. Non auditée, non conforme CSRD/ESRS et ne constituant pas un
+        inventaire d’émissions de gaz à effet de serre.
       </p>
 
       {/* CTA */}
@@ -103,11 +103,11 @@ export default function TestimonialsFR() {
         <a
           href="#attestation-preview"
           data-i18n="testimonials.cta"
-          className="text-[#0B3A63] dark:text-[#1FB6C1] underline text-base hover:text-[#1FB6C1] transition"
+          className="text-[#0B3A63] dark:text-gray-300 underline underline-offset-4 text-base hover:text-[#15B097] transition-colors"
         >
           Voir le format de l’attestation →
         </a>
       </div>
     </section>
   );
-}
+            }
