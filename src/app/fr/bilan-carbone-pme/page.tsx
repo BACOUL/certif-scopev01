@@ -35,7 +35,7 @@ export const metadata: Metadata = {
 /* ======================================================
    PAGE PILIER FR — "BILAN CARBONE PME"
    Design: institutionnel premium, palette logo strict
-   Palette: Bleu #0B3A63 (dominant) / Turquoise #15B097 (accent)
+   Palette: Bleu #0B3A63 (dominant) / Turquoise #15B097 (accent) / Fond #F8FAFC
 ====================================================== */
 
 export default function BilanCarbonePMEPageFR() {
@@ -151,6 +151,7 @@ export default function BilanCarbonePMEPageFR() {
       "Service de génération d’un indicateur CO₂e indicatif (modèle spend-based) à partir des dépenses annuelles, destiné aux workflows achats, banque, assurance et screening ESG. Ce service ne constitue pas un audit, ni un inventaire complet, ni un reporting CSRD/ESRS.",
     offers: {
       "@type": "Offer",
+      price: "89",
       priceCurrency: "EUR",
       availability: "https://schema.org/InStock",
       url: "https://www.certif-scope.com/fr/pricing/",
@@ -262,14 +263,14 @@ export default function BilanCarbonePMEPageFR() {
 
         <div className="mt-8 flex flex-wrap gap-3">
           <Link
-            href="/fr/generate"
-            className="inline-block text-sm px-5 py-2.5 rounded-md bg-[#15B097] text-white hover:bg-[#12967f] transition-colors font-semibold"
+            href="/fr/generate/"
+            className="inline-block text-sm px-5 py-2.5 rounded-md bg-[#0B3A63] text-white hover:bg-[#0B3A63]/90 transition-colors font-semibold"
           >
             Générer mon document →
           </Link>
 
           <Link
-            href="/fr/pricing"
+            href="/fr/pricing/"
             className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
           >
             Voir le prix
@@ -339,16 +340,28 @@ export default function BilanCarbonePMEPageFR() {
                     href="#why-asked"
                     label="Pourquoi on le demande aux PME"
                   />
-                  <TocItem href="#expected" label="Ce qui est attendu (screening)" />
+                  <TocItem
+                    href="#expected"
+                    label="Ce qui est attendu (screening)"
+                  />
                   <TocItem
                     href="#difference"
                     label="Indicatif vs inventaire complet"
                   />
                   <TocItem href="#scopes" label="Scopes 1/2/3 : quoi répondre" />
                   <TocItem href="#cost" label="Coût, délais, effort" />
-                  <TocItem href="#method" label="Méthode spend-based (formule + limites)" />
-                  <TocItem href="#verification" label="Vérification et archivage" />
-                  <TocItem href="#privacy" label="Confidentialité (privacy-by-design)" />
+                  <TocItem
+                    href="#method"
+                    label="Méthode spend-based (formule + limites)"
+                  />
+                  <TocItem
+                    href="#verification"
+                    label="Vérification et archivage"
+                  />
+                  <TocItem
+                    href="#privacy"
+                    label="Confidentialité (privacy-by-design)"
+                  />
                   <TocItem href="#faq" label="FAQ" />
                 </ol>
               </nav>
@@ -707,8 +720,8 @@ export default function BilanCarbonePMEPageFR() {
                   Scopes 1/2/3 : explication (PME)
                 </Link>
                 <Link
-                  href="/fr/generate"
-                  className="inline-block text-sm px-5 py-2.5 rounded-md bg-[#15B097] text-white hover:bg-[#12967f] transition-colors font-semibold"
+                  href="/fr/generate/"
+                  className="inline-block text-sm px-5 py-2.5 rounded-md bg-[#0B3A63] text-white hover:bg-[#0B3A63]/90 transition-colors font-semibold"
                 >
                   Produire un document (screening) →
                 </Link>
@@ -905,7 +918,7 @@ export default function BilanCarbonePMEPageFR() {
 
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link
-                  href="/fr/generate"
+                  href="/fr/generate/"
                   className="inline-block text-sm px-5 py-2.5 rounded-md bg-white text-[#0B3A63] hover:bg-gray-100 transition-colors font-semibold"
                 >
                   Générer mon document
@@ -1076,4 +1089,4 @@ export default function BilanCarbonePMEPageFR() {
       </div>
     </section>
   );
-       }
+                       }
