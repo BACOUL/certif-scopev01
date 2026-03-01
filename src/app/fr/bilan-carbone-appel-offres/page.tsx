@@ -14,22 +14,21 @@ export const metadata: Metadata = {
   description:
     "Bilan carbone en appel d’offres : comprendre ce qui est réellement attendu (screening vs exigence formelle), quoi fournir dans le dossier et comment répondre avec un document CO₂e indicatif adapté.",
   alternates: {
-    canonical:
-      "https://www.certif-scope.com/fr/bilan-carbone-appel-offres",
+    canonical: "https://www.certif-scope.com/fr/bilan-carbone-appel-offres/",
     languages: {
-      fr: "https://www.certif-scope.com/fr/bilan-carbone-appel-offres",
+      fr: "https://www.certif-scope.com/fr/bilan-carbone-appel-offres/",
     },
   },
   openGraph: {
-    title:
-      "Bilan carbone appel d’offres : que fournir sans audit complet ?",
+    title: "Bilan carbone appel d’offres : que fournir sans audit complet ?",
     description:
       "Guide PME : comment répondre à une demande de bilan carbone dans un appel d’offres, quand un document indicatif suffit et quand un inventaire complet est requis.",
-    url: "https://www.certif-scope.com/fr/bilan-carbone-appel-offres",
+    url: "https://www.certif-scope.com/fr/bilan-carbone-appel-offres/",
     siteName: "Certif-Scope",
     type: "website",
     locale: "fr_FR",
   },
+  robots: { index: true, follow: true },
 };
 
 /* ======================================================
@@ -37,8 +36,7 @@ export const metadata: Metadata = {
 ====================================================== */
 
 export default function BilanCarboneAppelOffresFR() {
-  const pageUrl =
-    "https://www.certif-scope.com/fr/bilan-carbone-appel-offres";
+  const pageUrl = "https://www.certif-scope.com/fr/bilan-carbone-appel-offres/";
 
   const faq = [
     {
@@ -79,7 +77,7 @@ export default function BilanCarboneAppelOffresFR() {
                   "@type": "ListItem",
                   position: 1,
                   name: "Bilan carbone PME",
-                  item: "https://www.certif-scope.com/fr/bilan-carbone-pme",
+                  item: "https://www.certif-scope.com/fr/bilan-carbone-pme/",
                 },
                 {
                   "@type": "ListItem",
@@ -99,28 +97,28 @@ export default function BilanCarboneAppelOffresFR() {
           Guide PME — Appels d’offres & CO₂e
         </p>
 
-        <h1 className="text-3xl md:text-5xl font-extrabold text-[#0B3A63] mb-6 leading-tight">
+        <h1 className="text-3xl md:text-5xl font-extrabold text-[#0B3A63] mb-6 leading-tight tracking-tight">
           Bilan carbone en appel d’offres : que fournir quand on est une PME ?
         </h1>
 
         <p className="text-lg text-gray-700 leading-relaxed max-w-3xl">
           La mention “bilan carbone” dans un appel d’offres ne signifie pas
           automatiquement qu’un audit complet est exigé. Dans la majorité des
-          cas, l’acheteur cherche un <strong>indicateur CO₂e comparable</strong>
+          cas, l’acheteur cherche un <strong>indicateur CO₂e comparable</strong>{" "}
           entre candidats pour un critère environnemental ou un screening
           interne.
         </p>
 
         <div className="mt-8 flex flex-wrap gap-3">
           <Link
-            href="/fr/generate"
-            className="inline-block text-sm px-5 py-2.5 rounded-md bg-[#15B097] text-white hover:bg-[#12967f] transition-colors font-semibold"
+            href="/fr/generate/"
+            className="inline-block text-sm px-5 py-2.5 rounded-md bg-[#0B3A63] text-white hover:bg-[#0B3A63]/90 transition-colors font-semibold"
           >
             Générer mon attestation →
           </Link>
 
           <Link
-            href="/fr/bilan-carbone-pme"
+            href="/fr/bilan-carbone-pme/"
             className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
           >
             Guide complet bilan carbone PME
@@ -140,8 +138,8 @@ export default function BilanCarboneAppelOffresFR() {
 
           <p className="text-gray-700 leading-relaxed mb-6">
             Le terme “bilan carbone” est souvent employé de manière générique.
-            Dans beaucoup de dossiers, il s’agit d’un critère de comparaison,
-            non d’une obligation réglementaire imposant un référentiel précis.
+            Dans beaucoup de dossiers, il s’agit d’un critère de comparaison, non
+            d’une obligation réglementaire imposant un référentiel précis.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -210,12 +208,10 @@ export default function BilanCarboneAppelOffresFR() {
           <div className="space-y-6">
             {faq.map((item, idx) => (
               <div
-                key={idx}
+                key={`${idx}-${item.q}`}
                 className="rounded-2xl border border-gray-200 bg-white p-6"
               >
-                <h3 className="font-semibold text-[#0B3A63] mb-2">
-                  {item.q}
-                </h3>
+                <h3 className="font-semibold text-[#0B3A63] mb-2">{item.q}</h3>
                 <p className="text-gray-700 leading-relaxed">{item.a}</p>
               </div>
             ))}
@@ -237,14 +233,14 @@ export default function BilanCarboneAppelOffresFR() {
 
             <div className="mt-6 flex flex-wrap gap-3">
               <Link
-                href="/fr/generate"
+                href="/fr/generate/"
                 className="inline-block text-sm px-5 py-2.5 rounded-md bg-white text-[#0B3A63] hover:bg-gray-100 transition-colors font-semibold"
               >
                 Générer mon attestation
               </Link>
 
               <Link
-                href="/fr/pricing"
+                href="/fr/pricing/"
                 className="inline-block text-sm px-5 py-2.5 rounded-md border border-white/40 text-white hover:bg-white/10 transition-colors"
               >
                 Voir le prix
@@ -255,4 +251,4 @@ export default function BilanCarboneAppelOffresFR() {
       </div>
     </section>
   );
-                      }
+       }
