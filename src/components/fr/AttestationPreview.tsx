@@ -26,11 +26,12 @@ export default function AttestationPreviewFR() {
 
         {/* DESCRIPTION */}
         <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed mb-16">
-          Cette image illustre la structure standardisée et la mise en forme visuelle
-          d’une attestation CO₂e Certif-Scope. Elle est fournie uniquement à titre
-          illustratif pour présenter le format du document et ne correspond pas à une
-          attestation réellement émise. Chaque attestation est générée individuellement
-          à partir des données financières déclarées par l’utilisateur.
+          Cette image illustre la structure standardisée et la mise en forme
+          visuelle d’une attestation CO₂e Certif-Scope. Elle est fournie
+          uniquement à titre illustratif pour présenter le format du document et
+          ne correspond pas à une attestation réellement émise. Chaque
+          attestation est générée individuellement à partir des données
+          financières déclarées par l’utilisateur.
         </p>
 
         {/* IMAGE */}
@@ -53,19 +54,19 @@ export default function AttestationPreviewFR() {
           {/* INTERNAL NAVIGATION LINK */}
           <Link
             href="/fr/product"
-            className="text-sm text-[#0B3A63] dark:text-gray-300 underline hover:text-[#1FB6C1]"
+            className="text-sm text-[#0B3A63] dark:text-gray-300 underline underline-offset-4 hover:text-[#15B097] transition-colors"
           >
             Voir la méthodologie complète →
           </Link>
 
           {/* DISCLAIMER */}
           <p className="mt-4 text-xs text-gray-500 dark:text-gray-400 max-w-sm leading-relaxed">
-            Exemple illustratif uniquement. Estimation indicative basée sur les dépenses.
-            Ce document n’est ni conforme CSRD/ESRS ni un inventaire d’émissions de gaz
-            à effet de serre audité.
+            Exemple illustratif uniquement. Estimation indicative basée sur les
+            dépenses. Ce document n’est ni conforme CSRD/ESRS ni un inventaire
+            d’émissions de gaz à effet de serre audité.
           </p>
         </div>
       </div>
     </section>
   );
-}
+            }
