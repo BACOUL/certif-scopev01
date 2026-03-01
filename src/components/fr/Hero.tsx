@@ -11,9 +11,9 @@ export default function Hero() {
       itemType="https://schema.org/WebPage"
       className="relative max-w-6xl mx-auto px-6 pt-8 md:pt-14 pb-14 md:pb-20 text-center"
     >
-      {/* SEO (accessible, non-visible) */}
+      {/* SEO accessible */}
       <span className="sr-only" itemProp="alternativeHeadline">
-        Bilan carbone PME : attestation CO₂e standardisée, signée et vérifiable
+        Bilan carbone PME simplifié : document CO₂e standardisé et vérifiable
       </span>
 
       <div className="absolute inset-0 bg-gradient-to-b from-white to-[#F3FBFC] -z-10" />
@@ -23,86 +23,80 @@ export default function Hero() {
         className="text-xs md:text-sm font-semibold tracking-wide text-[#0B3A63]/70 mb-3 uppercase"
         itemProp="about"
       >
-        Bilan carbone PME • attestation CO₂e vérifiable
+        Bilan carbone PME • document CO₂e vérifiable
       </p>
 
-      {/* TITRE (H1) */}
+      {/* H1 OPTIMISÉ SEO */}
       <h1
         itemProp="headline"
         className="text-[1.9rem] md:text-[3rem] font-extrabold text-[#0B3A63] leading-tight tracking-tight"
       >
-        Votre bilan carbone,{" "}
-        <span className="whitespace-nowrap">en document</span>
+        Bilan carbone PME :{" "}
+        <span className="whitespace-nowrap">un document CO₂e</span>
         <br />
-        <span className="text-[#1FB6C1]">standardisé et vérifiable</span>
+        <span className="text-[#1FB6C1]">
+          simple, utilisable et vérifiable
+        </span>
       </h1>
 
-      {/* DESCRIPTION PRINCIPALE */}
+      {/* DESCRIPTION SIMPLIFIÉE */}
       <p
         className="text-base md:text-lg text-[#475569] max-w-2xl mx-auto mt-4 leading-relaxed"
         itemProp="description"
       >
-        Générez une <strong>attestation de bilan carbone (CO₂e)</strong> claire pour
-        répondre aux demandes de clients, appels d’offres, banques et assurances —
-        <span className="font-semibold"> sans réaliser un audit carbone complet</span>.
+        Obtenez un résultat CO₂e agrégé dans un PDF standardisé,
+        prêt à transmettre à un client, un acheteur ou une banque —
+        sans réaliser un audit carbone complet.
       </p>
 
-      {/* LEGAL NOTICE (comme EN, + claims FR) */}
+      {/* MICRO REASSURANCE SEO + BUSINESS */}
+      <p className="mt-3 text-sm text-[#0B3A63]/80 font-medium">
+        Bilan carbone simplifié • Prix fixe • Sans abonnement • Vérification tierce
+      </p>
+
+      {/* LEGAL / CADRE */}
       <div className="mt-4 max-w-xl mx-auto space-y-1">
         <p className="text-xs text-slate-500 leading-relaxed">
-          Aligné sur des référentiels reconnus (GHG Protocol, ISO 14064-1) et
-          compatible avec les pratiques européennes (achats, banques, assurances).
-        </p>
-
-        {/* PRIVACY / TRUST */}
-        <p className="text-xs text-slate-500 italic flex items-center justify-center gap-1">
-          <span aria-hidden>🔒</span>
-          Calculs exécutés localement dans votre navigateur. Aucune donnée financière
-          d’entrée n’est stockée.
+          Méthode indicative spend-based (dépenses × facteurs d’émission),
+          alignée sur des référentiels reconnus (GHG Protocol, ISO 14064-1).
         </p>
 
         <p className="text-[11px] text-slate-500 leading-relaxed">
-          Attestation indicative (modèle spend-based) : ne constitue pas un inventaire
-          GES, un audit, ni un reporting CSRD/ESRS.
+          Attestation indicative : ne constitue pas un inventaire GES,
+          un audit réglementaire ni un reporting CSRD/ESRS.
         </p>
       </div>
 
-      {/* CTA (mêmes couleurs que EN) */}
+      {/* CTA */}
       <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-6 md:mt-7">
         <Link
           href="/fr/generate"
-          aria-label="Générer une attestation de bilan carbone (CO₂e)"
-          className="bg-[#1FB6C1] hover:bg-[#17a2a8] text-white font-semibold px-12 py-4 rounded-xl shadow-md transition"
+          aria-label="Générer mon bilan carbone PME"
+          className="bg-[#0B3A63] hover:bg-[#092f50] text-white font-semibold px-12 py-4 rounded-xl shadow-md transition"
         >
-          Générer mon attestation
+          Générer mon bilan carbone PME
         </Link>
 
         <Link
           href="/fr/pricing"
-          aria-label="Voir le prix de l’attestation de bilan carbone"
+          aria-label="Voir le prix du bilan carbone PME"
           className="text-[#0B3A63] font-semibold px-8 py-4 rounded-xl border border-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition"
         >
           Voir le prix
         </Link>
       </div>
 
-      {/* INTERNAL LINK — PILAR PAGE */}
-      <div className="mt-4 text-center">
-        <Link
-          href="/fr/bilan-carbone-pme"
-          aria-label="Comprendre : bilan carbone PME (guide de référence)"
-          className="inline-block text-sm font-medium text-[#0B3A63] underline hover:text-[#1FB6C1] transition"
-        >
-          Comprendre : bilan carbone PME →
-        </Link>
-      </div>
+      {/* MICRO CONTEXTE BUSINESS */}
+      <p className="mt-4 text-xs text-[#64748B]">
+        Utilisé pour appels d’offres, référencement fournisseur et dossiers bancaires.
+      </p>
 
       {/* IMAGE */}
       <div className="flex justify-center mt-7 md:mt-8">
         <Image
           itemProp="primaryImageOfPage"
           src="/hero-attestation.webp"
-          alt="Exemple d’attestation de bilan carbone (CO₂e) standardisée pour une PME, avec informations de vérification indépendante."
+          alt="Exemple de document de bilan carbone PME simplifié avec vérification indépendante."
           width={900}
           height={600}
           priority
@@ -114,21 +108,6 @@ export default function Hero() {
       <p className="text-sm text-[#0B3A63]/80 font-medium mt-6">
         Vérifiable indépendamment par tout tiers.
       </p>
-
-      {/* PROOF / BENEFITS (comme ton bloc, mais placé en bas pour garder la structure EN) */}
-      <div className="mt-5 max-w-2xl mx-auto">
-        <ul className="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-center text-sm text-[#0B3A63]/80">
-          <li className="inline-flex items-center justify-center gap-2 px-3 py-2 rounded-xl border border-slate-200 bg-white/70">
-            <span aria-hidden>⚡</span> Génération en quelques minutes
-          </li>
-          <li className="inline-flex items-center justify-center gap-2 px-3 py-2 rounded-xl border border-slate-200 bg-white/70">
-            <span aria-hidden>🧾</span> Format prêt procurement
-          </li>
-          <li className="inline-flex items-center justify-center gap-2 px-3 py-2 rounded-xl border border-slate-200 bg-white/70">
-            <span aria-hidden>✅</span> Vérification tierce possible
-          </li>
-        </ul>
-      </div>
     </section>
   );
-      }
+}
