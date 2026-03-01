@@ -1,3 +1,4 @@
+// PATH: src/components/fr/Differentiation.tsx
 "use client";
 
 export default function DifferentiationFR() {
@@ -9,17 +10,18 @@ export default function DifferentiationFR() {
     >
       <div className="max-w-6xl mx-auto px-6 text-center">
         {/* TITLE — H2 unique + SEO */}
-        <h2 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] leading-snug">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] leading-snug tracking-tight">
           Pourquoi les PME choisissent Certif-Scope pour leur bilan carbone
         </h2>
 
         {/* INTRO */}
         <p className="mt-6 text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
           Certif-Scope aide les PME à répondre simplement aux demandes de{" "}
-          <strong>bilan carbone</strong> et d’empreinte CO₂e formulées par les acheteurs,
-          les banques et les assureurs. Vous obtenez une attestation unique, standardisée
-          et lisible immédiatement, générée à partir des dépenses annuelles — sans audit,
-          sans enquête interne et sans reporting technique.
+          <strong>bilan carbone</strong> et d’empreinte CO₂e formulées par les
+          acheteurs, les banques et les assureurs. Vous obtenez une attestation
+          standardisée et lisible immédiatement, générée à partir des dépenses
+          annuelles — sans audit, sans enquête interne et sans reporting
+          technique.
         </p>
 
         <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto my-14" />
@@ -29,7 +31,7 @@ export default function DifferentiationFR() {
           {/* BLOCK 1 */}
           <div className="max-w-xs mx-auto flex flex-col items-center text-center">
             <svg
-              className="h-12 w-12 text-[#1FB6C1] mb-4"
+              className="h-12 w-12 text-[#15B097] mb-4"
               fill="none"
               stroke="currentColor"
               strokeWidth="1.8"
@@ -48,15 +50,16 @@ export default function DifferentiationFR() {
             </h3>
 
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Une structure identique pour tous : lecture rapide, comparaison facilitée
-              entre fournisseurs, et revue plus fluide dans les processus institutionnels.
+              Une structure identique pour tous : lecture rapide, comparaison
+              facilitée entre fournisseurs, et revue plus fluide dans les
+              processus institutionnels.
             </p>
           </div>
 
           {/* BLOCK 2 */}
           <div className="max-w-xs mx-auto flex flex-col items-center text-center">
             <svg
-              className="h-12 w-12 text-[#1FB6C1] mb-4"
+              className="h-12 w-12 text-[#15B097] mb-4"
               fill="none"
               stroke="currentColor"
               strokeWidth="1.8"
@@ -75,15 +78,16 @@ export default function DifferentiationFR() {
             </h3>
 
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Une seule saisie annuelle des dépenses. Aucune donnée d’activité (kWh, km,
-              litres), aucune collecte complexe, aucune justification répétée.
+              Une seule saisie annuelle des dépenses. Aucune donnée d’activité
+              (kWh, km, litres), aucune collecte complexe, aucune justification
+              répétée.
             </p>
           </div>
 
           {/* BLOCK 3 */}
           <div className="max-w-xs mx-auto flex flex-col items-center text-center">
             <svg
-              className="h-12 w-12 text-[#1FB6C1] mb-4"
+              className="h-12 w-12 text-[#15B097] mb-4"
               fill="none"
               stroke="currentColor"
               strokeWidth="1.8"
@@ -102,19 +106,20 @@ export default function DifferentiationFR() {
             </h3>
 
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Conçu pour les équipes achats, banque et assurance : information claire,
-              comparable, et directement exploitable pour un dossier fournisseur.
+              Conçu pour les équipes achats, banque et assurance : information
+              claire, comparable, et directement exploitable pour un dossier
+              fournisseur.
             </p>
           </div>
         </div>
 
         {/* FOOTER */}
         <p className="mt-16 text-sm md:text-base text-gray-600 dark:text-gray-400 max-w-xl mx-auto leading-relaxed">
-          Certif-Scope standardise la réponse “bilan carbone fournisseur” et réduit la
-          charge administrative des PME, tout en restant compatible avec les pratiques
-          de revue des institutions.
+          Certif-Scope standardise la réponse “bilan carbone fournisseur” et
+          réduit la charge administrative des PME, tout en restant compatible
+          avec les pratiques de revue des institutions.
         </p>
       </div>
     </section>
   );
-              }
+}
