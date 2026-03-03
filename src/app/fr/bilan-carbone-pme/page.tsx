@@ -10,9 +10,9 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title:
-    "Bilan carbone PME : obligations, coût, Scopes 1/2/3, et quoi fournir sans audit complet — Certif-Scope",
+    "Bilan carbone PME : obligation, coût, exemple et appel d’offres | Certif-Scope",
   description:
-    "Page de référence (France) : bilan carbone PME. Comprendre ce qui est réellement demandé (screening), ce qui est obligatoire, combien ça coûte, quoi fournir sans audit, et comment produire un indicateur CO₂e indicatif standardisé et vérifiable.",
+    "Bilan carbone PME (France) : est-ce obligatoire, combien ça coûte, quoi fournir en appel d’offres, et comment répondre sans audit complet. Guide clair + checklist + FAQ.",
   alternates: {
     canonical: "https://www.certif-scope.com/fr/bilan-carbone-pme/",
     languages: {
@@ -21,9 +21,9 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title:
-      "Bilan carbone PME : obligations, coût, et quoi fournir quand on n’a pas de bilan complet",
+      "Bilan carbone PME : obligation, coût, exemple et document pour appel d’offres",
     description:
-      "Ce qu’un tiers attend vraiment (achats, appels d’offres, banques, assureurs) et comment répondre avec un indicateur CO₂e indicatif standardisé et vérifiable, sans audit complet.",
+      "Ce qu’on attend réellement d’une PME (achats, appel d’offres, banque/assurance) : quoi fournir, à quel coût, et comment répondre proprement sans audit complet. Checklist + FAQ.",
     url: "https://www.certif-scope.com/fr/bilan-carbone-pme/",
     siteName: "Certif-Scope",
     type: "website",
@@ -44,19 +44,19 @@ export default function BilanCarbonePMEPageFR() {
   const faq = [
     {
       q: "Qu’est-ce qu’un bilan carbone pour une PME ?",
-      a: "Un bilan carbone est une estimation des émissions de gaz à effet de serre (CO₂e) d’une entreprise sur une période donnée (souvent une année). Pour une PME, la demande reçue vise fréquemment un indicateur de screening (documentation minimale) plutôt qu’un inventaire complet détaillé.",
+      a: "Un bilan carbone est une estimation des émissions de gaz à effet de serre (CO₂e) d’une entreprise sur une période (souvent une année). En PME, une demande “bilan carbone” vise fréquemment un document de screening (indicateur + PDF cadré) plutôt qu’un inventaire complet détaillé.",
     },
     {
       q: "Bilan carbone PME : est-ce obligatoire en France ?",
-      a: "Pour la majorité des PME, non. Certaines obligations existent pour des structures spécifiques (exigences légales ou sectorielles). En revanche, de nombreuses PME reçoivent des demandes contractuelles (clients, donneurs d’ordre, appels d’offres) ou des demandes de documentation (banques, assureurs).",
+      a: "Pour la majorité des PME, non. Des obligations existent pour des structures spécifiques, mais la plupart des demandes reçues par les PME sont contractuelles ou documentaires (clients, appels d’offres, banque/assurance).",
     },
     {
       q: "Que fournir quand on n’a pas de bilan carbone complet ?",
-      a: "Un document clair et cadré : un résultat CO₂e agrégé (indicatif), l’année couverte, la méthode déclarée, les limites (non audit, non inventaire complet, non CSRD/ESRS), et un moyen de vérification (ID + vérification).",
+      a: "Un document simple et cadré suffit souvent. Il doit contenir un résultat CO₂e agrégé (indicatif), l’année couverte, la méthode déclarée, les limites (non audit, non inventaire complet, non CSRD/ESRS) et un moyen de vérification (ID + contrôle public).",
     },
     {
       q: "Quelle est la différence entre estimation indicative et bilan carbone complet ?",
-      a: "Une estimation indicative sert à répondre rapidement à une demande de screening avec un résultat agrégé et des limites explicites. Un bilan carbone complet vise un inventaire détaillé (données d’activité, périmètres, hypothèses) et peut exiger un accompagnement spécialisé et/ou une vérification. Ce sont deux objets différents.",
+      a: "Une estimation indicative sert à répondre vite à une demande de screening avec un résultat agrégé et des limites explicites. Un bilan carbone complet vise un inventaire détaillé (données d’activité, périmètres, hypothèses) et peut exiger un accompagnement spécialisé et/ou une vérification.",
     },
     {
       q: "Est-ce acceptable pour un appel d’offres ou un donneur d’ordre ?",
@@ -64,15 +64,15 @@ export default function BilanCarbonePMEPageFR() {
     },
     {
       q: "Que faire si on me demande Scope 1 / 2 / 3 ?",
-      a: "Demandez d’abord si l’objectif est du screening ou un inventaire complet. Certif-Scope produit une estimation indicative spend-based (à partir des dépenses) avec un résultat agrégé. Cela ne remplace pas un inventaire complet ventilé par scopes.",
+      a: "Clarifiez d’abord si l’objectif est du screening ou un inventaire complet. Certif-Scope produit une estimation indicative spend-based (à partir des dépenses) avec un résultat agrégé : cela ne remplace pas un inventaire complet ventilé par scopes.",
     },
     {
       q: "Combien coûte un bilan carbone pour une PME ?",
-      a: "Le coût dépend du niveau attendu. Une démarche complète (inventaire détaillé, collecte de données d’activité) est généralement plus longue et plus coûteuse qu’un document de screening. Certif-Scope vise une réponse rapide de type screening avec un prix fixe, sans abonnement.",
+      a: "Cela dépend du niveau attendu. Un inventaire complet (collecte de données d’activité, périmètres, hypothèses) est plus long et plus coûteux qu’un document de screening. Certif-Scope vise une réponse rapide de type screening avec un prix fixe, sans abonnement.",
     },
     {
       q: "Quelles données sont nécessaires pour une estimation indicative ?",
-      a: "Uniquement des dépenses annuelles par catégories. Aucune donnée d’activité (kWh, km, litres) n’est requise pour ce modèle spend-based.",
+      a: "Des dépenses annuelles par catégories suffisent. Aucune donnée d’activité (kWh, km, litres) n’est requise pour ce modèle spend-based.",
     },
     {
       q: "Comment la confidentialité est-elle assurée ?",
@@ -80,11 +80,11 @@ export default function BilanCarbonePMEPageFR() {
     },
     {
       q: "Le document est-il vérifiable par un tiers ?",
-      a: "Oui. L’attestation est émise dans un format vérifiable et conçue pour être contrôlée indépendamment (ID + mécanisme de vérification), sans compte et sans accès privé.",
+      a: "Oui. Le document est conçu pour être contrôlé indépendamment via un identifiant et un mécanisme de vérification public, sans compte et sans accès privé.",
     },
     {
       q: "Quelle est la validité d’une attestation ?",
-      a: "Les demandes portent généralement sur une année donnée. Il est recommandé d’émettre une attestation par année couverte, puis de réémettre si l’année change ou si les données évoluent.",
+      a: "Une attestation est généralement liée à une année donnée. Il est recommandé d’émettre une attestation par année couverte et de réémettre si l’année change ou si les données évoluent.",
     },
     {
       q: "Puis-je réémettre si je perds le PDF ?",
@@ -127,13 +127,12 @@ export default function BilanCarbonePMEPageFR() {
     name: "Bilan carbone PME",
     url: pageUrl,
     description:
-      "Page de référence (France) : bilan carbone PME. Obligations, coût, Scopes, et comment répondre avec un indicateur CO₂e indicatif (screening) standardisé et vérifiable.",
+      "Bilan carbone PME (France) : obligation, coût, exemple et quoi fournir en appel d’offres. Guide clair + checklist + FAQ.",
     isPartOf: {
       "@type": "WebSite",
       name: "Certif-Scope",
       url: "https://www.certif-scope.com",
     },
-    breadcrumb: jsonLdBreadcrumb,
   };
 
   const jsonLdService = {
@@ -179,7 +178,7 @@ export default function BilanCarbonePMEPageFR() {
       {
         "@type": "HowToStep",
         name: "Télécharger le document standardisé",
-        text: "Téléchargez un PDF standardisé contenant le résultat CO₂e agrégé, l’année couverte, la méthode, les limites, et les informations de vérification.",
+        text: "Téléchargez un PDF standardisé contenant le résultat CO₂e agrégé, l’année couverte, la méthode, les limites et les informations de vérification.",
       },
     ],
   };
@@ -204,6 +203,18 @@ export default function BilanCarbonePMEPageFR() {
       </a>
     </li>
   );
+
+  const FAQAnswer = ({ text }: { text: string }) => {
+    const idx = text.indexOf(". ");
+    const first = idx > 0 ? text.slice(0, idx + 1) : text;
+    const rest = idx > 0 ? text.slice(idx + 2) : "";
+    return (
+      <p className="text-gray-700 leading-relaxed">
+        <strong>{first}</strong>
+        {rest ? ` ${rest}` : ""}
+      </p>
+    );
+  };
 
   return (
     <section
@@ -243,25 +254,71 @@ export default function BilanCarbonePMEPageFR() {
       {/* HEADER */}
       <header className="mb-14">
         <p className="uppercase text-xs tracking-wider text-[#64748B] mb-3">
-          Page de référence (France) — Bilan carbone PME : obligations, coût, et
-          quoi fournir (screening)
+          Page de référence (France) — Bilan carbone PME : obligation, coût,
+          exemple et appel d’offres
         </p>
 
-        <h1 className="text-3xl md:text-5xl font-extrabold text-[#0B3A63] mb-6 leading-tight tracking-tight">
-          Bilan carbone PME : obligations, coût, Scopes 1/2/3, et quoi fournir
-          sans audit complet
+        <h1 className="text-3xl md:text-5xl font-extrabold text-[#0B3A63] mb-4 leading-tight tracking-tight">
+          Bilan carbone PME : obligation, coût, et document à fournir en appel
+          d’offres
         </h1>
 
-        <p className="text-lg text-gray-700 leading-relaxed max-w-3xl">
-          Beaucoup de PME reçoivent des demandes “bilan carbone” de la part de{" "}
-          <strong>clients</strong>, <strong>acheteurs</strong>,{" "}
-          <strong>banques</strong> ou <strong>assureurs</strong>. Dans la majorité
-          des cas, il s’agit d’un besoin de <strong>screening</strong> : un
-          indicateur CO₂e simple, documenté et archivable, plutôt qu’un inventaire
-          complet audité.
-        </p>
+        {/* SNIPPET-READY QUICK ANSWER */}
+        <div className="max-w-3xl">
+          <p className="text-lg text-gray-700 leading-relaxed">
+            <strong>Pour la majorité des PME, le bilan carbone n’est pas une
+            obligation générale en France.</strong> En pratique, la demande vient
+            souvent d’un <strong>client</strong>, d’un <strong>appel d’offres</strong>,
+            d’un <strong>acheteur</strong>, d’une <strong>banque</strong> ou d’un{" "}
+            <strong>assureur</strong> qui attend un{" "}
+            <strong>document de screening</strong> (indicateur CO₂e + méthode + limites),
+            plutôt qu’un audit complet.
+          </p>
+        </div>
 
-        <div className="mt-8 flex flex-wrap gap-3">
+        {/* QUICK TABLE */}
+        <div className="mt-6 overflow-x-auto rounded-2xl border border-gray-200 bg-white">
+          <table className="min-w-[720px] w-full text-sm">
+            <thead>
+              <tr className="bg-[#F8FAFC]">
+                <th className="text-left p-4 font-semibold text-[#0B3A63]">
+                  Question
+                </th>
+                <th className="text-left p-4 font-semibold text-[#0B3A63]">
+                  Réponse rapide (PME)
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-200">
+              <tr>
+                <td className="p-4 text-gray-700">Est-ce obligatoire ?</td>
+                <td className="p-4 text-gray-700">
+                  Généralement non, sauf cas spécifiques. La plupart des demandes sont contractuelles (dossier fournisseur / appel d’offres / banque).
+                </td>
+              </tr>
+              <tr>
+                <td className="p-4 text-gray-700">Combien ça coûte ?</td>
+                <td className="p-4 text-gray-700">
+                  Très variable selon le niveau : screening (document court) vs inventaire complet (collecte détaillée). Certif-Scope = prix fixe.
+                </td>
+              </tr>
+              <tr>
+                <td className="p-4 text-gray-700">Combien de temps ?</td>
+                <td className="p-4 text-gray-700">
+                  Screening : rapide. Inventaire complet : semaines ou mois selon périmètre et données.
+                </td>
+              </tr>
+              <tr>
+                <td className="p-4 text-gray-700">Que faut-il fournir ?</td>
+                <td className="p-4 text-gray-700">
+                  Résultat CO₂e agrégé + année + méthode + limites + document PDF + vérification (ID).
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div className="mt-7 flex flex-wrap gap-3">
           <Link
             href="/fr/generate/"
             className="inline-block text-sm px-5 py-2.5 rounded-md bg-[#0B3A63] text-white hover:bg-[#0B3A63]/90 transition-colors font-semibold"
@@ -334,7 +391,7 @@ export default function BilanCarbonePMEPageFR() {
                   <TocItem href="#definition" label="Définition (PME)" />
                   <TocItem
                     href="#obligations"
-                    label="Obligations : comment lire la demande"
+                    label="Obligation : comment lire la demande"
                   />
                   <TocItem
                     href="#why-asked"
@@ -355,6 +412,10 @@ export default function BilanCarbonePMEPageFR() {
                     label="Méthode spend-based (formule + limites)"
                   />
                   <TocItem
+                    href="#sources"
+                    label="Sources & standards (contexte)"
+                  />
+                  <TocItem
                     href="#verification"
                     label="Vérification et archivage"
                   />
@@ -362,6 +423,7 @@ export default function BilanCarbonePMEPageFR() {
                     href="#privacy"
                     label="Confidentialité (privacy-by-design)"
                   />
+                  <TocItem href="#guides" label="Guides détaillés" />
                   <TocItem href="#faq" label="FAQ" />
                 </ol>
               </nav>
@@ -413,7 +475,7 @@ export default function BilanCarbonePMEPageFR() {
           {/* 2 */}
           <section id="obligations" className="scroll-mt-24">
             <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-              2) Obligations : comment lire une demande “bilan carbone” sans se tromper
+              2) Obligation : comment lire une demande “bilan carbone” sans se tromper
             </h2>
 
             <p className="text-gray-700 leading-relaxed mb-6">
@@ -510,7 +572,7 @@ export default function BilanCarbonePMEPageFR() {
                 </h3>
                 <p className="text-gray-700 leading-relaxed">
                   Critère de comparaison et justificatif à joindre. La priorité :
-                  cohérence, lisibilité, et limites explicites.
+                  cohérence, lisibilité et limites explicites.
                 </p>
                 <div className="mt-4">
                   <Link className="underline text-[#0B3A63]" href="/fr/bilan-carbone-appel-offres/">
@@ -528,11 +590,8 @@ export default function BilanCarbonePMEPageFR() {
                   l’archivage interne.
                 </p>
                 <div className="mt-4">
-                  <Link
-                    className="underline text-[#0B3A63]"
-                    href="/fr/why-companies-ask/exigences-co2-banques-assurances/"
-                  >
-                    Exigences CO₂ banque/assurance →
+                  <Link className="underline text-[#0B3A63]" href="/fr/why-companies-ask/">
+                    Pourquoi c’est demandé (banque/assurance) →
                   </Link>
                 </div>
               </div>
@@ -580,8 +639,7 @@ export default function BilanCarbonePMEPageFR() {
                   <strong>périmètre annoncé</strong> (ce qui est inclus / exclu)
                 </li>
                 <li>
-                  <strong>limites visibles</strong> (non audit, non inventaire
-                  complet, non CSRD/ESRS)
+                  <strong>limites visibles</strong> (non audit, non inventaire complet, non CSRD/ESRS)
                 </li>
                 <li>
                   <strong>PDF standard</strong> (identifiable, partageable)
@@ -642,7 +700,7 @@ export default function BilanCarbonePMEPageFR() {
                     <td className="p-4 text-gray-700">Screening (indicatif)</td>
                     <td className="p-4 text-gray-700">Document dossier-ready</td>
                     <td className="p-4 text-gray-700">Dépenses annuelles</td>
-                    <td className="p-4 text-gray-700">Minutes</td>
+                    <td className="p-4 text-gray-700">Rapide</td>
                     <td className="p-4 text-gray-700">
                       Achats, AO (screening), banque/assurance
                     </td>
@@ -736,10 +794,9 @@ export default function BilanCarbonePMEPageFR() {
             </h2>
 
             <p className="text-gray-700 leading-relaxed mb-6">
-              Le “coût d’un bilan carbone” dépend entièrement du niveau attendu. Pour
-              une demande de screening, la priorité est un document clair et
-              réutilisable. Pour une exigence formelle, il faut prévoir une démarche
-              complète.
+              Le coût d’un bilan carbone dépend du niveau attendu. Pour une demande
+              de screening, la priorité est un document clair et réutilisable. Pour
+              une exigence formelle, il faut prévoir une démarche complète.
             </p>
 
             <div className="rounded-2xl border border-gray-200 bg-[#F8FAFC] p-6">
@@ -822,10 +879,45 @@ export default function BilanCarbonePMEPageFR() {
             </div>
           </section>
 
+          {/* 8bis */}
+          <section id="sources" className="scroll-mt-24">
+            <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
+              9) Sources & standards : le contexte (sans sur-promesse)
+            </h2>
+
+            <p className="text-gray-700 leading-relaxed mb-6">
+              Selon les dossiers, le vocabulaire varie (GHG Protocol, ISO, scopes,
+              facteurs). L’essentiel, côté PME, est de produire un document clair
+              et de ne pas confondre screening et inventaire complet.
+            </p>
+
+            <div className="rounded-2xl border border-gray-200 bg-white p-6">
+              <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
+                Références citées (contexte)
+              </h3>
+              <ul className="list-disc ml-6 text-gray-700 space-y-2">
+                <li>GHG Protocol (référence de principe de comptabilisation)</li>
+                <li>ISO 14064-1 (cadre de quantification et déclaration)</li>
+                <li>Sources de facteurs (selon version et périmètre de facteurs)</li>
+              </ul>
+              <p className="mt-4 text-sm text-gray-600 leading-relaxed">
+                La page “Méthodologie” détaille le modèle spend-based, les limites et les versions.
+              </p>
+              <div className="mt-5 flex flex-wrap gap-3">
+                <Link
+                  href="/fr/product/methodology/"
+                  className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
+                >
+                  Méthodologie : détails & limites
+                </Link>
+              </div>
+            </div>
+          </section>
+
           {/* 9 */}
           <section id="verification" className="scroll-mt-24">
             <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-              9) Vérification et archivage : rendre le document “accepté en dossier”
+              10) Vérification et archivage : rendre le document “accepté en dossier”
             </h2>
 
             <p className="text-gray-700 leading-relaxed mb-6">
@@ -853,10 +945,10 @@ export default function BilanCarbonePMEPageFR() {
                   Vérifier un document
                 </Link>
                 <Link
-                  href="/fr/why-companies-ask/attestation-carbone-pme/"
+                  href="/fr/why-companies-ask/attestation-carbone-appel-offres/"
                   className="inline-block text-sm px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
                 >
-                  Exemple : demande en PME
+                  Attestation carbone (appel d’offres) →
                 </Link>
               </div>
             </div>
@@ -865,7 +957,7 @@ export default function BilanCarbonePMEPageFR() {
           {/* 10 */}
           <section id="privacy" className="scroll-mt-24">
             <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-              10) Confidentialité : calcul local et minimisation des données
+              11) Confidentialité : calcul local et minimisation des données
             </h2>
 
             <p className="text-gray-700 leading-relaxed mb-6">
@@ -899,6 +991,82 @@ export default function BilanCarbonePMEPageFR() {
                 >
                   Traitement des données
                 </Link>
+              </div>
+            </div>
+          </section>
+
+          {/* GUIDES (HUB) */}
+          <section id="guides" className="scroll-mt-24">
+            <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
+              12) Guides détaillés (cluster FR)
+            </h2>
+
+            <p className="text-gray-700 leading-relaxed mb-6">
+              Ces guides détaillent chaque intention (obligation, coût, exemple, modèle PDF, appel d’offres) pour construire un cluster SEO cohérent autour de “bilan carbone PME”.
+            </p>
+
+            <div className="rounded-2xl border border-gray-200 bg-white p-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="rounded-2xl border border-gray-200 bg-[#F8FAFC] p-5">
+                  <p className="text-xs uppercase tracking-wider text-[#64748B] mb-2">
+                    Déjà disponible
+                  </p>
+                  <ul className="space-y-2 text-sm text-gray-700">
+                    <li>
+                      <Link className="underline text-[#0B3A63]" href="/fr/bilan-carbone-appel-offres/">
+                        Bilan carbone pour appel d’offres →
+                      </Link>
+                    </li>
+                    <li>
+                      <Link className="underline text-[#0B3A63]" href="/fr/why-companies-ask/">
+                        Pourquoi on vous le demande →
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        className="underline text-[#0B3A63]"
+                        href="/fr/why-companies-ask/attestation-carbone-appel-offres/"
+                      >
+                        Attestation carbone (appel d’offres) →
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="rounded-2xl border border-gray-200 bg-white p-5">
+                  <p className="text-xs uppercase tracking-wider text-[#64748B] mb-2">
+                    À publier (structure recommandée)
+                  </p>
+                  <ul className="space-y-2 text-sm text-gray-700">
+                    <li className="flex items-center justify-between gap-3">
+                      <span className="text-gray-700">Bilan carbone PME : est-ce obligatoire ?</span>
+                      <span className="text-xs px-2 py-1 rounded-md border border-gray-200 text-gray-600">
+                        bientôt
+                      </span>
+                    </li>
+                    <li className="flex items-center justify-between gap-3">
+                      <span className="text-gray-700">Combien coûte un bilan carbone PME ?</span>
+                      <span className="text-xs px-2 py-1 rounded-md border border-gray-200 text-gray-600">
+                        bientôt
+                      </span>
+                    </li>
+                    <li className="flex items-center justify-between gap-3">
+                      <span className="text-gray-700">Exemple de bilan carbone PME (format dossier)</span>
+                      <span className="text-xs px-2 py-1 rounded-md border border-gray-200 text-gray-600">
+                        bientôt
+                      </span>
+                    </li>
+                    <li className="flex items-center justify-between gap-3">
+                      <span className="text-gray-700">Modèle PDF : document carbone PME</span>
+                      <span className="text-xs px-2 py-1 rounded-md border border-gray-200 text-gray-600">
+                        bientôt
+                      </span>
+                    </li>
+                  </ul>
+                  <p className="mt-4 text-xs text-gray-600 leading-relaxed">
+                    Recommandation SEO : publier ces pages sous <code>/fr/bilan-carbone-pme/…</code> pour concentrer l’autorité du cluster.
+                  </p>
+                </div>
               </div>
             </div>
           </section>
@@ -967,7 +1135,7 @@ export default function BilanCarbonePMEPageFR() {
                   className="rounded-2xl border border-gray-200 bg-white p-6"
                 >
                   <h3 className="font-semibold text-[#0B3A63] mb-2">{item.q}</h3>
-                  <p className="text-gray-700 leading-relaxed">{item.a}</p>
+                  <FAQAnswer text={item.a} />
                 </div>
               ))}
             </div>
@@ -984,15 +1152,17 @@ export default function BilanCarbonePMEPageFR() {
               <nav aria-label="Sommaire bilan carbone PME">
                 <ol className="space-y-2 text-sm list-decimal ml-5">
                   <TocItem href="#definition" label="Définition" />
-                  <TocItem href="#obligations" label="Obligations : lire la demande" />
+                  <TocItem href="#obligations" label="Obligation : lire la demande" />
                   <TocItem href="#why-asked" label="Pourquoi c’est demandé" />
                   <TocItem href="#expected" label="Ce qui est attendu" />
                   <TocItem href="#difference" label="Indicatif vs inventaire" />
                   <TocItem href="#scopes" label="Scopes 1/2/3" />
                   <TocItem href="#cost" label="Coût, délais, effort" />
                   <TocItem href="#method" label="Méthode spend-based" />
+                  <TocItem href="#sources" label="Sources & standards" />
                   <TocItem href="#verification" label="Vérification" />
                   <TocItem href="#privacy" label="Confidentialité" />
+                  <TocItem href="#guides" label="Guides détaillés" />
                   <TocItem href="#faq" label="FAQ" />
                 </ol>
               </nav>
@@ -1033,7 +1203,7 @@ export default function BilanCarbonePMEPageFR() {
               <ul className="space-y-2 text-sm text-gray-700">
                 <li>
                   <Link className="underline" href="/fr/bilan-carbone-appel-offres/">
-                    Bilan carbone appel d’offres
+                    Bilan carbone pour appel d’offres
                   </Link>
                 </li>
                 <li>
@@ -1046,15 +1216,12 @@ export default function BilanCarbonePMEPageFR() {
                     className="underline"
                     href="/fr/why-companies-ask/attestation-carbone-appel-offres/"
                   >
-                    Pourquoi c’est demandé en appel d’offres
+                    Attestation carbone (appel d’offres)
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    className="underline"
-                    href="/fr/why-companies-ask/exigences-co2-banques-assurances/"
-                  >
-                    Pourquoi c’est demandé par banque/assurance
+                  <Link className="underline" href="/fr/why-companies-ask/">
+                    Pourquoi on vous le demande
                   </Link>
                 </li>
                 <li>
@@ -1089,4 +1256,4 @@ export default function BilanCarbonePMEPageFR() {
       </div>
     </section>
   );
-                       }
+                     }
