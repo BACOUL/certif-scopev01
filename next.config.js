@@ -2,10 +2,6 @@
 const nextConfig = {
   compress: true,
   reactStrictMode: true,
-
-  // Choix possible :
-  // - soit tu gardes trailingSlash true partout
-  // - soit tu reviens à false (souvent plus simple SEO)
   trailingSlash: true,
 
   images: {
@@ -39,11 +35,19 @@ const nextConfig = {
 
   async redirects() {
     return [
+      // Domaine canonique : tout vers https://www.certif-scope.com
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "certif-scope.com" }],
+        destination: "https://www.certif-scope.com/:path*",
+        permanent: true,
+      },
+
       // Legacy EN -> canonique (EN = /)
       { source: "/en", destination: "/", permanent: true },
       { source: "/en/", destination: "/", permanent: true },
 
-      // Anciennes pages EN (si elles existent dans l'index / backlinks)
+      // Anciennes pages EN
       { source: "/en/about", destination: "/", permanent: true },
       { source: "/en/about/", destination: "/", permanent: true },
 
