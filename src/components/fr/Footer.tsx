@@ -42,9 +42,9 @@ export default function FooterFR() {
               <Link
                 href="/fr/bilan-carbone-pme/"
                 className="inline-block text-sm font-semibold text-[#0B3A63] underline underline-offset-4 hover:text-[#15B097] transition-colors"
-                aria-label="Bilan carbone PME : guide de référence (page pilier)"
+                aria-label="PME : on vous demande un bilan carbone"
               >
-                Bilan carbone PME : guide de référence →
+                PME : on vous demande un bilan carbone →
               </Link>
             </div>
 
@@ -136,26 +136,26 @@ export default function FooterFR() {
           </nav>
 
           {/* GUIDES (EXISTING ONLY) */}
-          <nav aria-label="Guides bilan carbone et exigences CO₂e">
+          <nav aria-label="Cas concrets bilan carbone et exigences CO₂e">
             <h3 className="text-lg font-semibold text-[#0B3A63] dark:text-gray-100 mb-4">
-              Guides (France)
+              Cas concrets (France)
             </h3>
 
             <ul className="space-y-2">
               <li>
                 <Link className={linkBase} href="/fr/bilan-carbone-pme/">
-                  Bilan carbone PME : guide de référence
+                  PME : on vous demande un bilan carbone
                 </Link>
               </li>
               <li>
                 <Link className={linkBase} href="/fr/bilan-carbone-appel-offres/">
-                  Bilan carbone en appel d’offres
+                  Appel d’offres : quoi fournir
                 </Link>
               </li>
 
               <li className="pt-2">
                 <Link className={linkBase} href="/fr/why-companies-ask/">
-                  Guides : pourquoi les entreprises le demandent
+                  Pourquoi on vous le demande
                 </Link>
               </li>
               <li>
@@ -163,7 +163,7 @@ export default function FooterFR() {
                   className={linkBase}
                   href="/fr/why-companies-ask/attestation-carbone-appel-offres/"
                 >
-                  Cas pratique : appel d’offres (guide complémentaire)
+                  Exemple appel d’offres (cas pratique)
                 </Link>
               </li>
             </ul>
@@ -261,4 +261,4 @@ export default function FooterFR() {
       </div>
     </footer>
   );
-            }
+        }
