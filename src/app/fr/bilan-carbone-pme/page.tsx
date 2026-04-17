@@ -1179,32 +1179,32 @@ export default function BilanCarbonePMEPageFR() {
 
                 <div className="rounded-2xl border border-gray-200 bg-white p-5">
                   <p className="text-xs uppercase tracking-wider text-[#64748B] mb-2">
-                    À publier (structure recommandée)
+                    Cluster détaillé
                   </p>
                   <ul className="space-y-2 text-sm text-gray-700">
-                    <li className="flex items-center justify-between gap-3">
-                      <span className="text-gray-700">
-                        Bilan carbone PME : est-ce obligatoire ?
-                      </span>
-                      <span className="text-xs px-2 py-1 rounded-md border border-gray-200 text-gray-600">
-                        bientôt
-                      </span>
+                    <li>
+                      <Link
+                        className="underline text-[#0B3A63]"
+                        href="/fr/bilan-carbone-pme/obligation/"
+                      >
+                        Bilan carbone PME : est-ce obligatoire ? →
+                      </Link>
                     </li>
-                    <li className="flex items-center justify-between gap-3">
-                      <span className="text-gray-700">
-                        Combien coûte un bilan carbone PME ?
-                      </span>
-                      <span className="text-xs px-2 py-1 rounded-md border border-gray-200 text-gray-600">
-                        bientôt
-                      </span>
+                    <li>
+                      <Link
+                        className="underline text-[#0B3A63]"
+                        href="/fr/bilan-carbone-pme/cout/"
+                      >
+                        Combien coûte un bilan carbone PME ? →
+                      </Link>
                     </li>
-                    <li className="flex items-center justify-between gap-3">
-                      <span className="text-gray-700">
-                        Exemple de bilan carbone PME (format dossier)
-                      </span>
-                      <span className="text-xs px-2 py-1 rounded-md border border-gray-200 text-gray-600">
-                        bientôt
-                      </span>
+                    <li>
+                      <Link
+                        className="underline text-[#0B3A63]"
+                        href="/fr/bilan-carbone-pme/exemple/"
+                      >
+                        Exemple de bilan carbone PME (format dossier) →
+                      </Link>
                     </li>
                     <li className="flex items-center justify-between gap-3">
                       <span className="text-gray-700">
@@ -1427,4 +1427,4 @@ export default function BilanCarbonePMEPageFR() {
       </div>
     </section>
   );
-       }
+          }
