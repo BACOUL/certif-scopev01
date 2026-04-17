@@ -34,7 +34,7 @@ export default function Hero() {
             >
               Bilan carbone PME :
               <br />
-              prêt en quelques <span className="text-[#1FB6C1]">minutes</span>
+              document CO₂e <span className="text-[#1FB6C1]">standardisé et vérifiable</span>
             </h1>
 
             <p
@@ -85,18 +85,6 @@ export default function Hero() {
             <p className="mt-4 text-xs md:text-sm leading-relaxed text-[#64748B]">
               Cas d’usage fréquents : référencement fournisseur, réponse à un client, onboarding ESG, demande bancaire.
             </p>
-
-            <div className="mt-6 rounded-2xl border border-[#0B3A63]/10 bg-white/90 p-4 md:p-5 shadow-sm text-left max-w-2xl mx-auto lg:mx-0">
-              <p className="text-sm font-semibold text-[#0B3A63]">
-                Une PME doit-elle obligatoirement faire un bilan carbone ?
-              </p>
-              <p className="mt-2 text-sm leading-relaxed text-[#475569]">
-                Dans la plupart des cas, non. En pratique, la demande vient souvent d’un client,
-                d’un appel d’offres, d’un processus de référencement fournisseur ou d’un dossier bancaire.
-                Certif-Scope apporte une réponse simple à ce besoin avec un résultat CO₂e agrégé,
-                présenté dans un document indicatif et vérifiable.
-              </p>
-            </div>
 
             <div className="mt-4 max-w-2xl mx-auto lg:mx-0 space-y-2 text-left">
               <p className="text-[12px] leading-relaxed text-[#64748B]">
