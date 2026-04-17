@@ -23,7 +23,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Pourquoi un client demande un justificatif CO₂ — Exigence fournisseurs",
+    title:
+      "Pourquoi un client demande un justificatif CO₂ — Exigence fournisseurs",
     description:
       "Comprendre pourquoi les organisations demandent un justificatif CO₂ (preuve carbone) et ce que ces documents représentent — et ne représentent pas.",
     url: "https://www.certif-scope.com/fr/why-companies-ask",
@@ -97,11 +98,55 @@ export default function WhyCompaniesAskPage() {
         </h1>
 
         <p className="text-lg text-gray-700 leading-relaxed max-w-3xl">
-          Les directions achats, les banques, les assureurs et parfois les acteurs publics
-          demandent de plus en plus un justificatif CO₂ (preuve carbone) aux fournisseurs.
-          Cette page explique les raisons opérationnelles et institutionnelles de cette demande,
-          ainsi que ce que ce document représente réellement — et ce qu’il ne constitue pas.
+          Les directions achats, les banques, les assureurs et parfois les
+          acteurs publics demandent de plus en plus un justificatif CO₂ (preuve
+          carbone) aux fournisseurs. Cette page explique les raisons
+          opérationnelles et institutionnelles de cette demande, ainsi que ce
+          que ce document représente réellement — et ce qu’il ne constitue pas.
         </p>
+
+        <div className="mt-6 rounded-2xl border border-[#0B3A63]/10 bg-[#F8FAFC] p-6 max-w-4xl">
+          <h2 className="text-lg font-semibold text-[#0B3A63] mb-3">
+            Pages utiles pour comprendre ce qui est réellement attendu
+          </h2>
+          <ul className="list-disc ml-6 text-gray-700 space-y-2 leading-relaxed">
+            <li>
+              si la demande vous semble “obligatoire”, commencez par vérifier le
+              niveau réellement exigé sur la page{" "}
+              <Link
+                href="/fr/bilan-carbone-pme/obligation/"
+                className="underline text-[#0B3A63]"
+              >
+                bilan carbone PME : est-ce obligatoire ?
+              </Link>
+            </li>
+            <li>
+              si la question est budgétaire, consultez{" "}
+              <Link
+                href="/fr/bilan-carbone-pme/cout/"
+                className="underline text-[#0B3A63]"
+              >
+                combien coûte un bilan carbone PME ?
+              </Link>
+            </li>
+            <li>
+              si vous voulez voir le format attendu, consultez{" "}
+              <Link
+                href="/fr/bilan-carbone-pme/exemple/"
+                className="underline text-[#0B3A63]"
+              >
+                l’exemple de bilan carbone PME
+              </Link>{" "}
+              ou le{" "}
+              <Link
+                href="/fr/bilan-carbone-pme/modele-pdf/"
+                className="underline text-[#0B3A63]"
+              >
+                modèle PDF de document carbone PME
+              </Link>
+            </li>
+          </ul>
+        </div>
 
         <div className="mt-8 flex flex-wrap gap-3">
           <Link
@@ -147,15 +192,18 @@ export default function WhyCompaniesAskPage() {
             1. Classification du risque fournisseurs
           </h2>
           <p className="text-gray-700 leading-relaxed mb-4">
-            Les grandes organisations doivent classer leurs fournisseurs selon leur exposition
-            environnementale dans le cadre de leur gouvernance achats et de leurs politiques ESG.
-            En pratique, cela se traduit par une collecte d’informations CO₂e à l’onboarding
-            et lors des consultations (RFP / appels d’offres).
+            Les grandes organisations doivent classer leurs fournisseurs selon
+            leur exposition environnementale dans le cadre de leur gouvernance
+            achats et de leurs politiques ESG. En pratique, cela se traduit par
+            une collecte d’informations CO₂e à l’onboarding et lors des
+            consultations (RFP / appels d’offres).
           </p>
           <ul className="list-disc ml-6 text-gray-700 space-y-2">
             <li>screening ESG des fournisseurs (pré-qualification)</li>
             <li>indicateurs environnementaux demandés dans les consultations</li>
-            <li>comparabilité et archivage d’un document dans un dossier interne</li>
+            <li>
+              comparabilité et archivage d’un document dans un dossier interne
+            </li>
           </ul>
         </section>
 
@@ -165,11 +213,12 @@ export default function WhyCompaniesAskPage() {
             2. Pression réglementaire indirecte via les acteurs financiers
           </h2>
           <p className="text-gray-700 leading-relaxed">
-            Les banques et assureurs intègrent progressivement des facteurs environnementaux
-            dans leurs analyses internes (risque, exposition sectorielle, cohérence ESG).
-            Cela crée une demande “en cascade” : même si une PME n’est pas soumise à un
-            reporting ESG complet, elle peut devoir fournir un indicateur CO₂e simple pour
-            documenter un dossier.
+            Les banques et assureurs intègrent progressivement des facteurs
+            environnementaux dans leurs analyses internes (risque, exposition
+            sectorielle, cohérence ESG). Cela crée une demande “en cascade” :
+            même si une PME n’est pas soumise à un reporting ESG complet, elle
+            peut devoir fournir un indicateur CO₂e simple pour documenter un
+            dossier.
           </p>
         </section>
 
@@ -179,13 +228,15 @@ export default function WhyCompaniesAskPage() {
             3. Due diligence et onboarding fournisseurs
           </h2>
           <p className="text-gray-700 leading-relaxed mb-4">
-            De nombreuses organisations demandent une information CO₂e dans le cadre des procédures
-            de due diligence fournisseurs. Le besoin opérationnel est clair : un document structuré,
-            lisible, et réutilisable, compatible avec des workflows institutionnels.
+            De nombreuses organisations demandent une information CO₂e dans le
+            cadre des procédures de due diligence fournisseurs. Le besoin
+            opérationnel est clair : un document structuré, lisible, et
+            réutilisable, compatible avec des workflows institutionnels.
           </p>
           <p className="text-gray-700 leading-relaxed">
-            Pour un fournisseur, l’enjeu est d’éviter les échanges interminables : un justificatif
-            CO₂ standard réduit la friction et accélère les cycles d’approbation.
+            Pour un fournisseur, l’enjeu est d’éviter les échanges
+            interminables : un justificatif CO₂ standard réduit la friction et
+            accélère les cycles d’approbation.
           </p>
         </section>
 
@@ -194,11 +245,37 @@ export default function WhyCompaniesAskPage() {
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
             4. Accessibilité pour les fournisseurs non spécialisés
           </h2>
+          <p className="text-gray-700 leading-relaxed mb-4">
+            Beaucoup de PME ne peuvent pas produire un inventaire d’émissions
+            complet ni mobiliser un cabinet. Dans la majorité des demandes
+            “terrain”, il s’agit de fournir un indicateur indicatif pour
+            screening. Un justificatif CO₂ cadré permet de répondre sans
+            surdimensionner la démarche.
+          </p>
           <p className="text-gray-700 leading-relaxed">
-            Beaucoup de PME ne peuvent pas produire un inventaire d’émissions complet ni mobiliser
-            un cabinet. Dans la majorité des demandes “terrain”, il s’agit de fournir un indicateur
-            indicatif pour screening. Un justificatif CO₂ cadré permet de répondre sans surdimensionner
-            la démarche.
+            C’est exactement la logique des pages{" "}
+            <Link
+              href="/fr/bilan-carbone-pme/"
+              className="underline text-[#0B3A63]"
+            >
+              bilan carbone PME
+            </Link>
+            ,{" "}
+            <Link
+              href="/fr/bilan-carbone-pme/exemple/"
+              className="underline text-[#0B3A63]"
+            >
+              exemple
+            </Link>{" "}
+            et{" "}
+            <Link
+              href="/fr/bilan-carbone-pme/modele-pdf/"
+              className="underline text-[#0B3A63]"
+            >
+              modèle PDF
+            </Link>
+            , qui montrent le niveau de réponse souvent suffisant dans un
+            contexte fournisseur.
           </p>
         </section>
 
@@ -208,9 +285,10 @@ export default function WhyCompaniesAskPage() {
             5. Accélération des cycles d’approbation
           </h2>
           <p className="text-gray-700 leading-relaxed">
-            Les processus d’approbation fournisseurs ralentissent lorsque les informations CO₂e sont
-            hétérogènes (format, périmètre, absence de date, absence de méthode). Un document standardisé
-            réduit le temps de traitement interne et limite les demandes répétées.
+            Les processus d’approbation fournisseurs ralentissent lorsque les
+            informations CO₂e sont hétérogènes (format, périmètre, absence de
+            date, absence de méthode). Un document standardisé réduit le temps
+            de traitement interne et limite les demandes répétées.
           </p>
         </section>
 
@@ -226,8 +304,9 @@ export default function WhyCompaniesAskPage() {
             <li>QR code exploitable dans des dossiers et outils</li>
           </ul>
           <p className="text-gray-700 leading-relaxed mt-4">
-            En screening, ce que cherche un tiers est un document archivable et contrôlable en quelques
-            secondes : origine, intégrité, date, version.
+            En screening, ce que cherche un tiers est un document archivable et
+            contrôlable en quelques secondes : origine, intégrité, date,
+            version.
           </p>
         </section>
 
@@ -237,9 +316,10 @@ export default function WhyCompaniesAskPage() {
             7. Acceptation transfrontalière (logique “format”)
           </h2>
           <p className="text-gray-700 leading-relaxed">
-            Les demandes CO₂e apparaissent dans des contextes similaires dans plusieurs pays européens.
-            Le facteur clé n’est pas une norme locale unique, mais la capacité à fournir un format
-            clair, stable et réutilisable dans des processus B2B (achats / finance / assurance).
+            Les demandes CO₂e apparaissent dans des contextes similaires dans
+            plusieurs pays européens. Le facteur clé n’est pas une norme locale
+            unique, mais la capacité à fournir un format clair, stable et
+            réutilisable dans des processus B2B (achats / finance / assurance).
           </p>
         </section>
 
@@ -263,11 +343,82 @@ export default function WhyCompaniesAskPage() {
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
             9. Portée d’usage : screening et documentation interne
           </h2>
-          <p className="text-gray-700 leading-relaxed">
-            Le justificatif CO₂ visé ici est indicatif uniquement. Il est adapté au screening et à la
-            documentation interne (achats, banque, assurance). Il ne constitue ni un audit, ni une
-            certification, ni une mission d’assurance, ni une empreinte carbone juridiquement opposable.
+          <p className="text-gray-700 leading-relaxed mb-4">
+            Le justificatif CO₂ visé ici est indicatif uniquement. Il est adapté
+            au screening et à la documentation interne (achats, banque,
+            assurance). Il ne constitue ni un audit, ni une certification, ni
+            une mission d’assurance, ni une empreinte carbone juridiquement
+            opposable.
           </p>
+          <p className="text-gray-700 leading-relaxed">
+            Pour une PME, cela veut dire qu’avant de lancer une démarche plus
+            lourde, il faut d’abord clarifier si la demande est réellement{" "}
+            <Link
+              href="/fr/bilan-carbone-pme/obligation/"
+              className="underline text-[#0B3A63]"
+            >
+              obligatoire
+            </Link>{" "}
+            et quel niveau de{" "}
+            <Link
+              href="/fr/bilan-carbone-pme/cout/"
+              className="underline text-[#0B3A63]"
+            >
+              coût
+            </Link>{" "}
+            est rationnel par rapport au dossier.
+          </p>
+        </section>
+
+        {/* CLUSTER LINKS */}
+        <section id="cluster-links">
+          <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
+            10. Guides utiles pour une PME
+          </h2>
+          <div className="rounded-2xl border border-gray-200 bg-white p-6">
+            <ul className="space-y-3 text-gray-700">
+              <li>
+                <Link
+                  className="underline text-[#0B3A63]"
+                  href="/fr/bilan-carbone-pme/"
+                >
+                  Bilan carbone PME : page pilier →
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="underline text-[#0B3A63]"
+                  href="/fr/bilan-carbone-pme/obligation/"
+                >
+                  Bilan carbone PME : est-ce obligatoire ? →
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="underline text-[#0B3A63]"
+                  href="/fr/bilan-carbone-pme/cout/"
+                >
+                  Combien coûte un bilan carbone PME ? →
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="underline text-[#0B3A63]"
+                  href="/fr/bilan-carbone-pme/exemple/"
+                >
+                  Exemple de bilan carbone PME →
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="underline text-[#0B3A63]"
+                  href="/fr/bilan-carbone-pme/modele-pdf/"
+                >
+                  Modèle PDF : document carbone PME →
+                </Link>
+              </li>
+            </ul>
+          </div>
         </section>
 
         {/* CTA */}
@@ -277,9 +428,10 @@ export default function WhyCompaniesAskPage() {
               Répondre à une exigence CO₂ fournisseur avec un document clair
             </h2>
             <p className="text-white/90 leading-relaxed max-w-2xl">
-              Si un client vous demande un “justificatif CO₂” (preuve carbone), le besoin est
-              souvent un document de screening : lisible, archivable et contrôlable. Certif-Scope
-              produit un document CO₂e indicatif, standardisé et vérifiable.
+              Si un client vous demande un “justificatif CO₂” (preuve carbone),
+              le besoin est souvent un document de screening : lisible,
+              archivable et contrôlable. Certif-Scope produit un document CO₂e
+              indicatif, standardisé et vérifiable.
             </p>
 
             <div className="mt-6 flex flex-wrap gap-3">
@@ -316,4 +468,4 @@ export default function WhyCompaniesAskPage() {
       </div>
     </section>
   );
-}
+             }
