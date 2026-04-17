@@ -109,6 +109,50 @@ export default function BilanCarboneAppelOffresFR() {
           interne.
         </p>
 
+        <div className="mt-6 rounded-2xl border border-[#0B3A63]/10 bg-[#F8FAFC] p-6 max-w-4xl">
+          <h2 className="text-lg font-semibold text-[#0B3A63] mb-3">
+            Ce qu’il faut clarifier avant de répondre
+          </h2>
+          <ul className="list-disc ml-6 text-gray-700 space-y-2 leading-relaxed">
+            <li>
+              le dossier attend-il seulement un indicateur CO₂e ou un livrable
+              plus technique ;
+            </li>
+            <li>
+              la demande relève-t-elle d’un simple screening ou d’une exigence
+              formelle ;
+            </li>
+            <li>
+              le budget doit-il couvrir un document simple ou un inventaire
+              complet plus coûteux.
+            </li>
+          </ul>
+          <p className="mt-4 text-sm text-gray-600 leading-relaxed">
+            Pour aller plus vite sur ces trois points, les pages{" "}
+            <Link
+              href="/fr/bilan-carbone-pme/obligation/"
+              className="underline text-[#0B3A63]"
+            >
+              obligation
+            </Link>
+            ,{" "}
+            <Link
+              href="/fr/bilan-carbone-pme/cout/"
+              className="underline text-[#0B3A63]"
+            >
+              coût
+            </Link>{" "}
+            et{" "}
+            <Link
+              href="/fr/bilan-carbone-pme/exemple/"
+              className="underline text-[#0B3A63]"
+            >
+              exemple
+            </Link>{" "}
+            détaillent les cas les plus fréquents pour une PME.
+          </p>
+        </div>
+
         <div className="mt-8 flex flex-wrap gap-3">
           <Link
             href="/fr/generate/"
@@ -139,7 +183,15 @@ export default function BilanCarboneAppelOffresFR() {
           <p className="text-gray-700 leading-relaxed mb-6">
             Le terme “bilan carbone” est souvent employé de manière générique.
             Dans beaucoup de dossiers, il s’agit d’un critère de comparaison, non
-            d’une obligation réglementaire imposant un référentiel précis.
+            d’une obligation réglementaire imposant un référentiel précis. C’est
+            exactement pour cela qu’une PME doit d’abord vérifier si la demande
+            est réellement <Link
+              href="/fr/bilan-carbone-pme/obligation/"
+              className="underline text-[#0B3A63]"
+            >
+              obligatoire
+            </Link>{" "}
+            ou si elle relève surtout d’un besoin de screening.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -173,6 +225,20 @@ export default function BilanCarboneAppelOffresFR() {
             2. Ce qu’il faut mettre dans le dossier
           </h2>
 
+          <p className="text-gray-700 leading-relaxed mb-6">
+            Dans la majorité des appels d’offres, la priorité n’est pas de
+            produire le document le plus long possible, mais le document le plus
+            lisible et le plus exploitable. Si tu veux voir à quoi ressemble ce
+            format, la page{" "}
+            <Link
+              href="/fr/bilan-carbone-pme/exemple/"
+              className="underline text-[#0B3A63]"
+            >
+              exemple de bilan carbone PME
+            </Link>{" "}
+            montre la structure attendue dans un dossier.
+          </p>
+
           <div className="rounded-2xl border border-gray-200 bg-white p-6">
             <ul className="list-disc ml-6 text-gray-700 space-y-2">
               <li>résultat CO₂e agrégé</li>
@@ -191,11 +257,23 @@ export default function BilanCarboneAppelOffresFR() {
             3. Quand un inventaire complet devient nécessaire
           </h2>
 
-          <p className="text-gray-700 leading-relaxed">
+          <p className="text-gray-700 leading-relaxed mb-4">
             Si le cahier des charges impose explicitement un standard, un
             périmètre détaillé ou une vérification externe, une estimation
             indicative ne suffit pas. Il faut alors aligner le livrable sur le
             cadre exigé.
+          </p>
+
+          <p className="text-gray-700 leading-relaxed">
+            C’est aussi ce qui explique pourquoi le{" "}
+            <Link
+              href="/fr/bilan-carbone-pme/cout/"
+              className="underline text-[#0B3A63]"
+            >
+              coût d’un bilan carbone PME
+            </Link>{" "}
+            peut varier fortement : un document de screening et un inventaire
+            complet ne correspondent pas du tout au même niveau d’effort.
           </p>
         </section>
 
@@ -215,6 +293,50 @@ export default function BilanCarboneAppelOffresFR() {
                 <p className="text-gray-700 leading-relaxed">{item.a}</p>
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* CLUSTER LINKS */}
+        <section>
+          <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
+            4. Guides utiles pour répondre plus vite
+          </h2>
+
+          <div className="rounded-2xl border border-gray-200 bg-white p-6">
+            <ul className="space-y-3 text-gray-700">
+              <li>
+                <Link
+                  className="underline text-[#0B3A63]"
+                  href="/fr/bilan-carbone-pme/"
+                >
+                  Bilan carbone PME : page pilier →
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="underline text-[#0B3A63]"
+                  href="/fr/bilan-carbone-pme/obligation/"
+                >
+                  Bilan carbone PME : est-ce obligatoire ? →
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="underline text-[#0B3A63]"
+                  href="/fr/bilan-carbone-pme/cout/"
+                >
+                  Combien coûte un bilan carbone PME ? →
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="underline text-[#0B3A63]"
+                  href="/fr/bilan-carbone-pme/exemple/"
+                >
+                  Exemple de bilan carbone PME (format dossier) →
+                </Link>
+              </li>
+            </ul>
           </div>
         </section>
 
