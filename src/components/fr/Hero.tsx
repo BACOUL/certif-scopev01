@@ -9,118 +9,155 @@ export default function Hero() {
       id="hero"
       itemScope
       itemType="https://schema.org/WebPage"
-      className="relative max-w-6xl mx-auto px-6 pt-8 md:pt-14 pb-14 md:pb-20 text-center"
+      className="relative overflow-hidden"
     >
+      <div className="absolute inset-0 -z-20 bg-gradient-to-b from-white via-[#F8FAFC] to-[#EEF8F6]" />
+      <div className="absolute inset-x-0 top-0 -z-10 h-[420px] bg-[radial-gradient(circle_at_top,rgba(21,176,151,0.10),transparent_55%)]" />
+
       <span className="sr-only" itemProp="alternativeHeadline">
-        Bilan carbone PME : obligation, coût, demande client et solution simplifiée pour obtenir un document CO₂e vérifiable.
+        Bilan carbone PME simplifié pour répondre à une demande client, un appel d’offres ou une banque, avec un document CO₂e indicatif, standardisé et vérifiable.
       </span>
 
-      <div className="absolute inset-0 bg-gradient-to-b from-white to-[#F3FBFC] -z-10" />
+      <div className="max-w-6xl mx-auto px-6 pt-8 md:pt-14 pb-14 md:pb-20">
+        <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+          {/* LEFT */}
+          <div className="text-center lg:text-left">
+            {/* Eyebrow */}
+            <p
+              itemProp="about"
+              className="inline-flex items-center rounded-full border border-[#0B3A63]/10 bg-white/80 px-4 py-2 text-[11px] md:text-xs font-semibold uppercase tracking-[0.14em] text-[#0B3A63]/75 shadow-sm"
+            >
+              Bilan carbone PME • Appels d’offres • Clients • Banques
+            </p>
 
-      {/* SURTITRE */}
-      <p
-        className="text-xs md:text-sm font-semibold tracking-wide text-[#0B3A63]/70 mb-3 uppercase"
-        itemProp="about"
-      >
-        Bilan carbone PME • réponse simple pour demandes clients, appels d’offres et banques
-      </p>
+            {/* H1 */}
+            <h1
+              itemProp="headline"
+              className="mt-5 text-[2.2rem] md:text-[3.5rem] font-extrabold tracking-tight text-[#0B3A63] leading-[1.02]"
+            >
+              Bilan carbone PME :
+              <br />
+              <span className="text-[#15B097]">prêt en quelques minutes</span>
+            </h1>
 
-      {/* H1 */}
-      <h1
-        itemProp="headline"
-        className="text-[1.95rem] md:text-[3.15rem] font-extrabold text-[#0B3A63] leading-tight tracking-tight"
-      >
-        Bilan carbone PME :{" "}
-        <span className="whitespace-nowrap">obtenez un document CO₂e</span>
-        <br />
-        <span className="text-[#15B097]">simple, rapide et vérifiable</span>
-      </h1>
+            {/* Subtitle */}
+            <p
+              itemProp="description"
+              className="mt-5 max-w-2xl mx-auto lg:mx-0 text-[1.02rem] md:text-[1.18rem] leading-relaxed text-slate-600"
+            >
+              Répondez à une demande client, un appel d’offres ou un dossier bancaire
+              avec une <strong className="font-semibold text-[#0B3A63]">estimation carbone simple</strong>,
+              présentée dans un document standardisé, sans lancer un audit carbone complet.
+            </p>
 
-      {/* DESCRIPTION */}
-      <p
-        className="text-base md:text-lg text-[#475569] max-w-3xl mx-auto mt-4 leading-relaxed"
-        itemProp="description"
-      >
-        Répondez à une demande de client, d’acheteur, de donneur d’ordre, de banque
-        ou d’assurance avec un document CO₂e standardisé, émis en quelques minutes,
-        sans lancer un audit carbone complet.
-      </p>
+            {/* Quick value bullets */}
+            <div className="mt-6 flex flex-wrap items-center justify-center lg:justify-start gap-2.5">
+              <span className="rounded-full bg-white px-3 py-1.5 text-xs md:text-sm font-medium text-[#0B3A63] border border-slate-200">
+                Prix fixe
+              </span>
+              <span className="rounded-full bg-white px-3 py-1.5 text-xs md:text-sm font-medium text-[#0B3A63] border border-slate-200">
+                Sans abonnement
+              </span>
+              <span className="rounded-full bg-white px-3 py-1.5 text-xs md:text-sm font-medium text-[#0B3A63] border border-slate-200">
+                Vérification tierce
+              </span>
+              <span className="rounded-full bg-white px-3 py-1.5 text-xs md:text-sm font-medium text-[#0B3A63] border border-slate-200">
+                PDF standardisé
+              </span>
+            </div>
 
-      {/* DIRECT ANSWER BLOCK */}
-      <div className="mt-6 max-w-3xl mx-auto rounded-2xl border border-[#D9E6EE] bg-white/90 shadow-sm p-4 md:p-5 text-left">
-        <p className="text-sm md:text-base font-semibold text-[#0B3A63]">
-          Une PME doit-elle obligatoirement faire un bilan carbone ?
-        </p>
-        <p className="mt-2 text-sm md:text-[15px] leading-relaxed text-[#475569]">
-          Dans la plupart des cas, non. En pratique, la demande vient souvent d’un
-          client, d’un appel d’offres, d’un processus de référencement fournisseur
-          ou d’un dossier bancaire. Certif-Scope propose une réponse simple à cette
-          demande : un résultat CO₂e agrégé, présenté dans un PDF standardisé et
-          vérifiable par un tiers.
-        </p>
+            {/* CTA */}
+            <div className="mt-7 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3">
+              <Link
+                href="/fr/generate"
+                aria-label="Obtenir mon bilan carbone PME"
+                className="inline-flex items-center justify-center rounded-xl bg-[#0B3A63] px-8 md:px-10 py-4 text-base font-semibold text-white shadow-md transition hover:bg-[#082C4B] w-full sm:w-auto"
+              >
+                Obtenir mon document CO₂e
+              </Link>
+
+              <Link
+                href="/fr/pricing"
+                aria-label="Voir le prix"
+                className="inline-flex items-center justify-center rounded-xl border border-[#0B3A63] px-8 py-4 text-base font-semibold text-[#0B3A63] transition hover:bg-[#0B3A63] hover:text-white w-full sm:w-auto"
+              >
+                Voir le prix
+              </Link>
+            </div>
+
+            {/* Trust / use cases */}
+            <p className="mt-4 text-xs md:text-sm text-slate-500 leading-relaxed">
+              Cas d’usage fréquents : référencement fournisseur, réponse à un client, onboarding ESG, demande bancaire.
+            </p>
+
+            {/* Legal / method */}
+            <div className="mt-6 rounded-2xl border border-slate-200 bg-white/85 p-4 md:p-5 shadow-sm text-left max-w-2xl mx-auto lg:mx-0">
+              <p className="text-sm font-semibold text-[#0B3A63]">
+                Une PME doit-elle obligatoirement faire un bilan carbone ?
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                Dans la plupart des cas, non. En pratique, la demande vient souvent d’un client,
+                d’un appel d’offres, d’un processus de référencement fournisseur ou d’un dossier bancaire.
+                Certif-Scope apporte une réponse simple à ce besoin avec un résultat CO₂e agrégé,
+                présenté dans un document indicatif et vérifiable.
+              </p>
+            </div>
+
+            <div className="mt-4 max-w-2xl mx-auto lg:mx-0 space-y-2 text-left">
+              <p className="text-[12px] leading-relaxed text-slate-500">
+                Méthode indicative spend-based (dépenses × facteurs d’émission), fondée sur des référentiels reconnus,
+                dont le GHG Protocol et l’ISO 14064-1.
+              </p>
+              <p className="text-[11px] leading-relaxed text-slate-500">
+                Document indicatif : ne constitue pas un inventaire GES complet, un audit réglementaire,
+                ni un reporting CSRD/ESRS. Les données d’entrée restent sous la responsabilité de l’utilisateur.
+              </p>
+            </div>
+          </div>
+
+          {/* RIGHT */}
+          <div className="relative">
+            <div className="relative mx-auto max-w-sm sm:max-w-md lg:max-w-none">
+              {/* floating card top */}
+              <div className="hidden md:block absolute -top-5 -left-5 z-10 rounded-2xl border border-[#15B097]/20 bg-white px-4 py-3 shadow-lg">
+                <p className="text-[11px] uppercase tracking-wide text-slate-500 font-semibold">
+                  Usage principal
+                </p>
+                <p className="mt-1 text-sm font-semibold text-[#0B3A63]">
+                  Répondre vite à une demande externe
+                </p>
+              </div>
+
+              {/* main image */}
+              <div className="rounded-[28px] border border-slate-200 bg-white p-3 shadow-[0_18px_60px_rgba(11,58,99,0.12)]">
+                <Image
+                  itemProp="primaryImageOfPage"
+                  src="/hero-attestation.webp"
+                  alt="Exemple de document de bilan carbone PME simplifié avec résultat agrégé, méthode indicative et vérification indépendante."
+                  width={900}
+                  height={640}
+                  priority
+                  className="h-auto w-full rounded-[20px] border border-slate-100"
+                />
+              </div>
+
+              {/* floating card bottom */}
+              <div className="hidden md:block absolute -bottom-5 -right-4 z-10 rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-lg">
+                <p className="text-[11px] uppercase tracking-wide text-slate-500 font-semibold">
+                  Vérification
+                </p>
+                <p className="mt-1 text-sm font-semibold text-[#0B3A63]">
+                  Vérifiable indépendamment par un tiers
+                </p>
+              </div>
+            </div>
+
+            <p className="mt-5 text-center text-sm font-medium text-[#0B3A63]/80">
+              Document utilisable immédiatement et vérifiable indépendamment.
+            </p>
+          </div>
+        </div>
       </div>
-
-      {/* TRUST / VALUE LINE */}
-      <p className="mt-4 text-sm text-[#0B3A63]/85 font-medium">
-        Prix fixe • Sans abonnement • Vérification tierce • Utilisable dans un cadre fournisseur
-      </p>
-
-      {/* LEGAL / METHOD */}
-      <div className="mt-4 max-w-2xl mx-auto space-y-2">
-        <p className="text-xs text-slate-500 leading-relaxed">
-          Méthode indicative spend-based (dépenses × facteurs d’émission), fondée sur
-          des référentiels reconnus tels que le GHG Protocol, l’ISO 14064-1, l’ISO 14083,
-          l’EU Taxonomy, les ESRS et des bases de facteurs d’émission publiées.
-        </p>
-
-        <p className="text-[11px] text-slate-500 leading-relaxed">
-          Document indicatif : ne constitue pas un inventaire GES complet, un audit réglementaire,
-          un reporting CSRD/ESRS ni une comptabilité carbone exhaustive des scopes 1, 2 et 3.
-          Les données d’entrée restent sous la responsabilité de l’utilisateur.
-        </p>
-      </div>
-
-      {/* CTA */}
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-6 md:mt-7">
-        <Link
-          href="/fr/generate"
-          aria-label="Obtenir mon document CO2e pour PME"
-          className="bg-[#0B3A63] hover:bg-[#092f50] text-white font-semibold px-12 py-4 rounded-xl shadow-md transition"
-        >
-          Obtenir mon document CO₂e
-        </Link>
-
-        <Link
-          href="/fr/bilan-carbone-pme"
-          aria-label="Comprendre le bilan carbone pour une PME"
-          className="text-[#0B3A63] font-semibold px-8 py-4 rounded-xl border border-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition"
-        >
-          Comprendre le bilan carbone PME
-        </Link>
-      </div>
-
-      {/* MICRO CONTEXT */}
-      <p className="mt-4 text-xs text-[#64748B]">
-        Cas d’usage fréquents : appel d’offres, référencement fournisseur, onboarding ESG, dossier bancaire.
-      </p>
-
-      {/* IMAGE */}
-      <div className="flex justify-center mt-7 md:mt-8">
-        <Image
-          itemProp="primaryImageOfPage"
-          src="/hero-attestation.webp"
-          alt="Exemple de document CO2e simplifié pour PME avec identification, résultat agrégé, méthode indicative et vérification indépendante."
-          width={900}
-          height={600}
-          priority
-          className="w-full max-w-xs sm:max-w-sm md:max-w-xl rounded-2xl shadow-lg border border-slate-100"
-        />
-      </div>
-
-      {/* TRUST LINE */}
-      <p className="text-sm text-[#0B3A63]/80 font-medium mt-6">
-        Vérifiable indépendamment, sans dépendre d’un échange commercial ou d’un accès privé.
-      </p>
     </section>
   );
 }
