@@ -6,156 +6,181 @@ export default function TrustFR() {
     <section
       id="trust"
       data-section="trust"
-      className="py-24 bg-[#F8FAFC] dark:bg-gray-900"
+      className="relative py-24 bg-[#F8FAFC]"
     >
+      <div className="absolute inset-0 bg-gradient-to-b from-[#F8FAFC] via-white to-[#F3FBFC] -z-10" />
+
       <div className="max-w-6xl mx-auto px-6 text-center">
         {/* MICRO LABEL */}
         <p
-          className="uppercase text-xs md:text-sm font-medium text-[#64748B] dark:text-gray-400 tracking-wider mb-3"
+          className="inline-flex items-center rounded-full border border-[#0B3A63]/10 bg-white/90 px-4 py-2 text-[11px] md:text-xs font-semibold uppercase tracking-[0.14em] text-[#0B3A63]/75 shadow-sm mb-5"
           data-i18n="trust.label"
         >
-          Attestation CO₂e — Fiabilité et crédibilité
+          Fiabilité • Vérification • Banque • Achats • ESG
         </p>
 
         {/* TITLE */}
         <h2
-          className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] dark:text-gray-100 leading-tight tracking-tight"
+          className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] leading-tight tracking-tight"
           data-i18n="trust.title"
         >
-          Conçue pour l’examen institutionnel et la vérification indépendante
+          Un document conçu pour être lu, vérifié et comparé rapidement
         </h2>
 
         {/* INTRO */}
         <p
-          className="mt-4 text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed"
+          className="mt-4 text-lg text-[#475569] max-w-3xl mx-auto leading-relaxed"
           data-i18n="trust.intro"
         >
-          Certif-Scope repose sur une structure documentaire fixe, des références
-          de facteurs d’émission stables et des éléments de vérification intégrés.
-          Les examinateurs disposent d’un document cohérent et comparable entre
-          fournisseurs, réduisant les contrôles manuels et les zones
+          Certif-Scope fournit un{" "}
+          <strong className="text-[#0B3A63] font-semibold">
+            document CO₂e standardisé
+          </strong>{" "}
+          conçu pour les contextes où un client, un acheteur, une banque ou un
+          assureur demande un indicateur carbone lisible rapidement. La structure
+          est stable, les références méthodologiques sont explicites, et des
+          éléments de vérification sont intégrés pour réduire les zones
           d’interprétation.
         </p>
 
         {/* SEPARATOR */}
-        <div className="w-20 h-[2px] bg-gray-300 dark:bg-gray-700 mx-auto my-14" />
+        <div className="w-20 h-[2px] bg-[#0B3A63]/12 mx-auto my-14" />
 
-        {/* ACCEPTANCE */}
-        <p
-          className="text-sm text-[#0B3A63]/80 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed mb-16"
-          data-i18n="trust.acceptance"
-        >
-          Couramment utilisé pour les phases de présélection en achats, banque,
-          assurance et analyses ESG au sein d’organisations européennes.
-        </p>
+        {/* ACCEPTANCE / POSITIONING */}
+        <div className="max-w-4xl mx-auto rounded-[24px] border border-[#0B3A63]/10 bg-white/90 p-6 md:p-7 shadow-sm mb-16">
+          <p
+            className="text-sm md:text-base text-[#475569] leading-relaxed"
+            data-i18n="trust.acceptance"
+          >
+            Ce format est particulièrement adapté aux phases de{" "}
+            <strong className="text-[#0B3A63] font-semibold">
+              présélection fournisseur
+            </strong>
+            , d’<strong className="text-[#0B3A63] font-semibold">appel d’offres</strong>,
+            de revue bancaire, d’analyse assurantielle et de screening ESG,
+            lorsqu’un document carbone simplifié est demandé sans exiger un audit
+            complet des émissions.
+          </p>
+        </div>
 
         {/* PILLARS */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
           {/* INTEGRITY */}
           <div
-            className="flex flex-col items-center text-center transition-transform duration-200 hover:-translate-y-1"
+            className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-8 text-center shadow-sm"
             data-i18n="trust.integrity"
           >
-            <svg
-              aria-hidden="true"
-              className="h-12 w-12 text-[#0B3A63] dark:text-gray-200 mb-4"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M12 2l7 4v6c0 5-3.5 9-7 10-3.5-1-7-5-7-10V6l7-4z"
-              />
-            </svg>
+            <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#F3FBFC] border border-[#0B3A63]/10">
+              <svg
+                aria-hidden="true"
+                className="h-8 w-8 text-[#0B3A63]"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M12 2l7 4v6c0 5-3.5 9-7 10-3.5-1-7-5-7-10V6l7-4z"
+                />
+              </svg>
+            </div>
 
-            <h3 className="text-lg font-semibold text-[#0B3A63] dark:text-gray-100 mb-2">
-              Intégrité vérifiable
+            <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
+              Vérification indépendante
             </h3>
 
-            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Chaque attestation intègre des éléments de vérification permettant
-              à un tiers de confirmer l’authenticité et l’intégrité du document,
-              sans dépendre de comptes utilisateurs, de bases de données ou du
-              stockage de données financières.
+            <p className="text-sm text-[#64748B] leading-relaxed">
+              Chaque document intègre des éléments permettant à un tiers de
+              vérifier l’authenticité et l’intégrité du résultat, sans dépendre
+              d’un compte utilisateur ni d’un stockage de données financières
+              détaillées.
             </p>
           </div>
 
           {/* STRUCTURE */}
           <div
-            className="flex flex-col items-center text-center transition-transform duration-200 hover:-translate-y-1"
+            className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-8 text-center shadow-sm"
             data-i18n="trust.structure"
           >
-            <svg
-              aria-hidden="true"
-              className="h-12 w-12 text-[#0B3A63] dark:text-gray-200 mb-4"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M4 7h16M4 12h16M4 17h16"
-              />
-            </svg>
+            <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#F3FBFC] border border-[#0B3A63]/10">
+              <svg
+                aria-hidden="true"
+                className="h-8 w-8 text-[#0B3A63]"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M4 7h16M4 12h16M4 17h16"
+                />
+              </svg>
+            </div>
 
-            <h3 className="text-lg font-semibold text-[#0B3A63] dark:text-gray-100 mb-2">
-              Structure alignée avec les examinateurs
+            <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
+              Structure lisible par les examinateurs
             </h3>
 
-            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Les données d’entrée, le résumé méthodologique et les résultats
-              suivent une présentation prévisible, conforme aux pratiques
-              d’analyse des équipes achats, bancaires et ESG.
+            <p className="text-sm text-[#64748B] leading-relaxed">
+              Les résultats, la méthodologie, la période et les éléments de
+              contexte sont présentés dans un format constant, pensé pour les
+              équipes achats, banques, assurances et conformité ESG.
             </p>
           </div>
 
           {/* CONSISTENCY */}
           <div
-            className="flex flex-col items-center text-center transition-transform duration-200 hover:-translate-y-1"
+            className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-8 text-center shadow-sm"
             data-i18n="trust.consistency"
           >
-            <svg
-              aria-hidden="true"
-              className="h-12 w-12 text-[#0B3A63] dark:text-gray-200 mb-4"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3 3h18v4H3V3zm0 7h18v11H3V10zm6 3h6"
-              />
-            </svg>
+            <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#F3FBFC] border border-[#0B3A63]/10">
+              <svg
+                aria-hidden="true"
+                className="h-8 w-8 text-[#0B3A63]"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M3 3h18v4H3V3zm0 7h18v11H3V10zm6 3h6"
+                />
+              </svg>
+            </div>
 
-            <h3 className="text-lg font-semibold text-[#0B3A63] dark:text-gray-100 mb-2">
+            <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
               Résultats cohérents et comparables
             </h3>
 
-            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Des références de facteurs d’émission documentées et stables
-              garantissent des résultats comparables d’une évaluation à l’autre,
-              facilitant le filtrage institutionnel et les comparaisons
-              automatisées.
+            <p className="text-sm text-[#64748B] leading-relaxed">
+              La logique de calcul spend-based et les références d’émission
+              documentées permettent d’obtenir des résultats cohérents d’un
+              dossier à l’autre, utiles pour comparer rapidement plusieurs
+              fournisseurs.
             </p>
           </div>
         </div>
 
-        {/* FOOTNOTE */}
-        <p
-          className="mt-12 text-center text-xs text-gray-500 dark:text-gray-400"
-          data-i18n="trust.footnote"
-        >
-          Document indicatif basé sur les dépenses — ne constitue ni un rapport
-          CSRD/ESRS, ni un inventaire d’émissions audité.
-        </p>
+        {/* FOOTNOTE / LIMITS */}
+        <div className="mt-12 max-w-3xl mx-auto rounded-[20px] border border-[#0B3A63]/10 bg-white/90 p-5 md:p-6 shadow-sm">
+          <p
+            className="text-center text-xs md:text-sm text-[#64748B] leading-relaxed"
+            data-i18n="trust.footnote"
+          >
+            Document indicatif basé sur les dépenses. Ne constitue ni un rapport
+            CSRD/ESRS, ni un inventaire complet des émissions, ni un audit
+            réglementaire. Son objectif est de fournir un indicateur carbone
+            simple, standardisé et vérifiable dans les contextes où une réponse
+            rapide est demandée.
+          </p>
+        </div>
       </div>
     </section>
   );
-}
+                  }
