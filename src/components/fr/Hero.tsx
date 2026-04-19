@@ -3,6 +3,13 @@
 import Image from "next/image";
 import Link from "next/link";
 
+const proofItems = [
+  "Prix fixe",
+  "Sans abonnement",
+  "Vérification tierce",
+  "PDF standardisé",
+];
+
 export default function Hero() {
   return (
     <section
@@ -11,64 +18,69 @@ export default function Hero() {
       itemType="https://schema.org/WebPage"
       className="relative overflow-hidden"
     >
-      <div className="absolute inset-0 -z-20 bg-gradient-to-b from-white via-[#F8FAFC] to-[#F3FBFC]" />
-      <div className="absolute inset-x-0 top-0 -z-10 h-[420px] bg-[radial-gradient(circle_at_top,rgba(31,182,193,0.08),transparent_55%)]" />
+      <div className="absolute inset-0 -z-30 bg-[linear-gradient(180deg,#ffffff_0%,#F8FAFC_58%,#F4FBFC_100%)]" />
+      <div className="absolute inset-x-0 top-0 -z-20 h-[520px] bg-[radial-gradient(circle_at_top,rgba(31,182,193,0.07),transparent_58%)]" />
+      <div className="absolute left-[-8%] top-24 -z-10 h-56 w-56 rounded-full bg-[#1FB6C1]/6 blur-3xl" />
+      <div className="absolute right-[-6%] top-16 -z-10 h-72 w-72 rounded-full bg-[#0B3A63]/6 blur-3xl" />
 
       <span className="sr-only" itemProp="alternativeHeadline">
-        Bilan carbone PME simplifié pour répondre à une demande client, un appel d’offres ou une banque, avec un document CO₂e indicatif, standardisé et vérifiable.
+        Bilan carbone PME simplifié pour répondre à une demande client, un
+        appel d’offres ou une banque, avec un document CO₂e indicatif,
+        standardisé et vérifiable.
       </span>
 
-      <div className="max-w-6xl mx-auto px-6 pt-8 md:pt-14 pb-14 md:pb-20">
-        <div className="grid items-center gap-10 lg:grid-cols-[1.08fr_0.92fr]">
+      <div className="mx-auto max-w-7xl px-6 pb-14 pt-8 md:px-8 md:pb-20 md:pt-14">
+        <div className="grid items-center gap-12 lg:grid-cols-[0.98fr_1.02fr] lg:gap-16">
           <div className="text-center lg:text-left">
             <p
               itemProp="about"
-              className="inline-flex items-center rounded-full border border-[#0B3A63]/10 bg-white/90 px-4 py-2 text-[11px] md:text-xs font-semibold uppercase tracking-[0.14em] text-[#0B3A63]/75 shadow-sm"
+              className="hero-reveal inline-flex items-center gap-2 rounded-full border border-[#0B3A63]/10 bg-white/90 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#0B3A63]/75 shadow-sm backdrop-blur md:text-xs"
             >
+              <span className="inline-block h-2 w-2 rounded-full bg-[#1FB6C1]" />
               Bilan carbone PME • Appels d’offres • Clients • Banques
             </p>
 
             <h1
               itemProp="headline"
-              className="mt-5 text-[2.15rem] md:text-[3.45rem] font-extrabold tracking-tight text-[#0B3A63] leading-[1.02]"
+              className="hero-reveal mt-5 text-[2.3rem] font-extrabold leading-[0.98] tracking-[-0.04em] text-[#0B3A63] [animation-delay:120ms] md:text-[3.65rem] lg:max-w-[11ch]"
             >
               Bilan carbone PME :
               <br />
-              document CO₂e <span className="text-[#1FB6C1]">standardisé et vérifiable</span>
+              <span className="relative inline-block">
+                répondez simplement
+                <span className="absolute bottom-1 left-0 h-3 w-full rounded-full bg-[#1FB6C1]/18" />
+              </span>{" "}
+              aux demandes clients
             </h1>
 
             <p
               itemProp="description"
-              className="mt-5 max-w-2xl mx-auto lg:mx-0 text-[1.02rem] md:text-[1.18rem] leading-relaxed text-[#475569]"
+              className="hero-reveal mx-auto mt-5 max-w-2xl text-[1.04rem] leading-relaxed text-[#475569] [animation-delay:220ms] lg:mx-0 md:text-[1.18rem]"
             >
-              Répondez à une demande client, un appel d’offres ou un dossier bancaire
-              avec une{" "}
+              Générez une{" "}
               <strong className="font-semibold text-[#0B3A63]">
-                estimation carbone simple
-              </strong>
-              , présentée dans un document standardisé, sans lancer un audit carbone complet.
+                attestation carbone simple, standardisée et vérifiable
+              </strong>{" "}
+              pour répondre à une demande client, un appel d’offres ou un
+              dossier bancaire, sans lancer un audit carbone complet.
             </p>
 
-            <div className="mt-6 flex flex-wrap items-center justify-center lg:justify-start gap-2.5">
-              <span className="rounded-full border border-[#0B3A63]/12 bg-white px-3 py-1.5 text-xs md:text-sm font-medium text-[#0B3A63] shadow-sm">
-                Prix fixe
-              </span>
-              <span className="rounded-full border border-[#0B3A63]/12 bg-white px-3 py-1.5 text-xs md:text-sm font-medium text-[#0B3A63] shadow-sm">
-                Sans abonnement
-              </span>
-              <span className="rounded-full border border-[#0B3A63]/12 bg-white px-3 py-1.5 text-xs md:text-sm font-medium text-[#0B3A63] shadow-sm">
-                Vérification tierce
-              </span>
-              <span className="rounded-full border border-[#0B3A63]/12 bg-white px-3 py-1.5 text-xs md:text-sm font-medium text-[#0B3A63] shadow-sm">
-                PDF standardisé
-              </span>
+            <div className="hero-reveal mt-6 flex flex-wrap items-center justify-center gap-2.5 [animation-delay:320ms] lg:justify-start">
+              {proofItems.map((item) => (
+                <span
+                  key={item}
+                  className="rounded-full border border-[#0B3A63]/12 bg-white px-3 py-1.5 text-xs font-medium text-[#0B3A63] shadow-sm md:text-sm"
+                >
+                  {item}
+                </span>
+              ))}
             </div>
 
-            <div className="mt-7 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3">
+            <div className="hero-reveal mt-7 flex flex-col items-center justify-center gap-3 [animation-delay:420ms] sm:flex-row lg:justify-start">
               <Link
                 href="/fr/generate"
                 aria-label="Obtenir mon bilan carbone PME"
-                className="inline-flex w-full sm:w-auto items-center justify-center rounded-xl bg-[#1FB6C1] px-8 md:px-10 py-4 text-base font-semibold text-white shadow-[0_10px_25px_rgba(31,182,193,0.22)] transition hover:bg-[#17A2A8]"
+                className="inline-flex min-h-[56px] w-full items-center justify-center rounded-xl bg-[#1FB6C1] px-8 py-4 text-base font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#19AAB4] hover:shadow-[0_18px_36px_rgba(31,182,193,0.34)] sm:w-auto md:px-10"
               >
                 Obtenir mon document CO₂e
               </Link>
@@ -76,67 +88,140 @@ export default function Hero() {
               <Link
                 href="/fr/pricing"
                 aria-label="Voir le prix"
-                className="inline-flex w-full sm:w-auto items-center justify-center rounded-xl border border-[#0B3A63] bg-white px-8 py-4 text-base font-semibold text-[#0B3A63] transition hover:bg-[#0B3A63] hover:text-white"
+                className="inline-flex min-h-[56px] w-full items-center justify-center rounded-xl border border-[#0B3A63]/14 bg-white px-8 py-4 text-base font-semibold text-[#0B3A63] shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#0B3A63] hover:bg-[#0B3A63] hover:text-white sm:w-auto"
               >
                 Voir le prix
               </Link>
             </div>
 
-            <p className="mt-4 text-xs md:text-sm leading-relaxed text-[#64748B]">
-              Cas d’usage fréquents : référencement fournisseur, réponse à un client, onboarding ESG, demande bancaire.
+            <p className="hero-reveal mt-5 text-xs leading-relaxed text-[#64748B] [animation-delay:520ms] md:text-sm">
+              Cas d’usage fréquents : référencement fournisseur, réponse à un
+              client, onboarding ESG, demande bancaire.
             </p>
 
-            <div className="mt-4 max-w-2xl mx-auto lg:mx-0 space-y-2 text-left">
+            <div className="hero-reveal mx-auto mt-5 max-w-2xl space-y-2 text-left [animation-delay:620ms] lg:mx-0">
               <p className="text-[12px] leading-relaxed text-[#64748B]">
-                Méthode indicative spend-based (dépenses × facteurs d’émission), fondée sur des référentiels reconnus,
-                dont le GHG Protocol et l’ISO 14064-1.
+                Méthode indicative spend-based (dépenses × facteurs
+                d’émission), fondée sur des référentiels reconnus.
               </p>
               <p className="text-[11px] leading-relaxed text-[#64748B]">
-                Document indicatif : ne constitue pas un inventaire GES complet, un audit réglementaire,
-                ni un reporting CSRD/ESRS. Les données d’entrée restent sous la responsabilité de l’utilisateur.
+                Document indicatif : ne constitue pas un inventaire GES complet,
+                un audit réglementaire ni un reporting CSRD/ESRS. Les données
+                d’entrée restent sous la responsabilité de l’utilisateur.
               </p>
             </div>
           </div>
 
-          <div className="relative">
-            <div className="relative mx-auto max-w-sm sm:max-w-md lg:max-w-none">
-              <div className="hidden md:block absolute -top-5 -left-5 z-10 rounded-2xl border border-[#0B3A63]/10 bg-white px-4 py-3 shadow-lg">
-                <p className="text-[11px] uppercase tracking-wide text-[#64748B] font-semibold">
-                  Usage principal
+          <div className="hero-scale relative lg:pl-4">
+            <div className="relative mx-auto max-w-[650px] lg:mr-0 lg:max-w-[720px]">
+              <div className="floating-card absolute left-0 top-8 z-10 hidden rounded-2xl border border-[#0B3A63]/10 bg-white/95 px-4 py-3 shadow-[0_20px_50px_rgba(11,58,99,0.10)] backdrop-blur md:block">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#64748B]">
+                  Processus
                 </p>
                 <p className="mt-1 text-sm font-semibold text-[#0B3A63]">
-                  Répondre vite à une demande externe
+                  Saisie → Calcul → Attestation
                 </p>
               </div>
 
-              <div className="rounded-[28px] border border-[#0B3A63]/10 bg-white p-3 shadow-[0_18px_60px_rgba(11,58,99,0.12)]">
-                <Image
-                  itemProp="primaryImageOfPage"
-                  src="/hero-attestation.webp"
-                  alt="Exemple de document de bilan carbone PME simplifié avec résultat agrégé, méthode indicative et vérification indépendante."
-                  width={900}
-                  height={640}
-                  priority
-                  className="h-auto w-full rounded-[20px] border border-slate-100"
-                />
-              </div>
-
-              <div className="hidden md:block absolute -bottom-5 -right-4 z-10 rounded-2xl border border-[#0B3A63]/10 bg-white px-4 py-3 shadow-lg">
-                <p className="text-[11px] uppercase tracking-wide text-[#64748B] font-semibold">
+              <div className="floating-card absolute -right-2 bottom-14 z-10 hidden rounded-2xl border border-[#0B3A63]/10 bg-white/95 px-4 py-3 shadow-[0_20px_50px_rgba(11,58,99,0.10)] backdrop-blur md:block [animation-delay:1.2s]">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#64748B]">
                   Vérification
                 </p>
                 <p className="mt-1 text-sm font-semibold text-[#0B3A63]">
-                  Vérifiable indépendamment par un tiers
+                  ✔ Vérifié
                 </p>
+                <p className="mt-0.5 text-xs text-[#64748B]">
+                  ID unique : CS-2024-01829
+                </p>
+              </div>
+
+              <div className="floating-card absolute left-14 bottom-0 z-10 hidden rounded-full border border-[#0B3A63]/10 bg-white/95 px-4 py-2 shadow-[0_16px_36px_rgba(11,58,99,0.10)] backdrop-blur md:block [animation-delay:2s]">
+                <p className="text-xs font-semibold text-[#0B3A63]">
+                  PDF standardisé
+                </p>
+              </div>
+
+              <div className="relative transition-transform duration-500 hover:scale-[1.018]">
+                <div className="absolute inset-x-10 bottom-2 -z-10 h-14 rounded-full bg-[#0B3A63]/12 blur-2xl" />
+                <div className="overflow-hidden rounded-[34px]">
+                  <Image
+                    itemProp="primaryImageOfPage"
+                    src="/hero-attestation.webp"
+                    alt="Exemple de document de bilan carbone PME simplifié avec résultat CO2e agrégé, méthode indicative et vérification indépendante."
+                    width={1600}
+                    height={1200}
+                    priority
+                    className="h-auto w-full"
+                  />
+                </div>
               </div>
             </div>
 
-            <p className="mt-5 text-center text-sm font-medium text-[#0B3A63]/80">
+            <p className="hero-reveal mt-6 text-center text-sm font-medium text-[#0B3A63]/80 [animation-delay:340ms]">
               Document utilisable immédiatement et vérifiable indépendamment.
             </p>
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes revealUp {
+          from {
+            opacity: 0;
+            transform: translateY(18px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes revealScale {
+          from {
+            opacity: 0;
+            transform: translateY(18px) scale(0.985);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+
+        @keyframes floatCard {
+          0%,
+          100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-6px);
+          }
+        }
+
+        .hero-reveal {
+          opacity: 0;
+          animation: revealUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        .hero-scale {
+          opacity: 0;
+          animation: revealScale 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.18s
+            forwards;
+        }
+
+        .floating-card {
+          animation: floatCard 6.5s ease-in-out infinite;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .hero-reveal,
+          .hero-scale,
+          .floating-card {
+            animation: none !important;
+            opacity: 1 !important;
+            transform: none !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }
