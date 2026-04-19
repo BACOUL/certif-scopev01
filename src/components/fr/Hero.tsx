@@ -50,18 +50,6 @@ function HeroVisual() {
           />
         </div>
       </div>
-
-      <div className="mt-4 flex flex-wrap items-center justify-center gap-2.5 md:hidden">
-        <span className="rounded-full border border-[#0B3A63]/10 bg-white px-3 py-1.5 text-xs font-medium text-[#0B3A63] shadow-sm">
-          Saisie → Calcul → Attestation
-        </span>
-        <span className="rounded-full border border-[#0B3A63]/10 bg-white px-3 py-1.5 text-xs font-medium text-[#0B3A63] shadow-sm">
-          PDF standardisé
-        </span>
-        <span className="rounded-full border border-[#0B3A63]/10 bg-white px-3 py-1.5 text-xs font-medium text-[#0B3A63] shadow-sm">
-          ✔ Vérifié • ID unique
-        </span>
-      </div>
     </div>
   );
 }
@@ -141,8 +129,36 @@ export default function Hero() {
 
             <div className="hero-scale mt-8 lg:hidden">
               <HeroVisual />
-              <p className="mt-5 text-center text-sm font-medium text-[#0B3A63]/80">
-                Document utilisable immédiatement et vérifiable indépendamment.
+            </div>
+
+            <p className="hero-reveal mt-6 text-center text-sm font-medium text-[#0B3A63]/80 [animation-delay:420ms] lg:hidden">
+              Document prêt à être utilisé et vérifiable indépendamment.
+            </p>
+
+            <div className="hero-reveal mt-6 flex flex-wrap items-center justify-center gap-2.5 [animation-delay:520ms] lg:hidden">
+              {proofItems.map((item) => (
+                <span
+                  key={item}
+                  className="rounded-full border border-[#0B3A63]/12 bg-white px-3 py-1.5 text-xs font-medium text-[#0B3A63] shadow-sm"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+
+            <div className="hero-reveal mt-6 space-y-3 [animation-delay:620ms] lg:hidden">
+              <p className="text-sm leading-relaxed text-[#64748B]">
+                Cas d’usage fréquents : référencement fournisseur, réponse à un
+                client, onboarding ESG, demande bancaire.
+              </p>
+              <p className="text-[12px] leading-relaxed text-[#64748B]">
+                Méthode indicative spend-based (dépenses × facteurs
+                d’émission), fondée sur des référentiels reconnus.
+              </p>
+              <p className="text-[11px] leading-relaxed text-[#64748B]">
+                Document indicatif : ne constitue pas un inventaire GES complet,
+                un audit réglementaire ni un reporting CSRD/ESRS. Les données
+                d’entrée restent sous la responsabilité de l’utilisateur.
               </p>
             </div>
 
@@ -172,39 +188,12 @@ export default function Hero() {
                 d’entrée restent sous la responsabilité de l’utilisateur.
               </p>
             </div>
-
-            <div className="hero-reveal mt-7 space-y-3 [animation-delay:520ms] lg:hidden">
-              <div className="flex flex-wrap items-center justify-center gap-2.5">
-                {proofItems.map((item) => (
-                  <span
-                    key={item}
-                    className="rounded-full border border-[#0B3A63]/12 bg-white px-3 py-1.5 text-xs font-medium text-[#0B3A63] shadow-sm"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
-
-              <p className="text-sm leading-relaxed text-[#64748B]">
-                Cas d’usage fréquents : référencement fournisseur, réponse à un
-                client, onboarding ESG, demande bancaire.
-              </p>
-              <p className="text-[12px] leading-relaxed text-[#64748B]">
-                Méthode indicative spend-based (dépenses × facteurs
-                d’émission), fondée sur des référentiels reconnus.
-              </p>
-              <p className="text-[11px] leading-relaxed text-[#64748B]">
-                Document indicatif : ne constitue pas un inventaire GES complet,
-                un audit réglementaire ni un reporting CSRD/ESRS. Les données
-                d’entrée restent sous la responsabilité de l’utilisateur.
-              </p>
-            </div>
           </div>
 
           <div className="hero-scale relative hidden lg:block lg:pl-4">
             <HeroVisual />
             <p className="hero-reveal mt-6 text-center text-sm font-medium text-[#0B3A63]/80 [animation-delay:340ms]">
-              Document utilisable immédiatement et vérifiable indépendamment.
+              Document prêt à être utilisé et vérifiable indépendamment.
             </p>
           </div>
         </div>
