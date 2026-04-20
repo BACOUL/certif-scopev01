@@ -12,34 +12,41 @@ const proofItems = [
 
 function HeroVisual() {
   return (
-    <div className="relative mx-auto max-w-[760px]">
-      <div className="floating-card absolute left-2 top-6 z-10 hidden rounded-2xl border border-[#0B3A63]/10 bg-white/96 px-4 py-3 shadow-[0_20px_50px_rgba(11,58,99,0.10)] backdrop-blur md:block">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#64748B]">
+    <div className="relative mx-auto max-w-[780px]">
+      {/* Card: process */}
+      <div className="floating-card absolute left-2 top-3 z-10 rounded-2xl border border-[#0B3A63]/10 bg-white/97 px-3 py-2.5 shadow-[0_18px_40px_rgba(11,58,99,0.12)] backdrop-blur md:left-2 md:top-6 md:px-4 md:py-3">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#64748B] md:text-[11px]">
           Processus
         </p>
-        <p className="mt-1 text-sm font-semibold text-[#0B3A63]">
+        <p className="mt-1 text-[12px] font-semibold leading-4 text-[#0B3A63] md:text-sm md:leading-5">
           Saisie → Calcul → Attestation
         </p>
       </div>
 
-      <div className="floating-card absolute -right-1 bottom-14 z-10 hidden rounded-2xl border border-[#0B3A63]/10 bg-white/96 px-4 py-3 shadow-[0_20px_50px_rgba(11,58,99,0.10)] backdrop-blur md:block [animation-delay:1.2s]">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#64748B]">
+      {/* Card: verification */}
+      <div className="floating-card absolute -right-1 bottom-10 z-10 rounded-2xl border border-[#0B3A63]/10 bg-white/97 px-3 py-2.5 shadow-[0_18px_40px_rgba(11,58,99,0.12)] backdrop-blur md:-right-1 md:bottom-14 md:px-4 md:py-3 [animation-delay:1.2s]">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#64748B] md:text-[11px]">
           Vérification
         </p>
-        <p className="mt-1 text-sm font-semibold text-[#0B3A63]">✔ Vérifié</p>
-        <p className="mt-0.5 text-xs text-[#64748B]">
+        <p className="mt-1 text-[12px] font-semibold leading-4 text-[#0B3A63] md:text-sm md:leading-5">
+          ✔ Vérifié
+        </p>
+        <p className="mt-0.5 text-[10px] leading-4 text-[#64748B] md:text-xs">
           ID unique : CS-2024-01829
         </p>
       </div>
 
-      <div className="floating-card absolute left-20 bottom-2 z-10 hidden rounded-full border border-[#0B3A63]/10 bg-white/96 px-4 py-2 shadow-[0_16px_36px_rgba(11,58,99,0.10)] backdrop-blur md:block [animation-delay:2s]">
-        <p className="text-xs font-semibold text-[#0B3A63]">PDF standardisé</p>
+      {/* Card: pdf */}
+      <div className="floating-card absolute left-14 bottom-1 z-10 rounded-full border border-[#0B3A63]/10 bg-white/97 px-3 py-1.5 shadow-[0_14px_28px_rgba(11,58,99,0.10)] backdrop-blur md:left-20 md:bottom-2 md:px-4 md:py-2 [animation-delay:2s]">
+        <p className="text-[10px] font-semibold text-[#0B3A63] md:text-xs">
+          PDF standardisé
+        </p>
       </div>
 
       <div className="relative transition-transform duration-500 hover:scale-[1.02]">
         <div className="absolute inset-x-12 bottom-3 -z-10 h-20 rounded-full bg-[#1FB6C1]/20 blur-3xl" />
         <div className="absolute inset-x-10 bottom-2 -z-10 h-16 rounded-full bg-[#0B3A63]/12 blur-2xl" />
-        <div className="overflow-hidden rounded-[34px]">
+        <div className="overflow-hidden rounded-[30px] md:rounded-[34px]">
           <Image
             itemProp="primaryImageOfPage"
             src="/hero-attestation.webp"
@@ -47,7 +54,7 @@ function HeroVisual() {
             width={1600}
             height={1200}
             priority
-            className="h-auto w-full contrast-[1.08] saturate-[1.03]"
+            className="h-auto w-full contrast-[1.1] saturate-[1.04]"
           />
         </div>
       </div>
@@ -69,9 +76,9 @@ export default function Hero() {
       <div className="absolute right-[-6%] top-16 -z-10 h-72 w-72 rounded-full bg-[#0B3A63]/5 blur-3xl" />
 
       <span className="sr-only" itemProp="alternativeHeadline">
-        Bilan carbone PME simplifié pour répondre à une demande client, un
-        appel d’offres ou une banque, avec un document CO₂e indicatif,
-        standardisé et vérifiable.
+        Bilan carbone PME : que fournir quand on vous le demande ? Document CO₂e
+        indicatif, standardisé et vérifiable pour répondre rapidement à une
+        demande sans lancer un audit complet.
       </span>
 
       <div className="mx-auto max-w-7xl px-6 pb-14 pt-8 md:px-8 md:pb-20 md:pt-14">
@@ -82,7 +89,7 @@ export default function Hero() {
               className="hero-reveal inline-flex items-center gap-3 rounded-full border border-[#0B3A63]/10 bg-white/92 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#0B3A63]/75 shadow-sm backdrop-blur md:text-xs"
             >
               <span className="inline-block h-2.5 w-2.5 rounded-full bg-[#1FB6C1] shadow-[0_0_0_4px_rgba(31,182,193,0.14)]" />
-              Bilan carbone PME • Appels d’offres • Clients • Banques
+              Bilan carbone PME • Demande externe • Réponse rapide
             </p>
 
             <h1
@@ -92,22 +99,22 @@ export default function Hero() {
               Bilan carbone PME :
               <br />
               <span className="relative inline-block">
-                répondez simplement
+                que fournir
                 <span className="absolute bottom-1 left-0 h-3 w-full rounded-full bg-[#1FB6C1]/18" />
               </span>{" "}
-              aux demandes clients
+              quand on vous le demande ?
             </h1>
 
             <p
               itemProp="description"
               className="hero-reveal mx-auto mt-5 max-w-2xl text-[1.02rem] leading-relaxed text-[#475569] [animation-delay:220ms] lg:mx-0 md:text-[1.18rem]"
             >
-              Générez une{" "}
+              Fournissez un{" "}
               <strong className="font-semibold text-[#0B3A63]">
-                attestation carbone simple, standardisée et vérifiable
+                document carbone simple, standardisé et vérifiable
               </strong>{" "}
-              pour répondre à un client, un appel d’offres ou une banque, sans
-              audit complet.
+              pour répondre rapidement à une demande, sans lancer un audit
+              carbone complet.
             </p>
 
             <div className="hero-reveal mt-7 flex flex-col items-center justify-center gap-3 [animation-delay:320ms] sm:flex-row lg:justify-start">
@@ -133,7 +140,8 @@ export default function Hero() {
             </div>
 
             <p className="hero-reveal mt-8 text-center text-sm font-medium text-[#0B3A63]/80 [animation-delay:420ms] lg:hidden">
-              Document prêt à être utilisé et vérifiable indépendamment.
+              Une réponse lisible, rapide à transmettre et vérifiable
+              indépendamment.
             </p>
 
             <div className="hero-reveal mt-7 flex flex-wrap items-center justify-center gap-3 [animation-delay:520ms] lg:hidden">
@@ -149,12 +157,13 @@ export default function Hero() {
 
             <div className="hero-reveal mt-6 space-y-3 [animation-delay:620ms] lg:hidden">
               <p className="text-sm leading-relaxed text-[#64748B]">
-                Cas d’usage fréquents : référencement fournisseur, réponse à un
-                client, onboarding ESG, demande bancaire.
+                Cas fréquents : demande floue, exigence dans un dossier,
+                référencement fournisseur, revue bancaire ou besoin de fournir
+                rapidement un justificatif carbone.
               </p>
               <p className="text-[12px] leading-relaxed text-[#64748B]">
-                Méthode indicative spend-based (dépenses × facteurs
-                d’émission), fondée sur des référentiels reconnus.
+                Méthode indicative spend-based (dépenses × facteurs d’émission),
+                fondée sur des référentiels reconnus.
               </p>
               <p className="text-[11px] leading-relaxed text-[#64748B]">
                 Document indicatif : ne constitue pas un inventaire GES complet,
@@ -176,12 +185,13 @@ export default function Hero() {
 
             <div className="hero-reveal mt-5 hidden max-w-2xl space-y-3 [animation-delay:520ms] lg:block">
               <p className="text-sm leading-relaxed text-[#64748B]">
-                Cas d’usage fréquents : référencement fournisseur, réponse à un
-                client, onboarding ESG, demande bancaire.
+                Cas fréquents : demande floue, exigence dans un dossier,
+                référencement fournisseur, revue bancaire ou besoin de fournir
+                rapidement un justificatif carbone.
               </p>
               <p className="text-[12px] leading-relaxed text-[#64748B]">
-                Méthode indicative spend-based (dépenses × facteurs
-                d’émission), fondée sur des référentiels reconnus.
+                Méthode indicative spend-based (dépenses × facteurs d’émission),
+                fondée sur des référentiels reconnus.
               </p>
               <p className="text-[11px] leading-relaxed text-[#64748B]">
                 Document indicatif : ne constitue pas un inventaire GES complet,
@@ -194,7 +204,8 @@ export default function Hero() {
           <div className="hero-scale relative hidden lg:block lg:pl-4">
             <HeroVisual />
             <p className="hero-reveal mt-8 text-center text-sm font-medium text-[#0B3A63]/80 [animation-delay:340ms]">
-              Document prêt à être utilisé et vérifiable indépendamment.
+              Une réponse lisible, rapide à transmettre et vérifiable
+              indépendamment.
             </p>
           </div>
         </div>
