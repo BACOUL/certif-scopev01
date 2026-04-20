@@ -1,173 +1,105 @@
-// PATH: src/components/fr/ProblemSolution.tsx
 "use client";
 
 export default function ProblemSolution() {
   return (
     <section
       id="problem-solution"
-      data-section="problem-solution"
-      className="relative pt-24 pb-24 bg-white"
+      className="relative py-20 md:py-28 bg-white"
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-white via-[#F8FAFC] to-[#F3FBFC] -z-10" />
-
       <div className="max-w-6xl mx-auto px-6">
-        {/* HEADER SEO FIRST */}
-        <header className="max-w-3xl mx-auto text-center mb-20">
-          <p className="inline-flex items-center rounded-full border border-[#0B3A63]/10 bg-white/90 px-4 py-2 text-[11px] md:text-xs font-semibold uppercase tracking-[0.14em] text-[#0B3A63]/75 shadow-sm mb-5">
-            Bilan carbone PME • Obligation • Appels d’offres • Banques
-          </p>
 
-          <h2 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] leading-snug mb-5 tracking-tight">
-            Le bilan carbone est-il obligatoire pour une PME ?
-          </h2>
-
-          <p className="text-lg text-[#475569] leading-relaxed">
-            Dans la majorité des cas, non. Les PME ne sont pas soumises à une
-            obligation réglementaire stricte de bilan carbone. En pratique,
-            cette information est cependant de plus en plus demandée par les
-            clients, dans les appels d’offres, ou par les banques et assureurs
-            dans le cadre de leurs analyses ESG.
-          </p>
-
-          <p className="mt-4 text-lg text-[#475569] leading-relaxed">
-            Le problème : réaliser un bilan carbone complet nécessite des données
-            détaillées, du temps et souvent un accompagnement spécialisé —
-            des ressources que la majorité des PME ne peut pas mobiliser à la demande.
-          </p>
-
-          <div className="w-20 h-[2px] bg-[#0B3A63]/12 mx-auto mt-10" />
-        </header>
-
-        {/* SOLUTION */}
-        <div className="max-w-4xl mx-auto rounded-[28px] border border-[#0B3A63]/10 bg-white/90 shadow-[0_18px_50px_rgba(11,58,99,0.08)] p-8 md:p-10 mb-10 text-center">
-          <p className="text-lg md:text-xl text-[#475569] leading-relaxed">
-            Certif-Scope permet de répondre rapidement à cette demande avec une{" "}
-            <strong className="text-[#0B3A63] font-semibold">
-              estimation de bilan carbone PME (CO₂e)
-            </strong>{" "}
-            basée sur les dépenses annuelles (méthode spend-based). Un document
-            standardisé, lisible immédiatement par les équipes achats, banques
-            et assureurs —{" "}
-            <span className="text-[#1FB6C1] font-semibold">
-              vérifiable indépendamment
-            </span>{" "}
-            et utilisable dans les processus réels.
-          </p>
-        </div>
-
-        {/* TAKEAWAY SEO */}
-        <p className="text-sm text-[#64748B] text-center max-w-3xl mx-auto mb-10 leading-relaxed">
-          À retenir : dans la plupart des cas, il s’agit d’un{" "}
-          <strong className="text-[#0B3A63] font-semibold">
-            indicateur carbone simplifié
-          </strong>{" "}
-          demandé dans un contexte business — pas d’un audit carbone complet.
+        {/* LABEL */}
+        <p className="text-center text-xs md:text-sm uppercase tracking-[0.18em] text-[#64748B] font-semibold mb-4">
+          Comprendre la demande
         </p>
 
-        {/* INTERNAL LINK SEO */}
-        <div className="text-center mb-20">
-          <a
-            href="/fr/bilan-carbone-pme/"
-            className="inline-flex items-center rounded-full border border-[#0B3A63]/10 bg-white px-4 py-2 text-sm font-semibold text-[#0B3A63] shadow-sm transition-colors hover:text-[#1FB6C1] hover:border-[#1FB6C1]/30"
-          >
-            Guide complet : bilan carbone PME →
-          </a>
-        </div>
+        {/* TITLE */}
+        <h2 className="text-center text-3xl md:text-4xl font-extrabold text-[#0B3A63] leading-tight max-w-3xl mx-auto">
+          On vous demande un bilan carbone… <br className="hidden md:block" />
+          <span className="text-[#0B3A63]">
+            mais que faut-il vraiment fournir ?
+          </span>
+        </h2>
 
-        {/* 3 USE CASES (SEO + CONVERSION) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
-          {/* CASE 1 */}
-          <div className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-8 text-center shadow-sm">
-            <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#F3FBFC] border border-[#0B3A63]/10">
-              <svg
-                className="h-8 w-8 text-[#0B3A63]"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M9 12h6m-9 4h9m3-14H6a2 2 0 00-2 2v14l4-4h10a2 2 0 002-2V4a2 2 0 00-2-2z"
-                />
-              </svg>
+        {/* SUBTITLE */}
+        <p className="mt-6 text-center text-base md:text-lg text-[#475569] max-w-2xl mx-auto">
+          Dans la plupart des cas, la demande est réelle… mais le niveau attendu
+          reste flou, et les solutions disponibles sont souvent trop lourdes.
+        </p>
+
+        {/* CARDS */}
+        <div className="mt-14 grid gap-6 md:grid-cols-3">
+
+          {/* CARD 1 */}
+          <div className="group rounded-2xl border border-[#0B3A63]/10 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1">
+            <div className="h-10 w-10 rounded-lg bg-[#1FB6C1]/10 flex items-center justify-center text-[#1FB6C1] font-bold text-lg">
+              ?
             </div>
-
-            <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
-              Appels d’offres
+            <h3 className="mt-5 text-lg font-semibold text-[#0B3A63]">
+              Demande floue
             </h3>
-
-            <p className="text-sm text-[#64748B] leading-relaxed max-w-xs mx-auto">
-              De plus en plus de donneurs d’ordre demandent un indicateur
-              carbone pour comparer les fournisseurs.
+            <p className="mt-3 text-sm leading-relaxed text-[#64748B]">
+              On vous demande un bilan carbone sans préciser le niveau attendu
+              ni le format exact à fournir.
             </p>
           </div>
 
-          {/* CASE 2 */}
-          <div className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-8 text-center shadow-sm">
-            <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#F3FBFC] border border-[#0B3A63]/10">
-              <svg
-                className="h-8 w-8 text-[#0B3A63]"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M12 6v6l4 2"
-                />
-              </svg>
+          {/* CARD 2 */}
+          <div className="group rounded-2xl border border-[#0B3A63]/10 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1">
+            <div className="h-10 w-10 rounded-lg bg-[#1FB6C1]/10 flex items-center justify-center text-[#1FB6C1] font-bold text-lg">
+              ⚠
             </div>
-
-            <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
-              Référencement fournisseur
+            <h3 className="mt-5 text-lg font-semibold text-[#0B3A63]">
+              Solution disproportionnée
             </h3>
-
-            <p className="text-sm text-[#64748B] leading-relaxed max-w-xs mx-auto">
-              Les grandes entreprises intègrent des critères ESG dans leurs
-              processus de sélection.
+            <p className="mt-3 text-sm leading-relaxed text-[#64748B]">
+              Un audit carbone complet est long, coûteux et souvent inutile
+              pour répondre à ce type de demande.
             </p>
           </div>
 
-          {/* CASE 3 */}
-          <div className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-8 text-center shadow-sm">
-            <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#F3FBFC] border border-[#0B3A63]/10">
-              <svg
-                className="h-8 w-8 text-[#0B3A63]"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M12 11.5a3.5 3.5 0 100 7"
-                />
-              </svg>
+          {/* CARD 3 */}
+          <div className="group rounded-2xl border border-[#0B3A63]/10 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1">
+            <div className="h-10 w-10 rounded-lg bg-[#1FB6C1]/10 flex items-center justify-center text-[#1FB6C1] font-bold text-lg">
+              ⚡
             </div>
-
-            <h3 className="text-xl font-semibold text-[#0B3A63] mb-3">
-              Banques et assurances
+            <h3 className="mt-5 text-lg font-semibold text-[#0B3A63]">
+              Besoin immédiat
             </h3>
-
-            <p className="text-sm text-[#64748B] leading-relaxed max-w-xs mx-auto">
-              Les institutions financières demandent des indicateurs carbone
-              dans leurs analyses de risque.
+            <p className="mt-3 text-sm leading-relaxed text-[#64748B]">
+              Vous devez fournir rapidement un document clair, lisible et
+              exploitable, sans complexité inutile.
             </p>
           </div>
         </div>
 
-        {/* LINK */}
-        <div className="text-center mt-20">
+        {/* TRANSITION */}
+        <div className="mt-16 text-center max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl font-semibold text-[#0B3A63] leading-relaxed">
+            Dans la majorité des cas, on attend surtout un document carbone
+            lisible, standardisé et directement utilisable.
+          </p>
+        </div>
+
+        {/* SOLUTION */}
+        <div className="mt-10 text-center max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-[#475569] leading-relaxed">
+            Certif-Scope génère une{" "}
+            <strong className="text-[#0B3A63] font-semibold">
+              attestation carbone simple, standardisée et vérifiable
+            </strong>{" "}
+            pour répondre immédiatement à cette demande, sans lancer un audit
+            complet.
+          </p>
+        </div>
+
+        {/* CTA OPTIONAL */}
+        <div className="mt-12 flex justify-center">
           <a
-            href="#how-it-works"
-            className="inline-flex items-center text-sm font-semibold text-[#0B3A63] transition-colors hover:text-[#1FB6C1]"
+            href="/fr/generate"
+            className="inline-flex items-center justify-center rounded-xl bg-[#1FB6C1] px-8 py-4 text-base font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#19AAB4]"
           >
-            Comment obtenir votre document CO₂e →
+            Générer mon document CO₂e
           </a>
         </div>
       </div>
