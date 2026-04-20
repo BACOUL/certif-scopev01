@@ -15,7 +15,7 @@ function HeroVisual() {
     <div className="relative mx-auto max-w-[780px]">
       <Image
         itemProp="primaryImageOfPage"
-        src="TON_LIEN_IMAGE_ICI"
+        src="/hero-attestation.webp"
         alt="Exemple de document de bilan carbone PME simplifié avec résultat CO2e agrégé, méthode indicative et vérification indépendante."
         width={1600}
         height={1200}
