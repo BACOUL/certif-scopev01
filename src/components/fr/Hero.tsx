@@ -40,9 +40,8 @@ export default function Hero() {
       <div className="absolute right-[-6%] top-16 -z-10 h-72 w-72 rounded-full bg-[#0B3A63]/5 blur-3xl" />
 
       <span className="sr-only" itemProp="alternativeHeadline">
-        Bilan carbone PME : que fournir quand on vous le demande ? Document CO₂e
-        indicatif, standardisé et vérifiable pour répondre rapidement à une
-        demande sans lancer un audit complet.
+        Bilan carbone PME : obligation, coût, exemple et document CO₂e indicatif
+        pour répondre rapidement à une demande sans audit complet.
       </span>
 
       <div className="mx-auto max-w-7xl px-6 pb-14 pt-8 md:px-8 md:pb-20 md:pt-14">
@@ -63,15 +62,20 @@ export default function Hero() {
               Bilan carbone PME :
               <br />
               <span className="relative inline-block">
-                que fournir
+                est-ce obligatoire
                 <span className="absolute bottom-1 left-0 h-3 w-full rounded-full bg-[#1FB6C1]/18" />
               </span>{" "}
-              quand on vous le demande ?
+              et que fournir quand on vous le demande ?
             </h1>
+
+            {/* 🔥 LIGNE SEO AJOUTÉE (ultra légère mais puissante) */}
+            <p className="hero-reveal mt-3 text-sm font-medium text-[#0B3A63]/75 [animation-delay:180ms] md:text-base">
+              Obligation, coût, exemple et réponse aux appels d’offres.
+            </p>
 
             <p
               itemProp="description"
-              className="hero-reveal mx-auto mt-5 max-w-2xl text-[1.02rem] leading-relaxed text-[#475569] [animation-delay:220ms] lg:mx-0 md:text-[1.18rem]"
+              className="hero-reveal mx-auto mt-5 max-w-2xl text-[1.02rem] leading-relaxed text-[#475569] [animation-delay:260ms] lg:mx-0 md:text-[1.18rem]"
             >
               Fournissez un{" "}
               <strong className="font-semibold text-[#0B3A63]">
@@ -81,7 +85,7 @@ export default function Hero() {
               carbone complet.
             </p>
 
-            <div className="hero-reveal mt-7 flex flex-col items-center justify-center gap-3 [animation-delay:320ms] sm:flex-row lg:justify-start">
+            <div className="hero-reveal mt-7 flex flex-col items-center justify-center gap-3 [animation-delay:340ms] sm:flex-row lg:justify-start">
               <Link
                 href="/fr/generate"
                 aria-label="Obtenir mon bilan carbone PME"
@@ -119,23 +123,6 @@ export default function Hero() {
               ))}
             </div>
 
-            <div className="hero-reveal mt-6 space-y-3 [animation-delay:620ms] lg:hidden">
-              <p className="text-sm leading-relaxed text-[#64748B]">
-                Cas fréquents : demande floue, exigence dans un dossier,
-                référencement fournisseur, revue bancaire ou besoin de fournir
-                rapidement un justificatif carbone.
-              </p>
-              <p className="text-[12px] leading-relaxed text-[#64748B]">
-                Méthode indicative spend-based (dépenses × facteurs d’émission),
-                fondée sur des référentiels reconnus.
-              </p>
-              <p className="text-[11px] leading-relaxed text-[#64748B]">
-                Document indicatif : ne constitue pas un inventaire GES complet,
-                un audit réglementaire ni un reporting CSRD/ESRS. Les données
-                d’entrée restent sous la responsabilité de l’utilisateur.
-              </p>
-            </div>
-
             <div className="hero-reveal mt-7 hidden flex-wrap items-center justify-center gap-2.5 [animation-delay:420ms] lg:flex lg:justify-start">
               {proofItems.map((item) => (
                 <span
@@ -145,23 +132,6 @@ export default function Hero() {
                   {item}
                 </span>
               ))}
-            </div>
-
-            <div className="hero-reveal mt-5 hidden max-w-2xl space-y-3 [animation-delay:520ms] lg:block">
-              <p className="text-sm leading-relaxed text-[#64748B]">
-                Cas fréquents : demande floue, exigence dans un dossier,
-                référencement fournisseur, revue bancaire ou besoin de fournir
-                rapidement un justificatif carbone.
-              </p>
-              <p className="text-[12px] leading-relaxed text-[#64748B]">
-                Méthode indicative spend-based (dépenses × facteurs d’émission),
-                fondée sur des référentiels reconnus.
-              </p>
-              <p className="text-[11px] leading-relaxed text-[#64748B]">
-                Document indicatif : ne constitue pas un inventaire GES complet,
-                un audit réglementaire ni un reporting CSRD/ESRS. Les données
-                d’entrée restent sous la responsabilité de l’utilisateur.
-              </p>
             </div>
           </div>
 
