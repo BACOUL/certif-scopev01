@@ -12,8 +12,8 @@ const proofItems = [
 
 function HeroVisual() {
   return (
-    <div className="relative mx-auto max-w-[680px] lg:mr-0 lg:max-w-[760px]">
-      <div className="floating-card absolute left-2 top-6 z-10 hidden rounded-2xl border border-[#0B3A63]/10 bg-white/95 px-4 py-3 shadow-[0_20px_50px_rgba(11,58,99,0.10)] backdrop-blur md:block">
+    <div className="relative mx-auto max-w-[760px]">
+      <div className="floating-card absolute left-2 top-6 z-10 hidden rounded-2xl border border-[#0B3A63]/10 bg-white/96 px-4 py-3 shadow-[0_20px_50px_rgba(11,58,99,0.10)] backdrop-blur md:block">
         <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#64748B]">
           Processus
         </p>
@@ -22,7 +22,7 @@ function HeroVisual() {
         </p>
       </div>
 
-      <div className="floating-card absolute -right-1 bottom-14 z-10 hidden rounded-2xl border border-[#0B3A63]/10 bg-white/95 px-4 py-3 shadow-[0_20px_50px_rgba(11,58,99,0.10)] backdrop-blur md:block [animation-delay:1.2s]">
+      <div className="floating-card absolute -right-1 bottom-14 z-10 hidden rounded-2xl border border-[#0B3A63]/10 bg-white/96 px-4 py-3 shadow-[0_20px_50px_rgba(11,58,99,0.10)] backdrop-blur md:block [animation-delay:1.2s]">
         <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#64748B]">
           Vérification
         </p>
@@ -32,11 +32,12 @@ function HeroVisual() {
         </p>
       </div>
 
-      <div className="floating-card absolute left-20 bottom-2 z-10 hidden rounded-full border border-[#0B3A63]/10 bg-white/95 px-4 py-2 shadow-[0_16px_36px_rgba(11,58,99,0.10)] backdrop-blur md:block [animation-delay:2s]">
+      <div className="floating-card absolute left-20 bottom-2 z-10 hidden rounded-full border border-[#0B3A63]/10 bg-white/96 px-4 py-2 shadow-[0_16px_36px_rgba(11,58,99,0.10)] backdrop-blur md:block [animation-delay:2s]">
         <p className="text-xs font-semibold text-[#0B3A63]">PDF standardisé</p>
       </div>
 
-      <div className="relative transition-transform duration-500 hover:scale-[1.018]">
+      <div className="relative transition-transform duration-500 hover:scale-[1.02]">
+        <div className="absolute inset-x-12 bottom-3 -z-10 h-20 rounded-full bg-[#1FB6C1]/20 blur-3xl" />
         <div className="absolute inset-x-10 bottom-2 -z-10 h-16 rounded-full bg-[#0B3A63]/12 blur-2xl" />
         <div className="overflow-hidden rounded-[34px]">
           <Image
@@ -46,7 +47,7 @@ function HeroVisual() {
             width={1600}
             height={1200}
             priority
-            className="h-auto w-full"
+            className="h-auto w-full contrast-[1.08] saturate-[1.03]"
           />
         </div>
       </div>
@@ -78,9 +79,9 @@ export default function Hero() {
           <div className="text-center lg:pt-6 lg:text-left">
             <p
               itemProp="about"
-              className="hero-reveal inline-flex items-center gap-2 rounded-full border border-[#0B3A63]/10 bg-white/90 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#0B3A63]/75 shadow-sm backdrop-blur md:text-xs"
+              className="hero-reveal inline-flex items-center gap-3 rounded-full border border-[#0B3A63]/10 bg-white/92 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#0B3A63]/75 shadow-sm backdrop-blur md:text-xs"
             >
-              <span className="inline-block h-2 w-2 rounded-full bg-[#1FB6C1]" />
+              <span className="inline-block h-2.5 w-2.5 rounded-full bg-[#1FB6C1] shadow-[0_0_0_4px_rgba(31,182,193,0.14)]" />
               Bilan carbone PME • Appels d’offres • Clients • Banques
             </p>
 
@@ -105,8 +106,8 @@ export default function Hero() {
               <strong className="font-semibold text-[#0B3A63]">
                 attestation carbone simple, standardisée et vérifiable
               </strong>{" "}
-              pour répondre à une demande client, un appel d’offres ou un
-              dossier bancaire, sans lancer un audit carbone complet.
+              pour répondre à un client, un appel d’offres ou une banque, sans
+              audit complet.
             </p>
 
             <div className="hero-reveal mt-7 flex flex-col items-center justify-center gap-3 [animation-delay:320ms] sm:flex-row lg:justify-start">
@@ -127,19 +128,19 @@ export default function Hero() {
               </Link>
             </div>
 
-            <div className="hero-scale mt-8 lg:hidden">
+            <div className="hero-scale mt-6 lg:hidden">
               <HeroVisual />
             </div>
 
-            <p className="hero-reveal mt-6 text-center text-sm font-medium text-[#0B3A63]/80 [animation-delay:420ms] lg:hidden">
+            <p className="hero-reveal mt-8 text-center text-sm font-medium text-[#0B3A63]/80 [animation-delay:420ms] lg:hidden">
               Document prêt à être utilisé et vérifiable indépendamment.
             </p>
 
-            <div className="hero-reveal mt-6 flex flex-wrap items-center justify-center gap-2.5 [animation-delay:520ms] lg:hidden">
+            <div className="hero-reveal mt-7 flex flex-wrap items-center justify-center gap-3 [animation-delay:520ms] lg:hidden">
               {proofItems.map((item) => (
                 <span
                   key={item}
-                  className="rounded-full border border-[#0B3A63]/12 bg-white px-3 py-1.5 text-xs font-medium text-[#0B3A63] shadow-sm"
+                  className="rounded-full border border-[#0B3A63]/12 bg-white px-4 py-2 text-xs font-medium text-[#0B3A63] shadow-sm"
                 >
                   {item}
                 </span>
@@ -192,7 +193,7 @@ export default function Hero() {
 
           <div className="hero-scale relative hidden lg:block lg:pl-4">
             <HeroVisual />
-            <p className="hero-reveal mt-6 text-center text-sm font-medium text-[#0B3A63]/80 [animation-delay:340ms]">
+            <p className="hero-reveal mt-8 text-center text-sm font-medium text-[#0B3A63]/80 [animation-delay:340ms]">
               Document prêt à être utilisé et vérifiable indépendamment.
             </p>
           </div>
