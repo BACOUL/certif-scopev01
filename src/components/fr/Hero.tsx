@@ -12,41 +12,42 @@ const proofItems = [
 
 function HeroVisual() {
   return (
-    <div className="relative mx-auto max-w-[780px]">
+    <div className="relative mx-auto max-w-[820px]">
       {/* Card: process */}
-      <div className="floating-card absolute left-2 top-3 z-10 rounded-2xl border border-[#0B3A63]/10 bg-white/97 px-3 py-2.5 shadow-[0_18px_40px_rgba(11,58,99,0.12)] backdrop-blur md:left-2 md:top-6 md:px-4 md:py-3">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#64748B] md:text-[11px]">
+      <div className="floating-card absolute left-1 top-2 z-10 rounded-2xl border border-[#0B3A63]/10 bg-white/97 px-2.5 py-2 shadow-[0_16px_32px_rgba(11,58,99,0.10)] backdrop-blur md:left-2 md:top-6 md:px-4 md:py-3 md:shadow-[0_18px_40px_rgba(11,58,99,0.12)]">
+        <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-[#64748B] md:text-[11px]">
           Processus
         </p>
-        <p className="mt-1 text-[12px] font-semibold leading-4 text-[#0B3A63] md:text-sm md:leading-5">
+        <p className="mt-1 text-[11px] font-semibold leading-4 text-[#0B3A63] md:text-sm md:leading-5">
           Saisie → Calcul → Attestation
         </p>
       </div>
 
       {/* Card: verification */}
-      <div className="floating-card absolute -right-1 bottom-10 z-10 rounded-2xl border border-[#0B3A63]/10 bg-white/97 px-3 py-2.5 shadow-[0_18px_40px_rgba(11,58,99,0.12)] backdrop-blur md:-right-1 md:bottom-14 md:px-4 md:py-3 [animation-delay:1.2s]">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#64748B] md:text-[11px]">
+      <div className="floating-card absolute right-1 bottom-8 z-10 rounded-2xl border border-[#0B3A63]/10 bg-white/97 px-2.5 py-2 shadow-[0_16px_32px_rgba(11,58,99,0.10)] backdrop-blur md:-right-1 md:bottom-14 md:px-4 md:py-3 md:shadow-[0_18px_40px_rgba(11,58,99,0.12)] [animation-delay:1.2s]">
+        <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-[#64748B] md:text-[11px]">
           Vérification
         </p>
-        <p className="mt-1 text-[12px] font-semibold leading-4 text-[#0B3A63] md:text-sm md:leading-5">
+        <p className="mt-1 text-[11px] font-semibold leading-4 text-[#0B3A63] md:text-sm md:leading-5">
           ✔ Vérifié
         </p>
-        <p className="mt-0.5 text-[10px] leading-4 text-[#64748B] md:text-xs">
+        <p className="mt-0.5 text-[9px] leading-4 text-[#64748B] md:text-xs">
           ID unique : CS-2024-01829
         </p>
       </div>
 
       {/* Card: pdf */}
-      <div className="floating-card absolute left-14 bottom-1 z-10 rounded-full border border-[#0B3A63]/10 bg-white/97 px-3 py-1.5 shadow-[0_14px_28px_rgba(11,58,99,0.10)] backdrop-blur md:left-20 md:bottom-2 md:px-4 md:py-2 [animation-delay:2s]">
-        <p className="text-[10px] font-semibold text-[#0B3A63] md:text-xs">
+      <div className="floating-card absolute left-12 bottom-0 z-10 rounded-full border border-[#0B3A63]/10 bg-white/97 px-3 py-1.5 shadow-[0_12px_24px_rgba(11,58,99,0.10)] backdrop-blur md:left-20 md:bottom-2 md:px-4 md:py-2 md:shadow-[0_14px_28px_rgba(11,58,99,0.10)] [animation-delay:2s]">
+        <p className="text-[9px] font-semibold text-[#0B3A63] md:text-xs">
           PDF standardisé
         </p>
       </div>
 
       <div className="relative transition-transform duration-500 hover:scale-[1.02]">
-        <div className="absolute inset-x-12 bottom-3 -z-10 h-20 rounded-full bg-[#1FB6C1]/20 blur-3xl" />
-        <div className="absolute inset-x-10 bottom-2 -z-10 h-16 rounded-full bg-[#0B3A63]/12 blur-2xl" />
-        <div className="overflow-hidden rounded-[30px] md:rounded-[34px]">
+        <div className="absolute inset-x-10 bottom-3 -z-10 h-20 rounded-full bg-[#1FB6C1]/18 blur-3xl md:inset-x-12 md:h-20 md:bg-[#1FB6C1]/20" />
+        <div className="absolute inset-x-8 bottom-2 -z-10 h-16 rounded-full bg-[#0B3A63]/10 blur-2xl md:inset-x-10 md:bg-[#0B3A63]/12" />
+
+        <div className="overflow-hidden rounded-[26px] md:rounded-[34px]">
           <Image
             itemProp="primaryImageOfPage"
             src="/hero-attestation.webp"
@@ -54,7 +55,7 @@ function HeroVisual() {
             width={1600}
             height={1200}
             priority
-            className="h-auto w-full contrast-[1.1] saturate-[1.04]"
+            className="h-auto w-full scale-[1.08] contrast-[1.12] saturate-[1.04] md:scale-100"
           />
         </div>
       </div>
