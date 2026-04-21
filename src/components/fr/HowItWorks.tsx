@@ -38,7 +38,6 @@ export default function HowItWorks() {
       <div className="absolute right-[-5%] bottom-10 -z-10 h-80 w-80 rounded-full bg-[#0B3A63]/6 blur-3xl" />
 
       <div className="mx-auto max-w-7xl px-6 md:px-8">
-        {/* HEADER */}
         <div className="mx-auto max-w-3xl text-center">
           <p className="how-reveal text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B] md:text-sm">
             Fonctionnement
@@ -50,13 +49,11 @@ export default function HowItWorks() {
 
           <p className="how-reveal mx-auto mt-5 max-w-3xl text-base leading-relaxed text-[#475569] md:text-lg">
             Renseignez vos données, obtenez un calcul indicatif standardisé, puis
-            téléchargez une attestation carbone vérifiable prête à transmettre.
+            générez un document carbone prêt à transmettre.
           </p>
         </div>
 
-        {/* CONTENT */}
         <div className="mt-16 grid items-center gap-12 lg:grid-cols-[0.96fr_1.04fr] lg:gap-14">
-          
           {/* LEFT */}
           <div className="space-y-5">
             {steps.map((step, index) => (
@@ -65,6 +62,8 @@ export default function HowItWorks() {
                 className="how-card group relative overflow-hidden rounded-[26px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm md:p-7"
                 style={{ animationDelay: `${260 + index * 120}ms` }}
               >
+                <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(31,182,193,0.45),transparent)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
                 <div className="flex items-start gap-4">
                   <div className="relative shrink-0">
                     <div className="absolute inset-0 rounded-2xl bg-[#1FB6C1]/10 blur-md" />
@@ -83,7 +82,7 @@ export default function HowItWorks() {
                   </div>
                 </div>
 
-                <p className="mt-4 text-sm text-[#64748B]">
+                <p className="mt-4 text-sm leading-relaxed text-[#64748B]">
                   {step.text}
                 </p>
 
@@ -101,71 +100,83 @@ export default function HowItWorks() {
             ))}
           </div>
 
-          {/* RIGHT — PRODUIT */}
+          {/* RIGHT — PROCESS ONLY */}
           <div className="how-visual relative">
             <div className="absolute left-1/2 top-[10%] -z-20 h-[360px] w-[360px] -translate-x-1/2 rounded-full bg-[#1FB6C1]/10 blur-3xl" />
+            <div className="absolute left-1/2 top-[22%] -z-20 h-[260px] w-[540px] -translate-x-1/2 rounded-full bg-[#0B3A63]/7 blur-3xl" />
 
-            <div className="relative rounded-[30px] border border-[#0B3A63]/10 bg-white p-6 shadow-[0_25px_60px_rgba(11,58,99,0.10)] md:p-8">
+            <div className="relative overflow-hidden rounded-[30px] border border-[#0B3A63]/10 bg-white p-6 shadow-[0_25px_60px_rgba(11,58,99,0.10)] md:p-8">
+              <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(31,182,193,0.55),transparent)]" />
 
-              {/* HEADER */}
               <div className="text-center">
                 <p className="text-xs uppercase tracking-[0.16em] text-[#64748B] font-semibold">
-                  Ce que vous recevez
+                  Flux simplifié
                 </p>
-                <h3 className="mt-2 text-xl font-extrabold text-[#0B3A63]">
-                  Attestation carbone prête à transmettre
+                <h3 className="mt-2 text-xl font-extrabold text-[#0B3A63] md:text-2xl">
+                  Données → Calcul → Document
                 </h3>
               </div>
 
-              {/* MOCK DOCUMENT */}
-              <div className="mt-6 rounded-2xl border border-[#0B3A63]/10 bg-[#F8FAFC] p-5">
-                <p className="text-sm font-semibold text-[#0B3A63]">
-                  Attestation carbone indicative
-                </p>
+              <div className="mt-8 grid gap-4 md:grid-cols-[1fr_auto_1fr_auto_1fr] md:items-center">
+                <div className="rounded-2xl border border-[#0B3A63]/10 bg-[#F8FAFC] p-4">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#64748B]">
+                    01 · Données
+                  </p>
+                  <p className="mt-2 text-sm font-semibold text-[#0B3A63]">
+                    Dépenses annuelles et informations de base
+                  </p>
+                </div>
 
-                <p className="mt-3 text-3xl font-extrabold text-[#0B3A63]">
-                  128,4 tCO₂e
-                </p>
+                <div className="flow-arrow hidden items-center justify-center md:flex">
+                  <span className="flow-dot" />
+                  <span className="flow-line" />
+                </div>
 
-                <p className="mt-2 text-xs text-[#64748B]">
-                  Méthode spend-based • Résultat agrégé
-                </p>
+                <div className="rounded-2xl border border-[#0B3A63]/10 bg-[#F8FAFC] p-4">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#64748B]">
+                    02 · Calcul
+                  </p>
+                  <p className="mt-2 text-sm font-semibold text-[#0B3A63]">
+                    Méthode indicative spend-based
+                  </p>
+                </div>
 
-                <div className="mt-4 flex items-center justify-between text-xs">
-                  <span className="text-[#64748B]">
-                    ID : CS-2024-01829
-                  </span>
-                  <span className="text-[#1FB6C1] font-semibold">
-                    ✔ Vérifiable
-                  </span>
+                <div className="flow-arrow hidden items-center justify-center md:flex">
+                  <span className="flow-dot [animation-delay:1.2s]" />
+                  <span className="flow-line" />
+                </div>
+
+                <div className="rounded-2xl border border-[#0B3A63]/10 bg-[#F8FAFC] p-4">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#64748B]">
+                    03 · Document
+                  </p>
+                  <p className="mt-2 text-sm font-semibold text-[#0B3A63]">
+                    Attestation PDF générée
+                  </p>
                 </div>
               </div>
 
-              {/* PROOFS */}
-              <div className="mt-6 grid grid-cols-3 gap-3 text-center">
-                <div className="rounded-xl border border-[#0B3A63]/10 bg-[#F8FAFC] p-3 text-xs text-[#0B3A63]">
-                  PDF standardisé
-                </div>
-                <div className="rounded-xl border border-[#0B3A63]/10 bg-[#F8FAFC] p-3 text-xs text-[#0B3A63]">
+              <div className="mt-8 grid gap-3 md:grid-cols-3">
+                <div className="rounded-xl border border-[#0B3A63]/10 bg-[#F8FAFC] p-3 text-center text-xs text-[#0B3A63]">
                   Réponse rapide
                 </div>
-                <div className="rounded-xl border border-[#0B3A63]/10 bg-[#F8FAFC] p-3 text-xs text-[#0B3A63]">
-                  Sans audit complet
+                <div className="rounded-xl border border-[#0B3A63]/10 bg-[#F8FAFC] p-3 text-center text-xs text-[#0B3A63]">
+                  Sans mission longue
+                </div>
+                <div className="rounded-xl border border-[#0B3A63]/10 bg-[#F8FAFC] p-3 text-center text-xs text-[#0B3A63]">
+                  Sans complexité inutile
                 </div>
               </div>
 
-              {/* FINAL BLOCK */}
               <div className="mt-6 rounded-xl border border-[#1FB6C1]/20 bg-[#1FB6C1]/5 p-4 text-center">
                 <p className="text-sm font-semibold text-[#0B3A63]">
-                  Document suffisant dans la majorité des demandes
+                  Un parcours court pour obtenir un document transmissible rapidement.
                 </p>
               </div>
-
             </div>
           </div>
         </div>
 
-        {/* CTA */}
         <div className="how-reveal mt-16 flex flex-col items-center gap-4 text-center">
           <p className="text-sm text-[#0B3A63]/80">
             Sans abonnement. Sans mission longue. Sans complexité inutile.
@@ -182,8 +193,29 @@ export default function HowItWorks() {
 
       <style jsx>{`
         @keyframes revealUp {
-          from { opacity: 0; transform: translateY(18px); }
-          to { opacity: 1; transform: translateY(0); }
+          from {
+            opacity: 0;
+            transform: translateY(18px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes flowPulse {
+          0% {
+            transform: translateX(-6px);
+            opacity: 0.35;
+          }
+          50% {
+            transform: translateX(6px);
+            opacity: 1;
+          }
+          100% {
+            transform: translateX(-6px);
+            opacity: 0.35;
+          }
         }
 
         .how-reveal {
@@ -194,19 +226,64 @@ export default function HowItWorks() {
         .how-card {
           opacity: 0;
           animation: revealUp 0.8s ease forwards;
-          transition: all 0.3s ease;
+          transition: transform 300ms ease, box-shadow 300ms ease;
         }
 
         .how-card:hover {
           transform: translateY(-4px);
-          box-shadow: 0 18px 40px rgba(11,58,99,0.08);
+          box-shadow: 0 18px 40px rgba(11, 58, 99, 0.08);
         }
 
         .how-visual {
           opacity: 0;
           animation: revealUp 1s ease forwards;
         }
+
+        .flow-arrow {
+          width: 44px;
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .flow-line {
+          display: block;
+          width: 100%;
+          height: 1px;
+          background: linear-gradient(
+            90deg,
+            rgba(11, 58, 99, 0.12) 0%,
+            rgba(31, 182, 193, 0.45) 50%,
+            rgba(11, 58, 99, 0.12) 100%
+          );
+        }
+
+        .flow-dot {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          width: 8px;
+          height: 8px;
+          margin-left: -4px;
+          margin-top: -4px;
+          border-radius: 9999px;
+          background: #1fb6c1;
+          box-shadow: 0 0 0 6px rgba(31, 182, 193, 0.12);
+          animation: flowPulse 2.6s ease-in-out infinite;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .how-reveal,
+          .how-card,
+          .how-visual,
+          .flow-dot {
+            animation: none !important;
+            opacity: 1 !important;
+            transform: none !important;
+          }
+        }
       `}</style>
     </section>
   );
-                }
+}
