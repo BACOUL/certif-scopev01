@@ -71,8 +71,8 @@ export default function ProblemSolution() {
           </h3>
 
           <p className="mt-4 text-base leading-relaxed text-[#475569] md:text-lg">
-            C’est souvent l’absence d’une réponse simple, lisible et immédiatement
-            exploitable pour répondre à une demande concrète.
+            Le blocage vient souvent du décalage entre une demande imprécise et des
+            solutions trop lourdes.
           </p>
 
           <div className="mt-8 grid gap-4 text-left md:grid-cols-3">
@@ -112,15 +112,16 @@ export default function ProblemSolution() {
 
             <div className="text-center">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B] md:text-sm">
-                Lecture terrain
+                Ce qui est demandé, ce qui bloque, et ce qui est réellement attendu
               </p>
+
               <h3 className="mt-3 text-2xl font-extrabold leading-tight text-[#0B3A63] md:text-3xl">
                 Demande floue → recherche compliquée → réponse attendue simple
               </h3>
+
               <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-[#64748B] md:text-base">
-                Dans la majorité des cas, le blocage ne vient pas d’un manque de
-                solutions, mais du décalage entre une demande imprécise et des
-                réponses trop lourdes pour un besoin opérationnel immédiat.
+                Dans la majorité des cas, il ne s’agit pas de produire une analyse complète,
+                mais de répondre efficacement à une demande concrète.
               </p>
             </div>
 
@@ -163,9 +164,9 @@ export default function ProblemSolution() {
                 </div>
               </div>
 
-              <div className="rounded-2xl border border-[#1FB6C1]/16 bg-[linear-gradient(180deg,rgba(31,182,193,0.08)_0%,rgba(31,182,193,0.03)_100%)] p-5">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#64748B]">
-                  03 · Attendu
+              <div className="rounded-2xl border border-[#1FB6C1]/30 bg-[linear-gradient(180deg,rgba(31,182,193,0.12)_0%,rgba(31,182,193,0.04)_100%)] shadow-[0_10px_30px_rgba(31,182,193,0.15)] p-5 transition-transform duration-300 hover:scale-[1.02]">
+                <p className="text-xs font-semibold text-[#1FB6C1] uppercase tracking-[0.12em]">
+                  Réponse attendue
                 </p>
                 <p className="mt-2 text-base font-semibold text-[#0B3A63]">
                   Un document clair, standardisé et transmissible
@@ -178,7 +179,7 @@ export default function ProblemSolution() {
 
             <div className="mt-6 flex justify-center">
               <div className="rounded-full border border-[#0B3A63]/10 bg-[#F8FAFC] px-4 py-2 text-xs font-medium text-[#0B3A63] shadow-sm md:text-sm">
-                Ce format est souvent suffisant dans les demandes opérationnelles courantes
+                Ce niveau de document est généralement suffisant pour répondre aux demandes clients, fournisseurs ou appels d’offres
               </div>
             </div>
           </div>
@@ -322,4 +323,4 @@ export default function ProblemSolution() {
       `}</style>
     </section>
   );
-}
+                  }
