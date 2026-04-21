@@ -38,23 +38,26 @@ export default function HowItWorks() {
       <div className="absolute right-[-5%] bottom-10 -z-10 h-80 w-80 rounded-full bg-[#0B3A63]/6 blur-3xl" />
 
       <div className="mx-auto max-w-7xl px-6 md:px-8">
+        {/* HEADER */}
         <div className="mx-auto max-w-3xl text-center">
           <p className="how-reveal text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B] md:text-sm">
             Fonctionnement
           </p>
 
-          <h2 className="how-reveal mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] [animation-delay:100ms] md:text-4xl">
+          <h2 className="how-reveal mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">
             Comment obtenir rapidement un document carbone pour votre PME
           </h2>
 
-          <p className="how-reveal mx-auto mt-5 max-w-3xl text-base leading-relaxed text-[#475569] [animation-delay:200ms] md:text-lg">
+          <p className="how-reveal mx-auto mt-5 max-w-3xl text-base leading-relaxed text-[#475569] md:text-lg">
             Renseignez vos données, obtenez un calcul indicatif standardisé, puis
-            téléchargez une attestation carbone vérifiable pour répondre à une
-            demande client, un appel d’offres ou un besoin fournisseur.
+            téléchargez une attestation carbone vérifiable prête à transmettre.
           </p>
         </div>
 
+        {/* CONTENT */}
         <div className="mt-16 grid items-center gap-12 lg:grid-cols-[0.96fr_1.04fr] lg:gap-14">
+          
+          {/* LEFT */}
           <div className="space-y-5">
             {steps.map((step, index) => (
               <div
@@ -62,7 +65,6 @@ export default function HowItWorks() {
                 className="how-card group relative overflow-hidden rounded-[26px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm md:p-7"
                 style={{ animationDelay: `${260 + index * 120}ms` }}
               >
-                <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(31,182,193,0.45),transparent)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 <div className="flex items-start gap-4">
                   <div className="relative shrink-0">
                     <div className="absolute inset-0 rounded-2xl bg-[#1FB6C1]/10 blur-md" />
@@ -71,25 +73,25 @@ export default function HowItWorks() {
                     </div>
                   </div>
 
-                  <div className="min-w-0">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#64748B] md:text-xs">
+                  <div>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#64748B]">
                       {step.eyebrow}
                     </p>
-                    <h3 className="mt-1 text-lg font-semibold leading-snug text-[#0B3A63] md:text-[1.08rem]">
+                    <h3 className="mt-1 text-lg font-semibold text-[#0B3A63]">
                       {step.title}
                     </h3>
                   </div>
                 </div>
 
-                <p className="mt-4 text-sm leading-relaxed text-[#64748B] md:text-[15px]">
+                <p className="mt-4 text-sm text-[#64748B]">
                   {step.text}
                 </p>
 
-                <div className="mt-5 flex flex-wrap gap-2">
+                <div className="mt-4 flex flex-wrap gap-2">
                   {step.meta.split(" • ").map((item) => (
                     <span
                       key={item}
-                      className="rounded-full border border-[#0B3A63]/10 bg-[#F8FAFC] px-3 py-1.5 text-[11px] font-medium text-[#0B3A63] md:text-xs"
+                      className="rounded-full border border-[#0B3A63]/10 bg-[#F8FAFC] px-3 py-1 text-xs text-[#0B3A63]"
                     >
                       {item}
                     </span>
@@ -99,124 +101,79 @@ export default function HowItWorks() {
             ))}
           </div>
 
-          <div
-            className="how-visual relative"
-            style={{ animationDelay: "340ms" }}
-          >
-            <div className="absolute left-1/2 top-[8%] -z-20 h-[360px] w-[360px] -translate-x-1/2 rounded-full bg-[#1FB6C1]/10 blur-3xl md:h-[430px] md:w-[430px]" />
-            <div className="absolute left-1/2 top-[22%] -z-20 h-[280px] w-[520px] -translate-x-1/2 rounded-full bg-[#0B3A63]/7 blur-3xl md:h-[320px] md:w-[640px]" />
+          {/* RIGHT — PRODUIT */}
+          <div className="how-visual relative">
+            <div className="absolute left-1/2 top-[10%] -z-20 h-[360px] w-[360px] -translate-x-1/2 rounded-full bg-[#1FB6C1]/10 blur-3xl" />
 
-            <div className="relative overflow-hidden rounded-[30px] border border-[#0B3A63]/10 bg-white p-6 shadow-[0_22px_55px_rgba(11,58,99,0.10)] md:p-8">
-              <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(31,182,193,0.55),transparent)]" />
+            <div className="relative rounded-[30px] border border-[#0B3A63]/10 bg-white p-6 shadow-[0_25px_60px_rgba(11,58,99,0.10)] md:p-8">
 
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#64748B] md:text-xs">
-                    Flux simplifié
-                  </p>
-                  <h3 className="mt-2 text-xl font-extrabold text-[#0B3A63] md:text-2xl">
-                    Données → Calcul → Attestation
-                  </h3>
+              {/* HEADER */}
+              <div className="text-center">
+                <p className="text-xs uppercase tracking-[0.16em] text-[#64748B] font-semibold">
+                  Ce que vous recevez
+                </p>
+                <h3 className="mt-2 text-xl font-extrabold text-[#0B3A63]">
+                  Attestation carbone prête à transmettre
+                </h3>
+              </div>
+
+              {/* MOCK DOCUMENT */}
+              <div className="mt-6 rounded-2xl border border-[#0B3A63]/10 bg-[#F8FAFC] p-5">
+                <p className="text-sm font-semibold text-[#0B3A63]">
+                  Attestation carbone indicative
+                </p>
+
+                <p className="mt-3 text-3xl font-extrabold text-[#0B3A63]">
+                  128,4 tCO₂e
+                </p>
+
+                <p className="mt-2 text-xs text-[#64748B]">
+                  Méthode spend-based • Résultat agrégé
+                </p>
+
+                <div className="mt-4 flex items-center justify-between text-xs">
+                  <span className="text-[#64748B]">
+                    ID : CS-2024-01829
+                  </span>
+                  <span className="text-[#1FB6C1] font-semibold">
+                    ✔ Vérifiable
+                  </span>
                 </div>
+              </div>
 
-                <div className="rounded-full border border-[#0B3A63]/10 bg-[#F8FAFC] px-3 py-1.5 text-[11px] font-medium text-[#0B3A63] md:text-xs">
+              {/* PROOFS */}
+              <div className="mt-6 grid grid-cols-3 gap-3 text-center">
+                <div className="rounded-xl border border-[#0B3A63]/10 bg-[#F8FAFC] p-3 text-xs text-[#0B3A63]">
+                  PDF standardisé
+                </div>
+                <div className="rounded-xl border border-[#0B3A63]/10 bg-[#F8FAFC] p-3 text-xs text-[#0B3A63]">
                   Réponse rapide
                 </div>
-              </div>
-
-              <div className="mt-8 grid gap-4 md:grid-cols-[1fr_auto_1fr_auto_1fr] md:items-center">
-                <div className="rounded-2xl border border-[#0B3A63]/10 bg-[#F8FAFC] p-4">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#64748B]">
-                    01 · Données
-                  </p>
-                  <p className="mt-2 text-sm font-semibold text-[#0B3A63]">
-                    Dépenses annuelles et informations de base
-                  </p>
-                </div>
-
-                <div className="flow-arrow hidden items-center justify-center md:flex">
-                  <span className="flow-dot" />
-                  <span className="flow-line" />
-                </div>
-
-                <div className="rounded-2xl border border-[#0B3A63]/10 bg-[#F8FAFC] p-4">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#64748B]">
-                    02 · Calcul
-                  </p>
-                  <p className="mt-2 text-sm font-semibold text-[#0B3A63]">
-                    Méthode indicative spend-based standardisée
-                  </p>
-                </div>
-
-                <div className="flow-arrow hidden items-center justify-center md:flex">
-                  <span className="flow-dot [animation-delay:1.2s]" />
-                  <span className="flow-line" />
-                </div>
-
-                <div className="rounded-2xl border border-[#0B3A63]/10 bg-[#F8FAFC] p-4">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#64748B]">
-                    03 · Attestation
-                  </p>
-                  <p className="mt-2 text-sm font-semibold text-[#0B3A63]">
-                    PDF vérifiable, clair et prêt à transmettre
-                  </p>
+                <div className="rounded-xl border border-[#0B3A63]/10 bg-[#F8FAFC] p-3 text-xs text-[#0B3A63]">
+                  Sans audit complet
                 </div>
               </div>
 
-              <div className="mt-8 grid gap-4 md:grid-cols-3">
-                <div className="rounded-2xl border border-[#0B3A63]/8 bg-[#F8FAFC] p-4">
-                  <p className="text-sm font-semibold text-[#0B3A63]">
-                    Sans mission longue
-                  </p>
-                  <p className="mt-2 text-sm leading-relaxed text-[#64748B]">
-                    Le parcours reste court, lisible et adapté à une réponse
-                    opérationnelle.
-                  </p>
-                </div>
-
-                <div className="rounded-2xl border border-[#0B3A63]/8 bg-[#F8FAFC] p-4">
-                  <p className="text-sm font-semibold text-[#0B3A63]">
-                    Sans abonnement
-                  </p>
-                  <p className="mt-2 text-sm leading-relaxed text-[#64748B]">
-                    Vous obtenez un document standardisé sans engagement long ni
-                    déploiement complexe.
-                  </p>
-                </div>
-
-                <div className="rounded-2xl border border-[#0B3A63]/8 bg-[#F8FAFC] p-4">
-                  <p className="text-sm font-semibold text-[#0B3A63]">
-                    Vérification tierce
-                  </p>
-                  <p className="mt-2 text-sm leading-relaxed text-[#64748B]">
-                    Le document comporte un identifiant unique pour une lecture
-                    simple et vérifiable.
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-8 rounded-2xl border border-[#1FB6C1]/16 bg-[linear-gradient(180deg,rgba(31,182,193,0.08)_0%,rgba(31,182,193,0.03)_100%)] p-4 md:p-5">
+              {/* FINAL BLOCK */}
+              <div className="mt-6 rounded-xl border border-[#1FB6C1]/20 bg-[#1FB6C1]/5 p-4 text-center">
                 <p className="text-sm font-semibold text-[#0B3A63]">
-                  Résultat attendu
-                </p>
-                <p className="mt-2 text-sm leading-relaxed text-[#64748B]">
-                  Une attestation carbone indicative, standardisée et vérifiable,
-                  conçue pour répondre plus vite à une demande client, un dossier
-                  fournisseur ou une exigence externe sans lancer un audit complet.
+                  Document suffisant dans la majorité des demandes
                 </p>
               </div>
+
             </div>
           </div>
         </div>
 
-        <div className="how-reveal mt-16 flex flex-col items-center justify-center gap-4 text-center [animation-delay:540ms]">
-          <p className="text-sm font-medium text-[#0B3A63]/80 md:text-base">
+        {/* CTA */}
+        <div className="how-reveal mt-16 flex flex-col items-center gap-4 text-center">
+          <p className="text-sm text-[#0B3A63]/80">
             Sans abonnement. Sans mission longue. Sans complexité inutile.
           </p>
 
           <Link
             href="/fr/generate"
-            className="inline-flex min-h-[56px] items-center justify-center rounded-xl bg-[#1FB6C1] px-8 py-4 text-base font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#19AAB4] hover:shadow-[0_18px_36px_rgba(31,182,193,0.34)]"
+            className="inline-flex min-h-[56px] items-center justify-center rounded-xl bg-[#1FB6C1] px-8 py-4 text-base font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition hover:-translate-y-0.5 hover:bg-[#19AAB4]"
           >
             Générer mon document CO₂e
           </Link>
@@ -225,110 +182,31 @@ export default function HowItWorks() {
 
       <style jsx>{`
         @keyframes revealUp {
-          from {
-            opacity: 0;
-            transform: translateY(18px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes revealScale {
-          from {
-            opacity: 0;
-            transform: translateY(18px) scale(0.985);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-          }
-        }
-
-        @keyframes flowPulse {
-          0% {
-            transform: translateX(-6px);
-            opacity: 0.35;
-          }
-          50% {
-            transform: translateX(6px);
-            opacity: 1;
-          }
-          100% {
-            transform: translateX(-6px);
-            opacity: 0.35;
-          }
+          from { opacity: 0; transform: translateY(18px); }
+          to { opacity: 1; transform: translateY(0); }
         }
 
         .how-reveal {
           opacity: 0;
-          animation: revealUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+          animation: revealUp 0.8s ease forwards;
         }
 
         .how-card {
           opacity: 0;
-          animation: revealUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-          transition:
-            transform 300ms ease,
-            box-shadow 300ms ease,
-            border-color 300ms ease;
+          animation: revealUp 0.8s ease forwards;
+          transition: all 0.3s ease;
         }
 
         .how-card:hover {
           transform: translateY(-4px);
-          box-shadow: 0 18px 40px rgba(11, 58, 99, 0.09);
-          border-color: rgba(11, 58, 99, 0.14);
+          box-shadow: 0 18px 40px rgba(11,58,99,0.08);
         }
 
         .how-visual {
           opacity: 0;
-          animation: revealScale 0.95s cubic-bezier(0.22, 1, 0.36, 1)
-            forwards;
-        }
-
-        .flow-arrow {
-          width: 44px;
-          position: relative;
-        }
-
-        .flow-line {
-          display: block;
-          width: 100%;
-          height: 1px;
-          background: linear-gradient(
-            90deg,
-            rgba(11, 58, 99, 0.12) 0%,
-            rgba(31, 182, 193, 0.45) 50%,
-            rgba(11, 58, 99, 0.12) 100%
-          );
-        }
-
-        .flow-dot {
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          width: 8px;
-          height: 8px;
-          margin-left: -4px;
-          margin-top: -4px;
-          border-radius: 9999px;
-          background: #1fb6c1;
-          box-shadow: 0 0 0 6px rgba(31, 182, 193, 0.12);
-          animation: flowPulse 2.6s ease-in-out infinite;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .how-reveal,
-          .how-card,
-          .how-visual,
-          .flow-dot {
-            animation: none !important;
-            opacity: 1 !important;
-            transform: none !important;
-          }
+          animation: revealUp 1s ease forwards;
         }
       `}</style>
     </section>
   );
-}
+                }
