@@ -115,6 +115,7 @@ export default function BilanCarbonePMEExemplePageFR() {
       name: "Certif-Scope",
       url: "https://www.certif-scope.com",
     },
+    inLanguage: "fr-FR",
   };
 
   const jsonLdFAQ = {
@@ -160,31 +161,23 @@ export default function BilanCarbonePMEExemplePageFR() {
     <li>
       <a
         href={href}
-        className="text-[#0B3A63] hover:underline underline-offset-4"
+        className="text-[#0B3A63] transition-colors hover:text-[#1FB6C1] hover:underline underline-offset-4"
       >
         {label}
       </a>
     </li>
   );
 
-  const FAQAnswer = ({ text }: { text: string }) => {
-    const idx = text.indexOf(". ");
-    const first = idx > 0 ? text.slice(0, idx + 1) : text;
-    const rest = idx > 0 ? text.slice(idx + 2) : "";
-    return (
-      <p className="text-gray-700 leading-relaxed">
-        <strong>{first}</strong>
-        {rest ? ` ${rest}` : ""}
-      </p>
-    );
-  };
-
   return (
     <section
       id="bilan-carbone-pme-exemple"
       data-section="bilan-carbone-pme-exemple"
-      className="max-w-7xl mx-auto px-6 pt-12 pb-24"
+      className="relative overflow-hidden bg-white"
     >
+      <div className="absolute inset-0 -z-30 bg-[linear-gradient(180deg,#ffffff_0%,#F8FAFC_100%)]" />
+      <div className="absolute left-[-8%] top-24 -z-10 h-60 w-60 rounded-full bg-[#1FB6C1]/6 blur-3xl" />
+      <div className="absolute right-[-6%] top-40 -z-10 h-80 w-80 rounded-full bg-[#0B3A63]/6 blur-3xl" />
+
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdOrganization) }}
@@ -208,561 +201,539 @@ export default function BilanCarbonePMEExemplePageFR() {
 
       <div id="top" />
 
-      <header className="mb-14">
-        <p className="uppercase text-xs tracking-wider text-[#64748B] mb-3">
-          Cluster FR — Bilan carbone PME : exemple
-        </p>
-
-        <h1 className="text-3xl md:text-5xl font-extrabold text-[#0B3A63] mb-4 leading-tight tracking-tight">
-          Exemple de bilan carbone PME : à quoi ressemble un document utilisable ?
-        </h1>
-
-        <div className="max-w-4xl space-y-4">
-          <p className="text-lg text-gray-700 leading-relaxed">
-            <strong>
-              Dans beaucoup de cas PME, un “bilan carbone” demandé ne ressemble pas à un audit complet.
-            </strong>
+      <div className="mx-auto max-w-7xl px-6 pb-24 pt-12 md:px-8 md:pt-16">
+        <header className="mx-auto max-w-5xl">
+          <p className="inline-flex items-center gap-3 rounded-full border border-[#0B3A63]/10 bg-white/92 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#0B3A63]/75 shadow-sm backdrop-blur md:text-xs">
+            <span className="inline-block h-2.5 w-2.5 rounded-full bg-[#1FB6C1] shadow-[0_0_0_4px_rgba(31,182,193,0.14)]" />
+            Cluster FR • Exemple • PME • Document CO₂e
           </p>
 
-          <p className="text-lg text-gray-700 leading-relaxed">
-            Il s’agit souvent d’un <strong>document CO₂e lisible</strong>,
-            daté, réutilisable et archivable dans un dossier client, fournisseur,
-            banque, assurance ou appel d’offres.
+          <h1 className="mt-6 max-w-5xl text-3xl font-extrabold leading-[0.96] tracking-[-0.05em] text-[#0B3A63] md:text-5xl">
+            Exemple de bilan carbone PME :
+            <br />
+            <span className="relative inline-block">
+              à quoi ressemble
+              <span className="absolute bottom-1 left-0 h-3 w-full rounded-full bg-[#1FB6C1]/18" />
+            </span>{" "}
+            un document utilisable ?
+          </h1>
+
+          <p className="mt-4 text-sm font-medium text-[#0B3A63]/75 md:text-base">
+            Exemple de document CO₂e, structure attendue, lecture rapide par un
+            client, une banque, un assureur ou un dossier fournisseur.
           </p>
 
-          <p className="text-base text-gray-600 leading-relaxed">
-            Cette page montre à quoi ressemble un exemple de document utile, ce
-            qu’il doit contenir, et ce qui le distingue d’un inventaire complet.
-          </p>
-        </div>
-
-        <div className="mt-6 rounded-2xl border border-[#0B3A63]/10 bg-[#F8FAFC] p-6">
-          <h2 className="text-lg font-semibold text-[#0B3A63] mb-3">
-            Réponse rapide
-          </h2>
-
-          <ul className="list-disc ml-6 text-gray-700 space-y-2 leading-relaxed">
-            <li>résultat CO₂e agrégé ;</li>
-            <li>année couverte ;</li>
-            <li>méthode déclarée ;</li>
-            <li>limites visibles ;</li>
-            <li>format PDF stable ;</li>
-            <li>document compréhensible rapidement.</li>
-          </ul>
-        </div>
-
-        <div className="mt-7 flex flex-wrap gap-3">
-          <Link
-            href="/fr/generate/"
-            className="inline-block text-sm px-5 py-2.5 rounded-md bg-[#0B3A63] text-white hover:bg-[#0B3A63]/90 transition-colors font-semibold"
-          >
-            Obtenir un document carbone →
-          </Link>
-
-          <Link
-            href="/fr/pricing/"
-            className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
-          >
-            Voir le prix
-          </Link>
-
-          <Link
-            href="/fr/bilan-carbone-pme/"
-            className="inline-block text-sm px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
-          >
-            Voir la page pilier
-          </Link>
-        </div>
-
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="rounded-2xl border border-gray-200 bg-white p-5">
-            <p className="text-xs uppercase tracking-wider text-[#64748B] mb-2">
-              Ce que cette page montre
+          <div className="mt-6 max-w-4xl space-y-4">
+            <p className="text-lg leading-relaxed text-[#475569]">
+              <strong className="text-[#0B3A63]">
+                Dans beaucoup de cas PME, un “bilan carbone” demandé ne ressemble
+                pas à un audit complet.
+              </strong>{" "}
+              Il s’agit souvent d’un document CO₂e lisible, daté, réutilisable et
+              archivable dans un dossier client, fournisseur, banque, assurance
+              ou appel d’offres.
             </p>
-            <p className="text-gray-700 leading-relaxed">
-              La structure d’un document carbone PME utilisable dans un dossier,
-              sans le confondre avec un inventaire complet.
+
+            <p className="text-base leading-relaxed text-[#64748B] md:text-lg">
+              Cette page montre à quoi ressemble un exemple de document utile,
+              ce qu’il doit contenir, et ce qui le distingue d’un inventaire
+              complet.
             </p>
           </div>
 
-          <div className="rounded-2xl border border-gray-200 bg-white p-5">
-            <p className="text-xs uppercase tracking-wider text-[#64748B] mb-2">
-              Utilité
-            </p>
-            <p className="text-gray-700 leading-relaxed">
-              Vérifier le niveau de détail attendu avant de payer ou de lancer une
-              démarche plus lourde.
-            </p>
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            <div className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-5 shadow-sm">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#64748B]">
+                Ce que cette page montre
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-[#475569]">
+                La structure d’un document carbone PME utilisable dans un dossier,
+                sans le confondre avec un inventaire complet.
+              </p>
+            </div>
+
+            <div className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-5 shadow-sm">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#64748B]">
+                Utilité
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-[#475569]">
+                Vérifier le niveau de détail attendu avant de payer ou de lancer
+                une démarche plus lourde.
+              </p>
+            </div>
+
+            <div className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-5 shadow-sm">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#64748B]">
+                Point clé
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-[#475569]">
+                Un bon exemple doit être clair, daté, limité et cohérent avec le
+                besoin réel du dossier.
+              </p>
+            </div>
           </div>
 
-          <div className="rounded-2xl border border-gray-200 bg-white p-5">
-            <p className="text-xs uppercase tracking-wider text-[#64748B] mb-2">
-              Point clé
-            </p>
-            <p className="text-gray-700 leading-relaxed">
-              Un bon exemple doit être clair, daté, limité et cohérent avec le
-              besoin réel du dossier.
-            </p>
+          <div className="mt-8 rounded-[28px] border border-[#0B3A63]/10 bg-[#F8FAFC] p-6 md:p-8">
+            <h2 className="text-xl font-extrabold leading-tight text-[#0B3A63] md:text-2xl">
+              Réponse rapide
+            </h2>
+
+            <ul className="mt-5 grid gap-3 md:grid-cols-2">
+              <li className="rounded-2xl border border-[#0B3A63]/10 bg-white p-4 text-sm leading-relaxed text-[#475569]">
+                résultat CO₂e agrégé
+              </li>
+              <li className="rounded-2xl border border-[#0B3A63]/10 bg-white p-4 text-sm leading-relaxed text-[#475569]">
+                année couverte
+              </li>
+              <li className="rounded-2xl border border-[#0B3A63]/10 bg-white p-4 text-sm leading-relaxed text-[#475569]">
+                méthode déclarée
+              </li>
+              <li className="rounded-2xl border border-[#0B3A63]/10 bg-white p-4 text-sm leading-relaxed text-[#475569]">
+                limites visibles
+              </li>
+              <li className="rounded-2xl border border-[#0B3A63]/10 bg-white p-4 text-sm leading-relaxed text-[#475569]">
+                format PDF stable
+              </li>
+              <li className="rounded-2xl border border-[#0B3A63]/10 bg-white p-4 text-sm leading-relaxed text-[#475569]">
+                document compréhensible rapidement
+              </li>
+            </ul>
           </div>
-        </div>
 
-        <div className="w-20 h-[2px] bg-gray-300 mt-10" />
-      </header>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link
+              href="/fr/generate/"
+              className="inline-flex min-h-[52px] items-center justify-center rounded-xl bg-[#1FB6C1] px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#19AAB4]"
+            >
+              Obtenir un document carbone →
+            </Link>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-        <div className="lg:col-span-8 space-y-14">
-          <section className="lg:hidden">
-            <div className="rounded-2xl border border-gray-200 bg-[#F8FAFC] p-6">
-              <p className="text-xs uppercase tracking-wider text-[#64748B] mb-3">
-                Sommaire
-              </p>
-              <nav aria-label="Sommaire exemple bilan carbone PME (mobile)">
-                <ol className="space-y-2 text-sm list-decimal ml-5">
-                  <TocItem href="#what-it-looks-like" label="À quoi ressemble l’exemple" />
-                  <TocItem href="#essential-parts" label="Éléments indispensables" />
-                  <TocItem href="#not-audit" label="Ce que l’exemple n’est pas" />
-                  <TocItem href="#sample-structure" label="Structure type" />
-                  <TocItem href="#case-example" label="Exemple concret" />
-                  <TocItem href="#mistakes" label="Erreurs fréquentes" />
-                  <TocItem href="#links" label="Pages utiles" />
-                  <TocItem href="#faq" label="FAQ" />
-                </ol>
-              </nav>
-            </div>
-          </section>
+            <Link
+              href="/fr/pricing/"
+              className="inline-flex min-h-[52px] items-center justify-center rounded-xl border border-[#0B3A63] bg-white px-5 py-3 text-sm font-semibold text-[#0B3A63] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0B3A63] hover:text-white"
+            >
+              Voir le prix
+            </Link>
 
-          <section id="what-it-looks-like" className="scroll-mt-24">
-            <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-              1) À quoi ressemble un exemple de bilan carbone PME
-            </h2>
+            <Link
+              href="/fr/bilan-carbone-pme/"
+              className="inline-flex min-h-[52px] items-center justify-center rounded-xl border border-[#0B3A63]/14 bg-white px-5 py-3 text-sm font-semibold text-[#0B3A63] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#0B3A63] hover:bg-[#0B3A63] hover:text-white"
+            >
+              Voir la page pilier
+            </Link>
+          </div>
+        </header>
 
-            <p className="text-gray-700 leading-relaxed mb-4">
-              Dans un contexte PME, un exemple de bilan carbone utile ressemble
-              souvent à un <strong>document de screening</strong> :
-              un document structuré, lisible, avec un résultat CO₂e, une année
-              couverte, une méthode annoncée et des limites explicites.
-            </p>
-
-            <p className="text-gray-700 leading-relaxed mb-6">
-              L’objectif de cet exemple n’est pas de reproduire un inventaire
-              complet, mais de montrer ce qu’un tiers attend souvent dans un
-              dossier : un document <strong>compréhensible rapidement</strong> et
-              <strong> archivable</strong>.
-            </p>
-
-            <div className="rounded-2xl border border-gray-200 bg-white p-6">
-              <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
-                Ce que l’on reconnaît dans un bon exemple
-              </h3>
-              <ul className="list-disc ml-6 text-gray-700 space-y-2">
-                <li>titre clair ;</li>
-                <li>année et date d’émission ;</li>
-                <li>résultat CO₂e lisible ;</li>
-                <li>méthode indiquée ;</li>
-                <li>périmètre et limites visibles ;</li>
-                <li>format stable, partageable et réutilisable.</li>
-              </ul>
-            </div>
-          </section>
-
-          <section id="essential-parts" className="scroll-mt-24">
-            <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-              2) Les éléments indispensables dans un exemple de document carbone PME
-            </h2>
-
-            <p className="text-gray-700 leading-relaxed mb-6">
-              Un exemple pertinent doit montrer les bons éléments. C’est cela qui
-              permet à une PME de savoir si un format simple peut suffire.
-            </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="rounded-2xl border border-gray-200 bg-white p-6">
-                <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
-                  Contenu essentiel
-                </h3>
-                <ul className="list-disc ml-6 text-gray-700 space-y-2">
-                  <li>résultat CO₂e agrégé ;</li>
-                  <li>année couverte ;</li>
-                  <li>entité ou organisation concernée ;</li>
-                  <li>méthode déclarée ;</li>
-                  <li>date d’émission ;</li>
-                  <li>référence ou identifiant.</li>
-                </ul>
-              </div>
-
-              <div className="rounded-2xl border border-gray-200 bg-white p-6">
-                <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
-                  Transparence minimale
-                </h3>
-                <ul className="list-disc ml-6 text-gray-700 space-y-2">
-                  <li>document indicatif ;</li>
-                  <li>non audit ;</li>
-                  <li>non inventaire complet ;</li>
-                  <li>limites méthodologiques ;</li>
-                  <li>portée du document clairement annoncée.</li>
-                </ul>
-              </div>
-            </div>
-          </section>
-
-          <section id="not-audit" className="scroll-mt-24">
-            <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-              3) Ce que cet exemple n’est pas
-            </h2>
-
-            <p className="text-gray-700 leading-relaxed mb-6">
-              Un exemple de document carbone PME n’est pas forcément un audit,
-              ni un inventaire détaillé ventilé de manière exhaustive. C’est un
-              point important pour éviter la confusion.
-            </p>
-
-            <div className="rounded-2xl border border-gray-200 bg-[#F8FAFC] p-6">
-              <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
-                À ne pas confondre
-              </h3>
-              <ul className="list-disc ml-6 text-gray-700 space-y-2">
-                <li>document de screening ;</li>
-                <li>inventaire complet des émissions ;</li>
-                <li>audit carbone ;</li>
-                <li>reporting réglementaire ;</li>
-                <li>document technique très détaillé.</li>
-              </ul>
-            </div>
-
-            <div className="mt-6 rounded-2xl border border-gray-200 bg-white p-6">
-              <p className="text-gray-700 leading-relaxed">
-                Dans beaucoup de cas PME, le document attendu sert surtout à
-                <strong> compléter un dossier</strong>, pas à démontrer un niveau
-                d’analyse technique maximal.
-              </p>
-            </div>
-          </section>
-
-          <section id="sample-structure" className="scroll-mt-24">
-            <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-              4) Structure type d’un exemple utilisable
-            </h2>
-
-            <p className="text-gray-700 leading-relaxed mb-6">
-              Voici à quoi peut ressembler la structure logique d’un document
-              carbone PME utilisable.
-            </p>
-
-            <div className="rounded-2xl border border-gray-200 bg-white p-6">
-              <ol className="list-decimal ml-6 text-gray-700 space-y-3">
-                <li>
-                  <strong>Titre du document</strong> — document CO₂e indicatif / attestation / résultat carbone.
-                </li>
-                <li>
-                  <strong>Identification minimale</strong> — nom de l’entité, année couverte.
-                </li>
-                <li>
-                  <strong>Résultat CO₂e</strong> — valeur agrégée lisible.
-                </li>
-                <li>
-                  <strong>Méthode</strong> — principe spend-based ou méthode déclarée.
-                </li>
-                <li>
-                  <strong>Limites</strong> — non audit, non inventaire complet, non CSRD/ESRS.
-                </li>
-                <li>
-                  <strong>Vérification / référence</strong> — identifiant ou contrôle associé.
-                </li>
-              </ol>
-            </div>
-
-            <div className="mt-6 rounded-2xl border border-gray-200 bg-[#0B3A63] p-6 text-white">
-              <h3 className="text-lg font-semibold mb-2">
-                Principe de lecture
-              </h3>
-              <p className="text-white/90 leading-relaxed">
-                Un bon exemple ne doit pas impressionner par sa complexité, mais
-                rassurer par sa clarté.
-              </p>
-            </div>
-          </section>
-
-          <section id="case-example" className="scroll-mt-24">
-            <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-              5) Exemple concret
-            </h2>
-
-            <div className="rounded-2xl border border-gray-200 bg-white p-6">
-              <p className="text-gray-700 leading-relaxed mb-4">
-                Une PME de services reçoit une demande client : joindre un bilan
-                carbone au dossier fournisseur.
-              </p>
-
-              <ul className="list-disc ml-6 text-gray-700 space-y-2 leading-relaxed">
-                <li>la PME cherche un exemple pour comprendre le niveau attendu ;</li>
-                <li>elle constate qu’un document simple, daté et structuré peut suffire ;</li>
-                <li>elle n’a pas besoin d’un inventaire technique détaillé pour ce dossier précis ;</li>
-                <li>l’exemple sert de repère pour éviter de surdimensionner la réponse.</li>
-              </ul>
-            </div>
-          </section>
-
-          <section id="mistakes" className="scroll-mt-24">
-            <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-              6) Erreurs fréquentes
-            </h2>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="rounded-2xl border border-gray-200 bg-white p-6">
-                <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
-                  Erreur n°1
-                </h3>
-                <p className="text-gray-700 leading-relaxed">
-                  Chercher un exemple très technique alors que le dossier attend
-                  seulement un document lisible.
+        <div className="mt-14 grid grid-cols-1 gap-10 lg:grid-cols-12">
+          <div className="space-y-14 lg:col-span-8">
+            <section className="lg:hidden">
+              <div className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">
+                  Sommaire
                 </p>
+                <nav aria-label="Sommaire exemple bilan carbone PME (mobile)" className="mt-4">
+                  <ol className="ml-5 list-decimal space-y-2 text-sm">
+                    <TocItem href="#what-it-looks-like" label="À quoi ressemble l’exemple" />
+                    <TocItem href="#essential-parts" label="Éléments indispensables" />
+                    <TocItem href="#not-audit" label="Ce que l’exemple n’est pas" />
+                    <TocItem href="#sample-structure" label="Structure type" />
+                    <TocItem href="#case-example" label="Exemple concret" />
+                    <TocItem href="#mistakes" label="Erreurs fréquentes" />
+                    <TocItem href="#faq" label="FAQ" />
+                  </ol>
+                </nav>
               </div>
+            </section>
 
-              <div className="rounded-2xl border border-gray-200 bg-white p-6">
-                <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
-                  Erreur n°2
-                </h3>
-                <p className="text-gray-700 leading-relaxed">
-                  Utiliser un exemple ambigu qui laisse croire à un audit ou à un
-                  inventaire complet.
-                </p>
-              </div>
-
-              <div className="rounded-2xl border border-gray-200 bg-white p-6">
-                <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
-                  Erreur n°3
-                </h3>
-                <p className="text-gray-700 leading-relaxed">
-                  Oublier les limites, la méthode ou l’année couverte.
-                </p>
-              </div>
-
-              <div className="rounded-2xl border border-gray-200 bg-white p-6">
-                <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
-                  Erreur n°4
-                </h3>
-                <p className="text-gray-700 leading-relaxed">
-                  Croire qu’un exemple doit être complexe pour être crédible.
-                </p>
-              </div>
-            </div>
-          </section>
-
-          <section id="links" className="scroll-mt-24">
-            <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-              7) Pages utiles pour aller plus loin
-            </h2>
-
-            <div className="rounded-2xl border border-gray-200 bg-white p-6">
-              <ul className="space-y-3 text-gray-700">
-                <li>
-                  <Link
-                    className="underline text-[#0B3A63]"
-                    href="/fr/bilan-carbone-pme/"
-                  >
-                    Bilan carbone PME : page pilier →
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="underline text-[#0B3A63]"
-                    href="/fr/bilan-carbone-pme/obligation/"
-                  >
-                    Bilan carbone PME obligatoire →
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="underline text-[#0B3A63]"
-                    href="/fr/bilan-carbone-pme/cout/"
-                  >
-                    Combien coûte un bilan carbone PME ? →
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="underline text-[#0B3A63]"
-                    href="/fr/pricing/"
-                  >
-                    Prix →
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </section>
-
-          <section id="cta" className="pt-2 scroll-mt-24">
-            <div className="rounded-2xl border border-gray-200 bg-[#0B3A63] p-8 text-white">
-              <h2 className="text-2xl font-extrabold mb-3">
-                Voir un exemple est utile. Répondre proprement est encore mieux.
+            <section id="what-it-looks-like" className="scroll-mt-24">
+              <h2 className="text-2xl font-extrabold text-[#0B3A63] md:text-3xl">
+                1) À quoi ressemble un exemple de bilan carbone PME
               </h2>
-              <p className="text-white/90 leading-relaxed max-w-2xl">
-                Certif-Scope permet de produire un document CO₂e indicatif,
-                clair, standardisé, vérifiable et utilisable dans un dossier
-                client, fournisseur, banque ou appel d’offres.
+
+              <p className="mt-5 text-base leading-relaxed text-[#475569] md:text-lg">
+                Dans un contexte PME, un exemple de bilan carbone utile ressemble
+                souvent à un <strong className="text-[#0B3A63]">document de screening</strong> :
+                un document structuré, lisible, avec un résultat CO₂e, une année
+                couverte, une méthode annoncée et des limites explicites.
               </p>
 
-              <div className="mt-6 flex flex-wrap gap-3">
-                <Link
-                  href="/fr/generate/"
-                  className="inline-block text-sm px-5 py-2.5 rounded-md bg-white text-[#0B3A63] hover:bg-gray-100 transition-colors font-semibold"
-                >
-                  Obtenir un document carbone
-                </Link>
-                <Link
-                  href="/fr/pricing/"
-                  className="inline-block text-sm px-5 py-2.5 rounded-md border border-white/40 text-white hover:bg-white/10 transition-colors"
-                >
-                  Voir le prix
-                </Link>
-                <Link
-                  href="/verify"
-                  className="inline-block text-sm px-5 py-2.5 rounded-md border border-white/40 text-white hover:bg-white/10 transition-colors"
-                >
-                  Vérifier un document
-                </Link>
+              <p className="mt-4 text-base leading-relaxed text-[#475569] md:text-lg">
+                L’objectif de cet exemple n’est pas de reproduire un inventaire
+                complet, mais de montrer ce qu’un tiers attend souvent dans un
+                dossier : un document{" "}
+                <strong className="text-[#0B3A63]">compréhensible rapidement</strong>{" "}
+                et <strong className="text-[#0B3A63]">archivable</strong>.
+              </p>
+
+              <div className="mt-6 rounded-[28px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm md:p-8">
+                <h3 className="text-lg font-semibold text-[#0B3A63]">
+                  Ce que l’on reconnaît dans un bon exemple
+                </h3>
+                <ul className="mt-5 ml-6 list-disc space-y-2 text-sm leading-relaxed text-[#475569] md:text-base">
+                  <li>titre clair ;</li>
+                  <li>année et date d’émission ;</li>
+                  <li>résultat CO₂e lisible ;</li>
+                  <li>méthode indiquée ;</li>
+                  <li>périmètre et limites visibles ;</li>
+                  <li>format stable, partageable et réutilisable.</li>
+                </ul>
               </div>
-            </div>
+            </section>
 
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                href="/fr/bilan-carbone-pme/"
-                className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
-              >
-                Revenir à la page pilier
-              </Link>
-              <a
-                href="#top"
-                className="inline-block text-sm px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
-              >
-                Haut de page
-              </a>
-            </div>
-          </section>
+            <section id="essential-parts" className="scroll-mt-24">
+              <h2 className="text-2xl font-extrabold text-[#0B3A63] md:text-3xl">
+                2) Les éléments indispensables dans un exemple de document carbone PME
+              </h2>
 
-          <section id="faq" className="scroll-mt-24">
-            <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-              FAQ — Exemple de bilan carbone PME
-            </h2>
+              <p className="mt-5 text-base leading-relaxed text-[#475569] md:text-lg">
+                Un exemple pertinent doit montrer les bons éléments. C’est cela
+                qui permet à une PME de savoir si un format simple peut suffire.
+              </p>
 
-            <div className="space-y-6">
-              {faq.map((item, idx) => (
-                <div
-                  key={`${idx}-${item.q}`}
-                  className="rounded-2xl border border-gray-200 bg-white p-6"
-                >
-                  <h3 className="font-semibold text-[#0B3A63] mb-2">
-                    {item.q}
+              <div className="mt-6 grid gap-6 md:grid-cols-2">
+                <div className="rounded-[24px] border border-[#0B3A63]/10 bg-[#F8FAFC] p-6 shadow-sm">
+                  <h3 className="text-lg font-semibold text-[#0B3A63]">
+                    Contenu essentiel
                   </h3>
-                  <FAQAnswer text={item.a} />
+                  <ul className="mt-4 ml-6 list-disc space-y-2 text-sm leading-relaxed text-[#475569]">
+                    <li>résultat CO₂e agrégé ;</li>
+                    <li>année couverte ;</li>
+                    <li>entité ou organisation concernée ;</li>
+                    <li>méthode déclarée ;</li>
+                    <li>date d’émission ;</li>
+                    <li>référence ou identifiant.</li>
+                  </ul>
                 </div>
-              ))}
-            </div>
-          </section>
-        </div>
 
-        <aside className="lg:col-span-4">
-          <div className="sticky top-6 space-y-6">
-            <div className="rounded-2xl border border-gray-200 bg-white p-6">
-              <p className="text-xs uppercase tracking-wider text-[#64748B] mb-3">
-                Sommaire
-              </p>
-              <nav aria-label="Sommaire exemple bilan carbone PME">
-                <ol className="space-y-2 text-sm list-decimal ml-5">
-                  <TocItem href="#what-it-looks-like" label="À quoi ressemble l’exemple" />
-                  <TocItem href="#essential-parts" label="Éléments indispensables" />
-                  <TocItem href="#not-audit" label="Ce que l’exemple n’est pas" />
-                  <TocItem href="#sample-structure" label="Structure type" />
-                  <TocItem href="#case-example" label="Exemple concret" />
-                  <TocItem href="#mistakes" label="Erreurs fréquentes" />
-                  <TocItem href="#links" label="Pages utiles" />
-                  <TocItem href="#faq" label="FAQ" />
-                </ol>
-              </nav>
-            </div>
-
-            <div className="rounded-2xl border border-gray-200 bg-[#F8FAFC] p-6">
-              <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
-                Rappel utile
-              </h3>
-              <p className="text-sm text-gray-700 leading-relaxed">
-                Cette page montre un exemple de document carbone PME sous un angle
-                pratique : voir à quoi ressemble un format utilisable, sans le
-                confondre avec un audit ou un inventaire complet.
-              </p>
-
-              <div className="mt-5 flex flex-wrap gap-3">
-                <Link
-                  href="/fr/generate/"
-                  className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
-                >
-                  Générer
-                </Link>
-                <Link
-                  href="/fr/pricing/"
-                  className="inline-block text-sm px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
-                >
-                  Prix
-                </Link>
+                <div className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm">
+                  <h3 className="text-lg font-semibold text-[#0B3A63]">
+                    Transparence minimale
+                  </h3>
+                  <ul className="mt-4 ml-6 list-disc space-y-2 text-sm leading-relaxed text-[#475569]">
+                    <li>document indicatif ;</li>
+                    <li>non audit ;</li>
+                    <li>non inventaire complet ;</li>
+                    <li>limites méthodologiques ;</li>
+                    <li>portée du document clairement annoncée.</li>
+                  </ul>
+                </div>
               </div>
-            </div>
+            </section>
 
-            <div className="rounded-2xl border border-gray-200 bg-white p-6">
-              <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
-                Cluster FR
-              </h3>
-              <ul className="space-y-2 text-sm text-gray-700">
-                <li>
-                  <Link className="underline" href="/fr/bilan-carbone-pme/">
-                    Bilan carbone PME
-                  </Link>
-                </li>
-                <li>
+            <section id="not-audit" className="scroll-mt-24">
+              <h2 className="text-2xl font-extrabold text-[#0B3A63] md:text-3xl">
+                3) Ce que cet exemple n’est pas
+              </h2>
+
+              <p className="mt-5 text-base leading-relaxed text-[#475569] md:text-lg">
+                Un exemple de document carbone PME n’est pas forcément un audit,
+                ni un inventaire détaillé ventilé de manière exhaustive. C’est un
+                point important pour éviter la confusion.
+              </p>
+
+              <div className="mt-6 rounded-[28px] border border-[#0B3A63]/10 bg-[#F8FAFC] p-6 md:p-8">
+                <h3 className="text-lg font-semibold text-[#0B3A63]">
+                  À ne pas confondre
+                </h3>
+                <ul className="mt-5 ml-6 list-disc space-y-2 text-sm leading-relaxed text-[#475569] md:text-base">
+                  <li>document de screening ;</li>
+                  <li>inventaire complet des émissions ;</li>
+                  <li>audit carbone ;</li>
+                  <li>reporting réglementaire ;</li>
+                  <li>document technique très détaillé.</li>
+                </ul>
+              </div>
+
+              <div className="mt-6 rounded-[28px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm">
+                <p className="text-sm leading-relaxed text-[#475569] md:text-base">
+                  Dans beaucoup de cas PME, le document attendu sert surtout à
+                  <strong className="text-[#0B3A63]"> compléter un dossier</strong>,
+                  pas à démontrer un niveau d’analyse technique maximal.
+                </p>
+              </div>
+            </section>
+
+            <section id="sample-structure" className="scroll-mt-24">
+              <h2 className="text-2xl font-extrabold text-[#0B3A63] md:text-3xl">
+                4) Structure type d’un exemple utilisable
+              </h2>
+
+              <p className="mt-5 text-base leading-relaxed text-[#475569] md:text-lg">
+                Voici à quoi peut ressembler la structure logique d’un document
+                carbone PME utilisable.
+              </p>
+
+              <div className="mt-6 rounded-[28px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm md:p-8">
+                <ol className="ml-6 list-decimal space-y-3 text-sm leading-relaxed text-[#475569] md:text-base">
+                  <li>
+                    <strong>Titre du document</strong> — document CO₂e indicatif,
+                    attestation, résultat carbone.
+                  </li>
+                  <li>
+                    <strong>Identification minimale</strong> — nom de l’entité,
+                    année couverte.
+                  </li>
+                  <li>
+                    <strong>Résultat CO₂e</strong> — valeur agrégée lisible.
+                  </li>
+                  <li>
+                    <strong>Méthode</strong> — principe spend-based ou méthode déclarée.
+                  </li>
+                  <li>
+                    <strong>Limites</strong> — non audit, non inventaire complet,
+                    non CSRD/ESRS.
+                  </li>
+                  <li>
+                    <strong>Vérification / référence</strong> — identifiant ou contrôle associé.
+                  </li>
+                </ol>
+
+                <div className="mt-6 rounded-2xl border border-[#1FB6C1]/18 bg-[linear-gradient(180deg,rgba(31,182,193,0.08)_0%,rgba(31,182,193,0.03)_100%)] p-5">
+                  <p className="text-sm leading-relaxed text-[#475569] md:text-base">
+                    <strong className="text-[#0B3A63]">Principe de lecture :</strong>{" "}
+                    un bon exemple ne doit pas impressionner par sa complexité,
+                    mais rassurer par sa clarté.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <section id="case-example" className="scroll-mt-24">
+              <h2 className="text-2xl font-extrabold text-[#0B3A63] md:text-3xl">
+                5) Exemple concret
+              </h2>
+
+              <div className="mt-6 rounded-[28px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm md:p-8">
+                <p className="text-base leading-relaxed text-[#475569] md:text-lg">
+                  Une PME de services reçoit une demande client : joindre un bilan
+                  carbone au dossier fournisseur.
+                </p>
+
+                <ul className="mt-5 ml-6 list-disc space-y-2 text-sm leading-relaxed text-[#475569] md:text-base">
+                  <li>la PME cherche un exemple pour comprendre le niveau attendu ;</li>
+                  <li>elle constate qu’un document simple, daté et structuré peut suffire ;</li>
+                  <li>elle n’a pas besoin d’un inventaire technique détaillé pour ce dossier précis ;</li>
+                  <li>l’exemple sert de repère pour éviter de surdimensionner la réponse.</li>
+                </ul>
+              </div>
+            </section>
+
+            <section id="mistakes" className="scroll-mt-24">
+              <h2 className="text-2xl font-extrabold text-[#0B3A63] md:text-3xl">
+                6) Erreurs fréquentes
+              </h2>
+
+              <div className="mt-6 grid gap-6 md:grid-cols-2">
+                <div className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm">
+                  <h3 className="text-lg font-semibold text-[#0B3A63]">
+                    Erreur n°1
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-[#475569]">
+                    Chercher un exemple très technique alors que le dossier attend
+                    seulement un document lisible.
+                  </p>
+                </div>
+
+                <div className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm">
+                  <h3 className="text-lg font-semibold text-[#0B3A63]">
+                    Erreur n°2
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-[#475569]">
+                    Utiliser un exemple ambigu qui laisse croire à un audit ou à
+                    un inventaire complet.
+                  </p>
+                </div>
+
+                <div className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm">
+                  <h3 className="text-lg font-semibold text-[#0B3A63]">
+                    Erreur n°3
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-[#475569]">
+                    Oublier les limites, la méthode ou l’année couverte.
+                  </p>
+                </div>
+
+                <div className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm">
+                  <h3 className="text-lg font-semibold text-[#0B3A63]">
+                    Erreur n°4
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-[#475569]">
+                    Croire qu’un exemple doit être complexe pour être crédible.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <section className="scroll-mt-24">
+              <div className="rounded-[30px] border border-[#0B3A63]/10 bg-[#0B3A63] p-8 text-white shadow-[0_25px_60px_rgba(11,58,99,0.10)] md:p-10">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/70">
+                  Réponse screening
+                </p>
+
+                <h2 className="mt-3 text-2xl font-extrabold leading-tight md:text-3xl">
+                  Voir un exemple est utile. Répondre proprement est encore mieux.
+                </h2>
+
+                <p className="mt-4 max-w-3xl text-base leading-relaxed text-white/90 md:text-lg">
+                  Certif-Scope permet de produire un document CO₂e indicatif,
+                  clair, standardisé, vérifiable et utilisable dans un dossier
+                  client, fournisseur, banque ou appel d’offres.
+                </p>
+
+                <div className="mt-6 flex flex-wrap gap-3">
                   <Link
-                    className="underline"
-                    href="/fr/bilan-carbone-pme/obligation/"
+                    href="/fr/generate/"
+                    className="inline-flex min-h-[52px] items-center justify-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-[#0B3A63] transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-100"
                   >
-                    Bilan carbone PME obligatoire
+                    Obtenir un document carbone
                   </Link>
-                </li>
-                <li>
                   <Link
-                    className="underline"
-                    href="/fr/bilan-carbone-pme/cout/"
+                    href="/fr/pricing/"
+                    className="inline-flex min-h-[52px] items-center justify-center rounded-xl border border-white/40 px-5 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/10"
                   >
-                    Combien coûte un bilan carbone PME ?
+                    Voir le prix
                   </Link>
-                </li>
-                <li>
-                  <Link className="underline" href="/fr/pricing/">
+                  <Link
+                    href="/fr/verify"
+                    className="inline-flex min-h-[52px] items-center justify-center rounded-xl border border-white/40 px-5 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/10"
+                  >
+                    Vérifier un document
+                  </Link>
+                </div>
+              </div>
+            </section>
+
+            <section id="faq" className="scroll-mt-24">
+              <h2 className="text-2xl font-extrabold text-[#0B3A63] md:text-3xl">
+                FAQ — Exemple de bilan carbone PME
+              </h2>
+
+              <div className="mt-6 space-y-5">
+                {faq.map((item) => (
+                  <div
+                    key={item.q}
+                    className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm"
+                  >
+                    <h3 className="text-lg font-semibold text-[#0B3A63]">
+                      {item.q}
+                    </h3>
+                    <p className="mt-3 text-sm leading-relaxed text-[#475569] md:text-base">
+                      {item.a}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          </div>
+
+          <aside className="lg:col-span-4">
+            <div className="sticky top-6 space-y-6">
+              <div className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">
+                  Sommaire
+                </p>
+                <nav aria-label="Sommaire exemple bilan carbone PME" className="mt-4">
+                  <ol className="ml-5 list-decimal space-y-2 text-sm">
+                    <TocItem href="#what-it-looks-like" label="À quoi ressemble l’exemple" />
+                    <TocItem href="#essential-parts" label="Éléments indispensables" />
+                    <TocItem href="#not-audit" label="Ce que l’exemple n’est pas" />
+                    <TocItem href="#sample-structure" label="Structure type" />
+                    <TocItem href="#case-example" label="Exemple concret" />
+                    <TocItem href="#mistakes" label="Erreurs fréquentes" />
+                    <TocItem href="#faq" label="FAQ" />
+                  </ol>
+                </nav>
+              </div>
+
+              <div className="rounded-[24px] border border-[#0B3A63]/10 bg-[#F8FAFC] p-6 shadow-sm">
+                <h3 className="text-lg font-semibold text-[#0B3A63]">
+                  Rappel utile
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-[#475569]">
+                  Cette page montre un exemple de document carbone PME sous un
+                  angle pratique : voir à quoi ressemble un format utilisable,
+                  sans le confondre avec un audit ou un inventaire complet.
+                </p>
+
+                <div className="mt-5 flex flex-wrap gap-3">
+                  <Link
+                    href="/fr/generate/"
+                    className="inline-flex items-center justify-center rounded-lg border border-[#0B3A63] px-4 py-2 text-sm font-medium text-[#0B3A63] transition-colors hover:bg-[#0B3A63] hover:text-white"
+                  >
+                    Générer
+                  </Link>
+                  <Link
+                    href="/fr/pricing/"
+                    className="inline-flex items-center justify-center rounded-lg border border-[#0B3A63]/14 px-4 py-2 text-sm font-medium text-[#0B3A63] transition-colors hover:bg-[#0B3A63] hover:text-white"
+                  >
                     Prix
                   </Link>
-                </li>
-              </ul>
-            </div>
+                </div>
+              </div>
 
-            <div className="rounded-2xl border border-gray-200 bg-white p-6">
-              <p className="text-xs uppercase tracking-wider text-[#64748B] mb-3">
-                Accès rapide
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <Link
-                  href="/fr/"
-                  className="inline-block text-sm px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
-                >
-                  Accueil FR
-                </Link>
-                <a
-                  href="#top"
-                  className="inline-block text-sm px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
-                >
-                  Haut de page
-                </a>
+              <div className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm">
+                <h3 className="text-lg font-semibold text-[#0B3A63]">
+                  Cluster FR
+                </h3>
+                <ul className="mt-4 space-y-2 text-sm leading-relaxed text-[#475569]">
+                  <li>
+                    <Link
+                      className="underline underline-offset-4 transition-colors hover:text-[#1FB6C1]"
+                      href="/fr/bilan-carbone-pme/"
+                    >
+                      Bilan carbone PME
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className="underline underline-offset-4 transition-colors hover:text-[#1FB6C1]"
+                      href="/fr/bilan-carbone-pme/obligation/"
+                    >
+                      Bilan carbone PME obligatoire
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className="underline underline-offset-4 transition-colors hover:text-[#1FB6C1]"
+                      href="/fr/bilan-carbone-pme/cout/"
+                    >
+                      Combien coûte un bilan carbone PME ?
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className="underline underline-offset-4 transition-colors hover:text-[#1FB6C1]"
+                      href="/fr/pricing/"
+                    >
+                      Prix
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">
+                  Accès rapide
+                </p>
+                <div className="mt-4 flex flex-wrap gap-3">
+                  <Link
+                    href="/fr/"
+                    className="inline-flex items-center justify-center rounded-lg border border-[#0B3A63]/14 px-4 py-2 text-sm font-medium text-[#0B3A63] transition-colors hover:bg-[#0B3A63] hover:text-white"
+                  >
+                    Accueil FR
+                  </Link>
+                  <a
+                    href="#top"
+                    className="inline-flex items-center justify-center rounded-lg border border-[#0B3A63]/14 px-4 py-2 text-sm font-medium text-[#0B3A63] transition-colors hover:bg-[#0B3A63] hover:text-white"
+                  >
+                    Haut de page
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
-        </aside>
+          </aside>
+        </div>
       </div>
     </section>
   );
-      }
+       }
