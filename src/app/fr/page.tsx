@@ -109,15 +109,21 @@ export default function HomeFR() {
       <main id="main-content" role="main">
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdOrganization) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(jsonLdOrganization),
+          }}
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebSite) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(jsonLdWebSite),
+          }}
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebPage) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(jsonLdWebPage),
+          }}
         />
 
         {/* 1) Hero */}
