@@ -60,7 +60,7 @@ export default function BilanCarbonePMECoutPageFR() {
       a: "Parce que Certif-Scope vise un besoin précis : produire un document CO₂e indicatif spend-based, standardisé et réutilisable, sans démarche d’audit, sans inventaire complet et sans accompagnement lourd.",
     },
     {
-      q: "Le prix faible signifie-t-il que le document est inutile ?",
+      q: "Le prix plus faible signifie-t-il que le document est inutile ?",
       a: "Non. Cela signifie surtout que le document répond à un autre usage : le screening. Il n’a pas vocation à remplacer un inventaire complet, mais à traiter rapidement une demande documentaire claire.",
     },
     {
@@ -114,6 +114,7 @@ export default function BilanCarbonePMECoutPageFR() {
       name: "Certif-Scope",
       url: "https://www.certif-scope.com",
     },
+    inLanguage: "fr-FR",
   };
 
   const jsonLdFAQ = {
@@ -150,7 +151,7 @@ export default function BilanCarbonePMECoutPageFR() {
       {
         "@type": "HowToStep",
         name: "Choisir la réponse adaptée",
-        text: "Évitez de payer pour une démarche complète si le dossier attend seulement un document CO₂e clair, daté et archivable.",
+        text: "Évitez de financer une démarche complète si le dossier attend seulement un document CO₂e clair, daté et archivable.",
       },
     ],
   };
@@ -159,31 +160,23 @@ export default function BilanCarbonePMECoutPageFR() {
     <li>
       <a
         href={href}
-        className="text-[#0B3A63] hover:underline underline-offset-4"
+        className="text-[#0B3A63] transition-colors hover:text-[#1FB6C1] hover:underline underline-offset-4"
       >
         {label}
       </a>
     </li>
   );
 
-  const FAQAnswer = ({ text }: { text: string }) => {
-    const idx = text.indexOf(". ");
-    const first = idx > 0 ? text.slice(0, idx + 1) : text;
-    const rest = idx > 0 ? text.slice(idx + 2) : "";
-    return (
-      <p className="text-gray-700 leading-relaxed">
-        <strong>{first}</strong>
-        {rest ? ` ${rest}` : ""}
-      </p>
-    );
-  };
-
   return (
     <section
       id="bilan-carbone-pme-cout"
       data-section="bilan-carbone-pme-cout"
-      className="max-w-7xl mx-auto px-6 pt-12 pb-24"
+      className="relative overflow-hidden bg-white"
     >
+      <div className="absolute inset-0 -z-30 bg-[linear-gradient(180deg,#ffffff_0%,#F8FAFC_100%)]" />
+      <div className="absolute left-[-8%] top-24 -z-10 h-60 w-60 rounded-full bg-[#1FB6C1]/6 blur-3xl" />
+      <div className="absolute right-[-6%] top-40 -z-10 h-80 w-80 rounded-full bg-[#0B3A63]/6 blur-3xl" />
+
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdOrganization) }}
@@ -207,588 +200,564 @@ export default function BilanCarbonePMECoutPageFR() {
 
       <div id="top" />
 
-      <header className="mb-14">
-        <p className="uppercase text-xs tracking-wider text-[#64748B] mb-3">
-          Cluster FR — Bilan carbone PME : coût
-        </p>
-
-        <h1 className="text-3xl md:text-5xl font-extrabold text-[#0B3A63] mb-4 leading-tight tracking-tight">
-          Combien coûte un bilan carbone pour une PME ?
-        </h1>
-
-        <div className="max-w-4xl space-y-4">
-          <p className="text-lg text-gray-700 leading-relaxed">
-            <strong>
-              Le prix d’un bilan carbone PME dépend surtout du niveau réellement attendu.
-            </strong>
+      <div className="mx-auto max-w-7xl px-6 pb-24 pt-12 md:px-8 md:pt-16">
+        <header className="mx-auto max-w-5xl">
+          <p className="inline-flex items-center gap-3 rounded-full border border-[#0B3A63]/10 bg-white/92 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#0B3A63]/75 shadow-sm backdrop-blur md:text-xs">
+            <span className="inline-block h-2.5 w-2.5 rounded-full bg-[#1FB6C1] shadow-[0_0_0_4px_rgba(31,182,193,0.14)]" />
+            Cluster FR • Coût • PME • Screening
           </p>
 
-          <p className="text-lg text-gray-700 leading-relaxed">
-            Dans beaucoup de cas, une PME ne cherche pas un inventaire complet :
-            elle doit surtout répondre à un <strong>client</strong>, un{" "}
-            <strong>appel d’offres</strong>, une <strong>banque</strong>, un{" "}
-            <strong>assureur</strong> ou un <strong>référencement fournisseur</strong>.
+          <h1 className="mt-6 max-w-5xl text-3xl font-extrabold leading-[0.96] tracking-[-0.05em] text-[#0B3A63] md:text-5xl">
+            Combien coûte
+            <br />
+            <span className="relative inline-block">
+              un bilan carbone
+              <span className="absolute bottom-1 left-0 h-3 w-full rounded-full bg-[#1FB6C1]/18" />
+            </span>{" "}
+            pour une PME ?
+          </h1>
+
+          <p className="mt-4 text-sm font-medium text-[#0B3A63]/75 md:text-base">
+            Screening documentaire, inventaire complet, appel d’offres,
+            référencement fournisseur et niveau de réponse réellement attendu.
           </p>
 
-          <p className="text-base text-gray-600 leading-relaxed">
-            La vraie question n’est donc pas seulement “combien ça coûte ?”, mais
-            <strong> “quel niveau de réponse faut-il réellement financer ?”</strong>
-          </p>
-        </div>
-
-        <div className="mt-6 rounded-2xl border border-[#0B3A63]/10 bg-[#F8FAFC] p-6">
-          <h2 className="text-lg font-semibold text-[#0B3A63] mb-3">
-            Réponse rapide
-          </h2>
-
-          <ul className="list-disc ml-6 text-gray-700 space-y-2 leading-relaxed">
-            <li>screening documentaire : coût limité ;</li>
-            <li>inventaire complet : coût plus élevé ;</li>
-            <li>audit / accompagnement avancé : coût encore supérieur ;</li>
-            <li>pour beaucoup de PME, un document de screening suffit à traiter la demande.</li>
-          </ul>
-        </div>
-
-        <div className="mt-7 flex flex-wrap gap-3">
-          <Link
-            href="/fr/pricing/"
-            className="inline-block text-sm px-5 py-2.5 rounded-md bg-[#0B3A63] text-white hover:bg-[#0B3A63]/90 transition-colors font-semibold"
-          >
-            Voir le prix Certif-Scope →
-          </Link>
-
-          <Link
-            href="/fr/generate/"
-            className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
-          >
-            Obtenir un document carbone
-          </Link>
-
-          <Link
-            href="/fr/bilan-carbone-pme/"
-            className="inline-block text-sm px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
-          >
-            Voir la page pilier
-          </Link>
-        </div>
-
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="rounded-2xl border border-gray-200 bg-white p-5">
-            <p className="text-xs uppercase tracking-wider text-[#64748B] mb-2">
-              Ce que cette page répond
+          <div className="mt-6 max-w-4xl space-y-4">
+            <p className="text-lg leading-relaxed text-[#475569]">
+              <strong className="text-[#0B3A63]">
+                Le prix d’un bilan carbone PME dépend surtout du niveau réellement attendu.
+              </strong>{" "}
+              Dans beaucoup de cas, une PME ne cherche pas un inventaire complet :
+              elle doit surtout répondre à un client, un appel d’offres, une banque,
+              un assureur ou un référencement fournisseur.
             </p>
-            <p className="text-gray-700 leading-relaxed">
-              Pourquoi les prix sont différents et comment savoir si une PME a
-              vraiment besoin d’un budget important.
+
+            <p className="text-base leading-relaxed text-[#64748B] md:text-lg">
+              La vraie question n’est donc pas seulement{" "}
+              <strong className="text-[#0B3A63]">“combien ça coûte ?”</strong>,
+              mais surtout{" "}
+              <strong className="text-[#0B3A63]">
+                “quel niveau de réponse faut-il réellement financer ?”
+              </strong>
             </p>
           </div>
 
-          <div className="rounded-2xl border border-gray-200 bg-white p-5">
-            <p className="text-xs uppercase tracking-wider text-[#64748B] mb-2">
-              Point clé
-            </p>
-            <p className="text-gray-700 leading-relaxed">
-              Le coût n’est pas lié au mot “bilan carbone”, mais au livrable
-              réellement exigé.
-            </p>
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            <div className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-5 shadow-sm">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#64748B]">
+                Point clé
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-[#475569]">
+                Le coût n’est pas lié au mot “bilan carbone”, mais au livrable
+                réellement exigé dans le dossier.
+              </p>
+            </div>
+
+            <div className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-5 shadow-sm">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#64748B]">
+                Cas fréquent
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-[#475569]">
+                Pour beaucoup de PME, un document CO₂e clair, daté et archivable
+                suffit à traiter la demande.
+              </p>
+            </div>
+
+            <div className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-5 shadow-sm">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#64748B]">
+                Erreur classique
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-[#475569]">
+                Financer une démarche lourde alors qu’un screening cohérent
+                aurait suffi.
+              </p>
+            </div>
           </div>
 
-          <div className="rounded-2xl border border-gray-200 bg-white p-5">
-            <p className="text-xs uppercase tracking-wider text-[#64748B] mb-2">
-              Erreur fréquente
-            </p>
-            <p className="text-gray-700 leading-relaxed">
-              Payer une démarche lourde alors qu’un document CO₂e simple et
-              cadré aurait suffi pour le dossier.
-            </p>
+          <div className="mt-8 rounded-[28px] border border-[#0B3A63]/10 bg-[#F8FAFC] p-6 md:p-8">
+            <h2 className="text-xl font-extrabold leading-tight text-[#0B3A63] md:text-2xl">
+              Réponse rapide
+            </h2>
+
+            <ul className="mt-5 grid gap-3 md:grid-cols-2">
+              <li className="rounded-2xl border border-[#0B3A63]/10 bg-white p-4 text-sm leading-relaxed text-[#475569]">
+                screening documentaire :{" "}
+                <strong className="text-[#0B3A63]">coût limité</strong>
+              </li>
+              <li className="rounded-2xl border border-[#0B3A63]/10 bg-white p-4 text-sm leading-relaxed text-[#475569]">
+                inventaire complet :{" "}
+                <strong className="text-[#0B3A63]">coût plus élevé</strong>
+              </li>
+              <li className="rounded-2xl border border-[#0B3A63]/10 bg-white p-4 text-sm leading-relaxed text-[#475569]">
+                audit / accompagnement avancé :{" "}
+                <strong className="text-[#0B3A63]">coût encore supérieur</strong>
+              </li>
+              <li className="rounded-2xl border border-[#0B3A63]/10 bg-white p-4 text-sm leading-relaxed text-[#475569]">
+                pour beaucoup de PME, un document de screening suffit à traiter
+                la demande
+              </li>
+            </ul>
           </div>
-        </div>
 
-        <div className="w-20 h-[2px] bg-gray-300 mt-10" />
-      </header>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link
+              href="/fr/pricing/"
+              className="inline-flex min-h-[52px] items-center justify-center rounded-xl bg-[#1FB6C1] px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#19AAB4]"
+            >
+              Voir le prix Certif-Scope →
+            </Link>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-        <div className="lg:col-span-8 space-y-14">
-          <section className="lg:hidden">
-            <div className="rounded-2xl border border-gray-200 bg-[#F8FAFC] p-6">
-              <p className="text-xs uppercase tracking-wider text-[#64748B] mb-3">
-                Sommaire
-              </p>
-              <nav aria-label="Sommaire coût bilan carbone PME (mobile)">
-                <ol className="space-y-2 text-sm list-decimal ml-5">
-                  <TocItem href="#why-variable" label="Pourquoi les prix varient" />
-                  <TocItem href="#what-you-pay" label="Ce que l’on paie vraiment" />
-                  <TocItem href="#levels" label="Les grands niveaux de coût" />
-                  <TocItem href="#when-simple" label="Quand un document simple suffit" />
-                  <TocItem href="#case-example" label="Exemple concret" />
-                  <TocItem href="#mistakes" label="Erreurs fréquentes" />
-                  <TocItem href="#links" label="Pages utiles" />
-                  <TocItem href="#faq" label="FAQ" />
-                </ol>
-              </nav>
-            </div>
-          </section>
+            <Link
+              href="/fr/generate/"
+              className="inline-flex min-h-[52px] items-center justify-center rounded-xl border border-[#0B3A63] bg-white px-5 py-3 text-sm font-semibold text-[#0B3A63] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0B3A63] hover:text-white"
+            >
+              Obtenir un document carbone
+            </Link>
 
-          <section id="why-variable" className="scroll-mt-24">
-            <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-              1) Pourquoi les prix d’un bilan carbone PME varient autant
-            </h2>
+            <Link
+              href="/fr/bilan-carbone-pme/"
+              className="inline-flex min-h-[52px] items-center justify-center rounded-xl border border-[#0B3A63]/14 bg-white px-5 py-3 text-sm font-semibold text-[#0B3A63] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#0B3A63] hover:bg-[#0B3A63] hover:text-white"
+            >
+              Voir la page pilier
+            </Link>
+          </div>
+        </header>
 
-            <p className="text-gray-700 leading-relaxed mb-4">
-              Les prix sont très différents parce que le marché regroupe sous le
-              même mot “bilan carbone” des réalités très différentes. Entre un
-              <strong> document de screening</strong> et un{" "}
-              <strong>inventaire complet</strong>, le temps, les données à
-              collecter et le niveau d’accompagnement n’ont rien à voir.
-            </p>
-
-            <p className="text-gray-700 leading-relaxed mb-4">
-              Une PME qui cherche un prix doit donc commencer par clarifier
-              l’usage réel :
-            </p>
-
-            <div className="rounded-2xl border border-gray-200 bg-white p-6">
-              <ul className="list-disc ml-6 text-gray-700 space-y-2">
-                <li>réponse à un client ou à un donneur d’ordre ;</li>
-                <li>réponse à un appel d’offres ;</li>
-                <li>référencement fournisseur ;</li>
-                <li>banque / assurance ;</li>
-                <li>besoin interne de pilotage approfondi.</li>
-              </ul>
-            </div>
-          </section>
-
-          <section id="what-you-pay" className="scroll-mt-24">
-            <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-              2) Ce que l’on paie vraiment
-            </h2>
-
-            <p className="text-gray-700 leading-relaxed mb-6">
-              Le prix ne rémunère pas le mot “bilan carbone”, mais le travail
-              nécessaire pour produire le livrable demandé.
-            </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="rounded-2xl border border-gray-200 bg-white p-6">
-                <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
-                  Dans une démarche simple
-                </h3>
-                <ul className="list-disc ml-6 text-gray-700 space-y-2">
-                  <li>format standardisé ;</li>
-                  <li>méthode cadrée ;</li>
-                  <li>document stable ;</li>
-                  <li>résultat agrégé ;</li>
-                  <li>temps de traitement réduit.</li>
-                </ul>
-              </div>
-
-              <div className="rounded-2xl border border-gray-200 bg-white p-6">
-                <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
-                  Dans une démarche complète
-                </h3>
-                <ul className="list-disc ml-6 text-gray-700 space-y-2">
-                  <li>collecte de nombreuses données ;</li>
-                  <li>travail sur le périmètre ;</li>
-                  <li>hypothèses et arbitrages ;</li>
-                  <li>allers-retours avec l’entreprise ;</li>
-                  <li>livrable plus détaillé ;</li>
-                  <li>éventuelle vérification supplémentaire.</li>
-                </ul>
-              </div>
-            </div>
-          </section>
-
-          <section id="levels" className="scroll-mt-24">
-            <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-              3) Les grands niveaux de coût
-            </h2>
-
-            <p className="text-gray-700 leading-relaxed mb-6">
-              Pour une PME, il est plus utile de raisonner en{" "}
-              <strong>niveaux de réponse</strong> qu’en “prix moyen du marché”.
-            </p>
-
-            <div className="overflow-x-auto rounded-2xl border border-gray-200 bg-white">
-              <table className="min-w-[720px] w-full text-sm">
-                <thead>
-                  <tr className="bg-[#F8FAFC]">
-                    <th className="text-left p-4 font-semibold text-[#0B3A63]">
-                      Niveau
-                    </th>
-                    <th className="text-left p-4 font-semibold text-[#0B3A63]">
-                      Usage
-                    </th>
-                    <th className="text-left p-4 font-semibold text-[#0B3A63]">
-                      Effort
-                    </th>
-                    <th className="text-left p-4 font-semibold text-[#0B3A63]">
-                      Coût relatif
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200">
-                  <tr>
-                    <td className="p-4 text-gray-700">Screening documentaire</td>
-                    <td className="p-4 text-gray-700">
-                      Client, fournisseur, banque, AO générique
-                    </td>
-                    <td className="p-4 text-gray-700">Faible à modéré</td>
-                    <td className="p-4 text-gray-700">Le plus bas</td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 text-gray-700">Inventaire complet</td>
-                    <td className="p-4 text-gray-700">
-                      Démarche approfondie, pilotage, exigence formelle
-                    </td>
-                    <td className="p-4 text-gray-700">Élevé</td>
-                    <td className="p-4 text-gray-700">Plus élevé</td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 text-gray-700">
-                      Audit / accompagnement renforcé
-                    </td>
-                    <td className="p-4 text-gray-700">
-                      Besoin expert, cadre renforcé, vérification
-                    </td>
-                    <td className="p-4 text-gray-700">Très élevé</td>
-                    <td className="p-4 text-gray-700">Le plus élevé</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <div className="mt-6 rounded-2xl border border-gray-200 bg-[#F8FAFC] p-6">
-              <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
-                Ce que cela signifie pour une PME
-              </h3>
-              <p className="text-gray-700 leading-relaxed">
-                Si le dossier attend seulement un indicateur CO₂e clair, daté et
-                archivable, il n’est pas rationnel de financer une démarche
-                complète conçue pour un autre usage.
-              </p>
-            </div>
-          </section>
-
-          <section id="when-simple" className="scroll-mt-24">
-            <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-              4) Quand un document simple suffit
-            </h2>
-
-            <p className="text-gray-700 leading-relaxed mb-6">
-              Un document de screening suffit souvent quand la demande est
-              générique et documentaire.
-            </p>
-
-            <div className="rounded-2xl border border-gray-200 bg-white p-6">
-              <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
-                Cas typiques
-              </h3>
-              <ul className="list-disc ml-6 text-gray-700 space-y-2">
-                <li>questionnaire fournisseur ;</li>
-                <li>appel d’offres sans standard détaillé ;</li>
-                <li>demande d’un client pour compléter un dossier ;</li>
-                <li>banque ou assurance qui attend un indicateur simple ;</li>
-                <li>besoin d’un PDF réutilisable rapidement.</li>
-              </ul>
-            </div>
-
-            <div className="mt-6 rounded-2xl border border-gray-200 bg-[#0B3A63] p-6 text-white">
-              <h3 className="text-lg font-semibold mb-2">
-                Principe de décision
-              </h3>
-              <p className="text-white/90 leading-relaxed">
-                Ne comparez pas seulement des prix : comparez le niveau de
-                réponse réellement nécessaire.
-              </p>
-            </div>
-          </section>
-
-          <section id="case-example" className="scroll-mt-24">
-            <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-              5) Exemple concret
-            </h2>
-
-            <div className="rounded-2xl border border-gray-200 bg-white p-6">
-              <p className="text-gray-700 leading-relaxed mb-4">
-                Une PME reçoit une demande d’un grand client : fournir un bilan
-                carbone pour compléter un référencement fournisseur.
-              </p>
-
-              <ul className="list-disc ml-6 text-gray-700 space-y-2 leading-relaxed">
-                <li>la PME pense d’abord devoir lancer une mission lourde ;</li>
-                <li>le dossier n’impose ni standard détaillé ni vérification tierce ;</li>
-                <li>le besoin réel est un document CO₂e lisible et archivable ;</li>
-                <li>un screening documentaire répond au besoin ;</li>
-                <li>la PME évite ainsi un coût inutilement élevé.</li>
-              </ul>
-            </div>
-          </section>
-
-          <section id="mistakes" className="scroll-mt-24">
-            <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-              6) Erreurs fréquentes
-            </h2>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="rounded-2xl border border-gray-200 bg-white p-6">
-                <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
-                  Erreur n°1
-                </h3>
-                <p className="text-gray-700 leading-relaxed">
-                  Comparer des prix sans comparer les livrables réellement fournis.
+        <div className="mt-14 grid grid-cols-1 gap-10 lg:grid-cols-12">
+          <div className="space-y-14 lg:col-span-8">
+            <section className="lg:hidden">
+              <div className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">
+                  Sommaire
                 </p>
+                <nav aria-label="Sommaire coût bilan carbone PME (mobile)" className="mt-4">
+                  <ol className="ml-5 list-decimal space-y-2 text-sm">
+                    <TocItem href="#why-variable" label="Pourquoi les prix varient" />
+                    <TocItem href="#what-you-pay" label="Ce que l’on paie vraiment" />
+                    <TocItem href="#levels" label="Les grands niveaux de coût" />
+                    <TocItem href="#when-simple" label="Quand un document simple suffit" />
+                    <TocItem href="#case-example" label="Exemple concret" />
+                    <TocItem href="#mistakes" label="Erreurs fréquentes" />
+                    <TocItem href="#faq" label="FAQ" />
+                  </ol>
+                </nav>
               </div>
+            </section>
 
-              <div className="rounded-2xl border border-gray-200 bg-white p-6">
-                <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
-                  Erreur n°2
-                </h3>
-                <p className="text-gray-700 leading-relaxed">
-                  Croire qu’un prix plus élevé signifie automatiquement une
-                  réponse plus adaptée au dossier.
-                </p>
-              </div>
-
-              <div className="rounded-2xl border border-gray-200 bg-white p-6">
-                <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
-                  Erreur n°3
-                </h3>
-                <p className="text-gray-700 leading-relaxed">
-                  Lancer une mission complète alors qu’un document de screening
-                  aurait suffi.
-                </p>
-              </div>
-
-              <div className="rounded-2xl border border-gray-200 bg-white p-6">
-                <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
-                  Erreur n°4
-                </h3>
-                <p className="text-gray-700 leading-relaxed">
-                  Choisir le moins cher sans vérifier si le document sera
-                  compréhensible, daté, limité et réutilisable.
-                </p>
-              </div>
-            </div>
-          </section>
-
-          <section id="links" className="scroll-mt-24">
-            <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-              7) Pages utiles pour aller plus loin
-            </h2>
-
-            <div className="rounded-2xl border border-gray-200 bg-white p-6">
-              <ul className="space-y-3 text-gray-700">
-                <li>
-                  <Link
-                    className="underline text-[#0B3A63]"
-                    href="/fr/bilan-carbone-pme/"
-                  >
-                    Bilan carbone PME : page pilier →
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="underline text-[#0B3A63]"
-                    href="/fr/bilan-carbone-pme/obligation/"
-                  >
-                    Bilan carbone PME obligatoire →
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="underline text-[#0B3A63]"
-                    href="/fr/bilan-carbone-appel-offres/"
-                  >
-                    Bilan carbone PME pour appel d’offres →
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="underline text-[#0B3A63]"
-                    href="/fr/why-companies-ask/"
-                  >
-                    Pourquoi on vous le demande →
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </section>
-
-          <section id="cta" className="pt-2 scroll-mt-24">
-            <div className="rounded-2xl border border-gray-200 bg-[#0B3A63] p-8 text-white">
-              <h2 className="text-2xl font-extrabold mb-3">
-                Payer le bon niveau de réponse, pas plus
+            <section id="why-variable" className="scroll-mt-24">
+              <h2 className="text-2xl font-extrabold text-[#0B3A63] md:text-3xl">
+                1) Pourquoi les prix d’un bilan carbone PME varient autant
               </h2>
-              <p className="text-white/90 leading-relaxed max-w-2xl">
-                Si le dossier relève du screening, Certif-Scope permet de produire
-                un document CO₂e indicatif, clair, standardisé et vérifiable,
-                sans passer par une démarche plus lourde que nécessaire.
+
+              <p className="mt-5 text-base leading-relaxed text-[#475569] md:text-lg">
+                Les prix sont très différents parce que le marché regroupe sous le
+                même mot “bilan carbone” des réalités très différentes. Entre un
+                <strong className="text-[#0B3A63]"> document de screening</strong>{" "}
+                et un <strong className="text-[#0B3A63]">inventaire complet</strong>,
+                le temps, les données à collecter et le niveau d’accompagnement
+                n’ont rien à voir.
               </p>
 
-              <div className="mt-6 flex flex-wrap gap-3">
-                <Link
-                  href="/fr/pricing/"
-                  className="inline-block text-sm px-5 py-2.5 rounded-md bg-white text-[#0B3A63] hover:bg-gray-100 transition-colors font-semibold"
-                >
-                  Voir le prix
-                </Link>
-                <Link
-                  href="/fr/generate/"
-                  className="inline-block text-sm px-5 py-2.5 rounded-md border border-white/40 text-white hover:bg-white/10 transition-colors"
-                >
-                  Obtenir un document carbone
-                </Link>
-                <Link
-                  href="/verify"
-                  className="inline-block text-sm px-5 py-2.5 rounded-md border border-white/40 text-white hover:bg-white/10 transition-colors"
-                >
-                  Vérifier un document
-                </Link>
+              <p className="mt-4 text-base leading-relaxed text-[#475569] md:text-lg">
+                Une PME qui cherche un prix doit donc commencer par clarifier
+                l’usage réel :
+              </p>
+
+              <div className="mt-6 rounded-[28px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm">
+                <ul className="ml-6 list-disc space-y-2 text-sm leading-relaxed text-[#475569] md:text-base">
+                  <li>réponse à un client ou à un donneur d’ordre ;</li>
+                  <li>réponse à un appel d’offres ;</li>
+                  <li>référencement fournisseur ;</li>
+                  <li>banque / assurance ;</li>
+                  <li>besoin interne de pilotage approfondi.</li>
+                </ul>
               </div>
-            </div>
+            </section>
 
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                href="/fr/bilan-carbone-pme/"
-                className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
-              >
-                Revenir à la page pilier
-              </Link>
-              <a
-                href="#top"
-                className="inline-block text-sm px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
-              >
-                Haut de page
-              </a>
-            </div>
-          </section>
+            <section id="what-you-pay" className="scroll-mt-24">
+              <h2 className="text-2xl font-extrabold text-[#0B3A63] md:text-3xl">
+                2) Ce que l’on paie vraiment
+              </h2>
 
-          <section id="faq" className="scroll-mt-24">
-            <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-              FAQ — Combien coûte un bilan carbone pour une PME ?
-            </h2>
+              <p className="mt-5 text-base leading-relaxed text-[#475569] md:text-lg">
+                Le prix ne rémunère pas le mot “bilan carbone”, mais le travail
+                nécessaire pour produire le livrable demandé.
+              </p>
 
-            <div className="space-y-6">
-              {faq.map((item, idx) => (
-                <div
-                  key={`${idx}-${item.q}`}
-                  className="rounded-2xl border border-gray-200 bg-white p-6"
-                >
-                  <h3 className="font-semibold text-[#0B3A63] mb-2">
-                    {item.q}
+              <div className="mt-6 grid gap-6 md:grid-cols-2">
+                <div className="rounded-[24px] border border-[#0B3A63]/10 bg-[#F8FAFC] p-6 shadow-sm">
+                  <h3 className="text-lg font-semibold text-[#0B3A63]">
+                    Dans une démarche simple
                   </h3>
-                  <FAQAnswer text={item.a} />
+                  <ul className="mt-4 ml-6 list-disc space-y-2 text-sm leading-relaxed text-[#475569]">
+                    <li>format standardisé ;</li>
+                    <li>méthode cadrée ;</li>
+                    <li>document stable ;</li>
+                    <li>résultat agrégé ;</li>
+                    <li>temps de traitement réduit.</li>
+                  </ul>
                 </div>
-              ))}
-            </div>
-          </section>
-        </div>
 
-        <aside className="lg:col-span-4">
-          <div className="sticky top-6 space-y-6">
-            <div className="rounded-2xl border border-gray-200 bg-white p-6">
-              <p className="text-xs uppercase tracking-wider text-[#64748B] mb-3">
-                Sommaire
-              </p>
-              <nav aria-label="Sommaire coût bilan carbone PME">
-                <ol className="space-y-2 text-sm list-decimal ml-5">
-                  <TocItem href="#why-variable" label="Pourquoi les prix varient" />
-                  <TocItem href="#what-you-pay" label="Ce que l’on paie vraiment" />
-                  <TocItem href="#levels" label="Les grands niveaux de coût" />
-                  <TocItem href="#when-simple" label="Quand un document simple suffit" />
-                  <TocItem href="#case-example" label="Exemple concret" />
-                  <TocItem href="#mistakes" label="Erreurs fréquentes" />
-                  <TocItem href="#links" label="Pages utiles" />
-                  <TocItem href="#faq" label="FAQ" />
-                </ol>
-              </nav>
-            </div>
-
-            <div className="rounded-2xl border border-gray-200 bg-[#F8FAFC] p-6">
-              <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
-                Rappel utile
-              </h3>
-              <p className="text-sm text-gray-700 leading-relaxed">
-                Cette page traite le coût d’un bilan carbone PME sous un angle
-                pratique : comparer le niveau de réponse réellement attendu, et ne
-                pas financer une démarche plus lourde que nécessaire.
-              </p>
-
-              <div className="mt-5 flex flex-wrap gap-3">
-                <Link
-                  href="/fr/pricing/"
-                  className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
-                >
-                  Prix
-                </Link>
-                <Link
-                  href="/fr/product/methodology/"
-                  className="inline-block text-sm px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
-                >
-                  Méthodologie
-                </Link>
+                <div className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm">
+                  <h3 className="text-lg font-semibold text-[#0B3A63]">
+                    Dans une démarche complète
+                  </h3>
+                  <ul className="mt-4 ml-6 list-disc space-y-2 text-sm leading-relaxed text-[#475569]">
+                    <li>collecte de nombreuses données ;</li>
+                    <li>travail sur le périmètre ;</li>
+                    <li>hypothèses et arbitrages ;</li>
+                    <li>allers-retours avec l’entreprise ;</li>
+                    <li>livrable plus détaillé ;</li>
+                    <li>éventuelle vérification supplémentaire.</li>
+                  </ul>
+                </div>
               </div>
-            </div>
+            </section>
 
-            <div className="rounded-2xl border border-gray-200 bg-white p-6">
-              <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
-                Cluster FR
-              </h3>
-              <ul className="space-y-2 text-sm text-gray-700">
-                <li>
-                  <Link className="underline" href="/fr/bilan-carbone-pme/">
-                    Bilan carbone PME
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="underline"
-                    href="/fr/bilan-carbone-pme/obligation/"
-                  >
-                    Bilan carbone PME obligatoire
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="underline"
-                    href="/fr/bilan-carbone-appel-offres/"
-                  >
-                    Bilan carbone PME pour appel d’offres
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="underline"
-                    href="/fr/why-companies-ask/"
-                  >
-                    Pourquoi on vous le demande
-                  </Link>
-                </li>
-              </ul>
-            </div>
+            <section id="levels" className="scroll-mt-24">
+              <h2 className="text-2xl font-extrabold text-[#0B3A63] md:text-3xl">
+                3) Les grands niveaux de coût
+              </h2>
 
-            <div className="rounded-2xl border border-gray-200 bg-white p-6">
-              <p className="text-xs uppercase tracking-wider text-[#64748B] mb-3">
-                Accès rapide
+              <p className="mt-5 text-base leading-relaxed text-[#475569] md:text-lg">
+                Pour une PME, il est plus utile de raisonner en{" "}
+                <strong className="text-[#0B3A63]">niveaux de réponse</strong>{" "}
+                qu’en “prix moyen du marché”.
               </p>
-              <div className="flex flex-wrap gap-3">
-                <Link
-                  href="/fr/"
-                  className="inline-block text-sm px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
-                >
-                  Accueil FR
-                </Link>
-                <a
-                  href="#top"
-                  className="inline-block text-sm px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
-                >
-                  Haut de page
-                </a>
+
+              <div className="mt-6 overflow-x-auto rounded-[28px] border border-[#0B3A63]/10 bg-white shadow-sm">
+                <table className="min-w-[720px] w-full text-sm">
+                  <thead>
+                    <tr className="bg-[#F8FAFC]">
+                      <th className="p-4 text-left font-semibold text-[#0B3A63]">
+                        Niveau
+                      </th>
+                      <th className="p-4 text-left font-semibold text-[#0B3A63]">
+                        Usage
+                      </th>
+                      <th className="p-4 text-left font-semibold text-[#0B3A63]">
+                        Effort
+                      </th>
+                      <th className="p-4 text-left font-semibold text-[#0B3A63]">
+                        Coût relatif
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-[#0B3A63]/8">
+                    <tr>
+                      <td className="p-4 text-[#475569]">Screening documentaire</td>
+                      <td className="p-4 text-[#475569]">
+                        Client, fournisseur, banque, AO générique
+                      </td>
+                      <td className="p-4 text-[#475569]">Faible à modéré</td>
+                      <td className="p-4 text-[#475569]">Le plus bas</td>
+                    </tr>
+                    <tr>
+                      <td className="p-4 text-[#475569]">Inventaire complet</td>
+                      <td className="p-4 text-[#475569]">
+                        Démarche approfondie, pilotage, exigence formelle
+                      </td>
+                      <td className="p-4 text-[#475569]">Élevé</td>
+                      <td className="p-4 text-[#475569]">Plus élevé</td>
+                    </tr>
+                    <tr>
+                      <td className="p-4 text-[#475569]">
+                        Audit / accompagnement renforcé
+                      </td>
+                      <td className="p-4 text-[#475569]">
+                        Besoin expert, cadre renforcé, vérification
+                      </td>
+                      <td className="p-4 text-[#475569]">Très élevé</td>
+                      <td className="p-4 text-[#475569]">Le plus élevé</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
-            </div>
+
+              <div className="mt-6 rounded-[28px] border border-[#0B3A63]/10 bg-[#F8FAFC] p-6 md:p-8">
+                <h3 className="text-lg font-semibold text-[#0B3A63]">
+                  Ce que cela signifie pour une PME
+                </h3>
+                <p className="mt-4 text-sm leading-relaxed text-[#475569] md:text-base">
+                  Si le dossier attend seulement un indicateur CO₂e clair, daté et
+                  archivable, il n’est pas rationnel de financer une démarche
+                  complète conçue pour un autre usage.
+                </p>
+              </div>
+            </section>
+
+            <section id="when-simple" className="scroll-mt-24">
+              <h2 className="text-2xl font-extrabold text-[#0B3A63] md:text-3xl">
+                4) Quand un document simple suffit
+              </h2>
+
+              <p className="mt-5 text-base leading-relaxed text-[#475569] md:text-lg">
+                Un document de screening suffit souvent quand la demande est
+                générique et documentaire.
+              </p>
+
+              <div className="mt-6 rounded-[28px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm md:p-8">
+                <h3 className="text-lg font-semibold text-[#0B3A63]">
+                  Cas typiques
+                </h3>
+                <ul className="mt-5 ml-6 list-disc space-y-2 text-sm leading-relaxed text-[#475569] md:text-base">
+                  <li>questionnaire fournisseur ;</li>
+                  <li>appel d’offres sans standard détaillé ;</li>
+                  <li>demande d’un client pour compléter un dossier ;</li>
+                  <li>banque ou assurance qui attend un indicateur simple ;</li>
+                  <li>besoin d’un PDF réutilisable rapidement.</li>
+                </ul>
+
+                <div className="mt-6 rounded-2xl border border-[#1FB6C1]/18 bg-[linear-gradient(180deg,rgba(31,182,193,0.08)_0%,rgba(31,182,193,0.03)_100%)] p-5">
+                  <p className="text-sm leading-relaxed text-[#475569] md:text-base">
+                    <strong className="text-[#0B3A63]">
+                      Principe de décision :
+                    </strong>{" "}
+                    ne comparez pas seulement des prix. Comparez le niveau de
+                    réponse réellement nécessaire.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <section id="case-example" className="scroll-mt-24">
+              <h2 className="text-2xl font-extrabold text-[#0B3A63] md:text-3xl">
+                5) Exemple concret
+              </h2>
+
+              <div className="mt-6 rounded-[28px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm md:p-8">
+                <p className="text-base leading-relaxed text-[#475569] md:text-lg">
+                  Une PME reçoit une demande d’un grand client : fournir un bilan
+                  carbone pour compléter un référencement fournisseur.
+                </p>
+
+                <ul className="mt-5 ml-6 list-disc space-y-2 text-sm leading-relaxed text-[#475569] md:text-base">
+                  <li>la PME pense d’abord devoir lancer une mission lourde ;</li>
+                  <li>le dossier n’impose ni standard détaillé ni vérification tierce ;</li>
+                  <li>le besoin réel est un document CO₂e lisible et archivable ;</li>
+                  <li>un screening documentaire répond au besoin ;</li>
+                  <li>la PME évite ainsi un coût inutilement élevé.</li>
+                </ul>
+              </div>
+            </section>
+
+            <section id="mistakes" className="scroll-mt-24">
+              <h2 className="text-2xl font-extrabold text-[#0B3A63] md:text-3xl">
+                6) Erreurs fréquentes
+              </h2>
+
+              <div className="mt-6 grid gap-6 md:grid-cols-2">
+                <div className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm">
+                  <h3 className="text-lg font-semibold text-[#0B3A63]">
+                    Erreur n°1
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-[#475569]">
+                    Comparer des prix sans comparer les livrables réellement fournis.
+                  </p>
+                </div>
+
+                <div className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm">
+                  <h3 className="text-lg font-semibold text-[#0B3A63]">
+                    Erreur n°2
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-[#475569]">
+                    Croire qu’un prix plus élevé signifie automatiquement une
+                    réponse plus adaptée au dossier.
+                  </p>
+                </div>
+
+                <div className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm">
+                  <h3 className="text-lg font-semibold text-[#0B3A63]">
+                    Erreur n°3
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-[#475569]">
+                    Lancer une mission complète alors qu’un document de screening
+                    aurait suffi.
+                  </p>
+                </div>
+
+                <div className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm">
+                  <h3 className="text-lg font-semibold text-[#0B3A63]">
+                    Erreur n°4
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-[#475569]">
+                    Choisir le moins cher sans vérifier si le document sera
+                    compréhensible, daté, limité et réutilisable.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <section className="scroll-mt-24">
+              <div className="rounded-[30px] border border-[#0B3A63]/10 bg-[#0B3A63] p-8 text-white shadow-[0_25px_60px_rgba(11,58,99,0.10)] md:p-10">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/70">
+                  Réponse screening
+                </p>
+
+                <h2 className="mt-3 text-2xl font-extrabold leading-tight md:text-3xl">
+                  Payer le bon niveau de réponse, pas plus
+                </h2>
+
+                <p className="mt-4 max-w-3xl text-base leading-relaxed text-white/90 md:text-lg">
+                  Si le dossier relève du screening, Certif-Scope permet de produire
+                  un document CO₂e indicatif, clair, standardisé et vérifiable,
+                  sans passer par une démarche plus lourde que nécessaire.
+                </p>
+
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <Link
+                    href="/fr/pricing/"
+                    className="inline-flex min-h-[52px] items-center justify-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-[#0B3A63] transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-100"
+                  >
+                    Voir le prix
+                  </Link>
+                  <Link
+                    href="/fr/generate/"
+                    className="inline-flex min-h-[52px] items-center justify-center rounded-xl border border-white/40 px-5 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/10"
+                  >
+                    Obtenir un document carbone
+                  </Link>
+                  <Link
+                    href="/fr/verify"
+                    className="inline-flex min-h-[52px] items-center justify-center rounded-xl border border-white/40 px-5 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/10"
+                  >
+                    Vérifier un document
+                  </Link>
+                </div>
+              </div>
+            </section>
+
+            <section id="faq" className="scroll-mt-24">
+              <h2 className="text-2xl font-extrabold text-[#0B3A63] md:text-3xl">
+                FAQ — Combien coûte un bilan carbone pour une PME ?
+              </h2>
+
+              <div className="mt-6 space-y-5">
+                {faq.map((item) => (
+                  <div
+                    key={item.q}
+                    className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm"
+                  >
+                    <h3 className="text-lg font-semibold text-[#0B3A63]">
+                      {item.q}
+                    </h3>
+                    <p className="mt-3 text-sm leading-relaxed text-[#475569] md:text-base">
+                      {item.a}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </section>
           </div>
-        </aside>
+
+          <aside className="lg:col-span-4">
+            <div className="sticky top-6 space-y-6">
+              <div className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">
+                  Sommaire
+                </p>
+                <nav aria-label="Sommaire coût bilan carbone PME" className="mt-4">
+                  <ol className="ml-5 list-decimal space-y-2 text-sm">
+                    <TocItem href="#why-variable" label="Pourquoi les prix varient" />
+                    <TocItem href="#what-you-pay" label="Ce que l’on paie vraiment" />
+                    <TocItem href="#levels" label="Les grands niveaux de coût" />
+                    <TocItem href="#when-simple" label="Quand un document simple suffit" />
+                    <TocItem href="#case-example" label="Exemple concret" />
+                    <TocItem href="#mistakes" label="Erreurs fréquentes" />
+                    <TocItem href="#faq" label="FAQ" />
+                  </ol>
+                </nav>
+              </div>
+
+              <div className="rounded-[24px] border border-[#0B3A63]/10 bg-[#F8FAFC] p-6 shadow-sm">
+                <h3 className="text-lg font-semibold text-[#0B3A63]">
+                  Rappel utile
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-[#475569]">
+                  Cette page traite le coût d’un bilan carbone PME sous un angle
+                  pratique : comparer le niveau de réponse réellement attendu, et
+                  ne pas financer une démarche plus lourde que nécessaire.
+                </p>
+
+                <div className="mt-5 flex flex-wrap gap-3">
+                  <Link
+                    href="/fr/pricing/"
+                    className="inline-flex items-center justify-center rounded-lg border border-[#0B3A63] px-4 py-2 text-sm font-medium text-[#0B3A63] transition-colors hover:bg-[#0B3A63] hover:text-white"
+                  >
+                    Prix
+                  </Link>
+                  <Link
+                    href="/fr/product/methodology/"
+                    className="inline-flex items-center justify-center rounded-lg border border-[#0B3A63]/14 px-4 py-2 text-sm font-medium text-[#0B3A63] transition-colors hover:bg-[#0B3A63] hover:text-white"
+                  >
+                    Méthodologie
+                  </Link>
+                </div>
+              </div>
+
+              <div className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm">
+                <h3 className="text-lg font-semibold text-[#0B3A63]">
+                  Cluster FR
+                </h3>
+                <ul className="mt-4 space-y-2 text-sm leading-relaxed text-[#475569]">
+                  <li>
+                    <Link
+                      className="underline underline-offset-4 transition-colors hover:text-[#1FB6C1]"
+                      href="/fr/bilan-carbone-pme/"
+                    >
+                      Bilan carbone PME
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className="underline underline-offset-4 transition-colors hover:text-[#1FB6C1]"
+                      href="/fr/bilan-carbone-pme/obligation/"
+                    >
+                      Bilan carbone PME obligatoire
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className="underline underline-offset-4 transition-colors hover:text-[#1FB6C1]"
+                      href="/fr/bilan-carbone-appel-offres/"
+                    >
+                      Bilan carbone PME pour appel d’offres
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className="underline underline-offset-4 transition-colors hover:text-[#1FB6C1]"
+                      href="/fr/why-companies-ask/"
+                    >
+                      Pourquoi on vous le demande
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">
+                  Accès rapide
+                </p>
+                <div className="mt-4 flex flex-wrap gap-3">
+                  <Link
+                    href="/fr/"
+                    className="inline-flex items-center justify-center rounded-lg border border-[#0B3A63]/14 px-4 py-2 text-sm font-medium text-[#0B3A63] transition-colors hover:bg-[#0B3A63] hover:text-white"
+                  >
+                    Accueil FR
+                  </Link>
+                  <a
+                    href="#top"
+                    className="inline-flex items-center justify-center rounded-lg border border-[#0B3A63]/14 px-4 py-2 text-sm font-medium text-[#0B3A63] transition-colors hover:bg-[#0B3A63] hover:text-white"
+                  >
+                    Haut de page
+                  </a>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
       </div>
     </section>
   );
-  }
+       }
