@@ -68,7 +68,6 @@ export default function Hero() {
               et que fournir quand on vous le demande ?
             </h1>
 
-            {/* 🔥 LIGNE SEO AJOUTÉE (ultra légère mais puissante) */}
             <p className="hero-reveal mt-3 text-sm font-medium text-[#0B3A63]/75 [animation-delay:180ms] md:text-base">
               Obligation, coût, exemple et réponse aux appels d’offres.
             </p>
@@ -107,27 +106,16 @@ export default function Hero() {
               <HeroVisual />
             </div>
 
-            <p className="hero-reveal mt-8 text-center text-sm font-medium text-[#0B3A63]/80 [animation-delay:420ms] lg:hidden">
+            <p className="hero-reveal mt-8 text-center text-sm font-medium text-[#0B3A63]/80 [animation-delay:420ms] lg:text-left">
               Une réponse lisible, rapide à transmettre et vérifiable
               indépendamment.
             </p>
 
-            <div className="hero-reveal mt-7 flex flex-wrap items-center justify-center gap-3 [animation-delay:520ms] lg:hidden">
+            <div className="hero-reveal mt-7 flex flex-wrap items-center justify-center gap-3 [animation-delay:520ms] lg:justify-start">
               {proofItems.map((item) => (
                 <span
                   key={item}
-                  className="rounded-full border border-[#0B3A63]/12 bg-white px-4 py-2 text-xs font-medium text-[#0B3A63] shadow-sm"
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
-
-            <div className="hero-reveal mt-7 hidden flex-wrap items-center justify-center gap-2.5 [animation-delay:420ms] lg:flex lg:justify-start">
-              {proofItems.map((item) => (
-                <span
-                  key={item}
-                  className="rounded-full border border-[#0B3A63]/12 bg-white px-3 py-1.5 text-xs font-medium text-[#0B3A63] shadow-sm md:text-sm"
+                  className="rounded-full border border-[#0B3A63]/12 bg-white px-4 py-2 text-xs font-medium text-[#0B3A63] shadow-sm md:px-3 md:py-1.5 md:text-sm"
                 >
                   {item}
                 </span>
@@ -137,10 +125,6 @@ export default function Hero() {
 
           <div className="hero-scale relative hidden lg:block lg:pl-4">
             <HeroVisual />
-            <p className="hero-reveal mt-8 text-center text-sm font-medium text-[#0B3A63]/80 [animation-delay:340ms]">
-              Une réponse lisible, rapide à transmettre et vérifiable
-              indépendamment.
-            </p>
           </div>
         </div>
       </div>
