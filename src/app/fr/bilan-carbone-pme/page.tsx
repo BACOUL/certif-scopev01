@@ -32,15 +32,6 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-/* ======================================================
-   PAGE PILIER FR — BILAN CARBONE PME
-   Alignée avec la home :
-   - institutionnel premium
-   - bleu #0B3A63 dominant
-   - turquoise #1FB6C1 en accent
-   - sections claires, lisibles, conversion + SEO
-====================================================== */
-
 export default function BilanCarbonePMEPageFR() {
   const pageUrl = "https://www.certif-scope.com/fr/bilan-carbone-pme/";
 
@@ -76,6 +67,39 @@ export default function BilanCarbonePMEPageFR() {
     {
       q: "Le document est-il vérifiable ?",
       a: "Oui. Le document est conçu pour comporter un identifiant et une logique de contrôle public permettant à un tiers de vérifier l’authenticité et l’intégrité du fichier.",
+    },
+  ];
+
+  const relatedGuides = [
+    {
+      title: "Bilan carbone PME obligatoire",
+      text: "Comprendre si la demande relève d’une obligation réelle ou d’un simple besoin de screening.",
+      href: "/fr/bilan-carbone-pme/obligation/",
+      cta: "Lire le guide obligation",
+    },
+    {
+      title: "Combien coûte un bilan carbone PME ?",
+      text: "Comparer le coût d’un document de screening et celui d’un inventaire plus complet.",
+      href: "/fr/bilan-carbone-pme/cout/",
+      cta: "Lire le guide coût",
+    },
+    {
+      title: "Exemple de bilan carbone PME",
+      text: "Voir à quoi ressemble un document utilisable dans un dossier client, fournisseur ou banque.",
+      href: "/fr/bilan-carbone-pme/exemple/",
+      cta: "Voir un exemple",
+    },
+    {
+      title: "Bilan carbone appel d’offres",
+      text: "Savoir quoi joindre quand un appel d’offres mentionne un critère carbone ou ESG.",
+      href: "/fr/bilan-carbone-appel-offres/",
+      cta: "Lire le guide appel d’offres",
+    },
+    {
+      title: "Bilan carbone fournisseur",
+      text: "Répondre à un référencement fournisseur avec un document CO₂e au bon niveau.",
+      href: "/fr/bilan-carbone-fournisseur/",
+      cta: "Lire le guide fournisseur",
     },
   ];
 
@@ -201,7 +225,6 @@ export default function BilanCarbonePMEPageFR() {
       <div id="top" />
 
       <div className="mx-auto max-w-7xl px-6 pb-24 pt-12 md:px-8 md:pt-16">
-        {/* HERO / HEADER */}
         <header className="mx-auto max-w-5xl">
           <p className="inline-flex items-center gap-3 rounded-full border border-[#0B3A63]/10 bg-white/92 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#0B3A63]/75 shadow-sm backdrop-blur md:text-xs">
             <span className="inline-block h-2.5 w-2.5 rounded-full bg-[#1FB6C1] shadow-[0_0_0_4px_rgba(31,182,193,0.14)]" />
@@ -235,10 +258,23 @@ export default function BilanCarbonePMEPageFR() {
             </p>
 
             <p className="text-base leading-relaxed text-[#64748B] md:text-lg">
-              Cette page explique ce qu’une PME doit réellement comprendre :
-              quand un document simple suffit, quand un bilan plus complet est
-              nécessaire, combien cela peut coûter, et quoi transmettre sans
-              surdimensionner la réponse.
+              Cette page pilier centralise ce qu’une PME doit réellement
+              comprendre : quand un document simple suffit, quand un bilan plus
+              complet est nécessaire,{" "}
+              <Link
+                href="/fr/bilan-carbone-pme/cout/"
+                className="underline underline-offset-4 text-[#0B3A63] transition-colors hover:text-[#1FB6C1]"
+              >
+                combien coûte un bilan carbone PME
+              </Link>
+              , si le{" "}
+              <Link
+                href="/fr/bilan-carbone-pme/obligation/"
+                className="underline underline-offset-4 text-[#0B3A63] transition-colors hover:text-[#1FB6C1]"
+              >
+                bilan carbone PME est obligatoire
+              </Link>
+              , et quoi transmettre sans surdimensionner la réponse.
             </p>
           </div>
 
@@ -298,7 +334,6 @@ export default function BilanCarbonePMEPageFR() {
           </div>
         </header>
 
-        {/* QUICK REALITY BLOCK */}
         <section className="mx-auto mt-12 max-w-5xl">
           <div className="rounded-[28px] border border-[#0B3A63]/10 bg-[#F8FAFC] p-6 md:p-8">
             <h2 className="text-2xl font-extrabold leading-tight text-[#0B3A63]">
@@ -336,11 +371,8 @@ export default function BilanCarbonePMEPageFR() {
           </div>
         </section>
 
-        {/* TABLE + CONTENT */}
         <div className="mt-14 grid grid-cols-1 gap-10 lg:grid-cols-12">
-          {/* MAIN */}
           <div className="space-y-14 lg:col-span-8">
-            {/* MOBILE TOC */}
             <section className="lg:hidden">
               <div className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm">
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">
@@ -354,13 +386,13 @@ export default function BilanCarbonePMEPageFR() {
                     <TocItem href="#expected" label="Que fournir concrètement" />
                     <TocItem href="#difference" label="Document indicatif vs bilan complet" />
                     <TocItem href="#cost" label="Combien ça coûte" />
+                    <TocItem href="#related-guides" label="Guides associés" />
                     <TocItem href="#faq" label="FAQ" />
                   </ol>
                 </nav>
               </div>
             </section>
 
-            {/* QUICK TABLE */}
             <section>
               <div className="overflow-x-auto rounded-[28px] border border-[#0B3A63]/10 bg-white shadow-sm">
                 <table className="min-w-[720px] w-full text-sm">
@@ -411,7 +443,6 @@ export default function BilanCarbonePMEPageFR() {
               </div>
             </section>
 
-            {/* 1 */}
             <section id="definition" className="scroll-mt-24">
               <h2 className="text-2xl font-extrabold text-[#0B3A63] md:text-3xl">
                 1) Qu’est-ce qu’un bilan carbone pour une PME ?
@@ -426,6 +457,19 @@ export default function BilanCarbonePMEPageFR() {
                   document de screening
                 </strong>{" "}
                 plutôt qu’un inventaire complet détaillé.
+              </p>
+
+              <p className="mt-4 text-base leading-relaxed text-[#475569] md:text-lg">
+                Si tu veux voir à quoi ressemble concrètement ce type de format,
+                la page{" "}
+                <Link
+                  href="/fr/bilan-carbone-pme/exemple/"
+                  className="underline underline-offset-4 text-[#0B3A63] transition-colors hover:text-[#1FB6C1]"
+                >
+                  exemple de bilan carbone PME
+                </Link>{" "}
+                montre la structure typique d’un document utilisable dans un
+                dossier.
               </p>
 
               <div className="mt-6 grid gap-6 md:grid-cols-2">
@@ -455,7 +499,6 @@ export default function BilanCarbonePMEPageFR() {
               </div>
             </section>
 
-            {/* 2 */}
             <section id="obligation" className="scroll-mt-24">
               <h2 className="text-2xl font-extrabold text-[#0B3A63] md:text-3xl">
                 2) Bilan carbone PME : est-ce obligatoire ?
@@ -469,6 +512,18 @@ export default function BilanCarbonePMEPageFR() {
                 . En pratique, les demandes arrivent surtout via des workflows
                 externes : référencement fournisseur, appel d’offres, banque,
                 assurance ou questionnaire ESG.
+              </p>
+
+              <p className="mt-4 text-base leading-relaxed text-[#475569] md:text-lg">
+                Pour détailler ce point, le guide{" "}
+                <Link
+                  href="/fr/bilan-carbone-pme/obligation/"
+                  className="underline underline-offset-4 text-[#0B3A63] transition-colors hover:text-[#1FB6C1]"
+                >
+                  bilan carbone PME obligatoire
+                </Link>{" "}
+                explique comment distinguer une exigence formelle d’un simple
+                besoin de screening documentaire.
               </p>
 
               <div className="mt-6 rounded-[28px] border border-[#0B3A63]/10 bg-[#F8FAFC] p-6 md:p-8">
@@ -511,7 +566,6 @@ export default function BilanCarbonePMEPageFR() {
               </div>
             </section>
 
-            {/* 3 */}
             <section id="why-asked" className="scroll-mt-24">
               <h2 className="text-2xl font-extrabold text-[#0B3A63] md:text-3xl">
                 3) Pourquoi on demande un bilan carbone aux PME
@@ -522,6 +576,24 @@ export default function BilanCarbonePMEPageFR() {
                 Les grands comptes, les acheteurs, les banques ou les assureurs
                 cherchent un document simple, comparable et archivable, sans
                 nécessairement exiger un inventaire carbone complet.
+              </p>
+
+              <p className="mt-4 text-base leading-relaxed text-[#475569] md:text-lg">
+                Deux cas reviennent très souvent : le{" "}
+                <Link
+                  href="/fr/bilan-carbone-fournisseur/"
+                  className="underline underline-offset-4 text-[#0B3A63] transition-colors hover:text-[#1FB6C1]"
+                >
+                  bilan carbone fournisseur
+                </Link>{" "}
+                lors d’un référencement, et le{" "}
+                <Link
+                  href="/fr/bilan-carbone-appel-offres/"
+                  className="underline underline-offset-4 text-[#0B3A63] transition-colors hover:text-[#1FB6C1]"
+                >
+                  bilan carbone appel d’offres
+                </Link>{" "}
+                lorsqu’un critère CO₂ ou ESG apparaît dans le dossier.
               </p>
 
               <div className="mt-6 grid gap-6 md:grid-cols-2">
@@ -568,7 +640,6 @@ export default function BilanCarbonePMEPageFR() {
               </div>
             </section>
 
-            {/* 4 */}
             <section id="expected" className="scroll-mt-24">
               <h2 className="text-2xl font-extrabold text-[#0B3A63] md:text-3xl">
                 4) Que fournir concrètement quand on vous le demande ?
@@ -610,9 +681,27 @@ export default function BilanCarbonePMEPageFR() {
                   </p>
                 </div>
               </div>
+
+              <p className="mt-6 text-base leading-relaxed text-[#475569] md:text-lg">
+                Si tu veux une lecture plus ciblée selon le contexte, consulte
+                aussi{" "}
+                <Link
+                  href="/fr/bilan-carbone-fournisseur/"
+                  className="underline underline-offset-4 text-[#0B3A63] transition-colors hover:text-[#1FB6C1]"
+                >
+                  bilan carbone fournisseur
+                </Link>{" "}
+                pour le référencement, ou{" "}
+                <Link
+                  href="/fr/bilan-carbone-appel-offres/"
+                  className="underline underline-offset-4 text-[#0B3A63] transition-colors hover:text-[#1FB6C1]"
+                >
+                  bilan carbone appel d’offres
+                </Link>{" "}
+                pour un dossier de consultation.
+              </p>
             </section>
 
-            {/* 5 */}
             <section id="difference" className="scroll-mt-24">
               <h2 className="text-2xl font-extrabold text-[#0B3A63] md:text-3xl">
                 5) Document indicatif ou bilan carbone complet : comment choisir
@@ -672,9 +761,20 @@ export default function BilanCarbonePMEPageFR() {
                   </tbody>
                 </table>
               </div>
+
+              <p className="mt-6 text-base leading-relaxed text-[#475569] md:text-lg">
+                Pour visualiser la différence au niveau du document lui-même, la
+                page{" "}
+                <Link
+                  href="/fr/bilan-carbone-pme/exemple/"
+                  className="underline underline-offset-4 text-[#0B3A63] transition-colors hover:text-[#1FB6C1]"
+                >
+                  exemple de bilan carbone PME
+                </Link>{" "}
+                aide à voir ce qu’un tiers lit réellement dans un dossier.
+              </p>
             </section>
 
-            {/* 6 */}
             <section id="cost" className="scroll-mt-24">
               <h2 className="text-2xl font-extrabold text-[#0B3A63] md:text-3xl">
                 6) Combien coûte un bilan carbone PME ?
@@ -685,6 +785,18 @@ export default function BilanCarbonePMEPageFR() {
                 Plus le besoin porte sur un inventaire complet, plus l’effort,
                 le délai et le coût montent. À l’inverse, une réponse de
                 screening vise avant tout un document clair et rapide à produire.
+              </p>
+
+              <p className="mt-4 text-base leading-relaxed text-[#475569] md:text-lg">
+                Le guide{" "}
+                <Link
+                  href="/fr/bilan-carbone-pme/cout/"
+                  className="underline underline-offset-4 text-[#0B3A63] transition-colors hover:text-[#1FB6C1]"
+                >
+                  combien coûte un bilan carbone PME
+                </Link>{" "}
+                détaille ce qui fait varier le prix et pourquoi il faut comparer
+                des niveaux de réponse, pas seulement des montants.
               </p>
 
               <div className="mt-6 grid gap-6 md:grid-cols-2">
@@ -723,7 +835,83 @@ export default function BilanCarbonePMEPageFR() {
               </div>
             </section>
 
-            {/* CTA / PRODUCT BLOCK */}
+            <section
+              id="related-guides"
+              className="scroll-mt-24"
+            >
+              <h2 className="text-2xl font-extrabold text-[#0B3A63] md:text-3xl">
+                7) Guides associés pour aller plus loin
+              </h2>
+
+              <p className="mt-5 text-base leading-relaxed text-[#475569] md:text-lg">
+                Cette page pilier sert de point d’entrée. Les guides ci-dessous
+                couvrent les intentions de recherche les plus proches du besoin
+                réel d’une PME.
+              </p>
+
+              <div className="mt-6 grid gap-6 md:grid-cols-2">
+                {relatedGuides.map((guide) => (
+                  <div
+                    key={guide.href}
+                    className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm"
+                  >
+                    <h3 className="text-lg font-semibold text-[#0B3A63]">
+                      {guide.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-relaxed text-[#475569]">
+                      {guide.text}
+                    </p>
+                    <div className="mt-5">
+                      <Link
+                        href={guide.href}
+                        className="inline-flex items-center justify-center rounded-xl border border-[#0B3A63]/14 bg-white px-4 py-2.5 text-sm font-semibold text-[#0B3A63] shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#0B3A63] hover:bg-[#0B3A63] hover:text-white"
+                      >
+                        {guide.cta} →
+                      </Link>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-6 rounded-[28px] border border-[#0B3A63]/10 bg-[#F8FAFC] p-6 md:p-8">
+                <h3 className="text-lg font-semibold text-[#0B3A63]">
+                  Questions fréquentes liées
+                </h3>
+                <div className="mt-5 flex flex-wrap gap-3">
+                  <Link
+                    href="/fr/bilan-carbone-pme/obligation/"
+                    className="rounded-full border border-[#0B3A63]/12 bg-white px-4 py-2 text-xs font-medium text-[#0B3A63] shadow-sm md:text-sm"
+                  >
+                    bilan carbone PME obligatoire
+                  </Link>
+                  <Link
+                    href="/fr/bilan-carbone-pme/cout/"
+                    className="rounded-full border border-[#0B3A63]/12 bg-white px-4 py-2 text-xs font-medium text-[#0B3A63] shadow-sm md:text-sm"
+                  >
+                    combien coûte un bilan carbone PME
+                  </Link>
+                  <Link
+                    href="/fr/bilan-carbone-pme/exemple/"
+                    className="rounded-full border border-[#0B3A63]/12 bg-white px-4 py-2 text-xs font-medium text-[#0B3A63] shadow-sm md:text-sm"
+                  >
+                    exemple de bilan carbone PME
+                  </Link>
+                  <Link
+                    href="/fr/bilan-carbone-appel-offres/"
+                    className="rounded-full border border-[#0B3A63]/12 bg-white px-4 py-2 text-xs font-medium text-[#0B3A63] shadow-sm md:text-sm"
+                  >
+                    bilan carbone appel d’offres
+                  </Link>
+                  <Link
+                    href="/fr/bilan-carbone-fournisseur/"
+                    className="rounded-full border border-[#0B3A63]/12 bg-white px-4 py-2 text-xs font-medium text-[#0B3A63] shadow-sm md:text-sm"
+                  >
+                    bilan carbone fournisseur
+                  </Link>
+                </div>
+              </div>
+            </section>
+
             <section className="scroll-mt-24">
               <div className="rounded-[30px] border border-[#0B3A63]/10 bg-[#0B3A63] p-8 text-white shadow-[0_25px_60px_rgba(11,58,99,0.10)] md:p-10">
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/70">
@@ -751,16 +939,22 @@ export default function BilanCarbonePMEPageFR() {
                   </Link>
 
                   <Link
-                    href="/fr/why-companies-ask/"
+                    href="/fr/bilan-carbone-appel-offres/"
                     className="inline-flex min-h-[52px] items-center justify-center rounded-xl border border-white/40 px-5 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/10"
                   >
-                    Pourquoi on vous le demande
+                    Cas appel d’offres
+                  </Link>
+
+                  <Link
+                    href="/fr/bilan-carbone-fournisseur/"
+                    className="inline-flex min-h-[52px] items-center justify-center rounded-xl border border-white/40 px-5 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/10"
+                  >
+                    Cas fournisseur
                   </Link>
                 </div>
               </div>
             </section>
 
-            {/* FAQ */}
             <section id="faq" className="scroll-mt-24">
               <h2 className="text-2xl font-extrabold text-[#0B3A63] md:text-3xl">
                 FAQ — Bilan carbone PME
@@ -784,7 +978,6 @@ export default function BilanCarbonePMEPageFR() {
             </section>
           </div>
 
-          {/* SIDEBAR */}
           <aside className="lg:col-span-4">
             <div className="sticky top-6 space-y-6">
               <div className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm">
@@ -800,6 +993,7 @@ export default function BilanCarbonePMEPageFR() {
                     <TocItem href="#expected" label="Que fournir concrètement" />
                     <TocItem href="#difference" label="Document indicatif vs bilan complet" />
                     <TocItem href="#cost" label="Combien ça coûte" />
+                    <TocItem href="#related-guides" label="Guides associés" />
                     <TocItem href="#faq" label="FAQ" />
                   </ol>
                 </nav>
@@ -834,9 +1028,33 @@ export default function BilanCarbonePMEPageFR() {
 
               <div className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm">
                 <h3 className="text-lg font-semibold text-[#0B3A63]">
-                  Liens utiles
+                  Guides liés au cluster
                 </h3>
                 <ul className="mt-4 space-y-2 text-sm leading-relaxed text-[#475569]">
+                  <li>
+                    <Link
+                      className="underline underline-offset-4 transition-colors hover:text-[#1FB6C1]"
+                      href="/fr/bilan-carbone-pme/obligation/"
+                    >
+                      Bilan carbone PME obligatoire
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className="underline underline-offset-4 transition-colors hover:text-[#1FB6C1]"
+                      href="/fr/bilan-carbone-pme/cout/"
+                    >
+                      Combien coûte un bilan carbone PME ?
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className="underline underline-offset-4 transition-colors hover:text-[#1FB6C1]"
+                      href="/fr/bilan-carbone-pme/exemple/"
+                    >
+                      Exemple de bilan carbone PME
+                    </Link>
+                  </li>
                   <li>
                     <Link
                       className="underline underline-offset-4 transition-colors hover:text-[#1FB6C1]"
@@ -848,25 +1066,9 @@ export default function BilanCarbonePMEPageFR() {
                   <li>
                     <Link
                       className="underline underline-offset-4 transition-colors hover:text-[#1FB6C1]"
-                      href="/fr/why-companies-ask/"
+                      href="/fr/bilan-carbone-fournisseur/"
                     >
-                      Pourquoi on vous le demande
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      className="underline underline-offset-4 transition-colors hover:text-[#1FB6C1]"
-                      href="/fr/why-companies-ask/attestation-carbone-appel-offres/"
-                    >
-                      Attestation carbone : cas pratique
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      className="underline underline-offset-4 transition-colors hover:text-[#1FB6C1]"
-                      href="/fr/pricing/"
-                    >
-                      Prix du document screening
+                      Bilan carbone fournisseur
                     </Link>
                   </li>
                 </ul>
@@ -897,4 +1099,4 @@ export default function BilanCarbonePMEPageFR() {
       </div>
     </section>
   );
-                       }
+                 }
