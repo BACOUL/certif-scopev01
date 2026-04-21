@@ -9,9 +9,8 @@ import ScrollUp from "@/components/Common/ScrollUp";
 import HeroFR from "@/components/fr/Hero";
 import ProblemSolutionFR from "@/components/fr/ProblemSolution";
 import DifferentiationFR from "@/components/fr/Differentiation";
-import HowItWorksFR from "@/components/fr/HowItWorks";
 import FeaturesFR from "@/components/fr/Features";
-import TrustFR from "@/components/fr/Trust";
+import HowItWorksFR from "@/components/fr/HowItWorks";
 import TestimonialsFR from "@/components/fr/Testimonials";
 import PricingFR from "@/components/fr/Pricing";
 import FAQFR from "@/components/fr/FAQ";
@@ -130,25 +129,22 @@ export default function HomeFR() {
         {/* 3) Différenciation / pourquoi cette réponse */}
         <DifferentiationFR />
 
-        {/* 4) Comment ça marche */}
-        <HowItWorksFR />
-
-        {/* 5) Ce que contient le document */}
+        {/* 4) Produit / document concret */}
         <FeaturesFR />
 
-        {/* 6) Lecture / confiance / vérification */}
-        <TrustFR />
+        {/* 5) Comment ça marche */}
+        <HowItWorksFR />
 
-        {/* 7) Cas d’usage terrain */}
+        {/* 6) Cas d’usage terrain */}
         <TestimonialsFR />
 
-        {/* 8) Pricing */}
+        {/* 7) Pricing */}
         <PricingFR />
 
-        {/* 9) FAQ */}
+        {/* 8) FAQ */}
         <FAQFR />
 
-        {/* 10) CTA final */}
+        {/* 9) CTA final */}
         <section
           id="final-cta"
           data-section="final-cta"
