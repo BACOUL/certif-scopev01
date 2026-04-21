@@ -6,22 +6,22 @@ import Link from "next/link";
 const useCases = [
   {
     id: "01",
-    title: "Demande client ou onboarding fournisseur",
-    text: "Un client, un acheteur ou une plateforme fournisseur demande un justificatif CO₂e. L’objectif est de répondre rapidement avec un document clair, cohérent et directement transmissible.",
+    title: "Répondre à une demande fournisseur",
+    text: "Un client ou une plateforme fournisseur demande un justificatif CO₂e. L’objectif est d’envoyer rapidement un document clair et transmissible.",
     ctaLabel: "Cas fournisseur",
     ctaHref: "/fr/bilan-carbone-pme",
   },
   {
     id: "02",
-    title: "Appel d’offres ou dossier achat",
-    text: "Le dossier mentionne un critère carbone, mais sans exiger un audit détaillé. Une attestation standardisée permet de répondre au bon niveau sans mission lourde.",
+    title: "Répondre à un appel d’offres",
+    text: "Le dossier mentionne un critère carbone sans exiger un audit détaillé. Une attestation standardisée permet de répondre au bon niveau.",
     ctaLabel: "Cas appel d’offres",
     ctaHref: "/fr/bilan-carbone-appel-offres",
   },
   {
     id: "03",
-    title: "Lecture, vérification et transmission",
-    text: "Le besoin final est souvent simple : obtenir un PDF lisible, avec un résultat agrégé, une méthode indiquée et un identifiant vérifiable par un tiers.",
+    title: "Faire lire et vérifier rapidement",
+    text: "Le besoin final est souvent simple : un PDF lisible avec résultat agrégé, méthode indiquée et identifiant vérifiable.",
     ctaLabel: "Vérifier un document",
     ctaHref: "/fr/verify",
   },
@@ -45,17 +45,17 @@ export default function TestimonialsFR() {
           </p>
 
           <h2 className="cases-reveal mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl [animation-delay:100ms]">
-            Dans quels cas une entreprise utilise ce document
+            Quand ce document devient utile concrètement
           </h2>
 
           <p className="cases-reveal mx-auto mt-5 max-w-3xl text-base leading-relaxed text-[#475569] md:text-lg [animation-delay:200ms]">
             Des situations fréquentes où l’enjeu n’est pas de lancer un audit complet,
-            mais de fournir rapidement une réponse carbone claire, standardisée et utilisable.
+            mais de fournir rapidement un document carbone clair et exploitable.
           </p>
         </div>
 
         {/* MAIN GRID */}
-        <div className="mt-16 grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
+        <div className="mt-16 grid gap-6 lg:grid-cols-[1.02fr_0.98fr] lg:items-start">
           {/* LEFT — PRIMARY SCENARIO */}
           <div className="cases-main relative overflow-hidden rounded-[30px] border border-[#0B3A63]/10 bg-white p-6 shadow-[0_24px_60px_rgba(11,58,99,0.10)] md:p-8">
             <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(31,182,193,0.55),transparent)]" />
@@ -66,12 +66,12 @@ export default function TestimonialsFR() {
             </p>
 
             <h3 className="mt-3 text-2xl font-extrabold leading-tight text-[#0B3A63] md:text-3xl">
-              Demande externe → blocage potentiel → réponse prête à transmettre
+              Demande externe → blocage → réponse prête à transmettre
             </h3>
 
             <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[#64748B] md:text-base">
-              Dans beaucoup de cas, la question n’est pas “faut-il un audit complet ?”,
-              mais “quel document faut-il envoyer maintenant pour répondre correctement ?”.
+              Le sujet n’est souvent pas de produire une étude complète, mais
+              d’envoyer rapidement le bon document au bon niveau.
             </p>
 
             <div className="mt-8 grid gap-4 md:grid-cols-[1fr_auto_1fr_auto_1fr] md:items-stretch">
@@ -83,7 +83,7 @@ export default function TestimonialsFR() {
                   Une demande carbone arrive
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-[#64748B]">
-                  Client, plateforme fournisseur, banque, assureur ou appel d’offres.
+                  Client, banque, assureur, plateforme fournisseur ou appel d’offres.
                 </p>
               </div>
 
@@ -102,7 +102,7 @@ export default function TestimonialsFR() {
                   Les réponses classiques sont trop lourdes
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-[#64748B]">
-                  Audit complet, mission longue, complexité disproportionnée, manque de format clair.
+                  Audit complet, mission longue, complexité disproportionnée.
                 </p>
               </div>
 
@@ -121,7 +121,7 @@ export default function TestimonialsFR() {
                   Un document standardisé et transmissible
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-[#64748B]">
-                  Attestation carbone lisible, résultat agrégé, méthode indiquée, vérification possible.
+                  Résultat agrégé, méthode indiquée, vérification possible.
                 </p>
               </div>
             </div>
@@ -309,4 +309,4 @@ export default function TestimonialsFR() {
       `}</style>
     </section>
   );
-}
+                }
