@@ -6,246 +6,244 @@ import Link from "next/link";
 export default function FooterFR() {
   const year = new Date().getFullYear();
 
-  const linkBase =
-    "text-sm text-gray-600 hover:text-[#0B3A63] dark:text-gray-300 dark:hover:text-white transition-colors";
+  const navLinkClass =
+    "text-sm leading-relaxed text-[#64748B] transition-colors duration-300 hover:text-[#0B3A63]";
+  const footerButtonBase =
+    "inline-flex items-center justify-center rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-300";
+  const footerCardClass =
+    "rounded-[24px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm";
 
   return (
     <footer
       id="footer"
       role="contentinfo"
       data-section="footer"
-      className="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 pt-14 pb-10"
+      className="relative overflow-hidden border-t border-[#0B3A63]/8 bg-[#F8FAFC] pt-20 pb-10"
     >
-      <div className="max-w-7xl mx-auto px-6">
-        {/* GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
-          {/* BRANDING */}
-          <div>
-            <h2
-              data-i18n="footer.brand"
-              className="text-xl font-bold text-[#0B3A63] dark:text-gray-100 mb-4"
-            >
-              Certif-Scope
-            </h2>
+      <div className="absolute inset-0 -z-30 bg-[linear-gradient(180deg,#F8FAFC_0%,#ffffff_100%)]" />
+      <div className="absolute left-[-8%] top-10 -z-10 h-56 w-56 rounded-full bg-[#1FB6C1]/6 blur-3xl" />
+      <div className="absolute right-[-6%] bottom-0 -z-10 h-72 w-72 rounded-full bg-[#0B3A63]/6 blur-3xl" />
 
-            <p
-              data-i18n="footer.brand.desc"
-              className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed"
-            >
-              Attestation CO₂e spend-based conçue pour les workflows d’achats,
-              banques, assurances et screening ESG. Documentation standardisée,
-              cohérente et vérifiable.
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="grid grid-cols-1 gap-6 xl:grid-cols-[1.15fr_0.95fr_0.95fr_0.95fr]">
+          {/* BRAND */}
+          <div className="rounded-[28px] border border-[#0B3A63]/10 bg-white p-7 shadow-[0_18px_40px_rgba(11,58,99,0.08)]">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">
+              Certif-Scope
             </p>
 
-            {/* PRIMARY FR SEO LINK (PILLAR) */}
-            <div className="mt-5">
+            <h2 className="mt-3 text-2xl font-extrabold leading-tight text-[#0B3A63]">
+              Attestation CO₂e indicative
+              <br />
+              prête à transmettre
+            </h2>
+
+            <p className="mt-4 text-sm leading-relaxed text-[#475569]">
+              Un document carbone spend-based conçu pour les contextes où un
+              acheteur, un client, une banque ou un assureur demande une réponse
+              lisible, standardisée et vérifiable rapidement.
+            </p>
+
+            <div className="mt-5 rounded-2xl border border-[#1FB6C1]/16 bg-[linear-gradient(180deg,rgba(31,182,193,0.08)_0%,rgba(31,182,193,0.03)_100%)] p-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#64748B]">
+                Guide principal
+              </p>
               <Link
                 href="/fr/bilan-carbone-pme/"
-                className="inline-block text-sm font-semibold text-[#0B3A63] underline underline-offset-4 hover:text-[#15B097] transition-colors"
+                className="mt-2 inline-flex text-sm font-semibold text-[#0B3A63] underline underline-offset-4 transition-colors hover:text-[#1FB6C1]"
                 aria-label="PME : on vous demande un bilan carbone"
               >
                 PME : on vous demande un bilan carbone →
               </Link>
             </div>
 
-            {/* QUICK ACTIONS (EXISTING) */}
-            <div className="mt-5 flex flex-wrap gap-3">
+            <div className="mt-6 flex flex-wrap gap-3">
               <Link
                 href="/fr/generate/"
-                className="inline-flex items-center justify-center text-sm px-4 py-2 rounded-md bg-[#0B3A63] text-white hover:bg-[#0B3A63]/90 transition-colors font-semibold"
+                className={`${footerButtonBase} bg-[#1FB6C1] text-white shadow-[0_12px_30px_rgba(31,182,193,0.20)] hover:-translate-y-0.5 hover:bg-[#19AAB4]`}
               >
                 Générer →
               </Link>
+
               <Link
                 href="/fr/pricing/"
-                className="inline-flex items-center justify-center text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
+                className={`${footerButtonBase} border border-[#0B3A63] bg-white text-[#0B3A63] hover:-translate-y-0.5 hover:bg-[#0B3A63] hover:text-white`}
               >
                 Prix
               </Link>
+
               <Link
                 href="/verify"
-                className="inline-flex items-center justify-center text-sm px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800"
+                className={`${footerButtonBase} border border-[#0B3A63]/14 bg-white text-[#0B3A63] hover:-translate-y-0.5 hover:border-[#0B3A63] hover:bg-[#0B3A63] hover:text-white`}
               >
                 Vérifier
               </Link>
             </div>
           </div>
 
-          {/* PRODUCT (EXISTING ONLY) */}
-          <nav aria-label="Navigation produit">
-            <h3
-              data-i18n="footer.product"
-              className="text-lg font-semibold text-[#0B3A63] dark:text-gray-100 mb-4"
-            >
+          {/* PRODUCT */}
+          <nav aria-label="Navigation produit" className={footerCardClass}>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">
               Produit
+            </p>
+
+            <h3 className="mt-3 text-lg font-extrabold text-[#0B3A63]">
+              Accès rapides
             </h3>
 
-            <ul className="space-y-2">
+            <ul className="mt-5 space-y-3">
               <li>
-                <Link
-                  className={linkBase}
-                  data-i18n="footer.link.overview"
-                  href="/fr/product/"
-                >
+                <Link className={navLinkClass} href="/fr/product/">
                   Présentation
                 </Link>
               </li>
               <li>
-                <Link
-                  className={linkBase}
-                  data-i18n="footer.link.pricing"
-                  href="/fr/pricing/"
-                >
+                <Link className={navLinkClass} href="/fr/pricing/">
                   Prix
                 </Link>
               </li>
               <li>
-                <Link className={linkBase} href="/fr/generate/">
+                <Link className={navLinkClass} href="/fr/generate/">
                   Générer une attestation
                 </Link>
               </li>
               <li>
-                <Link
-                  className={linkBase}
-                  data-i18n="footer.link.verify"
-                  href="/verify"
-                >
+                <Link className={navLinkClass} href="/verify">
                   Vérifier un document
                 </Link>
               </li>
-
               <li className="pt-2">
-                <Link
-                  className={linkBase}
-                  data-i18n="footer.link.compliance"
-                  href="/fr/product/compliance/"
-                >
+                <Link className={navLinkClass} href="/fr/product/compliance/">
                   Conformité &amp; périmètre
                 </Link>
               </li>
               <li>
-                <Link
-                  className={linkBase}
-                  data-i18n="footer.link.methodology"
-                  href="/fr/product/methodology/"
-                >
+                <Link className={navLinkClass} href="/fr/product/methodology/">
                   Méthodologie (spend-based)
                 </Link>
               </li>
             </ul>
           </nav>
 
-          {/* GUIDES (EXISTING ONLY) */}
-          <nav aria-label="Cas concrets bilan carbone et exigences CO₂e">
-            <h3 className="text-lg font-semibold text-[#0B3A63] dark:text-gray-100 mb-4">
-              Cas concrets (France)
+          {/* GUIDES */}
+          <nav
+            aria-label="Cas concrets bilan carbone et exigences CO₂e"
+            className={footerCardClass}
+          >
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">
+              Cas concrets
+            </p>
+
+            <h3 className="mt-3 text-lg font-extrabold text-[#0B3A63]">
+              Guides France
             </h3>
 
-            <ul className="space-y-2">
+            <ul className="mt-5 space-y-3">
               <li>
-                <Link className={linkBase} href="/fr/bilan-carbone-pme/">
+                <Link className={navLinkClass} href="/fr/bilan-carbone-pme/">
                   PME : on vous demande un bilan carbone
                 </Link>
               </li>
               <li>
-                <Link className={linkBase} href="/fr/bilan-carbone-appel-offres/">
+                <Link
+                  className={navLinkClass}
+                  href="/fr/bilan-carbone-appel-offres/"
+                >
                   Appel d’offres : quoi fournir
                 </Link>
               </li>
-
               <li className="pt-2">
-                <Link className={linkBase} href="/fr/why-companies-ask/">
+                <Link className={navLinkClass} href="/fr/why-companies-ask/">
                   Pourquoi on vous le demande
                 </Link>
               </li>
               <li>
                 <Link
-                  className={linkBase}
+                  className={navLinkClass}
                   href="/fr/why-companies-ask/attestation-carbone-appel-offres/"
                 >
-                  Exemple appel d’offres (cas pratique)
+                  Exemple appel d’offres
                 </Link>
               </li>
             </ul>
           </nav>
 
-          {/* COMPANY & LEGAL (EXISTING ONLY) */}
-          <nav aria-label="Navigation entreprise et légal">
-            <h3 className="text-lg font-semibold text-[#0B3A63] dark:text-gray-100 mb-4">
+          {/* COMPANY & LEGAL */}
+          <nav
+            aria-label="Navigation entreprise et légal"
+            className={footerCardClass}
+          >
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">
               Entreprise &amp; légal
+            </p>
+
+            <h3 className="mt-3 text-lg font-extrabold text-[#0B3A63]">
+              Informations
             </h3>
 
-            <ul className="space-y-2">
+            <ul className="mt-5 space-y-3">
               <li>
-                <Link className={linkBase} href="/fr/partners/">
+                <Link className={navLinkClass} href="/fr/partners/">
                   Partenariats
                 </Link>
               </li>
               <li>
-                <Link className={linkBase} href="/fr/contact/">
+                <Link className={navLinkClass} href="/fr/contact/">
                   Contact
                 </Link>
               </li>
-
               <li className="pt-2">
-                <Link className={linkBase} href="/fr/legal/">
+                <Link className={navLinkClass} href="/fr/legal/">
                   Mentions légales
                 </Link>
               </li>
               <li>
-                <Link className={linkBase} href="/fr/privacy/">
+                <Link className={navLinkClass} href="/fr/privacy/">
                   Politique de confidentialité
                 </Link>
               </li>
               <li>
-                <Link className={linkBase} href="/fr/terms/">
+                <Link className={navLinkClass} href="/fr/terms/">
                   Conditions d’utilisation
                 </Link>
               </li>
               <li>
-                <Link className={linkBase} href="/fr/cookies/">
+                <Link className={navLinkClass} href="/fr/cookies/">
                   Politique cookies
                 </Link>
               </li>
               <li>
-                <Link className={linkBase} href="/fr/data-processing/">
-                  Traitement des données (aperçu)
+                <Link className={navLinkClass} href="/fr/data-processing/">
+                  Traitement des données
                 </Link>
               </li>
             </ul>
           </nav>
         </div>
 
-        {/* DISCLAIMER */}
-        <div
-          data-i18n="footer.disclaimer"
-          className="mt-10 text-center text-xs text-gray-500 dark:text-gray-400 leading-relaxed"
-        >
-          Estimation CO₂e indicative en spend-based (dépenses × facteurs
-          d’émission). Non auditée, non CSRD/ESRS, sans calcul des Scopes 1–2, et
-          ne remplace pas un inventaire complet des émissions de GES. Les
-          résultats dépendent entièrement des données fournies par l’utilisateur.
+        <div className="mt-10 rounded-[24px] border border-[#0B3A63]/10 bg-white/90 p-5 shadow-sm">
+          <p className="text-center text-xs leading-relaxed text-[#64748B] md:text-sm">
+            Estimation CO₂e indicative en spend-based (dépenses × facteurs
+            d’émission). Non auditée, non CSRD/ESRS, sans calcul des Scopes 1–2,
+            et ne remplace pas un inventaire complet des émissions de GES. Les
+            résultats dépendent des données fournies par l’utilisateur.
+          </p>
         </div>
 
-        {/* BACK TO TOP BUTTON (SITE COLORS) */}
-        <div className="mt-8 flex justify-center">
+        <div className="mt-8 flex flex-col items-center justify-center gap-5 border-t border-[#0B3A63]/8 pt-8 md:flex-row md:justify-between">
+          <p className="text-sm text-[#64748B]">
+            © {year} Certif-Scope. Tous droits réservés.
+          </p>
+
           <a
             href="#top"
-            className="inline-flex items-center justify-center text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
+            className="inline-flex items-center justify-center rounded-xl border border-[#0B3A63] px-4 py-2.5 text-sm font-semibold text-[#0B3A63] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0B3A63] hover:text-white"
             aria-label="Revenir en haut de page"
           >
             ↑ Revenir en haut
           </a>
         </div>
 
-        {/* COPYRIGHT */}
-        <div className="mt-6 border-t border-gray-200 dark:border-gray-700 pt-6 text-center">
-          <p className="text-sm text-gray-500 dark:text-gray-400">
-            © {year} Certif-Scope. Tous droits réservés.
-          </p>
-        </div>
-
-        {/* JSON-LD — ORGANIZATION (MINIMAL) */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -261,4 +259,4 @@ export default function FooterFR() {
       </div>
     </footer>
   );
-                }
+      }
