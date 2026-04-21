@@ -12,7 +12,6 @@ import DifferentiationFR from "@/components/fr/Differentiation";
 import HowItWorksFR from "@/components/fr/HowItWorks";
 import FeaturesFR from "@/components/fr/Features";
 import TrustFR from "@/components/fr/Trust";
-import AttestationPreviewFR from "@/components/fr/AttestationPreview";
 import TestimonialsFR from "@/components/fr/Testimonials";
 import FAQFR from "@/components/fr/FAQ";
 
@@ -101,7 +100,6 @@ export default function HomeFR() {
       <ScrollUp />
 
       <main id="main-content" role="main">
-        {/* JSON-LD (Home FR) */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdOrganization) }}
@@ -118,25 +116,25 @@ export default function HomeFR() {
         {/* 1) Hero */}
         <HeroFR />
 
-        {/* 2) Problème → Solution */}
+        {/* 2) Problème / besoin réel */}
         <ProblemSolutionFR />
 
-        {/* 3) Valeur ajoutée / Différenciation */}
+        {/* 3) Différenciation / pourquoi cette réponse */}
         <DifferentiationFR />
 
-        {/* 4) How It Works */}
+        {/* 4) Comment ça marche */}
         <HowItWorksFR />
 
-        {/* 5) Features */}
+        {/* 5) Ce que contient le document */}
         <FeaturesFR />
 
-        {/* 6) Trust/Brands */}
+        {/* 6) Lecture / confiance / vérification */}
         <TrustFR />
 
-        {/* 7) Mockup attestation */}
-        <AttestationPreviewFR />
+        {/* 7) Cas d’usage terrain */}
+        <TestimonialsFR />
 
-        {/* 8) Pricing (obligatoire Home checklist) */}
+        {/* 8) Pricing */}
         <section
           id="pricing"
           data-section="pricing"
@@ -153,16 +151,19 @@ export default function HomeFR() {
             </h2>
 
             <p className="mt-4 text-center text-gray-700 max-w-2xl mx-auto text-lg leading-relaxed">
-              Pour une PME, l’enjeu est souvent de fournir rapidement un document clair (screening),
-              sans lancer une démarche longue. Certif-Scope propose un prix fixe, avec une attestation
-              standardisée, vérifiable et réutilisable.
+              Pour une PME, l’enjeu est souvent de fournir rapidement un document clair,
+              sans lancer une démarche longue. Certif-Scope propose un prix fixe avec une
+              attestation standardisée, vérifiable et réutilisable.
             </p>
 
             <div className="mt-10 grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
-              {/* Card 1 */}
               <div className="rounded-2xl border border-gray-200 bg-[#F8FAFC] p-7">
-                <p className="text-xs uppercase tracking-wider text-[#64748B] mb-2">Pour commencer</p>
-                <h3 className="text-xl font-extrabold text-[#0B3A63] mb-3">Attestation unique</h3>
+                <p className="text-xs uppercase tracking-wider text-[#64748B] mb-2">
+                  Pour commencer
+                </p>
+                <h3 className="text-xl font-extrabold text-[#0B3A63] mb-3">
+                  Attestation unique
+                </h3>
                 <ul className="list-disc ml-6 text-gray-700 space-y-2">
                   <li>résultat CO₂e agrégé (tCO₂e)</li>
                   <li>année couverte + date d’émission</li>
@@ -174,7 +175,7 @@ export default function HomeFR() {
                 <div className="mt-6 flex flex-wrap gap-3">
                   <Link
                     href="/fr/pricing"
-                    className="inline-block text-sm px-5 py-2.5 rounded-md bg-[#15B097] text-white hover:bg-[#12967f] transition-colors font-semibold"
+                    className="inline-block text-sm px-5 py-2.5 rounded-md bg-[#1FB6C1] text-white hover:bg-[#19AAB4] transition-colors font-semibold"
                   >
                     Voir le prix
                   </Link>
@@ -187,13 +188,16 @@ export default function HomeFR() {
                 </div>
               </div>
 
-              {/* Card 2 */}
               <div className="rounded-2xl border border-gray-200 bg-white p-7 shadow-sm">
-                <p className="text-xs uppercase tracking-wider text-[#64748B] mb-2">Usage le plus fréquent</p>
-                <h3 className="text-xl font-extrabold text-[#0B3A63] mb-3">Dossier fournisseur / AO</h3>
+                <p className="text-xs uppercase tracking-wider text-[#64748B] mb-2">
+                  Usage le plus fréquent
+                </p>
+                <h3 className="text-xl font-extrabold text-[#0B3A63] mb-3">
+                  Dossier fournisseur / appel d’offres
+                </h3>
                 <p className="text-gray-700 leading-relaxed">
                   Un document archivable, lisible et cohérent, pour éviter les allers-retours
-                  et répondre au bon niveau quand la demande est générique.
+                  et répondre au bon niveau quand la demande reste générique.
                 </p>
 
                 <div className="mt-6 grid grid-cols-1 gap-3">
@@ -218,10 +222,13 @@ export default function HomeFR() {
                 </div>
               </div>
 
-              {/* Card 3 */}
               <div className="rounded-2xl border border-gray-200 bg-[#0B3A63] p-7 text-white">
-                <p className="text-xs uppercase tracking-wider text-white/70 mb-2">Important</p>
-                <h3 className="text-xl font-extrabold mb-3">Ce que vous évitez</h3>
+                <p className="text-xs uppercase tracking-wider text-white/70 mb-2">
+                  Important
+                </p>
+                <h3 className="text-xl font-extrabold mb-3">
+                  Ce que vous évitez
+                </h3>
                 <ul className="list-disc ml-6 text-white/90 space-y-2">
                   <li>sur-promettre un audit ou une conformité</li>
                   <li>présenter une estimation comme un inventaire complet</li>
@@ -242,20 +249,18 @@ export default function HomeFR() {
 
             <div className="mt-10 text-center">
               <p className="text-sm text-gray-600">
-                Besoin d’un inventaire complet (standard imposé, périmètre détaillé, preuves, vérification externe) ?
-                Dans ce cas, il faut suivre le cahier des charges. Certif-Scope est conçu pour le screening dossier-ready.
+                Besoin d’un inventaire complet avec standard imposé, périmètre détaillé,
+                preuves et vérification externe ? Dans ce cas, il faut suivre le cahier
+                des charges demandé. Certif-Scope est conçu pour le screening dossier-ready.
               </p>
             </div>
           </div>
         </section>
 
-        {/* 9) Testimonials */}
-        <TestimonialsFR />
-
-        {/* 10) FAQ */}
+        {/* 9) FAQ */}
         <FAQFR />
 
-        {/* 11) CTA final (obligatoire Home checklist) */}
+        {/* 10) CTA final */}
         <section
           id="final-cta"
           data-section="final-cta"
@@ -269,19 +274,22 @@ export default function HomeFR() {
                   <p className="uppercase text-xs md:text-sm font-medium text-[#64748B] tracking-wider mb-3">
                     Réponse rapide — format standardisé
                   </p>
+
                   <h2 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] leading-tight">
                     Produire une attestation CO₂e indicative, claire et vérifiable
                   </h2>
+
                   <p className="mt-4 text-gray-700 text-lg leading-relaxed max-w-2xl">
-                    Si votre demande est du screening (fournisseur, appel d’offres, banque/assurance),
-                    l’objectif est un document lisible, archivable et cohérent : résultat CO₂e agrégé,
-                    année, méthode déclarée, limites explicites et vérification.
+                    Si votre demande relève du screening fournisseur, d’un appel d’offres
+                    ou d’une revue banque/assurance, l’objectif est un document lisible,
+                    archivable et cohérent : résultat CO₂e agrégé, année, méthode déclarée,
+                    limites explicites et vérification.
                   </p>
 
                   <div className="mt-6 flex flex-wrap gap-3">
                     <Link
                       href="/fr/generate"
-                      className="inline-block text-sm px-5 py-2.5 rounded-md bg-[#15B097] text-white hover:bg-[#12967f] transition-colors font-semibold"
+                      className="inline-block text-sm px-5 py-2.5 rounded-md bg-[#1FB6C1] text-white hover:bg-[#19AAB4] transition-colors font-semibold"
                     >
                       Générer mon attestation →
                     </Link>
@@ -345,4 +353,4 @@ export default function HomeFR() {
       </main>
     </>
   );
-        }
+           }
