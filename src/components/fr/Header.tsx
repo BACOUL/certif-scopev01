@@ -1,3 +1,4 @@
+// PATH: src/components/fr/HeaderFR.tsx
 "use client";
 
 import Image from "next/image";
@@ -13,6 +14,19 @@ export default function HeaderFR() {
   const navRef = useRef<HTMLDivElement | null>(null);
   const burgerRef = useRef<HTMLButtonElement | null>(null);
   const dropdownButtonRef = useRef<HTMLButtonElement | null>(null);
+  const dropdownPanelRef = useRef<HTMLDivElement | null>(null);
+
+  const routes = {
+    home: "/fr",
+    pillarBilanCarbonePME: "/fr/bilan-carbone-pme",
+    product: "/fr/product",
+    methodology: "/fr/product/methodology",
+    compliance: "/fr/product/compliance",
+    privacy: "/fr/product/privacy",
+    verify: "/fr/verify",
+    pricing: "/fr/pricing",
+    generate: "/fr/generate",
+  };
 
   const closeAll = () => {
     setDropdown(false);
@@ -26,15 +40,31 @@ export default function HeaderFR() {
   }, []);
 
   useEffect(() => {
+    setOpen(false);
+    setDropdown(false);
+  }, [pathname]);
+
+  useEffect(() => {
     if (!open && !dropdown) return;
 
     const handleClickOutside = (event: MouseEvent | TouchEvent) => {
       const target = event.target as Node;
+
+      const clickedOutsideNav =
+        navRef.current && !navRef.current.contains(target);
+      const clickedOutsideBurger =
+        burgerRef.current && !burgerRef.current.contains(target);
+      const clickedOutsideDropdown =
+        dropdownPanelRef.current && !dropdownPanelRef.current.contains(target);
+      const clickedOutsideDropdownButton =
+        dropdownButtonRef.current &&
+        !dropdownButtonRef.current.contains(target);
+
       if (
-        navRef.current &&
-        !navRef.current.contains(target) &&
-        burgerRef.current &&
-        !burgerRef.current.contains(target)
+        clickedOutsideNav &&
+        clickedOutsideBurger &&
+        clickedOutsideDropdown &&
+        clickedOutsideDropdownButton
       ) {
         closeAll();
       }
@@ -50,136 +80,133 @@ export default function HeaderFR() {
   }, [open, dropdown]);
 
   useEffect(() => {
-    if (!dropdown) return;
+    if (!dropdown && !open) return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setDropdown(false);
+        setOpen(false);
         dropdownButtonRef.current?.focus();
       }
     };
 
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [dropdown]);
+  }, [dropdown, open]);
 
   const isActive = (href: string) => pathname === href;
 
-  const linkBase =
-    "font-medium text-gray-800 dark:text-gray-200 hover:text-[#15B097] transition-colors";
-  const linkActive = "font-medium text-[#15B097]";
+  const isAttestationActive =
+    pathname === routes.product ||
+    pathname === routes.methodology ||
+    pathname === routes.compliance ||
+    pathname === routes.privacy;
 
-  const routes = {
-    home: "/fr",
-    pillarBilanCarbonePME: "/fr/bilan-carbone-pme",
-    product: "/fr/product",
-    methodology: "/fr/product/methodology",
-    compliance: "/fr/product/compliance",
-    verify: "/fr/verify",
-    pricing: "/fr/pricing",
-    partners: "/fr/partners",
-    generate: "/fr/generate",
-  };
+  const navLinkBase =
+    "relative text-sm font-medium text-[#475569] transition-colors duration-300 hover:text-[#0B3A63]";
+  const navLinkActive = "text-[#0B3A63]";
 
-  const isPillarActive = pathname === routes.pillarBilanCarbonePME;
+  const dropdownItemBase =
+    "block rounded-lg px-3 py-2.5 text-sm font-medium text-[#475569] transition-all duration-300 hover:bg-[#F8FAFC] hover:text-[#0B3A63]";
+  const dropdownItemActive = "bg-[#F8FAFC] text-[#0B3A63]";
 
   return (
     <header
-      id="site-header"
+      id="top"
       role="banner"
-      className="
-        fixed top-0 left-0 w-full z-50
-        bg-white/95 dark:bg-gray-900/90
-        backdrop-blur-md
-        border-b border-gray-200 dark:border-gray-700
-      "
+      className="fixed left-0 top-0 z-50 w-full border-b border-[#0B3A63]/8 bg-white/92 backdrop-blur-md"
     >
-      <div className="w-full px-5 py-2 md:py-4 flex items-center justify-between">
-        <Link href={routes.home} onClick={closeAll} aria-label="Accueil">
+      <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-5 py-3 md:px-6 md:py-4">
+        <Link
+          href={routes.home}
+          onClick={closeAll}
+          aria-label="Accueil Certif-Scope"
+          className="shrink-0"
+        >
           <Image
             src="/logo.png"
             alt="Certif-Scope"
             width={180}
             height={50}
             priority
-            className="h-auto w-[140px] sm:w-[150px] md:w-[180px]"
+            className="h-auto w-[142px] sm:w-[152px] md:w-[180px]"
           />
         </Link>
 
         <button
           ref={burgerRef}
-          onClick={() => setOpen((v) => !v)}
+          type="button"
+          onClick={() => {
+            setOpen((prev) => !prev);
+            setDropdown(false);
+          }}
           aria-label="Ouvrir le menu"
           aria-expanded={open}
           aria-controls="main-navigation"
-          className="lg:hidden w-8 h-8 flex flex-col justify-center items-center"
+          className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#0B3A63]/10 bg-white text-[#0B3A63] shadow-sm transition-all duration-300 hover:bg-[#F8FAFC] lg:hidden"
         >
-          <span
-            className={`h-[3px] w-7 bg-gray-900 dark:bg-gray-200 rounded transition-all ${
-              open ? "rotate-45 translate-y-1" : ""
-            }`}
-          />
-          <span
-            className={`h-[3px] w-7 bg-gray-900 dark:bg-gray-200 rounded my-1 transition-all ${
-              open ? "opacity-0" : ""
-            }`}
-          />
-          <span
-            className={`h-[3px] w-7 bg-gray-900 dark:bg-gray-200 rounded transition-all ${
-              open ? "-rotate-45 -translate-y-1" : ""
-            }`}
-          />
+          <span className="relative flex h-4 w-5 flex-col items-center justify-between">
+            <span
+              className={`block h-[2px] w-5 rounded-full bg-[#0B3A63] transition-all duration-300 ${
+                open ? "translate-y-[7px] rotate-45" : ""
+              }`}
+            />
+            <span
+              className={`block h-[2px] w-5 rounded-full bg-[#0B3A63] transition-all duration-300 ${
+                open ? "opacity-0" : ""
+              }`}
+            />
+            <span
+              className={`block h-[2px] w-5 rounded-full bg-[#0B3A63] transition-all duration-300 ${
+                open ? "-translate-y-[7px] -rotate-45" : ""
+              }`}
+            />
+          </span>
         </button>
 
-        <nav
-          ref={navRef}
-          id="main-navigation"
-          aria-label="Navigation principale"
-          className={`
-            absolute lg:static top-[60px] right-4
-            bg-white dark:bg-gray-900
-            border border-gray-200 dark:border-gray-700
-            rounded-xl shadow-lg lg:shadow-none
-            p-5 lg:p-0
-            w-72 lg:w-auto
-            transition-all
-            ${open ? "block" : "hidden lg:block"}
-          `}
-        >
-          <ul className="flex flex-col lg:flex-row gap-4 lg:gap-10">
-            <li>
-              <Link
-                href={routes.home}
-                onClick={closeAll}
-                aria-current={isActive(routes.home) ? "page" : undefined}
-                className={isActive(routes.home) ? linkActive : linkBase}
-              >
-                Accueil
-              </Link>
-            </li>
+        <div className="hidden items-center gap-4 lg:flex">
+          <nav
+            ref={navRef}
+            id="main-navigation-desktop"
+            aria-label="Navigation principale"
+            className="flex items-center gap-7"
+          >
+            <Link
+              href={routes.home}
+              aria-current={isActive(routes.home) ? "page" : undefined}
+              className={`${navLinkBase} ${
+                isActive(routes.home) ? navLinkActive : ""
+              }`}
+            >
+              Accueil
+            </Link>
 
-            <li>
-              <Link
-                href={routes.pillarBilanCarbonePME}
-                onClick={closeAll}
-                aria-current={isPillarActive ? "page" : undefined}
-                className={isPillarActive ? linkActive : linkBase}
-              >
-                Bilan carbone PME
-              </Link>
-            </li>
+            <Link
+              href={routes.pillarBilanCarbonePME}
+              aria-current={
+                isActive(routes.pillarBilanCarbonePME) ? "page" : undefined
+              }
+              className={`${navLinkBase} ${
+                isActive(routes.pillarBilanCarbonePME) ? navLinkActive : ""
+              }`}
+            >
+              Bilan carbone PME
+            </Link>
 
-            <li className="relative">
+            <div className="relative">
               <button
                 ref={dropdownButtonRef}
-                onClick={() => setDropdown((v) => !v)}
+                type="button"
+                onClick={() => setDropdown((prev) => !prev)}
                 aria-haspopup="true"
                 aria-expanded={dropdown}
-                className={`${linkBase} flex items-center gap-1`}
+                className={`${navLinkBase} ${
+                  isAttestationActive ? navLinkActive : ""
+                } flex items-center gap-2`}
               >
                 Attestation CO₂e
                 <span
-                  className={`transition-transform ${
+                  className={`text-[10px] transition-transform duration-300 ${
                     dropdown ? "rotate-180" : ""
                   }`}
                 >
@@ -189,18 +216,25 @@ export default function HeaderFR() {
 
               {dropdown && (
                 <div
+                  ref={dropdownPanelRef}
                   role="menu"
-                  className="
-                    absolute left-0 top-[55px] w-64 z-50
-                    bg-white dark:bg-gray-900
-                    border border-gray-200 dark:border-gray-700
-                    rounded-lg shadow-lg p-3
-                  "
+                  className="absolute left-0 top-[calc(100%+14px)] z-50 w-72 overflow-hidden rounded-2xl border border-[#0B3A63]/10 bg-white p-3 shadow-[0_18px_40px_rgba(11,58,99,0.12)]"
                 >
+                  <div className="mb-2 rounded-xl border border-[#1FB6C1]/14 bg-[linear-gradient(180deg,rgba(31,182,193,0.08)_0%,rgba(31,182,193,0.03)_100%)] px-3 py-3">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#64748B]">
+                      Produit
+                    </p>
+                    <p className="mt-1 text-sm font-semibold text-[#0B3A63]">
+                      Comprendre le document, sa méthode et son périmètre
+                    </p>
+                  </div>
+
                   <Link
                     href={routes.product}
                     onClick={closeAll}
-                    className="block py-2 text-sm text-gray-800 dark:text-gray-200 hover:text-[#15B097] transition-colors"
+                    className={`${dropdownItemBase} ${
+                      isActive(routes.product) ? dropdownItemActive : ""
+                    }`}
                   >
                     Présentation
                   </Link>
@@ -208,7 +242,9 @@ export default function HeaderFR() {
                   <Link
                     href={routes.methodology}
                     onClick={closeAll}
-                    className="block py-2 text-sm text-gray-800 dark:text-gray-200 hover:text-[#15B097] transition-colors"
+                    className={`${dropdownItemBase} ${
+                      isActive(routes.methodology) ? dropdownItemActive : ""
+                    }`}
                   >
                     Méthodologie
                   </Link>
@@ -216,60 +252,209 @@ export default function HeaderFR() {
                   <Link
                     href={routes.compliance}
                     onClick={closeAll}
-                    className="block py-2 text-sm text-gray-800 dark:text-gray-200 hover:text-[#15B097] transition-colors"
+                    className={`${dropdownItemBase} ${
+                      isActive(routes.compliance) ? dropdownItemActive : ""
+                    }`}
                   >
                     Cadre &amp; conformité
                   </Link>
+
+                  <Link
+                    href={routes.privacy}
+                    onClick={closeAll}
+                    className={`${dropdownItemBase} ${
+                      isActive(routes.privacy) ? dropdownItemActive : ""
+                    }`}
+                  >
+                    Confidentialité
+                  </Link>
                 </div>
               )}
-            </li>
+            </div>
 
-            <li>
-              <Link
-                href={routes.verify}
-                onClick={closeAll}
-                aria-current={isActive(routes.verify) ? "page" : undefined}
-                className={isActive(routes.verify) ? linkActive : linkBase}
-              >
-                Vérifier une attestation
-              </Link>
-            </li>
+            <Link
+              href={routes.verify}
+              aria-current={isActive(routes.verify) ? "page" : undefined}
+              className={`${navLinkBase} ${
+                isActive(routes.verify) ? navLinkActive : ""
+              }`}
+            >
+              Vérifier
+            </Link>
 
-            <li>
-              <Link
-                href={routes.pricing}
-                onClick={closeAll}
-                aria-current={isActive(routes.pricing) ? "page" : undefined}
-                className={isActive(routes.pricing) ? linkActive : linkBase}
-              >
-                Tarification
-              </Link>
-            </li>
+            <Link
+              href={routes.pricing}
+              aria-current={isActive(routes.pricing) ? "page" : undefined}
+              className={`${navLinkBase} ${
+                isActive(routes.pricing) ? navLinkActive : ""
+              }`}
+            >
+              Tarification
+            </Link>
+          </nav>
 
-            <li>
-              <Link
-                href={routes.partners}
-                onClick={closeAll}
-                aria-current={isActive(routes.partners) ? "page" : undefined}
-                className={isActive(routes.partners) ? linkActive : linkBase}
-              >
-                Partenariats
-              </Link>
-            </li>
+          <Link
+            href={routes.generate}
+            className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-[#1FB6C1] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(31,182,193,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#19AAB4]"
+          >
+            Générer
+          </Link>
+        </div>
+      </div>
 
-            <li>
-              <Link
-                href={routes.generate}
-                onClick={closeAll}
-                aria-current={isActive(routes.generate) ? "page" : undefined}
-                className={isActive(routes.generate) ? linkActive : linkBase}
+      <div
+        ref={navRef}
+        id="main-navigation"
+        aria-label="Navigation principale mobile"
+        className={`px-4 pb-4 lg:hidden ${
+          open ? "block" : "hidden"
+        }`}
+      >
+        <div className="overflow-hidden rounded-[24px] border border-[#0B3A63]/10 bg-white p-4 shadow-[0_18px_40px_rgba(11,58,99,0.12)]">
+          <div className="flex flex-col gap-2">
+            <Link
+              href={routes.home}
+              onClick={closeAll}
+              aria-current={isActive(routes.home) ? "page" : undefined}
+              className={`rounded-xl px-4 py-3 text-sm font-medium transition-colors duration-300 ${
+                isActive(routes.home)
+                  ? "bg-[#F8FAFC] text-[#0B3A63]"
+                  : "text-[#475569] hover:bg-[#F8FAFC] hover:text-[#0B3A63]"
+              }`}
+            >
+              Accueil
+            </Link>
+
+            <Link
+              href={routes.pillarBilanCarbonePME}
+              onClick={closeAll}
+              aria-current={
+                isActive(routes.pillarBilanCarbonePME) ? "page" : undefined
+              }
+              className={`rounded-xl px-4 py-3 text-sm font-medium transition-colors duration-300 ${
+                isActive(routes.pillarBilanCarbonePME)
+                  ? "bg-[#F8FAFC] text-[#0B3A63]"
+                  : "text-[#475569] hover:bg-[#F8FAFC] hover:text-[#0B3A63]"
+              }`}
+            >
+              Bilan carbone PME
+            </Link>
+
+            <button
+              ref={dropdownButtonRef}
+              type="button"
+              onClick={() => setDropdown((prev) => !prev)}
+              aria-haspopup="true"
+              aria-expanded={dropdown}
+              className={`flex items-center justify-between rounded-xl px-4 py-3 text-left text-sm font-medium transition-colors duration-300 ${
+                isAttestationActive || dropdown
+                  ? "bg-[#F8FAFC] text-[#0B3A63]"
+                  : "text-[#475569] hover:bg-[#F8FAFC] hover:text-[#0B3A63]"
+              }`}
+            >
+              <span>Attestation CO₂e</span>
+              <span
+                className={`text-[10px] transition-transform duration-300 ${
+                  dropdown ? "rotate-180" : ""
+                }`}
               >
-                Générer une attestation
-              </Link>
-            </li>
-          </ul>
-        </nav>
+                ▼
+              </span>
+            </button>
+
+            {dropdown && (
+              <div
+                ref={dropdownPanelRef}
+                className="ml-2 rounded-2xl border border-[#0B3A63]/10 bg-[#F8FAFC] p-2"
+              >
+                <Link
+                  href={routes.product}
+                  onClick={closeAll}
+                  className={`block rounded-lg px-3 py-2.5 text-sm font-medium transition-colors duration-300 ${
+                    isActive(routes.product)
+                      ? "bg-white text-[#0B3A63]"
+                      : "text-[#475569] hover:bg-white hover:text-[#0B3A63]"
+                  }`}
+                >
+                  Présentation
+                </Link>
+
+                <Link
+                  href={routes.methodology}
+                  onClick={closeAll}
+                  className={`block rounded-lg px-3 py-2.5 text-sm font-medium transition-colors duration-300 ${
+                    isActive(routes.methodology)
+                      ? "bg-white text-[#0B3A63]"
+                      : "text-[#475569] hover:bg-white hover:text-[#0B3A63]"
+                  }`}
+                >
+                  Méthodologie
+                </Link>
+
+                <Link
+                  href={routes.compliance}
+                  onClick={closeAll}
+                  className={`block rounded-lg px-3 py-2.5 text-sm font-medium transition-colors duration-300 ${
+                    isActive(routes.compliance)
+                      ? "bg-white text-[#0B3A63]"
+                      : "text-[#475569] hover:bg-white hover:text-[#0B3A63]"
+                  }`}
+                >
+                  Cadre &amp; conformité
+                </Link>
+
+                <Link
+                  href={routes.privacy}
+                  onClick={closeAll}
+                  className={`block rounded-lg px-3 py-2.5 text-sm font-medium transition-colors duration-300 ${
+                    isActive(routes.privacy)
+                      ? "bg-white text-[#0B3A63]"
+                      : "text-[#475569] hover:bg-white hover:text-[#0B3A63]"
+                  }`}
+                >
+                  Confidentialité
+                </Link>
+              </div>
+            )}
+
+            <Link
+              href={routes.verify}
+              onClick={closeAll}
+              aria-current={isActive(routes.verify) ? "page" : undefined}
+              className={`rounded-xl px-4 py-3 text-sm font-medium transition-colors duration-300 ${
+                isActive(routes.verify)
+                  ? "bg-[#F8FAFC] text-[#0B3A63]"
+                  : "text-[#475569] hover:bg-[#F8FAFC] hover:text-[#0B3A63]"
+              }`}
+            >
+              Vérifier
+            </Link>
+
+            <Link
+              href={routes.pricing}
+              onClick={closeAll}
+              aria-current={isActive(routes.pricing) ? "page" : undefined}
+              className={`rounded-xl px-4 py-3 text-sm font-medium transition-colors duration-300 ${
+                isActive(routes.pricing)
+                  ? "bg-[#F8FAFC] text-[#0B3A63]"
+                  : "text-[#475569] hover:bg-[#F8FAFC] hover:text-[#0B3A63]"
+              }`}
+            >
+              Tarification
+            </Link>
+          </div>
+
+          <div className="mt-4 border-t border-[#0B3A63]/8 pt-4">
+            <Link
+              href={routes.generate}
+              onClick={closeAll}
+              className="inline-flex min-h-[48px] w-full items-center justify-center rounded-xl bg-[#1FB6C1] px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(31,182,193,0.22)] transition-all duration-300 hover:bg-[#19AAB4]"
+            >
+              Générer une attestation
+            </Link>
+          </div>
+        </div>
       </div>
     </header>
   );
-              }
+}
