@@ -7,22 +7,22 @@ const featureItems = [
   {
     id: "01",
     title: "Résultat CO₂e lisible",
-    text: "Le document présente un résultat agrégé clair, conçu pour être relu rapidement par un client, un acheteur, une banque ou un partenaire.",
+    text: "Un résultat agrégé clair, conçu pour être compris immédiatement par un client, un acheteur, une banque ou un partenaire.",
   },
   {
     id: "02",
     title: "Méthode indiquée",
-    text: "L’attestation mentionne l’approche spend-based utilisée, avec un cadrage synthétique du périmètre, des hypothèses et du caractère indicatif.",
+    text: "Une approche spend-based explicitée, avec un cadrage synthétique du périmètre, des hypothèses et du caractère indicatif.",
   },
   {
     id: "03",
     title: "Sources référencées",
-    text: "Les facteurs d’émission utilisés s’appuient sur des référentiels reconnus et documentés pour renforcer la cohérence et la reproductibilité.",
+    text: "Des facteurs d’émission issus de référentiels reconnus, garantissant cohérence et reproductibilité.",
   },
   {
     id: "04",
     title: "Vérification indépendante",
-    text: "Le document comporte un identifiant unique et un bloc de vérification permettant une lecture et un contrôle plus simples par un tiers.",
+    text: "Un identifiant unique et un bloc de vérification permettant un contrôle simple par un tiers.",
   },
 ];
 
@@ -47,22 +47,22 @@ export default function FeaturesFR() {
         {/* HEADER */}
         <div className="mx-auto max-w-3xl text-center">
           <p className="features-reveal text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B] md:text-sm">
-            Contenu de l’attestation
+            Attestation carbone
           </p>
 
-          <h2 className="features-reveal mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] [animation-delay:100ms] md:text-4xl">
-            Ce que contient concrètement l’attestation carbone
+          <h2 className="features-reveal mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl [animation-delay:100ms]">
+            Voici exactement le document que vous transmettez
           </h2>
 
-          <p className="features-reveal mx-auto mt-5 max-w-3xl text-base leading-relaxed text-[#475569] [animation-delay:200ms] md:text-lg">
-            Une structure standardisée, pensée pour fournir une lecture claire,
-            cohérente et vérifiable lorsqu’un document carbone doit être transmis rapidement.
+          <p className="features-reveal mx-auto mt-5 max-w-2xl text-base leading-relaxed text-[#475569] md:text-lg [animation-delay:200ms]">
+            Un document conçu pour répondre directement à une demande client,
+            un appel d’offres ou un dossier fournisseur.
           </p>
         </div>
 
-        {/* MAIN CONTENT */}
+        {/* MAIN */}
         <div className="mt-16 grid items-center gap-12 lg:grid-cols-[1.02fr_0.98fr] lg:gap-14">
-          {/* LEFT — VISUAL PRODUCT */}
+          {/* VISUAL */}
           <div
             className="features-visual relative"
             style={{ animationDelay: "280ms" }}
@@ -71,8 +71,12 @@ export default function FeaturesFR() {
             <div className="absolute left-1/2 top-[22%] -z-20 h-[280px] w-[560px] -translate-x-1/2 rounded-full bg-[#0B3A63]/7 blur-3xl md:h-[340px] md:w-[680px]" />
 
             <div className="relative mx-auto max-w-[720px]">
+              <p className="text-center text-xs uppercase tracking-[0.18em] text-[#64748B] mb-3">
+                Aperçu du document
+              </p>
+
               {/* FLOATING NOTE 1 */}
-              <div className="absolute left-0 top-8 z-10 hidden rounded-2xl border border-[#0B3A63]/10 bg-white/96 px-4 py-3 shadow-[0_18px_40px_rgba(11,58,99,0.12)] backdrop-blur md:block">
+              <div className="absolute left-0 top-10 z-10 hidden rounded-2xl border border-[#0B3A63]/10 bg-white px-5 py-4 shadow-[0_18px_40px_rgba(11,58,99,0.12)] backdrop-blur ring-1 ring-[#1FB6C1]/20 md:block">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#64748B]">
                   Résultat
                 </p>
@@ -82,7 +86,7 @@ export default function FeaturesFR() {
               </div>
 
               {/* FLOATING NOTE 2 */}
-              <div className="absolute -right-2 bottom-12 z-10 hidden rounded-2xl border border-[#0B3A63]/10 bg-white/96 px-4 py-3 shadow-[0_18px_40px_rgba(11,58,99,0.12)] backdrop-blur md:block">
+              <div className="absolute -right-2 bottom-14 z-10 hidden rounded-2xl border border-[#0B3A63]/10 bg-white px-5 py-4 shadow-[0_18px_40px_rgba(11,58,99,0.12)] backdrop-blur ring-1 ring-[#1FB6C1]/20 md:block">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#64748B]">
                   Vérification
                 </p>
@@ -92,11 +96,11 @@ export default function FeaturesFR() {
               </div>
 
               {/* DOCUMENT */}
-              <div className="relative overflow-hidden rounded-[30px] border border-[#0B3A63]/10 bg-white shadow-[0_24px_60px_rgba(11,58,99,0.12)]">
+              <div className="relative overflow-hidden rounded-[30px] border border-[#0B3A63]/10 bg-white shadow-[0_28px_70px_rgba(11,58,99,0.14)]">
                 <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(31,182,193,0.55),transparent)]" />
                 <Image
                   src="/preview.webp"
-                  alt="Exemple d’attestation carbone Certif-Scope avec résultat CO2e, méthode et identifiant vérifiable"
+                  alt="Exemple d’attestation carbone Certif-Scope"
                   width={1200}
                   height={800}
                   loading="lazy"
@@ -119,7 +123,7 @@ export default function FeaturesFR() {
             </div>
           </div>
 
-          {/* RIGHT — FEATURES */}
+          {/* FEATURES */}
           <div className="space-y-5">
             {featureItems.map((item, index) => (
               <div
@@ -138,7 +142,7 @@ export default function FeaturesFR() {
                   </div>
 
                   <div className="min-w-0">
-                    <h3 className="text-lg font-semibold leading-snug text-[#0B3A63] md:text-[1.06rem]">
+                    <h3 className="text-lg font-semibold text-[#0B3A63]">
                       {item.title}
                     </h3>
 
@@ -150,9 +154,8 @@ export default function FeaturesFR() {
               </div>
             ))}
 
-            <div
-              className="features-reveal rounded-[26px] border border-[#1FB6C1]/16 bg-[linear-gradient(180deg,rgba(31,182,193,0.08)_0%,rgba(31,182,193,0.03)_100%)] p-6 md:p-7 [animation-delay:760ms]"
-            >
+            {/* DISCLAIMER */}
+            <div className="features-reveal rounded-[26px] border border-[#1FB6C1]/16 bg-[linear-gradient(180deg,rgba(31,182,193,0.08)_0%,rgba(31,182,193,0.03)_100%)] p-6 md:p-7 [animation-delay:760ms]">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B] md:text-sm">
                 Clarification importante
               </p>
@@ -162,18 +165,17 @@ export default function FeaturesFR() {
                 <strong className="font-semibold text-[#0B3A63]">
                   attestation indicative
                 </strong>{" "}
-                basée exclusivement sur les dépenses déclarées. Ce document ne
-                constitue ni un inventaire GES complet, ni un audit réglementaire,
-                ni un reporting CSRD/ESRS.
+                basée sur les dépenses déclarées. Ce document ne constitue ni un
+                inventaire GES complet, ni un audit réglementaire, ni un reporting CSRD/ESRS.
               </p>
             </div>
           </div>
         </div>
 
-        {/* BOTTOM LINK + CTA */}
+        {/* CTA */}
         <div className="features-reveal mt-14 flex flex-col items-center justify-center gap-4 text-center [animation-delay:860ms]">
           <p className="text-sm font-medium text-[#0B3A63]/80 md:text-base">
-            Voir le format, comprendre la méthode, transmettre un document lisible.
+            Un document prêt à être envoyé immédiatement.
           </p>
 
           <Link
@@ -221,16 +223,12 @@ export default function FeaturesFR() {
         .features-card {
           opacity: 0;
           animation: revealUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-          transition:
-            transform 300ms ease,
-            box-shadow 300ms ease,
-            border-color 300ms ease;
+          transition: transform 300ms ease, box-shadow 300ms ease;
         }
 
         .features-card:hover {
           transform: translateY(-4px);
           box-shadow: 0 18px 40px rgba(11, 58, 99, 0.08);
-          border-color: rgba(11, 58, 99, 0.14);
         }
 
         @media (prefers-reduced-motion: reduce) {
