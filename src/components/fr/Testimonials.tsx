@@ -8,21 +8,21 @@ const useCases = [
     id: "01",
     title: "Répondre à une demande fournisseur",
     text: "Un client ou une plateforme fournisseur demande un justificatif CO₂e. L’objectif est d’envoyer rapidement un document clair et transmissible.",
-    ctaLabel: "Cas fournisseur",
+    ctaLabel: "Voir le cas fournisseur",
     ctaHref: "/fr/bilan-carbone-pme",
   },
   {
     id: "02",
     title: "Répondre à un appel d’offres",
     text: "Le dossier mentionne un critère carbone sans exiger un audit détaillé. Une attestation standardisée permet de répondre au bon niveau.",
-    ctaLabel: "Cas appel d’offres",
+    ctaLabel: "Voir le cas appel d’offres",
     ctaHref: "/fr/bilan-carbone-appel-offres",
   },
   {
     id: "03",
     title: "Faire lire et vérifier rapidement",
     text: "Le besoin final est souvent simple : un PDF lisible avec résultat agrégé, méthode indiquée et identifiant vérifiable.",
-    ctaLabel: "Vérifier un document",
+    ctaLabel: "Tester la vérification",
     ctaHref: "/fr/verify",
   },
 ];
@@ -38,7 +38,6 @@ export default function TestimonialsFR() {
       <div className="absolute right-[-6%] bottom-10 -z-10 h-80 w-80 rounded-full bg-[#0B3A63]/6 blur-3xl" />
 
       <div className="mx-auto max-w-7xl px-6 md:px-8">
-        {/* HEADER */}
         <div className="mx-auto max-w-3xl text-center">
           <p className="cases-reveal text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B] md:text-sm">
             Cas d’usage
@@ -54,9 +53,7 @@ export default function TestimonialsFR() {
           </p>
         </div>
 
-        {/* MAIN GRID */}
         <div className="mt-16 grid gap-6 lg:grid-cols-[1.02fr_0.98fr] lg:items-start">
-          {/* LEFT — PRIMARY SCENARIO */}
           <div className="cases-main relative overflow-hidden rounded-[30px] border border-[#0B3A63]/10 bg-white p-6 shadow-[0_24px_60px_rgba(11,58,99,0.10)] md:p-8">
             <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(31,182,193,0.55),transparent)]" />
             <div className="absolute left-1/2 top-[12%] -z-10 h-44 w-44 -translate-x-1/2 rounded-full bg-[#1FB6C1]/8 blur-3xl md:h-56 md:w-56" />
@@ -139,7 +136,6 @@ export default function TestimonialsFR() {
             </div>
           </div>
 
-          {/* RIGHT — USE CASES */}
           <div className="grid gap-6">
             {useCases.map((item, index) => (
               <div
@@ -179,22 +175,6 @@ export default function TestimonialsFR() {
               </div>
             ))}
           </div>
-        </div>
-
-        {/* DISCLAIMER */}
-        <div className="cases-reveal mx-auto mt-14 max-w-4xl rounded-[28px] border border-[#1FB6C1]/16 bg-[linear-gradient(180deg,rgba(31,182,193,0.08)_0%,rgba(31,182,193,0.03)_100%)] p-7 text-center md:p-9 [animation-delay:760ms]">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B] md:text-sm">
-            Important
-          </p>
-
-          <p className="mx-auto mt-3 max-w-3xl text-base leading-relaxed text-[#475569] md:text-lg">
-            Ces cas d’usage illustrent des situations fréquentes rencontrées par les PME.
-            Ils montrent quand une{" "}
-            <strong className="font-semibold text-[#0B3A63]">
-              attestation carbone indicative
-            </strong>{" "}
-            constitue une réponse adaptée, sans se substituer à un audit carbone complet.
-          </p>
         </div>
       </div>
 
@@ -309,4 +289,4 @@ export default function TestimonialsFR() {
       `}</style>
     </section>
   );
-                }
+}
