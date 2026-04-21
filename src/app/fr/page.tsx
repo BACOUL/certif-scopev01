@@ -154,14 +154,18 @@ export default function HomeFR() {
         <section
           id="final-cta"
           data-section="final-cta"
-          className="py-24 bg-[#F8FAFC]"
+          className="relative overflow-hidden bg-[#F8FAFC] py-20 md:py-28"
           aria-label="Appel à l’action final"
         >
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="rounded-2xl border border-gray-200 bg-white p-10 md:p-12">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="absolute inset-0 -z-30 bg-[linear-gradient(180deg,#F8FAFC_0%,#ffffff_100%)]" />
+          <div className="absolute left-[-8%] top-16 -z-10 h-60 w-60 rounded-full bg-[#1FB6C1]/6 blur-3xl" />
+          <div className="absolute right-[-6%] bottom-10 -z-10 h-80 w-80 rounded-full bg-[#0B3A63]/6 blur-3xl" />
+
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="rounded-[30px] border border-[#0B3A63]/10 bg-white p-8 shadow-[0_25px_60px_rgba(11,58,99,0.10)] md:p-12">
+              <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-center">
                 <div className="lg:col-span-8">
-                  <p className="uppercase text-xs md:text-sm font-medium text-[#64748B] tracking-wider mb-3">
+                  <p className="uppercase text-xs md:text-sm font-semibold tracking-[0.18em] text-[#64748B] mb-3">
                     Réponse rapide — format standardisé
                   </p>
 
@@ -169,7 +173,7 @@ export default function HomeFR() {
                     Produire une attestation CO₂e indicative, claire et vérifiable
                   </h2>
 
-                  <p className="mt-4 text-gray-700 text-lg leading-relaxed max-w-2xl">
+                  <p className="mt-4 max-w-2xl text-lg leading-relaxed text-[#475569]">
                     Si votre demande relève du screening fournisseur, d’un appel
                     d’offres ou d’une revue banque/assurance, l’objectif est un
                     document lisible, archivable et cohérent : résultat CO₂e
@@ -180,19 +184,21 @@ export default function HomeFR() {
                   <div className="mt-6 flex flex-wrap gap-3">
                     <Link
                       href="/fr/generate"
-                      className="inline-block text-sm px-5 py-2.5 rounded-md bg-[#1FB6C1] text-white hover:bg-[#19AAB4] transition-colors font-semibold"
+                      className="inline-flex items-center justify-center rounded-xl bg-[#1FB6C1] px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#19AAB4]"
                     >
                       Générer mon attestation →
                     </Link>
+
                     <Link
                       href="/fr/pricing"
-                      className="inline-block text-sm px-5 py-2.5 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors font-semibold"
+                      className="inline-flex items-center justify-center rounded-xl border border-[#0B3A63] px-5 py-3 text-sm font-semibold text-[#0B3A63] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0B3A63] hover:text-white"
                     >
                       Voir le prix
                     </Link>
+
                     <Link
                       href="/fr/bilan-carbone-pme"
-                      className="inline-block text-sm px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
+                      className="inline-flex items-center justify-center rounded-xl border border-gray-300 px-4 py-3 text-sm font-medium text-gray-700 transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-50"
                     >
                       Lire le guide PME →
                     </Link>
@@ -200,11 +206,12 @@ export default function HomeFR() {
                 </div>
 
                 <div className="lg:col-span-4">
-                  <div className="rounded-2xl border border-gray-200 bg-[#F8FAFC] p-6">
+                  <div className="rounded-[24px] border border-[#0B3A63]/10 bg-[#F8FAFC] p-6">
                     <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
                       Rappel de périmètre
                     </h3>
-                    <ul className="list-disc ml-6 text-sm text-gray-700 space-y-2">
+
+                    <ul className="list-disc ml-6 space-y-2 text-sm text-[#475569]">
                       <li>estimation indicative (spend-based)</li>
                       <li>résultat agrégé (tCO₂e)</li>
                       <li>non audit, non inventaire complet</li>
@@ -215,13 +222,14 @@ export default function HomeFR() {
                     <div className="mt-5 flex flex-wrap gap-3">
                       <Link
                         href="/fr/verify"
-                        className="inline-block text-sm px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
+                        className="inline-flex items-center justify-center rounded-lg border border-gray-300 px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-50"
                       >
                         Vérifier →
                       </Link>
+
                       <Link
                         href="/fr/product/privacy"
-                        className="inline-block text-sm px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
+                        className="inline-flex items-center justify-center rounded-lg border border-gray-300 px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-50"
                       >
                         Confidentialité →
                       </Link>
@@ -233,7 +241,7 @@ export default function HomeFR() {
               <div className="mt-10 flex flex-wrap gap-3">
                 <a
                   href="#main-content"
-                  className="inline-block text-sm px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
+                  className="inline-flex items-center justify-center rounded-lg border border-gray-300 px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-50"
                 >
                   Haut de page
                 </a>
