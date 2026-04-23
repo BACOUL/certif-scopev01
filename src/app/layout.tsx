@@ -2,18 +2,9 @@ import type { Metadata } from "next";
 import ClientLayout from "./client-layout";
 import "../styles/index.css";
 
-/* ======================================================
-   GLOBAL APP CONFIG
-   - force-dynamic conservé volontairement
-   - un seul layout pour EN + FR
-====================================================== */
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-/* ======================================================
-   DEFAULT METADATA (EN — langue canonique)
-   Les pages /fr ont leur propre metadata
-====================================================== */
 export const metadata: Metadata = {
   title: "CO₂e Attestation for SMEs | Banks & Procurement – Certif-Scope",
   description:
@@ -23,7 +14,6 @@ export const metadata: Metadata = {
     languages: {
       en: "https://www.certif-scope.com/",
       fr: "https://www.certif-scope.com/fr",
-      // de: "https://www.certif-scope.com/de", // si tu l’actives plus tard
     },
   },
   icons: {
@@ -32,7 +22,9 @@ export const metadata: Metadata = {
       { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
       { url: "/favicon.ico" },
     ],
-    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
     shortcut: ["/favicon.ico"],
   },
   manifest: "/site.webmanifest",
@@ -59,16 +51,14 @@ export const metadata: Metadata = {
   },
 };
 
-/* ======================================================
-   ROOT LAYOUT
-   ⚠️ lang par défaut ici (EN). Les pages /fr peuvent
-   idéalement avoir leur propre layout plus tard.
-====================================================== */
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Google Ads / Google tag */}
         <script
           async
           src="https://www.googletagmanager.com/gtag/js?id=AW-933198701"
@@ -77,14 +67,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'AW-933198701');
+              window.gtag = window.gtag || function(){window.dataLayer.push(arguments);};
+              window.gtag('js', new Date());
+              window.gtag('config', 'AW-933198701');
             `,
           }}
         />
 
-        {/* JSON-LD — Organization */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -100,7 +89,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
 
-        {/* JSON-LD — WebSite (minimal) */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
