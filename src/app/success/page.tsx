@@ -2,7 +2,6 @@ import { Suspense } from "react";
 import Script from "next/script";
 import SuccessClient from "./SuccessClient";
 
-// ⛔️ OBLIGATOIRE — empêche le rendu statique
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
@@ -29,16 +28,12 @@ export default function SuccessPage({
         dangerouslySetInnerHTML={{
           __html: `
             window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('event', 'conversion', {
+            window.gtag = window.gtag || function(){window.dataLayer.push(arguments);};
+            window.gtag('event', 'conversion', {
               'send_to': 'AW-933198701/rnQFCIPr1KEcE032_bwD',
               'value': 89.0,
-              'currency': 'EUR',
-              ${
-                sessionId
-                  ? `'transaction_id': ${JSON.stringify(sessionId)},`
-                  : ""
-              }
+              'currency': 'EUR'
+              ${sessionId ? `, 'transaction_id': ${JSON.stringify(sessionId)}` : ""}
             });
           `,
         }}
