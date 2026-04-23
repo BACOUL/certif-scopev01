@@ -68,6 +68,22 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Google Ads / Google tag */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-933198701"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-933198701');
+            `,
+          }}
+        />
+
         {/* JSON-LD — Organization */}
         <script
           type="application/ld+json"
@@ -104,4 +120,4 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </body>
     </html>
   );
-        }
+}
