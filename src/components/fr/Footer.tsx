@@ -13,6 +13,10 @@ export default function FooterFR() {
   const footerCardClass =
     "rounded-[24px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm";
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <footer
       id="footer"
@@ -26,7 +30,6 @@ export default function FooterFR() {
 
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid grid-cols-1 gap-6 xl:grid-cols-[1.15fr_0.95fr_0.95fr_0.95fr]">
-          {/* BRAND */}
           <div className="rounded-[28px] border border-[#0B3A63]/10 bg-white p-7 shadow-[0_18px_40px_rgba(11,58,99,0.08)]">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">
               Certif-Scope
@@ -73,7 +76,7 @@ export default function FooterFR() {
               </Link>
 
               <Link
-                href="/verify"
+                href="/fr/verify/"
                 className={`${footerButtonBase} border border-[#0B3A63]/14 bg-white text-[#0B3A63] hover:-translate-y-0.5 hover:border-[#0B3A63] hover:bg-[#0B3A63] hover:text-white`}
               >
                 Vérifier
@@ -81,7 +84,6 @@ export default function FooterFR() {
             </div>
           </div>
 
-          {/* PRODUCT */}
           <nav aria-label="Navigation produit" className={footerCardClass}>
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">
               Produit
@@ -108,7 +110,7 @@ export default function FooterFR() {
                 </Link>
               </li>
               <li>
-                <Link className={navLinkClass} href="/verify">
+                <Link className={navLinkClass} href="/fr/verify/">
                   Vérifier un document
                 </Link>
               </li>
@@ -125,7 +127,6 @@ export default function FooterFR() {
             </ul>
           </nav>
 
-          {/* GUIDES */}
           <nav
             aria-label="Cas concrets bilan carbone et exigences CO₂e"
             className={footerCardClass}
@@ -168,7 +169,6 @@ export default function FooterFR() {
             </ul>
           </nav>
 
-          {/* COMPANY & LEGAL */}
           <nav
             aria-label="Navigation entreprise et légal"
             className={footerCardClass}
@@ -235,13 +235,14 @@ export default function FooterFR() {
             © {year} Certif-Scope. Tous droits réservés.
           </p>
 
-          <a
-            href="#top"
+          <button
+            type="button"
+            onClick={scrollToTop}
             className="inline-flex items-center justify-center rounded-xl border border-[#0B3A63] px-4 py-2.5 text-sm font-semibold text-[#0B3A63] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0B3A63] hover:text-white"
             aria-label="Revenir en haut de page"
           >
             ↑ Revenir en haut
-          </a>
+          </button>
         </div>
 
         <script
@@ -259,4 +260,4 @@ export default function FooterFR() {
       </div>
     </footer>
   );
-      }
+}
