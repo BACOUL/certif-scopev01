@@ -201,22 +201,22 @@ export default function PricingPageFR() {
 
         <div className="mx-auto max-w-7xl px-6 md:px-8">
           <header className="mx-auto max-w-4xl text-center">
-            <p className="pricing-reveal text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B] md:text-sm">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B] md:text-sm">
               Tarifs Certif-Scope
             </p>
 
-            <h1 className="pricing-reveal mt-4 text-4xl font-extrabold leading-tight tracking-tight text-[#0B3A63] md:text-5xl">
+            <h1 className="mt-4 text-4xl font-extrabold leading-tight tracking-tight text-[#0B3A63] md:text-5xl">
               Un prix clair pour obtenir une attestation CO₂e vérifiable
             </h1>
 
-            <p className="pricing-reveal mx-auto mt-6 max-w-3xl text-base leading-relaxed text-[#475569] md:text-lg">
+            <p className="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-[#475569] md:text-lg">
               Certif-Scope permet de produire un document carbone indicatif,
               standardisé et vérifiable, conçu pour répondre rapidement aux
               demandes de screening fournisseur, d’appel d’offres, de banque ou
               d’assurance.
             </p>
 
-            <div className="pricing-reveal mt-8 flex flex-wrap items-center justify-center gap-3">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <Link
                 href="/fr/generate/"
                 className="inline-flex min-h-[48px] items-center justify-center rounded-xl bg-[#1FB6C1] px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#19AAB4]"
@@ -241,7 +241,7 @@ export default function PricingPageFR() {
           </header>
 
           <section className="mt-16 grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-stretch">
-            <div className="pricing-main relative overflow-hidden rounded-[34px] border border-[#0B3A63]/10 bg-white p-8 shadow-[0_25px_70px_rgba(11,58,99,0.13)] md:p-10">
+            <div className="relative overflow-hidden rounded-[34px] border border-[#0B3A63]/10 bg-white p-8 shadow-[0_25px_70px_rgba(11,58,99,0.13)] md:p-10">
               <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(31,182,193,0.65),transparent)]" />
               <div className="absolute right-[-12%] top-[-18%] h-56 w-56 rounded-full bg-[#1FB6C1]/8 blur-3xl" />
 
@@ -314,7 +314,7 @@ export default function PricingPageFR() {
               </div>
             </div>
 
-            <aside className="pricing-card rounded-[34px] border border-[#0B3A63]/10 bg-[#0B3A63] p-8 text-white shadow-[0_25px_60px_rgba(11,58,99,0.16)] md:p-10">
+            <aside className="rounded-[34px] border border-[#0B3A63]/10 bg-[#0B3A63] p-8 text-white shadow-[0_25px_60px_rgba(11,58,99,0.16)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_rgba(11,58,99,0.18)] md:p-10">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/70">
                 Comparaison utile
               </p>
@@ -360,7 +360,7 @@ export default function PricingPageFR() {
             {reassuranceItems.map((item) => (
               <div
                 key={item.title}
-                className="pricing-card rounded-[28px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm"
+                className="rounded-[28px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_rgba(11,58,99,0.08)]"
               >
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#64748B]">
                   {item.title}
@@ -403,7 +403,7 @@ export default function PricingPageFR() {
             {packs.map((pack) => (
               <div
                 key={pack.name}
-                className="pricing-card flex flex-col rounded-[30px] border border-[#0B3A63]/10 bg-white p-8 shadow-[0_18px_45px_rgba(11,58,99,0.08)]"
+                className="flex flex-col rounded-[30px] border border-[#0B3A63]/10 bg-white p-8 shadow-[0_18px_45px_rgba(11,58,99,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_rgba(11,58,99,0.08)]"
               >
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#64748B]">
                   Pack
@@ -602,50 +602,6 @@ export default function PricingPageFR() {
           </p>
         </div>
       </section>
-
-      <style jsx>{`
-        @keyframes revealUp {
-          from {
-            opacity: 0;
-            transform: translateY(18px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        .pricing-reveal {
-          opacity: 0;
-          animation: revealUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-        }
-
-        .pricing-main {
-          opacity: 0;
-          animation: revealUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-        }
-
-        .pricing-card {
-          opacity: 0;
-          animation: revealUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-          transition: transform 300ms ease, box-shadow 300ms ease;
-        }
-
-        .pricing-card:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 20px 45px rgba(11, 58, 99, 0.08);
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .pricing-reveal,
-          .pricing-main,
-          .pricing-card {
-            animation: none !important;
-            opacity: 1 !important;
-            transform: none !important;
-          }
-        }
-      `}</style>
     </main>
   );
-}
+                    }
