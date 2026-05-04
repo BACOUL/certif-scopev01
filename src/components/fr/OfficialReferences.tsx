@@ -21,36 +21,6 @@ type OfficialText = {
   href: string;
 };
 
-const officialReferences: OfficialReference[] = [
-  {
-    label: "PME < 250 salariés",
-    title: "Un cadre volontaire pensé pour les PME",
-    description:
-      "Le VSME vise les micro, petites et moyennes entreprises non cotées. Il confirme le besoin d’informations de durabilité plus simples, proportionnées et adaptées aux moyens des PME.",
-    source: "EFRAG — VSME",
-    href: "https://www.efrag.org/en/smes-and-sustainability-reporting",
-  },
-  {
-    label: "Demandes clients & banques",
-    title: "Répondre sans reporting complet",
-    description:
-      "La Commission européenne reconnaît que les PME peuvent recevoir des demandes d’informations ESG de grandes entreprises ou d’institutions financières, et soutient un standard volontaire pour réduire cette charge.",
-    source: "European Commission — VSME",
-    href: "https://finance.ec.europa.eu/publications/commission-presents-voluntary-sustainability-reporting-standard-ease-burden-smes_en",
-  },
-  {
-    label: "Méthode carbone",
-    title: "Une estimation possible en spend-based",
-    description:
-      "Le GHG Protocol Scope 3 Calculation Guidance présente l’approche spend-based parmi les méthodes possibles pour estimer certaines émissions indirectes, notamment les biens et services achetés.",
-    source: "GHG Protocol — Scope 3 Guidance",
-    href: "https://ghgprotocol.org/scope-3-calculation-guidance-2",
-    secondarySource: "Purchased Goods and Services — Chapter 1",
-    secondaryHref:
-      "https://ghgprotocol.org/sites/default/files/2022-12/Chapter1.pdf",
-  },
-];
-
 const officialTexts: OfficialText[] = [
   {
     category: "Standard PME volontaire",
@@ -96,6 +66,36 @@ const officialTexts: OfficialText[] = [
   },
 ];
 
+const officialReferences: OfficialReference[] = [
+  {
+    label: "PME < 250 salariés",
+    title: "VSME — Standard volontaire PME",
+    description:
+      "Référence européenne volontaire destinée aux micro, petites et moyennes entreprises non cotées, pour structurer des informations de durabilité plus simples et proportionnées.",
+    source: "EFRAG — VSME",
+    href: "https://www.efrag.org/en/smes-and-sustainability-reporting",
+  },
+  {
+    label: "Demandes clients & banques",
+    title: "Commission européenne — demandes de durabilité",
+    description:
+      "La Commission européenne reconnaît que les PME peuvent recevoir des demandes d’informations de durabilité de grandes entreprises ou d’institutions financières, et soutient un standard volontaire pour réduire cette charge.",
+    source: "European Commission — VSME",
+    href: "https://finance.ec.europa.eu/publications/commission-presents-voluntary-sustainability-reporting-standard-ease-burden-smes_en",
+  },
+  {
+    label: "Méthode carbone",
+    title: "GHG Protocol — méthode spend-based",
+    description:
+      "Le GHG Protocol Scope 3 Calculation Guidance présente l’approche spend-based parmi les méthodes possibles pour estimer certaines émissions indirectes à partir de données économiques.",
+    source: "GHG Protocol — Scope 3 Guidance",
+    href: "https://ghgprotocol.org/scope-3-calculation-guidance-2",
+    secondarySource: "Purchased Goods and Services — Chapter 1",
+    secondaryHref:
+      "https://ghgprotocol.org/sites/default/files/2022-12/Chapter1.pdf",
+  },
+];
+
 export default function OfficialReferencesFR() {
   return (
     <section
@@ -122,17 +122,91 @@ export default function OfficialReferencesFR() {
           </h2>
 
           <p className="or-reveal mt-6 text-base leading-relaxed text-[#475569] [animation-delay:220ms] md:text-lg">
-            Certif-Scope s’inscrit dans une logique reconnue : permettre aux PME
-            non cotées de répondre à des demandes ESG et carbone avec un format
-            plus simple, proportionné et adapté à leurs moyens.
+            Certif-Scope s’appuie sur des références officielles qui
+            reconnaissent deux réalités : les PME non cotées peuvent recevoir
+            des demandes d’informations ESG ou carbone, et ces réponses doivent
+            rester proportionnées à leurs moyens.
           </p>
 
           <p className="or-reveal mt-4 text-sm leading-relaxed text-[#64748B] [animation-delay:300ms] md:text-base">
-            Cette approche s’appuie sur des références officielles : le VSME
-            pour la proportionnalité PME, la Commission européenne pour le
-            contexte des demandes de durabilité, et le GHG Protocol Scope 3 pour
-            la méthode d’estimation spend-based.
+            Le standard volontaire VSME, présenté par l’EFRAG et soutenu par la
+            Commission européenne, va dans ce sens : faciliter la production
+            d’informations de durabilité adaptées aux PME. Pour la partie
+            carbone, Certif-Scope utilise une approche spend-based inspirée du
+            GHG Protocol Scope 3.
           </p>
+
+          <div className="or-reveal mt-8 flex flex-wrap justify-center gap-3 [animation-delay:380ms]">
+            <a
+              href="#sources-officielles"
+              className="inline-flex items-center justify-center rounded-xl bg-[#1FB6C1] px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#19AAB4] hover:shadow-[0_18px_36px_rgba(31,182,193,0.34)] md:px-7 md:py-4 md:text-base"
+            >
+              Voir les textes officiels
+            </a>
+
+            <Link
+              href="/fr/generate"
+              className="inline-flex items-center justify-center rounded-xl border border-[#0B3A63] px-6 py-3 text-sm font-semibold text-[#0B3A63] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0B3A63] hover:text-white md:px-7 md:py-4 md:text-base"
+            >
+              Générer mon document CO₂e
+            </Link>
+          </div>
+        </div>
+
+        <div
+          id="sources-officielles"
+          className="or-reveal mx-auto mt-14 max-w-5xl rounded-[30px] border border-[#0B3A63]/10 bg-white p-6 shadow-[0_22px_55px_rgba(11,58,99,0.08)] [animation-delay:460ms] md:p-8"
+        >
+          <div className="flex flex-col gap-4 border-b border-[#0B3A63]/10 pb-6 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B] md:text-sm">
+                Textes et standards officiels cités
+              </p>
+
+              <h3 className="mt-3 text-2xl font-extrabold leading-tight text-[#0B3A63] md:text-3xl">
+                Sources réglementaires et méthodologiques
+              </h3>
+            </div>
+
+            <p className="max-w-xl text-sm leading-relaxed text-[#64748B]">
+              Ces liens renvoient vers les organismes ou textes officiels
+              utilisés comme cadre de contexte et de méthode pour Certif-Scope.
+            </p>
+          </div>
+
+          <div className="mt-6 divide-y divide-[#0B3A63]/8">
+            {officialTexts.map((text) => (
+              <div
+                key={text.title}
+                className="grid gap-4 py-5 md:grid-cols-[190px_1fr_auto] md:items-center"
+              >
+                <div>
+                  <span className="inline-flex rounded-full border border-[#0B3A63]/10 bg-[#F8FAFC] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#64748B]">
+                    {text.category}
+                  </span>
+                </div>
+
+                <div>
+                  <p className="text-sm font-semibold leading-snug text-[#0B3A63] md:text-base">
+                    {text.title}
+                  </p>
+                  <p className="mt-1 text-sm leading-relaxed text-[#64748B]">
+                    {text.description}
+                  </p>
+                </div>
+
+                <a
+                  href={text.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-lg border border-[#0B3A63]/15 px-4 py-2 text-sm font-semibold text-[#0B3A63] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#1FB6C1]/50 hover:bg-[#F8FAFC] hover:text-[#1FB6C1]"
+                  aria-label={`${text.title} — ouvrir le texte officiel dans un nouvel onglet`}
+                >
+                  Texte officiel →
+                </a>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="mt-14 grid gap-6 md:grid-cols-3">
@@ -140,7 +214,7 @@ export default function OfficialReferencesFR() {
             <article
               key={reference.title}
               className="or-card group relative overflow-hidden rounded-[26px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm md:p-7"
-              style={{ animationDelay: `${360 + index * 120}ms` }}
+              style={{ animationDelay: `${560 + index * 120}ms` }}
             >
               <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(31,182,193,0.4),transparent)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
@@ -194,7 +268,7 @@ export default function OfficialReferencesFR() {
 
         <div
           className="or-flow mx-auto mt-12 max-w-5xl"
-          style={{ animationDelay: "520ms" }}
+          style={{ animationDelay: "720ms" }}
         >
           <div className="relative overflow-hidden rounded-[30px] border border-[#0B3A63]/10 bg-white p-6 shadow-[0_22px_55px_rgba(11,58,99,0.08)] md:p-8">
             <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(31,182,193,0.52),transparent)]" />
@@ -281,63 +355,7 @@ export default function OfficialReferencesFR() {
           </div>
         </div>
 
-        <div
-          id="sources-officielles"
-          className="or-reveal mx-auto mt-12 max-w-5xl rounded-[30px] border border-[#0B3A63]/10 bg-white p-6 shadow-[0_22px_55px_rgba(11,58,99,0.08)] [animation-delay:620ms] md:p-8"
-        >
-          <div className="flex flex-col gap-4 border-b border-[#0B3A63]/10 pb-6 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B] md:text-sm">
-                Textes et standards officiels cités
-              </p>
-
-              <h3 className="mt-3 text-2xl font-extrabold leading-tight text-[#0B3A63] md:text-3xl">
-                Sources réglementaires et méthodologiques
-              </h3>
-            </div>
-
-            <p className="max-w-xl text-sm leading-relaxed text-[#64748B]">
-              Ces liens renvoient vers les organismes ou textes officiels
-              utilisés comme cadre de contexte et de méthode pour Certif-Scope.
-            </p>
-          </div>
-
-          <div className="mt-6 divide-y divide-[#0B3A63]/8">
-            {officialTexts.map((text) => (
-              <div
-                key={text.title}
-                className="grid gap-4 py-5 md:grid-cols-[190px_1fr_auto] md:items-center"
-              >
-                <div>
-                  <span className="inline-flex rounded-full border border-[#0B3A63]/10 bg-[#F8FAFC] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#64748B]">
-                    {text.category}
-                  </span>
-                </div>
-
-                <div>
-                  <p className="text-sm font-semibold leading-snug text-[#0B3A63] md:text-base">
-                    {text.title}
-                  </p>
-                  <p className="mt-1 text-sm leading-relaxed text-[#64748B]">
-                    {text.description}
-                  </p>
-                </div>
-
-                <a
-                  href={text.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center rounded-lg border border-[#0B3A63]/15 px-4 py-2 text-sm font-semibold text-[#0B3A63] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#1FB6C1]/50 hover:bg-[#F8FAFC] hover:text-[#1FB6C1]"
-                  aria-label={`${text.title} — ouvrir le texte officiel dans un nouvel onglet`}
-                >
-                  Texte officiel →
-                </a>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="or-reveal mx-auto mt-12 max-w-4xl rounded-3xl border border-[#0B3A63]/10 bg-[#F8FAFC] p-7 text-center [animation-delay:720ms] md:p-10">
+        <div className="or-reveal mx-auto mt-12 max-w-4xl rounded-3xl border border-[#0B3A63]/10 bg-[#F8FAFC] p-7 text-center [animation-delay:840ms] md:p-10">
           <h3 className="text-xl font-extrabold leading-tight text-[#0B3A63] md:text-2xl">
             Certif-Scope transforme cette logique en document professionnel
           </h3>
@@ -383,7 +401,7 @@ export default function OfficialReferencesFR() {
           </div>
         </div>
 
-        <div className="or-reveal mx-auto mt-8 max-w-4xl rounded-2xl border border-[#0B3A63]/10 bg-white p-5 text-center [animation-delay:820ms]">
+        <div className="or-reveal mx-auto mt-8 max-w-4xl rounded-2xl border border-[#0B3A63]/10 bg-white p-5 text-center [animation-delay:920ms]">
           <p className="text-sm leading-relaxed text-[#64748B]">
             Périmètre : Certif-Scope fournit une attestation CO₂e indicative. Ce
             document ne constitue pas un reporting CSRD/ESRS complet, un audit
@@ -391,20 +409,20 @@ export default function OfficialReferencesFR() {
           </p>
         </div>
 
-        <div className="or-reveal mt-12 flex flex-wrap justify-center gap-3 [animation-delay:920ms]">
-          <a
-            href="#sources-officielles"
-            className="inline-flex items-center justify-center rounded-xl bg-[#1FB6C1] px-8 py-4 text-base font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#19AAB4] hover:shadow-[0_18px_36px_rgba(31,182,193,0.34)]"
-          >
-            Voir les textes officiels
-          </a>
-
+        <div className="or-reveal mt-12 flex flex-wrap justify-center gap-3 [animation-delay:1040ms]">
           <Link
             href="/fr/generate"
-            className="inline-flex items-center justify-center rounded-xl border border-[#0B3A63] px-8 py-4 text-base font-semibold text-[#0B3A63] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0B3A63] hover:text-white"
+            className="inline-flex items-center justify-center rounded-xl bg-[#1FB6C1] px-8 py-4 text-base font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#19AAB4] hover:shadow-[0_18px_36px_rgba(31,182,193,0.34)]"
           >
             Générer mon document CO₂e
           </Link>
+
+          <a
+            href="#sources-officielles"
+            className="inline-flex items-center justify-center rounded-xl border border-[#0B3A63] px-8 py-4 text-base font-semibold text-[#0B3A63] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0B3A63] hover:text-white"
+          >
+            Revoir les textes officiels
+          </a>
         </div>
       </div>
 
@@ -518,4 +536,4 @@ export default function OfficialReferencesFR() {
       `}</style>
     </section>
   );
-}
+          }
