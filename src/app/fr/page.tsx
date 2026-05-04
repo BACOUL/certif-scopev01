@@ -10,6 +10,7 @@ import HeroFR from "@/components/fr/Hero";
 import ProblemSolutionFR from "@/components/fr/ProblemSolution";
 import DifferentiationFR from "@/components/fr/Differentiation";
 import FeaturesFR from "@/components/fr/Features";
+import OfficialReferencesFR from "@/components/fr/OfficialReferences";
 import HowItWorksFR from "@/components/fr/HowItWorks";
 import TestimonialsFR from "@/components/fr/Testimonials";
 import PricingFR from "@/components/fr/Pricing";
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
   title:
     "Bilan carbone entreprise (PME) : attestation CO₂e indicative | Certif-Scope",
   description:
-    "Bilan carbone entreprise / PME : obtenez un indicateur CO₂e indicatif (spend-based : dépenses × facteurs d’émission) avec une attestation standardisée et vérifiable. Utile pour appels d’offres, fournisseurs, banques, assurances et screening ESG. Ce document n’est ni un bilan carbone complet, ni un audit, ni un reporting CSRD/ESRS.",
+    "Bilan carbone entreprise / PME : obtenez un indicateur CO₂e indicatif (spend-based : dépenses × facteurs d’émission) avec une attestation standardisée et vérifiable. Utile pour appels d’offres, fournisseurs, banques, assurances et screening ESG. Méthode inspirée du GHG Protocol Scope 3 et références officielles VSME/EFRAG. Ce document n’est ni un bilan carbone complet, ni un audit, ni un reporting CSRD/ESRS.",
   keywords: [
     "bilan carbone entreprise",
     "bilan carbone PME",
@@ -36,6 +37,11 @@ export const metadata: Metadata = {
     "attestation CO2e",
     "indicateur CO2e",
     "screening ESG fournisseur",
+    "VSME PME",
+    "GHG Protocol spend-based",
+    "références carbone PME",
+    "méthode spend-based carbone",
+    "attestation carbone PME",
   ],
   alternates: {
     canonical: "https://www.certif-scope.com/fr/",
@@ -50,7 +56,7 @@ export const metadata: Metadata = {
     title:
       "Bilan carbone entreprise (PME) : attestation CO₂e indicative | Certif-Scope",
     description:
-      "Indicateur CO₂e indicatif (spend-based) + attestation standardisée et vérifiable. Utile pour appels d’offres, fournisseurs, banques, assurances et screening ESG. Non audit, non CSRD/ESRS.",
+      "Indicateur CO₂e indicatif (spend-based) + attestation standardisée et vérifiable. Utile pour appels d’offres, fournisseurs, banques, assurances et screening ESG. Références officielles VSME/EFRAG et GHG Protocol Scope 3.",
     url: "https://www.certif-scope.com/fr/",
     siteName: "Certif-Scope",
     locale: "fr_FR",
@@ -60,7 +66,7 @@ export const metadata: Metadata = {
     title:
       "Bilan carbone entreprise (PME) : attestation CO₂e indicative | Certif-Scope",
     description:
-      "Indicateur CO₂e indicatif (spend-based) + attestation vérifiable pour appels d’offres, fournisseurs, banques et screening ESG. Non audit, non CSRD/ESRS.",
+      "Indicateur CO₂e indicatif (spend-based) + attestation vérifiable pour appels d’offres, fournisseurs, banques et screening ESG. Méthode inspirée du GHG Protocol Scope 3.",
   },
   robots: {
     index: true,
@@ -93,7 +99,7 @@ export default function HomeFR() {
     name: "Bilan carbone entreprise (PME) : attestation CO₂e indicative | Certif-Scope",
     url: pageUrl,
     description:
-      "Accueil France : indicateur CO₂e indicatif (spend-based) + attestation standardisée et vérifiable, pour screening (appels d’offres, fournisseurs, banque/assurance). Non audit, non CSRD/ESRS.",
+      "Accueil France : indicateur CO₂e indicatif (spend-based) + attestation standardisée et vérifiable, pour screening appels d’offres, fournisseurs, banque et assurance. Méthode inspirée du GHG Protocol Scope 3, avec références officielles VSME/EFRAG. Non audit, non bilan GES réglementaire, non reporting CSRD/ESRS.",
     isPartOf: {
       "@type": "WebSite",
       name: "Certif-Scope",
@@ -138,19 +144,22 @@ export default function HomeFR() {
         {/* 4) Produit / document concret */}
         <FeaturesFR />
 
-        {/* 5) Comment ça marche */}
+        {/* 5) Références officielles / légitimation de la méthode */}
+        <OfficialReferencesFR />
+
+        {/* 6) Comment ça marche */}
         <HowItWorksFR />
 
-        {/* 6) Cas d’usage terrain */}
+        {/* 7) Cas d’usage terrain */}
         <TestimonialsFR />
 
-        {/* 7) Pricing */}
+        {/* 8) Pricing */}
         <PricingFR />
 
-        {/* 8) FAQ */}
+        {/* 9) FAQ */}
         <FAQFR />
 
-        {/* 9) CTA final */}
+        {/* 10) CTA final */}
         <section
           id="final-cta"
           data-section="final-cta"
@@ -165,12 +174,13 @@ export default function HomeFR() {
             <div className="rounded-[30px] border border-[#0B3A63]/10 bg-white p-8 shadow-[0_25px_60px_rgba(11,58,99,0.10)] md:p-12">
               <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-center">
                 <div className="lg:col-span-8">
-                  <p className="uppercase text-xs md:text-sm font-semibold tracking-[0.18em] text-[#64748B] mb-3">
+                  <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B] md:text-sm">
                     Réponse rapide — format standardisé
                   </p>
 
-                  <h2 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] leading-tight">
-                    Produire une attestation CO₂e indicative, claire et vérifiable
+                  <h2 className="text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">
+                    Produire une attestation CO₂e indicative, claire et
+                    vérifiable
                   </h2>
 
                   <p className="mt-4 max-w-2xl text-lg leading-relaxed text-[#475569]">
@@ -207,16 +217,16 @@ export default function HomeFR() {
 
                 <div className="lg:col-span-4">
                   <div className="rounded-[24px] border border-[#0B3A63]/10 bg-[#F8FAFC] p-6">
-                    <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
+                    <h3 className="mb-3 text-lg font-semibold text-[#0B3A63]">
                       Rappel de périmètre
                     </h3>
 
-                    <ul className="list-disc ml-6 space-y-2 text-sm text-[#475569]">
-                      <li>estimation indicative (spend-based)</li>
-                      <li>résultat agrégé (tCO₂e)</li>
+                    <ul className="ml-6 list-disc space-y-2 text-sm text-[#475569]">
+                      <li>estimation indicative en spend-based</li>
+                      <li>résultat agrégé en tCO₂e</li>
+                      <li>document standardisé et vérifiable</li>
                       <li>non audit, non inventaire complet</li>
-                      <li>non CSRD/ESRS</li>
-                      <li>vérification publique du document</li>
+                      <li>non reporting CSRD/ESRS</li>
                     </ul>
 
                     <div className="mt-5 flex flex-wrap gap-3">
