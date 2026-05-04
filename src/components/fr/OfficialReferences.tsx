@@ -26,7 +26,7 @@ const officialTexts: OfficialText[] = [
     category: "Standard PME volontaire",
     title: "EFRAG — Voluntary Sustainability Reporting Standard for non-listed SMEs",
     description:
-      "Standard volontaire conçu pour aider les PME non cotées à structurer des informations de durabilité proportionnées.",
+      "Standard volontaire conçu pour aider les micro, petites et moyennes entreprises non cotées à structurer des informations de durabilité proportionnées.",
     href: "https://www.efrag.org/en/smes-and-sustainability-reporting",
   },
   {
@@ -64,14 +64,21 @@ const officialTexts: OfficialText[] = [
       "Règlement délégué établissant les European Sustainability Reporting Standards.",
     href: "https://eur-lex.europa.eu/eli/reg_del/2023/2772/oj",
   },
+  {
+    category: "Périmètre français",
+    title: "Code de l’environnement — Article L229-25",
+    description:
+      "Texte français encadrant le bilan d’émissions de gaz à effet de serre réglementaire.",
+    href: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051559662",
+  },
 ];
 
 const officialReferences: OfficialReference[] = [
   {
     label: "PME < 250 salariés",
-    title: "VSME — Standard volontaire PME",
+    title: "VSME — micro, petites et moyennes entreprises non cotées",
     description:
-      "Référence européenne volontaire destinée aux micro, petites et moyennes entreprises non cotées, pour structurer des informations de durabilité plus simples et proportionnées.",
+      "Le VSME fournit un cadre volontaire pour structurer des informations de durabilité plus simples et proportionnées, adaptées aux capacités des PME non cotées.",
     source: "EFRAG — VSME",
     href: "https://www.efrag.org/en/smes-and-sustainability-reporting",
   },
@@ -125,7 +132,8 @@ export default function OfficialReferencesFR() {
             Certif-Scope s’appuie sur des références officielles qui
             reconnaissent deux réalités : les PME non cotées peuvent recevoir
             des demandes d’informations ESG ou carbone, et ces réponses doivent
-            rester proportionnées à leurs moyens.
+            rester proportionnées à leur taille, à leurs moyens et au niveau réel
+            de la demande.
           </p>
 
           <p className="or-reveal mt-4 text-sm leading-relaxed text-[#64748B] [animation-delay:300ms] md:text-base">
@@ -170,7 +178,8 @@ export default function OfficialReferencesFR() {
 
             <p className="max-w-xl text-sm leading-relaxed text-[#64748B]">
               Ces liens renvoient vers les organismes ou textes officiels
-              utilisés comme cadre de contexte et de méthode pour Certif-Scope.
+              utilisés comme cadre de contexte, de méthode et de périmètre pour
+              Certif-Scope.
             </p>
           </div>
 
@@ -355,53 +364,7 @@ export default function OfficialReferencesFR() {
           </div>
         </div>
 
-        <div className="or-reveal mx-auto mt-12 max-w-4xl rounded-3xl border border-[#0B3A63]/10 bg-[#F8FAFC] p-7 text-center [animation-delay:840ms] md:p-10">
-          <h3 className="text-xl font-extrabold leading-tight text-[#0B3A63] md:text-2xl">
-            Certif-Scope transforme cette logique en document professionnel
-          </h3>
-
-          <p className="mt-4 text-base leading-relaxed text-[#475569] md:text-lg">
-            Les dépenses déclarées sont associées à des facteurs d’émission
-            monétaires afin de produire une estimation CO₂e agrégée. Le résultat
-            est présenté dans une attestation claire, standardisée et vérifiable,
-            pensée pour les demandes fournisseurs, appels d’offres, banques,
-            assurances et screenings ESG.
-          </p>
-
-          <div className="mt-8 grid gap-4 text-left md:grid-cols-3">
-            <div className="rounded-2xl border border-[#0B3A63]/8 bg-white p-4">
-              <p className="text-sm font-semibold text-[#0B3A63]">
-                Adapté aux PME
-              </p>
-              <p className="mt-2 text-sm text-[#64748B]">
-                Un format proportionné pour les entreprises qui n’ont pas besoin
-                d’un dispositif lourd pour une première réponse.
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-[#0B3A63]/8 bg-white p-4">
-              <p className="text-sm font-semibold text-[#0B3A63]">
-                Méthode lisible
-              </p>
-              <p className="mt-2 text-sm text-[#64748B]">
-                Une estimation spend-based déclarée, fondée sur les dépenses et
-                des facteurs d’émission monétaires.
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-[#0B3A63]/8 bg-white p-4">
-              <p className="text-sm font-semibold text-[#0B3A63]">
-                Document transmissible
-              </p>
-              <p className="mt-2 text-sm text-[#64748B]">
-                Une attestation CO₂e agrégée, standardisée et vérifiable pour
-                répondre rapidement à un tiers.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="or-reveal mx-auto mt-8 max-w-4xl rounded-2xl border border-[#0B3A63]/10 bg-white p-5 text-center [animation-delay:920ms]">
+        <div className="or-reveal mx-auto mt-8 max-w-4xl rounded-2xl border border-[#0B3A63]/10 bg-white p-5 text-center [animation-delay:840ms]">
           <p className="text-sm leading-relaxed text-[#64748B]">
             Périmètre : Certif-Scope fournit une attestation CO₂e indicative. Ce
             document ne constitue pas un reporting CSRD/ESRS complet, un audit
@@ -409,7 +372,7 @@ export default function OfficialReferencesFR() {
           </p>
         </div>
 
-        <div className="or-reveal mt-12 flex flex-wrap justify-center gap-3 [animation-delay:1040ms]">
+        <div className="or-reveal mt-12 flex flex-wrap justify-center gap-3 [animation-delay:920ms]">
           <Link
             href="/fr/generate"
             className="inline-flex items-center justify-center rounded-xl bg-[#1FB6C1] px-8 py-4 text-base font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#19AAB4] hover:shadow-[0_18px_36px_rgba(31,182,193,0.34)]"
@@ -536,4 +499,4 @@ export default function OfficialReferencesFR() {
       `}</style>
     </section>
   );
-          }
+}
