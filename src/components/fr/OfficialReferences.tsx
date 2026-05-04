@@ -14,33 +14,85 @@ type OfficialReference = {
   secondaryHref?: string;
 };
 
+type OfficialText = {
+  category: string;
+  title: string;
+  description: string;
+  href: string;
+};
+
 const officialReferences: OfficialReference[] = [
   {
-    label: "Cadre PME",
-    title: "VSME — PME non cotées",
+    label: "PME < 250 salariés",
+    title: "Un cadre volontaire pensé pour les PME",
     description:
-      "Le standard volontaire VSME confirme le besoin d’un cadre de durabilité plus simple, proportionné et adapté aux micro, petites et moyennes entreprises non cotées.",
+      "Le VSME vise les micro, petites et moyennes entreprises non cotées. Il confirme le besoin d’informations de durabilité plus simples, proportionnées et adaptées aux moyens des PME.",
     source: "EFRAG — VSME",
     href: "https://www.efrag.org/en/smes-and-sustainability-reporting",
   },
   {
-    label: "Demande marché",
-    title: "Commission européenne",
+    label: "Demandes clients & banques",
+    title: "Répondre sans reporting complet",
     description:
-      "La Commission européenne reconnaît que les PME peuvent recevoir des demandes d’informations de durabilité venant de grandes entreprises et d’institutions financières.",
+      "La Commission européenne reconnaît que les PME peuvent recevoir des demandes d’informations ESG de grandes entreprises ou d’institutions financières, et soutient un standard volontaire pour réduire cette charge.",
     source: "European Commission — VSME",
     href: "https://finance.ec.europa.eu/publications/commission-presents-voluntary-sustainability-reporting-standard-ease-burden-smes_en",
   },
   {
     label: "Méthode carbone",
-    title: "GHG Protocol Scope 3",
+    title: "Une estimation possible en spend-based",
     description:
-      "Le GHG Protocol Scope 3 Calculation Guidance présente l’approche spend-based parmi les méthodes de calcul possibles pour certaines émissions indirectes, notamment les biens et services achetés.",
+      "Le GHG Protocol Scope 3 Calculation Guidance présente l’approche spend-based parmi les méthodes possibles pour estimer certaines émissions indirectes, notamment les biens et services achetés.",
     source: "GHG Protocol — Scope 3 Guidance",
     href: "https://ghgprotocol.org/scope-3-calculation-guidance-2",
     secondarySource: "Purchased Goods and Services — Chapter 1",
     secondaryHref:
       "https://ghgprotocol.org/sites/default/files/2022-12/Chapter1.pdf",
+  },
+];
+
+const officialTexts: OfficialText[] = [
+  {
+    category: "Standard PME volontaire",
+    title: "EFRAG — Voluntary Sustainability Reporting Standard for non-listed SMEs",
+    description:
+      "Standard volontaire conçu pour aider les PME non cotées à structurer des informations de durabilité proportionnées.",
+    href: "https://www.efrag.org/en/smes-and-sustainability-reporting",
+  },
+  {
+    category: "Commission européenne",
+    title: "Voluntary sustainability reporting standard for SMEs",
+    description:
+      "Communication officielle sur le standard volontaire PME et la réduction de la charge liée aux demandes de durabilité.",
+    href: "https://finance.ec.europa.eu/publications/commission-presents-voluntary-sustainability-reporting-standard-ease-burden-smes_en",
+  },
+  {
+    category: "Méthode carbone",
+    title: "GHG Protocol — Scope 3 Calculation Guidance",
+    description:
+      "Guide méthodologique international pour le calcul des émissions indirectes Scope 3.",
+    href: "https://ghgprotocol.org/scope-3-calculation-guidance-2",
+  },
+  {
+    category: "Méthode spend-based",
+    title: "GHG Protocol — Category 1: Purchased Goods and Services",
+    description:
+      "Chapitre présentant les méthodes de calcul applicables aux biens et services achetés, dont l’approche spend-based.",
+    href: "https://ghgprotocol.org/sites/default/files/2022-12/Chapter1.pdf",
+  },
+  {
+    category: "Contexte européen",
+    title: "Directive (UE) 2022/2464 — Corporate Sustainability Reporting Directive",
+    description:
+      "Directive européenne renforçant le reporting de durabilité des entreprises concernées.",
+    href: "https://eur-lex.europa.eu/eli/dir/2022/2464/oj",
+  },
+  {
+    category: "Normes européennes",
+    title: "Règlement délégué (UE) 2023/2772 — ESRS",
+    description:
+      "Règlement délégué établissant les European Sustainability Reporting Standards.",
+    href: "https://eur-lex.europa.eu/eli/reg_del/2023/2772/oj",
   },
 ];
 
@@ -59,27 +111,27 @@ export default function OfficialReferencesFR() {
       <div className="mx-auto max-w-6xl px-6">
         <div className="mx-auto max-w-3xl text-center">
           <p className="or-reveal text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B] md:text-sm">
-            Références officielles
+            Cadre officiel et méthode
           </p>
 
           <h2
             id="official-references-title"
             className="or-reveal mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] [animation-delay:120ms] md:text-4xl"
           >
-            Une méthode fondée sur des références reconnues
+            Une méthode pensée pour les PME de moins de 250 salariés
           </h2>
 
           <p className="or-reveal mt-6 text-base leading-relaxed text-[#475569] [animation-delay:220ms] md:text-lg">
             Certif-Scope s’inscrit dans une logique reconnue : permettre aux PME
-            de répondre à des demandes carbone de premier niveau avec un format
-            simple, proportionné et lisible.
+            non cotées de répondre à des demandes ESG et carbone avec un format
+            plus simple, proportionné et adapté à leurs moyens.
           </p>
 
           <p className="or-reveal mt-4 text-sm leading-relaxed text-[#64748B] [animation-delay:300ms] md:text-base">
-            Les références européennes récentes confirment le besoin
-            d’informations ESG adaptées aux PME, tandis que le GHG Protocol
-            reconnaît l’approche spend-based comme méthode possible
-            d’estimation carbone.
+            Cette approche s’appuie sur des références officielles : le VSME
+            pour la proportionnalité PME, la Commission européenne pour le
+            contexte des demandes de durabilité, et le GHG Protocol Scope 3 pour
+            la méthode d’estimation spend-based.
           </p>
         </div>
 
@@ -154,27 +206,28 @@ export default function OfficialReferencesFR() {
               </p>
 
               <h3 className="mt-3 text-2xl font-extrabold leading-tight text-[#0B3A63] md:text-3xl">
-                Besoin PME reconnu → méthode simplifiée → document exploitable
+                PME sollicitée → réponse proportionnée → attestation exploitable
               </h3>
 
               <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-[#64748B] md:text-base">
-                Certif-Scope ne part pas d’une logique isolée : le besoin de
-                formats proportionnés pour les PME est reconnu, et l’approche
-                spend-based est documentée comme méthode possible d’estimation.
+                Certif-Scope répond à un besoin concret : fournir une première
+                information carbone claire lorsqu’une PME doit répondre
+                rapidement à un client, un acheteur, une banque, une assurance
+                ou un appel d’offres.
               </p>
             </div>
 
             <div className="mt-8 grid gap-4 md:grid-cols-[1fr_auto_1fr_auto_1fr] md:items-stretch">
               <div className="rounded-2xl border border-[#0B3A63]/10 bg-[#F8FAFC] p-5">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#64748B]">
-                  01 · Besoin reconnu
+                  01 · PME concernée
                 </p>
                 <p className="mt-2 text-base font-semibold text-[#0B3A63]">
-                  Les PME reçoivent des demandes ESG
+                  Une entreprise de moins de 250 salariés reçoit une demande
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-[#64748B]">
-                  Clients, grandes entreprises, banques, institutions
-                  financières ou partenaires commerciaux.
+                  Le besoin vient souvent d’un client, d’un donneur d’ordre,
+                  d’une banque, d’une assurance ou d’un dossier commercial.
                 </p>
               </div>
 
@@ -187,14 +240,14 @@ export default function OfficialReferencesFR() {
 
               <div className="rounded-2xl border border-[#0B3A63]/10 bg-[#F8FAFC] p-5">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#64748B]">
-                  02 · Format proportionné
+                  02 · Format adapté
                 </p>
                 <p className="mt-2 text-base font-semibold text-[#0B3A63]">
-                  Le VSME confirme une logique simplifiée
+                  La réponse attendue n’est pas toujours un audit complet
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-[#64748B]">
-                  Un cadre volontaire, plus accessible et adapté aux moyens des
-                  PME non cotées.
+                  Les références européennes reconnaissent l’intérêt de formats
+                  plus simples et proportionnés pour les PME non cotées.
                 </p>
               </div>
 
@@ -210,67 +263,127 @@ export default function OfficialReferencesFR() {
                   Réponse Certif-Scope
                 </p>
                 <p className="mt-2 text-base font-semibold text-[#0B3A63]">
-                  Une attestation CO₂e claire et vérifiable
+                  Une attestation CO₂e indicative, claire et vérifiable
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-[#64748B]">
-                  Une première réponse carbone fondée sur une estimation
-                  agrégée en spend-based.
+                  Un document standardisé fondé sur une estimation agrégée en
+                  spend-based, prêt à transmettre.
                 </p>
               </div>
             </div>
 
             <div className="mt-6 flex justify-center">
               <div className="rounded-full border border-[#0B3A63]/10 bg-[#F8FAFC] px-4 py-2 text-center text-xs font-medium text-[#0B3A63] shadow-sm md:text-sm">
-                Une logique officielle : proportionner la réponse carbone au
-                besoin réel de la PME
+                Une logique simple : adapter la réponse carbone au niveau réel
+                de la demande PME.
               </div>
             </div>
           </div>
         </div>
 
-        <div className="or-reveal mx-auto mt-12 max-w-4xl rounded-3xl border border-[#0B3A63]/10 bg-[#F8FAFC] p-7 text-center [animation-delay:620ms] md:p-10">
+        <div
+          id="sources-officielles"
+          className="or-reveal mx-auto mt-12 max-w-5xl rounded-[30px] border border-[#0B3A63]/10 bg-white p-6 shadow-[0_22px_55px_rgba(11,58,99,0.08)] [animation-delay:620ms] md:p-8"
+        >
+          <div className="flex flex-col gap-4 border-b border-[#0B3A63]/10 pb-6 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B] md:text-sm">
+                Textes et standards officiels cités
+              </p>
+
+              <h3 className="mt-3 text-2xl font-extrabold leading-tight text-[#0B3A63] md:text-3xl">
+                Sources réglementaires et méthodologiques
+              </h3>
+            </div>
+
+            <p className="max-w-xl text-sm leading-relaxed text-[#64748B]">
+              Ces liens renvoient vers les organismes ou textes officiels
+              utilisés comme cadre de contexte et de méthode pour Certif-Scope.
+            </p>
+          </div>
+
+          <div className="mt-6 divide-y divide-[#0B3A63]/8">
+            {officialTexts.map((text) => (
+              <div
+                key={text.title}
+                className="grid gap-4 py-5 md:grid-cols-[190px_1fr_auto] md:items-center"
+              >
+                <div>
+                  <span className="inline-flex rounded-full border border-[#0B3A63]/10 bg-[#F8FAFC] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#64748B]">
+                    {text.category}
+                  </span>
+                </div>
+
+                <div>
+                  <p className="text-sm font-semibold leading-snug text-[#0B3A63] md:text-base">
+                    {text.title}
+                  </p>
+                  <p className="mt-1 text-sm leading-relaxed text-[#64748B]">
+                    {text.description}
+                  </p>
+                </div>
+
+                <a
+                  href={text.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-lg border border-[#0B3A63]/15 px-4 py-2 text-sm font-semibold text-[#0B3A63] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#1FB6C1]/50 hover:bg-[#F8FAFC] hover:text-[#1FB6C1]"
+                  aria-label={`${text.title} — ouvrir le texte officiel dans un nouvel onglet`}
+                >
+                  Texte officiel →
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="or-reveal mx-auto mt-12 max-w-4xl rounded-3xl border border-[#0B3A63]/10 bg-[#F8FAFC] p-7 text-center [animation-delay:720ms] md:p-10">
           <h3 className="text-xl font-extrabold leading-tight text-[#0B3A63] md:text-2xl">
-            Certif-Scope applique cette logique au carbone
+            Certif-Scope transforme cette logique en document professionnel
           </h3>
 
           <p className="mt-4 text-base leading-relaxed text-[#475569] md:text-lg">
             Les dépenses déclarées sont associées à des facteurs d’émission
-            monétaires afin de produire une estimation CO₂e agrégée, utilisable
-            comme première réponse dans un contexte fournisseur, appel d’offres,
-            banque, assurance ou screening ESG.
+            monétaires afin de produire une estimation CO₂e agrégée. Le résultat
+            est présenté dans une attestation claire, standardisée et vérifiable,
+            pensée pour les demandes fournisseurs, appels d’offres, banques,
+            assurances et screenings ESG.
           </p>
 
           <div className="mt-8 grid gap-4 text-left md:grid-cols-3">
             <div className="rounded-2xl border border-[#0B3A63]/8 bg-white p-4">
               <p className="text-sm font-semibold text-[#0B3A63]">
-                Simple à produire
+                Adapté aux PME
               </p>
               <p className="mt-2 text-sm text-[#64748B]">
-                Une approche adaptée aux demandes de premier niveau.
+                Un format proportionné pour les entreprises qui n’ont pas besoin
+                d’un dispositif lourd pour une première réponse.
               </p>
             </div>
 
             <div className="rounded-2xl border border-[#0B3A63]/8 bg-white p-4">
               <p className="text-sm font-semibold text-[#0B3A63]">
-                Méthode déclarée
+                Méthode lisible
               </p>
               <p className="mt-2 text-sm text-[#64748B]">
-                Une estimation spend-based indiquée dans le document.
+                Une estimation spend-based déclarée, fondée sur les dépenses et
+                des facteurs d’émission monétaires.
               </p>
             </div>
 
             <div className="rounded-2xl border border-[#0B3A63]/8 bg-white p-4">
               <p className="text-sm font-semibold text-[#0B3A63]">
-                Vérifiable
+                Document transmissible
               </p>
               <p className="mt-2 text-sm text-[#64748B]">
-                Une attestation standardisée avec vérification publique.
+                Une attestation CO₂e agrégée, standardisée et vérifiable pour
+                répondre rapidement à un tiers.
               </p>
             </div>
           </div>
         </div>
 
-        <div className="or-reveal mx-auto mt-8 max-w-4xl rounded-2xl border border-[#0B3A63]/10 bg-white p-5 text-center [animation-delay:720ms]">
+        <div className="or-reveal mx-auto mt-8 max-w-4xl rounded-2xl border border-[#0B3A63]/10 bg-white p-5 text-center [animation-delay:820ms]">
           <p className="text-sm leading-relaxed text-[#64748B]">
             Périmètre : Certif-Scope fournit une attestation CO₂e indicative. Ce
             document ne constitue pas un reporting CSRD/ESRS complet, un audit
@@ -278,19 +391,19 @@ export default function OfficialReferencesFR() {
           </p>
         </div>
 
-        <div className="or-reveal mt-12 flex flex-wrap justify-center gap-3 [animation-delay:820ms]">
-          <Link
-            href="/fr/methodologie/#references-officielles"
+        <div className="or-reveal mt-12 flex flex-wrap justify-center gap-3 [animation-delay:920ms]">
+          <a
+            href="#sources-officielles"
             className="inline-flex items-center justify-center rounded-xl bg-[#1FB6C1] px-8 py-4 text-base font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#19AAB4] hover:shadow-[0_18px_36px_rgba(31,182,193,0.34)]"
           >
-            Voir les références officielles
-          </Link>
+            Voir les textes officiels
+          </a>
 
           <Link
-            href="/fr/bilan-carbone-pme"
+            href="/fr/generate"
             className="inline-flex items-center justify-center rounded-xl border border-[#0B3A63] px-8 py-4 text-base font-semibold text-[#0B3A63] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0B3A63] hover:text-white"
           >
-            Lire le guide PME
+            Générer mon document CO₂e
           </Link>
         </div>
       </div>
@@ -405,4 +518,4 @@ export default function OfficialReferencesFR() {
       `}</style>
     </section>
   );
-          }
+}
