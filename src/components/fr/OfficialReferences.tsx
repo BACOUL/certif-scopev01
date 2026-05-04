@@ -68,7 +68,7 @@ const officialTexts: OfficialText[] = [
     category: "Périmètre français",
     title: "Code de l’environnement — Article L229-25",
     description:
-      "Texte français encadrant le bilan d’émissions de gaz à effet de serre réglementaire.",
+      "Texte français définissant les obligations de bilan d’émissions de gaz à effet de serre pour certaines organisations.",
     href: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051559662",
   },
 ];
@@ -145,16 +145,9 @@ export default function OfficialReferencesFR() {
           </p>
 
           <div className="or-reveal mt-8 flex flex-wrap justify-center gap-3 [animation-delay:380ms]">
-            <a
-              href="#sources-officielles"
-              className="inline-flex items-center justify-center rounded-xl bg-[#1FB6C1] px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#19AAB4] hover:shadow-[0_18px_36px_rgba(31,182,193,0.34)] md:px-7 md:py-4 md:text-base"
-            >
-              Voir les textes officiels
-            </a>
-
             <Link
               href="/fr/generate"
-              className="inline-flex items-center justify-center rounded-xl border border-[#0B3A63] px-6 py-3 text-sm font-semibold text-[#0B3A63] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0B3A63] hover:text-white md:px-7 md:py-4 md:text-base"
+              className="inline-flex items-center justify-center rounded-xl bg-[#1FB6C1] px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#19AAB4] hover:shadow-[0_18px_36px_rgba(31,182,193,0.34)] md:px-7 md:py-4 md:text-base"
             >
               Générer mon document CO₂e
             </Link>
@@ -209,9 +202,9 @@ export default function OfficialReferencesFR() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center rounded-lg border border-[#0B3A63]/15 px-4 py-2 text-sm font-semibold text-[#0B3A63] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#1FB6C1]/50 hover:bg-[#F8FAFC] hover:text-[#1FB6C1]"
-                  aria-label={`${text.title} — ouvrir le texte officiel dans un nouvel onglet`}
+                  aria-label={`${text.title} — consulter la source officielle dans un nouvel onglet`}
                 >
-                  Texte officiel →
+                  Consulter →
                 </a>
               </div>
             ))}
@@ -254,7 +247,7 @@ export default function OfficialReferencesFR() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex w-fit items-center text-sm font-semibold text-[#0B3A63] underline decoration-[#1FB6C1]/50 underline-offset-4 transition-colors hover:text-[#1FB6C1]"
-                  aria-label={`${reference.source} — ouvrir la référence officielle dans un nouvel onglet`}
+                  aria-label={`${reference.source} — consulter la référence officielle dans un nouvel onglet`}
                 >
                   {reference.source} →
                 </a>
@@ -265,7 +258,7 @@ export default function OfficialReferencesFR() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex w-fit items-center text-xs font-medium text-[#64748B] underline decoration-[#1FB6C1]/40 underline-offset-4 transition-colors hover:text-[#0B3A63]"
-                    aria-label={`${reference.secondarySource} — ouvrir la référence officielle dans un nouvel onglet`}
+                    aria-label={`${reference.secondarySource} — consulter la référence officielle dans un nouvel onglet`}
                   >
                     {reference.secondarySource} →
                   </a>
