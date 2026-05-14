@@ -17,7 +17,7 @@ export const ATTESTATION_FR = {
      HEADER / GLOBAL UI
   =============================== */
   headerTagline: "Émission automatisée · Attestation indicative standardisée",
-  scanToVerifyLabel: "Scanner pour vérifier",
+  scanToVerifyLabel: "Scanner le QR code pour vérifier",
 
   /* ===============================
      TITLE
@@ -138,9 +138,9 @@ export const ATTESTATION_FR = {
     "Cette attestation est générée sans conservation des données financières sous-jacentes par Certif-Scope.",
 
   pdfObjectText:
-    "Le document PDF constitue l’unique objet vérifiable.",
+    "Le document PDF signé et son QR code de vérification constituent les éléments de contrôle documentaire.",
 
-  verificationPageLabel: "Page d’information de vérification",
+  verificationPageLabel: "Page de vérification documentaire",
 
   technicalVerificationNote:
     "Les éléments suivants permettent une vérification technique indépendante. Aucune action n’est requise de la part du lecteur.",
