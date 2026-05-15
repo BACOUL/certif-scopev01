@@ -35,28 +35,48 @@ type FormErrors = {
 };
 
 /* ======================================================
-   SECTORS (DISPLAY ONLY)
+   SECTEURS — VERSION FR
 ====================================================== */
 
 const SECTORS = [
-  { value: "professional_services", label: "Professional services" },
-  { value: "information_technology", label: "Information & technology" },
-  { value: "manufacturing", label: "Manufacturing & industry" },
-  { value: "construction", label: "Construction & real estate" },
-  { value: "wholesale_retail", label: "Wholesale & retail" },
-  { value: "transport_logistics", label: "Transport & logistics" },
-  { value: "hospitality_events", label: "Hospitality, travel & events" },
-  { value: "other", label: "Other activities" },
-];
+  { value: "professional_services", label: "Services aux entreprises" },
+  {
+    value: "information_technology",
+    label: "Numérique, informatique & technologies",
+  },
+  {
+    value: "manufacturing",
+    label: "Industrie, fabrication & production",
+  },
+  {
+    value: "construction",
+    label: "BTP, construction & immobilier",
+  },
+  {
+    value: "wholesale_retail",
+    label: "Commerce, distribution & vente",
+  },
+  {
+    value: "transport_logistics",
+    label: "Transport, logistique & livraison",
+  },
+  {
+    value: "hospitality_events",
+    label: "Hôtellerie, restauration, tourisme & événementiel",
+  },
+  {
+    value: "other",
+    label: "Autres activités",
+  },
+] as const;
 
 /* ======================================================
-   CALCULATION & UTILS
+   CALCUL & UTILITAIRES
 ====================================================== */
 
-// ✅ PATCH CRITIQUE : Fonction helper pour gérer les virgules
 function toNumber(value: string): number {
   if (!value) return 0;
-  // Remplace la virgule par un point avant de convertir
+
   return Number(value.replace(",", ".")) || 0;
 }
 
@@ -129,7 +149,6 @@ export default function AssessmentForm() {
   const [year, setYear] = useState(currentYear);
   const [country, setCountry] = useState("FR");
 
-  // ✅ CORRECTION UX : "fr" par défaut pour la page française
   const [attestationLocale, setAttestationLocale] =
     useState<AttestationLocale>("fr");
 
@@ -143,10 +162,13 @@ export default function AssessmentForm() {
     other: "",
   });
 
-  // ACCESS KEY STATE
   const [accessKey, setAccessKey] = useState("");
-  const [keyStatus, setKeyStatus] = useState<"idle" | "checking" | "valid" | "invalid">("idle");
-  const [remainingCredits, setRemainingCredits] = useState<number | null>(null);
+  const [keyStatus, setKeyStatus] = useState<
+    "idle" | "checking" | "valid" | "invalid"
+  >("idle");
+  const [remainingCredits, setRemainingCredits] = useState<number | null>(
+    null
+  );
   const [keyError, setKeyError] = useState("");
 
   const [errors, setErrors] = useState<FormErrors>({});
@@ -156,12 +178,14 @@ export default function AssessmentForm() {
     setExpenses((prev) => ({ ...prev, [field]: value }));
   };
 
-  // ✅ PATCH CRITIQUE : Utilisation de toNumber() ici
   const numericExpenses = Object.fromEntries(
     Object.entries(expenses).map(([k, v]) => [k, toNumber(v)])
   );
 
   const totalCO2e = calculateTotalCO2e(numericExpenses);
+
+  const selectedSectorLabel =
+    SECTORS.find((s) => s.value === sector)?.label || sector;
 
   const validate = (): boolean => {
     const nextErrors: FormErrors = {};
@@ -176,7 +200,6 @@ export default function AssessmentForm() {
         "Veuillez sélectionner un secteur d'activité principal.";
     }
 
-    // ✅ NOUVEAU CONTRÔLE : AU MOINS UNE DÉPENSE > 0
     const hasAtLeastOneExpense = Object.values(numericExpenses).some(
       (value) => value > 0
     );
@@ -190,10 +213,9 @@ export default function AssessmentForm() {
     return Object.keys(nextErrors).length === 0;
   };
 
-  // CHECK KEY LOGIC
   const handleCheckKey = async () => {
     if (!accessKey.trim()) return;
-    
+
     setKeyStatus("checking");
     setKeyError("");
     setRemainingCredits(null);
@@ -214,13 +236,12 @@ export default function AssessmentForm() {
         setKeyStatus("valid");
         setRemainingCredits(data.remainingCredits);
       }
-    } catch (e) {
+    } catch {
       setKeyStatus("invalid");
       setKeyError("Impossible de vérifier la clé. Veuillez réessayer.");
     }
   };
 
-  // HELPER: RESET KEY (For "Pay instead" logic)
   const clearKey = () => {
     setAccessKey("");
     setKeyStatus("idle");
@@ -231,23 +252,27 @@ export default function AssessmentForm() {
   const handleSubmit = async () => {
     if (!validate()) return;
 
-    // Block only if checking or valid but empty credits
-    if (keyStatus === "checking" || (keyStatus === "valid" && remainingCredits === 0)) {
+    if (
+      keyStatus === "checking" ||
+      (keyStatus === "valid" && remainingCredits === 0)
+    ) {
       return;
     }
 
     setIsSubmitting(true);
     setErrors({});
 
-    // DECIDE MODE: REDEEM OR STRIPE CHECKOUT
-    // Only redeem if key is explicitly valid AND has credits
-    const isRedeeming = keyStatus === "valid" && remainingCredits !== null && remainingCredits > 0;
+    const isRedeeming =
+      keyStatus === "valid" &&
+      remainingCredits !== null &&
+      remainingCredits > 0;
+
     const endpoint = isRedeeming ? "/api/redeem-key" : "/api/checkout";
 
     const basePayload = {
-      companyName,
-      companySector: sector,
-      entityIdentifier: companyId || "",
+      companyName: companyName.trim(),
+      companySector: selectedSectorLabel,
+      entityIdentifier: companyId.trim() || "",
       year: String(year),
       country,
       totalCO2e,
@@ -255,10 +280,9 @@ export default function AssessmentForm() {
       attestationLocale,
     };
 
-    // Add accessKey only if we are actually redeeming
     const payload = {
       ...basePayload,
-      ...(isRedeeming && { accessKey }),
+      ...(isRedeeming && { accessKey: accessKey.trim() }),
     };
 
     try {
@@ -274,7 +298,6 @@ export default function AssessmentForm() {
 
       const { url } = await res.json();
 
-      // ✅ STOCKAGE SESSION (UNIQUEMENT flow clé)
       if (isRedeeming) {
         sessionStorage.setItem(
           "certifScopePayload",
@@ -282,7 +305,6 @@ export default function AssessmentForm() {
         );
       }
 
-      // Redirect to Stripe or to the PDF generation URL (depending on API response)
       window.location.href = url;
     } catch {
       setErrors({
@@ -293,37 +315,43 @@ export default function AssessmentForm() {
     }
   };
 
-  // Determine button label and blocked state
-  const isRedeeming = keyStatus === "valid" && remainingCredits !== null && remainingCredits > 0;
-  
-  // Block only on 'checking' or 'valid but empty'
-  const isButtonBlocked = keyStatus === "checking" || (keyStatus === "valid" && remainingCredits === 0);
-  
+  const isRedeeming =
+    keyStatus === "valid" &&
+    remainingCredits !== null &&
+    remainingCredits > 0;
+
+  const isButtonBlocked =
+    keyStatus === "checking" ||
+    (keyStatus === "valid" && remainingCredits === 0);
+
   const buttonLabel = isRedeeming
-    ? "Générer mon attestation carbone (1 crédit)" 
+    ? "Générer mon attestation carbone (1 crédit)"
     : "Générer mon attestation carbone — 89 €";
 
   return (
     <main className="min-h-screen bg-white">
       <section className="max-w-3xl mx-auto px-6 pt-16 pb-20 space-y-10">
-
         {/* INTRO */}
         <div>
           <p className="text-sm text-gray-500 mb-2">
             Étape 1 sur 3 — Entreprise & contexte
           </p>
+
           <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-3">
             Générez votre attestation carbone
           </h1>
+
           <p className="text-gray-600 text-lg leading-relaxed">
-            Estimation indicative basée sur les dépenses. Pas d'audit. Aucune donnée physique requise.
+            Estimation indicative basée sur les dépenses. Pas d'audit. Aucune
+            donnée physique requise.
           </p>
+
           <p className="text-sm text-gray-500 mt-3">
             <strong>Prix :</strong> 89 € · Paiement unique · Sans abonnement
           </p>
         </div>
 
-        {/* STEP 1 */}
+        {/* ÉTAPE 1 */}
         <Accordion
           title="Informations entreprise"
           intro="Renseignez l'identification de base et le contexte. Les champs marqués d'un * sont obligatoires."
@@ -334,6 +362,7 @@ export default function AssessmentForm() {
               <label className="block text-sm font-medium">
                 Nom de l'entreprise / entité légale *
               </label>
+
               <input
                 type="text"
                 value={companyName}
@@ -342,6 +371,7 @@ export default function AssessmentForm() {
                   errors.companyName ? "border-red-500" : ""
                 }`}
               />
+
               {errors.companyName && (
                 <p className="text-sm text-red-600 mt-1">
                   {errors.companyName}
@@ -353,6 +383,7 @@ export default function AssessmentForm() {
               <label className="block text-sm font-medium">
                 Secteur d'activité principal *
               </label>
+
               <select
                 value={sector}
                 onChange={(e) => setSector(e.target.value)}
@@ -360,13 +391,15 @@ export default function AssessmentForm() {
                   errors.sector ? "border-red-500" : ""
                 }`}
               >
-                <option value="">Sélectionnez un secteur</option>
+                <option value="">Sélectionnez votre secteur d’activité</option>
+
                 {SECTORS.map((s) => (
-                  <option key={s.value} value={s.label}>
+                  <option key={s.value} value={s.value}>
                     {s.label}
                   </option>
                 ))}
               </select>
+
               {errors.sector && (
                 <p className="text-sm text-red-600 mt-1">
                   {errors.sector}
@@ -378,6 +411,7 @@ export default function AssessmentForm() {
               <label className="block text-sm font-medium">
                 Identifiant entreprise (optionnel)
               </label>
+
               <input
                 type="text"
                 value={companyId}
@@ -388,7 +422,7 @@ export default function AssessmentForm() {
           </div>
         </Accordion>
 
-        {/* STEP 2 */}
+        {/* ÉTAPE 2 — CONTEXTE */}
         <Accordion
           title="Contexte"
           intro="Définissez l'année de référence, le pays et la langue de l'attestation."
@@ -399,6 +433,7 @@ export default function AssessmentForm() {
               <label className="block text-sm font-medium">
                 Année de référence
               </label>
+
               <input
                 type="number"
                 value={year}
@@ -411,6 +446,7 @@ export default function AssessmentForm() {
               <label className="block text-sm font-medium">
                 Pays principal
               </label>
+
               <select
                 value={country}
                 onChange={(e) => setCountry(e.target.value)}
@@ -426,6 +462,7 @@ export default function AssessmentForm() {
               <label className="block text-sm font-medium">
                 Langue de l'attestation
               </label>
+
               <select
                 value={attestationLocale}
                 onChange={(e) =>
@@ -437,6 +474,7 @@ export default function AssessmentForm() {
                 <option value="fr">Français</option>
                 <option value="de">Deutsch</option>
               </select>
+
               <p className="text-xs text-gray-500 mt-1">
                 L'anglais reste la référence légale en cas de divergence.
               </p>
@@ -444,7 +482,7 @@ export default function AssessmentForm() {
           </div>
         </Accordion>
 
-        {/* STEP 2 — EXPENSES */}
+        {/* ÉTAPE 2 — DÉPENSES */}
         <p className="text-sm text-gray-500">
           Étape 2 sur 3 — Dépenses annuelles
         </p>
@@ -453,16 +491,57 @@ export default function AssessmentForm() {
           title="Dépenses externes annuelles (€)"
           intro="Indiquez des montants annuels approximatifs. Des estimations raisonnables suffisent."
         >
-          <Input label="Services IT & numériques" hint="Logiciels, cloud, SaaS, infogérance" value={expenses.it} onChange={(v) => update("it", v)} />
-          <Input label="Services professionnels" hint="Conseil, comptabilité, juridique" value={expenses.services} onChange={(v) => update("services", v)} />
-          <Input label="Biens & achats" hint="Fournitures de bureau, équipements, matériaux" value={expenses.goods} onChange={(v) => update("goods", v)} />
-          <Input label="Logistique & transport" hint="Fret, livraison, transporteurs" value={expenses.logistics} onChange={(v) => update("logistics", v)} />
-          <Input label="Déplacements professionnels" hint="Vols, trains, taxis, location de voitures" value={expenses.travel} onChange={(v) => update("travel", v)} />
-          <Input label="Hébergement & événements" hint="Hôtels, conférences, événements d'entreprise" value={expenses.accommodation} onChange={(v) => update("accommodation", v)} />
-          <Input label="Autres dépenses externes" hint="Marketing, abonnements, frais divers" value={expenses.other} onChange={(v) => update("other", v)} />
+          <Input
+            label="Services IT & numériques"
+            hint="Logiciels, cloud, SaaS, infogérance"
+            value={expenses.it}
+            onChange={(v) => update("it", v)}
+          />
+
+          <Input
+            label="Services professionnels"
+            hint="Conseil, comptabilité, juridique"
+            value={expenses.services}
+            onChange={(v) => update("services", v)}
+          />
+
+          <Input
+            label="Biens & achats"
+            hint="Fournitures de bureau, équipements, matériaux"
+            value={expenses.goods}
+            onChange={(v) => update("goods", v)}
+          />
+
+          <Input
+            label="Logistique & transport"
+            hint="Fret, livraison, transporteurs"
+            value={expenses.logistics}
+            onChange={(v) => update("logistics", v)}
+          />
+
+          <Input
+            label="Déplacements professionnels"
+            hint="Vols, trains, taxis, location de voitures"
+            value={expenses.travel}
+            onChange={(v) => update("travel", v)}
+          />
+
+          <Input
+            label="Hébergement & événements"
+            hint="Hôtels, conférences, événements d'entreprise"
+            value={expenses.accommodation}
+            onChange={(v) => update("accommodation", v)}
+          />
+
+          <Input
+            label="Autres dépenses externes"
+            hint="Marketing, abonnements, frais divers"
+            value={expenses.other}
+            onChange={(v) => update("other", v)}
+          />
         </Accordion>
 
-        {/* STEP 3 */}
+        {/* ÉTAPE 3 */}
         <p className="text-sm text-gray-500">
           Étape 3 sur 3 — Résultat & attestation
         </p>
@@ -471,11 +550,14 @@ export default function AssessmentForm() {
           <p className="text-sm text-gray-600 mb-1">
             Estimation indicative des émissions annuelles
           </p>
+
           <p className="text-3xl font-bold text-[#0B3A63]">
             {totalCO2e} tCO₂e
           </p>
+
           <p className="text-xs text-gray-500 mt-2">
-            Estimation déterministe basée sur les dépenses · Indicatif · Non audité
+            Estimation déterministe basée sur les dépenses · Indicatif · Non
+            audité
           </p>
         </div>
 
@@ -483,6 +565,7 @@ export default function AssessmentForm() {
           <p className="font-medium text-[#0B3A63]">
             Ce que vous allez recevoir
           </p>
+
           <ul className="text-sm text-gray-600 list-disc pl-5 space-y-1">
             <li>Attestation carbone PDF signée</li>
             <li>Format institutionnel standardisé</li>
@@ -493,20 +576,20 @@ export default function AssessmentForm() {
         </div>
 
         {errors.submit && (
-          <p className="text-sm text-red-600">
-            {errors.submit}
-          </p>
+          <p className="text-sm text-red-600">{errors.submit}</p>
         )}
 
-        {/* ======================================================
-            ACCESS KEY BLOCK (OPTIMIZED)
-        ====================================================== */}
+        {/* CLÉ D'ACCÈS */}
         <div className="bg-gray-50 border border-gray-200 rounded-xl p-5">
-          <h3 className="text-sm font-semibold text-[#0B3A63] mb-2">Clé d'accès (optionnel)</h3>
+          <h3 className="text-sm font-semibold text-[#0B3A63] mb-2">
+            Clé d'accès (optionnel)
+          </h3>
+
           <p className="text-sm text-gray-600 mb-3">
-            Utilisez une clé d'accès si vous avez acheté un pack ou reçu des crédits.
+            Utilisez une clé d'accès si vous avez acheté un pack ou reçu des
+            crédits.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-3 sm:items-center min-w-0">
             <input
               type="text"
@@ -514,6 +597,7 @@ export default function AssessmentForm() {
               value={accessKey}
               onChange={(e) => {
                 setAccessKey(e.target.value);
+
                 if (keyStatus !== "idle") {
                   setKeyStatus("idle");
                   setRemainingCredits(null);
@@ -527,13 +611,12 @@ export default function AssessmentForm() {
               type="button"
               onClick={handleCheckKey}
               disabled={!accessKey || keyStatus === "checking"}
-              className="w-full sm:w-auto shrink-0 bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-50"
+              className="w-full sm:w-auto shrink-0 bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-50 disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {keyStatus === "checking" ? "..." : "Vérifier"}
             </button>
           </div>
 
-          {/* Key Status Feedback */}
           {keyStatus === "invalid" && (
             <p className="text-xs text-red-600 mt-2 font-medium">
               {keyError}
@@ -543,57 +626,66 @@ export default function AssessmentForm() {
           {keyStatus === "valid" && (
             <div className="mt-2 text-xs">
               <p className="text-green-700 font-bold">Clé valide</p>
+
               {remainingCredits === 0 ? (
-                <p className="text-red-600">Cette clé n'a plus de crédits.</p>
+                <p className="text-red-600">
+                  Cette clé n'a plus de crédits.
+                </p>
               ) : (
-                <p className="text-gray-600">Crédits restants : {remainingCredits}</p>
+                <p className="text-gray-600">
+                  Crédits restants : {remainingCredits}
+                </p>
               )}
-              
+
               <p className="text-xs text-gray-500 mt-2 leading-relaxed">
                 En utilisant une clé d'accès, aucun email n'est envoyé.
                 <br />
-                Veuillez télécharger et sauvegarder votre attestation immédiatement après génération.
+                Veuillez télécharger et sauvegarder votre attestation
+                immédiatement après génération.
               </p>
             </div>
           )}
         </div>
-        {/* ====================================================== */}
 
         <p className="text-xs text-gray-500">
-          En générant une Attestation, vous reconnaissez que Certif-Scope ne conserve pas les PDF émis. Les attestations perdues ne sont pas stockées et ne peuvent pas être récupérées. Une réédition peut être demandée mais n'est pas garantie.
+          En générant une attestation, vous reconnaissez que Certif-Scope ne
+          conserve pas les PDF émis. Les attestations perdues ne sont pas
+          stockées et ne peuvent pas être récupérées. Une réédition peut être
+          demandée mais n'est pas garantie.
         </p>
 
         <button
+          type="button"
           onClick={handleSubmit}
           disabled={isSubmitting || isButtonBlocked}
           className={`w-full py-4 rounded-xl font-semibold transition ${
             isSubmitting || isButtonBlocked
-              ? "bg-gray-400 cursor-not-allowed"
+              ? "bg-gray-400 cursor-not-allowed text-white"
               : "bg-[#0B3A63] hover:bg-[#092f50] text-white"
           }`}
         >
-          {buttonLabel}
+          {isSubmitting ? "Traitement en cours..." : buttonLabel}
         </button>
 
         {isRedeeming && (
-          <button 
-            type="button" 
-            onClick={clearKey} 
+          <button
+            type="button"
+            onClick={clearKey}
             className="w-full text-center text-xs text-gray-500 underline mt-2 hover:text-gray-700"
           >
             Je préfère payer 89 € à la place
           </button>
         )}
 
-        {/* LEGAL MENTION FOR CREDITS */}
         <p className="text-xs text-gray-500 leading-relaxed text-center mt-4">
-          En utilisant une clé d'accès, un crédit est consommé par attestation. Les crédits sont non remboursables et non transférables.
+          En utilisant une clé d'accès, un crédit est consommé par attestation.
+          Les crédits sont non remboursables et non transférables.
         </p>
 
         <p className="text-xs text-gray-500 leading-relaxed mt-4">
-          Cette attestation est indicative, non réglementaire et basée uniquement sur les
-          informations fournies. Elle ne constitue pas un audit de gaz à effet de serre
-          ni un rapport de conformité.
+          Cette attestation est indicative, non réglementaire et basée
+          uniquement sur les informations fournies. Elle ne constitue pas un
+          audit de gaz à effet de serre ni un rapport de conformité.
         </p>
       </section>
     </main>
@@ -618,15 +710,17 @@ function Input({
   return (
     <div>
       <label className="block text-sm font-medium">{label}</label>
+
       <input
-        type="number" // type="text" pourrait être mieux pour gérer manuellement les virgules, mais "number" + toNumber() fonctionne aussi si le navigateur gère la localisation
+        type="text"
         inputMode="decimal"
         min="0"
         value={value}
         onChange={(e) => onChange(e.target.value)}
         className="w-full border rounded-md px-4 py-2 mt-1"
       />
+
       <p className="text-xs text-gray-500 mt-1">{hint}</p>
     </div>
   );
-}
+           }
