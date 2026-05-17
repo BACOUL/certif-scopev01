@@ -242,8 +242,7 @@ function getLocaleCopy(locale: AttestationLocale) {
       algorithmLabel: "ALGORITHME",
       hashLabel: "EMPREINTE DU CONTENU SIGNÉ (SHA-256)",
       signatureLabel: "SIGNATURE (BASE64)",
-      publicKeyLabel:
-        "CLÉ PUBLIQUE DE VÉRIFICATION DE L’ÉMETTEUR",
+      publicKeyLabel: "CLÉ PUBLIQUE DE VÉRIFICATION DE L’ÉMETTEUR",
 
       perimeterLimitsTitle: "PÉRIMÈTRE ET LIMITES",
       perimeterLimitsIntro:
@@ -843,16 +842,22 @@ export async function GET(req: Request) {
       min-height: 0;
     }
 
-    .page-one .content,
+    .page-one .content {
+      justify-content: flex-start;
+    }
+
     .page-two .content {
       justify-content: space-between;
     }
 
     .page-one-flow {
+      flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      justify-content: space-between;
+      gap: 10px;
       min-height: 0;
+      padding-bottom: 12px;
     }
 
     .page-two-flow {
@@ -1161,9 +1166,9 @@ export async function GET(req: Request) {
     .feature-card {
       border: 1px solid var(--line);
       border-radius: 6px;
-      padding: 13px 11px;
+      padding: 15px 12px;
       background: var(--panel-soft);
-      min-height: 108px;
+      min-height: 118px;
       page-break-inside: avoid;
       break-inside: avoid;
     }
@@ -2140,4 +2145,4 @@ export async function GET(req: Request) {
 
     return new Response("Internal Server Error", { status: 500 });
   }
-    }
+      }
