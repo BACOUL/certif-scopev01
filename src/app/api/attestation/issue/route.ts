@@ -731,7 +731,7 @@ export async function GET(req: Request) {
     }
 
     .page-one-content {
-      justify-content: space-between;
+      justify-content: flex-start;
     }
 
     .page-one-main {
@@ -740,11 +740,11 @@ export async function GET(req: Request) {
     }
 
     .page-one-bottom {
-      margin-top: 18px;
+      margin-top: 12px;
     }
 
     .footer {
-      margin-top: 8px;
+      margin-top: auto;
       padding-top: 5px;
       border-top: 1px solid var(--line);
       display: flex;
@@ -1039,7 +1039,7 @@ export async function GET(req: Request) {
       border-radius: 6px;
       background: var(--bg);
       padding: 9px 10px;
-      min-height: 102px;
+      min-height: 92px;
       page-break-inside: avoid;
     }
 
@@ -1065,11 +1065,11 @@ export async function GET(req: Request) {
       grid-template-columns: repeat(3, 1fr);
       gap: 8px;
       border: 1px solid var(--line-strong);
-      border-radius: 9px;
+      border-radius: 8px;
       background: linear-gradient(180deg, #ffffff 0%, #F3FBFC 100%);
-      padding: 14px 15px;
+      padding: 11px 13px;
       page-break-inside: avoid;
-      box-shadow: 0 4px 12px rgba(11, 58, 99, 0.05);
+      box-shadow: 0 3px 9px rgba(11, 58, 99, 0.04);
     }
 
     .document-status div {
@@ -1839,4 +1839,4 @@ export async function GET(req: Request) {
 
     return new Response("Internal Server Error", { status: 500 });
   }
-        }
+      }
