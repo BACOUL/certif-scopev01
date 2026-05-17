@@ -228,7 +228,7 @@ function getLocaleCopy(locale: AttestationLocale) {
       scopeNote:
         "Ce document ne constitue ni un inventaire de gaz à effet de serre, ni un audit, ni une vérification, ni une déclaration réglementaire au sens de la CSRD, des ESRS ou de tout cadre équivalent.",
 
-      verificationSimpleTitle: "VÉRIFICATION SIMPLE",
+      verificationSimpleTitle: "VÉRIFICATION DOCUMENTAIRE",
       verificationSimpleText:
         "Scanner le QR code ou utiliser la référence d’attestation sur la page officielle de vérification. La vérification permet de contrôler l’identifiant, l’émetteur, la date, la période de validité et les éléments d’intégrité documentaire.",
       quickCheckTitle: "Contrôle rapide possible",
@@ -367,7 +367,7 @@ function getLocaleCopy(locale: AttestationLocale) {
       scopeNote:
         "Dieses Dokument ist weder ein vollständiges Treibhausgasinventar noch ein Audit, eine Verifikation oder eine regulatorische Erklärung im Sinne der CSRD, der ESRS oder eines gleichwertigen Rahmens.",
 
-      verificationSimpleTitle: "EINFACHE VERIFIKATION",
+      verificationSimpleTitle: "DOKUMENTARISCHE VERIFIKATION",
       verificationSimpleText:
         "Scannen Sie den QR-Code oder verwenden Sie die Referenz der Bescheinigung auf der offiziellen Verifikationsseite. Die Verifikation ermöglicht die Kontrolle von Identifikator, Aussteller, Datum, Gültigkeit und Dokumentintegrität.",
       quickCheckTitle: "Schnellkontrolle möglich",
@@ -503,7 +503,7 @@ function getLocaleCopy(locale: AttestationLocale) {
     scopeNote:
       "This document does not constitute a full greenhouse-gas inventory, an audit, a verification or a regulatory declaration within the meaning of CSRD, ESRS or any equivalent framework.",
 
-    verificationSimpleTitle: "SIMPLE VERIFICATION",
+    verificationSimpleTitle: "DOCUMENTARY VERIFICATION",
     verificationSimpleText:
       "Scan the QR code or use the attestation reference on the official verification page. Verification enables control of the identifier, issuer, date, validity period and documentary integrity elements.",
     quickCheckTitle: "Quick check available",
@@ -820,6 +820,7 @@ export async function GET(req: Request) {
     }
 
     .page {
+      min-height: 277mm;
       height: 277mm;
       display: flex;
       flex-direction: column;
@@ -1047,9 +1048,13 @@ export async function GET(req: Request) {
       border-radius: 5px;
       background: #fff;
       padding: 9px 11px;
-      margin-bottom: 8px;
+      margin-bottom: 9px;
       page-break-inside: avoid;
       break-inside: avoid;
+    }
+
+    .page-two .card {
+      margin-bottom: 9px;
     }
 
     .card.soft {
@@ -1106,7 +1111,7 @@ export async function GET(req: Request) {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 8px;
-      margin-bottom: 0;
+      margin-bottom: 1px;
       page-break-inside: avoid;
       break-inside: avoid;
     }
@@ -1115,7 +1120,8 @@ export async function GET(req: Request) {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 8px;
-      margin-bottom: 0;
+      margin-top: 1px;
+      margin-bottom: 10px;
       page-break-inside: avoid;
       break-inside: avoid;
     }
@@ -1147,7 +1153,7 @@ export async function GET(req: Request) {
     }
 
     .page-one-status-strip {
-      margin-top: auto;
+      margin-top: 10px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       border: 1px solid var(--line-strong);
@@ -1423,7 +1429,7 @@ export async function GET(req: Request) {
     }
 
     .final-card {
-      margin-top: auto;
+      margin-top: 10px;
       border-color: var(--heading);
     }
 
@@ -1752,13 +1758,7 @@ export async function GET(req: Request) {
 
       <div class="card">
         <h2 class="card-title">6. ${escapeHtml(
-          stripLeadingNumber(
-            getText(
-              externalI18n,
-              "methodologySectionTitle",
-              copy.methodologySectionTitle
-            )
-          )
+          stripLeadingNumber(copy.methodologySectionTitle)
         )}</h2>
         <p class="card-text"><strong>${escapeHtml(
           getText(externalI18n, "methodologyLabel", copy.methodologyLabel)
@@ -1806,9 +1806,7 @@ export async function GET(req: Request) {
 
       <div class="card soft">
         <h2 class="card-title">7. ${escapeHtml(
-          stripLeadingNumber(
-            getText(externalI18n, "referencesTitle", copy.referencesTitle)
-          )
+          stripLeadingNumber(copy.referencesTitle)
         )}</h2>
         <p class="card-text">${escapeHtml(
           getText(externalI18n, "normativeText", copy.normativeText)
@@ -1823,12 +1821,8 @@ export async function GET(req: Request) {
 
       <div class="verification-grid">
         <div class="verification-card primary">
-          <h3>${escapeHtml(
-            getText(
-              externalI18n,
-              "verificationSimpleTitle",
-              copy.verificationSimpleTitle
-            )
+          <h3>8. ${escapeHtml(
+            stripLeadingNumber(copy.verificationSimpleTitle)
           )}</h3>
           <p>${escapeHtml(
             getText(
@@ -1923,13 +1917,7 @@ export async function GET(req: Request) {
 
       <div class="card tint">
         <h2 class="card-title">9. ${escapeHtml(
-          stripLeadingNumber(
-            getText(
-              externalI18n,
-              "perimeterLimitsTitle",
-              copy.perimeterLimitsTitle
-            )
-          )
+          stripLeadingNumber(copy.perimeterLimitsTitle)
         )}</h2>
         <p class="card-text">${escapeHtml(
           getText(
@@ -1985,13 +1973,7 @@ export async function GET(req: Request) {
 
       <div class="card final-card">
         <h2 class="card-title">10. ${escapeHtml(
-          stripLeadingNumber(
-            getText(
-              externalI18n,
-              "finalSynthesisTitle",
-              copy.finalSynthesisTitle
-            )
-          )
+          stripLeadingNumber(copy.finalSynthesisTitle)
         )}</h2>
         <p class="card-text">${escapeHtml(
           getText(
@@ -2059,4 +2041,4 @@ export async function GET(req: Request) {
 
     return new Response("Internal Server Error", { status: 500 });
   }
-        }
+  }
