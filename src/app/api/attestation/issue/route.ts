@@ -235,8 +235,7 @@ function getLocaleCopy(locale: AttestationLocale) {
       conclusionTitle: "Synthèse de validité documentaire",
       conclusionText:
         "Cette attestation présente une estimation CO₂e indicative, agrégée, datée, standardisée et vérifiable. Elle constitue un support documentaire destiné à faciliter la transmission d’une information carbone simple, sans divulgation des données financières détaillées.",
-      languageNotice:
-        "Ce document est émis en langue française.",
+      languageNotice: "Ce document est émis en langue française.",
       methodologyNote:
         "CS-SB-v1 est une méthodologie standardisée interne maintenue par Certif-Scope.",
       footerText:
@@ -731,6 +730,19 @@ export async function GET(req: Request) {
       flex-direction: column;
     }
 
+    .page-one-content {
+      justify-content: space-between;
+    }
+
+    .page-one-main {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .page-one-bottom {
+      margin-top: 18px;
+    }
+
     .footer {
       margin-top: 8px;
       padding-top: 5px;
@@ -1048,15 +1060,16 @@ export async function GET(req: Request) {
     }
 
     .document-status {
-      margin-top: 16px;
+      margin-top: 0;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 8px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
+      border: 1px solid var(--line-strong);
+      border-radius: 9px;
       background: linear-gradient(180deg, #ffffff 0%, #F3FBFC 100%);
-      padding: 13px 14px;
+      padding: 14px 15px;
       page-break-inside: avoid;
+      box-shadow: 0 4px 12px rgba(11, 58, 99, 0.05);
     }
 
     .document-status div {
@@ -1319,239 +1332,243 @@ export async function GET(req: Request) {
 </head>
 <body>
   <div class="page page-one">
-    <div class="content">
-      <div class="header">
-        <div class="header-left">
-          ${
-            CERTIF_SCOPE_LOGO_BASE64 &&
-            !CERTIF_SCOPE_LOGO_BASE64.includes("COLLE_ICI")
-              ? `<img src="data:image/png;base64,${CERTIF_SCOPE_LOGO_BASE64}" alt="Certif-Scope" class="logo" />`
-              : ""
-          }
-          <div class="issuer-site"><a href="${metadata.issuerSite}">${metadata.issuerSite}</a></div>
-          <div class="header-tagline">${escapeHtml(
-            getText(i18n, "headerTagline", copy.headerTagline)
+    <div class="content page-one-content">
+      <div class="page-one-main">
+        <div class="header">
+          <div class="header-left">
+            ${
+              CERTIF_SCOPE_LOGO_BASE64 &&
+              !CERTIF_SCOPE_LOGO_BASE64.includes("COLLE_ICI")
+                ? `<img src="data:image/png;base64,${CERTIF_SCOPE_LOGO_BASE64}" alt="Certif-Scope" class="logo" />`
+                : ""
+            }
+            <div class="issuer-site"><a href="${metadata.issuerSite}">${metadata.issuerSite}</a></div>
+            <div class="header-tagline">${escapeHtml(
+              getText(i18n, "headerTagline", copy.headerTagline)
+            )}</div>
+          </div>
+
+          <div class="qr-block">
+            <img src="${qrDataUrl}" alt="QR verification" class="qr" />
+            <div class="qr-caption">${escapeHtml(
+              getText(i18n, "scanToVerifyLabel", copy.scanToVerifyLabel)
+            ).replace(/\n/g, "<br/>")}</div>
+          </div>
+        </div>
+
+        <div class="title-zone">
+          <div class="eyebrow">${escapeHtml(
+            getText(i18n, "eyebrow", copy.eyebrow)
+          )}</div>
+          <h1>${escapeHtml(getText(i18n, "title", copy.title))}</h1>
+          <div class="title-formal">${escapeHtml(
+            getText(i18n, "standardReference", copy.standardReference)
+          )}</div>
+          <div class="title-sub">${escapeHtml(
+            getText(i18n, "subtitle", copy.subtitle)
           )}</div>
         </div>
 
-        <div class="qr-block">
-          <img src="${qrDataUrl}" alt="QR verification" class="qr" />
-          <div class="qr-caption">${escapeHtml(
-            getText(i18n, "scanToVerifyLabel", copy.scanToVerifyLabel)
-          ).replace(/\n/g, "<br/>")}</div>
+        <div class="result-shell">
+          <div class="result-box">
+            <div class="result-label">${escapeHtml(
+              getText(i18n, "resultLabel", copy.resultLabel)
+            )}</div>
+            <div class="result-value">${metadata.totalCO2e} tCO₂e</div>
+            <div class="result-note">${escapeHtml(
+              getText(i18n, "resultNote", copy.resultNote)
+            )}</div>
+            <div class="result-subnote">${escapeHtml(
+              getText(i18n, "resultSubNote", copy.resultSubNote)
+            )}</div>
+          </div>
         </div>
-      </div>
 
-      <div class="title-zone">
-        <div class="eyebrow">${escapeHtml(
-          getText(i18n, "eyebrow", copy.eyebrow)
-        )}</div>
-        <h1>${escapeHtml(getText(i18n, "title", copy.title))}</h1>
-        <div class="title-formal">${escapeHtml(
-          getText(i18n, "standardReference", copy.standardReference)
-        )}</div>
-        <div class="title-sub">${escapeHtml(
-          getText(i18n, "subtitle", copy.subtitle)
-        )}</div>
-      </div>
-
-      <div class="result-shell">
-        <div class="result-box">
-          <div class="result-label">${escapeHtml(
-            getText(i18n, "resultLabel", copy.resultLabel)
-          )}</div>
-          <div class="result-value">${metadata.totalCO2e} tCO₂e</div>
-          <div class="result-note">${escapeHtml(
-            getText(i18n, "resultNote", copy.resultNote)
-          )}</div>
-          <div class="result-subnote">${escapeHtml(
-            getText(i18n, "resultSubNote", copy.resultSubNote)
-          )}</div>
-        </div>
-      </div>
-
-      <div class="summary-grid">
-        <div class="summary-cell">
-          <span class="summary-label">${escapeHtml(
-            getText(
-              i18n,
-              "attestationReferenceLabel",
-              copy.attestationReferenceLabel
-            )
-          )}</span>
-          <span class="summary-value">${metadata.attestationId}</span>
-        </div>
-        <div class="summary-cell">
-          <span class="summary-label">${escapeHtml(
-            getText(i18n, "issuedDateLabel", copy.issuedDateLabel)
-          )}</span>
-          <span class="summary-value">${metadata.issuedDate}</span>
-        </div>
-        <div class="summary-cell">
-          <span class="summary-label">${escapeHtml(
-            getText(i18n, "validUntilLabel", copy.validUntilLabel)
-          )}</span>
-          <span class="summary-value">${metadata.validUntil}</span>
-        </div>
-        <div class="summary-cell">
-          <span class="summary-label">${escapeHtml(
-            getText(i18n, "issuerLabel", copy.issuerLabel)
-          )}</span>
-          <span class="summary-value">${metadata.issuerName}</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <h2 class="card-title"><span class="section-number">1.</span>${escapeHtml(
-          getSectionTitle(i18n, "entitySectionTitle", copy.entitySectionTitle)
-        )}</h2>
-        <div class="entity-grid">
-          <div>
-            <span class="entity-label">${escapeHtml(
-              getText(i18n, "entityNameLabel", copy.entityNameLabel)
-            )}</span>
-            <span class="entity-value">${metadata.companyName}</span>
-          </div>
-          <div>
-            <span class="entity-label">${escapeHtml(
-              getText(i18n, "countryLabel", copy.countryLabel)
-            )}</span>
-            <span class="entity-value">${metadata.country}</span>
-          </div>
-          <div>
-            <span class="entity-label">${escapeHtml(
-              getText(i18n, "activitySectorLabel", copy.activitySectorLabel)
-            )}</span>
-            <span class="entity-value">${metadata.companySector}</span>
-          </div>
-          <div>
-            <span class="entity-label">${escapeHtml(
-              getText(i18n, "reportingYearLabel", copy.reportingYearLabel)
-            )}</span>
-            <span class="entity-value">${metadata.year}</span>
-          </div>
-          <div>
-            <span class="entity-label">${escapeHtml(
-              getText(i18n, "entityIdentifierLabel", copy.entityIdentifierLabel)
-            )}</span>
-            <span class="entity-value">${metadata.entityIdentifier}</span>
-          </div>
-          <div>
-            <span class="entity-label">${escapeHtml(
+        <div class="summary-grid">
+          <div class="summary-cell">
+            <span class="summary-label">${escapeHtml(
               getText(
                 i18n,
                 "attestationReferenceLabel",
                 copy.attestationReferenceLabel
               )
             )}</span>
-            <span class="entity-value">${metadata.attestationId}</span>
+            <span class="summary-value">${metadata.attestationId}</span>
+          </div>
+          <div class="summary-cell">
+            <span class="summary-label">${escapeHtml(
+              getText(i18n, "issuedDateLabel", copy.issuedDateLabel)
+            )}</span>
+            <span class="summary-value">${metadata.issuedDate}</span>
+          </div>
+          <div class="summary-cell">
+            <span class="summary-label">${escapeHtml(
+              getText(i18n, "validUntilLabel", copy.validUntilLabel)
+            )}</span>
+            <span class="summary-value">${metadata.validUntil}</span>
+          </div>
+          <div class="summary-cell">
+            <span class="summary-label">${escapeHtml(
+              getText(i18n, "issuerLabel", copy.issuerLabel)
+            )}</span>
+            <span class="summary-value">${metadata.issuerName}</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 class="card-title"><span class="section-number">1.</span>${escapeHtml(
+            getSectionTitle(i18n, "entitySectionTitle", copy.entitySectionTitle)
+          )}</h2>
+          <div class="entity-grid">
+            <div>
+              <span class="entity-label">${escapeHtml(
+                getText(i18n, "entityNameLabel", copy.entityNameLabel)
+              )}</span>
+              <span class="entity-value">${metadata.companyName}</span>
+            </div>
+            <div>
+              <span class="entity-label">${escapeHtml(
+                getText(i18n, "countryLabel", copy.countryLabel)
+              )}</span>
+              <span class="entity-value">${metadata.country}</span>
+            </div>
+            <div>
+              <span class="entity-label">${escapeHtml(
+                getText(i18n, "activitySectorLabel", copy.activitySectorLabel)
+              )}</span>
+              <span class="entity-value">${metadata.companySector}</span>
+            </div>
+            <div>
+              <span class="entity-label">${escapeHtml(
+                getText(i18n, "reportingYearLabel", copy.reportingYearLabel)
+              )}</span>
+              <span class="entity-value">${metadata.year}</span>
+            </div>
+            <div>
+              <span class="entity-label">${escapeHtml(
+                getText(i18n, "entityIdentifierLabel", copy.entityIdentifierLabel)
+              )}</span>
+              <span class="entity-value">${metadata.entityIdentifier}</span>
+            </div>
+            <div>
+              <span class="entity-label">${escapeHtml(
+                getText(
+                  i18n,
+                  "attestationReferenceLabel",
+                  copy.attestationReferenceLabel
+                )
+              )}</span>
+              <span class="entity-value">${metadata.attestationId}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div class="card soft">
+            <h2 class="card-title"><span class="section-number">2.</span>${escapeHtml(
+              getSectionTitle(
+                i18n,
+                "documentNatureSectionTitle",
+                copy.documentNatureSectionTitle
+              )
+            )}</h2>
+            <p class="card-text">${escapeHtml(
+              getText(i18n, "documentNatureText", copy.documentNatureText)
+            )}</p>
+          </div>
+
+          <div class="card soft">
+            <h2 class="card-title"><span class="section-number">3.</span>${escapeHtml(
+              getSectionTitle(i18n, "scopeSectionTitle", copy.scopeSectionTitle)
+            )}</h2>
+            <p class="card-text">${escapeHtml(
+              getText(i18n, "scopeText", copy.scopeText)
+            )}</p>
+          </div>
+        </div>
+
+        <div class="card important">
+          <h2 class="card-title"><span class="section-number">4.</span>${escapeHtml(
+            getSectionTitle(i18n, "intendedUseTitle", copy.intendedUseTitle)
+          )}</h2>
+          <p class="card-text">${escapeHtml(
+            getText(i18n, "intendedUseText", copy.intendedUseText)
+          )}</p>
+        </div>
+
+        <div class="card tint">
+          <h2 class="card-title"><span class="section-number">5.</span>${escapeHtml(
+            getSectionTitle(
+              i18n,
+              "institutionalReadingTitle",
+              copy.institutionalReadingTitle
+            )
+          )}</h2>
+          <p class="card-text">${escapeHtml(
+            getText(
+              i18n,
+              "institutionalReadingText",
+              copy.institutionalReadingText
+            )
+          )}</p>
+        </div>
+
+        <div class="proof-grid">
+          <div class="proof-card">
+            <h3 class="proof-title">${escapeHtml(
+              getText(i18n, "confidentialityTitle", copy.confidentialityTitle)
+            )}</h3>
+            <div class="proof-text">${escapeHtml(
+              getText(i18n, "confidentialityText", copy.confidentialityText)
+            )}</div>
+          </div>
+
+          <div class="proof-card">
+            <h3 class="proof-title">${escapeHtml(
+              getText(i18n, "verifiabilityTitle", copy.verifiabilityTitle)
+            )}</h3>
+            <div class="proof-text">${escapeHtml(
+              getText(i18n, "verifiabilityText", copy.verifiabilityText)
+            )}</div>
+          </div>
+
+          <div class="proof-card">
+            <h3 class="proof-title">${escapeHtml(
+              getText(i18n, "validityTitle", copy.validityTitle)
+            )}</h3>
+            <div class="proof-text">${escapeHtml(
+              getText(i18n, "validityText", copy.validityText)
+            )}</div>
           </div>
         </div>
       </div>
 
-      <div class="two-col">
-        <div class="card soft">
-          <h2 class="card-title"><span class="section-number">2.</span>${escapeHtml(
-            getSectionTitle(
-              i18n,
-              "documentNatureSectionTitle",
-              copy.documentNatureSectionTitle
-            )
-          )}</h2>
-          <p class="card-text">${escapeHtml(
-            getText(i18n, "documentNatureText", copy.documentNatureText)
-          )}</p>
-        </div>
-
-        <div class="card soft">
-          <h2 class="card-title"><span class="section-number">3.</span>${escapeHtml(
-            getSectionTitle(i18n, "scopeSectionTitle", copy.scopeSectionTitle)
-          )}</h2>
-          <p class="card-text">${escapeHtml(
-            getText(i18n, "scopeText", copy.scopeText)
-          )}</p>
-        </div>
-      </div>
-
-      <div class="card important">
-        <h2 class="card-title"><span class="section-number">4.</span>${escapeHtml(
-          getSectionTitle(i18n, "intendedUseTitle", copy.intendedUseTitle)
-        )}</h2>
-        <p class="card-text">${escapeHtml(
-          getText(i18n, "intendedUseText", copy.intendedUseText)
-        )}</p>
-      </div>
-
-      <div class="card tint">
-        <h2 class="card-title"><span class="section-number">5.</span>${escapeHtml(
-          getSectionTitle(
-            i18n,
-            "institutionalReadingTitle",
-            copy.institutionalReadingTitle
-          )
-        )}</h2>
-        <p class="card-text">${escapeHtml(
-          getText(
-            i18n,
-            "institutionalReadingText",
-            copy.institutionalReadingText
-          )
-        )}</p>
-      </div>
-
-      <div class="proof-grid">
-        <div class="proof-card">
-          <h3 class="proof-title">${escapeHtml(
-            getText(i18n, "confidentialityTitle", copy.confidentialityTitle)
-          )}</h3>
-          <div class="proof-text">${escapeHtml(
-            getText(i18n, "confidentialityText", copy.confidentialityText)
-          )}</div>
-        </div>
-
-        <div class="proof-card">
-          <h3 class="proof-title">${escapeHtml(
-            getText(i18n, "verifiabilityTitle", copy.verifiabilityTitle)
-          )}</h3>
-          <div class="proof-text">${escapeHtml(
-            getText(i18n, "verifiabilityText", copy.verifiabilityText)
-          )}</div>
-        </div>
-
-        <div class="proof-card">
-          <h3 class="proof-title">${escapeHtml(
-            getText(i18n, "validityTitle", copy.validityTitle)
-          )}</h3>
-          <div class="proof-text">${escapeHtml(
-            getText(i18n, "validityText", copy.validityText)
-          )}</div>
-        </div>
-      </div>
-
-      <div class="document-status">
-        <div>
-          <span>${escapeHtml(
-            getText(i18n, "statusTitle1", copy.statusTitle1)
-          )}</span>
-          <strong>${escapeHtml(
-            getText(i18n, "statusValue1", copy.statusValue1)
-          )}</strong>
-        </div>
-        <div>
-          <span>${escapeHtml(
-            getText(i18n, "statusTitle2", copy.statusTitle2)
-          )}</span>
-          <strong>${escapeHtml(
-            getText(i18n, "statusValue2", copy.statusValue2)
-          )}</strong>
-        </div>
-        <div>
-          <span>${escapeHtml(
-            getText(i18n, "statusTitle3", copy.statusTitle3)
-          )}</span>
-          <strong>${escapeHtml(
-            getText(i18n, "statusValue3", copy.statusValue3)
-          )}</strong>
+      <div class="page-one-bottom">
+        <div class="document-status">
+          <div>
+            <span>${escapeHtml(
+              getText(i18n, "statusTitle1", copy.statusTitle1)
+            )}</span>
+            <strong>${escapeHtml(
+              getText(i18n, "statusValue1", copy.statusValue1)
+            )}</strong>
+          </div>
+          <div>
+            <span>${escapeHtml(
+              getText(i18n, "statusTitle2", copy.statusTitle2)
+            )}</span>
+            <strong>${escapeHtml(
+              getText(i18n, "statusValue2", copy.statusValue2)
+            )}</strong>
+          </div>
+          <div>
+            <span>${escapeHtml(
+              getText(i18n, "statusTitle3", copy.statusTitle3)
+            )}</span>
+            <strong>${escapeHtml(
+              getText(i18n, "statusValue3", copy.statusValue3)
+            )}</strong>
+          </div>
         </div>
       </div>
     </div>
@@ -1822,4 +1839,4 @@ export async function GET(req: Request) {
 
     return new Response("Internal Server Error", { status: 500 });
   }
-      }
+        }
