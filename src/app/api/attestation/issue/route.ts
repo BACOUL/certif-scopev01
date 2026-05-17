@@ -851,7 +851,7 @@ export async function GET(req: Request) {
     .page-one-flow {
       display: flex;
       flex-direction: column;
-      gap: 9px;
+      gap: 12px;
       min-height: 0;
     }
 
@@ -985,11 +985,11 @@ export async function GET(req: Request) {
     }
 
     .result-box {
-      width: 72%;
+      width: 74%;
       border: 2px solid var(--heading);
-      border-radius: 9px;
+      border-radius: 10px;
       background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
-      padding: 12px 14px 13px;
+      padding: 15px 16px 16px;
       text-align: center;
       page-break-inside: avoid;
       break-inside: avoid;
@@ -1100,7 +1100,9 @@ export async function GET(req: Request) {
     }
 
     .entity-card {
-      min-height: 89px;
+      min-height: 104px;
+      padding-top: 12px;
+      padding-bottom: 12px;
     }
 
     .entity-grid {
@@ -1137,11 +1139,15 @@ export async function GET(req: Request) {
     }
 
     .two-col .card {
-      min-height: 73px;
+      min-height: 86px;
+      padding-top: 12px;
+      padding-bottom: 12px;
     }
 
     .wide-card {
-      min-height: 63px;
+      min-height: 77px;
+      padding-top: 12px;
+      padding-bottom: 12px;
     }
 
     .features {
@@ -1155,9 +1161,9 @@ export async function GET(req: Request) {
     .feature-card {
       border: 1px solid var(--line);
       border-radius: 6px;
-      padding: 11px 10px;
+      padding: 13px 11px;
       background: var(--panel-soft);
-      min-height: 92px;
+      min-height: 108px;
       page-break-inside: avoid;
       break-inside: avoid;
     }
@@ -1185,14 +1191,14 @@ export async function GET(req: Request) {
       border-radius: 7px;
       overflow: hidden;
       background: #ffffff;
-      min-height: 53px;
+      min-height: 60px;
       page-break-inside: avoid;
       break-inside: avoid;
     }
 
     .status-cell {
-      padding: 10px 11px;
-      min-height: 53px;
+      padding: 12px 12px;
+      min-height: 60px;
       border-right: 1px solid var(--line-strong);
       display: flex;
       flex-direction: column;
@@ -2134,4 +2140,4 @@ export async function GET(req: Request) {
 
     return new Response("Internal Server Error", { status: 500 });
   }
-      }
+    }
