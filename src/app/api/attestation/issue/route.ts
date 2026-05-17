@@ -920,9 +920,9 @@ export async function GET(req: Request) {
     }
 
     .logo {
-      height: 39px;
+      height: 44px;
       width: auto;
-      max-width: 210px;
+      max-width: 230px;
       object-fit: contain;
       display: block;
     }
