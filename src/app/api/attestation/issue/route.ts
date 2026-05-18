@@ -700,8 +700,8 @@ export async function GET(req: Request) {
     const verificationToken = toBase64Url(JSON.stringify(verificationPayload));
     const verifyUrl =
       locale === "fr"
-        ? `https://www.certif-scope.com/fr/verify/?v=${verificationToken}`
-        : `https://www.certif-scope.com/verify/?v=${verificationToken}`;
+        ? `https://www.certif-scope.com/fr/verify/?v=${verificationToken}#verification-qr`
+        : `https://www.certif-scope.com/verify/?v=${verificationToken}#verification-qr`;
 
     const verificationDisplayUrl =
       locale === "fr"
@@ -2162,4 +2162,4 @@ export async function GET(req: Request) {
 
     return new Response("Internal Server Error", { status: 500 });
   }
-      }
+    }
