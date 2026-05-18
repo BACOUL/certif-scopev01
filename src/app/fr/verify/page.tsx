@@ -180,11 +180,15 @@ export default async function VerifyPageFR({ searchParams }: VerifyPageProps) {
   const attestationExpired =
     qrState.status === "detected" ? isExpired(qrState.data.validUntil) : false;
 
+  const hasQrVerification = qrState.status === "detected";
+
   return (
     <section
       id="verify"
       data-section="verify"
-      className="max-w-7xl mx-auto px-6 pt-12 pb-24"
+      className={`max-w-7xl mx-auto px-6 pb-24 ${
+        hasQrVerification ? "pt-6 md:pt-8" : "pt-12"
+      }`}
     >
       {/* JSON-LD — WebPage */}
       <script
@@ -215,7 +219,7 @@ export default async function VerifyPageFR({ searchParams }: VerifyPageProps) {
       <div id="top" />
 
       {/* AUTO SCROLL WHEN QR PARAM IS PRESENT */}
-      {qrState.status === "detected" && (
+      {hasQrVerification && (
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -223,8 +227,8 @@ export default async function VerifyPageFR({ searchParams }: VerifyPageProps) {
                 var target = document.getElementById("verification-qr");
                 if (target) {
                   setTimeout(function () {
-                    target.scrollIntoView({ behavior: "smooth", block: "start" });
-                  }, 200);
+                    target.scrollIntoView({ behavior: "auto", block: "start" });
+                  }, 80);
                 }
               });
             `,
@@ -232,91 +236,102 @@ export default async function VerifyPageFR({ searchParams }: VerifyPageProps) {
         />
       )}
 
-      {/* HERO */}
-      <header className="mb-14 rounded-3xl border border-[#E2E8F0] bg-gradient-to-br from-white via-[#F8FAFC] to-[#EEF8FA] px-6 py-10 md:px-10 md:py-14 shadow-sm">
-        <p className="uppercase text-xs tracking-[0.22em] text-[#64748B] mb-4">
-          Attestation CO₂e — Vérification
-        </p>
+      {/* HERO — affiché uniquement quand aucun QR valide n'est présent */}
+      {!hasQrVerification && (
+        <header className="mb-14 rounded-3xl border border-[#E2E8F0] bg-gradient-to-br from-white via-[#F8FAFC] to-[#EEF8FA] px-6 py-10 md:px-10 md:py-14 shadow-sm">
+          <p className="uppercase text-xs tracking-[0.22em] text-[#64748B] mb-4">
+            Attestation CO₂e — Vérification
+          </p>
 
-        <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
-          <div>
-            <h1 className="text-3xl md:text-5xl font-extrabold text-[#0B3A63] leading-tight mb-6">
-              Vérifier une attestation CO₂e Certif-Scope
-            </h1>
+          <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+            <div>
+              <h1 className="text-3xl md:text-5xl font-extrabold text-[#0B3A63] leading-tight mb-6">
+                Vérifier une attestation CO₂e Certif-Scope
+              </h1>
 
-            <p className="text-lg text-gray-700 leading-relaxed max-w-3xl">
-              Scannez le QR code présent sur une attestation Certif-Scope pour
-              ouvrir cette page avec les éléments de vérification du document.
-              La vérification avancée du PDF signé reste disponible plus bas.
-            </p>
+              <p className="text-lg text-gray-700 leading-relaxed max-w-3xl">
+                Scannez le QR code présent sur une attestation Certif-Scope pour
+                ouvrir cette page avec les éléments de vérification du document.
+                La vérification avancée du PDF signé reste disponible plus bas.
+              </p>
 
-            <div className="mt-8 flex flex-wrap gap-3">
-              <span className="inline-flex items-center rounded-full border border-[#D7E7EC] bg-white px-4 py-2 text-sm font-medium text-[#0B3A63]">
-                QR code de vérification
-              </span>
-              <span className="inline-flex items-center rounded-full border border-[#D7E7EC] bg-white px-4 py-2 text-sm font-medium text-[#0B3A63]">
-                PDF signé
-              </span>
-              <span className="inline-flex items-center rounded-full border border-[#D7E7EC] bg-white px-4 py-2 text-sm font-medium text-[#0B3A63]">
-                Aucune conservation du PDF
-              </span>
-            </div>
-          </div>
-
-          <div className="rounded-2xl border border-[#DDEAF0] bg-white p-6 shadow-sm">
-            <p className="text-sm font-semibold text-[#0B3A63] mb-3">
-              Principe de vérification
-            </p>
-
-            <div className="space-y-3 text-sm text-gray-700">
-              <div className="flex gap-3">
-                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#E9F8FA] text-xs font-bold text-[#0B3A63]">
-                  1
+              <div className="mt-8 flex flex-wrap gap-3">
+                <span className="inline-flex items-center rounded-full border border-[#D7E7EC] bg-white px-4 py-2 text-sm font-medium text-[#0B3A63]">
+                  QR code de vérification
                 </span>
-                <p>Le QR code ouvre une URL de vérification Certif-Scope.</p>
-              </div>
-
-              <div className="flex gap-3">
-                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#E9F8FA] text-xs font-bold text-[#0B3A63]">
-                  2
+                <span className="inline-flex items-center rounded-full border border-[#D7E7EC] bg-white px-4 py-2 text-sm font-medium text-[#0B3A63]">
+                  PDF signé
                 </span>
-                <p>
-                  La page lit les éléments techniques transmis par le document.
-                </p>
-              </div>
-
-              <div className="flex gap-3">
-                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#E9F8FA] text-xs font-bold text-[#0B3A63]">
-                  3
+                <span className="inline-flex items-center rounded-full border border-[#D7E7EC] bg-white px-4 py-2 text-sm font-medium text-[#0B3A63]">
+                  Aucune conservation du PDF
                 </span>
-                <p>
-                  La vérification avancée permet aussi de contrôler le PDF signé.
-                </p>
               </div>
             </div>
+
+            <div className="rounded-2xl border border-[#DDEAF0] bg-white p-6 shadow-sm">
+              <p className="text-sm font-semibold text-[#0B3A63] mb-3">
+                Principe de vérification
+              </p>
+
+              <div className="space-y-3 text-sm text-gray-700">
+                <div className="flex gap-3">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#E9F8FA] text-xs font-bold text-[#0B3A63]">
+                    1
+                  </span>
+                  <p>Le QR code ouvre une URL de vérification Certif-Scope.</p>
+                </div>
+
+                <div className="flex gap-3">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#E9F8FA] text-xs font-bold text-[#0B3A63]">
+                    2
+                  </span>
+                  <p>
+                    La page lit les éléments techniques transmis par le document.
+                  </p>
+                </div>
+
+                <div className="flex gap-3">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#E9F8FA] text-xs font-bold text-[#0B3A63]">
+                    3
+                  </span>
+                  <p>
+                    La vérification avancée permet aussi de contrôler le PDF
+                    signé.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </header>
+        </header>
+      )}
 
       <div className="max-w-4xl mx-auto">
         {/* VERIFICATION QR */}
-        <section id="verification-qr" className="mb-12 scroll-mt-8">
-          <div className="rounded-3xl border border-[#DDEAF0] bg-white p-6 md:p-8 shadow-sm">
-            <div className="mb-6">
-              <p className="uppercase text-xs tracking-[0.18em] text-[#64748B] mb-3">
-                Vérification rapide
-              </p>
+        <section id="verification-qr" className="mb-12 scroll-mt-4 md:scroll-mt-6">
+          <div
+            className={
+              hasQrVerification
+                ? "rounded-3xl border-2 border-[#0B3A63] bg-white shadow-xl overflow-hidden"
+                : "rounded-3xl border border-[#DDEAF0] bg-white p-6 md:p-8 shadow-sm"
+            }
+          >
+            {!hasQrVerification && (
+              <div className="mb-6">
+                <p className="uppercase text-xs tracking-[0.18em] text-[#64748B] mb-3">
+                  Vérification rapide
+                </p>
 
-              <h2 className="text-2xl md:text-3xl font-bold text-[#0B3A63] mb-3">
-                Vérification par QR code
-              </h2>
+                <h2 className="text-2xl md:text-3xl font-bold text-[#0B3A63] mb-3">
+                  Vérification par QR code
+                </h2>
 
-              <p className="text-gray-700 leading-relaxed">
-                Chaque attestation Certif-Scope peut contenir un QR code de
-                vérification. En le scannant, un tiers ouvre cette page avec les
-                éléments nécessaires au contrôle documentaire.
-              </p>
-            </div>
+                <p className="text-gray-700 leading-relaxed">
+                  Chaque attestation Certif-Scope peut contenir un QR code de
+                  vérification. En le scannant, un tiers ouvre cette page avec
+                  les éléments nécessaires au contrôle documentaire.
+                </p>
+              </div>
+            )}
 
             {qrState.status === "missing" && (
               <div className="rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC] p-5">
@@ -349,174 +364,183 @@ export default async function VerifyPageFR({ searchParams }: VerifyPageProps) {
             )}
 
             {qrState.status === "detected" && (
-              <div className="rounded-3xl border border-[#BFE8EA] bg-[#F1FBFC] p-5 md:p-6">
-                <div className="flex flex-col gap-5 md:flex-row md:items-start">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white border border-[#BFE8EA] text-[#0B3A63] text-xl font-extrabold shadow-sm">
-                    ✓
-                  </div>
+              <>
+                <div className="bg-[#0B3A63] px-5 py-5 md:px-7 md:py-6">
+                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#BFE8EA] mb-2">
+                    Contrôle documentaire Certif-Scope
+                  </p>
 
-                  <div className="w-full">
-                    <div className="mb-5">
-                      <p className="inline-flex rounded-full border border-[#BFE8EA] bg-white px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] text-[#0B3A63]">
-                        QR code reconnu
-                      </p>
+                  <h1 className="text-2xl md:text-3xl font-extrabold text-white leading-tight">
+                    Attestation détectée et lisible
+                  </h1>
 
-                      <h3 className="mt-4 text-2xl font-extrabold text-[#0B3A63] leading-tight">
-                        Attestation Certif-Scope détectée
-                      </h3>
+                  <p className="mt-3 text-sm md:text-base text-[#EAF6F8] leading-relaxed">
+                    Le QR code correspond à une attestation Certif-Scope
+                    contenant des éléments de vérification exploitables.
+                  </p>
+                </div>
 
-                      <p className="mt-3 text-gray-700 leading-relaxed">
-                        Les éléments transmis par le QR code ont été lus
-                        correctement. Cette page permet de contrôler les
-                        informations principales de l’attestation et de vérifier
-                        que le document correspond bien à un format
-                        Certif-Scope.
-                      </p>
-                    </div>
-
-                    <div
-                      className={`mb-5 rounded-2xl border p-4 ${
-                        attestationExpired
-                          ? "border-[#F5C2C7] bg-white"
-                          : "border-[#BFE8EA] bg-white"
-                      }`}
-                    >
-                      <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-                        <div>
-                          <p className="text-xs uppercase tracking-[0.16em] text-gray-500 mb-1">
-                            Statut de lecture
-                          </p>
-
-                          <p
-                            className={`text-lg font-extrabold ${
-                              attestationExpired
-                                ? "text-[#8A1F2D]"
-                                : "text-[#0B3A63]"
-                            }`}
-                          >
-                            {attestationExpired
-                              ? "Attestation expirée"
-                              : "Attestation lisible"}
-                          </p>
-                        </div>
-
-                        <div className="rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] px-4 py-3">
-                          <p className="text-xs uppercase tracking-wide text-gray-500 mb-1">
-                            Valable jusqu’au
-                          </p>
-                          <p className="text-sm font-bold text-[#0B3A63]">
-                            {formatValue(qrState.data.validUntil)}
-                          </p>
-                        </div>
-                      </div>
-
-                      <p className="mt-3 text-sm text-gray-700 leading-relaxed">
-                        {attestationExpired
-                          ? "Le QR code reste lisible, mais la date de validité indiquée dans l’attestation est dépassée. Le document doit être considéré comme expiré pour un usage courant."
-                          : "La date de validité indiquée dans le QR code n’est pas dépassée. Le document reste une attestation CO₂e indicative, selon les limites précisées dans le PDF."}
-                      </p>
-                    </div>
-
-                    <div className="grid gap-3 sm:grid-cols-2">
-                      <div className="rounded-xl border border-[#DDEAF0] bg-white p-4">
-                        <p className="text-xs uppercase tracking-wide text-gray-500 mb-1">
-                          ID attestation
+                <div className="p-5 md:p-7">
+                  <div
+                    className={`mb-6 rounded-2xl border p-5 ${
+                      attestationExpired
+                        ? "border-[#F5C2C7] bg-[#FFF5F5]"
+                        : "border-[#BFE8EA] bg-[#F1FBFC]"
+                    }`}
+                  >
+                    <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                      <div>
+                        <p className="text-xs uppercase tracking-[0.16em] text-gray-500 mb-1">
+                          Statut
                         </p>
-                        <p className="text-sm font-semibold text-[#0B3A63] break-words">
-                          {formatValue(qrState.data.certificateId)}
+
+                        <p
+                          className={`text-2xl font-extrabold ${
+                            attestationExpired
+                              ? "text-[#8A1F2D]"
+                              : "text-[#0B3A63]"
+                          }`}
+                        >
+                          {attestationExpired
+                            ? "Attestation expirée"
+                            : "Attestation en période de validité"}
                         </p>
                       </div>
 
-                      <div className="rounded-xl border border-[#DDEAF0] bg-white p-4">
+                      <div className="rounded-xl bg-white border border-[#DDEAF0] px-4 py-3">
                         <p className="text-xs uppercase tracking-wide text-gray-500 mb-1">
-                          Émetteur
+                          Valable jusqu’au
                         </p>
-                        <p className="text-sm font-semibold text-[#0B3A63] break-words">
-                          {formatValue(qrState.data.issuer || "Certif-Scope")}
-                        </p>
-                      </div>
-
-                      <div className="rounded-xl border border-[#DDEAF0] bg-white p-4">
-                        <p className="text-xs uppercase tracking-wide text-gray-500 mb-1">
-                          Date d’émission
-                        </p>
-                        <p className="text-sm font-semibold text-[#0B3A63] break-words">
-                          {formatValue(qrState.data.issuedAt)}
-                        </p>
-                      </div>
-
-                      <div className="rounded-xl border border-[#DDEAF0] bg-white p-4">
-                        <p className="text-xs uppercase tracking-wide text-gray-500 mb-1">
-                          Validité
-                        </p>
-                        <p className="text-sm font-semibold text-[#0B3A63] break-words">
+                        <p className="text-base font-bold text-[#0B3A63]">
                           {formatValue(qrState.data.validUntil)}
                         </p>
                       </div>
-
-                      <div className="rounded-xl border border-[#DDEAF0] bg-white p-4">
-                        <p className="text-xs uppercase tracking-wide text-gray-500 mb-1">
-                          Version méthodologique
-                        </p>
-                        <p className="text-sm font-semibold text-[#0B3A63] break-words">
-                          {formatValue(qrState.data.methodVersion)}
-                        </p>
-                      </div>
-
-                      <div className="rounded-xl border border-[#DDEAF0] bg-white p-4">
-                        <p className="text-xs uppercase tracking-wide text-gray-500 mb-1">
-                          Version facteurs
-                        </p>
-                        <p className="text-sm font-semibold text-[#0B3A63] break-words">
-                          {formatValue(qrState.data.factorVersion)}
-                        </p>
-                      </div>
                     </div>
 
-                    <div className="mt-5 grid gap-3 md:grid-cols-3">
-                      <div className="rounded-xl border border-[#DDEAF0] bg-white p-4">
-                        <p className="text-sm font-bold text-[#0B3A63] mb-2">
-                          Ce QR confirme
-                        </p>
-                        <p className="text-sm text-gray-700 leading-relaxed">
-                          La présence d’éléments de vérification lisibles dans
-                          un format Certif-Scope.
-                        </p>
-                      </div>
+                    <p className="mt-4 text-sm text-gray-700 leading-relaxed">
+                      {attestationExpired
+                        ? "Le document reste techniquement lisible, mais sa date de validité est dépassée. Il doit être considéré comme expiré pour un usage courant."
+                        : "La date de validité indiquée dans l’attestation n’est pas dépassée. Le document reste une attestation CO₂e indicative selon les limites précisées dans le PDF."}
+                    </p>
+                  </div>
 
-                      <div className="rounded-xl border border-[#DDEAF0] bg-white p-4">
-                        <p className="text-sm font-bold text-[#0B3A63] mb-2">
-                          Ce QR ne remplace pas
-                        </p>
-                        <p className="text-sm text-gray-700 leading-relaxed">
-                          Le contrôle du PDF original signé en cas de
-                          vérification documentaire avancée.
-                        </p>
-                      </div>
+                  <div className="mb-6 rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC] p-5">
+                    <p className="text-xs uppercase tracking-[0.16em] text-gray-500 mb-2">
+                      Conclusion de vérification
+                    </p>
 
-                      <div className="rounded-xl border border-[#DDEAF0] bg-white p-4">
-                        <p className="text-sm font-bold text-[#0B3A63] mb-2">
-                          Données protégées
-                        </p>
-                        <p className="text-sm text-gray-700 leading-relaxed">
-                          Les dépenses détaillées et le PDF complet ne sont pas
-                          affichés ni récupérés depuis cette page.
-                        </p>
-                      </div>
+                    <p className="text-base font-semibold text-[#0B3A63] leading-relaxed">
+                      Les éléments transmis par le QR code sont cohérents,
+                      lisibles et rattachés à une attestation émise au format
+                      Certif-Scope.
+                    </p>
+
+                    <p className="mt-3 text-sm text-gray-700 leading-relaxed">
+                      Cette vérification confirme la présence d’éléments
+                      documentaires de contrôle. Elle ne transforme pas
+                      l’attestation en audit carbone, bilan GES réglementaire,
+                      certification officielle ou conformité CSRD/ESRS.
+                    </p>
+                  </div>
+
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    <div className="rounded-xl border border-[#DDEAF0] bg-white p-4">
+                      <p className="text-xs uppercase tracking-wide text-gray-500 mb-1">
+                        ID attestation
+                      </p>
+                      <p className="text-base font-extrabold text-[#0B3A63] break-words">
+                        {formatValue(qrState.data.certificateId)}
+                      </p>
                     </div>
 
-                    <div className="mt-5 rounded-xl border border-[#DDEAF0] bg-white p-4">
-                      <p className="text-sm text-gray-700 leading-relaxed">
-                        <strong>Important :</strong> cette lecture ne signifie
-                        pas qu’un PDF est stocké par Certif-Scope. La
-                        vérification repose sur les éléments transmis par le QR
-                        code et sur la vérification avancée du document signé si
-                        un contrôle plus complet est nécessaire.
+                    <div className="rounded-xl border border-[#DDEAF0] bg-white p-4">
+                      <p className="text-xs uppercase tracking-wide text-gray-500 mb-1">
+                        Émetteur
+                      </p>
+                      <p className="text-base font-bold text-[#0B3A63] break-words">
+                        {formatValue(qrState.data.issuer || "Certif-Scope")}
+                      </p>
+                    </div>
+
+                    <div className="rounded-xl border border-[#DDEAF0] bg-white p-4">
+                      <p className="text-xs uppercase tracking-wide text-gray-500 mb-1">
+                        Date d’émission
+                      </p>
+                      <p className="text-base font-bold text-[#0B3A63] break-words">
+                        {formatValue(qrState.data.issuedAt)}
+                      </p>
+                    </div>
+
+                    <div className="rounded-xl border border-[#DDEAF0] bg-white p-4">
+                      <p className="text-xs uppercase tracking-wide text-gray-500 mb-1">
+                        Validité
+                      </p>
+                      <p className="text-base font-bold text-[#0B3A63] break-words">
+                        {formatValue(qrState.data.validUntil)}
+                      </p>
+                    </div>
+
+                    <div className="rounded-xl border border-[#DDEAF0] bg-white p-4">
+                      <p className="text-xs uppercase tracking-wide text-gray-500 mb-1">
+                        Méthodologie
+                      </p>
+                      <p className="text-sm font-semibold text-[#0B3A63] break-words">
+                        {formatValue(qrState.data.methodVersion)}
+                      </p>
+                    </div>
+
+                    <div className="rounded-xl border border-[#DDEAF0] bg-white p-4">
+                      <p className="text-xs uppercase tracking-wide text-gray-500 mb-1">
+                        Version des facteurs
+                      </p>
+                      <p className="text-sm font-semibold text-[#0B3A63] break-words">
+                        {formatValue(qrState.data.factorVersion)}
                       </p>
                     </div>
                   </div>
+
+                  <div className="mt-6 grid gap-3 md:grid-cols-3">
+                    <div className="rounded-xl border border-[#DDEAF0] bg-[#F8FAFC] p-4">
+                      <p className="text-sm font-bold text-[#0B3A63] mb-2">
+                        Vérification QR
+                      </p>
+                      <p className="text-sm text-gray-700 leading-relaxed">
+                        Le QR contient des informations de contrôle lisibles.
+                      </p>
+                    </div>
+
+                    <div className="rounded-xl border border-[#DDEAF0] bg-[#F8FAFC] p-4">
+                      <p className="text-sm font-bold text-[#0B3A63] mb-2">
+                        PDF original
+                      </p>
+                      <p className="text-sm text-gray-700 leading-relaxed">
+                        Le contrôle avancé doit être réalisé avec le PDF
+                        original signé.
+                      </p>
+                    </div>
+
+                    <div className="rounded-xl border border-[#DDEAF0] bg-[#F8FAFC] p-4">
+                      <p className="text-sm font-bold text-[#0B3A63] mb-2">
+                        Données privées
+                      </p>
+                      <p className="text-sm text-gray-700 leading-relaxed">
+                        Les dépenses détaillées ne sont pas affichées sur cette
+                        page.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="mt-6 rounded-xl border border-[#E2E8F0] bg-white p-4">
+                    <p className="text-sm text-gray-700 leading-relaxed">
+                      <strong>Important :</strong> Certif-Scope ne conserve pas
+                      le PDF complet de l’attestation. La vérification repose
+                      sur les éléments transmis par le QR code et, si
+                      nécessaire, sur le contrôle du document PDF original fourni
+                      par son détenteur.
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </>
             )}
 
             {qrState.status === "invalid" && (
@@ -809,4 +833,4 @@ export default async function VerifyPageFR({ searchParams }: VerifyPageProps) {
       </div>
     </section>
   );
-            }
+                      }
