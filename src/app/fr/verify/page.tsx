@@ -159,6 +159,15 @@ function formatValue(value?: string) {
   return value;
 }
 
+function isExpired(validUntil?: string) {
+  if (!validUntil) return false;
+
+  const validUntilDate = new Date(`${validUntil}T23:59:59`);
+  if (Number.isNaN(validUntilDate.getTime())) return false;
+
+  return validUntilDate.getTime() < Date.now();
+}
+
 /* ======================================================
    PAGE
 ====================================================== */
@@ -167,6 +176,9 @@ export default async function VerifyPageFR({ searchParams }: VerifyPageProps) {
   const params = await resolveSearchParams(searchParams);
   const verificationParam = getSingleParam(params, "v");
   const qrState = parseVerificationParam(verificationParam);
+
+  const attestationExpired =
+    qrState.status === "detected" ? isExpired(qrState.data.validUntil) : false;
 
   return (
     <section
@@ -270,7 +282,7 @@ export default async function VerifyPageFR({ searchParams }: VerifyPageProps) {
 
       <div className="max-w-4xl mx-auto">
         {/* VERIFICATION QR */}
-        <section className="mb-12">
+        <section id="verification-qr" className="mb-12 scroll-mt-8">
           <div className="rounded-3xl border border-[#DDEAF0] bg-white p-6 md:p-8 shadow-sm">
             <div className="mb-6">
               <p className="uppercase text-xs tracking-[0.18em] text-[#64748B] mb-3">
@@ -319,22 +331,73 @@ export default async function VerifyPageFR({ searchParams }: VerifyPageProps) {
             )}
 
             {qrState.status === "detected" && (
-              <div className="rounded-2xl border border-[#BFE8EA] bg-[#F1FBFC] p-5">
-                <div className="flex flex-col gap-4 md:flex-row md:items-start">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-white border border-[#BFE8EA] text-[#0B3A63] font-bold">
+              <div className="rounded-3xl border border-[#BFE8EA] bg-[#F1FBFC] p-5 md:p-6">
+                <div className="flex flex-col gap-5 md:flex-row md:items-start">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white border border-[#BFE8EA] text-[#0B3A63] text-xl font-extrabold shadow-sm">
                     ✓
                   </div>
 
                   <div className="w-full">
-                    <h3 className="text-lg font-bold text-[#0B3A63] mb-2">
-                      Données de vérification détectées
-                    </h3>
+                    <div className="mb-5">
+                      <p className="inline-flex rounded-full border border-[#BFE8EA] bg-white px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] text-[#0B3A63]">
+                        QR code reconnu
+                      </p>
 
-                    <p className="text-gray-700 leading-relaxed mb-5">
-                      Le QR code contient des éléments de vérification lisibles.
-                      La vérification documentaire complète dépend du format
-                      signé généré dans l’attestation PDF.
-                    </p>
+                      <h3 className="mt-4 text-2xl font-extrabold text-[#0B3A63] leading-tight">
+                        Attestation Certif-Scope détectée
+                      </h3>
+
+                      <p className="mt-3 text-gray-700 leading-relaxed">
+                        Les éléments transmis par le QR code ont été lus
+                        correctement. Cette page permet de contrôler les
+                        informations principales de l’attestation et de vérifier
+                        que le document correspond bien à un format
+                        Certif-Scope.
+                      </p>
+                    </div>
+
+                    <div
+                      className={`mb-5 rounded-2xl border p-4 ${
+                        attestationExpired
+                          ? "border-[#F5C2C7] bg-white"
+                          : "border-[#BFE8EA] bg-white"
+                      }`}
+                    >
+                      <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                        <div>
+                          <p className="text-xs uppercase tracking-[0.16em] text-gray-500 mb-1">
+                            Statut de lecture
+                          </p>
+
+                          <p
+                            className={`text-lg font-extrabold ${
+                              attestationExpired
+                                ? "text-[#8A1F2D]"
+                                : "text-[#0B3A63]"
+                            }`}
+                          >
+                            {attestationExpired
+                              ? "Attestation expirée"
+                              : "Attestation lisible"}
+                          </p>
+                        </div>
+
+                        <div className="rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] px-4 py-3">
+                          <p className="text-xs uppercase tracking-wide text-gray-500 mb-1">
+                            Valable jusqu’au
+                          </p>
+                          <p className="text-sm font-bold text-[#0B3A63]">
+                            {formatValue(qrState.data.validUntil)}
+                          </p>
+                        </div>
+                      </div>
+
+                      <p className="mt-3 text-sm text-gray-700 leading-relaxed">
+                        {attestationExpired
+                          ? "Le QR code reste lisible, mais la date de validité indiquée dans l’attestation est dépassée. Le document doit être considéré comme expiré pour un usage courant."
+                          : "La date de validité indiquée dans le QR code n’est pas dépassée. Le document reste une attestation CO₂e indicative, selon les limites précisées dans le PDF."}
+                      </p>
+                    </div>
 
                     <div className="grid gap-3 sm:grid-cols-2">
                       <div className="rounded-xl border border-[#DDEAF0] bg-white p-4">
@@ -392,12 +455,45 @@ export default async function VerifyPageFR({ searchParams }: VerifyPageProps) {
                       </div>
                     </div>
 
+                    <div className="mt-5 grid gap-3 md:grid-cols-3">
+                      <div className="rounded-xl border border-[#DDEAF0] bg-white p-4">
+                        <p className="text-sm font-bold text-[#0B3A63] mb-2">
+                          Ce QR confirme
+                        </p>
+                        <p className="text-sm text-gray-700 leading-relaxed">
+                          La présence d’éléments de vérification lisibles dans
+                          un format Certif-Scope.
+                        </p>
+                      </div>
+
+                      <div className="rounded-xl border border-[#DDEAF0] bg-white p-4">
+                        <p className="text-sm font-bold text-[#0B3A63] mb-2">
+                          Ce QR ne remplace pas
+                        </p>
+                        <p className="text-sm text-gray-700 leading-relaxed">
+                          Le contrôle du PDF original signé en cas de
+                          vérification documentaire avancée.
+                        </p>
+                      </div>
+
+                      <div className="rounded-xl border border-[#DDEAF0] bg-white p-4">
+                        <p className="text-sm font-bold text-[#0B3A63] mb-2">
+                          Données protégées
+                        </p>
+                        <p className="text-sm text-gray-700 leading-relaxed">
+                          Les dépenses détaillées et le PDF complet ne sont pas
+                          affichés ni récupérés depuis cette page.
+                        </p>
+                      </div>
+                    </div>
+
                     <div className="mt-5 rounded-xl border border-[#DDEAF0] bg-white p-4">
                       <p className="text-sm text-gray-700 leading-relaxed">
-                        Cette lecture ne signifie pas qu’un PDF est stocké par
-                        Certif-Scope. La vérification repose sur les éléments
-                        transmis par le QR code et sur la vérification avancée
-                        du document signé.
+                        <strong>Important :</strong> cette lecture ne signifie
+                        pas qu’un PDF est stocké par Certif-Scope. La
+                        vérification repose sur les éléments transmis par le QR
+                        code et sur la vérification avancée du document signé si
+                        un contrôle plus complet est nécessaire.
                       </p>
                     </div>
                   </div>
@@ -695,4 +791,4 @@ export default async function VerifyPageFR({ searchParams }: VerifyPageProps) {
       </div>
     </section>
   );
-                }
+      }
