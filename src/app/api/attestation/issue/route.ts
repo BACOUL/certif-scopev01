@@ -596,14 +596,6 @@ export async function GET(req: Request) {
     };
     const copy = getLocaleCopy(locale);
 
-    /**
-     * ======================================================
-     * TEXTES SENSIBLES — PRIORITÉ AU CONTENU JURIDIQUE LOCAL
-     * ======================================================
-     * Ces clés sont volontairement forcées depuis getLocaleCopy().
-     * Objectif : éviter que l'ancien contenu de ATTESTATION_I18N
-     * réinjecte des formulations moins prudentes dans le PDF.
-     */
     Object.assign(externalI18n, {
       standardReference: copy.standardReference,
       pageTwoIntro: copy.pageTwoIntro,
@@ -717,8 +709,13 @@ export async function GET(req: Request) {
         : "https://www.certif-scope.com/verify";
 
     const qrDataUrl = await QRCode.toDataURL(verifyUrl, {
-      width: 180,
-      margin: 1,
+      errorCorrectionLevel: "H",
+      width: 420,
+      margin: 4,
+      color: {
+        dark: "#000000",
+        light: "#FFFFFF",
+      },
     });
 
     const metadata = {
@@ -920,9 +917,9 @@ export async function GET(req: Request) {
     }
 
     .logo {
-      height: 44px;
+      height: 54px;
       width: auto;
-      max-width: 230px;
+      max-width: 260px;
       object-fit: contain;
       display: block;
     }
@@ -940,26 +937,26 @@ export async function GET(req: Request) {
     }
 
     .qr-block {
-      width: 72px;
+      width: 96px;
       text-align: center;
       flex: 0 0 auto;
     }
 
     .qr {
-      width: 56px;
-      height: 56px;
+      width: 74px;
+      height: 74px;
       display: block;
       margin: 0 auto;
       border: 1px solid var(--line);
-      padding: 3px;
+      padding: 4px;
       border-radius: 4px;
       background: #ffffff;
     }
 
     .qr-caption {
       margin-top: 3px;
-      font-size: 6.6px;
-      line-height: 1.13;
+      font-size: 6.4px;
+      line-height: 1.1;
       color: var(--ink);
     }
 
@@ -2165,4 +2162,4 @@ export async function GET(req: Request) {
 
     return new Response("Internal Server Error", { status: 500 });
   }
-    }
+      }
