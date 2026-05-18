@@ -710,7 +710,7 @@ export async function GET(req: Request) {
 
     const qrDataUrl = await QRCode.toDataURL(verifyUrl, {
       errorCorrectionLevel: "H",
-      width: 420,
+      width: 600,
       margin: 4,
       color: {
         dark: "#000000",
@@ -937,18 +937,18 @@ export async function GET(req: Request) {
     }
 
     .qr-block {
-      width: 96px;
+      width: 46mm;
       text-align: center;
       flex: 0 0 auto;
     }
 
     .qr {
-      width: 74px;
-      height: 74px;
+      width: 40mm;
+      height: 40mm;
       display: block;
       margin: 0 auto;
       border: 1px solid var(--line);
-      padding: 4px;
+      padding: 2mm;
       border-radius: 4px;
       background: #ffffff;
     }
