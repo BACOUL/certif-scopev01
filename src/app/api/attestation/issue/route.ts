@@ -917,9 +917,9 @@ export async function GET(req: Request) {
     }
 
     .logo {
-      height: 54px;
+      height: 78px;
       width: auto;
-      max-width: 260px;
+      max-width: 340px;
       object-fit: contain;
       display: block;
     }
@@ -1525,7 +1525,7 @@ export async function GET(req: Request) {
             ${
               HAS_EMBEDDED_LOGO
                 ? `<img src="data:image/png;base64,${CERTIF_SCOPE_LOGO_BASE64}" alt="Certif-Scope" class="logo" />`
-                : `<div style="color:#0B3A63;font-weight:800;font-size:22px;line-height:1;">Certif-Scope</div>`
+                : `<div style="color:#0B3A63;font-weight:800;font-size:30px;line-height:1;">Certif-Scope</div>`
             }
             <div class="issuer-site"><a href="${metadata.issuerSite}">${metadata.issuerSite}</a></div>
             <div class="header-tagline">${headerTagline}</div>
