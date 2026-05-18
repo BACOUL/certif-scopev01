@@ -214,6 +214,24 @@ export default async function VerifyPageFR({ searchParams }: VerifyPageProps) {
       {/* TOP ANCHOR */}
       <div id="top" />
 
+      {/* AUTO SCROLL WHEN QR PARAM IS PRESENT */}
+      {qrState.status === "detected" && (
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.addEventListener("load", function () {
+                var target = document.getElementById("verification-qr");
+                if (target) {
+                  setTimeout(function () {
+                    target.scrollIntoView({ behavior: "smooth", block: "start" });
+                  }, 200);
+                }
+              });
+            `,
+          }}
+        />
+      )}
+
       {/* HERO */}
       <header className="mb-14 rounded-3xl border border-[#E2E8F0] bg-gradient-to-br from-white via-[#F8FAFC] to-[#EEF8FA] px-6 py-10 md:px-10 md:py-14 shadow-sm">
         <p className="uppercase text-xs tracking-[0.22em] text-[#64748B] mb-4">
@@ -791,4 +809,4 @@ export default async function VerifyPageFR({ searchParams }: VerifyPageProps) {
       </div>
     </section>
   );
-      }
+            }
