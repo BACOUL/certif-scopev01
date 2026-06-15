@@ -19,21 +19,22 @@ export const metadata: Metadata = {
   description:
     "Découvrez l’attestation CO₂e Certif-Scope : une estimation carbone spend-based standardisée, conçue pour les appels d’offres, les banques et les workflows de vérification. Document indicatif, non CSRD/ESRS, non audit.",
   alternates: {
-    canonical: "https://www.certif-scope.com/fr/product",
+    canonical: "https://www.certif-scope.com/fr/product/",
     languages: {
-      en: "https://www.certif-scope.com/product",
-      fr: "https://www.certif-scope.com/fr/product",
+      en: "https://www.certif-scope.com/product/",
+      fr: "https://www.certif-scope.com/fr/product/",
     },
   },
   openGraph: {
     title: "Attestation CO₂e — Produit | Certif-Scope",
     description:
       "Attestation CO₂e indicative basée sur les dépenses : format standardisé, vérifiable, adapté aux usages institutionnels et procurement. Non réglementaire.",
-    url: "https://www.certif-scope.com/fr/product",
+    url: "https://www.certif-scope.com/fr/product/",
     siteName: "Certif-Scope",
     type: "website",
     locale: "fr_FR",
   },
+  robots: { index: true, follow: true },
 };
 
 /* ======================================================
@@ -66,7 +67,7 @@ export default function ProductPageFR() {
               "@type": "Offer",
               priceCurrency: "EUR",
               price: "89",
-              url: "https://www.certif-scope.com/fr/pricing",
+              url: "https://www.certif-scope.com/fr/pricing/",
             },
           }),
         }}
