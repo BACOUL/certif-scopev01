@@ -1,10 +1,25 @@
 // src/app/fr/generate/page.tsx
+import type { Metadata } from "next";
+
 import AssessmentForm from "./AssessmentForm";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Générer une attestation — Certif-Scope",
   description:
     "Générez une attestation CO₂e indicative basée sur les dépenses, en quelques minutes, sans audit ni compte.",
+  alternates: {
+    canonical: "https://www.certif-scope.com/fr/generate/",
+  },
+  openGraph: {
+    title: "Générer une attestation — Certif-Scope",
+    description:
+      "Générez une attestation CO₂e indicative basée sur les dépenses, en quelques minutes, sans audit ni compte.",
+    url: "https://www.certif-scope.com/fr/generate/",
+    siteName: "Certif-Scope",
+    type: "website",
+    locale: "fr_FR",
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function GenerateFRPage() {
