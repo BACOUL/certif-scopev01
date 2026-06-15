@@ -6,16 +6,9 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export const metadata: Metadata = {
-  title: "CO₂e Attestation for SMEs | Banks & Procurement – Certif-Scope",
+  title: "Certif-Scope — Attestation CO₂e indicative pour PME",
   description:
-    "Generate a standardized, spend-based CO₂e attestation for SMEs. Used to respond to requests from banks, insurers and procurement — without a full carbon audit.",
-  alternates: {
-    canonical: "https://www.certif-scope.com/",
-    languages: {
-      en: "https://www.certif-scope.com/",
-      fr: "https://www.certif-scope.com/fr",
-    },
-  },
+    "Certif-Scope aide les PME françaises à générer une attestation CO₂e indicative, standardisée et vérifiable.",
   icons: {
     icon: [
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
@@ -29,10 +22,10 @@ export const metadata: Metadata = {
   },
   manifest: "/site.webmanifest",
   openGraph: {
-    title: "CO₂e Attestation for SMEs – Certif-Scope",
+    title: "Certif-Scope — Attestation CO₂e indicative pour PME",
     description:
-      "Standardized, spend-based CO₂e attestation for SMEs. Independently verifiable and used in banking, insurance and procurement workflows.",
-    url: "https://www.certif-scope.com/",
+      "Attestation CO₂e indicative, standardisée et vérifiable pour les PME françaises.",
+    url: "https://www.certif-scope.com/fr/",
     siteName: "Certif-Scope",
     images: [
       {
@@ -42,7 +35,7 @@ export const metadata: Metadata = {
         alt: "CO₂e Attestation Preview",
       },
     ],
-    locale: "en_US",
+    locale: "fr_FR",
     type: "website",
   },
   twitter: {
@@ -57,7 +50,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="fr" suppressHydrationWarning>
       <head>
         <script
           async
@@ -81,10 +74,10 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Organization",
               name: "Certif-Scope",
-              url: "https://www.certif-scope.com/",
+              url: "https://www.certif-scope.com/fr/",
               logo: "https://www.certif-scope.com/logo.png",
               description:
-                "Spend-based CO₂e attestations used in procurement, banking and ESG workflows across Europe.",
+                "Attestations CO₂e indicatives pour PME françaises, utilisables dans les demandes fournisseurs, banques, assurances et appels d’offres.",
             }),
           }}
         />
@@ -96,8 +89,8 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "WebSite",
               name: "Certif-Scope",
-              url: "https://www.certif-scope.com/",
-              inLanguage: "en",
+              url: "https://www.certif-scope.com/fr/",
+              inLanguage: "fr-FR",
             }),
           }}
         />
