@@ -1,7 +1,22 @@
-export const metadata = {
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
   title: "Politique relative aux cookies — Certif-Scope",
   description:
     "Politique relative aux cookies expliquant l’utilisation limitée de cookies strictement nécessaires par Certif-Scope, conformément au RGPD et aux exigences ePrivacy européennes.",
+  alternates: {
+    canonical: "https://www.certif-scope.com/fr/cookies/",
+  },
+  openGraph: {
+    title: "Politique relative aux cookies — Certif-Scope",
+    description:
+      "Politique relative aux cookies expliquant l’utilisation limitée de cookies strictement nécessaires par Certif-Scope, conformément au RGPD et aux exigences ePrivacy européennes.",
+    url: "https://www.certif-scope.com/fr/cookies/",
+    siteName: "Certif-Scope",
+    type: "website",
+    locale: "fr_FR",
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function CookiePolicyPage() {
