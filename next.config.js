@@ -43,7 +43,10 @@ const nextConfig = {
         permanent: true,
       },
 
-      // Legacy EN -> canonique (EN = /)
+      // France-first SEO: la racine publique pointe vers la home FR.
+      { source: "/", destination: "/fr/", permanent: true },
+
+      // Legacy EN -> racine, elle-même redirigée vers /fr/
       { source: "/en", destination: "/", permanent: true },
       { source: "/en/", destination: "/", permanent: true },
 
