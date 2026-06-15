@@ -4,10 +4,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 /* ======================================================
-   SEO METADATA — PAGE SECONDAIRE (DUPLICATE HANDLING)
-   Cette page reste accessible pour le maillage interne,
-   mais Google doit indexer la page principale :
-   /fr/why-companies-ask/attestation-carbone-pme/
+   SEO METADATA — PAGE SECONDAIRE FR
+   Objectif : indexer la page stratégique banques / assurances
+   avec une canonical française propre et explicite.
 ====================================================== */
 
 export const metadata: Metadata = {
@@ -17,19 +16,19 @@ export const metadata: Metadata = {
     "Comprendre pourquoi une banque ou un assureur demande un “bilan carbone” : usage screening ESG / risque, ce qui est attendu en pratique, et quand un document CO₂e indicatif est acceptable.",
   alternates: {
     canonical:
-      "https://www.certif-scope.com/fr/why-companies-ask/attestation-carbone-pme/",
+      "https://www.certif-scope.com/fr/why-companies-ask/exigences-co2-banques-assurances/",
   },
   openGraph: {
     title:
       "Bilan carbone demandé par une banque ou un assureur — Pourquoi et quoi fournir",
     description:
       "Pourquoi les acteurs financiers demandent un “bilan carbone” et comment répondre avec un document CO₂e indicatif, standardisé et cadré.",
-    url: "https://www.certif-scope.com/fr/why-companies-ask/exigences-co2-banques-assurances",
+    url: "https://www.certif-scope.com/fr/why-companies-ask/exigences-co2-banques-assurances/",
     siteName: "Certif-Scope",
     type: "website",
     locale: "fr_FR",
   },
-  robots: { index: false, follow: true },
+  robots: { index: true, follow: true },
 };
 
 /* ======================================================
@@ -38,7 +37,7 @@ export const metadata: Metadata = {
 
 export default function FinanceCO2RequirementsFR() {
   const pageUrl =
-    "https://www.certif-scope.com/fr/why-companies-ask/exigences-co2-banques-assurances";
+    "https://www.certif-scope.com/fr/why-companies-ask/exigences-co2-banques-assurances/";
 
   const jsonLdBreadcrumb = {
     "@context": "https://schema.org",
@@ -48,13 +47,13 @@ export default function FinanceCO2RequirementsFR() {
         "@type": "ListItem",
         position: 1,
         name: "Accueil (FR)",
-        item: "https://www.certif-scope.com/fr",
+        item: "https://www.certif-scope.com/fr/",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Pourquoi les entreprises le demandent",
-        item: "https://www.certif-scope.com/fr/why-companies-ask",
+        item: "https://www.certif-scope.com/fr/why-companies-ask/",
       },
       {
         "@type": "ListItem",
@@ -195,14 +194,14 @@ export default function FinanceCO2RequirementsFR() {
 
         <div className="mt-8 flex flex-wrap gap-3">
           <Link
-            href="/fr/why-companies-ask"
+            href="/fr/why-companies-ask/"
             className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
           >
             Retour au guide
           </Link>
 
           <Link
-            href="/fr/product"
+            href="/fr/product/"
             className="inline-block text-sm px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
           >
             Voir le produit
@@ -265,4 +264,4 @@ export default function FinanceCO2RequirementsFR() {
       </div>
     </section>
   );
-       }
+}
