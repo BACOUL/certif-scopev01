@@ -1,7 +1,22 @@
-export const metadata = {
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
   title: "Contact — Certif-Scope",
   description:
     "Contactez Certif-Scope pour le support, les demandes institutionnelles ou toute information générale relative aux attestations carbone.",
+  alternates: {
+    canonical: "https://www.certif-scope.com/fr/contact/",
+  },
+  openGraph: {
+    title: "Contact — Certif-Scope",
+    description:
+      "Contactez Certif-Scope pour le support, les demandes institutionnelles ou toute information générale relative aux attestations carbone.",
+    url: "https://www.certif-scope.com/fr/contact/",
+    siteName: "Certif-Scope",
+    type: "website",
+    locale: "fr_FR",
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function ContactPage() {
