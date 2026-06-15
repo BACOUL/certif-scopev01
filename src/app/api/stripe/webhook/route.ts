@@ -4,32 +4,38 @@ import crypto from "crypto";
 import { Resend } from "resend";
 
 export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 /* ======================================================
-   CLIENTS
+   ENV RUNTIME
 ====================================================== */
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
-const resend = new Resend(process.env.RESEND_API_KEY!);
+type WebhookEnv = {
+  STRIPE_SECRET_KEY: string;
+  STRIPE_WEBHOOK_SECRET: string;
+  RESEND_API_KEY: string;
+  CLOUDFLARE_ACCOUNT_ID: string;
+  CF_KV_NAMESPACE_ID: string;
+  CLOUDFLARE_API_TOKEN: string;
+  KEY_SECRET: string;
+};
 
-/* ======================================================
-   ENV OBLIGATOIRES
-====================================================== */
-const {
-  STRIPE_WEBHOOK_SECRET,
-  CLOUDFLARE_ACCOUNT_ID,
-  CF_KV_NAMESPACE_ID,
-  CLOUDFLARE_API_TOKEN,
-  KEY_SECRET,
-} = process.env;
+function getWebhookEnv(): WebhookEnv {
+  const env = {
+    STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
+    STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET,
+    RESEND_API_KEY: process.env.RESEND_API_KEY,
+    CLOUDFLARE_ACCOUNT_ID: process.env.CLOUDFLARE_ACCOUNT_ID,
+    CF_KV_NAMESPACE_ID: process.env.CF_KV_NAMESPACE_ID,
+    CLOUDFLARE_API_TOKEN: process.env.CLOUDFLARE_API_TOKEN,
+    KEY_SECRET: process.env.KEY_SECRET,
+  };
 
-if (
-  !STRIPE_WEBHOOK_SECRET ||
-  !CLOUDFLARE_ACCOUNT_ID ||
-  !CF_KV_NAMESPACE_ID ||
-  !CLOUDFLARE_API_TOKEN ||
-  !KEY_SECRET
-) {
-  throw new Error("Missing ENV variables");
+  const missing = Object.values(env).some((value) => !value);
+  if (missing) {
+    throw new Error("Missing required webhook environment variables");
+  }
+
+  return env as WebhookEnv;
 }
 
 const KEY_VALIDITY_DAYS = 365;
@@ -116,23 +122,23 @@ const EMAIL_I18N: Record<
 /* ======================================================
    HELPERS — KEYS
 ====================================================== */
-function sign(body: string): string {
+function sign(body: string, keySecret: string): string {
   return crypto
-    .createHmac("sha256", KEY_SECRET!)
+    .createHmac("sha256", keySecret)
     .update(body)
     .digest("hex")
     .slice(0, 8)
     .toUpperCase();
 }
 
-function generateAccessKey(): string {
+function generateAccessKey(keySecret: string): string {
   const raw = crypto.randomBytes(8).toString("hex").toUpperCase();
   const body =
     `CS-${raw.slice(0, 4)}` +
     `-${raw.slice(4, 8)}` +
     `-${raw.slice(8, 12)}` +
     `-${raw.slice(12, 16)}`;
-  return `${body}-${sign(body)}`;
+  return `${body}-${sign(body, keySecret)}`;
 }
 
 function computeExpiryDate(): string {
@@ -144,13 +150,16 @@ function computeExpiryDate(): string {
 /* ======================================================
    CLOUDFLARE KV
 ====================================================== */
-const KV_BASE = `https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/storage/kv/namespaces/${CF_KV_NAMESPACE_ID}/values`;
+function getKvBase(env: WebhookEnv): string {
+  return `https://api.cloudflare.com/client/v4/accounts/${env.CLOUDFLARE_ACCOUNT_ID}/storage/kv/namespaces/${env.CF_KV_NAMESPACE_ID}/values`;
+}
 
-async function kvPut(key: string, value: unknown) {
-  const res = await fetch(`${KV_BASE}/${key}`, {
+async function kvPut(env: WebhookEnv, key: string, value: unknown) {
+  const kvBase = getKvBase(env);
+  const res = await fetch(`${kvBase}/${key}`, {
     method: "PUT",
     headers: {
-      Authorization: `Bearer ${CLOUDFLARE_API_TOKEN}`,
+      Authorization: `Bearer ${env.CLOUDFLARE_API_TOKEN}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify(value),
@@ -158,10 +167,11 @@ async function kvPut(key: string, value: unknown) {
   if (!res.ok) throw new Error(await res.text());
 }
 
-async function kvGet(key: string) {
-  const res = await fetch(`${KV_BASE}/${key}`, {
+async function kvGet(env: WebhookEnv, key: string) {
+  const kvBase = getKvBase(env);
+  const res = await fetch(`${kvBase}/${key}`, {
     method: "GET",
-    headers: { Authorization: `Bearer ${CLOUDFLARE_API_TOKEN}` },
+    headers: { Authorization: `Bearer ${env.CLOUDFLARE_API_TOKEN}` },
   });
   if (res.status === 404) return null;
   if (!res.ok) throw new Error(await res.text());
@@ -172,6 +182,20 @@ async function kvGet(key: string) {
    STRIPE WEBHOOK — FINAL
 ====================================================== */
 export async function POST(req: Request) {
+  let env: WebhookEnv;
+  try {
+    env = getWebhookEnv();
+  } catch {
+    console.error("Missing required webhook environment variables");
+    return NextResponse.json(
+      { error: "Missing required webhook environment variables" },
+      { status: 500 }
+    );
+  }
+
+  const stripe = new Stripe(env.STRIPE_SECRET_KEY);
+  const resend = new Resend(env.RESEND_API_KEY);
+
   const rawBody = await req.text();
   const sig = req.headers.get("stripe-signature");
   if (!sig) return new NextResponse("Missing signature", { status: 400 });
@@ -181,7 +205,7 @@ export async function POST(req: Request) {
     event = stripe.webhooks.constructEvent(
       rawBody,
       sig,
-      STRIPE_WEBHOOK_SECRET
+      env.STRIPE_WEBHOOK_SECRET
     );
   } catch {
     return new NextResponse("Invalid signature", { status: 400 });
@@ -195,7 +219,7 @@ export async function POST(req: Request) {
   const metadata = session.metadata || {};
 
   const processedKey = `processed:${session.id}`;
-  if (await kvGet(processedKey)) {
+  if (await kvGet(env, processedKey)) {
     return NextResponse.json({ received: true });
   }
 
@@ -223,8 +247,8 @@ export async function POST(req: Request) {
 
     const keys: string[] = [];
     for (let i = 0; i < credits; i++) {
-      const key = generateAccessKey();
-      await kvPut(key, {
+      const key = generateAccessKey(env.KEY_SECRET);
+      await kvPut(env, key, {
         credits: 1,
         createdAt: new Date().toISOString(),
         expiresAt: computeExpiryDate(),
@@ -268,10 +292,10 @@ export async function POST(req: Request) {
     });
   }
 
-  await kvPut(processedKey, {
+  await kvPut(env, processedKey, {
     processedAt: new Date().toISOString(),
     product: metadata.product || "unknown",
   });
 
   return NextResponse.json({ received: true });
-     }
+}
