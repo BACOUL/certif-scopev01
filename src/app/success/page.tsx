@@ -10,14 +10,15 @@ export const metadata = {
   description: "Your CO₂e attestation has been issued.",
 };
 
-export default function SuccessPage({
+export default async function SuccessPage({
   searchParams,
 }: {
-  searchParams: { session_id?: string };
+  searchParams: Promise<{ session_id?: string }>;
 }) {
+  const resolvedSearchParams = await searchParams;
   const sessionId =
-    typeof searchParams?.session_id === "string"
-      ? searchParams.session_id
+    typeof resolvedSearchParams?.session_id === "string"
+      ? resolvedSearchParams.session_id
       : null;
 
   return (
