@@ -1,7 +1,22 @@
-export const metadata = {
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
   title: "Vue d’ensemble du traitement des données — Certif-Scope",
   description:
     "Vue d’ensemble du traitement des données par Certif-Scope, incluant les flux de données, la logique de conservation et les rôles et responsabilités alignés sur le RGPD.",
+  alternates: {
+    canonical: "https://www.certif-scope.com/fr/data-processing/",
+  },
+  openGraph: {
+    title: "Vue d’ensemble du traitement des données — Certif-Scope",
+    description:
+      "Vue d’ensemble du traitement des données par Certif-Scope, incluant les flux de données, la logique de conservation et les rôles et responsabilités alignés sur le RGPD.",
+    url: "https://www.certif-scope.com/fr/data-processing/",
+    siteName: "Certif-Scope",
+    type: "website",
+    locale: "fr_FR",
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function DataProcessingPage() {
