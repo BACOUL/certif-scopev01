@@ -1,14 +1,20 @@
 User-agent: *
 
-# Autorisation générale
-Allow: /
+# France-first SEO: allow the canonical French section.
+Allow: /fr/
+Allow: /fr/generate/
+Allow: /fr/verify/
 
-# Bloquer routes techniques / sensibles
+# Technical / sensitive routes that should not be crawled directly.
 Disallow: /api/
-Disallow: /verify/
 Disallow: /generate/
+Disallow: /verify/
+Disallow: /success/
+Disallow: /cancel/
+Disallow: /error/
+Disallow: /test/
 
-# Bloquer URLs avec paramètres (évite duplication)
+# Avoid duplicate parameterized URLs.
 Disallow: /*?*
 
 # Sitemap
