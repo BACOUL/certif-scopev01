@@ -1,130 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- ========================= -->
-  <!-- ENGLISH (CANONICAL = / )  -->
-  <!-- ========================= -->
-
-  <url>
-    <loc>https://www.certif-scope.com/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <url>
-    <loc>https://www.certif-scope.com/pricing/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://www.certif-scope.com/product/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://www.certif-scope.com/product/methodology/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://www.certif-scope.com/product/methodology/compliance/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://www.certif-scope.com/why-companies-ask/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://www.certif-scope.com/partners/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
-  <url>
-    <loc>https://www.certif-scope.com/contact/</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-
-  <url>
-    <loc>https://www.certif-scope.com/faq/</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-  </url>
-
-  <url>
-    <loc>https://www.certif-scope.com/legal/</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://www.certif-scope.com/privacy/</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://www.certif-scope.com/terms/</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://www.certif-scope.com/cookies/</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://www.certif-scope.com/data-processing/</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <!-- ========================= -->
-  <!-- FRENCH ( /fr/ )           -->
-  <!-- ========================= -->
+  <!-- FR strategic pages only. EN/root, DE, redirected, noindex, technical, test and incomplete URLs are excluded. -->
 
   <url>
     <loc>https://www.certif-scope.com/fr/</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>1.0</priority>
   </url>
 
-  <!-- FR — pages business / conversion -->
-  <url>
-    <loc>https://www.certif-scope.com/fr/pricing/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://www.certif-scope.com/fr/product/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://www.certif-scope.com/fr/product/methodology/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://www.certif-scope.com/fr/product/methodology/compliance/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- FR — pillar + satellites SEO -->
   <url>
     <loc>https://www.certif-scope.com/fr/bilan-carbone-pme/</loc>
     <changefreq>weekly</changefreq>
@@ -143,7 +27,42 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- FR — cluster "why companies ask" -->
+  <url>
+    <loc>https://www.certif-scope.com/fr/product/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.certif-scope.com/fr/product/methodology/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.certif-scope.com/fr/product/compliance/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.certif-scope.com/fr/pricing/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.certif-scope.com/fr/generate/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://www.certif-scope.com/fr/verify/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
   <url>
     <loc>https://www.certif-scope.com/fr/why-companies-ask/</loc>
     <changefreq>monthly</changefreq>
@@ -165,32 +84,13 @@
   <url>
     <loc>https://www.certif-scope.com/fr/why-companies-ask/exigences-co2-banques-assurances/</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- FR — general pages -->
-  <url>
-    <loc>https://www.certif-scope.com/fr/partners/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
-  <url>
-    <loc>https://www.certif-scope.com/fr/about/</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.75</priority>
   </url>
 
   <url>
     <loc>https://www.certif-scope.com/fr/contact/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
-  </url>
-
-  <url>
-    <loc>https://www.certif-scope.com/fr/faq/</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
   </url>
 
   <url>
