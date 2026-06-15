@@ -65,6 +65,10 @@ export function middleware(req: NextRequest) {
   res.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
   res.headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=(), payment=()");
 
+  if (pathname === "/de" || pathname.startsWith("/de/")) {
+    res.headers.set("X-Robots-Tag", "noindex, follow");
+  }
+
   // Cache strict routes sensibles
   if (pathname.startsWith("/verify") || pathname.startsWith("/api")) {
     res.headers.set("Cache-Control", "no-store");
