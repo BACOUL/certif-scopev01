@@ -18,15 +18,15 @@ export default function HeaderFR() {
   const dropdownPanelRef = useRef<HTMLDivElement | null>(null);
 
   const routes = {
-    home: "/fr",
-    pillarBilanCarbonePME: "/fr/bilan-carbone-pme",
-    product: "/fr/product",
-    methodology: "/fr/product/methodology",
-    compliance: "/fr/product/compliance",
-    privacy: "/fr/privacy",
-    verify: "/fr/verify",
-    pricing: "/fr/pricing",
-    generate: "/fr/generate",
+    home: "/fr/",
+    pillarBilanCarbonePME: "/fr/bilan-carbone-pme/",
+    product: "/fr/product/",
+    methodology: "/fr/product/methodology/",
+    compliance: "/fr/product/compliance/",
+    privacy: "/fr/privacy/",
+    verify: "/fr/verify/",
+    pricing: "/fr/pricing/",
+    generate: "/fr/generate/",
   };
 
   const closeAll = () => {
@@ -100,13 +100,18 @@ export default function HeaderFR() {
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [dropdown, open]);
 
-  const isActive = (href: string) => pathname === href;
+  const normalizePath = (value: string) => {
+    if (value === "/") return value;
+    return value.endsWith("/") ? value.slice(0, -1) : value;
+  };
+
+  const isActive = (href: string) => normalizePath(pathname) === normalizePath(href);
 
   const isAttestationActive =
-    pathname === routes.product ||
-    pathname === routes.methodology ||
-    pathname === routes.compliance ||
-    pathname === routes.privacy;
+    isActive(routes.product) ||
+    isActive(routes.methodology) ||
+    isActive(routes.compliance) ||
+    isActive(routes.privacy);
 
   const navLinkBase =
     "relative text-sm font-medium text-[#475569] transition-colors duration-300 hover:text-[#0B3A63]";
@@ -468,4 +473,4 @@ export default function HeaderFR() {
       </div>
     </header>
   );
-                    }
+}
