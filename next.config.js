@@ -26,7 +26,6 @@ const nextConfig = {
         headers: [
           { key: "X-Content-Type-Options", value: "nosniff" },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-          { key: "Permissions-Policy", value: "interest-cohort=()" },
           { key: "X-Frame-Options", value: "DENY" },
         ],
       },
@@ -34,34 +33,41 @@ const nextConfig = {
   },
 
   async redirects() {
+    const legacyRedirects = [
+      ["/generate", "/fr/generate/"],
+      ["/verify", "/fr/verify/"],
+      ["/verify/technical", "/fr/verify/technical/"],
+      ["/pricing", "/fr/pricing/"],
+      ["/product", "/fr/product/"],
+      ["/product/methodology", "/fr/product/methodology/"],
+      ["/product/compliance", "/fr/product/compliance/"],
+      ["/methodology", "/fr/product/methodology/"],
+      ["/compliance", "/fr/product/compliance/"],
+      ["/partners", "/fr/partners/"],
+      ["/contact", "/fr/contact/"],
+      ["/legal", "/fr/legal/"],
+      ["/privacy", "/fr/privacy/"],
+      ["/terms", "/fr/terms/"],
+      ["/cookies", "/fr/cookies/"],
+      ["/data-processing", "/fr/data-processing/"],
+      ["/about", "/fr/"],
+    ];
+
     return [
-      // Domaine canonique : tout vers https://www.certif-scope.com
       {
         source: "/:path*",
         has: [{ type: "host", value: "certif-scope.com" }],
         destination: "https://www.certif-scope.com/:path*",
         permanent: true,
       },
-
-      // France-first SEO: la racine publique pointe vers la home FR.
       { source: "/", destination: "/fr/", permanent: true },
-
-      // Legacy EN -> racine, elle-même redirigée vers /fr/
-      { source: "/en", destination: "/", permanent: true },
-      { source: "/en/", destination: "/", permanent: true },
-
-      // Anciennes pages EN
-      { source: "/en/about", destination: "/", permanent: true },
-      { source: "/en/about/", destination: "/", permanent: true },
-
-      { source: "/en/data-processing", destination: "/", permanent: true },
-      { source: "/en/data-processing/", destination: "/", permanent: true },
-
-      { source: "/en/legal", destination: "/", permanent: true },
-      { source: "/en/legal/", destination: "/", permanent: true },
-
-      // Tout le reste sous /en/* -> /
-      { source: "/en/:path*", destination: "/", permanent: true },
+      { source: "/en", destination: "/fr/", permanent: true },
+      { source: "/de", destination: "/fr/", permanent: true },
+      ...legacyRedirects.map(([source, destination]) => ({ source, destination, permanent: true })),
+      ...legacyRedirects.map(([source, destination]) => ({ source: "/en" + source, destination, permanent: true })),
+      ...legacyRedirects.map(([source, destination]) => ({ source: "/de" + source, destination, permanent: true })),
+      { source: "/en/:path*", destination: "/fr/", permanent: true },
+      { source: "/de/:path*", destination: "/fr/", permanent: true },
     ];
   },
 };
