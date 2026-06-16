@@ -26,7 +26,6 @@ const nextConfig = {
         headers: [
           { key: "X-Content-Type-Options", value: "nosniff" },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-          { key: "Permissions-Policy", value: "interest-cohort=()" },
           { key: "X-Frame-Options", value: "DENY" },
         ],
       },
@@ -35,33 +34,32 @@ const nextConfig = {
 
   async redirects() {
     return [
-      // Domaine canonique : tout vers https://www.certif-scope.com
       {
         source: "/:path*",
         has: [{ type: "host", value: "certif-scope.com" }],
         destination: "https://www.certif-scope.com/:path*",
         permanent: true,
       },
-
-      // France-first SEO: la racine publique pointe vers la home FR.
       { source: "/", destination: "/fr/", permanent: true },
-
-      // Legacy EN -> racine, elle-même redirigée vers /fr/
-      { source: "/en", destination: "/", permanent: true },
-      { source: "/en/", destination: "/", permanent: true },
-
-      // Anciennes pages EN
-      { source: "/en/about", destination: "/", permanent: true },
-      { source: "/en/about/", destination: "/", permanent: true },
-
-      { source: "/en/data-processing", destination: "/", permanent: true },
-      { source: "/en/data-processing/", destination: "/", permanent: true },
-
-      { source: "/en/legal", destination: "/", permanent: true },
-      { source: "/en/legal/", destination: "/", permanent: true },
-
-      // Tout le reste sous /en/* -> /
-      { source: "/en/:path*", destination: "/", permanent: true },
+      { source: "/en", destination: "/fr/", permanent: true },
+      { source: "/de", destination: "/fr/", permanent: true },
+      { source: "/generate", destination: "/fr/generate/", permanent: true },
+      { source: "/verify", destination: "/fr/verify/", permanent: true },
+      { source: "/verify/technical", destination: "/fr/verify/technical/", permanent: true },
+      { source: "/pricing", destination: "/fr/pricing/", permanent: true },
+      { source: "/product", destination: "/fr/product/", permanent: true },
+      { source: "/product/methodology", destination: "/fr/product/methodology/", permanent: true },
+      { source: "/product/compliance", destination: "/fr/product/compliance/", permanent: true },
+      { source: "/partners", destination: "/fr/partners/", permanent: true },
+      { source: "/contact", destination: "/fr/contact/", permanent: true },
+      { source: "/legal", destination: "/fr/legal/", permanent: true },
+      { source: "/privacy", destination: "/fr/privacy/", permanent: true },
+      { source: "/terms", destination: "/fr/terms/", permanent: true },
+      { source: "/cookies", destination: "/fr/cookies/", permanent: true },
+      { source: "/data-processing", destination: "/fr/data-processing/", permanent: true },
+      { source: "/about", destination: "/fr/", permanent: true },
+      { source: "/en/:path*", destination: "/fr/", permanent: true },
+      { source: "/de/:path*", destination: "/fr/", permanent: true },
     ];
   },
 };
