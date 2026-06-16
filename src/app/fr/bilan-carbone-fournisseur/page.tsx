@@ -396,19 +396,49 @@ export default function BilanCarboneFournisseurPageFR() {
             </p>
           </div>
 
-          <div className="mt-10 overflow-x-auto rounded-[28px] border border-white/16 bg-white/8">
-            <table className="min-w-[760px] w-full text-sm">
+          <div className="mt-10 grid gap-4 md:hidden">
+            {decisionRows.map((row) => (
+              <article
+                key={row.demand}
+                className="rounded-[24px] border border-white/16 bg-white/8 p-5 shadow-sm"
+              >
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/60">
+                  Demande reçue
+                </p>
+                <h3 className="mt-2 text-lg font-extrabold leading-snug text-white">
+                  {row.demand}
+                </h3>
+                <p className="mt-4 text-xs font-semibold uppercase tracking-[0.14em] text-white/60">
+                  Réponse recommandée
+                </p>
+                <p className="mt-2 text-sm leading-relaxed text-white/84">
+                  {row.answer}
+                </p>
+              </article>
+            ))}
+          </div>
+
+          <div className="mt-10 hidden overflow-x-auto rounded-[28px] border border-white/16 bg-white/8 md:block">
+            <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-white/16">
-                  <th className="p-5 text-left font-semibold text-white">Demande reçue</th>
-                  <th className="p-5 text-left font-semibold text-white">Réponse recommandée</th>
+                  <th className="w-1/2 p-5 text-left font-semibold text-white">
+                    Demande reçue
+                  </th>
+                  <th className="w-1/2 p-5 text-left font-semibold text-white">
+                    Réponse recommandée
+                  </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/12">
                 {decisionRows.map((row) => (
                   <tr key={row.demand}>
-                    <td className="p-5 font-semibold text-white">{row.demand}</td>
-                    <td className="p-5 leading-relaxed text-white/82">{row.answer}</td>
+                    <td className="p-5 align-top font-semibold text-white">
+                      {row.demand}
+                    </td>
+                    <td className="p-5 align-top leading-relaxed text-white/82">
+                      {row.answer}
+                    </td>
                   </tr>
                 ))}
               </tbody>
