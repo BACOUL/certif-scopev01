@@ -1,9 +1,5 @@
-import AssessmentForm from "@/components/AssessmentForm";
+import { redirect } from "next/navigation";
 
-export const metadata = {
-  title: "Generate attestation — Certif-Scope",
-};
-
-export default function GeneratePage() {
-  return <AssessmentForm />;
+export default function GenerateRedirectPage() {
+  redirect("/fr/generate");
 }
