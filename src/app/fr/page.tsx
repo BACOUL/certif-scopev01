@@ -46,9 +46,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.certif-scope.com/fr/",
     languages: {
-      en: "https://www.certif-scope.com/",
       fr: "https://www.certif-scope.com/fr/",
-      de: "https://www.certif-scope.com/de/",
     },
   },
   openGraph: {
@@ -90,7 +88,7 @@ export default function HomeFR() {
     "@type": "WebSite",
     name: "Certif-Scope",
     url: "https://www.certif-scope.com",
-    inLanguage: ["fr-FR", "en", "de"],
+    inLanguage: "fr-FR",
   };
 
   const jsonLdWebPage = {
