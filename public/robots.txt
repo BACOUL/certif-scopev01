@@ -1,21 +1,13 @@
 User-agent: *
 
-# France-first SEO: allow the canonical French section.
-Allow: /fr/
-Allow: /fr/generate/
-Allow: /fr/verify/
+Allow: /
 
-# Technical / sensitive routes that should not be crawled directly.
 Disallow: /api/
-Disallow: /generate/
-Disallow: /verify/
 Disallow: /success/
 Disallow: /cancel/
 Disallow: /error/
 Disallow: /test/
 
-# Avoid duplicate parameterized URLs.
 Disallow: /*?*
 
-# Sitemap
 Sitemap: https://www.certif-scope.com/sitemap.xml
