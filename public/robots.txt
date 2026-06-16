@@ -1,14 +1,10 @@
 User-agent: *
 
-# France-first SEO: allow the canonical French section.
-Allow: /fr/
-Allow: /fr/generate/
-Allow: /fr/verify/
+# France-first SEO: allow Google to crawl the public site and resolve redirects.
+Allow: /
 
 # Technical / sensitive routes that should not be crawled directly.
 Disallow: /api/
-Disallow: /generate/
-Disallow: /verify/
 Disallow: /success/
 Disallow: /cancel/
 Disallow: /error/
