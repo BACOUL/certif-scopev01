@@ -482,14 +482,15 @@ export default function AssessmentForm() {
           </div>
         </Accordion>
 
-        {/* ÉTAPE 2 — DÉPENSES */}
+        {/* ÉTAPE 3 — DÉCLARATION DES RESSOURCES */}
         <p className="text-sm text-gray-500">
-          Étape 2 sur 3 — Dépenses annuelles
+          Étape 3 sur 3 — Déclaration des ressources
         </p>
 
         <Accordion
-          title="Dépenses externes annuelles (€)"
-          intro="Indiquez des montants annuels approximatifs. Des estimations raisonnables suffisent."
+          title="Déclaration des ressources / dépenses annuelles (€)"
+          intro="Déclarez vos principales ressources financières annuelles par catégorie. Ces montants servent uniquement au calcul spend-based de l’attestation indicative."
+          defaultOpen
         >
           <Input
             label="Services IT & numériques"
@@ -541,9 +542,9 @@ export default function AssessmentForm() {
           />
         </Accordion>
 
-        {/* ÉTAPE 3 */}
+        {/* RÉSULTAT */}
         <p className="text-sm text-gray-500">
-          Étape 3 sur 3 — Résultat & attestation
+          Résultat & attestation
         </p>
 
         <div className="border rounded-xl p-6 bg-[#F8FAFC]">
