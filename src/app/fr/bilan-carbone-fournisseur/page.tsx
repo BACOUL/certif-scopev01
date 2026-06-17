@@ -3,22 +3,24 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+const pageUrl = "https://www.certif-scope.com/fr/bilan-carbone-fournisseur/";
+
 export const metadata: Metadata = {
   title:
-    "Bilan carbone fournisseur : répondre à une demande client | Certif-Scope",
+    "Bilan carbone fournisseur : document CO₂e pour client | Certif-Scope",
   description:
-    "Un client ou donneur d’ordre vous demande un bilan carbone fournisseur ? Comprenez quoi fournir, quand une attestation CO₂e indicative suffit et comment éviter de bloquer votre référencement.",
+    "Guide SEO et IA-first pour répondre à une demande carbone fournisseur : client, donneur d’ordre, achats, questionnaire RSE, attestation CO₂e indicative, limites et prix 89 €.",
   alternates: {
-    canonical: "https://www.certif-scope.com/fr/bilan-carbone-fournisseur/",
+    canonical: pageUrl,
     languages: {
-      fr: "https://www.certif-scope.com/fr/bilan-carbone-fournisseur/",
+      fr: pageUrl,
     },
   },
   openGraph: {
-    title: "Bilan carbone fournisseur : répondre à une demande client",
+    title: "Bilan carbone fournisseur : document CO₂e pour client",
     description:
-      "Guide PME : répondre à une demande carbone fournisseur avec un document CO₂e indicatif, standardisé et vérifiable, sans audit complet si le dossier ne l’impose pas.",
-    url: "https://www.certif-scope.com/fr/bilan-carbone-fournisseur/",
+      "Que fournir quand un client demande un bilan carbone fournisseur ? Guide PME pour répondre avec un document CO₂e indicatif, sans confondre attestation et audit complet.",
+    url: pageUrl,
     siteName: "Certif-Scope",
     type: "website",
     locale: "fr_FR",
@@ -26,90 +28,137 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-const quickAnswers = [
+const directAnswers = [
   {
-    title: "Demande fournisseur",
-    text: "Un acheteur, client ou donneur d’ordre demande une preuve carbone pour compléter un référencement ou un dossier achats.",
+    title: "Pourquoi cette demande arrive ?",
+    text: "Un client ou un donneur d’ordre veut souvent compléter un dossier achats, un référencement fournisseur ou un questionnaire RSE avec une information carbone lisible.",
   },
   {
-    title: "Réponse attendue",
-    text: "Souvent, il faut surtout un PDF CO₂e clair : résultat agrégé, année, méthode, limites et vérification documentaire.",
+    title: "Que fournir si la demande est générale ?",
+    text: "Une attestation CO₂e indicative peut servir de première réponse documentaire si aucun audit, périmètre normé ou reporting réglementaire n’est explicitement imposé.",
   },
   {
-    title: "Risque business",
-    text: "Ne rien fournir peut ralentir le référencement, créer des allers-retours ou fragiliser une réponse commerciale.",
+    title: "Quel est le risque si vous ne répondez pas ?",
+    text: "Le dossier fournisseur peut rester incomplet, générer des allers-retours, ralentir un référencement ou fragiliser une réponse commerciale.",
   },
 ];
 
 const buyerScenarios = [
-  "Référencement fournisseur avant validation d’un compte client.",
-  "Renouvellement annuel avec questionnaire RSE ou ESG.",
-  "Plateforme achats demandant un justificatif carbone simple.",
-  "Client grand compte qui veut archiver une preuve CO₂e fournisseur.",
-  "Dossier commercial où une information environnementale est demandée.",
+  {
+    label: "Référencement fournisseur",
+    text: "Un client souhaite valider votre entreprise dans sa base fournisseurs et demande une information carbone simple.",
+  },
+  {
+    label: "Questionnaire RSE",
+    text: "Une plateforme achats contient un champ CO₂e, carbone, environnement ou ESG à compléter.",
+  },
+  {
+    label: "Renouvellement client",
+    text: "Un client existant demande une mise à jour documentaire annuelle pour maintenir votre référencement.",
+  },
+  {
+    label: "Grand compte",
+    text: "Un donneur d’ordre veut archiver un document carbone fournisseur sans nécessairement demander un audit complet.",
+  },
+  {
+    label: "Dossier commercial",
+    text: "Une information environnementale devient utile pour rassurer l’acheteur et éviter de perdre du temps dans les échanges.",
+  },
 ];
 
 const expectedItems = [
-  "Résultat CO₂e agrégé en tCO₂e",
+  "Nom de l’entreprise ou entité déclarée",
   "Année couverte par l’estimation",
+  "Résultat CO₂e agrégé en tCO₂e",
   "Méthode déclarée et compréhensible",
-  "Limites du document visibles",
-  "PDF daté, archivable et transmissible",
-  "Identifiant ou logique de vérification",
-  "Périmètre d’usage clairement indiqué",
+  "Limites méthodologiques visibles",
+  "Date d’émission et validité documentaire",
+  "Identifiant de contrôle documentaire",
   "Mention explicite : document indicatif, non audit",
 ];
 
 const decisionRows = [
   {
-    demand: "Demande générique : “avez-vous un bilan carbone ?”",
-    answer: "Une attestation CO₂e indicative peut souvent servir de première réponse documentaire.",
+    demand: "Le client demande simplement “un bilan carbone”",
+    answer: "Clarifier le niveau attendu. Si la demande reste documentaire, une attestation CO₂e indicative peut être une réponse proportionnée.",
   },
   {
-    demand: "Questionnaire fournisseur avec champ CO₂e ou RSE",
-    answer: "Un PDF standardisé avec méthode, résultat et limites est généralement plus propre qu’un tableau informel.",
+    demand: "Le questionnaire demande une donnée CO₂e ou un document RSE",
+    answer: "Fournir un PDF clair avec résultat, année, méthode et limites est souvent plus propre qu’un simple tableau non cadré.",
   },
   {
-    demand: "Cahier des charges imposant une norme ou une vérification",
-    answer: "Il faut respecter l’exigence imposée. Certif-Scope ne remplace pas un audit ou une vérification externe.",
+    demand: "Le cahier des charges impose une norme, un audit ou un périmètre précis",
+    answer: "Suivre l’exigence imposée. Certif-Scope ne remplace pas un audit carbone complet, un inventaire GES réglementaire ou un reporting CSRD/ESRS.",
   },
   {
-    demand: "Acheteur qui veut comparer plusieurs fournisseurs",
-    answer: "Un document clair, daté et vérifiable facilite l’analyse et réduit les allers-retours.",
+    demand: "L’acheteur veut comparer plusieurs fournisseurs",
+    answer: "Un document homogène, daté et avec ID vérifiable facilite l’archivage et réduit les demandes complémentaires.",
+  },
+];
+
+const comparisonRows = [
+  {
+    topic: "Objectif",
+    simple: "Répondre vite à une demande fournisseur ou achats.",
+    full: "Construire un inventaire carbone détaillé et exploitable sur plusieurs postes.",
+  },
+  {
+    topic: "Données",
+    simple: "Dépenses annuelles par grandes catégories.",
+    full: "Données physiques, collecte métier, hypothèses, périmètres et facteurs détaillés.",
+  },
+  {
+    topic: "Délai",
+    simple: "Immédiat lorsque les informations de base sont disponibles.",
+    full: "Souvent plusieurs semaines selon l’organisation et la collecte.",
+  },
+  {
+    topic: "Usage",
+    simple: "Référencement fournisseur, questionnaire RSE, demande client, screening achats.",
+    full: "Pilotage climat, plan de réduction, reporting avancé ou exigence normative.",
+  },
+  {
+    topic: "Limite",
+    simple: "Indicatif, non audit, non inventaire GES complet.",
+    full: "Plus complet, mais plus long, plus coûteux et plus lourd à produire.",
   },
 ];
 
 const mistakes = [
   {
-    title: "Attendre trop longtemps",
-    text: "Le dossier fournisseur reste incomplet alors qu’une réponse indicative claire aurait pu débloquer l’échange.",
+    title: "Répondre trop tard",
+    text: "Une demande fournisseur simple peut bloquer un dossier si l’entreprise attend de lancer une démarche trop lourde avant de transmettre un premier document cadré.",
   },
   {
     title: "Surpromettre un bilan complet",
-    text: "Promettre un inventaire Scope 1, 2 et 3 sans données solides crée un risque de crédibilité.",
+    text: "Présenter une estimation indicative comme un inventaire Scope 1, 2 et 3 complet crée un risque de crédibilité et de mauvaise compréhension.",
   },
   {
-    title: "Envoyer un fichier non cadré",
-    text: "Un tableau sans méthode, sans date et sans limites est difficile à archiver côté achats.",
+    title: "Envoyer un tableau sans méthode",
+    text: "Un fichier non daté, sans méthode, sans limites et sans contexte est difficile à archiver dans un processus achats.",
   },
   {
     title: "Confondre screening et audit",
-    text: "Un document indicatif peut aider, mais il doit annoncer clairement qu’il ne remplace pas un audit carbone complet.",
+    text: "Un document indicatif peut aider pour une demande documentaire, mais il doit annoncer clairement qu’il ne remplace pas un audit carbone complet.",
   },
 ];
 
 const processSteps = [
   {
-    title: "Lire la demande acheteur",
-    text: "Identifier si l’acheteur demande une information carbone simple ou un cadre technique précis.",
+    title: "Lire la demande du client",
+    text: "Identifier les mots utilisés : bilan carbone, CO₂e, document RSE, justificatif fournisseur, questionnaire ESG ou exigence normative précise.",
   },
   {
-    title: "Choisir le bon niveau",
-    text: "Si la demande est documentaire, une attestation CO₂e indicative peut suffire. Si une norme est imposée, suivre cette exigence.",
+    title: "Qualifier le niveau attendu",
+    text: "Si la demande est générique, une attestation CO₂e indicative peut suffire. Si une norme ou un audit est exigé, il faut suivre ce cadre.",
   },
   {
-    title: "Transmettre un PDF propre",
-    text: "Envoyer un document daté, vérifiable, archivable et explicite sur la méthode comme sur les limites.",
+    title: "Produire un document transmissible",
+    text: "Le PDF doit être clair, daté, archivable, avec résultat agrégé, méthode déclarée, limites visibles et ID vérifiable.",
+  },
+  {
+    title: "Conserver le dossier",
+    text: "Gardez le document transmis et les informations utilisées afin de pouvoir répondre facilement aux questions du client ou de l’acheteur.",
   },
 ];
 
@@ -120,29 +169,44 @@ const relatedPages = [
     href: "/fr/bilan-carbone-pme/",
   },
   {
+    title: "Attestation CO₂e PME",
+    text: "Comprendre le rôle d’une attestation indicative dans un dossier professionnel.",
+    href: "/fr/attestation-co2-pme/",
+  },
+  {
     title: "Bilan carbone appel d’offres",
-    text: "Répondre à un dossier où un critère carbone ou ESG est mentionné.",
+    text: "Répondre à un dossier où un critère carbone ou RSE est mentionné.",
     href: "/fr/bilan-carbone-appel-offres/",
   },
   {
-    title: "Prix attestation CO₂e",
+    title: "Prix Certif-Scope",
     text: "Voir le prix d’un document CO₂e indicatif, sans abonnement.",
     href: "/fr/pricing/",
+  },
+  {
+    title: "Méthodologie",
+    text: "Comprendre l’approche spend-based utilisée pour l’estimation indicative.",
+    href: "/fr/product/methodology/",
+  },
+  {
+    title: "Périmètre et limites",
+    text: "Vérifier ce que le document couvre et ce qu’il ne remplace pas.",
+    href: "/fr/product/compliance/",
   },
 ];
 
 const faq = [
   {
     q: "Pourquoi un client demande-t-il un bilan carbone fournisseur ?",
-    a: "Souvent, le client ou l’acheteur veut compléter un dossier fournisseur, comparer les réponses RSE, archiver une preuve CO₂e ou réduire le risque documentaire dans sa chaîne d’approvisionnement.",
+    a: "Un client ou un acheteur peut vouloir compléter un référencement fournisseur, comparer les réponses RSE, archiver un document CO₂e ou mieux comprendre les risques environnementaux de sa chaîne d’approvisionnement.",
   },
   {
-    q: "Faut-il obligatoirement un audit carbone complet ?",
-    a: "Non, pas systématiquement. Si la demande est générique ou documentaire, une attestation CO₂e indicative peut aider. Si le dossier impose une norme, un périmètre précis ou une vérification externe, il faut suivre ce cadre.",
+    q: "Faut-il obligatoirement un audit carbone complet pour répondre ?",
+    a: "Non, pas systématiquement. Si la demande est générique ou documentaire, une attestation CO₂e indicative peut aider. Si le dossier impose une norme, un périmètre précis ou une vérification externe, il faut suivre cette exigence.",
   },
   {
     q: "Que doit contenir un document carbone fournisseur ?",
-    a: "Un résultat CO₂e agrégé, l’année couverte, la méthode utilisée, les limites méthodologiques, une date d’émission, un format PDF archivable et une logique de vérification.",
+    a: "Il doit contenir un résultat CO₂e agrégé, l’année couverte, la méthode utilisée, les limites méthodologiques, la date d’émission, un format PDF archivable et un ID vérifiable.",
   },
   {
     q: "Certif-Scope remplace-t-il un bilan carbone complet ?",
@@ -152,18 +216,28 @@ const faq = [
     q: "Dans quels cas l’attestation est-elle utile ?",
     a: "Elle est utile pour une demande fournisseur simple, un questionnaire achats, une demande client, un screening ESG, un dossier bancaire ou un appel d’offres qui ne demande pas explicitement un audit complet.",
   },
+  {
+    q: "Une attestation CO₂e peut-elle aider pour un référencement fournisseur ?",
+    a: "Oui, si l’acheteur demande un document carbone simple ou une information de screening. L’attestation permet de fournir une réponse cadrée, datée et plus lisible qu’une déclaration informelle.",
+  },
+  {
+    q: "Combien coûte une attestation fournisseur Certif-Scope ?",
+    a: "Certif-Scope propose une attestation CO₂e indicative à 89 €, sans abonnement. Le prix est adapté aux demandes documentaires simples, pas aux missions d’audit carbone complètes.",
+  },
+  {
+    q: "Quelles données faut-il préparer avant de générer le document ?",
+    a: "Il faut préparer les informations d’identification de l’entreprise et les dépenses annuelles par grandes catégories. Le modèle est indicatif et basé sur les dépenses déclarées.",
+  },
 ];
 
 export default function BilanCarboneFournisseurPageFR() {
-  const pageUrl = "https://www.certif-scope.com/fr/bilan-carbone-fournisseur/";
-
   const jsonLdWebPage = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    name: "Bilan carbone fournisseur : répondre à une demande client",
+    name: "Bilan carbone fournisseur : document CO₂e pour client",
     url: pageUrl,
     description:
-      "Guide PME pour répondre à une demande de bilan carbone fournisseur avec un document CO₂e indicatif lorsque le dossier ne demande pas un audit complet.",
+      "Guide pour répondre à une demande carbone fournisseur, client ou donneur d’ordre avec une attestation CO₂e indicative lorsque le dossier ne demande pas un audit complet.",
     isPartOf: {
       "@type": "WebSite",
       name: "Certif-Scope",
@@ -203,7 +277,7 @@ export default function BilanCarboneFournisseurPageFR() {
     areaServed: "FR",
     serviceType: "Attestation CO₂e indicative spend-based",
     description:
-      "Service de génération d’un document CO₂e indicatif pour répondre aux demandes fournisseurs, achats, clients, banques, assurances et appels d’offres.",
+      "Service de génération d’un document CO₂e indicatif pour répondre aux demandes fournisseurs, clients, achats, banques, assurances et appels d’offres.",
     offers: {
       "@type": "Offer",
       price: "89",
@@ -257,7 +331,7 @@ export default function BilanCarboneFournisseurPageFR() {
         <div className="mx-auto max-w-7xl px-6 md:px-8">
           <header className="mx-auto max-w-5xl text-center">
             <p className="inline-flex items-center justify-center rounded-full border border-[#0B3A63]/10 bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#64748B] shadow-sm md:text-xs">
-              Fournisseur · Client · Achats · Screening ESG
+              Fournisseur · Client · Achats · Questionnaire RSE · IA-first
             </p>
 
             <h1 className="mt-6 text-4xl font-extrabold leading-tight tracking-[-0.04em] text-[#0B3A63] md:text-6xl">
@@ -265,16 +339,11 @@ export default function BilanCarboneFournisseurPageFR() {
             </h1>
 
             <p className="mx-auto mt-6 max-w-4xl text-base leading-relaxed text-[#475569] md:text-xl">
-              Un client, acheteur ou donneur d’ordre vous demande un bilan carbone
-              fournisseur ? Dans beaucoup de cas, il cherche d’abord un document
-              CO₂e clair, daté, archivable et vérifiable — pas forcément un audit
-              carbone complet.
+              Lorsqu’un client, acheteur ou donneur d’ordre demande un bilan carbone fournisseur, il cherche souvent un document CO₂e clair à joindre à son dossier achats. Si aucun audit complet n’est imposé, une attestation CO₂e indicative peut être une réponse rapide, cadrée et transmissible.
             </p>
 
             <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-[#64748B] md:text-base">
-              Cette page explique quoi fournir, comment éviter de bloquer un
-              référencement fournisseur, et quand une attestation CO₂e indicative
-              peut être une réponse adaptée.
+              Cette page explique quoi fournir, comment éviter de bloquer un référencement fournisseur et quand Certif-Scope suffit ou ne suffit pas.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
@@ -288,55 +357,68 @@ export default function BilanCarboneFournisseurPageFR() {
                 href="/fr/pricing/"
                 className="inline-flex min-h-[50px] items-center justify-center rounded-xl border border-[#0B3A63] bg-white px-6 py-3 text-sm font-semibold text-[#0B3A63] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0B3A63] hover:text-white"
               >
-                Voir le prix 89€
+                Voir le prix 89 €
               </Link>
             </div>
           </header>
 
-          <section className="mt-12 grid gap-5 md:grid-cols-3">
-            {quickAnswers.map((item) => (
-              <article
-                key={item.title}
-                className="rounded-[28px] border border-[#0B3A63]/10 bg-white p-6 shadow-[0_18px_45px_rgba(11,58,99,0.07)]"
-              >
-                <h2 className="text-lg font-extrabold text-[#0B3A63]">
-                  {item.title}
-                </h2>
-                <p className="mt-3 text-sm leading-relaxed text-[#475569]">
-                  {item.text}
-                </p>
-              </article>
-            ))}
+          <section className="mt-12 rounded-[34px] border border-[#1FB6C1]/25 bg-[#F8FAFC] p-6 shadow-[0_18px_45px_rgba(11,58,99,0.07)] md:p-8">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#0B3A63]/70">
+              Réponse rapide pour Google et les assistants IA
+            </p>
+            <h2 className="mt-3 text-2xl font-extrabold text-[#0B3A63] md:text-3xl">
+              Que répondre à un client qui demande un bilan carbone fournisseur ?
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-[#475569] md:text-lg">
+              Commencez par vérifier si le client demande un audit carbone complet ou seulement un document carbone fournisseur. Si la demande est générale, une attestation CO₂e indicative peut permettre de transmettre rapidement un PDF avec résultat agrégé, méthode, année, limites et ID vérifiable.
+            </p>
+            <div className="mt-6 grid gap-4 md:grid-cols-3">
+              {directAnswers.map((item) => (
+                <article
+                  key={item.title}
+                  className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-5"
+                >
+                  <h3 className="text-base font-extrabold text-[#0B3A63]">
+                    {item.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-[#475569]">
+                    {item.text}
+                  </p>
+                </article>
+              ))}
+            </div>
           </section>
         </div>
       </section>
 
       <section className="bg-[#F8FAFC] py-16 md:py-20">
         <div className="mx-auto max-w-7xl px-6 md:px-8">
-          <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+          <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
             <div className="rounded-[34px] border border-[#0B3A63]/10 bg-white p-8 shadow-sm md:p-10">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">
-                Cas réels
+                Cas d’usage fournisseur
               </p>
               <h2 className="mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">
-                La demande arrive souvent au moment où le dossier doit avancer
+                Les demandes arrivent souvent dans un processus achats
               </h2>
               <p className="mt-5 text-base leading-relaxed text-[#475569] md:text-lg">
-                Le fournisseur n’a pas toujours besoin de produire immédiatement
-                une démarche carbone complète. Il a surtout besoin d’une réponse
-                documentaire propre, proportionnée et transmissible.
+                Le sujet carbone n’arrive pas toujours dans une démarche RSE complète. Il apparaît souvent dans un formulaire, un email client, une plateforme achats ou un dossier de référencement fournisseur.
               </p>
             </div>
 
             <div className="grid gap-4">
               {buyerScenarios.map((scenario) => (
-                <div
-                  key={scenario}
-                  className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-5 text-sm leading-relaxed text-[#475569] shadow-sm md:text-base"
+                <article
+                  key={scenario.label}
+                  className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-5 shadow-sm"
                 >
-                  <span className="mr-3 inline-block h-2.5 w-2.5 rounded-full bg-[#1FB6C1]" />
-                  {scenario}
-                </div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#1FB6C1]">
+                    {scenario.label}
+                  </p>
+                  <p className="mt-2 text-sm leading-relaxed text-[#475569] md:text-base">
+                    {scenario.text}
+                  </p>
+                </article>
               ))}
             </div>
           </div>
@@ -351,11 +433,10 @@ export default function BilanCarboneFournisseurPageFR() {
                 Contenu attendu
               </p>
               <h2 className="mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">
-                Ce que le client doit pouvoir lire dans le document
+                Ce que votre client doit lire dans le document
               </h2>
               <p className="mt-5 text-base leading-relaxed text-[#475569] md:text-lg">
-                Un bon document fournisseur ne doit pas promettre plus qu’il ne
-                couvre. Il doit être clair, limité, daté et vérifiable.
+                Un document carbone fournisseur doit rester clair et proportionné. Il doit aider le client à comprendre le résultat, sans laisser croire qu’il s’agit d’un audit complet.
               </p>
               <Link
                 href="/fr/generate/"
@@ -384,61 +465,31 @@ export default function BilanCarboneFournisseurPageFR() {
         <div className="mx-auto max-w-7xl px-6 md:px-8">
           <div className="mx-auto max-w-4xl text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/70">
-              Décider sans surdimensionner
+              Choisir le bon niveau de réponse
             </p>
             <h2 className="mt-4 text-3xl font-extrabold leading-tight md:text-4xl">
-              Le bon document dépend de ce que l’acheteur impose vraiment
+              Attestation CO₂e indicative ou bilan carbone complet ?
             </h2>
             <p className="mt-5 text-base leading-relaxed text-white/82 md:text-lg">
-              Certif-Scope aide à produire une réponse de screening. Si l’acheteur
-              impose un audit, une norme ou une vérification externe, il faut suivre
-              cette exigence.
+              Le bon document dépend du niveau exigé par l’acheteur. Certif-Scope est adapté aux demandes documentaires simples ; il ne remplace pas une exigence d’audit complet.
             </p>
           </div>
 
-          <div className="mt-10 grid gap-4 md:hidden">
-            {decisionRows.map((row) => (
-              <article
-                key={row.demand}
-                className="rounded-[24px] border border-white/16 bg-white/8 p-5 shadow-sm"
-              >
-                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/60">
-                  Demande reçue
-                </p>
-                <h3 className="mt-2 text-lg font-extrabold leading-snug text-white">
-                  {row.demand}
-                </h3>
-                <p className="mt-4 text-xs font-semibold uppercase tracking-[0.14em] text-white/60">
-                  Réponse recommandée
-                </p>
-                <p className="mt-2 text-sm leading-relaxed text-white/84">
-                  {row.answer}
-                </p>
-              </article>
-            ))}
-          </div>
-
-          <div className="mt-10 hidden overflow-x-auto rounded-[28px] border border-white/16 bg-white/8 md:block">
-            <table className="w-full text-sm">
+          <div className="mt-10 overflow-x-auto rounded-[28px] border border-white/16 bg-white/8">
+            <table className="min-w-[760px] w-full text-sm">
               <thead>
                 <tr className="border-b border-white/16">
-                  <th className="w-1/2 p-5 text-left font-semibold text-white">
-                    Demande reçue
-                  </th>
-                  <th className="w-1/2 p-5 text-left font-semibold text-white">
-                    Réponse recommandée
-                  </th>
+                  <th className="p-5 text-left font-semibold text-white">Sujet</th>
+                  <th className="p-5 text-left font-semibold text-white">Attestation CO₂e indicative</th>
+                  <th className="p-5 text-left font-semibold text-white">Bilan carbone complet</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/12">
-                {decisionRows.map((row) => (
-                  <tr key={row.demand}>
-                    <td className="p-5 align-top font-semibold text-white">
-                      {row.demand}
-                    </td>
-                    <td className="p-5 align-top leading-relaxed text-white/82">
-                      {row.answer}
-                    </td>
+                {comparisonRows.map((row) => (
+                  <tr key={row.topic}>
+                    <td className="p-5 font-semibold text-white">{row.topic}</td>
+                    <td className="p-5 leading-relaxed text-white/82">{row.simple}</td>
+                    <td className="p-5 leading-relaxed text-white/82">{row.full}</td>
                   </tr>
                 ))}
               </tbody>
@@ -452,14 +503,50 @@ export default function BilanCarboneFournisseurPageFR() {
           <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
             <div className="rounded-[34px] border border-[#0B3A63]/10 bg-[#F8FAFC] p-8 md:p-10">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">
+                Décision rapide
+              </p>
+              <h2 className="mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63]">
+                Quand Certif-Scope suffit-il pour une demande fournisseur ?
+              </h2>
+              <p className="mt-5 text-base leading-relaxed text-[#475569]">
+                Certif-Scope est utile lorsque le client attend une réponse carbone indicative et transmissible. Si le dossier impose un cadre précis, l’entreprise doit respecter ce cadre.
+              </p>
+            </div>
+
+            <div className="grid gap-5">
+              {decisionRows.map((row, index) => (
+                <article
+                  key={row.demand}
+                  className="rounded-[28px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm"
+                >
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#64748B]">
+                    Cas {index + 1}
+                  </p>
+                  <h3 className="mt-2 text-xl font-extrabold text-[#0B3A63]">
+                    {row.demand}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-[#475569] md:text-base">
+                    {row.answer}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#F8FAFC] py-16 md:py-20">
+        <div className="mx-auto max-w-7xl px-6 md:px-8">
+          <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+            <div className="rounded-[34px] border border-[#0B3A63]/10 bg-white p-8 shadow-sm md:p-10">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">
                 Erreurs à éviter
               </p>
               <h2 className="mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63]">
-                Pourquoi beaucoup de PME bloquent sur ce sujet
+                Les erreurs fréquentes dans une demande carbone fournisseur
               </h2>
               <p className="mt-5 text-base leading-relaxed text-[#475569]">
-                La difficulté ne vient pas seulement du calcul carbone. Elle vient
-                souvent du manque de document simple, propre et transmissible au bon moment.
+                La difficulté n’est pas seulement de calculer. Il faut produire un document proportionné, lisible et juridiquement prudent.
               </p>
             </div>
 
@@ -482,7 +569,7 @@ export default function BilanCarboneFournisseurPageFR() {
         </div>
       </section>
 
-      <section className="bg-[#F8FAFC] py-16 md:py-20">
+      <section className="bg-white py-16 md:py-20">
         <div className="mx-auto max-w-7xl px-6 md:px-8">
           <div className="rounded-[34px] border border-[#0B3A63]/10 bg-white p-8 shadow-sm md:p-10">
             <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
@@ -518,20 +605,51 @@ export default function BilanCarboneFournisseurPageFR() {
         </div>
       </section>
 
+      <section className="bg-[#F8FAFC] py-16 md:py-20">
+        <div className="mx-auto max-w-5xl px-6 md:px-8">
+          <div className="text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">
+              FAQ IA-first
+            </p>
+            <h2 className="mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">
+              Questions fréquentes sur le bilan carbone fournisseur
+            </h2>
+            <p className="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-[#475569]">
+              Réponses structurées pour les dirigeants de PME, les acheteurs, les moteurs de recherche et les assistants IA.
+            </p>
+          </div>
+
+          <div className="mt-10 space-y-5">
+            {faq.map((item) => (
+              <article
+                key={item.q}
+                className="rounded-[26px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm"
+              >
+                <h3 className="text-lg font-extrabold text-[#0B3A63]">
+                  {item.q}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-[#475569] md:text-base">
+                  {item.a}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="bg-white py-16 md:py-20">
         <div className="mx-auto max-w-7xl px-6 md:px-8">
           <div className="rounded-[34px] border border-[#0B3A63]/10 bg-[#0B3A63] p-8 text-white shadow-[0_25px_70px_rgba(11,58,99,0.16)] md:p-12">
             <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/70">
-                  Réponse fournisseur · PDF vérifiable · sans abonnement
+                  Réponse fournisseur · PDF · ID vérifiable · sans abonnement
                 </p>
                 <h2 className="mt-4 text-3xl font-extrabold leading-tight md:text-4xl">
                   Votre client demande un document carbone ?
                 </h2>
                 <p className="mt-5 max-w-3xl text-base leading-relaxed text-white/85 md:text-lg">
-                  Générez une attestation CO₂e indicative à 89€, avec méthode
-                  déclarée, limites visibles et format PDF transmissible.
+                  Générez une attestation CO₂e indicative à 89 €, avec méthode déclarée, limites visibles et format PDF transmissible.
                 </p>
               </div>
 
@@ -553,9 +671,7 @@ export default function BilanCarboneFournisseurPageFR() {
           </div>
 
           <p className="mx-auto mt-8 max-w-4xl text-center text-xs leading-relaxed text-[#64748B] md:text-sm">
-            Certif-Scope produit une attestation CO₂e indicative basée sur les
-            dépenses. Le document ne constitue pas un audit carbone, un inventaire
-            GES complet, une vérification externe, ni un reporting CSRD/ESRS.
+            Certif-Scope produit une attestation CO₂e indicative basée sur les dépenses. Le document ne constitue pas un audit carbone, un inventaire GES complet, une vérification externe, ni un reporting CSRD/ESRS.
           </p>
         </div>
       </section>
@@ -564,14 +680,17 @@ export default function BilanCarboneFournisseurPageFR() {
         <div className="mx-auto max-w-7xl px-6 md:px-8">
           <div className="max-w-3xl">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">
-              Pages liées
+              Maillage SEO interne
             </p>
             <h2 className="mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">
               Continuer selon votre cas
             </h2>
+            <p className="mt-4 text-base leading-relaxed text-[#475569]">
+              Ces pages renforcent le cluster SEO Certif-Scope autour des demandes carbone PME, fournisseurs, appels d’offres, méthode et prix.
+            </p>
           </div>
 
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
+          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {relatedPages.map((page) => (
               <Link
                 key={page.href}
@@ -585,38 +704,9 @@ export default function BilanCarboneFournisseurPageFR() {
                   {page.text}
                 </p>
                 <span className="mt-5 inline-flex text-sm font-semibold text-[#0B3A63] group-hover:text-[#1FB6C1]">
-                  Lire →
+                  Lire la page →
                 </span>
               </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-white py-16 md:py-20">
-        <div className="mx-auto max-w-5xl px-6 md:px-8">
-          <div className="text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">
-              FAQ
-            </p>
-            <h2 className="mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">
-              Questions fréquentes sur le bilan carbone fournisseur
-            </h2>
-          </div>
-
-          <div className="mt-10 space-y-5">
-            {faq.map((item) => (
-              <article
-                key={item.q}
-                className="rounded-[26px] border border-[#0B3A63]/10 bg-[#F8FAFC] p-6 shadow-sm"
-              >
-                <h3 className="text-lg font-extrabold text-[#0B3A63]">
-                  {item.q}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-[#475569] md:text-base">
-                  {item.a}
-                </p>
-              </article>
             ))}
           </div>
         </div>
