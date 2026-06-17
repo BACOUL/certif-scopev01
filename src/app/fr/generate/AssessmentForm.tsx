@@ -249,8 +249,20 @@ export default function AssessmentForm() {
     setKeyError("");
   };
 
+  const scrollToErrorSummary = () => {
+    window.setTimeout(() => {
+      document.getElementById("form-error-summary")?.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }, 0);
+  };
+
   const handleSubmit = async () => {
-    if (!validate()) return;
+    if (!validate()) {
+      scrollToErrorSummary();
+      return;
+    }
 
     if (
       keyStatus === "checking" ||
@@ -311,6 +323,7 @@ export default function AssessmentForm() {
         submit:
           "Impossible de traiter la demande. Veuillez réessayer ou actualiser la page.",
       });
+      scrollToErrorSummary();
       setIsSubmitting(false);
     }
   };
@@ -327,6 +340,12 @@ export default function AssessmentForm() {
   const buttonLabel = isRedeeming
     ? "Générer mon attestation carbone (1 crédit)"
     : "Générer mon attestation carbone — 89 €";
+
+  const missingRequiredFields = [
+    errors.companyName && "Nom de l'entreprise / entité légale",
+    errors.sector && "Secteur d'activité principal",
+    errors.submit && "Au moins une dépense externe annuelle supérieure à 0 €",
+  ].filter(Boolean) as string[];
 
   return (
     <main className="min-h-screen bg-white">
@@ -366,14 +385,17 @@ export default function AssessmentForm() {
               <input
                 type="text"
                 value={companyName}
+                aria-invalid={Boolean(errors.companyName)}
                 onChange={(e) => setCompanyName(e.target.value)}
                 className={`w-full border rounded-md px-4 py-2 mt-1 ${
-                  errors.companyName ? "border-red-500" : ""
+                  errors.companyName
+                    ? "border-red-500 bg-red-50"
+                    : "border-gray-300"
                 }`}
               />
 
               {errors.companyName && (
-                <p className="text-sm text-red-600 mt-1">
+                <p className="text-sm text-red-600 mt-1 font-medium">
                   {errors.companyName}
                 </p>
               )}
@@ -386,9 +408,12 @@ export default function AssessmentForm() {
 
               <select
                 value={sector}
+                aria-invalid={Boolean(errors.sector)}
                 onChange={(e) => setSector(e.target.value)}
                 className={`w-full border rounded-md px-4 py-2 mt-1 ${
-                  errors.sector ? "border-red-500" : ""
+                  errors.sector
+                    ? "border-red-500 bg-red-50"
+                    : "border-gray-300"
                 }`}
               >
                 <option value="">Sélectionnez votre secteur d’activité</option>
@@ -401,7 +426,7 @@ export default function AssessmentForm() {
               </select>
 
               {errors.sector && (
-                <p className="text-sm text-red-600 mt-1">
+                <p className="text-sm text-red-600 mt-1 font-medium">
                   {errors.sector}
                 </p>
               )}
@@ -416,7 +441,7 @@ export default function AssessmentForm() {
                 type="text"
                 value={companyId}
                 onChange={(e) => setCompanyId(e.target.value)}
-                className="w-full border rounded-md px-4 py-2 mt-1"
+                className="w-full border border-gray-300 rounded-md px-4 py-2 mt-1"
               />
             </div>
           </div>
@@ -438,7 +463,7 @@ export default function AssessmentForm() {
                 type="number"
                 value={year}
                 onChange={(e) => setYear(Number(e.target.value))}
-                className="w-full border rounded-md px-4 py-2 mt-1"
+                className="w-full border border-gray-300 rounded-md px-4 py-2 mt-1"
               />
             </div>
 
@@ -450,7 +475,7 @@ export default function AssessmentForm() {
               <select
                 value={country}
                 onChange={(e) => setCountry(e.target.value)}
-                className="w-full border rounded-md px-4 py-2 mt-1"
+                className="w-full border border-gray-300 rounded-md px-4 py-2 mt-1"
               >
                 <option value="FR">France</option>
                 <option value="DE">Allemagne</option>
@@ -468,7 +493,7 @@ export default function AssessmentForm() {
                 onChange={(e) =>
                   setAttestationLocale(e.target.value as AttestationLocale)
                 }
-                className="w-full border rounded-md px-4 py-2 mt-1"
+                className="w-full border border-gray-300 rounded-md px-4 py-2 mt-1"
               >
                 <option value="en">Anglais (référence légale)</option>
                 <option value="fr">Français</option>
@@ -492,11 +517,18 @@ export default function AssessmentForm() {
           intro="Indiquez vos principaux montants annuels par catégorie. Des estimations raisonnables suffisent. Ces données servent uniquement au calcul spend-based de l’attestation indicative."
           defaultOpen
         >
+          {errors.submit && (
+            <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 font-medium">
+              Une dépense minimum est obligatoire pour calculer l’attestation.
+            </div>
+          )}
+
           <Input
             label="Services IT & numériques"
             hint="Logiciels, cloud, SaaS, infogérance"
             value={expenses.it}
             onChange={(v) => update("it", v)}
+            hasError={Boolean(errors.submit)}
           />
 
           <Input
@@ -504,6 +536,7 @@ export default function AssessmentForm() {
             hint="Conseil, comptabilité, juridique"
             value={expenses.services}
             onChange={(v) => update("services", v)}
+            hasError={Boolean(errors.submit)}
           />
 
           <Input
@@ -511,6 +544,7 @@ export default function AssessmentForm() {
             hint="Fournitures de bureau, équipements, matériaux"
             value={expenses.goods}
             onChange={(v) => update("goods", v)}
+            hasError={Boolean(errors.submit)}
           />
 
           <Input
@@ -518,6 +552,7 @@ export default function AssessmentForm() {
             hint="Fret, livraison, transporteurs"
             value={expenses.logistics}
             onChange={(v) => update("logistics", v)}
+            hasError={Boolean(errors.submit)}
           />
 
           <Input
@@ -525,6 +560,7 @@ export default function AssessmentForm() {
             hint="Vols, trains, taxis, location de voitures"
             value={expenses.travel}
             onChange={(v) => update("travel", v)}
+            hasError={Boolean(errors.submit)}
           />
 
           <Input
@@ -532,6 +568,7 @@ export default function AssessmentForm() {
             hint="Hôtels, conférences, événements d'entreprise"
             value={expenses.accommodation}
             onChange={(v) => update("accommodation", v)}
+            hasError={Boolean(errors.submit)}
           />
 
           <Input
@@ -539,6 +576,7 @@ export default function AssessmentForm() {
             hint="Marketing, abonnements, frais divers"
             value={expenses.other}
             onChange={(v) => update("other", v)}
+            hasError={Boolean(errors.submit)}
           />
         </Accordion>
 
@@ -577,7 +615,7 @@ export default function AssessmentForm() {
         </div>
 
         {errors.submit && (
-          <p className="text-sm text-red-600">{errors.submit}</p>
+          <p className="text-sm text-red-600 font-medium">{errors.submit}</p>
         )}
 
         {/* CLÉ D'ACCÈS */}
@@ -655,6 +693,26 @@ export default function AssessmentForm() {
           demandée mais n'est pas garantie.
         </p>
 
+        {missingRequiredFields.length > 0 && (
+          <div
+            id="form-error-summary"
+            role="alert"
+            className="rounded-xl border-2 border-red-300 bg-red-50 p-5 text-red-800 shadow-sm"
+          >
+            <p className="font-semibold text-base mb-2">
+              Impossible d’ouvrir Stripe pour le moment.
+            </p>
+            <p className="text-sm mb-3">
+              Veuillez compléter les champs obligatoires suivants :
+            </p>
+            <ul className="list-disc pl-5 text-sm space-y-1 font-medium">
+              {missingRequiredFields.map((field) => (
+                <li key={field}>{field}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+
         <button
           type="button"
           onClick={handleSubmit}
@@ -702,11 +760,13 @@ function Input({
   hint,
   value,
   onChange,
+  hasError = false,
 }: {
   label: string;
   hint: string;
   value: string;
   onChange: (v: string) => void;
+  hasError?: boolean;
 }) {
   return (
     <div>
@@ -717,8 +777,11 @@ function Input({
         inputMode="decimal"
         min="0"
         value={value}
+        aria-invalid={hasError}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full border rounded-md px-4 py-2 mt-1"
+        className={`w-full border rounded-md px-4 py-2 mt-1 ${
+          hasError ? "border-red-300 bg-red-50" : "border-gray-300"
+        }`}
       />
 
       <p className="text-xs text-gray-500 mt-1">{hint}</p>
