@@ -16,9 +16,9 @@ import Section8 from "./Sections/Section8";
 ====================================================== */
 
 export const metadata: Metadata = {
-  title: "Vérification technique — Attestation CO₂e | Certif-Scope",
+  title: "Vérification technique du PDF CO₂e | Certif-Scope",
   description:
-    "Documentation technique complète expliquant comment vérifier indépendamment une attestation CO₂e Certif-Scope, incluant la validation cryptographique et les procédures de vérification hors ligne.",
+    "Documentation technique pour contrôler l’authenticité et l’intégrité d’une attestation CO₂e Certif-Scope, incluant le PDF signé, la clé publique et les procédures hors ligne.",
   alternates: {
     canonical: "https://www.certif-scope.com/fr/verify/technical",
     languages: {
@@ -27,9 +27,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Vérification technique — Attestation CO₂e | Certif-Scope",
+    title: "Vérification technique du PDF CO₂e | Certif-Scope",
     description:
-      "Documentation technique étape par étape permettant aux développeurs et auditeurs de vérifier indépendamment et hors ligne les attestations CO₂e Certif-Scope.",
+      "Guide technique pour contrôler l’authenticité et l’intégrité documentaire des attestations CO₂e Certif-Scope.",
     url: "https://www.certif-scope.com/fr/verify/technical",
     siteName: "Certif-Scope",
     type: "website",
@@ -57,7 +57,7 @@ export default function VerifyTechnicalPageFR() {
             "@type": "WebPage",
             name: "Vérification technique des attestations CO₂e",
             description:
-              "Documentation technique permettant de vérifier indépendamment l’authenticité et l’intégrité des attestations CO₂e Certif-Scope.",
+              "Documentation technique permettant de contrôler l’authenticité et l’intégrité documentaire des attestations CO₂e Certif-Scope.",
             url: "https://www.certif-scope.com/fr/verify/technical",
             isPartOf: {
               "@type": "WebSite",
@@ -80,11 +80,10 @@ export default function VerifyTechnicalPageFR() {
         </h1>
 
         <p className="text-lg text-gray-700 leading-relaxed max-w-3xl">
-          Cette page fournit une explication complète, au niveau implémentation,
-          de la manière de vérifier techniquement une attestation CO₂e
-          Certif-Scope. Elle s’adresse aux développeurs, auditeurs, équipes
-          sécurité et relecteurs techniques nécessitant une vérification hors
-          ligne, indépendante et reproductible.
+          Cette page explique, au niveau implémentation, comment contrôler
+          techniquement une attestation CO₂e Certif-Scope. Elle s’adresse aux
+          développeurs, équipes sécurité et relecteurs techniques qui doivent
+          vérifier l’authenticité et l’intégrité du document, y compris hors ligne.
         </p>
 
         <div className="w-20 h-[2px] bg-gray-300 mt-10" />
