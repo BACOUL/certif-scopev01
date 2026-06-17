@@ -11,15 +11,13 @@ export default function TrustFR() {
       <div className="absolute inset-0 bg-gradient-to-b from-[#F8FAFC] via-white to-[#F3FBFC] -z-10" />
 
       <div className="max-w-6xl mx-auto px-6 text-center">
-        {/* MICRO LABEL */}
         <p
           className="inline-flex items-center rounded-full border border-[#0B3A63]/10 bg-white/90 px-4 py-2 text-[11px] md:text-xs font-semibold uppercase tracking-[0.14em] text-[#0B3A63]/75 shadow-sm mb-5"
           data-i18n="trust.label"
         >
-          Fiabilité • Vérification • Banque • Achats • ESG
+          Fiabilité • Vérification documentaire • Banque • Achats • ESG
         </p>
 
-        {/* TITLE */}
         <h2
           className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] leading-tight tracking-tight"
           data-i18n="trust.title"
@@ -27,7 +25,6 @@ export default function TrustFR() {
           Un document conçu pour être lu, vérifié et comparé rapidement
         </h2>
 
-        {/* INTRO */}
         <p
           className="mt-4 text-lg text-[#475569] max-w-3xl mx-auto leading-relaxed"
           data-i18n="trust.intro"
@@ -39,14 +36,12 @@ export default function TrustFR() {
           conçu pour les contextes où un client, un acheteur, une banque ou un
           assureur demande un indicateur carbone lisible rapidement. La structure
           est stable, les références méthodologiques sont explicites, et des
-          éléments de vérification sont intégrés pour réduire les zones
+          éléments de vérification documentaire sont intégrés pour réduire les zones
           d’interprétation.
         </p>
 
-        {/* SEPARATOR */}
         <div className="w-20 h-[2px] bg-[#0B3A63]/12 mx-auto my-14" />
 
-        {/* ACCEPTANCE / POSITIONING */}
         <div className="max-w-4xl mx-auto rounded-[24px] border border-[#0B3A63]/10 bg-white/90 p-6 md:p-7 shadow-sm mb-16">
           <p
             className="text-sm md:text-base text-[#475569] leading-relaxed"
@@ -63,9 +58,7 @@ export default function TrustFR() {
           </p>
         </div>
 
-        {/* PILLARS */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
-          {/* INTEGRITY */}
           <div
             className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-8 text-center shadow-sm"
             data-i18n="trust.integrity"
@@ -88,18 +81,17 @@ export default function TrustFR() {
             </div>
 
             <h3 className="text-lg font-semibold text-[#0B3A63] mb-3">
-              Vérification indépendante
+              Vérification documentaire
             </h3>
 
             <p className="text-sm text-[#64748B] leading-relaxed">
-              Chaque document intègre des éléments permettant à un tiers de
-              vérifier l’authenticité et l’intégrité du résultat, sans dépendre
-              d’un compte utilisateur ni d’un stockage de données financières
-              détaillées.
+              Chaque document intègre des éléments permettant de contrôler
+              l’authenticité et l’intégrité de l’attestation. Cette vérification
+              concerne le document, sans constituer une validation externe du
+              résultat carbone.
             </p>
           </div>
 
-          {/* STRUCTURE */}
           <div
             className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-8 text-center shadow-sm"
             data-i18n="trust.structure"
@@ -132,7 +124,6 @@ export default function TrustFR() {
             </p>
           </div>
 
-          {/* CONSISTENCY */}
           <div
             className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-8 text-center shadow-sm"
             data-i18n="trust.consistency"
@@ -167,7 +158,6 @@ export default function TrustFR() {
           </div>
         </div>
 
-        {/* FOOTNOTE / LIMITS */}
         <div className="mt-12 max-w-3xl mx-auto rounded-[20px] border border-[#0B3A63]/10 bg-white/90 p-5 md:p-6 shadow-sm">
           <p
             className="text-center text-xs md:text-sm text-[#64748B] leading-relaxed"
@@ -183,4 +173,4 @@ export default function TrustFR() {
       </div>
     </section>
   );
-                  }
+}
