@@ -3,17 +3,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-/* ======================================================
-   SEO METADATA — PAGE SATELLITE FR / ADS READY
-   Objectif : capter "bilan carbone appel d’offres"
-   Angle : PME / réponse rapide / document à joindre
-====================================================== */
-
 export const metadata: Metadata = {
   title:
-    "Bilan carbone appel d’offres : que fournir quand on est une PME ? | Certif-Scope",
+    "Bilan carbone appel d’offres : quoi joindre au dossier ? | Certif-Scope",
   description:
-    "On vous demande un bilan carbone pour un appel d’offres ? Comprenez ce qui est réellement attendu et fournissez un document CO₂e clair, utilisable et vérifiable, sans audit complet.",
+    "Un appel d’offres vous demande un bilan carbone ou un document CO₂e ? Comprenez quoi joindre au dossier, quand une attestation indicative suffit et quand un audit complet est nécessaire.",
   alternates: {
     canonical: "https://www.certif-scope.com/fr/bilan-carbone-appel-offres/",
     languages: {
@@ -21,10 +15,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title:
-      "Bilan carbone appel d’offres : que fournir quand on est une PME ?",
+    title: "Bilan carbone appel d’offres : quoi joindre au dossier ?",
     description:
-      "Répondez à une demande de bilan carbone en appel d’offres avec un document CO₂e clair, utilisable et vérifiable, quand un audit complet n’est pas explicitement exigé.",
+      "Guide PME pour répondre à une demande carbone dans un appel d’offres avec un document CO₂e indicatif lorsque le dossier ne demande pas un audit complet.",
     url: "https://www.certif-scope.com/fr/bilan-carbone-appel-offres/",
     siteName: "Certif-Scope",
     type: "website",
@@ -33,42 +26,150 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
+const quickAnswers = [
+  {
+    title: "Demande dans le DCE",
+    text: "Le dossier mentionne bilan carbone, CO₂e, RSE, ESG, empreinte carbone ou critère environnemental.",
+  },
+  {
+    title: "Réponse possible",
+    text: "Si aucune norme complète n’est imposée, un PDF CO₂e indicatif, daté, lisible et vérifiable peut souvent suffire.",
+  },
+  {
+    title: "Risque à éviter",
+    text: "Répondre sans document, ou avec un tableau informel, peut affaiblir la candidature et créer des demandes complémentaires.",
+  },
+];
+
+const tenderScenarios = [
+  "Le règlement de consultation ajoute un critère environnemental ou RSE.",
+  "Le mémoire technique demande une information carbone ou CO₂e.",
+  "L’acheteur demande une preuve environnementale sans méthode imposée.",
+  "La plateforme de dépôt prévoit un fichier à joindre pour l’aspect carbone.",
+  "Le candidat doit rassurer sans avoir le temps de lancer un audit complet.",
+];
+
+const expectedItems = [
+  "Résultat CO₂e agrégé",
+  "Année couverte par l’estimation",
+  "Méthode déclarée et lisible",
+  "Limites méthodologiques explicites",
+  "PDF daté et archivable",
+  "Identifiant ou logique de vérification",
+  "Mention : document indicatif, non audit",
+  "Lien ou référence de contrôle pour le tiers",
+];
+
+const decisionRows = [
+  {
+    demand: "Le dossier demande un indicateur carbone sans méthode imposée",
+    answer: "Une attestation CO₂e indicative peut souvent être jointe comme document de screening.",
+  },
+  {
+    demand: "Le mémoire technique demande une information RSE ou CO₂e",
+    answer: "Un PDF standardisé est plus lisible qu’une phrase vague ou un tableau non formalisé.",
+  },
+  {
+    demand: "Le cahier des charges impose une norme, un périmètre ou une vérification",
+    answer: "Il faut suivre l’exigence imposée. Une attestation indicative ne remplace pas un audit ou une vérification externe.",
+  },
+  {
+    demand: "Le délai de dépôt est court",
+    answer: "Produire une réponse documentaire cadrée peut éviter de déposer un dossier incomplet.",
+  },
+];
+
+const mistakes = [
+  {
+    title: "Ignorer la demande carbone",
+    text: "Même si le critère n’est pas éliminatoire, l’absence de réponse peut réduire la qualité perçue du dossier.",
+  },
+  {
+    title: "Envoyer un document flou",
+    text: "Un résultat sans méthode, sans date et sans limites est difficile à utiliser côté acheteur.",
+  },
+  {
+    title: "Promettre un audit complet",
+    text: "Il ne faut pas présenter un document indicatif comme un inventaire GES complet ou une vérification externe.",
+  },
+  {
+    title: "Surdimensionner la réponse",
+    text: "Lancer une mission lourde peut être inutile si le dossier demande seulement un élément documentaire.",
+  },
+];
+
+const processSteps = [
+  {
+    title: "Lire le cahier des charges",
+    text: "Chercher les mots bilan carbone, CO₂e, empreinte carbone, ESG, RSE, environnement ou fournisseur responsable.",
+  },
+  {
+    title: "Identifier le niveau exigé",
+    text: "Distinguer une demande documentaire générique d’une exigence formelle avec norme, périmètre ou contrôle tiers.",
+  },
+  {
+    title: "Joindre un PDF clair",
+    text: "Fournir un document daté, archivable, vérifiable et explicite sur sa méthode et ses limites.",
+  },
+];
+
+const relatedPages = [
+  {
+    title: "Bilan carbone PME",
+    text: "Comprendre quoi fournir quand une PME reçoit une demande carbone générale.",
+    href: "/fr/bilan-carbone-pme/",
+  },
+  {
+    title: "Bilan carbone fournisseur",
+    text: "Répondre à une demande client, acheteur ou donneur d’ordre.",
+    href: "/fr/bilan-carbone-fournisseur/",
+  },
+  {
+    title: "Prix attestation CO₂e",
+    text: "Voir le prix d’un document CO₂e indicatif sans abonnement.",
+    href: "/fr/pricing/",
+  },
+];
+
+const faq = [
+  {
+    q: "Un bilan carbone est-il obligatoire dans un appel d’offres ?",
+    a: "Pas automatiquement. Certains dossiers demandent seulement une information carbone ou un critère environnemental. Si le cahier des charges impose une norme, un périmètre détaillé ou une vérification externe, il faut respecter cette exigence.",
+  },
+  {
+    q: "Que joindre si le dossier demande un bilan carbone sans précision ?",
+    a: "Un document CO₂e indicatif, daté, archivable et vérifiable peut servir de première réponse si aucune méthode complète n’est imposée. Il doit préciser sa méthode, son année, son périmètre et ses limites.",
+  },
+  {
+    q: "L’attestation Certif-Scope remplace-t-elle un audit carbone ?",
+    a: "Non. Certif-Scope produit une attestation CO₂e indicative, non auditée, non réglementaire et non assimilable à un inventaire GES complet ou à un reporting CSRD/ESRS.",
+  },
+  {
+    q: "Le document est-il utilisable dans un mémoire technique ?",
+    a: "Oui, lorsque le besoin est documentaire ou comparatif. Le document peut être joint au dossier ou cité dans le mémoire technique, avec ses limites clairement indiquées.",
+  },
+  {
+    q: "Combien coûte une réponse CO₂e indicative ?",
+    a: "Certif-Scope propose une attestation CO₂e indicative à 89€, sans abonnement. Ce prix ne correspond pas à un audit ou à une mission de conseil carbone complète.",
+  },
+];
+
 export default function BilanCarboneAppelOffresFR() {
   const pageUrl = "https://www.certif-scope.com/fr/bilan-carbone-appel-offres/";
 
-  const faq = [
-    {
-      q: "Le bilan carbone est-il obligatoire dans un appel d’offres ?",
-      a: "Non, pas automatiquement. Dans beaucoup de dossiers, il s’agit surtout d’un critère environnemental de comparaison ou de screening. Une exigence formelle, comme un standard imposé, un périmètre détaillé ou une vérification tierce, doit être clairement mentionnée dans le cahier des charges.",
-    },
-    {
-      q: "Une estimation indicative peut-elle suffire ?",
-      a: "Oui, lorsque la méthode n’est pas imposée et que l’acheteur cherche surtout un indicateur CO₂e comparable entre candidats. Le document doit alors annoncer clairement la méthode utilisée et ses limites.",
-    },
-    {
-      q: "Que faut-il mettre dans le dossier ?",
-      a: "Un résultat CO₂e agrégé, l’année couverte, la méthode déclarée, les limites explicites, un PDF identifiable et un mécanisme de vérification ou une référence claire.",
-    },
-    {
-      q: "Quand faut-il un inventaire complet ?",
-      a: "Quand le dossier impose explicitement un référentiel, un périmètre détaillé, des justificatifs techniques, une ventilation précise ou une vérification tierce. Dans ce cas, un simple document de screening ne suffit plus.",
-    },
-    {
-      q: "Le document est-il adapté aux PME ?",
-      a: "Oui. L’objectif est de fournir un document lisible, archivable et exploitable dans un dossier, sans lancer une démarche plus lourde que nécessaire quand le besoin réel reste documentaire.",
-    },
-    {
-      q: "Comment savoir si l’acheteur attend un screening ou une exigence formelle ?",
-      a: "Il faut lire le cahier des charges : si aucun standard précis, périmètre détaillé, preuve technique ou contrôle tiers n’est imposé, la demande relève souvent du screening documentaire.",
-    },
-  ];
-
-  const jsonLdOrganization = {
+  const jsonLdWebPage = {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "Certif-Scope",
-    url: "https://www.certif-scope.com",
-    logo: "https://www.certif-scope.com/assets/logo.png",
+    "@type": "WebPage",
+    name: "Bilan carbone appel d’offres : quoi joindre au dossier ?",
+    url: pageUrl,
+    description:
+      "Guide PME pour répondre à une demande de bilan carbone ou de document CO₂e dans un appel d’offres.",
+    isPartOf: {
+      "@type": "WebSite",
+      name: "Certif-Scope",
+      url: "https://www.certif-scope.com/fr/",
+    },
+    inLanguage: "fr-FR",
   };
 
   const jsonLdBreadcrumb = {
@@ -78,37 +179,52 @@ export default function BilanCarboneAppelOffresFR() {
       {
         "@type": "ListItem",
         position: 1,
-        name: "Accueil (FR)",
+        name: "Accueil",
         item: "https://www.certif-scope.com/fr/",
       },
       {
         "@type": "ListItem",
         position: 2,
-        name: "Bilan carbone PME",
-        item: "https://www.certif-scope.com/fr/bilan-carbone-pme/",
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
         name: "Bilan carbone appel d’offres",
         item: pageUrl,
       },
     ],
   };
 
-  const jsonLdWebPage = {
+  const jsonLdService = {
     "@context": "https://schema.org",
-    "@type": "WebPage",
-    name: "Bilan carbone appel d’offres",
-    url: pageUrl,
-    description:
-      "Comment répondre à une demande de bilan carbone en appel d’offres quand on est une PME et qu’un document indicatif suffit.",
-    isPartOf: {
-      "@type": "WebSite",
+    "@type": "Service",
+    name: "Attestation CO₂e indicative pour appel d’offres",
+    provider: {
+      "@type": "Organization",
       name: "Certif-Scope",
-      url: "https://www.certif-scope.com",
+      url: "https://www.certif-scope.com/fr/",
     },
-    inLanguage: "fr-FR",
+    areaServed: "FR",
+    serviceType: "Attestation CO₂e indicative spend-based",
+    description:
+      "Service de génération d’un document CO₂e indicatif pour les dossiers clients, fournisseurs, banques, assurances et appels d’offres.",
+    offers: {
+      "@type": "Offer",
+      price: "89",
+      priceCurrency: "EUR",
+      availability: "https://schema.org/InStock",
+      url: "https://www.certif-scope.com/fr/pricing/",
+    },
+  };
+
+  const jsonLdHowTo = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "Comment répondre à une demande de bilan carbone dans un appel d’offres",
+    description:
+      "Méthode simple pour savoir quoi joindre lorsqu’un appel d’offres demande un bilan carbone ou un document CO₂e.",
+    step: processSteps.map((step, index) => ({
+      "@type": "HowToStep",
+      position: index + 1,
+      name: step.title,
+      text: step.text,
+    })),
   };
 
   const jsonLdFAQ = {
@@ -124,75 +240,8 @@ export default function BilanCarboneAppelOffresFR() {
     })),
   };
 
-  const jsonLdHowTo = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: "Comment répondre à une demande de bilan carbone dans un appel d’offres",
-    description:
-      "Méthode simple pour distinguer un besoin de screening d’une exigence formelle, puis fournir le bon document dans le dossier.",
-    totalTime: "PT10M",
-    step: [
-      {
-        "@type": "HowToStep",
-        name: "Lire le niveau réellement exigé",
-        text: "Vérifiez si le cahier des charges impose un standard, un périmètre détaillé, des justificatifs techniques ou une vérification tierce.",
-      },
-      {
-        "@type": "HowToStep",
-        name: "Distinguer screening et exigence formelle",
-        text: "Si la demande reste générique et vise un critère de comparaison, il s’agit souvent d’un besoin de screening documentaire.",
-      },
-      {
-        "@type": "HowToStep",
-        name: "Joindre un document clair et exploitable",
-        text: "Fournissez un document CO₂e avec résultat agrégé, année, méthode, limites explicites et format PDF identifiable.",
-      },
-    ],
-  };
-
-  const jsonLdService = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    name: "Attestation CO₂e indicative pour PME",
-    provider: {
-      "@type": "Organization",
-      name: "Certif-Scope",
-      url: "https://www.certif-scope.com",
-    },
-    areaServed: "FR",
-    serviceType: "Document CO₂e indicatif pour screening fournisseurs et appels d’offres",
-    offers: {
-      "@type": "Offer",
-      priceCurrency: "EUR",
-      price: "89",
-      availability: "https://schema.org/InStock",
-      url: "https://www.certif-scope.com/fr/pricing/",
-    },
-  };
-
-  const BackToSummaryButton = () => (
-    <a
-      href="#summary"
-      className="inline-block text-sm px-4 py-2 rounded-md border border-[#0B3A63] text-[#0B3A63] hover:bg-[#0B3A63] hover:text-white transition-colors"
-    >
-      Retour au sommaire
-    </a>
-  );
-
   return (
-    <section
-      id="bilan-carbone-appel-offres"
-      data-section="bilan-carbone-appel-offres"
-      className="relative overflow-hidden bg-white"
-    >
-      <div className="absolute inset-0 -z-30 bg-[linear-gradient(180deg,#ffffff_0%,#F8FAFC_100%)]" />
-      <div className="absolute left-[-10%] top-16 -z-10 h-72 w-72 rounded-full bg-[#1FB6C1]/8 blur-3xl" />
-      <div className="absolute right-[-8%] top-28 -z-10 h-96 w-96 rounded-full bg-[#0B3A63]/8 blur-3xl" />
-
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdOrganization) }}
-      />
+    <main id="main-content" role="main" className="bg-white">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebPage) }}
@@ -203,7 +252,7 @@ export default function BilanCarboneAppelOffresFR() {
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFAQ) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdService) }}
       />
       <script
         type="application/ld+json"
@@ -211,603 +260,386 @@ export default function BilanCarboneAppelOffresFR() {
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdService) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFAQ) }}
       />
 
-      <div id="top" />
+      <section
+        id="bilan-carbone-appel-offres"
+        data-section="bilan-carbone-appel-offres"
+        className="relative overflow-hidden bg-white py-16 md:py-24"
+      >
+        <div className="absolute inset-0 -z-30 bg-[linear-gradient(180deg,#ffffff_0%,#F8FAFC_100%)]" />
+        <div className="absolute left-[-8%] top-24 -z-10 h-60 w-60 rounded-full bg-[#1FB6C1]/6 blur-3xl" />
+        <div className="absolute right-[-6%] top-40 -z-10 h-80 w-80 rounded-full bg-[#0B3A63]/6 blur-3xl" />
 
-      <div className="mx-auto max-w-7xl px-6 pb-24 pt-10 md:px-8 md:pt-14">
-        <header className="mx-auto max-w-6xl">
-          <div className="inline-flex items-center gap-3 rounded-full border border-[#0B3A63]/10 bg-white/92 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#0B3A63]/75 shadow-sm backdrop-blur md:text-xs">
-            <span className="inline-block h-2.5 w-2.5 rounded-full bg-[#1FB6C1] shadow-[0_0_0_4px_rgba(31,182,193,0.14)]" />
-            Appels d’offres • PME • Document CO₂e • Réponse rapide
-          </div>
-
-          <div className="mt-8 grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
-            <div>
-              <h1 className="max-w-4xl text-4xl font-extrabold leading-[0.95] tracking-[-0.05em] text-[#0B3A63] md:text-6xl">
-                On vous demande un{" "}
-                <span className="relative inline-block">
-                  bilan carbone
-                  <span className="absolute bottom-1 left-0 h-3 w-full rounded-full bg-[#1FB6C1]/18" />
-                </span>{" "}
-                pour un appel d’offres ?
-              </h1>
-
-              <p className="mt-6 max-w-3xl text-lg leading-relaxed text-[#475569] md:text-xl">
-                Fournissez un document CO₂e{" "}
-                <strong className="text-[#0B3A63]">clair</strong>,{" "}
-                <strong className="text-[#0B3A63]">utilisable</strong> et{" "}
-                <strong className="text-[#0B3A63]">vérifiable</strong>, sans audit
-                complet lorsque le dossier attend surtout un indicateur de
-                screening.
-              </p>
-
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link
-                  href="/fr/generate/"
-                  className="inline-flex min-h-[54px] items-center justify-center rounded-xl bg-[#1FB6C1] px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#19AAB4]"
-                >
-                  Générer mon attestation
-                </Link>
-
-                <Link
-                  href="/fr/pricing/"
-                  className="inline-flex min-h-[54px] items-center justify-center rounded-xl border border-[#0B3A63] bg-white px-5 py-3 text-sm font-semibold text-[#0B3A63] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0B3A63] hover:text-white"
-                >
-                  Voir le prix
-                </Link>
-              </div>
-
-              <div className="mt-8 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-                {[
-                  "Prix fixe",
-                  "Sans abonnement",
-                  "PDF identifiable",
-                  "Vérification tierce",
-                ].map((item) => (
-                  <div
-                    key={item}
-                    className="rounded-2xl border border-[#0B3A63]/10 bg-white px-4 py-3 text-sm font-medium text-[#0B3A63] shadow-sm"
-                  >
-                    {item}
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-8 rounded-[28px] border border-[#1FB6C1]/18 bg-[linear-gradient(180deg,rgba(31,182,193,0.08)_0%,rgba(31,182,193,0.03)_100%)] p-6">
-                <p className="text-sm leading-relaxed text-[#475569] md:text-base">
-                  <strong className="text-[#0B3A63]">Dans beaucoup d’appels d’offres,</strong>{" "}
-                  la mention “bilan carbone” ne signifie pas qu’un audit complet est
-                  exigé. L’acheteur cherche souvent surtout un{" "}
-                  <strong className="text-[#0B3A63]">
-                    indicateur CO₂e comparable entre candidats
-                  </strong>
-                  , présenté dans un document clair et archivable.
-                </p>
-              </div>
-            </div>
-
-            <div className="relative mx-auto w-full max-w-[560px]">
-              <div className="relative rounded-[34px] border border-[#0B3A63]/10 bg-white p-3 shadow-[0_30px_80px_rgba(11,58,99,0.10)]">
-                <div className="rounded-[28px] border border-[#0B3A63]/10 bg-[#F8FAFC] p-6 md:p-8">
-                  <div className="flex items-start justify-between gap-4 border-b border-[#0B3A63]/10 pb-4">
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">
-                        Certif-Scope
-                      </p>
-                      <p className="mt-1 text-lg font-extrabold text-[#0B3A63]">
-                        Attestation CO₂e indicative
-                      </p>
-                    </div>
-                    <div className="rounded-xl border border-[#0B3A63]/10 bg-white px-3 py-2 text-right shadow-sm">
-                      <p className="text-[11px] uppercase tracking-[0.14em] text-[#64748B]">
-                        ID
-                      </p>
-                      <p className="text-xs font-semibold text-[#0B3A63]">
-                        CS-2026-000145
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="mt-5 rounded-2xl border border-[#1FB6C1]/16 bg-white p-5 shadow-sm">
-                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#64748B]">
-                      Résultat
-                    </p>
-                    <p className="mt-2 text-4xl font-extrabold tracking-[-0.04em] text-[#0B3A63] md:text-5xl">
-                      128 tCO₂e
-                    </p>
-                    <p className="mt-2 text-sm text-[#475569]">
-                      Année couverte : 2025
-                    </p>
-                  </div>
-
-                  <div className="mt-4 grid gap-4 sm:grid-cols-2">
-                    <div className="rounded-2xl border border-[#0B3A63]/10 bg-white p-4 shadow-sm">
-                      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#64748B]">
-                        Méthodologie
-                      </p>
-                      <p className="mt-2 text-sm font-semibold text-[#0B3A63]">
-                        Spend-based
-                      </p>
-                      <p className="mt-1 text-sm text-[#475569]">
-                        Dépenses × facteurs d’émission
-                      </p>
-                    </div>
-
-                    <div className="rounded-2xl border border-[#0B3A63]/10 bg-white p-4 shadow-sm">
-                      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#64748B]">
-                        Sources
-                      </p>
-                      <p className="mt-2 text-sm font-semibold text-[#0B3A63]">
-                        ADEME / DEFRA
-                      </p>
-                      <p className="mt-1 text-sm text-[#475569]">
-                        Versionnées et documentées
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="mt-4 rounded-2xl border border-[#0B3A63]/10 bg-white p-4 shadow-sm">
-                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#64748B]">
-                      Portée du document
-                    </p>
-                    <p className="mt-2 text-sm leading-relaxed text-[#475569]">
-                      Document indicatif de screening. Non audit, non CSRD/ESRS,
-                      non inventaire complet GHG.
-                    </p>
-                  </div>
-
-                  <div className="mt-4 flex items-center justify-between gap-4 rounded-2xl border border-[#0B3A63]/10 bg-white p-4 shadow-sm">
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#64748B]">
-                        Vérification
-                      </p>
-                      <p className="mt-2 text-sm font-semibold text-[#0B3A63]">
-                        Vérifiable par un tiers
-                      </p>
-                    </div>
-                    <div className="h-14 w-14 rounded-xl border border-[#0B3A63]/10 bg-[linear-gradient(135deg,#F8FAFC_0%,#ffffff_100%)] shadow-inner" />
-                  </div>
-                </div>
-              </div>
-
-              <div className="absolute -left-3 top-8 rounded-2xl border border-[#1FB6C1]/20 bg-white px-4 py-3 shadow-lg md:-left-10">
-                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#64748B]">
-                  Utilisable
-                </p>
-                <p className="mt-1 text-sm font-semibold text-[#0B3A63]">
-                  En appel d’offres
-                </p>
-              </div>
-
-              <div className="absolute -right-3 top-24 rounded-2xl border border-[#1FB6C1]/20 bg-white px-4 py-3 shadow-lg md:-right-10">
-                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#64748B]">
-                  Résultat
-                </p>
-                <p className="mt-1 text-sm font-semibold text-[#0B3A63]">
-                  Clair et exploitable
-                </p>
-              </div>
-
-              <div className="absolute -left-3 bottom-28 rounded-2xl border border-[#1FB6C1]/20 bg-white px-4 py-3 shadow-lg md:-left-10">
-                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#64748B]">
-                  Méthode
-                </p>
-                <p className="mt-1 text-sm font-semibold text-[#0B3A63]">
-                  Indiquée et visible
-                </p>
-              </div>
-
-              <div className="absolute -right-3 bottom-10 rounded-2xl border border-[#1FB6C1]/20 bg-white px-4 py-3 shadow-lg md:-right-10">
-                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#64748B]">
-                  Vérification
-                </p>
-                <p className="mt-1 text-sm font-semibold text-[#0B3A63]">
-                  Par un tiers
-                </p>
-              </div>
-            </div>
-          </div>
-        </header>
-
-        <div id="summary" className="mt-16 rounded-[30px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm md:p-8">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">
-            Sommaire rapide
-          </p>
-          <ol className="mt-5 grid gap-3 text-sm text-[#0B3A63] md:grid-cols-2">
-            <li>
-              <a className="hover:underline underline-offset-4" href="#situation">
-                1. La situation réelle dans un appel d’offres
-              </a>
-            </li>
-            <li>
-              <a className="hover:underline underline-offset-4" href="#what-to-send">
-                2. Ce que vous pouvez fournir immédiatement
-              </a>
-            </li>
-            <li>
-              <a className="hover:underline underline-offset-4" href="#screening-vs-formal">
-                3. Screening vs exigence formelle
-              </a>
-            </li>
-            <li>
-              <a className="hover:underline underline-offset-4" href="#how-it-works">
-                4. Comment ça fonctionne
-              </a>
-            </li>
-            <li>
-              <a className="hover:underline underline-offset-4" href="#when-complete">
-                5. Quand un inventaire complet devient nécessaire
-              </a>
-            </li>
-            <li>
-              <a className="hover:underline underline-offset-4" href="#faq">
-                6. Questions fréquentes
-              </a>
-            </li>
-          </ol>
-        </div>
-
-        <div className="mt-14 space-y-20">
-          <section id="situation" className="scroll-mt-24">
-            <div className="grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-start">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">
-                  1. La situation réelle
-                </p>
-                <h2 className="mt-3 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">
-                  Ce que l’acheteur attend le plus souvent
-                </h2>
-                <p className="mt-5 text-base leading-relaxed text-[#475569] md:text-lg">
-                  Dans beaucoup de dossiers, la mention “bilan carbone” sert surtout à
-                  comparer les candidats sur un critère environnemental. L’acheteur
-                  attend alors un{" "}
-                  <strong className="text-[#0B3A63]">
-                    document CO₂e lisible, daté et exploitable
-                  </strong>
-                  , pas nécessairement un audit complet.
-                </p>
-                <p className="mt-4 text-base leading-relaxed text-[#475569] md:text-lg">
-                  La vraie question n’est donc pas seulement{" "}
-                  <strong className="text-[#0B3A63]">
-                    “faut-il répondre ?”
-                  </strong>
-                  , mais surtout{" "}
-                  <strong className="text-[#0B3A63]">
-                    “quel document faut-il joindre pour répondre correctement sans
-                    surdimensionner la démarche ?”
-                  </strong>
-                </p>
-              </div>
-
-              <div className="grid gap-4">
-                <div className="rounded-[24px] border border-[#0B3A63]/10 bg-[#F8FAFC] p-6 shadow-sm">
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#64748B]">
-                    Cas le plus fréquent
-                  </p>
-                  <ul className="mt-4 ml-5 list-disc space-y-2 text-sm leading-relaxed text-[#475569]">
-                    <li>critère environnemental pondéré ;</li>
-                    <li>comparaison entre candidats ;</li>
-                    <li>méthode non imposée ;</li>
-                    <li>document attendu surtout pour le dossier.</li>
-                  </ul>
-                </div>
-
-                <div className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm">
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#64748B]">
-                    Erreur fréquente
-                  </p>
-                  <p className="mt-3 text-sm leading-relaxed text-[#475569]">
-                    Lancer une mission lourde alors qu’un document de screening bien
-                    cadré aurait suffi pour le dossier.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-8">
-              <BackToSummaryButton />
-            </div>
-          </section>
-
-          <section id="what-to-send" className="scroll-mt-24">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">
-              2. Ce que vous pouvez fournir immédiatement
-            </p>
-            <h2 className="mt-3 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">
-              Le bon niveau de document pour répondre vite
-            </h2>
-
-            <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-              {[
-                "Résultat CO₂e agrégé",
-                "Année couverte et date d’émission",
-                "Méthode déclarée",
-                "Limites explicites",
-                "PDF identifiable et partageable",
-                "Mécanisme de vérification ou référence claire",
-              ].map((item) => (
-                <div
-                  key={item}
-                  className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm"
-                >
-                  <p className="text-base font-semibold text-[#0B3A63]">{item}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-8 rounded-[28px] border border-[#1FB6C1]/18 bg-[linear-gradient(180deg,rgba(31,182,193,0.08)_0%,rgba(31,182,193,0.03)_100%)] p-6 md:p-8">
-              <p className="text-base leading-relaxed text-[#475569] md:text-lg">
-                <strong className="text-[#0B3A63]">Objectif :</strong> fournir un
-                document que l’acheteur peut comprendre, archiver et comparer
-                rapidement, sans ambiguïté sur sa portée.
-              </p>
-            </div>
-
-            <div className="mt-8">
-              <BackToSummaryButton />
-            </div>
-          </section>
-
-          <section id="screening-vs-formal" className="scroll-mt-24">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">
-              3. Screening vs exigence formelle
-            </p>
-            <h2 className="mt-3 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">
-              Comment savoir si un document simple suffit
-            </h2>
-
-            <p className="mt-5 max-w-4xl text-base leading-relaxed text-[#475569] md:text-lg">
-              Le terme “bilan carbone” est souvent utilisé de manière générique dans les
-              appels d’offres. Dans beaucoup de cas, il s’agit d’un{" "}
-              <strong className="text-[#0B3A63]">besoin de screening documentaire</strong>,
-              pas d’une obligation imposant automatiquement un référentiel précis ou
-              une vérification tierce.
+        <div className="mx-auto max-w-7xl px-6 md:px-8">
+          <header className="mx-auto max-w-5xl text-center">
+            <p className="inline-flex items-center justify-center rounded-full border border-[#0B3A63]/10 bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#64748B] shadow-sm md:text-xs">
+              Appel d’offres · DCE · Mémoire technique · CO₂e
             </p>
 
-            <div className="mt-8 grid gap-6 md:grid-cols-2">
-              <div className="rounded-[28px] border border-[#0B3A63]/10 bg-[#F8FAFC] p-6 shadow-sm">
-                <h3 className="text-xl font-semibold text-[#0B3A63]">
-                  Quand un document de screening suffit souvent
-                </h3>
-                <ul className="mt-5 ml-6 list-disc space-y-2 text-sm leading-relaxed text-[#475569] md:text-base">
-                  <li>la méthode n’est pas imposée ;</li>
-                  <li>le dossier parle d’un critère environnemental ;</li>
-                  <li>l’acheteur cherche surtout un indicateur comparable ;</li>
-                  <li>aucun contrôle tiers n’est mentionné ;</li>
-                  <li>le document est demandé pour le dossier fournisseur.</li>
-                </ul>
-              </div>
+            <h1 className="mt-6 text-4xl font-extrabold leading-tight tracking-[-0.04em] text-[#0B3A63] md:text-6xl">
+              Bilan carbone appel d’offres : quoi joindre au dossier ?
+            </h1>
 
-              <div className="rounded-[28px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm">
-                <h3 className="text-xl font-semibold text-[#0B3A63]">
-                  Quand il faut escalader vers un niveau plus complet
-                </h3>
-                <ul className="mt-5 ml-6 list-disc space-y-2 text-sm leading-relaxed text-[#475569] md:text-base">
-                  <li>référentiel explicitement imposé ;</li>
-                  <li>périmètre détaillé demandé ;</li>
-                  <li>annexes techniques requises ;</li>
-                  <li>ventilation précise attendue ;</li>
-                  <li>vérification externe ou tierce annoncée.</li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="mt-8">
-              <BackToSummaryButton />
-            </div>
-          </section>
-
-          <section id="how-it-works" className="scroll-mt-24">
-            <div className="rounded-[34px] border border-[#0B3A63]/10 bg-[#0B3A63] p-8 text-white shadow-[0_25px_60px_rgba(11,58,99,0.10)] md:p-10">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/70">
-                4. Comment ça fonctionne
-              </p>
-              <h2 className="mt-3 text-3xl font-extrabold leading-tight md:text-4xl">
-                Répondre rapidement avec un document exploitable
-              </h2>
-              <div className="mt-8 grid gap-5 md:grid-cols-3">
-                <div className="rounded-[24px] border border-white/12 bg-white/8 p-6">
-                  <p className="text-sm font-semibold text-white/70">Étape 1</p>
-                  <p className="mt-2 text-lg font-semibold">Vous renseignez vos données</p>
-                  <p className="mt-3 text-sm leading-relaxed text-white/85">
-                    Saisie simple adaptée à une PME, sans demander une démarche lourde
-                    si le besoin reste documentaire.
-                  </p>
-                </div>
-
-                <div className="rounded-[24px] border border-white/12 bg-white/8 p-6">
-                  <p className="text-sm font-semibold text-white/70">Étape 2</p>
-                  <p className="mt-2 text-lg font-semibold">
-                    Le document CO₂e est structuré
-                  </p>
-                  <p className="mt-3 text-sm leading-relaxed text-white/85">
-                    Résultat agrégé, méthode, limites et éléments de vérification sont
-                    présentés dans un format clair.
-                  </p>
-                </div>
-
-                <div className="rounded-[24px] border border-white/12 bg-white/8 p-6">
-                  <p className="text-sm font-semibold text-white/70">Étape 3</p>
-                  <p className="mt-2 text-lg font-semibold">
-                    Vous joignez le PDF au dossier
-                  </p>
-                  <p className="mt-3 text-sm leading-relaxed text-white/85">
-                    Vous répondez proprement à la demande quand un indicateur CO₂e
-                    utilisable suffit.
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link
-                  href="/fr/generate/"
-                  className="inline-flex min-h-[52px] items-center justify-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-[#0B3A63] transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-100"
-                >
-                  Générer mon attestation
-                </Link>
-
-                <Link
-                  href="/fr/pricing/"
-                  className="inline-flex min-h-[52px] items-center justify-center rounded-xl border border-white/40 px-5 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/10"
-                >
-                  Voir le prix
-                </Link>
-              </div>
-            </div>
-
-            <div className="mt-8">
-              <BackToSummaryButton />
-            </div>
-          </section>
-
-          <section id="when-complete" className="scroll-mt-24">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">
-              5. Quand un inventaire complet devient nécessaire
-            </p>
-            <h2 className="mt-3 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">
-              Les signaux qui indiquent qu’un document indicatif ne suffit plus
-            </h2>
-
-            <p className="mt-5 max-w-4xl text-base leading-relaxed text-[#475569] md:text-lg">
-              Si le cahier des charges impose explicitement un standard, un périmètre
-              détaillé, des justificatifs techniques ou une vérification externe,
-              une estimation indicative ne suffit plus. Il faut alors aligner le
-              livrable sur le niveau réellement exigé.
+            <p className="mx-auto mt-6 max-w-4xl text-base leading-relaxed text-[#475569] md:text-xl">
+              Votre appel d’offres demande un bilan carbone, un indicateur CO₂e ou
+              un document environnemental ? Dans beaucoup de cas, l’acheteur attend
+              une réponse claire, datée, archivable et vérifiable — pas forcément
+              un audit carbone complet.
             </p>
 
-            <div className="mt-8 rounded-[28px] border border-[#0B3A63]/10 bg-[#F8FAFC] p-6 md:p-8">
-              <ul className="ml-6 list-disc space-y-2 text-sm leading-relaxed text-[#475569] md:text-base">
-                <li>référentiel clairement imposé ;</li>
-                <li>périmètre détaillé ou ventilation attendue ;</li>
-                <li>annexes techniques ou preuves requises ;</li>
-                <li>contrôle externe ou vérification tierce annoncée ;</li>
-                <li>livrable explicitement plus large qu’un simple screening.</li>
-              </ul>
-            </div>
+            <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-[#64748B] md:text-base">
+              Cette page explique comment décider quoi joindre, quand une
+              attestation CO₂e indicative peut suffire, et quand il faut suivre une
+              exigence plus formelle.
+            </p>
 
-            <p className="mt-6 text-base leading-relaxed text-[#475569] md:text-lg">
-              C’est aussi ce qui explique pourquoi le{" "}
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <Link
-                href="/fr/bilan-carbone-pme/cout/"
-                className="underline underline-offset-4 text-[#0B3A63] transition-colors hover:text-[#1FB6C1]"
+                href="/fr/generate/"
+                className="inline-flex min-h-[50px] items-center justify-center rounded-xl bg-[#1FB6C1] px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#19AAB4]"
               >
-                coût d’un bilan carbone PME
-              </Link>{" "}
-              peut varier fortement : un document de screening et un inventaire
-              complet ne correspondent pas au même niveau d’effort.
-            </p>
-
-            <div className="mt-8">
-              <BackToSummaryButton />
+                Générer une attestation pour mon dossier
+              </Link>
+              <Link
+                href="/fr/pricing/"
+                className="inline-flex min-h-[50px] items-center justify-center rounded-xl border border-[#0B3A63] bg-white px-6 py-3 text-sm font-semibold text-[#0B3A63] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0B3A63] hover:text-white"
+              >
+                Voir le prix 89€
+              </Link>
             </div>
-          </section>
+          </header>
 
-          <section className="scroll-mt-24">
+          <section className="mt-12 grid gap-5 md:grid-cols-3">
+            {quickAnswers.map((item) => (
+              <article
+                key={item.title}
+                className="rounded-[28px] border border-[#0B3A63]/10 bg-white p-6 shadow-[0_18px_45px_rgba(11,58,99,0.07)]"
+              >
+                <h2 className="text-lg font-extrabold text-[#0B3A63]">
+                  {item.title}
+                </h2>
+                <p className="mt-3 text-sm leading-relaxed text-[#475569]">
+                  {item.text}
+                </p>
+              </article>
+            ))}
+          </section>
+        </div>
+      </section>
+
+      <section className="bg-[#F8FAFC] py-16 md:py-20">
+        <div className="mx-auto max-w-7xl px-6 md:px-8">
+          <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
             <div className="rounded-[34px] border border-[#0B3A63]/10 bg-white p-8 shadow-sm md:p-10">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">
-                En résumé
+                Cas fréquents
               </p>
-              <h2 className="mt-3 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">
-                Si l’appel d’offres attend surtout un indicateur CO₂e, il faut un
-                document clair — pas forcément une mission lourde.
+              <h2 className="mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">
+                La demande carbone arrive souvent au moment du dépôt
               </h2>
-              <p className="mt-5 max-w-4xl text-base leading-relaxed text-[#475569] md:text-lg">
-                Certif-Scope aide les PME à fournir un document CO₂e indicatif,
-                lisible et vérifiable, adapté aux situations où la demande relève
-                surtout du screening fournisseur ou du dossier d’appel d’offres.
+              <p className="mt-5 text-base leading-relaxed text-[#475569] md:text-lg">
+                L’entreprise doit répondre vite, sans toujours savoir si le dossier
+                exige un audit complet ou seulement une pièce documentaire carbone.
               </p>
+            </div>
 
-              <div className="mt-8 flex flex-wrap gap-3">
+            <div className="grid gap-4">
+              {tenderScenarios.map((scenario) => (
+                <div
+                  key={scenario}
+                  className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-5 text-sm leading-relaxed text-[#475569] shadow-sm md:text-base"
+                >
+                  <span className="mr-3 inline-block h-2.5 w-2.5 rounded-full bg-[#1FB6C1]" />
+                  {scenario}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white py-16 md:py-20">
+        <div className="mx-auto max-w-7xl px-6 md:px-8">
+          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">
+                Pièce à joindre
+              </p>
+              <h2 className="mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">
+                Ce que l’acheteur doit pouvoir vérifier rapidement
+              </h2>
+              <p className="mt-5 text-base leading-relaxed text-[#475569] md:text-lg">
+                Un document utile en appel d’offres doit être plus qu’une phrase
+                dans le mémoire technique : il doit être clair, limité, daté et
+                transmissible.
+              </p>
+              <Link
+                href="/fr/generate/"
+                className="mt-8 inline-flex min-h-[48px] items-center justify-center rounded-xl bg-[#1FB6C1] px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#19AAB4]"
+              >
+                Produire le PDF maintenant
+              </Link>
+            </div>
+
+            <ul className="grid gap-3 sm:grid-cols-2">
+              {expectedItems.map((item) => (
+                <li
+                  key={item}
+                  className="rounded-2xl border border-[#0B3A63]/10 bg-[#F8FAFC] p-4 text-sm leading-relaxed text-[#475569]"
+                >
+                  <span className="mr-3 inline-block h-2.5 w-2.5 rounded-full bg-[#1FB6C1]" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#0B3A63] py-16 text-white md:py-20">
+        <div className="mx-auto max-w-7xl px-6 md:px-8">
+          <div className="mx-auto max-w-4xl text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/70">
+              Décision rapide
+            </p>
+            <h2 className="mt-4 text-3xl font-extrabold leading-tight md:text-4xl">
+              Screening ou exigence formelle : il faut lire le niveau imposé
+            </h2>
+            <p className="mt-5 text-base leading-relaxed text-white/82 md:text-lg">
+              Si le dossier impose un standard, un périmètre précis ou une
+              vérification externe, il faut suivre ce cadre. Sinon, une réponse
+              CO₂e indicative peut souvent être adaptée.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-4 md:hidden">
+            {decisionRows.map((row) => (
+              <article
+                key={row.demand}
+                className="rounded-[24px] border border-white/16 bg-white/8 p-5 shadow-sm"
+              >
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/60">
+                  Demande dans le dossier
+                </p>
+                <h3 className="mt-2 text-lg font-extrabold leading-snug text-white">
+                  {row.demand}
+                </h3>
+                <p className="mt-4 text-xs font-semibold uppercase tracking-[0.14em] text-white/60">
+                  Réponse recommandée
+                </p>
+                <p className="mt-2 text-sm leading-relaxed text-white/84">
+                  {row.answer}
+                </p>
+              </article>
+            ))}
+          </div>
+
+          <div className="mt-10 hidden rounded-[28px] border border-white/16 bg-white/8 md:block">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-white/16">
+                  <th className="w-1/2 p-5 text-left font-semibold text-white">
+                    Demande dans le dossier
+                  </th>
+                  <th className="w-1/2 p-5 text-left font-semibold text-white">
+                    Réponse recommandée
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-white/12">
+                {decisionRows.map((row) => (
+                  <tr key={row.demand}>
+                    <td className="p-5 align-top font-semibold text-white">
+                      {row.demand}
+                    </td>
+                    <td className="p-5 align-top leading-relaxed text-white/82">
+                      {row.answer}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white py-16 md:py-20">
+        <div className="mx-auto max-w-7xl px-6 md:px-8">
+          <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+            <div className="rounded-[34px] border border-[#0B3A63]/10 bg-[#F8FAFC] p-8 md:p-10">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">
+                Erreurs à éviter
+              </p>
+              <h2 className="mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63]">
+                Les erreurs qui affaiblissent une réponse d’appel d’offres
+              </h2>
+              <p className="mt-5 text-base leading-relaxed text-[#475569]">
+                La réponse carbone doit être proportionnée : assez claire pour
+                rassurer, mais sans promettre un niveau de preuve que le document
+                ne couvre pas.
+              </p>
+            </div>
+
+            <div className="grid gap-5">
+              {mistakes.map((item) => (
+                <article
+                  key={item.title}
+                  className="rounded-[28px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm"
+                >
+                  <h3 className="text-xl font-extrabold text-[#0B3A63]">
+                    {item.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-[#475569] md:text-base">
+                    {item.text}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#F8FAFC] py-16 md:py-20">
+        <div className="mx-auto max-w-7xl px-6 md:px-8">
+          <div className="rounded-[34px] border border-[#0B3A63]/10 bg-white p-8 shadow-sm md:p-10">
+            <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">
+                  Méthode simple
+                </p>
+                <h2 className="mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">
+                  Comment répondre sans perdre de temps ?
+                </h2>
+              </div>
+
+              <div className="grid gap-5">
+                {processSteps.map((step, index) => (
+                  <article
+                    key={step.title}
+                    className="rounded-[24px] border border-[#0B3A63]/10 bg-[#F8FAFC] p-5"
+                  >
+                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#64748B]">
+                      Étape {index + 1}
+                    </p>
+                    <h3 className="mt-2 text-lg font-extrabold text-[#0B3A63]">
+                      {step.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-relaxed text-[#475569]">
+                      {step.text}
+                    </p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white py-16 md:py-20">
+        <div className="mx-auto max-w-7xl px-6 md:px-8">
+          <div className="rounded-[34px] border border-[#0B3A63]/10 bg-[#0B3A63] p-8 text-white shadow-[0_25px_70px_rgba(11,58,99,0.16)] md:p-12">
+            <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/70">
+                  Dossier à déposer · PDF vérifiable · prix fixe
+                </p>
+                <h2 className="mt-4 text-3xl font-extrabold leading-tight md:text-4xl">
+                  Besoin d’un document carbone pour un appel d’offres ?
+                </h2>
+                <p className="mt-5 max-w-3xl text-base leading-relaxed text-white/85 md:text-lg">
+                  Générez une attestation CO₂e indicative à 89€, avec méthode
+                  déclarée, limites visibles et format PDF transmissible.
+                </p>
+              </div>
+
+              <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
                 <Link
                   href="/fr/generate/"
-                  className="inline-flex min-h-[54px] items-center justify-center rounded-xl bg-[#1FB6C1] px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#19AAB4]"
+                  className="inline-flex min-h-[50px] items-center justify-center rounded-xl bg-white px-6 py-3 text-sm font-semibold text-[#0B3A63] transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/90"
                 >
                   Générer mon attestation
                 </Link>
-
                 <Link
                   href="/fr/pricing/"
-                  className="inline-flex min-h-[54px] items-center justify-center rounded-xl border border-[#0B3A63] bg-white px-5 py-3 text-sm font-semibold text-[#0B3A63] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0B3A63] hover:text-white"
+                  className="inline-flex min-h-[50px] items-center justify-center rounded-xl border border-white/35 px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/10"
                 >
                   Voir le prix
                 </Link>
               </div>
             </div>
-          </section>
+          </div>
 
-          <section id="faq" className="scroll-mt-24">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">
-              6. Questions fréquentes
-            </p>
-            <h2 className="mt-3 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">
-              Ce que les PME demandent le plus souvent
-            </h2>
-
-            <div className="mt-8 space-y-5">
-              {faq.map((item) => (
-                <div
-                  key={item.q}
-                  className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm"
-                >
-                  <h3 className="text-lg font-semibold text-[#0B3A63]">
-                    {item.q}
-                  </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-[#475569] md:text-base">
-                    {item.a}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-8">
-              <BackToSummaryButton />
-            </div>
-          </section>
-
-          <section className="scroll-mt-24">
-            <div className="grid gap-6 rounded-[30px] border border-[#0B3A63]/10 bg-[#F8FAFC] p-6 shadow-sm md:grid-cols-2 md:p-8">
-              <div>
-                <h2 className="text-2xl font-extrabold text-[#0B3A63]">
-                  Aller plus loin
-                </h2>
-                <p className="mt-4 text-base leading-relaxed text-[#475569]">
-                  Pour les PME qui veulent comprendre le cadre plus large, ces pages
-                  détaillent l’obligation, le coût et un exemple de document.
-                </p>
-              </div>
-
-              <div className="grid gap-3 sm:grid-cols-2">
-                <Link
-                  href="/fr/bilan-carbone-pme/"
-                  className="rounded-2xl border border-[#0B3A63]/10 bg-white p-4 text-sm font-medium text-[#0B3A63] shadow-sm transition-colors hover:border-[#0B3A63] hover:bg-[#0B3A63] hover:text-white"
-                >
-                  Bilan carbone PME
-                </Link>
-                <Link
-                  href="/fr/bilan-carbone-pme/obligation/"
-                  className="rounded-2xl border border-[#0B3A63]/10 bg-white p-4 text-sm font-medium text-[#0B3A63] shadow-sm transition-colors hover:border-[#0B3A63] hover:bg-[#0B3A63] hover:text-white"
-                >
-                  Obligation
-                </Link>
-                <Link
-                  href="/fr/bilan-carbone-pme/cout/"
-                  className="rounded-2xl border border-[#0B3A63]/10 bg-white p-4 text-sm font-medium text-[#0B3A63] shadow-sm transition-colors hover:border-[#0B3A63] hover:bg-[#0B3A63] hover:text-white"
-                >
-                  Coût
-                </Link>
-                <Link
-                  href="/fr/bilan-carbone-pme/exemple/"
-                  className="rounded-2xl border border-[#0B3A63]/10 bg-white p-4 text-sm font-medium text-[#0B3A63] shadow-sm transition-colors hover:border-[#0B3A63] hover:bg-[#0B3A63] hover:text-white"
-                >
-                  Exemple
-                </Link>
-              </div>
-            </div>
-          </section>
+          <p className="mx-auto mt-8 max-w-4xl text-center text-xs leading-relaxed text-[#64748B] md:text-sm">
+            Certif-Scope produit une attestation CO₂e indicative basée sur les
+            dépenses. Le document ne constitue pas un audit carbone, un inventaire
+            GES complet, une vérification externe, ni un reporting CSRD/ESRS.
+          </p>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section className="bg-[#F8FAFC] py-16 md:py-20">
+        <div className="mx-auto max-w-7xl px-6 md:px-8">
+          <div className="max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">
+              Pages liées
+            </p>
+            <h2 className="mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">
+              Continuer selon votre situation
+            </h2>
+          </div>
+
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {relatedPages.map((page) => (
+              <Link
+                key={page.href}
+                href={page.href}
+                className="group rounded-[28px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_rgba(11,58,99,0.08)]"
+              >
+                <h3 className="text-lg font-extrabold text-[#0B3A63] group-hover:text-[#1FB6C1]">
+                  {page.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-[#475569]">
+                  {page.text}
+                </p>
+                <span className="mt-5 inline-flex text-sm font-semibold text-[#0B3A63] group-hover:text-[#1FB6C1]">
+                  Lire →
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white py-16 md:py-20">
+        <div className="mx-auto max-w-5xl px-6 md:px-8">
+          <div className="text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">
+              FAQ
+            </p>
+            <h2 className="mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">
+              Questions fréquentes sur le bilan carbone en appel d’offres
+            </h2>
+          </div>
+
+          <div className="mt-10 space-y-5">
+            {faq.map((item) => (
+              <article
+                key={item.q}
+                className="rounded-[26px] border border-[#0B3A63]/10 bg-[#F8FAFC] p-6 shadow-sm"
+              >
+                <h3 className="text-lg font-extrabold text-[#0B3A63]">
+                  {item.q}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-[#475569] md:text-base">
+                  {item.a}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    </main>
   );
-                   }
+}
