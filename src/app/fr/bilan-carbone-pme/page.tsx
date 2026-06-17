@@ -5,9 +5,9 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title:
-    "Bilan carbone PME : que fournir sans audit complet ? | Certif-Scope",
+    "Bilan carbone PME : obligation, coût, exemple et alternative | Certif-Scope",
   description:
-    "Un client, une banque ou un appel d’offres vous demande un bilan carbone ? Guide PME pour savoir quoi fournir, quand une attestation CO₂e indicative suffit et quand un audit complet est nécessaire.",
+    "Guide SEO et IA-first pour PME : obligation de bilan carbone, coût, exemples, demandes clients, banques, appels d’offres et alternative par attestation CO₂e indicative.",
   alternates: {
     canonical: "https://www.certif-scope.com/fr/bilan-carbone-pme/",
     languages: {
@@ -15,9 +15,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Bilan carbone PME : que fournir sans audit complet ?",
+    title: "Bilan carbone PME : obligation, coût, exemple et alternative",
     description:
-      "Guide PME : obligation réelle, demandes clients, banques, assurances, appels d’offres, prix et différence entre attestation CO₂e indicative et bilan carbone complet.",
+      "Que fournir quand une PME reçoit une demande de bilan carbone ? Comprendre l’obligation réelle, le coût, les cas clients et l’attestation CO₂e indicative.",
     url: "https://www.certif-scope.com/fr/bilan-carbone-pme/",
     siteName: "Certif-Scope",
     type: "website",
@@ -26,26 +26,49 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-const quickAnswers = [
+const pageUrl = "https://www.certif-scope.com/fr/bilan-carbone-pme/";
+
+const directAnswers = [
   {
-    title: "Est-ce obligatoire ?",
-    text: "Pour la majorité des PME, non. La demande vient souvent d’un client, d’un donneur d’ordre, d’une banque, d’un assureur ou d’un appel d’offres.",
+    title: "Une PME est-elle toujours obligée ?",
+    text: "Non. Beaucoup de PME reçoivent une demande carbone dans un cadre commercial, bancaire, assurantiel ou fournisseur, sans obligation générale de produire un bilan carbone complet.",
   },
   {
-    title: "Que fournir vite ?",
-    text: "Un document CO₂e indicatif avec résultat agrégé, année, méthode déclarée, limites visibles, PDF standardisé et vérification.",
+    title: "Que fournir rapidement ?",
+    text: "Si la demande reste documentaire, une attestation CO₂e indicative peut servir de première réponse : résultat agrégé, méthode, année, limites, PDF et ID vérifiable.",
   },
   {
-    title: "Quel prix viser ?",
-    text: "Une attestation indicative coûte moins qu’un audit complet. Certif-Scope propose un document standardisé à 89€, sans abonnement.",
+    title: "Quand faut-il un vrai bilan complet ?",
+    text: "Si une norme, un périmètre détaillé, un audit, une vérification externe ou un reporting réglementaire est explicitement exigé, il faut suivre ce cadre plutôt qu’utiliser une attestation indicative.",
   },
 ];
 
-const scenarios = [
-  "Un client demande un bilan carbone avant de valider un référencement fournisseur.",
-  "Un appel d’offres demande un élément carbone ou ESG sans imposer de norme complète.",
-  "Une banque ou un assureur demande une information environnementale dans un dossier professionnel.",
-  "Une plateforme achats demande un justificatif CO₂e simple, archivable et vérifiable.",
+const useCases = [
+  {
+    label: "Client",
+    title: "Votre client demande un document carbone",
+    text: "Vous devez joindre une réponse claire à un dossier client sans lancer immédiatement une démarche carbone complète.",
+  },
+  {
+    label: "Fournisseur",
+    title: "Un donneur d’ordre vous demande un justificatif CO₂e",
+    text: "Vous devez fournir une donnée carbone lisible dans un référencement fournisseur ou un questionnaire achats.",
+  },
+  {
+    label: "Banque",
+    title: "Une banque demande un élément environnemental",
+    text: "Vous devez compléter un dossier professionnel avec une information carbone simple, datée et transmissible.",
+  },
+  {
+    label: "Assurance",
+    title: "Un assureur demande un élément RSE ou carbone",
+    text: "Vous devez fournir un document indicatif, sans prétendre produire un audit ou un inventaire GES complet.",
+  },
+  {
+    label: "Appel d’offres",
+    title: "Un dossier mentionne un critère carbone ou RSE",
+    text: "Vous devez répondre vite à une exigence générale, quand aucune norme carbone complète n’est imposée.",
+  },
 ];
 
 const expectedItems = [
@@ -55,25 +78,35 @@ const expectedItems = [
   "Méthode utilisée et formule générale",
   "Limites méthodologiques visibles",
   "Date d’émission et validité documentaire",
-  "Identifiant unique de vérification",
-  "PDF archivable et transmissible à un tiers",
+  "Identifiant de contrôle documentaire",
+  "PDF archivable et transmissible à un client, financeur ou donneur d’ordre",
 ];
 
 const comparisonRows = [
   {
     topic: "Objectif",
-    indicative: "Répondre vite à une demande documentaire ou de screening.",
-    full: "Construire un inventaire GES détaillé et exploitable dans une stratégie climat.",
+    indicative: "Répondre rapidement à une demande documentaire ou de screening.",
+    full: "Construire un inventaire GES détaillé pour piloter une stratégie climat.",
   },
   {
-    topic: "Données",
+    topic: "Données nécessaires",
     indicative: "Dépenses annuelles par grandes catégories.",
-    full: "Données physiques, facteurs détaillés, périmètres, hypothèses et collecte métier.",
+    full: "Données physiques, collecte métier, hypothèses, périmètres et facteurs détaillés.",
   },
   {
-    topic: "Usage",
-    indicative: "Client, fournisseur, banque, assurance, appel d’offres simple.",
-    full: "Reporting avancé, pilotage interne, objectifs climat, exigences normatives.",
+    topic: "Délai",
+    indicative: "Quelques minutes lorsque les montants sont disponibles.",
+    full: "Souvent plusieurs semaines selon la collecte, le périmètre et l’accompagnement.",
+  },
+  {
+    topic: "Prix",
+    indicative: "Prix fixe : 89 €, paiement unique, sans abonnement.",
+    full: "Variable selon la taille, le périmètre, le cabinet et le niveau d’analyse.",
+  },
+  {
+    topic: "Usage adapté",
+    indicative: "Demande client, fournisseur, banque, assurance ou appel d’offres simple.",
+    full: "Reporting avancé, plan de réduction, pilotage climat ou exigence normative.",
   },
   {
     topic: "Limite",
@@ -82,18 +115,22 @@ const comparisonRows = [
   },
 ];
 
-const processSteps = [
+const decisionRows = [
   {
-    title: "Qualifier la demande",
-    text: "Lire précisément le dossier : demande-t-on une indication carbone simple ou un bilan réglementaire complet ?",
+    signal: "La demande dit simplement “bilan carbone”, “CO₂e” ou “élément RSE”",
+    response: "Clarifier le niveau attendu et envisager une attestation CO₂e indicative si aucun cadre précis n’est imposé.",
   },
   {
-    title: "Choisir le bon niveau de réponse",
-    text: "Si la demande est générique, une attestation CO₂e indicative peut suffire. Si une norme est imposée, il faut suivre ce cadre.",
+    signal: "Le dossier impose une norme, un périmètre ou une vérification externe",
+    response: "Suivre l’exigence indiquée : l’attestation indicative ne remplace pas ce niveau de preuve.",
   },
   {
-    title: "Produire un PDF clair",
-    text: "Le document doit être daté, archivable, vérifiable et explicite sur sa méthode comme sur ses limites.",
+    signal: "Le besoin est urgent pour un dossier commercial ou fournisseur",
+    response: "Produire un document indicatif daté, avec limites visibles et ID vérifiable, puis conserver les éléments transmis.",
+  },
+  {
+    signal: "L’entreprise veut piloter une stratégie climat interne",
+    response: "Prévoir une démarche plus complète, avec collecte de données physiques et analyse détaillée des postes d’émission.",
   },
 ];
 
@@ -114,14 +151,19 @@ const relatedGuides = [
     href: "/fr/bilan-carbone-pme/exemple/",
   },
   {
-    title: "Bilan carbone appel d’offres",
-    text: "Savoir quoi joindre quand un appel d’offres mentionne un critère carbone.",
-    href: "/fr/bilan-carbone-appel-offres/",
+    title: "Attestation CO₂e PME",
+    text: "Comprendre ce qu’est une attestation indicative et dans quels cas elle peut être utile.",
+    href: "/fr/attestation-co2-pme/",
   },
   {
     title: "Bilan carbone fournisseur",
     text: "Répondre à une demande acheteur ou fournisseur sans surdimensionner la réponse.",
     href: "/fr/bilan-carbone-fournisseur/",
+  },
+  {
+    title: "Bilan carbone appel d’offres",
+    text: "Savoir quoi joindre quand un appel d’offres mentionne un critère carbone ou RSE.",
+    href: "/fr/bilan-carbone-appel-offres/",
   },
 ];
 
@@ -132,10 +174,10 @@ const faq = [
   },
   {
     q: "Que fournir si un client demande un bilan carbone ?",
-    a: "Il faut d’abord vérifier le niveau demandé. Si la demande est générique, un document CO₂e indicatif, daté, archivable et vérifiable peut permettre de répondre proprement. Si le client impose une norme, un périmètre ou une vérification externe, il faut respecter cette exigence.",
+    a: "Il faut d’abord vérifier le niveau demandé. Si la demande est générique, un document CO₂e indicatif, daté, archivable et explicite sur ses limites peut permettre de répondre proprement. Si le client impose une norme, un périmètre ou une vérification externe, il faut respecter cette exigence.",
   },
   {
-    q: "Quelle différence entre une attestation CO₂e et un bilan carbone complet ?",
+    q: "Quelle différence entre une attestation CO₂e indicative et un bilan carbone complet ?",
     a: "Une attestation CO₂e indicative répond à un besoin de screening avec un résultat agrégé et des limites explicites. Un bilan carbone complet vise un inventaire GES détaillé, avec données d’activité, hypothèses, périmètres et parfois accompagnement ou vérification externe.",
   },
   {
@@ -144,25 +186,43 @@ const faq = [
   },
   {
     q: "Combien coûte une réponse carbone simple pour PME ?",
-    a: "Le coût dépend du niveau attendu. Une réponse indicative standardisée est plus légère qu’un bilan complet. Certif-Scope propose une attestation CO₂e indicative à 89€, sans abonnement.",
+    a: "Le coût dépend du niveau attendu. Une réponse indicative standardisée est plus légère qu’un bilan complet. Certif-Scope propose une attestation CO₂e indicative à 89 €, sans abonnement.",
   },
   {
-    q: "Quelles données sont nécessaires ?",
+    q: "Quelles données sont nécessaires pour une attestation indicative ?",
     a: "Pour une approche spend-based indicative, les dépenses annuelles par grandes catégories suffisent. Le modèle ne nécessite pas de données physiques détaillées comme les kWh, kilomètres ou litres.",
   },
   {
-    q: "Le document peut-il être vérifié par un tiers ?",
-    a: "Oui. L’attestation est conçue pour inclure un identifiant et une logique de vérification documentaire permettant de contrôler l’authenticité et l’intégrité du fichier.",
+    q: "Le document contient-il un contrôle documentaire ?",
+    a: "Oui. L’attestation est conçue pour inclure une référence et un ID vérifiable permettant de contrôler les informations documentaires principales du fichier.",
+  },
+  {
+    q: "Une attestation CO₂e peut-elle être utilisée dans un dossier fournisseur ?",
+    a: "Oui, si la demande porte sur un document carbone simple ou un élément de screening. Elle ne doit pas être présentée comme un audit carbone complet ou comme un inventaire réglementaire.",
+  },
+  {
+    q: "Une banque peut-elle demander ce type de document ?",
+    a: "Une banque peut demander un élément environnemental dans un dossier professionnel. Une attestation indicative peut aider à répondre à une demande simple, si aucun cadre réglementaire ou audit complet n’est exigé.",
+  },
+  {
+    q: "Que faire si un appel d’offres demande un bilan carbone ?",
+    a: "Il faut lire précisément le cahier des charges. Si une méthode, un périmètre ou un format obligatoire est imposé, il faut le respecter. Si la demande est générale, un document CO₂e indicatif peut constituer une première réponse cadrée.",
+  },
+  {
+    q: "Certif-Scope calcule-t-il les Scopes 1, 2 et 3 complets ?",
+    a: "Non. Certif-Scope utilise une approche indicative basée sur les dépenses agrégées. Le document ne constitue pas un inventaire complet des Scopes 1, 2 et 3.",
+  },
+  {
+    q: "Combien de temps faut-il pour obtenir l’attestation ?",
+    a: "Lorsque les informations de base et les dépenses annuelles sont disponibles, l’attestation peut être générée immédiatement après paiement.",
   },
 ];
 
 export default function BilanCarbonePMEPageFR() {
-  const pageUrl = "https://www.certif-scope.com/fr/bilan-carbone-pme/";
-
   const jsonLdWebPage = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    name: "Bilan carbone PME : que fournir sans audit complet ?",
+    name: "Bilan carbone PME : obligation, coût, exemple et alternative",
     url: pageUrl,
     description:
       "Guide pour comprendre quoi fournir lorsqu’une PME reçoit une demande de bilan carbone, d’attestation CO₂e ou de document carbone simple.",
@@ -259,24 +319,19 @@ export default function BilanCarbonePMEPageFR() {
         <div className="mx-auto max-w-7xl px-6 md:px-8">
           <header className="mx-auto max-w-5xl text-center">
             <p className="inline-flex items-center justify-center rounded-full border border-[#0B3A63]/10 bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#64748B] shadow-sm md:text-xs">
-              Guide PME · Client · Banque · Appel d’offres
+              Guide PME · SEO · IA-first · Client · Banque · Appel d’offres
             </p>
 
             <h1 className="mt-6 text-4xl font-extrabold leading-tight tracking-[-0.04em] text-[#0B3A63] md:text-6xl">
-              Bilan carbone PME : que fournir quand on vous le demande ?
+              Bilan carbone PME : obligations, coût, exemple et alternative rapide
             </h1>
 
             <p className="mx-auto mt-6 max-w-4xl text-base leading-relaxed text-[#475569] md:text-xl">
-              Pour beaucoup de PME, la demande de “bilan carbone” n’est pas une
-              obligation réglementaire générale. C’est souvent une demande
-              documentaire : client, fournisseur, banque, assurance, appel
-              d’offres ou questionnaire ESG.
+              Une PME n’a pas toujours besoin d’un bilan carbone complet. Si la demande porte sur un document carbone simple à transmettre à un client, fournisseur, financeur, assureur ou appel d’offres, une attestation CO₂e indicative peut suffire, à condition de préciser clairement son périmètre et ses limites.
             </p>
 
             <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-[#64748B] md:text-base">
-              Cette page explique quoi fournir, quand une attestation CO₂e
-              indicative peut suffire, quand un bilan complet est nécessaire, et
-              comment répondre sans surdimensionner la démarche.
+              Cette page explique quoi fournir, quand une attestation CO₂e indicative est adaptée, quand un bilan complet est nécessaire, combien coûte une réponse simple et comment éviter de présenter un document indicatif comme un audit carbone.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
@@ -291,25 +346,36 @@ export default function BilanCarbonePMEPageFR() {
                 href="/fr/pricing/"
                 className="inline-flex min-h-[50px] items-center justify-center rounded-xl border border-[#0B3A63] bg-white px-6 py-3 text-sm font-semibold text-[#0B3A63] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0B3A63] hover:text-white"
               >
-                Voir le prix 89€
+                Voir le prix 89 €
               </Link>
             </div>
           </header>
 
-          <section className="mt-12 grid gap-5 md:grid-cols-3">
-            {quickAnswers.map((item) => (
-              <article
-                key={item.title}
-                className="rounded-[28px] border border-[#0B3A63]/10 bg-white p-6 shadow-[0_18px_45px_rgba(11,58,99,0.07)]"
-              >
-                <h2 className="text-lg font-extrabold text-[#0B3A63]">
-                  {item.title}
-                </h2>
-                <p className="mt-3 text-sm leading-relaxed text-[#475569]">
-                  {item.text}
-                </p>
-              </article>
-            ))}
+          <section className="mt-12 rounded-[34px] border border-[#1FB6C1]/25 bg-[#F8FAFC] p-6 shadow-[0_18px_45px_rgba(11,58,99,0.07)] md:p-8">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#0B3A63]/70">
+              Réponse rapide pour Google et les assistants IA
+            </p>
+            <h2 className="mt-3 text-2xl font-extrabold text-[#0B3A63] md:text-3xl">
+              Que fournir quand une PME reçoit une demande de bilan carbone ?
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-[#475569] md:text-lg">
+              Si la demande ne précise pas de norme, d’audit ou de périmètre réglementaire, une PME peut souvent commencer par fournir une attestation CO₂e indicative. Ce document présente une estimation agrégée, datée et méthodologiquement cadrée. Il ne remplace pas un bilan carbone complet, mais il peut répondre à une demande documentaire simple.
+            </p>
+            <div className="mt-6 grid gap-4 md:grid-cols-3">
+              {directAnswers.map((item) => (
+                <article
+                  key={item.title}
+                  className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-5"
+                >
+                  <h3 className="text-base font-extrabold text-[#0B3A63]">
+                    {item.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-[#475569]">
+                    {item.text}
+                  </p>
+                </article>
+              ))}
+            </div>
           </section>
         </div>
       </section>
@@ -322,25 +388,32 @@ export default function BilanCarbonePMEPageFR() {
                 Le vrai besoin
               </p>
               <h2 className="mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">
-                Dans la pratique, on ne vous demande pas toujours un audit complet
+                On vous demande rarement “un audit complet” dans ces mots
               </h2>
               <p className="mt-5 text-base leading-relaxed text-[#475569] md:text-lg">
-                Le mot “bilan carbone” est souvent utilisé de façon large. Avant
-                de lancer une mission lourde, il faut identifier si le dossier
-                demande un inventaire complet ou seulement un document carbone
-                lisible, daté et transmissible.
+                Le terme “bilan carbone” est souvent utilisé de façon large. En pratique, une PME reçoit plutôt une demande de document carbone, d’indicateur CO₂e, d’élément RSE ou de justificatif à joindre à un dossier.
+              </p>
+              <p className="mt-4 text-base leading-relaxed text-[#475569] md:text-lg">
+                Avant de commander un audit complet, il faut donc vérifier le niveau attendu : simple information documentaire ou véritable inventaire GES détaillé.
               </p>
             </div>
 
             <div className="grid gap-4">
-              {scenarios.map((scenario) => (
-                <div
-                  key={scenario}
-                  className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-5 text-sm leading-relaxed text-[#475569] shadow-sm md:text-base"
+              {useCases.map((item) => (
+                <article
+                  key={item.title}
+                  className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-5 shadow-sm"
                 >
-                  <span className="mr-3 inline-block h-2.5 w-2.5 rounded-full bg-[#1FB6C1]" />
-                  {scenario}
-                </div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#1FB6C1]">
+                    {item.label}
+                  </p>
+                  <h3 className="mt-2 text-lg font-extrabold text-[#0B3A63]">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-[#475569] md:text-base">
+                    {item.text}
+                  </p>
+                </article>
               ))}
             </div>
           </div>
@@ -355,12 +428,10 @@ export default function BilanCarbonePMEPageFR() {
                 Réponse concrète
               </p>
               <h2 className="mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">
-                Que fournir quand on n’a pas de bilan carbone complet ?
+                Que doit contenir une réponse carbone simple ?
               </h2>
               <p className="mt-5 text-base leading-relaxed text-[#475569] md:text-lg">
-                Si la demande est générique, un document de screening peut être
-                suffisant. Il doit être clair sur son résultat, sa méthode, son
-                périmètre et ses limites.
+                Si la demande est générique, un document de screening peut être suffisant. Il doit rester lisible, daté, archivable et explicite sur son résultat, sa méthode, son périmètre et ses limites.
               </p>
               <Link
                 href="/fr/generate/"
@@ -389,15 +460,13 @@ export default function BilanCarbonePMEPageFR() {
         <div className="mx-auto max-w-7xl px-6 md:px-8">
           <div className="mx-auto max-w-4xl text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/70">
-              Clarification essentielle
+              Comparatif pour PME
             </p>
             <h2 className="mt-4 text-3xl font-extrabold leading-tight md:text-4xl">
-              Attestation CO₂e indicative ou bilan carbone complet : ce n’est pas le même usage
+              Bilan carbone complet ou attestation CO₂e indicative : que choisir ?
             </h2>
             <p className="mt-5 text-base leading-relaxed text-white/82 md:text-lg">
-              Certif-Scope ne remplace pas un audit. Il sert à produire une
-              première réponse carbone cadrée, utile quand la demande porte sur
-              un document simple, un indicateur ou un screening fournisseur.
+              Le bon choix dépend de la demande reçue. Certif-Scope sert aux situations où la PME doit fournir une réponse carbone cadrée, sans prétendre produire un audit complet.
             </p>
           </div>
 
@@ -432,29 +501,27 @@ export default function BilanCarbonePMEPageFR() {
                 Méthode de décision
               </p>
               <h2 className="mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63]">
-                Comment décider quoi fournir ?
+                Comment savoir si Certif-Scope suffit ?
               </h2>
               <p className="mt-5 text-base leading-relaxed text-[#475569]">
-                La bonne réponse dépend du niveau d’exigence du dossier. Il faut
-                éviter deux erreurs : fournir trop peu quand une norme est imposée,
-                ou lancer un audit complet alors qu’un document de screening suffit.
+                Une attestation indicative est adaptée quand la demande est documentaire et générale. Elle ne doit pas être utilisée si le dossier exige explicitement un inventaire GES complet, une norme précise, un audit ou une vérification externe.
               </p>
             </div>
 
             <div className="grid gap-5">
-              {processSteps.map((step, index) => (
+              {decisionRows.map((row, index) => (
                 <article
-                  key={step.title}
+                  key={row.signal}
                   className="rounded-[28px] border border-[#0B3A63]/10 bg-white p-6 shadow-sm"
                 >
                   <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#64748B]">
-                    Étape {index + 1}
+                    Cas {index + 1}
                   </p>
                   <h3 className="mt-2 text-xl font-extrabold text-[#0B3A63]">
-                    {step.title}
+                    {row.signal}
                   </h3>
                   <p className="mt-3 text-sm leading-relaxed text-[#475569] md:text-base">
-                    {step.text}
+                    {row.response}
                   </p>
                 </article>
               ))}
@@ -472,12 +539,10 @@ export default function BilanCarbonePMEPageFR() {
                   Solution Certif-Scope
                 </p>
                 <h2 className="mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">
-                  Une attestation CO₂e indicative à 89€ pour répondre vite
+                  Une attestation CO₂e indicative à 89 € pour répondre vite
                 </h2>
                 <p className="mt-5 max-w-3xl text-base leading-relaxed text-[#475569] md:text-lg">
-                  Le document est conçu pour les cas où une PME doit fournir une
-                  réponse carbone simple, standardisée et vérifiable, sans prétendre
-                  produire un bilan carbone réglementaire ou un audit complet.
+                  Le document est conçu pour les cas où une PME doit fournir une réponse carbone simple, standardisée et avec ID vérifiable, sans prétendre produire un bilan carbone réglementaire ou un audit complet.
                 </p>
               </div>
 
@@ -489,10 +554,10 @@ export default function BilanCarbonePMEPageFR() {
                   Générer mon attestation
                 </Link>
                 <Link
-                  href="/fr/pricing/"
+                  href="/fr/product/methodology/"
                   className="inline-flex min-h-[50px] items-center justify-center rounded-xl border border-[#0B3A63] bg-white px-6 py-3 text-sm font-semibold text-[#0B3A63] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0B3A63] hover:text-white"
                 >
-                  Voir le prix
+                  Comprendre la méthode
                 </Link>
               </div>
             </div>
@@ -504,11 +569,14 @@ export default function BilanCarbonePMEPageFR() {
         <div className="mx-auto max-w-7xl px-6 md:px-8">
           <div className="max-w-3xl">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">
-              Cluster PME
+              Maillage SEO interne
             </p>
             <h2 className="mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">
               Guides associés pour préciser votre cas
             </h2>
+            <p className="mt-4 text-base leading-relaxed text-[#475569]">
+              Ces pages complètent le guide principal et aident à choisir le bon document selon la situation : obligation, prix, fournisseur, appel d’offres ou attestation CO₂e.
+            </p>
           </div>
 
           <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -537,11 +605,14 @@ export default function BilanCarbonePMEPageFR() {
         <div className="mx-auto max-w-5xl px-6 md:px-8">
           <div className="text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">
-              FAQ
+              FAQ IA-first
             </p>
             <h2 className="mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">
               Questions fréquentes sur le bilan carbone PME
             </h2>
+            <p className="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-[#475569]">
+              Réponses courtes et structurées pour les dirigeants de PME, les moteurs de recherche et les assistants IA.
+            </p>
           </div>
 
           <div className="mt-10 space-y-5">
@@ -568,14 +639,13 @@ export default function BilanCarbonePMEPageFR() {
             <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/70">
-                  Réponse rapide · périmètre clair · document vérifiable
+                  Réponse rapide · périmètre clair · document avec ID vérifiable
                 </p>
                 <h2 className="mt-4 text-3xl font-extrabold leading-tight md:text-4xl">
                   Besoin d’un document carbone simple pour votre PME ?
                 </h2>
                 <p className="mt-5 max-w-3xl text-base leading-relaxed text-white/85 md:text-lg">
-                  Générez une attestation CO₂e indicative, datée, archivable et
-                  vérifiable, avec une méthode déclarée et des limites visibles.
+                  Générez une attestation CO₂e indicative, datée, standardisée et transmissible pour répondre à une demande client, fournisseur, bancaire, assurantielle ou d’appel d’offres.
                 </p>
               </div>
 
@@ -597,9 +667,7 @@ export default function BilanCarbonePMEPageFR() {
           </div>
 
           <p className="mx-auto mt-8 max-w-4xl text-center text-xs leading-relaxed text-[#64748B] md:text-sm">
-            Certif-Scope produit une attestation CO₂e indicative basée sur les
-            dépenses. Le document ne constitue pas un audit carbone, un inventaire
-            GES complet, une vérification externe, ni un reporting CSRD/ESRS.
+            Certif-Scope produit une attestation CO₂e indicative basée sur les dépenses. Le document ne constitue pas un audit carbone, un inventaire GES complet, une vérification externe, ni un reporting CSRD/ESRS.
           </p>
         </div>
       </section>
