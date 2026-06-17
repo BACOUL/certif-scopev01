@@ -570,7 +570,7 @@ export default function AssessmentForm() {
             <li>Attestation carbone PDF signée</li>
             <li>Format institutionnel standardisé</li>
             <li>Méthodologie indicative basée sur la dépense</li>
-            <li>Document vérifiable indépendamment</li>
+            <li>Document avec ID vérifiable</li>
             <li>Livraison immédiate après paiement</li>
           </ul>
         </div>
@@ -723,4 +723,4 @@ function Input({
       <p className="text-xs text-gray-500 mt-1">{hint}</p>
     </div>
   );
-           }
+}
