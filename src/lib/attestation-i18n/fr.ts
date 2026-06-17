@@ -93,7 +93,7 @@ export const ATTESTATION_FR = {
   =============================== */
   authenticityOverviewTitle: "Aperçu de l’authenticité",
   authenticityOverviewText:
-    "Cette attestation est signée cryptographiquement et peut être vérifiée de manière indépendante, sans accès aux systèmes de Certif-Scope.",
+    "Cette attestation est signée cryptographiquement et permet un contrôle documentaire de son authenticité et de son intégrité, sans accès aux systèmes de Certif-Scope.",
 
   natureOfAttestationTitle: "Nature de l’attestation",
   natureOfAttestationText:
@@ -130,8 +130,8 @@ export const ATTESTATION_FR = {
   /* ===============================
      SECTION 8 — VERIFICATION
   =============================== */
-  verificationSectionTitle: "8. Vérification et intégrité",
-  verificationBoxTitle: "Vérification et intégrité",
+  verificationSectionTitle: "8. Vérification documentaire et intégrité",
+  verificationBoxTitle: "Vérification documentaire et intégrité",
 
   privacyLabel: "Protection de la vie privée dès la conception",
   privacyText:
@@ -143,7 +143,7 @@ export const ATTESTATION_FR = {
   verificationPageLabel: "Page de vérification documentaire",
 
   technicalVerificationNote:
-    "Les éléments suivants permettent une vérification technique indépendante. Aucune action n’est requise de la part du lecteur.",
+    "Les éléments suivants permettent une vérification technique du document. Aucune action n’est requise de la part du lecteur.",
 
   cryptographicIntegrityLabel: "Intégrité cryptographique",
   algorithmLabel: "Algorithme",
@@ -152,7 +152,7 @@ export const ATTESTATION_FR = {
 
   publicKeyLabel: "Clé publique de vérification de l’émetteur",
   publicKeyNote:
-    "Cette clé publique permet à tout tiers de vérifier de manière indépendante l’authenticité et l’intégrité de ce document.",
+    "Cette clé publique permet de vérifier l’authenticité et l’intégrité de ce document.",
 
   /* ===============================
      SECTION 9 — FINAL CLAUSES

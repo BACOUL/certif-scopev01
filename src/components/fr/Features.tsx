@@ -17,12 +17,12 @@ const featureItems = [
   {
     id: "03",
     title: "Sources référencées",
-    text: "Des facteurs d’émission issus de référentiels reconnus, garantissant cohérence et reproductibilité.",
+    text: "Des facteurs d’émission issus de référentiels reconnus, pour une estimation cohérente et documentée.",
   },
   {
     id: "04",
-    title: "Vérification indépendante",
-    text: "Un identifiant unique et un bloc de vérification permettant un contrôle simple par un tiers.",
+    title: "Vérification documentaire",
+    text: "Un identifiant unique et un bloc de vérification permettant un contrôle simple de l’authenticité du PDF.",
   },
 ];
 
@@ -44,7 +44,6 @@ export default function FeaturesFR() {
       <div className="absolute right-[-6%] bottom-10 -z-10 h-80 w-80 rounded-full bg-[#0B3A63]/6 blur-3xl" />
 
       <div className="mx-auto max-w-7xl px-6 md:px-8">
-        {/* HEADER */}
         <div className="mx-auto max-w-3xl text-center">
           <p className="features-reveal text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B] md:text-sm">
             Attestation carbone
@@ -60,9 +59,7 @@ export default function FeaturesFR() {
           </p>
         </div>
 
-        {/* MAIN */}
         <div className="mt-16 grid items-center gap-12 lg:grid-cols-[1.02fr_0.98fr] lg:gap-14">
-          {/* VISUAL */}
           <div
             className="features-visual relative"
             style={{ animationDelay: "280ms" }}
@@ -75,7 +72,6 @@ export default function FeaturesFR() {
                 Aperçu du document
               </p>
 
-              {/* FLOATING NOTE 1 */}
               <div className="absolute left-0 top-10 z-10 hidden rounded-2xl border border-[#0B3A63]/10 bg-white px-5 py-4 shadow-[0_18px_40px_rgba(11,58,99,0.12)] backdrop-blur ring-1 ring-[#1FB6C1]/20 md:block">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#64748B]">
                   Résultat
@@ -85,17 +81,15 @@ export default function FeaturesFR() {
                 </p>
               </div>
 
-              {/* FLOATING NOTE 2 */}
               <div className="absolute -right-2 bottom-14 z-10 hidden rounded-2xl border border-[#0B3A63]/10 bg-white px-5 py-4 shadow-[0_18px_40px_rgba(11,58,99,0.12)] backdrop-blur ring-1 ring-[#1FB6C1]/20 md:block">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#64748B]">
                   Vérification
                 </p>
                 <p className="mt-1 text-sm font-semibold text-[#0B3A63]">
-                  ID unique + contrôle tiers
+                  ID unique + contrôle d’intégrité
                 </p>
               </div>
 
-              {/* DOCUMENT */}
               <div className="relative overflow-hidden rounded-[30px] border border-[#0B3A63]/10 bg-white shadow-[0_28px_70px_rgba(11,58,99,0.14)]">
                 <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(31,182,193,0.55),transparent)]" />
                 <Image
@@ -109,7 +103,6 @@ export default function FeaturesFR() {
                 />
               </div>
 
-              {/* PILLS */}
               <div className="mt-6 flex flex-wrap justify-center gap-3">
                 {proofPills.map((pill) => (
                   <span
@@ -123,7 +116,6 @@ export default function FeaturesFR() {
             </div>
           </div>
 
-          {/* FEATURES */}
           <div className="space-y-5">
             {featureItems.map((item, index) => (
               <div
@@ -154,7 +146,6 @@ export default function FeaturesFR() {
               </div>
             ))}
 
-            {/* DISCLAIMER */}
             <div className="features-reveal rounded-[26px] border border-[#1FB6C1]/16 bg-[linear-gradient(180deg,rgba(31,182,193,0.08)_0%,rgba(31,182,193,0.03)_100%)] p-6 md:p-7 [animation-delay:760ms]">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B] md:text-sm">
                 Clarification importante
@@ -172,7 +163,6 @@ export default function FeaturesFR() {
           </div>
         </div>
 
-        {/* CTA */}
         <div className="features-reveal mt-14 flex flex-col items-center justify-center gap-4 text-center [animation-delay:860ms]">
           <p className="text-sm font-medium text-[#0B3A63]/80 md:text-base">
             Un document prêt à être envoyé immédiatement.
