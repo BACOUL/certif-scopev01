@@ -31,7 +31,7 @@ export default function FAQFR() {
     },
     {
       q: "Comment faire un bilan carbone PME rapidement avec Certif-Scope ?",
-      a: "Le processus est simple : vous renseignez vos dépenses annuelles, le calcul CO₂e est effectué automatiquement selon une logique spend-based, puis vous obtenez un PDF standardisé avec un résultat carbone agrégé et des éléments de vérification.",
+      a: "Le processus est simple : vous renseignez vos dépenses annuelles, le calcul CO₂e est effectué automatiquement selon une logique spend-based, puis vous obtenez un PDF standardisé avec un résultat carbone agrégé et des éléments de vérification documentaire.",
     },
     {
       q: "Combien de temps faut-il pour générer le document ?",
@@ -39,7 +39,7 @@ export default function FAQFR() {
     },
     {
       q: "Que contient exactement le document généré ?",
-      a: "Le document inclut un résultat CO₂e agrégé, les métadonnées essentielles, la version de la méthodologie utilisée, des informations de vérification et un format standardisé conçu pour être lu rapidement par un client, une équipe achats, une banque ou un assureur.",
+      a: "Le document inclut un résultat CO₂e agrégé, les métadonnées essentielles, la version de la méthodologie utilisée, des informations de vérification documentaire et un format standardisé conçu pour être lu rapidement par un client, une équipe achats, une banque ou un assureur.",
     },
     {
       q: "Cette estimation carbone peut-elle être utilisée dans un dossier bancaire ou d’assurance ?",
@@ -55,7 +55,7 @@ export default function FAQFR() {
     },
     {
       q: "Comment fonctionne la vérification ?",
-      a: "Le document intègre des éléments permettant une vérification indépendante par un tiers. L’objectif est de rendre l’attestation lisible, traçable et vérifiable sans dépendre d’un accès complexe à un compte utilisateur.",
+      a: "Le document intègre des éléments de vérification documentaire : identifiant, QR code ou référence permettant de contrôler l’authenticité et l’intégrité de l’attestation. Cette vérification concerne le document et ne constitue pas un audit ni une validation externe du résultat carbone.",
     },
     {
       q: "Les données financières sont-elles stockées ?",
@@ -76,17 +76,14 @@ export default function FAQFR() {
       <div className="absolute inset-0 bg-gradient-to-b from-white via-[#F8FAFC] to-[#F3FBFC] -z-10" />
 
       <div className="max-w-4xl mx-auto px-6">
-        {/* LABEL */}
         <p className="inline-flex items-center rounded-full border border-[#0B3A63]/10 bg-white/90 px-4 py-2 text-[11px] md:text-xs font-semibold uppercase tracking-[0.14em] text-[#0B3A63]/75 shadow-sm mx-auto mb-5">
           FAQ • Bilan carbone PME • Appels d’offres • Banques
         </p>
 
-        {/* TITLE */}
         <h2 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] text-center mb-5 tracking-tight">
           Questions fréquentes sur le bilan carbone PME
         </h2>
 
-        {/* INTRO */}
         <p className="text-center text-[#475569] max-w-3xl mx-auto text-lg leading-relaxed mb-14">
           Cette FAQ répond aux principales questions sur le{" "}
           <strong className="text-[#0B3A63] font-semibold">
@@ -97,7 +94,6 @@ export default function FAQFR() {
           estimation CO₂e simplifiée et un audit carbone complet.
         </p>
 
-        {/* FAQ ITEMS */}
         <div className="space-y-4" role="list">
           {items.map((item, i) => {
             const btnId = `faq-fr-${uid}-btn-${i}`;
@@ -142,7 +138,6 @@ export default function FAQFR() {
           })}
         </div>
 
-        {/* SEO LINK */}
         <div className="mt-10 text-center">
           <a
             href="/fr/bilan-carbone-pme/"
@@ -153,7 +148,6 @@ export default function FAQFR() {
           </a>
         </div>
 
-        {/* DISCLAIMER */}
         <div className="mt-10 max-w-3xl mx-auto rounded-[20px] border border-[#0B3A63]/10 bg-white/90 p-5 md:p-6 shadow-sm">
           <p className="text-center text-xs md:text-sm text-[#64748B] leading-relaxed">
             Estimation indicative basée sur les dépenses. Non auditée, non conforme
