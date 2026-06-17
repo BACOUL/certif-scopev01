@@ -6,7 +6,7 @@ import Link from "next/link";
 const proofItems = [
   "Prix fixe",
   "Sans abonnement",
-  "Vérification tierce",
+  "ID vérifiable",
   "PDF standardisé",
 ];
 
@@ -16,7 +16,7 @@ function HeroVisual() {
       <Image
         itemProp="primaryImageOfPage"
         src="/hero-attestation.webp"
-        alt="Exemple de document de bilan carbone PME simplifié avec résultat CO2e agrégé, méthode indicative et vérification indépendante."
+        alt="Exemple de document de bilan carbone PME simplifié avec résultat CO2e agrégé, méthode indicative et vérification documentaire."
         width={1600}
         height={1200}
         priority
@@ -107,8 +107,7 @@ export default function Hero() {
             </div>
 
             <p className="hero-reveal mt-8 text-center text-sm font-medium text-[#0B3A63]/80 [animation-delay:420ms] lg:text-left">
-              Une réponse lisible, rapide à transmettre et vérifiable
-              indépendamment.
+              Une réponse lisible, rapide à transmettre et vérifiable dans le document.
             </p>
 
             <div className="hero-reveal mt-7 flex flex-wrap items-center justify-center gap-3 [animation-delay:520ms] lg:justify-start">
