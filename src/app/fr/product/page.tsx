@@ -15,9 +15,9 @@ import Section7FR from "./sections/Section7";
 ====================================================== */
 
 export const metadata: Metadata = {
-  title: "Attestation CO₂e — Produit | Certif-Scope",
+  title: "Attestation CO₂e PME : produit, PDF et limites | Certif-Scope",
   description:
-    "Découvrez l’attestation CO₂e Certif-Scope : une estimation carbone spend-based standardisée, conçue pour les appels d’offres, les banques et les workflows de vérification. Document indicatif, non CSRD/ESRS, non audit.",
+    "Découvrez l’attestation CO₂e Certif-Scope : un document carbone indicatif à 89€, basé sur les dépenses, avec ID vérifiable, utile pour clients, banques, assurances et appels d’offres. Non audit, non CSRD/ESRS.",
   alternates: {
     canonical: "https://www.certif-scope.com/fr/product/",
     languages: {
@@ -26,9 +26,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Attestation CO₂e — Produit | Certif-Scope",
+    title: "Attestation CO₂e PME : produit, PDF et limites | Certif-Scope",
     description:
-      "Attestation CO₂e indicative basée sur les dépenses : format standardisé, vérifiable, adapté aux usages institutionnels et procurement. Non réglementaire.",
+      "Attestation CO₂e indicative basée sur les dépenses : document standardisé, ID vérifiable, usage client, banque, assurance ou appel d’offres. Non réglementaire.",
     url: "https://www.certif-scope.com/fr/product/",
     siteName: "Certif-Scope",
     type: "website",
@@ -57,7 +57,7 @@ export default function ProductPageFR() {
             "@type": "Service",
             name: "Attestation CO₂e Certif-Scope",
             description:
-              "Attestation CO₂e indicative et standardisée, basée sur les dépenses (spend-based), conçue pour la vérification dans les workflows procurement, bancaires et assurantiels.",
+              "Attestation CO₂e indicative et standardisée, basée sur les dépenses, conçue pour fournir un document carbone simple avec ID vérifiable dans les dossiers clients, fournisseurs, bancaires, assurantiels et appels d’offres.",
             provider: {
               "@type": "Organization",
               name: "Certif-Scope",
@@ -87,8 +87,8 @@ export default function ProductPageFR() {
         </h1>
 
         <p className="text-lg text-gray-700 leading-relaxed max-w-3xl">
-          Une présentation structurée, standardisée et prête à être vérifiée de
-          l’attestation CO₂e : bénéfices, cas d’usage, mécanismes d’intégrité et
+          Une présentation structurée de l’attestation CO₂e : bénéfices,
+          cas d’usage, contenu du PDF, contrôle d’intégrité documentaire et
           limites explicites.
         </p>
 
@@ -104,20 +104,20 @@ export default function ProductPageFR() {
           <li>
             <a
               href="#product-overview"
-              className="hover:text-[#15B097] transition"
+              className="hover:text-[#1FB6C1] transition"
             >
               1. Présentation du produit
             </a>
           </li>
           <li>
-            <a href="#key-benefits" className="hover:text-[#15B097] transition">
+            <a href="#key-benefits" className="hover:text-[#1FB6C1] transition">
               2. Bénéfices clés
             </a>
           </li>
           <li>
             <a
               href="#why-the-product-exists"
-              className="hover:text-[#15B097] transition"
+              className="hover:text-[#1FB6C1] transition"
             >
               3. Pourquoi ce produit existe
             </a>
@@ -125,7 +125,7 @@ export default function ProductPageFR() {
           <li>
             <a
               href="#attestation-pdf-contents"
-              className="hover:text-[#15B097] transition"
+              className="hover:text-[#1FB6C1] transition"
             >
               4. Contenu du PDF
             </a>
@@ -133,7 +133,7 @@ export default function ProductPageFR() {
           <li>
             <a
               href="#verification-and-integrity"
-              className="hover:text-[#15B097] transition"
+              className="hover:text-[#1FB6C1] transition"
             >
               5. Vérification & intégrité
             </a>
@@ -141,7 +141,7 @@ export default function ProductPageFR() {
           <li>
             <a
               href="#usage-scenarios"
-              className="hover:text-[#15B097] transition"
+              className="hover:text-[#1FB6C1] transition"
             >
               6. Scénarios d’usage
             </a>
@@ -149,7 +149,7 @@ export default function ProductPageFR() {
           <li>
             <a
               href="#limitations-and-fit"
-              className="hover:text-[#15B097] transition"
+              className="hover:text-[#1FB6C1] transition"
             >
               7. Limites & adéquation
             </a>
