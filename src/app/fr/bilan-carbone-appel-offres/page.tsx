@@ -5,9 +5,9 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title:
-    "Bilan carbone appel d’offres : quoi joindre au dossier ? | Certif-Scope",
+    "Bilan carbone appel d’offres : document CO₂e à joindre | Certif-Scope",
   description:
-    "Un appel d’offres vous demande un bilan carbone ou un document CO₂e ? Comprenez quoi joindre au dossier, quand une attestation indicative suffit et quand un audit complet est nécessaire.",
+    "Guide SEO et IA-first pour PME : quoi joindre quand un appel d’offres demande un bilan carbone, un document CO₂e, une preuve RSE ou un critère environnemental.",
   alternates: {
     canonical: "https://www.certif-scope.com/fr/bilan-carbone-appel-offres/",
     languages: {
@@ -15,9 +15,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Bilan carbone appel d’offres : quoi joindre au dossier ?",
+    title: "Bilan carbone appel d’offres : quel document CO₂e joindre ?",
     description:
-      "Guide PME pour répondre à une demande carbone dans un appel d’offres avec un document CO₂e indicatif lorsque le dossier ne demande pas un audit complet.",
+      "Répondre à un appel d’offres avec une attestation CO₂e indicative, datée, limitée et transmissible lorsque le dossier ne demande pas un audit complet.",
     url: "https://www.certif-scope.com/fr/bilan-carbone-appel-offres/",
     siteName: "Certif-Scope",
     type: "website",
@@ -26,56 +26,110 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-const quickAnswers = [
+const pageUrl = "https://www.certif-scope.com/fr/bilan-carbone-appel-offres/";
+
+const directAnswers = [
   {
-    title: "Demande dans le DCE",
-    text: "Le dossier mentionne bilan carbone, CO₂e, RSE, ESG, empreinte carbone ou critère environnemental.",
+    title: "Que demande vraiment le DCE ?",
+    text: "Un DCE peut demander un bilan carbone, une donnée CO₂e, une pièce RSE ou un critère environnemental. Il faut vérifier si une méthode précise est imposée ou si une réponse documentaire suffit.",
   },
   {
-    title: "Réponse possible",
-    text: "Si aucune norme complète n’est imposée, un PDF CO₂e indicatif, daté, lisible et vérifiable peut souvent suffire.",
+    title: "Que joindre rapidement ?",
+    text: "Si aucune norme complète n’est imposée, une attestation CO₂e indicative peut servir de pièce carbone : résultat agrégé, année, méthode, limites, PDF et ID vérifiable.",
   },
   {
-    title: "Risque à éviter",
-    text: "Répondre sans document, ou avec un tableau informel, peut affaiblir la candidature et créer des demandes complémentaires.",
+    title: "Quand l’attestation ne suffit pas ?",
+    text: "Si le cahier des charges exige un audit, un inventaire GES complet, une vérification externe ou un format réglementaire, il faut respecter cette exigence.",
   },
 ];
 
 const tenderScenarios = [
-  "Le règlement de consultation ajoute un critère environnemental ou RSE.",
-  "Le mémoire technique demande une information carbone ou CO₂e.",
-  "L’acheteur demande une preuve environnementale sans méthode imposée.",
-  "La plateforme de dépôt prévoit un fichier à joindre pour l’aspect carbone.",
-  "Le candidat doit rassurer sans avoir le temps de lancer un audit complet.",
+  {
+    label: "Règlement de consultation",
+    title: "Le règlement ajoute un critère environnemental ou RSE",
+    text: "La candidature doit répondre au critère sans laisser le volet carbone vide ou imprécis.",
+  },
+  {
+    label: "Mémoire technique",
+    title: "Le mémoire technique demande une information CO₂e",
+    text: "Le document peut être joint en annexe et cité dans la réponse technique, avec ses limites visibles.",
+  },
+  {
+    label: "Plateforme de dépôt",
+    title: "La plateforme prévoit un fichier à joindre",
+    text: "Le candidat doit produire rapidement un PDF clair, daté et transmissible.",
+  },
+  {
+    label: "Acheteur public ou privé",
+    title: "L’acheteur demande une preuve environnementale simple",
+    text: "Une réponse indicative peut aider si le dossier ne demande pas une méthode carbone complète.",
+  },
+  {
+    label: "Délai court",
+    title: "Le dépôt approche et aucun audit complet n’est disponible",
+    text: "Une pièce documentaire cadrée peut éviter une absence totale de réponse carbone.",
+  },
 ];
 
 const expectedItems = [
-  "Résultat CO₂e agrégé",
+  "Résultat CO₂e agrégé en tCO₂e",
   "Année couverte par l’estimation",
   "Méthode déclarée et lisible",
   "Limites méthodologiques explicites",
-  "PDF daté et archivable",
-  "Identifiant ou logique de vérification",
+  "PDF daté, archivable et transmissible",
+  "Référence ou ID vérifiable",
   "Mention : document indicatif, non audit",
-  "Lien ou référence de contrôle pour le tiers",
+  "Périmètre d’usage clairement indiqué",
 ];
 
 const decisionRows = [
   {
     demand: "Le dossier demande un indicateur carbone sans méthode imposée",
-    answer: "Une attestation CO₂e indicative peut souvent être jointe comme document de screening.",
+    answer:
+      "Une attestation CO₂e indicative peut souvent être jointe comme document de screening, avec limites et méthode visibles.",
   },
   {
     demand: "Le mémoire technique demande une information RSE ou CO₂e",
-    answer: "Un PDF standardisé est plus lisible qu’une phrase vague ou un tableau non formalisé.",
+    answer:
+      "Un PDF standardisé peut être joint en annexe et cité dans le mémoire technique pour éviter une réponse vague.",
   },
   {
     demand: "Le cahier des charges impose une norme, un périmètre ou une vérification",
-    answer: "Il faut suivre l’exigence imposée. Une attestation indicative ne remplace pas un audit ou une vérification externe.",
+    answer:
+      "Il faut suivre l’exigence imposée. Une attestation indicative ne remplace pas un audit, une vérification externe ou un inventaire GES complet.",
   },
   {
     demand: "Le délai de dépôt est court",
-    answer: "Produire une réponse documentaire cadrée peut éviter de déposer un dossier incomplet.",
+    answer:
+      "Produire une réponse documentaire cadrée peut éviter de déposer un dossier incomplet si aucune exigence carbone complète n’est imposée.",
+  },
+];
+
+const comparisonRows = [
+  {
+    topic: "Besoin dans le dossier",
+    indicative: "Document carbone simple, critère RSE, screening, annexe CO₂e.",
+    full: "Exigence carbone complète, périmètre détaillé, norme ou audit imposé.",
+  },
+  {
+    topic: "Délai",
+    indicative: "Quelques minutes lorsque les dépenses sont disponibles.",
+    full: "Plusieurs semaines selon la collecte, le périmètre et l’accompagnement.",
+  },
+  {
+    topic: "Coût",
+    indicative: "Prix fixe : 89 €, sans abonnement.",
+    full: "Variable selon cabinet, taille de l’entreprise, périmètre et niveau d’analyse.",
+  },
+  {
+    topic: "Usage",
+    indicative: "Annexe de dossier, mémoire technique, réponse à critère carbone général.",
+    full: "Reporting avancé, stratégie climat, audit, réponse à exigence normative.",
+  },
+  {
+    topic: "Limite",
+    indicative: "Indicatif, non audit, non inventaire complet Scope 1/2/3, non CSRD/ESRS.",
+    full: "Plus complet mais plus long, plus coûteux et plus lourd à produire.",
   },
 ];
 
@@ -86,10 +140,10 @@ const mistakes = [
   },
   {
     title: "Envoyer un document flou",
-    text: "Un résultat sans méthode, sans date et sans limites est difficile à utiliser côté acheteur.",
+    text: "Un résultat sans méthode, sans date et sans limites est difficile à comprendre et à archiver côté acheteur.",
   },
   {
-    title: "Promettre un audit complet",
+    title: "Présenter une estimation comme un audit",
     text: "Il ne faut pas présenter un document indicatif comme un inventaire GES complet ou une vérification externe.",
   },
   {
@@ -101,15 +155,19 @@ const mistakes = [
 const processSteps = [
   {
     title: "Lire le cahier des charges",
-    text: "Chercher les mots bilan carbone, CO₂e, empreinte carbone, ESG, RSE, environnement ou fournisseur responsable.",
+    text: "Chercher les mots bilan carbone, CO₂e, empreinte carbone, ESG, RSE, environnement, fournisseur responsable ou critère climat.",
   },
   {
     title: "Identifier le niveau exigé",
-    text: "Distinguer une demande documentaire générique d’une exigence formelle avec norme, périmètre ou contrôle tiers.",
+    text: "Distinguer une demande documentaire générale d’une exigence formelle avec norme, périmètre ou vérification externe.",
   },
   {
     title: "Joindre un PDF clair",
-    text: "Fournir un document daté, archivable, vérifiable et explicite sur sa méthode et ses limites.",
+    text: "Fournir un document daté, archivable, avec ID vérifiable et explicite sur sa méthode et ses limites.",
+  },
+  {
+    title: "Citer le document dans la réponse",
+    text: "Mentionner clairement dans le mémoire technique que le document est indicatif et préciser son périmètre.",
   },
 ];
 
@@ -125,9 +183,24 @@ const relatedPages = [
     href: "/fr/bilan-carbone-fournisseur/",
   },
   {
+    title: "Attestation CO₂e PME",
+    text: "Comprendre ce qu’est une attestation indicative et dans quels cas elle peut être utile.",
+    href: "/fr/attestation-co2-pme/",
+  },
+  {
+    title: "Exemple de bilan carbone PME",
+    text: "Voir comment structurer un document carbone simple et lisible.",
+    href: "/fr/bilan-carbone-pme/exemple/",
+  },
+  {
     title: "Prix attestation CO₂e",
     text: "Voir le prix d’un document CO₂e indicatif sans abonnement.",
     href: "/fr/pricing/",
+  },
+  {
+    title: "Méthodologie Certif-Scope",
+    text: "Comprendre l’approche spend-based, son périmètre et ses limites.",
+    href: "/fr/product/methodology/",
   },
 ];
 
@@ -138,7 +211,7 @@ const faq = [
   },
   {
     q: "Que joindre si le dossier demande un bilan carbone sans précision ?",
-    a: "Un document CO₂e indicatif, daté, archivable et vérifiable peut servir de première réponse si aucune méthode complète n’est imposée. Il doit préciser sa méthode, son année, son périmètre et ses limites.",
+    a: "Un document CO₂e indicatif, daté, archivable et avec ID vérifiable peut servir de première réponse si aucune méthode complète n’est imposée. Il doit préciser sa méthode, son année, son périmètre et ses limites.",
   },
   {
     q: "L’attestation Certif-Scope remplace-t-elle un audit carbone ?",
@@ -149,21 +222,39 @@ const faq = [
     a: "Oui, lorsque le besoin est documentaire ou comparatif. Le document peut être joint au dossier ou cité dans le mémoire technique, avec ses limites clairement indiquées.",
   },
   {
-    q: "Combien coûte une réponse CO₂e indicative ?",
-    a: "Certif-Scope propose une attestation CO₂e indicative à 89€, sans abonnement. Ce prix ne correspond pas à un audit ou à une mission de conseil carbone complète.",
+    q: "Combien coûte une réponse CO₂e indicative pour appel d’offres ?",
+    a: "Certif-Scope propose une attestation CO₂e indicative à 89 €, sans abonnement. Ce prix ne correspond pas à un audit ou à une mission de conseil carbone complète.",
+  },
+  {
+    q: "Quelles données faut-il préparer ?",
+    a: "Pour une attestation indicative Certif-Scope, il faut notamment les dépenses annuelles par grandes catégories. Le modèle ne remplace pas une collecte physique détaillée.",
+  },
+  {
+    q: "Que faire si l’acheteur exige une norme carbone précise ?",
+    a: "Il faut suivre l’exigence indiquée dans le cahier des charges. Une attestation indicative ne doit pas être utilisée pour remplacer une norme, un audit ou une vérification externe explicitement demandée.",
+  },
+  {
+    q: "L’attestation peut-elle améliorer la qualité perçue du dossier ?",
+    a: "Elle peut aider à éviter une absence de réponse carbone lorsque la demande est générale. Elle apporte une pièce claire, datée et limitée, mais ne garantit pas la notation ou l’acceptation du dossier.",
+  },
+  {
+    q: "Peut-on utiliser ce document pour un appel d’offres public ?",
+    a: "Oui si le dossier demande seulement un élément documentaire carbone général. En revanche, si le règlement impose un format ou une méthode, il faut respecter le cahier des charges.",
+  },
+  {
+    q: "Certif-Scope calcule-t-il les Scopes 1, 2 et 3 complets ?",
+    a: "Non. Certif-Scope repose sur une estimation indicative basée sur les dépenses agrégées. Le document ne constitue pas un inventaire complet des Scopes 1, 2 et 3.",
   },
 ];
 
 export default function BilanCarboneAppelOffresFR() {
-  const pageUrl = "https://www.certif-scope.com/fr/bilan-carbone-appel-offres/";
-
   const jsonLdWebPage = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    name: "Bilan carbone appel d’offres : quoi joindre au dossier ?",
+    name: "Bilan carbone appel d’offres : quel document CO₂e joindre ?",
     url: pageUrl,
     description:
-      "Guide PME pour répondre à une demande de bilan carbone ou de document CO₂e dans un appel d’offres.",
+      "Guide PME pour répondre à une demande de bilan carbone ou de document CO₂e dans un appel d’offres, avec une attestation indicative lorsque le dossier ne demande pas un audit complet.",
     isPartOf: {
       "@type": "WebSite",
       name: "Certif-Scope",
@@ -218,7 +309,7 @@ export default function BilanCarboneAppelOffresFR() {
     "@type": "HowTo",
     name: "Comment répondre à une demande de bilan carbone dans un appel d’offres",
     description:
-      "Méthode simple pour savoir quoi joindre lorsqu’un appel d’offres demande un bilan carbone ou un document CO₂e.",
+      "Méthode simple pour savoir quoi joindre lorsqu’un appel d’offres demande un bilan carbone, un document CO₂e ou un critère RSE.",
     step: processSteps.map((step, index) => ({
       "@type": "HowToStep",
       position: index + 1,
@@ -275,24 +366,19 @@ export default function BilanCarboneAppelOffresFR() {
         <div className="mx-auto max-w-7xl px-6 md:px-8">
           <header className="mx-auto max-w-5xl text-center">
             <p className="inline-flex items-center justify-center rounded-full border border-[#0B3A63]/10 bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#64748B] shadow-sm md:text-xs">
-              Appel d’offres · DCE · Mémoire technique · CO₂e
+              Appel d’offres · DCE · Mémoire technique · CO₂e · SEO IA-first
             </p>
 
             <h1 className="mt-6 text-4xl font-extrabold leading-tight tracking-[-0.04em] text-[#0B3A63] md:text-6xl">
-              Bilan carbone appel d’offres : quoi joindre au dossier ?
+              Bilan carbone appel d’offres : quel document CO₂e joindre au dossier ?
             </h1>
 
             <p className="mx-auto mt-6 max-w-4xl text-base leading-relaxed text-[#475569] md:text-xl">
-              Votre appel d’offres demande un bilan carbone, un indicateur CO₂e ou
-              un document environnemental ? Dans beaucoup de cas, l’acheteur attend
-              une réponse claire, datée, archivable et vérifiable — pas forcément
-              un audit carbone complet.
+              Votre appel d’offres demande un bilan carbone, un indicateur CO₂e, une preuve RSE ou un document environnemental ? Dans beaucoup de cas, l’acheteur attend une réponse claire, datée, archivable et transmissible — pas forcément un audit carbone complet.
             </p>
 
             <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-[#64748B] md:text-base">
-              Cette page explique comment décider quoi joindre, quand une
-              attestation CO₂e indicative peut suffire, et quand il faut suivre une
-              exigence plus formelle.
+              Cette page explique comment décider quoi joindre, quand une attestation CO₂e indicative peut suffire, comment l’utiliser dans un mémoire technique et quand il faut suivre une exigence plus formelle.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
@@ -306,25 +392,36 @@ export default function BilanCarboneAppelOffresFR() {
                 href="/fr/pricing/"
                 className="inline-flex min-h-[50px] items-center justify-center rounded-xl border border-[#0B3A63] bg-white px-6 py-3 text-sm font-semibold text-[#0B3A63] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0B3A63] hover:text-white"
               >
-                Voir le prix 89€
+                Voir le prix 89 €
               </Link>
             </div>
           </header>
 
-          <section className="mt-12 grid gap-5 md:grid-cols-3">
-            {quickAnswers.map((item) => (
-              <article
-                key={item.title}
-                className="rounded-[28px] border border-[#0B3A63]/10 bg-white p-6 shadow-[0_18px_45px_rgba(11,58,99,0.07)]"
-              >
-                <h2 className="text-lg font-extrabold text-[#0B3A63]">
-                  {item.title}
-                </h2>
-                <p className="mt-3 text-sm leading-relaxed text-[#475569]">
-                  {item.text}
-                </p>
-              </article>
-            ))}
+          <section className="mt-12 rounded-[34px] border border-[#1FB6C1]/25 bg-[#F8FAFC] p-6 shadow-[0_18px_45px_rgba(11,58,99,0.07)] md:p-8">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#0B3A63]/70">
+              Réponse rapide pour Google et les assistants IA
+            </p>
+            <h2 className="mt-3 text-2xl font-extrabold text-[#0B3A63] md:text-3xl">
+              Que joindre si un appel d’offres demande un bilan carbone ?
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-[#475569] md:text-lg">
+              Si le dossier ne précise pas de norme, de périmètre détaillé ou d’audit, une PME peut joindre une attestation CO₂e indicative comme pièce documentaire. Elle doit rester claire sur son caractère indicatif, sa méthode, son année, son résultat agrégé et ses limites.
+            </p>
+            <div className="mt-6 grid gap-4 md:grid-cols-3">
+              {directAnswers.map((item) => (
+                <article
+                  key={item.title}
+                  className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-5"
+                >
+                  <h3 className="text-base font-extrabold text-[#0B3A63]">
+                    {item.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-[#475569]">
+                    {item.text}
+                  </p>
+                </article>
+              ))}
+            </div>
           </section>
         </div>
       </section>
@@ -334,26 +431,32 @@ export default function BilanCarboneAppelOffresFR() {
           <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
             <div className="rounded-[34px] border border-[#0B3A63]/10 bg-white p-8 shadow-sm md:p-10">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">
-                Cas fréquents
+                Cas fréquents dans les appels d’offres
               </p>
               <h2 className="mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">
                 La demande carbone arrive souvent au moment du dépôt
               </h2>
               <p className="mt-5 text-base leading-relaxed text-[#475569] md:text-lg">
-                L’entreprise doit répondre vite, sans toujours savoir si le dossier
-                exige un audit complet ou seulement une pièce documentaire carbone.
+                L’entreprise doit répondre vite, sans toujours savoir si le dossier exige un audit complet ou seulement une pièce documentaire carbone. L’objectif est de répondre avec un niveau de preuve proportionné.
               </p>
             </div>
 
             <div className="grid gap-4">
               {tenderScenarios.map((scenario) => (
-                <div
-                  key={scenario}
-                  className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-5 text-sm leading-relaxed text-[#475569] shadow-sm md:text-base"
+                <article
+                  key={scenario.title}
+                  className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-5 shadow-sm"
                 >
-                  <span className="mr-3 inline-block h-2.5 w-2.5 rounded-full bg-[#1FB6C1]" />
-                  {scenario}
-                </div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#1FB6C1]">
+                    {scenario.label}
+                  </p>
+                  <h3 className="mt-2 text-lg font-extrabold text-[#0B3A63]">
+                    {scenario.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-[#475569] md:text-base">
+                    {scenario.text}
+                  </p>
+                </article>
               ))}
             </div>
           </div>
@@ -368,12 +471,10 @@ export default function BilanCarboneAppelOffresFR() {
                 Pièce à joindre
               </p>
               <h2 className="mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">
-                Ce que l’acheteur doit pouvoir vérifier rapidement
+                Ce que l’acheteur doit pouvoir lire rapidement
               </h2>
               <p className="mt-5 text-base leading-relaxed text-[#475569] md:text-lg">
-                Un document utile en appel d’offres doit être plus qu’une phrase
-                dans le mémoire technique : il doit être clair, limité, daté et
-                transmissible.
+                Un document utile en appel d’offres doit être plus qu’une phrase dans le mémoire technique. Il doit être clair, limité, daté, transmissible et aligné avec le niveau d’exigence réel du dossier.
               </p>
               <Link
                 href="/fr/generate/"
@@ -408,9 +509,7 @@ export default function BilanCarboneAppelOffresFR() {
               Screening ou exigence formelle : il faut lire le niveau imposé
             </h2>
             <p className="mt-5 text-base leading-relaxed text-white/82 md:text-lg">
-              Si le dossier impose un standard, un périmètre précis ou une
-              vérification externe, il faut suivre ce cadre. Sinon, une réponse
-              CO₂e indicative peut souvent être adaptée.
+              Si le dossier impose un standard, un périmètre précis ou une vérification externe, il faut suivre ce cadre. Sinon, une réponse CO₂e indicative peut souvent être adaptée.
             </p>
           </div>
 
@@ -467,8 +566,45 @@ export default function BilanCarboneAppelOffresFR() {
 
       <section className="bg-white py-16 md:py-20">
         <div className="mx-auto max-w-7xl px-6 md:px-8">
+          <div className="mx-auto max-w-4xl text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">
+              Comparatif
+            </p>
+            <h2 className="mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">
+              Attestation CO₂e indicative ou bilan carbone complet ?
+            </h2>
+            <p className="mt-5 text-base leading-relaxed text-[#475569] md:text-lg">
+              Les deux réponses n’ont pas le même usage. La première répond à un besoin documentaire simple. Le second sert à une analyse carbone complète ou à une exigence formelle.
+            </p>
+          </div>
+
+          <div className="mt-10 overflow-x-auto rounded-[28px] border border-[#0B3A63]/10 bg-[#F8FAFC]">
+            <table className="min-w-[760px] w-full text-sm">
+              <thead>
+                <tr className="border-b border-[#0B3A63]/10">
+                  <th className="p-5 text-left font-semibold text-[#0B3A63]">Sujet</th>
+                  <th className="p-5 text-left font-semibold text-[#0B3A63]">Attestation CO₂e indicative</th>
+                  <th className="p-5 text-left font-semibold text-[#0B3A63]">Bilan carbone complet</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-[#0B3A63]/10">
+                {comparisonRows.map((row) => (
+                  <tr key={row.topic}>
+                    <td className="p-5 align-top font-semibold text-[#0B3A63]">{row.topic}</td>
+                    <td className="p-5 align-top leading-relaxed text-[#475569]">{row.indicative}</td>
+                    <td className="p-5 align-top leading-relaxed text-[#475569]">{row.full}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#F8FAFC] py-16 md:py-20">
+        <div className="mx-auto max-w-7xl px-6 md:px-8">
           <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
-            <div className="rounded-[34px] border border-[#0B3A63]/10 bg-[#F8FAFC] p-8 md:p-10">
+            <div className="rounded-[34px] border border-[#0B3A63]/10 bg-white p-8 md:p-10">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">
                 Erreurs à éviter
               </p>
@@ -476,9 +612,7 @@ export default function BilanCarboneAppelOffresFR() {
                 Les erreurs qui affaiblissent une réponse d’appel d’offres
               </h2>
               <p className="mt-5 text-base leading-relaxed text-[#475569]">
-                La réponse carbone doit être proportionnée : assez claire pour
-                rassurer, mais sans promettre un niveau de preuve que le document
-                ne couvre pas.
+                La réponse carbone doit être proportionnée : assez claire pour rassurer, mais sans promettre un niveau de preuve que le document ne couvre pas.
               </p>
             </div>
 
@@ -501,16 +635,16 @@ export default function BilanCarboneAppelOffresFR() {
         </div>
       </section>
 
-      <section className="bg-[#F8FAFC] py-16 md:py-20">
+      <section className="bg-white py-16 md:py-20">
         <div className="mx-auto max-w-7xl px-6 md:px-8">
-          <div className="rounded-[34px] border border-[#0B3A63]/10 bg-white p-8 shadow-sm md:p-10">
+          <div className="rounded-[34px] border border-[#0B3A63]/10 bg-[#F8FAFC] p-8 shadow-sm md:p-10">
             <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">
                   Méthode simple
                 </p>
                 <h2 className="mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">
-                  Comment répondre sans perdre de temps ?
+                  Comment répondre à la demande carbone dans un appel d’offres ?
                 </h2>
               </div>
 
@@ -518,7 +652,7 @@ export default function BilanCarboneAppelOffresFR() {
                 {processSteps.map((step, index) => (
                   <article
                     key={step.title}
-                    className="rounded-[24px] border border-[#0B3A63]/10 bg-[#F8FAFC] p-5"
+                    className="rounded-[24px] border border-[#0B3A63]/10 bg-white p-5"
                   >
                     <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#64748B]">
                       Étape {index + 1}
@@ -543,14 +677,13 @@ export default function BilanCarboneAppelOffresFR() {
             <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/70">
-                  Dossier à déposer · PDF vérifiable · prix fixe
+                  Appel d’offres · PDF avec ID vérifiable · sans abonnement
                 </p>
                 <h2 className="mt-4 text-3xl font-extrabold leading-tight md:text-4xl">
-                  Besoin d’un document carbone pour un appel d’offres ?
+                  Besoin d’une pièce carbone pour un dossier ?
                 </h2>
                 <p className="mt-5 max-w-3xl text-base leading-relaxed text-white/85 md:text-lg">
-                  Générez une attestation CO₂e indicative à 89€, avec méthode
-                  déclarée, limites visibles et format PDF transmissible.
+                  Générez une attestation CO₂e indicative à 89 €, avec méthode déclarée, limites visibles et format PDF transmissible.
                 </p>
               </div>
 
@@ -572,9 +705,7 @@ export default function BilanCarboneAppelOffresFR() {
           </div>
 
           <p className="mx-auto mt-8 max-w-4xl text-center text-xs leading-relaxed text-[#64748B] md:text-sm">
-            Certif-Scope produit une attestation CO₂e indicative basée sur les
-            dépenses. Le document ne constitue pas un audit carbone, un inventaire
-            GES complet, une vérification externe, ni un reporting CSRD/ESRS.
+            Certif-Scope produit une attestation CO₂e indicative basée sur les dépenses. Le document ne constitue pas un audit carbone, un inventaire GES complet, une vérification externe, ni un reporting CSRD/ESRS.
           </p>
         </div>
       </section>
@@ -583,14 +714,17 @@ export default function BilanCarboneAppelOffresFR() {
         <div className="mx-auto max-w-7xl px-6 md:px-8">
           <div className="max-w-3xl">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">
-              Pages liées
+              Maillage SEO interne
             </p>
             <h2 className="mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">
-              Continuer selon votre situation
+              Continuer selon votre cas
             </h2>
+            <p className="mt-4 text-base leading-relaxed text-[#475569]">
+              Ces guides renforcent la compréhension du sujet : PME, fournisseur, attestation CO₂e, exemple, prix et méthode.
+            </p>
           </div>
 
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
+          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {relatedPages.map((page) => (
               <Link
                 key={page.href}
@@ -604,7 +738,7 @@ export default function BilanCarboneAppelOffresFR() {
                   {page.text}
                 </p>
                 <span className="mt-5 inline-flex text-sm font-semibold text-[#0B3A63] group-hover:text-[#1FB6C1]">
-                  Lire →
+                  Lire le guide →
                 </span>
               </Link>
             ))}
@@ -616,11 +750,14 @@ export default function BilanCarboneAppelOffresFR() {
         <div className="mx-auto max-w-5xl px-6 md:px-8">
           <div className="text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">
-              FAQ
+              FAQ IA-first
             </p>
             <h2 className="mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">
               Questions fréquentes sur le bilan carbone en appel d’offres
             </h2>
+            <p className="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-[#475569]">
+              Réponses courtes et structurées pour les PME, les moteurs de recherche et les assistants IA.
+            </p>
           </div>
 
           <div className="mt-10 space-y-5">
