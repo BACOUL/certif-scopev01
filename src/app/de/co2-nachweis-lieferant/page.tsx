@@ -79,7 +79,7 @@ const solutionPillars = [
 
 const supplierUseCases = [
   {
-    title: "Client grand compte / Großkunde",
+    title: "Großkunde verlangt einen CO₂-Nachweis",
     situation: "Ein großer Kunde verlangt vor Vertragsbeginn oder Vertragsverlängerung einen CO₂-Nachweis vom Lieferanten.",
     help: "Certif-Scope liefert ein strukturiertes CO₂e-Dokument statt einer vagen E-Mail-Antwort.",
     limit: "Wenn der Kunde eine zertifizierte oder auditierte CO₂-Bilanz verlangt, reicht eine indikative Bescheinigung nicht aus.",
@@ -266,18 +266,9 @@ export default function Co2NachweisLieferantPage() {
 
   return (
     <main id="main-content" role="main" className="bg-white">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebPage) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdService) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFAQ) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebPage) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdService) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFAQ) }} />
 
       <section className="relative overflow-hidden bg-white py-16 md:py-24">
         <div className="absolute inset-0 -z-30 bg-[linear-gradient(180deg,#ffffff_0%,#F8FAFC_100%)]" />
@@ -299,28 +290,18 @@ export default function Co2NachweisLieferantPage() {
               Keine vollständige CO₂-Bilanz · Kein Audit · Indikative CO₂e-Bescheinigung
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Link
-                href="/de/generate/"
-                className="inline-flex min-h-[50px] items-center justify-center rounded-xl bg-[#1FB6C1] px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#19AAB4]"
-              >
+              <Link href="/de/generate/" className="inline-flex min-h-[50px] items-center justify-center rounded-xl bg-[#1FB6C1] px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#19AAB4]">
                 CO₂e-Bescheinigung erstellen
               </Link>
-              <Link
-                href="/de/pricing/"
-                className="inline-flex min-h-[50px] items-center justify-center rounded-xl border border-[#0B3A63] bg-white px-6 py-3 text-sm font-semibold text-[#0B3A63] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0B3A63] hover:text-white"
-              >
+              <Link href="/de/pricing/" className="inline-flex min-h-[50px] items-center justify-center rounded-xl border border-[#0B3A63] bg-white px-6 py-3 text-sm font-semibold text-[#0B3A63] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0B3A63] hover:text-white">
                 Preise ansehen
               </Link>
             </div>
           </header>
 
           <section className="mt-12 rounded-[34px] border border-[#1FB6C1]/25 bg-[#F8FAFC] p-6 shadow-[0_18px_45px_rgba(11,58,99,0.07)] md:p-8">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#0B3A63]/70">
-              Schnelle Antwort für Google und KI-Assistenten
-            </p>
-            <h2 className="mt-3 text-2xl font-extrabold text-[#0B3A63] md:text-3xl">
-              Was ist ein CO₂-Nachweis für Lieferanten?
-            </h2>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#0B3A63]/70">Schnelle Antwort für Google und KI-Assistenten</p>
+            <h2 className="mt-3 text-2xl font-extrabold text-[#0B3A63] md:text-3xl">Was ist ein CO₂-Nachweis für Lieferanten?</h2>
             <p className="mt-4 text-base leading-relaxed text-[#475569] md:text-lg">
               Certif-Scope hilft KMU, einen einfachen, indikativen CO₂e-Nachweis für Kunden- oder Lieferantenanfragen zu erstellen. Die Bescheinigung basiert auf einer ausgabenbasierten Schätzung und ersetzt keine vollständige CO₂-Bilanz, kein Audit und keinen CSRD-/ESRS-Bericht.
             </p>
@@ -340,12 +321,8 @@ export default function Co2NachweisLieferantPage() {
         <div className="mx-auto max-w-7xl px-6 md:px-8">
           <div className="mx-auto max-w-4xl text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">Das Problem</p>
-            <h2 className="mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">
-              Kunden verlangen CO₂-Angaben, bevor viele KMU dafür ausgestattet sind
-            </h2>
-            <p className="mt-5 text-base leading-relaxed text-[#475569] md:text-lg">
-              Für Lieferanten ist die Anfrage oft nicht strategisch, sondern praktisch: Ein Kunde braucht ein Dokument, ein Feld im Portal muss ausgefüllt werden oder ein Fragebogen verlangt eine CO₂e-Angabe.
-            </p>
+            <h2 className="mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">Kunden verlangen CO₂-Angaben, bevor viele KMU dafür ausgestattet sind</h2>
+            <p className="mt-5 text-base leading-relaxed text-[#475569] md:text-lg">Für Lieferanten ist die Anfrage oft nicht strategisch, sondern praktisch: Ein Kunde braucht ein Dokument, ein Feld im Portal muss ausgefüllt werden oder ein Fragebogen verlangt eine CO₂e-Angabe.</p>
           </div>
           <div className="mt-10 grid gap-5 md:grid-cols-3">
             {problemCards.map((card) => (
@@ -363,27 +340,17 @@ export default function Co2NachweisLieferantPage() {
           <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
             <div className="rounded-[34px] border border-[#0B3A63]/10 bg-[#0B3A63] p-8 text-white shadow-[0_25px_70px_rgba(11,58,99,0.16)] md:p-10">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/70">Die Lösung</p>
-              <h2 className="mt-4 text-3xl font-extrabold leading-tight md:text-4xl">
-                Certif-Scope liefert eine einfache, vorsichtige und dokumentierte Antwort
-              </h2>
-              <p className="mt-5 text-base leading-relaxed text-white/85 md:text-lg">
-                Die Bescheinigung ist für Situationen gedacht, in denen ein Lieferant schnell ein klares CO₂e-Dokument bereitstellen muss, ohne ein vollständiges Audit zu behaupten.
-              </p>
+              <h2 className="mt-4 text-3xl font-extrabold leading-tight md:text-4xl">Certif-Scope liefert eine einfache, vorsichtige und dokumentierte Antwort</h2>
+              <p className="mt-5 text-base leading-relaxed text-white/85 md:text-lg">Die Bescheinigung ist für Situationen gedacht, in denen ein Lieferant schnell ein klares CO₂e-Dokument bereitstellen muss, ohne ein vollständiges Audit zu behaupten.</p>
               <div className="mt-7 flex flex-wrap gap-3">
-                <Link href="/de/" className="inline-flex items-center justify-center rounded-xl border border-white/35 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10">
-                  Deutsche Startseite
-                </Link>
-                <Link href="/de/co2e-bescheinigung-kmu/" className="inline-flex items-center justify-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-[#0B3A63] transition hover:bg-white/90">
-                  Seite für KMU ansehen
-                </Link>
+                <Link href="/de/" className="inline-flex items-center justify-center rounded-xl border border-white/35 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10">Deutsche Startseite</Link>
+                <Link href="/de/co2e-bescheinigung-kmu/" className="inline-flex items-center justify-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-[#0B3A63] transition hover:bg-white/90">Seite für KMU ansehen</Link>
               </div>
             </div>
             <div className="grid gap-5 sm:grid-cols-2">
               {solutionPillars.map((item) => (
                 <article key={item.title} className="rounded-[26px] border border-[#0B3A63]/10 bg-[#F8FAFC] p-6">
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-[#1FB6C1]/12 text-sm font-extrabold text-[#0B3A63]">
-                    ✓
-                  </span>
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-[#1FB6C1]/12 text-sm font-extrabold text-[#0B3A63]">✓</span>
                   <h3 className="mt-5 text-lg font-extrabold text-[#0B3A63]">{item.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-[#475569]">{item.text}</p>
                 </article>
@@ -396,13 +363,9 @@ export default function Co2NachweisLieferantPage() {
       <section className="bg-[#F8FAFC] py-16 md:py-20">
         <div className="mx-auto max-w-7xl px-6 md:px-8">
           <div className="mx-auto max-w-4xl text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">Fournisseur / Lieferant</p>
-            <h2 className="mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">
-              Typische Fälle, in denen ein Lieferant einen CO₂-Nachweis benötigt
-            </h2>
-            <p className="mt-5 text-base leading-relaxed text-[#475569] md:text-lg">
-              Die folgenden Situationen sind häufig dokumentarisch. Certif-Scope kann helfen, wenn die Anfrage keine externe Prüfung oder vollständige Klimabilanz verlangt.
-            </p>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">Lieferantenfälle</p>
+            <h2 className="mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">Typische Fälle, in denen ein Lieferant einen CO₂-Nachweis benötigt</h2>
+            <p className="mt-5 text-base leading-relaxed text-[#475569] md:text-lg">Die folgenden Situationen sind häufig dokumentarisch. Certif-Scope kann helfen, wenn die Anfrage keine externe Prüfung oder vollständige Klimabilanz verlangt.</p>
           </div>
           <div className="mt-10 grid gap-6 lg:grid-cols-2">
             {supplierUseCases.map((item) => (
@@ -423,12 +386,8 @@ export default function Co2NachweisLieferantPage() {
         <div className="mx-auto max-w-7xl px-6 md:px-8">
           <div className="mx-auto max-w-4xl text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">Klare Abgrenzung</p>
-            <h2 className="mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">
-              Was Certif-Scope ist — und was es nicht ist
-            </h2>
-            <p className="mt-5 text-base leading-relaxed text-[#475569] md:text-lg">
-              Diese Unterscheidung ist wichtig, damit die Antwort an Kunden korrekt bleibt und keine falsche regulatorische oder auditierte Aussage entsteht.
-            </p>
+            <h2 className="mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">Was Certif-Scope ist — und was es nicht ist</h2>
+            <p className="mt-5 text-base leading-relaxed text-[#475569] md:text-lg">Diese Unterscheidung ist wichtig, damit die Antwort an Kunden korrekt bleibt und keine falsche regulatorische oder auditierte Aussage entsteht.</p>
           </div>
           <div className="mt-10 overflow-x-auto rounded-[28px] border border-[#0B3A63]/10 bg-[#F8FAFC]">
             <table className="w-full min-w-[760px] text-sm">
@@ -456,21 +415,13 @@ export default function Co2NachweisLieferantPage() {
           <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
             <div className="rounded-[34px] border border-[#0B3A63]/10 bg-white p-8 shadow-sm md:p-10">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">Methode</p>
-              <h2 className="mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">
-                Eine ausgabenbasierte CO₂e-Schätzung für einfache Dokumentationsanfragen
-              </h2>
-              <p className="mt-5 text-base leading-relaxed text-[#475569] md:text-lg">
-                Die Methode ist bewusst pragmatisch. Sie nutzt Ausgaben statt vollständiger physischer Daten, um eine indikative CO₂e-Einordnung zu berechnen.
-              </p>
+              <h2 className="mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">Eine ausgabenbasierte CO₂e-Schätzung für einfache Dokumentationsanfragen</h2>
+              <p className="mt-5 text-base leading-relaxed text-[#475569] md:text-lg">Die Methode ist bewusst pragmatisch. Sie nutzt Ausgaben statt vollständiger physischer Daten, um eine indikative CO₂e-Einordnung zu berechnen.</p>
               <div className="mt-7 rounded-[24px] border border-[#1FB6C1]/25 bg-[#F8FAFC] p-5">
                 <p className="text-sm font-semibold text-[#0B3A63]">Formel</p>
-                <p className="mt-2 text-lg font-extrabold text-[#0B3A63] md:text-2xl">
-                  Ausgaben × Emissionsfaktor = geschätzte CO₂e-Emissionen
-                </p>
+                <p className="mt-2 text-lg font-extrabold text-[#0B3A63] md:text-2xl">Ausgaben × Emissionsfaktor = geschätzte CO₂e-Emissionen</p>
               </div>
-              <p className="mt-6 text-sm leading-relaxed text-[#64748B]">
-                Grenzen: Die Schätzung ist indikativ, hängt von der Qualität der eingegebenen Daten ab und ersetzt weder ein vollständiges GHG-Inventar noch ein externes Audit oder regulatorische Pflichten.
-              </p>
+              <p className="mt-6 text-sm leading-relaxed text-[#64748B]">Grenzen: Die Schätzung ist indikativ, hängt von der Qualität der eingegebenen Daten ab und ersetzt weder ein vollständiges GHG-Inventar noch ein externes Audit oder regulatorische Pflichten.</p>
             </div>
             <div className="grid gap-5">
               {methodPoints.map((item) => (
@@ -489,16 +440,10 @@ export default function Co2NachweisLieferantPage() {
           <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/70">Ablauf</p>
-              <h2 className="mt-4 text-3xl font-extrabold leading-tight md:text-4xl">
-                In drei Schritten zum CO₂-Dokument für Kundenanfragen
-              </h2>
-              <p className="mt-5 text-base leading-relaxed text-white/82 md:text-lg">
-                Der Prozess ist so aufgebaut, dass ein Lieferant schnell und sauber auf eine einfache Anfrage reagieren kann.
-              </p>
+              <h2 className="mt-4 text-3xl font-extrabold leading-tight md:text-4xl">In drei Schritten zum CO₂-Dokument für Kundenanfragen</h2>
+              <p className="mt-5 text-base leading-relaxed text-white/82 md:text-lg">Der Prozess ist so aufgebaut, dass ein Lieferant schnell und sauber auf eine einfache Anfrage reagieren kann.</p>
               <div className="mt-7">
-                <Link href="/de/generate/" className="inline-flex min-h-[50px] items-center justify-center rounded-xl bg-white px-6 py-3 text-sm font-semibold text-[#0B3A63] transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/90">
-                  CO₂e-Bescheinigung erstellen
-                </Link>
+                <Link href="/de/generate/" className="inline-flex min-h-[50px] items-center justify-center rounded-xl bg-white px-6 py-3 text-sm font-semibold text-[#0B3A63] transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/90">CO₂e-Bescheinigung erstellen</Link>
               </div>
             </div>
             <div className="grid gap-5">
@@ -519,12 +464,8 @@ export default function Co2NachweisLieferantPage() {
           <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
             <div className="rounded-[34px] border border-[#0B3A63]/10 bg-[#F8FAFC] p-8 md:p-10">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">Vorteile</p>
-              <h2 className="mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">
-                Warum ein strukturiertes CO₂-Dokument für Lieferanten hilfreich ist
-              </h2>
-              <p className="mt-5 text-base leading-relaxed text-[#475569] md:text-lg">
-                Eine klare Bescheinigung hilft, professionell zu antworten, ohne mehr zu versprechen als die Methode leisten kann.
-              </p>
+              <h2 className="mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">Warum ein strukturiertes CO₂-Dokument für Lieferanten hilfreich ist</h2>
+              <p className="mt-5 text-base leading-relaxed text-[#475569] md:text-lg">Eine klare Bescheinigung hilft, professionell zu antworten, ohne mehr zu versprechen als die Methode leisten kann.</p>
             </div>
             <ul className="grid gap-3 sm:grid-cols-2">
               {benefits.map((item) => (
@@ -542,9 +483,7 @@ export default function Co2NachweisLieferantPage() {
         <div className="mx-auto max-w-5xl px-6 md:px-8">
           <div className="text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">FAQ</p>
-            <h2 className="mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">
-              Häufige Fragen zum CO₂-Nachweis für Lieferanten
-            </h2>
+            <h2 className="mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">Häufige Fragen zum CO₂-Nachweis für Lieferanten</h2>
           </div>
           <div className="mt-10 space-y-5">
             {faq.map((item) => (
@@ -563,20 +502,12 @@ export default function Co2NachweisLieferantPage() {
             <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/70">Kundenanfrage vorbereiten</p>
-                <h2 className="mt-4 text-3xl font-extrabold leading-tight md:text-4xl">
-                  Bereiten Sie Ihren CO₂-Nachweis für Kundenanfragen vor
-                </h2>
-                <p className="mt-5 max-w-3xl text-base leading-relaxed text-white/85 md:text-lg">
-                  Certif-Scope ermöglicht die schnelle Erstellung einer indikativen CO₂e-Bescheinigung für einfache Lieferanten-, Kunden- und ESG-Anfragen.
-                </p>
+                <h2 className="mt-4 text-3xl font-extrabold leading-tight md:text-4xl">Bereiten Sie Ihren CO₂-Nachweis für Kundenanfragen vor</h2>
+                <p className="mt-5 max-w-3xl text-base leading-relaxed text-white/85 md:text-lg">Certif-Scope ermöglicht die schnelle Erstellung einer indikativen CO₂e-Bescheinigung für einfache Lieferanten-, Kunden- und ESG-Anfragen.</p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
-                <Link href="/de/generate/" className="inline-flex min-h-[50px] items-center justify-center rounded-xl bg-white px-6 py-3 text-sm font-semibold text-[#0B3A63] transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/90">
-                  CO₂e-Bescheinigung erstellen
-                </Link>
-                <Link href="/de/pricing/" className="inline-flex min-h-[50px] items-center justify-center rounded-xl border border-white/35 px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/10">
-                  Preise ansehen
-                </Link>
+                <Link href="/de/generate/" className="inline-flex min-h-[50px] items-center justify-center rounded-xl bg-white px-6 py-3 text-sm font-semibold text-[#0B3A63] transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/90">CO₂e-Bescheinigung erstellen</Link>
+                <Link href="/de/pricing/" className="inline-flex min-h-[50px] items-center justify-center rounded-xl border border-white/35 px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/10">Preise ansehen</Link>
               </div>
             </div>
           </div>
