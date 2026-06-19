@@ -2,7 +2,19 @@
 
 import { useEffect, useState } from "react";
 
-type SuccessType = "loading" | "attestation" | "pack" | "error";
+type SuccessType =
+  | "loading"
+  | "attestation"
+  | "pack"
+  | "missing-session"
+  | "error";
+
+const nextSteps = [
+  "Téléchargez votre PDF.",
+  "Sauvegardez-le dans vos documents.",
+  "Transmettez-le uniquement si la demande correspond à une attestation CO₂e indicative.",
+  "Conservez l’identifiant de vérification présent dans le document.",
+];
 
 export default function SuccessClient({
   sessionId: initialSessionId,
@@ -25,6 +37,8 @@ export default function SuccessClient({
 
     if (sid) {
       setSessionId(sid);
+    } else {
+      setType("missing-session");
     }
   }, [sessionId]);
 
@@ -71,74 +85,144 @@ export default function SuccessClient({
   // RENDER
   // ======================================================
   return (
-    <section className="max-w-xl w-full bg-white border border-gray-200 rounded-2xl shadow-sm p-10 text-center space-y-6">
-      <h1 className="text-3xl font-extrabold text-[#0B3A63]">
-        Payment successful
-      </h1>
+    <section className="mx-auto w-full max-w-3xl space-y-6">
+      <div className="rounded-2xl border border-[#0B3A63]/10 bg-white p-6 text-center shadow-sm md:p-10">
+        <div className="mx-auto mb-5 h-1.5 w-16 rounded-full bg-[#1FB6C1]" />
 
-      {type === "loading" && (
-        <p className="text-gray-600">
-          Finalizing your order…
-        </p>
-      )}
+        <h1 className="text-3xl font-extrabold text-[#0B3A63] md:text-4xl">
+          Paiement confirmé
+        </h1>
+
+        {type === "loading" && (
+          <p className="mt-4 text-[#0B3A63]/75">
+            Préparation de votre attestation…
+          </p>
+        )}
+
+        {type === "attestation" && (
+          <>
+            <p className="mt-4 text-lg font-semibold text-[#0B3A63]">
+              Votre attestation CO₂e est prête.
+            </p>
+
+            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-[#0B3A63]/75">
+              Conservez ce fichier immédiatement. Certif-Scope ne garde pas de
+              copie récupérable du PDF.
+            </p>
+
+            <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-[#0B3A63]/70">
+              Après fermeture de cette page, le document ne pourra pas être
+              récupéré automatiquement. En cas de perte, une réémission peut
+              être nécessaire selon les conditions applicables.
+            </p>
+
+            <button
+              type="button"
+              onClick={handleDownload}
+              className="mt-7 inline-flex w-full items-center justify-center rounded-xl bg-[#0B3A63] px-8 py-3 font-semibold text-white transition hover:opacity-90 sm:w-auto"
+            >
+              Télécharger mon attestation PDF
+            </button>
+          </>
+        )}
+
+        {type === "pack" && (
+          <>
+            <p className="mt-4 text-lg font-semibold text-[#0B3A63]">
+              Votre achat est confirmé.
+            </p>
+
+            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-[#0B3A63]/75">
+              Vos clés d’accès ont été générées et envoyées par email
+              immédiatement après paiement. Conservez-les soigneusement.
+            </p>
+
+            <a
+              href="/fr/generate"
+              className="mt-7 inline-flex w-full items-center justify-center rounded-xl bg-[#0B3A63] px-8 py-3 font-semibold text-white transition hover:opacity-90 sm:w-auto"
+            >
+              Générer une autre attestation
+            </a>
+          </>
+        )}
+
+        {type === "missing-session" && (
+          <p className="mx-auto mt-5 max-w-xl text-sm font-semibold leading-relaxed text-[#0B3A63]">
+            Impossible de retrouver cette session de paiement.
+          </p>
+        )}
+
+        {type === "error" && (
+          <p className="mx-auto mt-5 max-w-xl text-sm font-semibold leading-relaxed text-[#0B3A63]">
+            Le document n’est pas disponible. Vérifiez que le paiement a bien
+            été confirmé.
+          </p>
+        )}
+      </div>
 
       {type === "attestation" && (
         <>
-          <p className="text-gray-600 text-lg">
-            Your CO₂e attestation is ready.
-          </p>
+          <div className="rounded-2xl border border-[#0B3A63]/10 bg-white p-6 shadow-sm md:p-7">
+            <h2 className="text-xl font-bold text-[#0B3A63]">
+              À faire maintenant
+            </h2>
 
-          <p className="text-sm text-gray-500">
-            This attestation can only be generated once.
-            <br />
-            Please download and store it immediately.
-          </p>
+            <ul className="mt-5 space-y-3 text-sm leading-relaxed text-[#0B3A63]/75">
+              {nextSteps.map((step) => (
+                <li key={step} className="flex gap-3">
+                  <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#1FB6C1]" />
+                  <span>{step}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-          <button
-            onClick={handleDownload}
-            className="inline-block bg-[#0B3A63] hover:bg-[#092f50] text-white font-semibold px-8 py-3 rounded-xl transition"
+          <div className="rounded-2xl border border-[#0B3A63]/10 bg-white p-6 shadow-sm md:p-7">
+            <h2 className="text-xl font-bold text-[#0B3A63]">
+              Rappel de périmètre
+            </h2>
+
+            <p className="mt-4 text-sm leading-relaxed text-[#0B3A63]/75">
+              Cette attestation est indicative, non auditée, non réglementaire,
+              non CSRD/ESRS et ne remplace pas un bilan carbone complet. Elle
+              sert à répondre à une demande documentaire simple lorsqu’aucune
+              méthode obligatoire n’est imposée.
+            </p>
+          </div>
+        </>
+      )}
+
+      <div className="rounded-2xl border border-[#0B3A63]/10 bg-white p-6 text-center shadow-sm">
+        <p className="text-sm leading-relaxed text-[#0B3A63]/70">
+          Les données détaillées ne sont pas utilisées à des fins de tracking
+          marketing. Certif-Scope ne garde pas de copie récupérable des PDF.
+        </p>
+
+        <div className="mt-5 flex flex-col justify-center gap-3 sm:flex-row">
+          <a
+            href="/fr/"
+            className="inline-flex w-full items-center justify-center rounded-xl border border-[#0B3A63]/20 px-6 py-3 text-sm font-semibold text-[#0B3A63] transition hover:bg-[#F8FAFC] sm:w-auto"
           >
-            Download your attestation (PDF)
-          </button>
-        </>
-      )}
+            Retour à l’accueil
+          </a>
 
-      {type === "pack" && (
-        <>
-          <p className="text-gray-600 text-lg">
-            Your access keys have been generated.
-          </p>
-
-          <p className="text-sm text-gray-500 leading-relaxed">
-            Your keys were sent by email immediately after payment.
-            <br />
-            Please check your inbox and store them securely.
-          </p>
-        </>
-      )}
+          {type !== "pack" && (
+            <a
+              href="/fr/generate"
+              className="inline-flex w-full items-center justify-center rounded-xl border border-[#0B3A63]/20 px-6 py-3 text-sm font-semibold text-[#0B3A63] transition hover:bg-[#F8FAFC] sm:w-auto"
+            >
+              Générer une autre attestation
+            </a>
+          )}
+        </div>
+      </div>
 
       {type === "error" && (
-        <p className="text-sm text-red-600">
-          Unable to determine order type.
-          <br />
-          Please contact support.
+        <p className="text-center text-sm leading-relaxed text-[#0B3A63]/70">
+          Le téléchargement n’a pas pu être lancé. Veuillez réessayer depuis
+          cette page.
         </p>
       )}
-
-      <div className="text-sm text-gray-500 pt-6">
-        No data is stored.
-        <br />
-        Certif-Scope does not keep a copy of documents.
-      </div>
-
-      <div className="pt-4">
-        <a
-          href="/"
-          className="inline-block text-[#0B3A63] underline text-sm"
-        >
-          Return to homepage
-        </a>
-      </div>
     </section>
   );
-  }
+}
