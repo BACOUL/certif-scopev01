@@ -9,17 +9,18 @@ export const metadata: Metadata = {
   description:
     "Politique de confidentialité et ePrivacy expliquant comment Certif-Scope traite les données selon une approche privacy-by-design, sans tracking et avec minimisation stricte.",
   alternates: {
-    canonical: "https://www.certif-scope.com/fr/privacy",
+    canonical: "https://www.certif-scope.com/fr/privacy/",
   },
   openGraph: {
     title: "Politique de confidentialité — Certif-Scope",
     description:
       "Politique GDPR et ePrivacy décrivant le traitement des données par Certif-Scope, incluant le calcul CO₂e et les principes privacy-by-design.",
-    url: "https://www.certif-scope.com/fr/privacy",
+    url: "https://www.certif-scope.com/fr/privacy/",
     siteName: "Certif-Scope",
     type: "website",
     locale: "fr_FR",
   },
+  robots: { index: true, follow: true },
 };
 
 /* ======================================================
@@ -41,7 +42,7 @@ export default function PrivacyPageFR() {
             "@context": "https://schema.org",
             "@type": "WebPage",
             name: "Politique de confidentialité",
-            url: "https://www.certif-scope.com/fr/privacy",
+            url: "https://www.certif-scope.com/fr/privacy/",
             description:
               "Politique de confidentialité et ePrivacy décrivant comment Certif-Scope traite les données personnelles conformément au RGPD et aux principes privacy-by-design.",
             isPartOf: {
@@ -49,6 +50,31 @@ export default function PrivacyPageFR() {
               name: "Certif-Scope",
               url: "https://www.certif-scope.com",
             },
+          }),
+        }}
+      />
+
+      {/* JSON-LD — BreadcrumbList */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Accueil",
+                item: "https://www.certif-scope.com/fr/",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Politique de confidentialité",
+                item: "https://www.certif-scope.com/fr/privacy/",
+              },
+            ],
           }),
         }}
       />

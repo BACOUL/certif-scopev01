@@ -26,6 +26,31 @@ export default function CookiePolicyPage() {
       data-section="cookie-policy"
       className="max-w-7xl mx-auto px-6 pt-12 pb-24"
     >
+      {/* JSON-LD — BreadcrumbList */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Accueil",
+                item: "https://www.certif-scope.com/fr/",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Politique cookies",
+                item: "https://www.certif-scope.com/fr/cookies/",
+              },
+            ],
+          }),
+        }}
+      />
+
       {/* EN-TÊTE PAGE — ALIGNEMENT CANONIQUE */}
       <header className="mb-14">
         <p

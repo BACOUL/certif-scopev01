@@ -19,17 +19,17 @@ export const metadata: Metadata = {
   description:
     "Vérifiez une attestation CO₂e Certif-Scope par QR code ou à l’aide de la vérification technique avancée du PDF signé.",
   alternates: {
-    canonical: "https://www.certif-scope.com/fr/verify",
+    canonical: "https://www.certif-scope.com/fr/verify/",
     languages: {
       en: "https://www.certif-scope.com/verify",
-      fr: "https://www.certif-scope.com/fr/verify",
+      fr: "https://www.certif-scope.com/fr/verify/",
     },
   },
   openGraph: {
     title: "Vérifier une attestation CO₂e — Certif-Scope",
     description:
       "Vérification documentaire des attestations CO₂e Certif-Scope par QR code, PDF signé et clé publique de vérification.",
-    url: "https://www.certif-scope.com/fr/verify",
+    url: "https://www.certif-scope.com/fr/verify/",
     siteName: "Certif-Scope",
     type: "website",
     locale: "fr_FR",
@@ -198,7 +198,7 @@ export default async function VerifyPageFR({ searchParams }: VerifyPageProps) {
             "@context": "https://schema.org",
             "@type": "WebPage",
             name: "Vérifier une attestation CO₂e",
-            url: "https://www.certif-scope.com/fr/verify",
+            url: "https://www.certif-scope.com/fr/verify/",
             description:
               "Page de vérification documentaire des attestations CO₂e Certif-Scope par QR code, PDF signé et clé publique de vérification.",
             isPartOf: {

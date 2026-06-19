@@ -9,17 +9,18 @@ export const metadata: Metadata = {
   description:
     "Informations légales obligatoires concernant l’éditeur, l’hébergeur, les limitations de responsabilité et le cadre juridique applicable à Certif-Scope.",
   alternates: {
-    canonical: "https://www.certif-scope.com/fr/legal",
+    canonical: "https://www.certif-scope.com/fr/legal/",
   },
   openGraph: {
     title: "Mentions légales — Certif-Scope",
     description:
       "Informations légales obligatoires concernant l’éditeur, l’hébergeur, les limitations de responsabilité et les principes de traitement des données de Certif-Scope.",
-    url: "https://www.certif-scope.com/fr/legal",
+    url: "https://www.certif-scope.com/fr/legal/",
     siteName: "Certif-Scope",
     type: "website",
     locale: "fr_FR",
   },
+  robots: { index: true, follow: true },
 };
 
 /* ======================================================
@@ -41,7 +42,7 @@ export default function LegalPage() {
             "@context": "https://schema.org",
             "@type": "WebPage",
             name: "Mentions légales",
-            url: "https://www.certif-scope.com/fr/legal",
+            url: "https://www.certif-scope.com/fr/legal/",
             description:
               "Mentions légales et informations obligatoires concernant l’éditeur et le cadre juridique de Certif-Scope.",
             isPartOf: {
@@ -49,6 +50,31 @@ export default function LegalPage() {
               name: "Certif-Scope",
               url: "https://www.certif-scope.com",
             },
+          }),
+        }}
+      />
+
+      {/* JSON-LD — BreadcrumbList */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Accueil",
+                item: "https://www.certif-scope.com/fr/",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Mentions légales",
+                item: "https://www.certif-scope.com/fr/legal/",
+              },
+            ],
           }),
         }}
       />

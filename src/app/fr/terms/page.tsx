@@ -11,21 +11,22 @@ export const metadata: Metadata = {
   description:
     "Conditions d’utilisation encadrant l’usage de Certif-Scope : périmètre du service, prix, responsabilités, principes privacy-by-design et droit applicable.",
   alternates: {
-    canonical: "https://www.certif-scope.com/fr/terms",
+    canonical: "https://www.certif-scope.com/fr/terms/",
     languages: {
       en: "https://www.certif-scope.com/terms",
-      fr: "https://www.certif-scope.com/fr/terms",
+      fr: "https://www.certif-scope.com/fr/terms/",
     },
   },
   openGraph: {
     title: "Conditions d’utilisation — Certif-Scope",
     description:
       "Conditions contractuelles encadrant l’usage de Certif-Scope et l’émission d’attestations CO₂e indicatives spend-based.",
-    url: "https://www.certif-scope.com/fr/terms",
+    url: "https://www.certif-scope.com/fr/terms/",
     siteName: "Certif-Scope",
     type: "website",
     locale: "fr_FR",
   },
+  robots: { index: true, follow: true },
 };
 
 /* ======================================================
@@ -47,7 +48,7 @@ export default function TermsPageFR() {
             "@context": "https://schema.org",
             "@type": "WebPage",
             name: "Conditions d’utilisation",
-            url: "https://www.certif-scope.com/fr/terms",
+            url: "https://www.certif-scope.com/fr/terms/",
             description:
               "Conditions d’utilisation encadrant l’usage de Certif-Scope et l’émission d’attestations CO₂e.",
             isPartOf: {
@@ -55,6 +56,31 @@ export default function TermsPageFR() {
               name: "Certif-Scope",
               url: "https://www.certif-scope.com",
             },
+          }),
+        }}
+      />
+
+      {/* JSON-LD — BreadcrumbList */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Accueil",
+                item: "https://www.certif-scope.com/fr/",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Conditions d’utilisation",
+                item: "https://www.certif-scope.com/fr/terms/",
+              },
+            ],
           }),
         }}
       />
