@@ -22,6 +22,9 @@ const EMISSION_FACTORS = {
 const METHODOLOGY =
   "Certif-Scope deterministic spend-based methodology v1.0";
 
+const ACCEPTED_SCOPE_ERROR =
+  "Veuillez confirmer que vous comprenez le périmètre indicatif de l’attestation avant de continuer.";
+
 /* ======================================================
    TYPES
 ====================================================== */
@@ -31,6 +34,7 @@ type AttestationLocale = "en" | "fr" | "de";
 type FormErrors = {
   companyName?: string;
   sector?: string;
+  acceptedScope?: string;
   submit?: string;
 };
 
@@ -173,6 +177,7 @@ export default function AssessmentForm() {
 
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [acceptedScope, setAcceptedScope] = useState(false);
 
   const update = (field: string, value: string) => {
     setExpenses((prev) => ({ ...prev, [field]: value }));
@@ -207,6 +212,10 @@ export default function AssessmentForm() {
     if (!hasAtLeastOneExpense) {
       nextErrors.submit =
         "Veuillez déclarer au moins une dépense supérieure à 0 €.";
+    }
+
+    if (!acceptedScope) {
+      nextErrors.acceptedScope = ACCEPTED_SCOPE_ERROR;
     }
 
     setErrors(nextErrors);
@@ -341,9 +350,33 @@ export default function AssessmentForm() {
     ? "Générer mon attestation carbone (1 crédit)"
     : "Générer mon attestation carbone — 89 €";
 
+  const displayedCompanyName = companyName.trim() || "À compléter";
+  const displayedSectorLabel = sector ? selectedSectorLabel : "À compléter";
+  const isSubmitDisabled = isSubmitting || isButtonBlocked || !acceptedScope;
+  const paymentSummaryItems = [
+    { label: "Entreprise", value: displayedCompanyName },
+    { label: "Année", value: String(year) },
+    { label: "Pays", value: country },
+    { label: "Secteur", value: displayedSectorLabel },
+    { label: "Résultat estimé", value: `${totalCO2e} tCO₂e` },
+    { label: "Document", value: "Attestation CO₂e indicative PDF" },
+    { label: "Prix", value: "89 €" },
+    { label: "Livraison", value: "Immédiate après paiement" },
+  ];
+
+  const handleDisabledSubmitClick = () => {
+    if (!acceptedScope) {
+      setErrors((prev) => ({
+        ...prev,
+        acceptedScope: ACCEPTED_SCOPE_ERROR,
+      }));
+    }
+  };
+
   const missingRequiredFields = [
     errors.companyName && "Nom de l'entreprise / entité légale",
     errors.sector && "Secteur d'activité principal",
+    errors.acceptedScope && "Confirmation du périmètre indicatif",
     errors.submit && "Au moins une dépense externe annuelle supérieure à 0 €",
   ].filter(Boolean) as string[];
 
@@ -495,14 +528,10 @@ export default function AssessmentForm() {
                 }
                 className="w-full border border-gray-300 rounded-md px-4 py-2 mt-1"
               >
-                <option value="en">Anglais (référence légale)</option>
                 <option value="fr">Français</option>
-                <option value="de">Deutsch</option>
+                <option value="en">Anglais</option>
+                <option value="de">Allemand</option>
               </select>
-
-              <p className="text-xs text-gray-500 mt-1">
-                L'anglais reste la référence légale en cas de divergence.
-              </p>
             </div>
           </div>
         </Accordion>
@@ -619,72 +648,79 @@ export default function AssessmentForm() {
         )}
 
         {/* CLÉ D'ACCÈS */}
-        <div className="bg-gray-50 border border-gray-200 rounded-xl p-5">
-          <h3 className="text-sm font-semibold text-[#0B3A63] mb-2">
-            Clé d'accès (optionnel)
-          </h3>
+        <Accordion
+          title="J’ai déjà une clé d’accès ou un pack"
+          intro="Utilisez cette option uniquement si vous avez déjà acheté un pack ou reçu une clé d’accès."
+          defaultOpen={false}
+        >
+          <div className="space-y-3">
+            <div className="flex flex-col sm:flex-row gap-3 sm:items-center min-w-0">
+              <input
+                type="text"
+                placeholder="XXXX-XXXX-XXXX"
+                value={accessKey}
+                onChange={(e) => {
+                  setAccessKey(e.target.value);
 
-          <p className="text-sm text-gray-600 mb-3">
-            Utilisez une clé d'accès si vous avez acheté un pack ou reçu des
-            crédits.
-          </p>
+                  if (keyStatus !== "idle") {
+                    setKeyStatus("idle");
+                    setRemainingCredits(null);
+                    setKeyError("");
+                  }
+                }}
+                className="w-full sm:flex-1 min-w-0 border border-gray-300 rounded-md px-3 py-2 text-sm"
+              />
 
-          <div className="flex flex-col sm:flex-row gap-3 sm:items-center min-w-0">
-            <input
-              type="text"
-              placeholder="XXXX-XXXX-XXXX"
-              value={accessKey}
-              onChange={(e) => {
-                setAccessKey(e.target.value);
-
-                if (keyStatus !== "idle") {
-                  setKeyStatus("idle");
-                  setRemainingCredits(null);
-                  setKeyError("");
-                }
-              }}
-              className="w-full sm:flex-1 min-w-0 border border-gray-300 rounded-md px-3 py-2 text-sm"
-            />
-
-            <button
-              type="button"
-              onClick={handleCheckKey}
-              disabled={!accessKey || keyStatus === "checking"}
-              className="w-full sm:w-auto shrink-0 bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-50 disabled:opacity-60 disabled:cursor-not-allowed"
-            >
-              {keyStatus === "checking" ? "..." : "Vérifier"}
-            </button>
-          </div>
-
-          {keyStatus === "invalid" && (
-            <p className="text-xs text-red-600 mt-2 font-medium">
-              {keyError}
-            </p>
-          )}
-
-          {keyStatus === "valid" && (
-            <div className="mt-2 text-xs">
-              <p className="text-green-700 font-bold">Clé valide</p>
-
-              {remainingCredits === 0 ? (
-                <p className="text-red-600">
-                  Cette clé n'a plus de crédits.
-                </p>
-              ) : (
-                <p className="text-gray-600">
-                  Crédits restants : {remainingCredits}
-                </p>
-              )}
-
-              <p className="text-xs text-gray-500 mt-2 leading-relaxed">
-                En utilisant une clé d'accès, aucun email n'est envoyé.
-                <br />
-                Veuillez télécharger et sauvegarder votre attestation
-                immédiatement après génération.
-              </p>
+              <button
+                type="button"
+                onClick={handleCheckKey}
+                disabled={!accessKey || keyStatus === "checking"}
+                className="w-full sm:w-auto shrink-0 bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-50 disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {keyStatus === "checking" ? "..." : "Vérifier"}
+              </button>
             </div>
-          )}
-        </div>
+
+            {keyStatus === "invalid" && (
+              <p className="text-xs text-red-600 font-medium">
+                {keyError}
+              </p>
+            )}
+
+            {keyStatus === "valid" && (
+              <div className="text-xs">
+                <p className="text-[#0B3A63] font-bold">Clé valide</p>
+
+                {remainingCredits === 0 ? (
+                  <p className="text-red-600">
+                    Cette clé n'a plus de crédits.
+                  </p>
+                ) : (
+                  <p className="text-gray-600">
+                    Crédits restants : {remainingCredits}
+                  </p>
+                )}
+
+                <p className="text-xs text-gray-500 mt-2 leading-relaxed">
+                  En utilisant une clé d'accès, aucun email n'est envoyé.
+                  <br />
+                  Veuillez télécharger et sauvegarder votre attestation
+                  immédiatement après génération.
+                </p>
+              </div>
+            )}
+
+            {isRedeeming && (
+              <button
+                type="button"
+                onClick={clearKey}
+                className="w-full text-center text-xs text-gray-500 underline hover:text-gray-700"
+              >
+                Je préfère payer 89 € à la place
+              </button>
+            )}
+          </div>
+        </Accordion>
 
         <p className="text-xs text-gray-500">
           En générant une attestation, vous reconnaissez que Certif-Scope ne
@@ -692,6 +728,86 @@ export default function AssessmentForm() {
           stockées et ne peuvent pas être récupérées. Une réédition peut être
           demandée mais n'est pas garantie.
         </p>
+
+        <div className="rounded-xl border border-[#0B3A63]/10 bg-[#F8FAFC] p-5 md:p-6">
+          <div className="mb-5 flex items-start gap-3">
+            <span className="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-[#1FB6C1]" />
+            <div>
+              <h2 className="text-lg font-bold text-[#0B3A63]">
+                Résumé avant paiement
+              </h2>
+              <p className="mt-1 text-sm leading-relaxed text-gray-600">
+                Vérifiez les informations principales avant de continuer.
+              </p>
+            </div>
+          </div>
+
+          <dl className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            {paymentSummaryItems.map((item) => (
+              <div
+                key={item.label}
+                className="min-w-0 rounded-lg border border-[#0B3A63]/10 bg-white p-4"
+              >
+                <dt className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+                  {item.label}
+                </dt>
+                <dd className="mt-1 break-words text-sm font-semibold text-[#0B3A63]">
+                  {item.value}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+
+        <div className="rounded-xl border border-[#0B3A63]/10 bg-white p-5">
+          <p className="text-sm leading-relaxed text-gray-600">
+            Les données financières détaillées ne sont pas conservées. Le PDF
+            doit être téléchargé et sauvegardé immédiatement après génération :
+            Certif-Scope ne garde pas de copie récupérable.
+          </p>
+        </div>
+
+        <div className="rounded-xl border border-[#0B3A63]/10 bg-white p-5">
+          <label
+            htmlFor="accepted-scope"
+            className="flex cursor-pointer items-start gap-3 text-sm leading-relaxed text-gray-700"
+          >
+            <input
+              id="accepted-scope"
+              type="checkbox"
+              checked={acceptedScope}
+              aria-invalid={Boolean(errors.acceptedScope)}
+              aria-describedby={
+                errors.acceptedScope ? "accepted-scope-error" : undefined
+              }
+              onChange={(e) => {
+                setAcceptedScope(e.target.checked);
+
+                if (e.target.checked) {
+                  setErrors((prev) => ({
+                    ...prev,
+                    acceptedScope: undefined,
+                  }));
+                }
+              }}
+              className="mt-1 h-4 w-4 shrink-0 rounded border-gray-300 text-[#0B3A63] focus:ring-[#1FB6C1]"
+            />
+            <span>
+              Je comprends que l’attestation Certif-Scope est indicative, non
+              auditée, non réglementaire, non CSRD/ESRS, et qu’elle dépend des
+              informations que je fournis.
+            </span>
+          </label>
+
+          {errors.acceptedScope && (
+            <p
+              id="accepted-scope-error"
+              className="mt-3 text-sm font-medium text-red-600"
+            >
+              {errors.acceptedScope}
+            </p>
+          )}
+        </div>
 
         {missingRequiredFields.length > 0 && (
           <div
@@ -713,28 +829,23 @@ export default function AssessmentForm() {
           </div>
         )}
 
-        <button
-          type="button"
-          onClick={handleSubmit}
-          disabled={isSubmitting || isButtonBlocked}
-          className={`w-full py-4 rounded-xl font-semibold transition ${
-            isSubmitting || isButtonBlocked
-              ? "bg-gray-400 cursor-not-allowed text-white"
-              : "bg-[#0B3A63] hover:bg-[#092f50] text-white"
-          }`}
+        <div
+          onClick={isSubmitDisabled ? handleDisabledSubmitClick : undefined}
+          className={isSubmitDisabled ? "cursor-not-allowed" : undefined}
         >
-          {isSubmitting ? "Traitement en cours..." : buttonLabel}
-        </button>
-
-        {isRedeeming && (
           <button
             type="button"
-            onClick={clearKey}
-            className="w-full text-center text-xs text-gray-500 underline mt-2 hover:text-gray-700"
+            onClick={handleSubmit}
+            disabled={isSubmitDisabled}
+            className={`w-full py-4 rounded-xl font-semibold transition ${
+              isSubmitDisabled
+                ? "pointer-events-none bg-gray-400 cursor-not-allowed text-white"
+                : "bg-[#0B3A63] hover:bg-[#092f50] text-white"
+            }`}
           >
-            Je préfère payer 89 € à la place
+            {isSubmitting ? "Traitement en cours..." : buttonLabel}
           </button>
-        )}
+        </div>
 
         <p className="text-xs text-gray-500 leading-relaxed text-center mt-4">
           En utilisant une clé d'accès, un crédit est consommé par attestation.
