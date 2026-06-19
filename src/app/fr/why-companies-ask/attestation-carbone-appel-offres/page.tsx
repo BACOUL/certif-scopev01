@@ -16,17 +16,17 @@ export const metadata: Metadata = {
     "Appel d’offres : comprendre ce que “bilan carbone” signifie vraiment (screening vs inventaire complet), quoi fournir en PME sans audit, et comment éviter la sur-promesse. Document CO₂e indicatif, standardisé et vérifiable.",
   alternates: {
     canonical:
-      "https://www.certif-scope.com/fr/why-companies-ask/attestation-carbone-appel-offres",
+      "https://www.certif-scope.com/fr/why-companies-ask/attestation-carbone-appel-offres/",
     languages: {
       en: "https://www.certif-scope.com/why-companies-ask/carbon-attestation-tender",
-      fr: "https://www.certif-scope.com/fr/why-companies-ask/attestation-carbone-appel-offres",
+      fr: "https://www.certif-scope.com/fr/why-companies-ask/attestation-carbone-appel-offres/",
     },
   },
   openGraph: {
     title: "Bilan carbone en appel d’offres : ce qui est réellement demandé (PME)",
     description:
       "Guide pratique : screening vs inventaire complet, ce qui est attendu dans un dossier, et quoi fournir sans audit (document CO₂e indicatif, standardisé, vérifiable).",
-    url: "https://www.certif-scope.com/fr/why-companies-ask/attestation-carbone-appel-offres",
+    url: "https://www.certif-scope.com/fr/why-companies-ask/attestation-carbone-appel-offres/",
     siteName: "Certif-Scope",
     type: "website",
     locale: "fr_FR",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
 
 export default function CarbonAttestationTenderFR() {
   const pageUrl =
-    "https://www.certif-scope.com/fr/why-companies-ask/attestation-carbone-appel-offres";
+    "https://www.certif-scope.com/fr/why-companies-ask/attestation-carbone-appel-offres/";
 
   const faq = [
     {
@@ -69,7 +69,7 @@ export default function CarbonAttestationTenderFR() {
         "@type": "ListItem",
         position: 1,
         name: "Pourquoi les entreprises le demandent",
-        item: "https://www.certif-scope.com/fr/why-companies-ask",
+        item: "https://www.certif-scope.com/fr/why-companies-ask/",
       },
       {
         "@type": "ListItem",

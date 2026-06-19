@@ -13,16 +13,16 @@ export const metadata: Metadata = {
   description:
     "Scopes 1, 2, 3 : comprendre la différence, distinguer screening vs inventaire complet, et savoir quoi répondre en PME (fournisseur, appel d’offres, banque/assurance). Guide clair, dossier-ready.",
   alternates: {
-    canonical: "https://www.certif-scope.com/fr/scope-1-2-3-explication",
+    canonical: "https://www.certif-scope.com/fr/scope-1-2-3-explication/",
     languages: {
-      fr: "https://www.certif-scope.com/fr/scope-1-2-3-explication",
+      fr: "https://www.certif-scope.com/fr/scope-1-2-3-explication/",
     },
   },
   openGraph: {
     title: "Scopes 1, 2, 3 : explication simple (PME) + quoi répondre",
     description:
       "Guide pratique : scopes 1/2/3, différence screening vs inventaire complet, et réponse sûre pour appels d’offres, fournisseurs, banques/assurances.",
-    url: "https://www.certif-scope.com/fr/scope-1-2-3-explication",
+    url: "https://www.certif-scope.com/fr/scope-1-2-3-explication/",
     siteName: "Certif-Scope",
     type: "website",
     locale: "fr_FR",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
 };
 
 export default function Scopes123ExplanationFR() {
-  const pageUrl = "https://www.certif-scope.com/fr/scope-1-2-3-explication";
+  const pageUrl = "https://www.certif-scope.com/fr/scope-1-2-3-explication/";
 
   const faq = [
     {
@@ -75,13 +75,13 @@ export default function Scopes123ExplanationFR() {
         "@type": "ListItem",
         position: 1,
         name: "Accueil (FR)",
-        item: "https://www.certif-scope.com/fr",
+        item: "https://www.certif-scope.com/fr/",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Bilan carbone PME",
-        item: "https://www.certif-scope.com/fr/bilan-carbone-pme",
+        item: "https://www.certif-scope.com/fr/bilan-carbone-pme/",
       },
       {
         "@type": "ListItem",
@@ -833,7 +833,7 @@ export default function Scopes123ExplanationFR() {
                   </Link>
                 </li>
                 <li>
-                  <Link className="underline" href="/fr/product/verification">
+                  <Link className="underline" href="/fr/verify/">
                     Comprendre la vérification
                   </Link>
                 </li>

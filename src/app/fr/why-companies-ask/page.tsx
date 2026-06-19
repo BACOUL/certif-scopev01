@@ -15,10 +15,10 @@ export const metadata: Metadata = {
   description:
     "Pourquoi les clients, acheteurs, banques et assureurs demandent un justificatif CO₂ (preuve carbone) aux fournisseurs : screening ESG, onboarding et gestion du risque. Ce que ce document est — et n’est pas.",
   alternates: {
-    canonical: "https://www.certif-scope.com/fr/why-companies-ask",
+    canonical: "https://www.certif-scope.com/fr/why-companies-ask/",
     languages: {
       en: "https://www.certif-scope.com/why-companies-ask",
-      fr: "https://www.certif-scope.com/fr/why-companies-ask",
+      fr: "https://www.certif-scope.com/fr/why-companies-ask/",
       de: "https://www.certif-scope.com/de/why-companies-ask",
     },
   },
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
       "Pourquoi un client demande un justificatif CO₂ — Exigence fournisseurs",
     description:
       "Comprendre pourquoi les organisations demandent un justificatif CO₂ (preuve carbone) et ce que ces documents représentent — et ne représentent pas.",
-    url: "https://www.certif-scope.com/fr/why-companies-ask",
+    url: "https://www.certif-scope.com/fr/why-companies-ask/",
     siteName: "Certif-Scope",
     type: "website",
     locale: "fr_FR",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
 ====================================================== */
 
 export default function WhyCompaniesAskPage() {
-  const pageUrl = "https://www.certif-scope.com/fr/why-companies-ask";
+  const pageUrl = "https://www.certif-scope.com/fr/why-companies-ask/";
 
   return (
     <section

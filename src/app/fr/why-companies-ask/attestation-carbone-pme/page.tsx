@@ -16,17 +16,17 @@ export const metadata: Metadata = {
     "Guide PME : comprendre les demandes “bilan carbone”, ce qui est attendu en pratique (screening), et comment répondre avec une estimation indicative standardisée sans audit complet.",
   alternates: {
     canonical:
-      "https://www.certif-scope.com/fr/why-companies-ask/attestation-carbone-pme",
+      "https://www.certif-scope.com/fr/why-companies-ask/attestation-carbone-pme/",
     languages: {
       en: "https://www.certif-scope.com/why-companies-ask/carbon-attestation-smes",
-      fr: "https://www.certif-scope.com/fr/why-companies-ask/attestation-carbone-pme",
+      fr: "https://www.certif-scope.com/fr/why-companies-ask/attestation-carbone-pme/",
     },
   },
   openGraph: {
     title: "Bilan carbone PME — Que fournir quand on n’a pas de bilan complet",
     description:
       "Pourquoi les PME reçoivent des demandes “bilan carbone” et comment répondre avec un document CO₂e indicatif, cadré et réutilisable.",
-    url: "https://www.certif-scope.com/fr/why-companies-ask/attestation-carbone-pme",
+    url: "https://www.certif-scope.com/fr/why-companies-ask/attestation-carbone-pme/",
     siteName: "Certif-Scope",
     type: "website",
     locale: "fr_FR",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
 
 export default function CarbonAttestationSMEsFR() {
   const pageUrl =
-    "https://www.certif-scope.com/fr/why-companies-ask/attestation-carbone-pme";
+    "https://www.certif-scope.com/fr/why-companies-ask/attestation-carbone-pme/";
 
   return (
     <section
@@ -70,7 +70,7 @@ export default function CarbonAttestationSMEsFR() {
                   "@type": "ListItem",
                   position: 1,
                   name: "Pourquoi les entreprises le demandent",
-                  item: "https://www.certif-scope.com/fr/why-companies-ask",
+                  item: "https://www.certif-scope.com/fr/why-companies-ask/",
                 },
                 {
                   "@type": "ListItem",
