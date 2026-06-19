@@ -7,9 +7,11 @@ import ScrollUp from "@/components/Common/ScrollUp";
 
 // FR — composants définitifs
 import HeroFR from "@/components/fr/Hero";
+import UseCaseDecisionTable from "@/components/fr/UseCaseDecisionTable";
 import ProblemSolutionFR from "@/components/fr/ProblemSolution";
 import DifferentiationFR from "@/components/fr/Differentiation";
 import FeaturesFR from "@/components/fr/Features";
+import RecipientView from "@/components/fr/RecipientView";
 import OfficialReferencesFR from "@/components/fr/OfficialReferences";
 import HowItWorksFR from "@/components/fr/HowItWorks";
 import TestimonialsFR from "@/components/fr/Testimonials";
@@ -133,31 +135,37 @@ export default function HomeFR() {
         {/* 1) Hero */}
         <HeroFR />
 
-        {/* 2) Problème / besoin réel */}
+        {/* 2) Est-ce adapté à votre demande */}
+        <UseCaseDecisionTable />
+
+        {/* 3) Problème / besoin réel */}
         <ProblemSolutionFR />
 
-        {/* 3) Différenciation / pourquoi cette réponse */}
+        {/* 4) Différenciation / pourquoi cette réponse */}
         <DifferentiationFR />
 
-        {/* 4) Produit / document concret */}
+        {/* 5) Produit / document concret */}
         <FeaturesFR />
 
-        {/* 5) Références officielles / légitimation de la méthode */}
+        {/* 6) Ce que le destinataire verra */}
+        <RecipientView />
+
+        {/* 7) Références officielles / légitimation de la méthode */}
         <OfficialReferencesFR />
 
-        {/* 6) Comment ça marche */}
+        {/* 8) Comment ça marche */}
         <HowItWorksFR />
 
-        {/* 7) Cas d’usage terrain */}
+        {/* 9) Cas d’usage terrain */}
         <TestimonialsFR />
 
-        {/* 8) Pricing */}
+        {/* 10) Pricing */}
         <PricingFR />
 
-        {/* 9) FAQ */}
+        {/* 11) FAQ */}
         <FAQFR />
 
-        {/* 10) CTA final */}
+        {/* 12) CTA final */}
         <section
           id="final-cta"
           data-section="final-cta"
@@ -172,7 +180,7 @@ export default function HomeFR() {
             <div className="rounded-[30px] border border-[#0B3A63]/10 bg-white p-8 shadow-[0_25px_60px_rgba(11,58,99,0.10)] md:p-12">
               <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-center">
                 <div className="lg:col-span-8">
-                  <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B] md:text-sm">
+                  <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-[#0B3A63]/70 md:text-sm">
                     Réponse rapide — format standardisé
                   </p>
 
@@ -181,7 +189,7 @@ export default function HomeFR() {
                     vérifiable
                   </h2>
 
-                  <p className="mt-4 max-w-2xl text-lg leading-relaxed text-[#475569]">
+                  <p className="mt-4 max-w-2xl text-lg leading-relaxed text-[#0B3A63]/80">
                     Si votre demande relève du screening fournisseur, d’un appel
                     d’offres ou d’une revue banque/assurance, l’objectif est un
                     document lisible, archivable et cohérent : résultat CO₂e
@@ -192,7 +200,7 @@ export default function HomeFR() {
                   <div className="mt-6 flex flex-wrap gap-3">
                     <Link
                       href="/fr/generate"
-                      className="inline-flex items-center justify-center rounded-xl bg-[#1FB6C1] px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#19AAB4]"
+                      className="inline-flex items-center justify-center rounded-xl bg-[#1FB6C1] px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0B3A63]"
                     >
                       Générer mon attestation →
                     </Link>
@@ -206,7 +214,7 @@ export default function HomeFR() {
 
                     <Link
                       href="/fr/bilan-carbone-pme"
-                      className="inline-flex items-center justify-center rounded-xl border border-gray-300 px-4 py-3 text-sm font-medium text-gray-700 transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-50"
+                      className="inline-flex items-center justify-center rounded-xl border border-[#0B3A63]/20 px-4 py-3 text-sm font-medium text-[#0B3A63] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#F8FAFC]"
                     >
                       Lire le guide PME →
                     </Link>
@@ -219,7 +227,7 @@ export default function HomeFR() {
                       Rappel de périmètre
                     </h3>
 
-                    <ul className="ml-6 list-disc space-y-2 text-sm text-[#475569]">
+                    <ul className="ml-6 list-disc space-y-2 text-sm text-[#0B3A63]/80">
                       <li>estimation indicative en spend-based</li>
                       <li>résultat agrégé en tCO₂e</li>
                       <li>document standardisé et vérifiable</li>
@@ -230,14 +238,14 @@ export default function HomeFR() {
                     <div className="mt-5 flex flex-wrap gap-3">
                       <Link
                         href="/fr/verify"
-                        className="inline-flex items-center justify-center rounded-lg border border-gray-300 px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-50"
+                        className="inline-flex items-center justify-center rounded-lg border border-[#0B3A63]/20 px-4 py-2 text-sm text-[#0B3A63] transition-colors hover:bg-white"
                       >
                         Vérifier →
                       </Link>
 
                       <Link
-                        href="/fr/product/privacy"
-                        className="inline-flex items-center justify-center rounded-lg border border-gray-300 px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-50"
+                        href="/fr/privacy/"
+                        className="inline-flex items-center justify-center rounded-lg border border-[#0B3A63]/20 px-4 py-2 text-sm text-[#0B3A63] transition-colors hover:bg-white"
                       >
                         Confidentialité →
                       </Link>
@@ -249,7 +257,7 @@ export default function HomeFR() {
               <div className="mt-10 flex flex-wrap gap-3">
                 <a
                   href="#main-content"
-                  className="inline-flex items-center justify-center rounded-lg border border-gray-300 px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-50"
+                  className="inline-flex items-center justify-center rounded-lg border border-[#0B3A63]/20 px-4 py-2 text-sm text-[#0B3A63] transition-colors hover:bg-[#F8FAFC]"
                 >
                   Haut de page
                 </a>
