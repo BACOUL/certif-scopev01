@@ -72,24 +72,6 @@ export default function FeaturesFR() {
                 Aperçu du document
               </p>
 
-              <div className="absolute left-0 top-10 z-10 hidden rounded-2xl border border-[#0B3A63]/10 bg-white px-5 py-4 shadow-[0_18px_40px_rgba(11,58,99,0.12)] backdrop-blur ring-1 ring-[#1FB6C1]/20 md:block">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#64748B]">
-                  Résultat
-                </p>
-                <p className="mt-1 text-sm font-semibold text-[#0B3A63]">
-                  CO₂e agrégé lisible
-                </p>
-              </div>
-
-              <div className="absolute -right-2 bottom-14 z-10 hidden rounded-2xl border border-[#0B3A63]/10 bg-white px-5 py-4 shadow-[0_18px_40px_rgba(11,58,99,0.12)] backdrop-blur ring-1 ring-[#1FB6C1]/20 md:block">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#64748B]">
-                  Vérification
-                </p>
-                <p className="mt-1 text-sm font-semibold text-[#0B3A63]">
-                  ID unique + contrôle d’intégrité
-                </p>
-              </div>
-
               <div className="relative overflow-hidden rounded-[30px] border border-[#0B3A63]/10 bg-white shadow-[0_28px_70px_rgba(11,58,99,0.14)]">
                 <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(31,182,193,0.55),transparent)]" />
                 <Image
