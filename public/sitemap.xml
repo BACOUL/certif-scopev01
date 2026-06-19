@@ -52,6 +52,30 @@
   </url>
 
   <url>
+    <loc>https://www.certif-scope.com/fr/bilan-carbone-banque-pme/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://www.certif-scope.com/fr/bilan-carbone-assurance-pme/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://www.certif-scope.com/fr/document-carbone-fournisseur/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://www.certif-scope.com/fr/difference-bilan-carbone-attestation-co2e/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://www.certif-scope.com/fr/scope-1-2-3-explication/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -89,6 +113,12 @@
 
   <url>
     <loc>https://www.certif-scope.com/fr/verify/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://www.certif-scope.com/fr/verify/demo/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
