@@ -4,7 +4,15 @@ import Stripe from "stripe";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+let stripeClient: Stripe | null = null;
+
+function getStripeClient() {
+  const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+  if (!stripeSecretKey) return null;
+
+  stripeClient ??= new Stripe(stripeSecretKey);
+  return stripeClient;
+}
 
 /**
  * SOURCE DE VÉRITÉ — TYPE DE SESSION STRIPE
@@ -20,6 +28,15 @@ export async function POST(req: Request) {
       return NextResponse.json(
         { error: "MISSING_SESSION_ID" },
         { status: 400 }
+      );
+    }
+
+    const stripe = getStripeClient();
+
+    if (!stripe) {
+      return NextResponse.json(
+        { error: "MISSING_STRIPE_SECRET_KEY" },
+        { status: 500 }
       );
     }
 

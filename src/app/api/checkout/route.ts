@@ -6,7 +6,15 @@ export const runtime = "nodejs";
 /* ======================================================
    STRIPE CLIENT
 ====================================================== */
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+let stripeClient: Stripe | null = null;
+
+function getStripeClient() {
+  const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+  if (!stripeSecretKey) return null;
+
+  stripeClient ??= new Stripe(stripeSecretKey);
+  return stripeClient;
+}
 
 /* ======================================================
    LANGUES AUTORISÉES
@@ -39,6 +47,15 @@ export async function POST(req: Request) {
     if (!BASE_URL) {
       return NextResponse.json(
         { error: "MISSING_BASE_URL" },
+        { status: 500 }
+      );
+    }
+
+    const stripe = getStripeClient();
+
+    if (!stripe) {
+      return NextResponse.json(
+        { error: "MISSING_STRIPE_SECRET_KEY" },
         { status: 500 }
       );
     }
