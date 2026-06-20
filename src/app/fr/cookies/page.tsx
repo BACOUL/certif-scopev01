@@ -101,8 +101,8 @@ export default function CookiePolicyPage() {
           <p className="text-gray-700 leading-relaxed">
             Certif-Scope utilise un nombre très limité de cookies strictement
             nécessaires au fonctionnement technique et à la sécurité du site.
-            Aucun cookie publicitaire, de profilage ou de suivi inter-sites
-            n’est utilisé.
+            Aucun cookie publicitaire, de profilage, de suivi inter-sites,
+            d’analytics comportemental ou de marketing n’est utilisé.
           </p>
         </section>
 
@@ -139,9 +139,19 @@ export default function CookiePolicyPage() {
           </h2>
           <p className="text-gray-700 leading-relaxed">
             Certif-Scope n’intègre aucun service tiers publicitaire ou de suivi.
-            Les paiements sont traités par Stripe sur sa propre infrastructure
-            et sont soumis aux politiques de cookies et de confidentialité
-            indépendantes de Stripe.
+            Les services tiers utilisés le sont uniquement lorsqu’ils sont
+            nécessaires au fonctionnement du service : hébergement et
+            déploiement, paiement via Stripe, emails transactionnels via Resend,
+            état technique des clés d’accès et crédits de packs via Cloudflare
+            KV, et conversion technique du PDF via PDFShift.
+          </p>
+          <p className="text-gray-700 leading-relaxed mt-4">
+            Les paiements sont traités par Stripe sur sa propre infrastructure ;
+            Certif-Scope ne stocke pas les données de paiement. PDFShift ne reçoit
+            que les informations nécessaires à la production technique de
+            l’attestation PDF lorsque cette conversion est requise. Ces services
+            ne sont pas utilisés par Certif-Scope à des fins de marketing, de
+            publicité ou d’analyse comportementale.
           </p>
         </section>
 

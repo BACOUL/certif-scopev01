@@ -102,12 +102,18 @@ export default function DataProcessingPage() {
           <p className="text-gray-700 leading-relaxed">
             Séquence de traitement typique :
             <br />
-            Saisie utilisateur → Calcul en mémoire → Génération du PDF →
+            Saisie utilisateur → Calcul en mémoire → Génération technique du PDF →
             Téléchargement par l’utilisateur
             <br />
             Les éléments de vérification sont intégrés directement dans le
             document généré et ne reposent sur aucune consultation de base de
             données.
+          </p>
+          <p className="text-gray-700 leading-relaxed mt-4">
+            Les données financières détaillées ne sont pas stockées par
+            Certif-Scope. Lorsque la conversion PDF est effectuée par un
+            sous-traitant technique, seules les informations nécessaires à la
+            production de l’attestation PDF sont transmises.
           </p>
         </section>
 
@@ -125,7 +131,9 @@ export default function DataProcessingPage() {
           </ul>
           <p className="text-gray-700 leading-relaxed mt-4">
             Aucun profilage comportemental, suivi utilisateur, enrichissement
-            ou utilisation secondaire des données n’est effectué.
+            ou utilisation secondaire des données n’est effectué. Certif-Scope
+            n’utilise pas de tracking marketing, d’analytics comportemental ou
+            de cookies publicitaires.
           </p>
         </section>
 
@@ -157,7 +165,10 @@ export default function DataProcessingPage() {
             Les attestations PDF générées sont remises directement à
             l’utilisateur et ne sont pas conservées par Certif-Scope. Les
             échanges par email peuvent être conservés jusqu’à douze (12) mois à
-            des fins de support et d’exploitation.
+            des fins de support et d’exploitation. Les clés d’accès et crédits
+            de packs peuvent nécessiter un état technique minimal afin de gérer
+            leur validité et leur consommation, sans conservation des dépenses
+            détaillées déclarées.
           </p>
         </section>
 
@@ -171,13 +182,21 @@ export default function DataProcessingPage() {
             techniques :
           </p>
           <ul className="list-disc ml-6 text-gray-700 space-y-2">
-            <li>Infrastructure d’hébergement et de déploiement (ex. Vercel)</li>
-            <li>Services d’envoi d’emails</li>
-            <li>Prestataires de paiement (le cas échéant)</li>
+            <li>Infrastructure d’hébergement et de déploiement</li>
+            <li>Stripe pour le traitement des paiements</li>
+            <li>Resend pour l’envoi d’emails transactionnels ou de support</li>
+            <li>
+              Cloudflare KV pour l’état technique des clés d’accès et crédits de
+              packs
+            </li>
+            <li>PDFShift pour la conversion technique nécessaire à la génération PDF</li>
           </ul>
           <p className="text-gray-700 leading-relaxed mt-4">
-            Tous les sous-traitants opèrent dans un cadre contractuel aligné
-            avec les exigences du RGPD.
+            Les données de paiement sont traitées par Stripe et ne sont pas
+            stockées par Certif-Scope. PDFShift peut recevoir uniquement les
+            données nécessaires à la production technique du PDF demandé. Tous
+            les sous-traitants opèrent dans un cadre contractuel aligné avec les
+            exigences du RGPD.
           </p>
         </section>
 

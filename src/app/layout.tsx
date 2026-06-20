@@ -53,21 +53,6 @@ export default function RootLayout({
     <html lang="fr" suppressHydrationWarning>
       <head>
         <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=AW-933198701"
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              window.gtag = window.gtag || function(){window.dataLayer.push(arguments);};
-              window.gtag('js', new Date());
-              window.gtag('config', 'AW-933198701');
-            `,
-          }}
-        />
-
-        <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({

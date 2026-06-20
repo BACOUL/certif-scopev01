@@ -147,9 +147,13 @@ export default function PrivacyPageFR() {
             de Certif-Scope.
           </p>
           <p className="text-gray-700 leading-relaxed">
-            Seul le résultat CO₂e agrégé nécessaire à la génération de
-            l’attestation est transmis. Aucun détail de répartition des dépenses
-            n’est conservé ni journalisé.
+            Les données financières détaillées ne sont pas stockées par
+            Certif-Scope. Seules les informations strictement nécessaires à la
+            génération de l’attestation PDF, telles que le résultat CO₂e agrégé,
+            les métadonnées du document et les informations d’identification
+            affichées dans l’attestation, peuvent être traitées pour produire le
+            PDF. Aucun détail de répartition des dépenses n’est conservé ni
+            journalisé par Certif-Scope.
           </p>
         </section>
 
@@ -159,8 +163,10 @@ export default function PrivacyPageFR() {
           </h2>
           <p className="text-gray-700 leading-relaxed mb-4">
             Certif-Scope n’utilise ni cookies publicitaires, ni cookies de
-            tracking, ni outils d’analytics tiers. Le site ne repose pas sur des
-            cookies nécessitant un consentement au titre de la directive ePrivacy.
+            tracking, ni outils d’analytics tiers. Aucun suivi marketing, aucune
+            analyse comportementale et aucun cookie publicitaire ne sont utilisés.
+            Le site ne repose pas sur des cookies nécessitant un consentement au
+            titre de la directive ePrivacy.
           </p>
           <ul className="list-disc ml-6 text-gray-700 space-y-2">
             <li>pas de cookies marketing ou analytics</li>
@@ -197,15 +203,27 @@ export default function PrivacyPageFR() {
           </h2>
           <p className="text-gray-700 leading-relaxed mb-3">
             Certif-Scope ne vend pas, ne loue pas et ne monétise pas de données
-            personnelles. Certains traitements limités peuvent impliquer :
+            personnelles. Certains traitements limités peuvent impliquer des
+            sous-traitants techniques strictement nécessaires au fonctionnement
+            du service :
           </p>
           <ul className="list-disc ml-6 text-gray-700 space-y-2">
-            <li>des prestataires d’hébergement et de déploiement</li>
-            <li>des services de délivrance d’emails</li>
+            <li>un prestataire d’hébergement et de déploiement</li>
+            <li>Stripe pour le traitement des paiements</li>
+            <li>Resend pour la délivrance d’emails transactionnels ou de support</li>
+            <li>
+              Cloudflare KV pour l’état technique des clés d’accès et crédits de
+              packs
+            </li>
+            <li>PDFShift pour la conversion technique nécessaire à la génération PDF</li>
           </ul>
           <p className="text-gray-700 leading-relaxed mt-4">
-            Les sous-traitants opèrent sous des garanties contractuelles
-            conformes au RGPD.
+            Les données de paiement sont traitées par Stripe et ne sont pas
+            stockées par Certif-Scope. Lorsque PDFShift est utilisé, seules les
+            données nécessaires à la production technique de l’attestation PDF
+            sont transmises ; les dépenses financières détaillées ne sont pas
+            stockées par Certif-Scope. Les sous-traitants opèrent sous des
+            garanties contractuelles alignées avec les exigences du RGPD.
           </p>
         </section>
 
