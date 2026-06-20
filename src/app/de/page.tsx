@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   title:
     "CO2-Bilanz KMU: indikative CO2e-Bescheinigung | Certif-Scope Deutschland",
   description:
-    "CO2-Bilanz fuer KMU in Deutschland: Erstellen Sie eine indikative CO2e-Bescheinigung auf spend-based Grundlage. Standardisiertes PDF fuer einfache Kunden-, Lieferanten-, Bank-, Versicherungs- und Ausschreibungsanfragen. Kein umfassendes THG-Inventar und kein CSRD-/ESRS-Bericht.",
+    "CO2-Bilanz für KMU in Deutschland: Erstellen Sie eine indikative CO2e-Bescheinigung auf spend-based Grundlage. Standardisiertes PDF für einfache Kunden-, Lieferanten-, Bank-, Versicherungs- und Ausschreibungsanfragen. Kein umfassendes THG-Inventar und kein CSRD-/ESRS-Bericht.",
   keywords: [
     "CO2-Bilanz KMU",
     "CO2e-Bescheinigung",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     title:
       "CO2-Bilanz KMU: indikative CO2e-Bescheinigung | Certif-Scope Deutschland",
     description:
-      "Indikative CO2e-Bescheinigung auf spend-based Grundlage: standardisiertes PDF fuer einfache dokumentarische Anfragen von Kunden, Lieferanten, Banken, Versicherungen und Ausschreibungen.",
+      "Indikative CO2e-Bescheinigung auf spend-based Grundlage: standardisiertes PDF für einfache dokumentarische Anfragen von Kunden, Lieferanten, Banken, Versicherungen und Ausschreibungen.",
     url: "https://www.certif-scope.com/de/",
     siteName: "Certif-Scope",
     locale: "de_DE",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     title:
       "CO2-Bilanz KMU: indikative CO2e-Bescheinigung | Certif-Scope Deutschland",
     description:
-      "Spend-based CO2e-Schaetzung + standardisiertes PDF fuer einfache dokumentarische Anfragen.",
+      "Spend-based CO2e-Schätzung + standardisiertes PDF für einfache dokumentarische Anfragen.",
   },
   robots: {
     index: true,
@@ -87,7 +87,7 @@ export default function HomeDE() {
     name: "CO2-Bilanz KMU: indikative CO2e-Bescheinigung | Certif-Scope Deutschland",
     url: pageUrl,
     description:
-      "Startseite Deutschland: indikative CO2e-Schaetzung auf spend-based Grundlage mit standardisiertem PDF fuer einfache Kunden-, Lieferanten-, Bank-, Versicherungs- und Ausschreibungsanfragen. Kein umfassendes THG-Inventar und kein CSRD-/ESRS-Bericht.",
+      "Startseite Deutschland: indikative CO2e-Schätzung auf spend-based Grundlage mit standardisiertem PDF für einfache Kunden-, Lieferanten-, Bank-, Versicherungs- und Ausschreibungsanfragen. Kein umfassendes THG-Inventar und kein CSRD-/ESRS-Bericht.",
     isPartOf: {
       "@type": "WebSite",
       name: "Certif-Scope",

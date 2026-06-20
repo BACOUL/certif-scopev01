@@ -95,7 +95,7 @@ export function HeroDE() {
       className="relative overflow-hidden bg-[#F8FAFC]"
     >
       <span className="sr-only" itemProp="alternativeHeadline">
-        Indikative CO2e-Bescheinigung fuer einfache dokumentarische Anfragen.
+        Indikative CO2e-Bescheinigung für einfache dokumentarische Anfragen.
       </span>
 
       <div className="mx-auto max-w-7xl px-6 pb-14 pt-8 md:px-8 md:pb-20 md:pt-14">
@@ -123,7 +123,7 @@ export function HeroDE() {
               className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-[#0B3A63]/80 md:text-lg lg:mx-0"
             >
               Ein standardisiertes, datiertes und dokumentarisch kontrollierbares
-              PDF fuer einfache Anfragen aus Einkauf, Lieferantenmanagement,
+              PDF für einfache Anfragen aus Einkauf, Lieferantenmanagement,
               Finanzierung, Versicherung oder Ausschreibung - ohne ein umfassendes
               THG-Inventar zu starten.
             </p>
@@ -205,7 +205,7 @@ export function UseCaseDecisionTableDE() {
             Passt das zu Ihrer Anfrage?
           </h2>
           <p className="mt-5 text-base leading-relaxed text-[#0B3A63]/80 md:text-lg">
-            Certif-Scope ist fuer einfache dokumentarische Anfragen gedacht. Wenn
+            Certif-Scope ist für einfache dokumentarische Anfragen gedacht. Wenn
             ein umfassendes Inventar, ein bestimmter Standard oder eine externe
             fachliche Prüfung verlangt wird, muss diese Anforderung eingehalten werden.
           </p>
@@ -228,11 +228,11 @@ export function UseCaseDecisionTableDE() {
 const problems = [
   {
     title: "Reale Anfrage, unklare Nachweistiefe",
-    text: "Ein Kunde, Einkaeufer oder eine Ausschreibung fragt nach einer CO2-Bilanz oder einem CO2e-Beleg, ohne Format und Detailgrad eindeutig zu beschreiben.",
+    text: "Ein Kunde, Einkäufer oder eine Ausschreibung fragt nach einer CO2-Bilanz oder einem CO2e-Beleg, ohne Format und Detailgrad eindeutig zu beschreiben.",
   },
   {
-    title: "Klassische Loesungen sind oft zu schwer",
-    text: "Umfangreiche Klimabilanz-Projekte sind fuer eine kurzfristige operative Anfrage haeufig zu langsam, zu teuer und zu umfangreich.",
+    title: "Klassische Lösungen sind oft zu aufwendig",
+    text: "Umfangreiche Klimabilanz-Projekte sind für eine kurzfristige operative Anfrage häufig zu langsam, zu teuer und zu umfangreich.",
   },
   {
     title: "Die Antwort wird zeitnah erwartet",
@@ -248,7 +248,7 @@ export function ProblemSolutionDE() {
         <SectionHeader
           eyebrow="Anfrage verstehen"
           title="Warum eine CO2-Bilanz angefragt wird und warum die Antwort oft unklar bleibt"
-          text="In der Praxis ist die Anfrage real, aber erwarteter Detailgrad, Format und passende Antwort sind fuer KMU haeufig nicht eindeutig."
+          text="In der Praxis ist die Anfrage real, aber erwarteter Detailgrad, Format und passende Antwort sind für KMU häufig nicht eindeutig."
         />
 
         <div className="mt-14 grid gap-6 md:grid-cols-3">
@@ -262,17 +262,17 @@ export function ProblemSolutionDE() {
 
         <div className="mx-auto mt-16 max-w-4xl rounded-3xl border border-[#0B3A63]/10 bg-[#F8FAFC] p-7 text-center md:p-10">
           <h3 className="text-xl font-extrabold leading-tight text-[#0B3A63] md:text-2xl">
-            Das Problem ist nicht immer das Fehlen einer Loesung.
+            Das Problem ist nicht immer das Fehlen einer Lösung.
           </h3>
           <p className="mt-4 text-base leading-relaxed text-[#475569] md:text-lg">
-            Die Reibung entsteht oft zwischen einer unscharfen Anfrage und Loesungen,
-            die fuer den konkreten Bedarf zu umfangreich sind.
+            Die Reibung entsteht oft zwischen einer unscharfen Anfrage und Lösungen,
+            die für den konkreten Bedarf zu umfangreich sind.
           </p>
           <div className="mt-8 grid gap-4 text-left md:grid-cols-3">
             {[
               ["Zeitverlust", "Suche nach zu komplexen oder unpassenden Optionen."],
               ["Vertriebsreibung", "Schwierigkeit, Kunden oder Einkauf klar zu antworten."],
-              ["Vorgang verzoegert", "Spaete Antworten koennen Chancen oder Freigaben ausbremsen."],
+              ["Vorgang verzögert", "Späte Antworten können Chancen oder Freigaben ausbremsen."],
             ].map(([title, text]) => (
               <div key={title} className="rounded-2xl border border-[#0B3A63]/8 bg-white p-4">
                 <p className="text-sm font-semibold text-[#0B3A63]">{title}</p>
@@ -292,14 +292,14 @@ export function ProblemSolutionDE() {
                 Unklare Anfrage - aufwendige Suche - einfache Antwort erwartet
               </h3>
               <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-[#64748B] md:text-base">
-                In vielen Faellen geht es nicht um eine tiefgehende Analyse,
+                In vielen Fällen geht es nicht um eine tiefgehende Analyse,
                 sondern um eine nachvollziehbare Antwort auf eine konkrete Anfrage.
               </p>
             </div>
             <div className="mt-8 grid gap-4 md:grid-cols-3">
               {[
                 ["01 · Anfrage", "CO2e-Beleg wird verlangt", "Kunde, Einkauf, Vergabe, Lieferantenportal, Bank oder Versicherung."],
-                ["02 · Reibung", "Klassische Wege wirken zu umfangreich", "Lange Projekte, hohe Kosten und mehr Komplexitaet als noetig."],
+                ["02 · Reibung", "Klassische Wege wirken zu umfangreich", "Lange Projekte, hohe Kosten und mehr Komplexität als nötig."],
                 ["Erwartete Antwort", "Ein klares, standardisiertes Dokument", "Lesbar, schnell weiterzugeben und unmittelbar einzuordnen."],
               ].map(([kicker, title, text]) => (
                 <div key={title} className="rounded-2xl border border-[#0B3A63]/10 bg-[#F8FAFC] p-5">
@@ -311,7 +311,7 @@ export function ProblemSolutionDE() {
             </div>
             <div className="mt-6 flex justify-center">
               <div className="rounded-full border border-[#0B3A63]/10 bg-[#F8FAFC] px-4 py-2 text-center text-xs font-medium text-[#0B3A63] shadow-sm md:text-sm">
-                Dieser Dokumenttyp ist fuer einfache Kunden-, Lieferanten- oder Vergabeanfragen gedacht.
+                Dieser Dokumenttyp ist für einfache Kunden-, Lieferanten- oder Vergabeanfragen gedacht.
               </div>
             </div>
           </div>
@@ -319,7 +319,7 @@ export function ProblemSolutionDE() {
 
         <div className="mx-auto mt-14 max-w-3xl text-center">
           <p className="text-lg font-semibold leading-relaxed text-[#0B3A63] md:text-xl">
-            In vielen Faellen wird ein klares, standardisiertes und schnell uebermittelbares CO2e-Dokument erwartet.
+            In vielen Fällen wird ein klares, standardisiertes und schnell übermittelbares CO2e-Dokument erwartet.
           </p>
         </div>
         <div className="mx-auto mt-8 max-w-3xl text-center">
@@ -328,7 +328,7 @@ export function ProblemSolutionDE() {
             <strong className="font-semibold text-[#0B3A63]">
               einfache, standardisierte und dokumentarisch kontrollierbare CO2e-Bescheinigung
             </strong>{" "}
-            fuer solche Anfragen, ohne ein umfassendes THG-Inventar zu starten.
+            für solche Anfragen, ohne ein umfassendes THG-Inventar zu starten.
           </p>
         </div>
         <div className="mt-12 flex justify-center">
@@ -340,10 +340,10 @@ export function ProblemSolutionDE() {
 }
 
 const valueCards = [
-  ["Schnelle Antwort im passenden Umfang", "Liefern Sie zeitnah ein klares, lesbares und weitergabefaehiges CO2e-Dokument."],
-  ["Standardisiertes Format", "Ein Dokument, das Kunden, Einkauf oder Partner ohne lange Erklaerung einordnen koennen."],
-  ["Dokumentarische Kontrolle", "Jede Bescheinigung enthaelt eine Dokument-ID fuer eine einfache Zuordnung."],
-  ["Ohne unnoetige Komplexitaet", "Kein Abo und kein langes Projekt, sondern ein kurzer Ablauf fuer einen konkreten Bedarf."],
+  ["Schnelle Antwort im passenden Umfang", "Liefern Sie zeitnah ein klares, lesbares und weitergabefähiges CO2e-Dokument."],
+  ["Standardisiertes Format", "Ein Dokument, das Kunden, Einkauf oder Partner ohne lange Erklärung einordnen können."],
+  ["Dokumentarische Kontrolle", "Jede Bescheinigung enthält eine Dokument-ID für eine einfache Zuordnung."],
+  ["Ohne unnötige Komplexität", "Kein Abo und kein langes Projekt, sondern ein kurzer Ablauf für einen konkreten Bedarf."],
 ];
 
 const comparisonRows = [
@@ -351,7 +351,7 @@ const comparisonRows = [
   ["Aufwand", "Kurzer, standardisierter Ablauf", "Projekt mit Datenerhebung und fachlichem Zuschnitt"],
   ["Ergebnis", "Standardisierte CO2e-Bescheinigung", "Umfangreiche Klimabilanz"],
   ["Typische Nutzung", "Kunde, Lieferant, Bank, Versicherung, Vergabe", "Strategie, Reporting und internes Management"],
-  ["Zeithorizont", "Schnelle dokumentarische Antwort", "Laengeres Vorhaben"],
+  ["Zeithorizont", "Schnelle dokumentarische Antwort", "Längeres Vorhaben"],
 ];
 
 export function DifferentiationDE() {
@@ -362,7 +362,7 @@ export function DifferentiationDE() {
         <SectionHeader
           eyebrow="Abgrenzung"
           title="Eine einfache Alternative, wenn keine umfassende Klimabilanz verlangt wird"
-          text="In vielen Anfragen geht es nicht um ein langes Projekt, sondern um ein klares, standardisiertes und schnell uebermittelbares CO2e-Dokument."
+          text="In vielen Anfragen geht es nicht um ein langes Projekt, sondern um ein klares, standardisiertes und schnell übermittelbares CO2e-Dokument."
         />
 
         <div className="mt-16 overflow-hidden rounded-[30px] border border-[#0B3A63]/10 bg-white shadow-[0_22px_55px_rgba(11,58,99,0.08)]">
@@ -370,7 +370,7 @@ export function DifferentiationDE() {
             <div className="hidden border-r border-[#0B3A63]/8 px-6 py-5 md:block" />
             <div className="border-r border-[#1FB6C1]/20 bg-[#1FB6C1]/5 px-6 py-5">
               <span className="mb-2 inline-block rounded-full bg-[#1FB6C1]/10 px-3 py-1 text-[10px] font-semibold text-[#1FB6C1]">
-                Haeufig passend bei einfachen Anfragen
+                Häufig passend bei einfachen Anfragen
               </span>
               <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#64748B]">Certif-Scope</p>
               <p className="mt-2 text-lg font-extrabold text-[#0B3A63]">Schnelle dokumentarische Antwort</p>
@@ -398,7 +398,7 @@ export function DifferentiationDE() {
         </div>
 
         <div className="mx-auto mt-8 max-w-3xl rounded-2xl border border-[#0B3A63]/10 bg-[#F8FAFC] p-5 text-center">
-          <p className="text-sm font-semibold text-[#0B3A63]">Beispiel fuer das Ergebnis</p>
+          <p className="text-sm font-semibold text-[#0B3A63]">Beispiel für das Ergebnis</p>
           <p className="mt-2 text-lg font-extrabold text-[#0B3A63]">
             CO2e-PDF mit Ergebnis, Methode, Grenzen und Dokument-ID
           </p>
@@ -419,7 +419,7 @@ export function DifferentiationDE() {
           </h3>
           <p className="mt-4 text-base text-[#475569]">
             Es handelt sich um eine indikative CO2e-Bescheinigung auf spend-based
-            Grundlage. Sie ist kein vollstaendiges THG-Inventar und kein CSRD-/ESRS-Bericht.
+            Grundlage. Sie ist kein vollständiges THG-Inventar und kein CSRD-/ESRS-Bericht.
           </p>
         </div>
 
@@ -435,13 +435,13 @@ export function DifferentiationDE() {
 }
 
 const featureItems = [
-  ["01", "Lesbares CO2e-Ergebnis", "Ein aggregiertes Ergebnis, das Kunden, Einkauf, Bank oder Partner schnell einordnen koennen."],
+  ["01", "Lesbares CO2e-Ergebnis", "Ein aggregiertes Ergebnis, das Kunden, Einkauf, Bank oder Partner schnell einordnen können."],
   ["02", "Methode ausgewiesen", "Eine spend-based Einordnung mit kurzem Rahmen zu Umfang, Annahmen und indikativem Charakter."],
-  ["03", "Referenzen genannt", "Emissionsfaktoren aus anerkannten Referenzrahmen fuer eine konsistente Schaetzung."],
-  ["04", "Dokumentarische Kontrolle", "Eine eindeutige Dokument-ID unterstuetzt die einfache Zuordnung des PDFs."],
+  ["03", "Referenzen genannt", "Emissionsfaktoren aus anerkannten Referenzrahmen für eine konsistente Schätzung."],
+  ["04", "Dokumentarische Kontrolle", "Eine eindeutige Dokument-ID unterstützt die einfache Zuordnung des PDFs."],
 ];
 
-const proofPills = ["Aggregiertes Ergebnis", "Methodik kurz erklaert", "Dokument-ID", "Standardformat"];
+const proofPills = ["Aggregiertes Ergebnis", "Methodik kurz erklärt", "Dokument-ID", "Standardformat"];
 
 export function FeaturesDE() {
   return (
@@ -451,7 +451,7 @@ export function FeaturesDE() {
         <SectionHeader
           eyebrow="CO2e-Bescheinigung"
           title="Das ist das Dokument, das Sie weitergeben"
-          text="Ein Dokument fuer Kundenanfragen, Ausschreibungen, Lieferantenportale oder einfache Finanzierungs- und Versicherungsprozesse."
+          text="Ein Dokument für Kundenanfragen, Ausschreibungen, Lieferantenportale oder einfache Finanzierungs- und Versicherungsprozesse."
         />
 
         <div className="mt-16 grid items-center gap-12 lg:grid-cols-[1.02fr_0.98fr] lg:gap-14">
@@ -534,7 +534,7 @@ const recipientItems = [
   "Sichtbare Grenzen",
   "Ausstellungsdatum",
   "Dokument-ID",
-  "Hinweis: indikativ, nicht fuer Pflichtberichte gedacht",
+  "Hinweis: indikativ, nicht für Pflichtberichte gedacht",
 ];
 
 export function RecipientViewDE() {
@@ -544,10 +544,10 @@ export function RecipientViewDE() {
         <div className="grid gap-10 lg:grid-cols-[0.86fr_1.14fr] lg:items-start">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#0B3A63]/70 md:text-sm">
-              Uebermitteltes Dokument
+              Übermitteltes Dokument
             </p>
             <h2 id="pdf-destinataire-title" className="mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">
-              Was der Empfaenger im PDF sieht
+              Was der Empfänger im PDF sieht
             </h2>
             <p className="mt-5 text-base leading-relaxed text-[#0B3A63]/80 md:text-lg">
               Ziel ist ein lesbares, archivierbares und vorsichtig formuliertes
@@ -579,19 +579,19 @@ export function RecipientViewDE() {
 }
 
 const officialTexts = [
-  ["Freiwilliger KMU-Standard", "EFRAG - Voluntary Sustainability Reporting Standard for non-listed SMEs", "Rahmen fuer proportionierte Nachhaltigkeitsinformationen nicht kapitalmarktorientierter KMU.", "https://www.efrag.org/en/smes-and-sustainability-reporting"],
-  ["Europaeische Kommission", "Voluntary sustainability reporting standard for SMEs", "Offizielle Kommunikation zum freiwilligen KMU-Standard und zur Entlastung bei Nachhaltigkeitsanfragen.", "https://finance.ec.europa.eu/publications/commission-presents-voluntary-sustainability-reporting-standard-ease-burden-smes_en"],
-  ["CO2e-Methode", "GHG Protocol - Scope 3 Calculation Guidance", "Methodischer Rahmen fuer die Berechnung indirekter Emissionen.", "https://ghgprotocol.org/scope-3-calculation-guidance-2"],
-  ["Spend-based Ansatz", "GHG Protocol - Category 1: Purchased Goods and Services", "Kapitel zu Methoden fuer eingekaufte Waren und Dienstleistungen, einschliesslich spend-based Ansatz.", "https://ghgprotocol.org/sites/default/files/2022-12/Chapter1.pdf"],
-  ["Europaeischer Kontext", "Directive (EU) 2022/2464 - CSRD", "Europaeischer Rahmen fuer Nachhaltigkeitsberichterstattung betroffener Unternehmen.", "https://eur-lex.europa.eu/eli/dir/2022/2464/oj"],
-  ["Europaeische Standards", "Delegated Regulation (EU) 2023/2772 - ESRS", "Delegierte Verordnung zu European Sustainability Reporting Standards.", "https://eur-lex.europa.eu/eli/reg_del/2023/2772/oj"],
-  ["Deutscher Kontext", "Handelsgesetzbuch - Nachhaltigkeitsberichterstattung", "Deutscher Rechtsrahmen fuer betroffene Unternehmen; nicht gleichzusetzen mit einer einfachen CO2e-Bescheinigung.", "https://www.gesetze-im-internet.de/hgb/"],
+  ["Freiwilliger KMU-Standard", "EFRAG - Voluntary Sustainability Reporting Standard for non-listed SMEs", "Rahmen für proportionierte Nachhaltigkeitsinformationen nicht kapitalmarktorientierter KMU.", "https://www.efrag.org/en/smes-and-sustainability-reporting"],
+  ["Europäische Kommission", "Voluntary sustainability reporting standard for SMEs", "Offizielle Kommunikation zum freiwilligen KMU-Standard und zur Entlastung bei Nachhaltigkeitsanfragen.", "https://finance.ec.europa.eu/publications/commission-presents-voluntary-sustainability-reporting-standard-ease-burden-smes_en"],
+  ["CO2e-Methode", "GHG Protocol - Scope 3 Calculation Guidance", "Methodischer Rahmen für die Berechnung indirekter Emissionen.", "https://ghgprotocol.org/scope-3-calculation-guidance-2"],
+  ["Spend-based Ansatz", "GHG Protocol - Category 1: Purchased Goods and Services", "Kapitel zu Methoden für eingekaufte Waren und Dienstleistungen, einschließlich spend-based Ansatz.", "https://ghgprotocol.org/sites/default/files/2022-12/Chapter1.pdf"],
+  ["Europäischer Kontext", "Directive (EU) 2022/2464 - CSRD", "Europäischer Rahmen für Nachhaltigkeitsberichterstattung betroffener Unternehmen.", "https://eur-lex.europa.eu/eli/dir/2022/2464/oj"],
+  ["Europäische Standards", "Delegated Regulation (EU) 2023/2772 - ESRS", "Delegierte Verordnung zu European Sustainability Reporting Standards.", "https://eur-lex.europa.eu/eli/reg_del/2023/2772/oj"],
+  ["Deutscher Kontext", "Handelsgesetzbuch - Nachhaltigkeitsberichterstattung", "Deutscher Rechtsrahmen für betroffene Unternehmen; nicht gleichzusetzen mit einer einfachen CO2e-Bescheinigung.", "https://www.gesetze-im-internet.de/hgb/"],
 ];
 
 const officialReferences = [
-  ["KMU < 250 Mitarbeitende", "VSME - nicht kapitalmarktorientierte KMU", "Der VSME bietet einen freiwilligen Rahmen fuer proportionierte Nachhaltigkeitsinformationen, passend zu den Moeglichkeiten vieler KMU.", "EFRAG - VSME", "https://www.efrag.org/en/smes-and-sustainability-reporting"],
-  ["Kunden & Finanzpartner", "Europaeische Kommission - Nachhaltigkeitsanfragen", "Die Kommission erkennt an, dass KMU Anfragen grosser Unternehmen oder Finanzinstitute erhalten koennen, und unterstuetzt einen freiwilligen Standard zur Entlastung.", "European Commission - VSME", "https://finance.ec.europa.eu/publications/commission-presents-voluntary-sustainability-reporting-standard-ease-burden-smes_en"],
-  ["CO2e-Methode", "GHG Protocol - spend-based Methode", "Die Scope-3-Guidance beschreibt spend-based Methoden als moeglichen Ansatz fuer bestimmte indirekte Emissionen aus wirtschaftlichen Daten.", "GHG Protocol - Scope 3 Guidance", "https://ghgprotocol.org/scope-3-calculation-guidance-2"],
+  ["KMU < 250 Mitarbeitende", "VSME - nicht kapitalmarktorientierte KMU", "Der VSME bietet einen freiwilligen Rahmen für proportionierte Nachhaltigkeitsinformationen, passend zu den Möglichkeiten vieler KMU.", "EFRAG - VSME", "https://www.efrag.org/en/smes-and-sustainability-reporting"],
+  ["Kunden & Finanzpartner", "Europäische Kommission - Nachhaltigkeitsanfragen", "Die Kommission erkennt an, dass KMU Anfragen großer Unternehmen oder Finanzinstitute erhalten können, und unterstützt einen freiwilligen Standard zur Entlastung.", "European Commission - VSME", "https://finance.ec.europa.eu/publications/commission-presents-voluntary-sustainability-reporting-standard-ease-burden-smes_en"],
+  ["CO2e-Methode", "GHG Protocol - spend-based Methode", "Die Scope-3-Guidance beschreibt spend-based Methoden als möglichen Ansatz für bestimmte indirekte Emissionen aus wirtschaftlichen Daten.", "GHG Protocol - Scope 3 Guidance", "https://ghgprotocol.org/scope-3-calculation-guidance-2"],
 ];
 
 export function OfficialReferencesDE() {
@@ -600,12 +600,12 @@ export function OfficialReferencesDE() {
       <div className="mx-auto max-w-6xl px-6">
         <SectionHeader
           eyebrow="Offizieller Rahmen und Methode"
-          title="Eine Methode fuer proportionierte KMU-Antworten"
-          text="Certif-Scope orientiert sich an Referenzen, die zwei Realitaeten anerkennen: KMU erhalten ESG- oder CO2e-Anfragen, und die Antwort sollte zum tatsaechlichen Umfang der Anfrage passen."
+          title="Eine Methode für proportionierte KMU-Antworten"
+          text="Certif-Scope orientiert sich an Referenzen, die zwei Realitäten anerkennen: KMU erhalten ESG- oder CO2e-Anfragen, und die Antwort sollte zum tatsächlichen Umfang der Anfrage passen."
         />
         <p className="mx-auto mt-4 max-w-3xl text-center text-sm leading-relaxed text-[#64748B] md:text-base">
-          Der freiwillige VSME-Ansatz von EFRAG und Europaeischer Kommission zielt
-          auf proportionierte Informationen. Fuer die CO2e-Einordnung nutzt
+          Der freiwillige VSME-Ansatz von EFRAG und Europäischer Kommission zielt
+          auf proportionierte Informationen. Für die CO2e-Einordnung nutzt
           Certif-Scope einen spend-based Ansatz, angelehnt an das GHG Protocol Scope 3.
         </p>
         <div className="mt-8 flex justify-center">
@@ -675,9 +675,9 @@ export function OfficialReferencesDE() {
           </div>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             {[
-              ["01 · KMU betroffen", "Ein Unternehmen erhaelt eine Anfrage", "Ausloeser ist haeufig Kunde, Auftraggeber, Bank, Versicherung oder ein kommerzieller Vorgang."],
-              ["02 · Passendes Format", "Nicht jede Anfrage verlangt eine umfassende Klimabilanz", "Europaeische Referenzen betonen proportionierte Informationen fuer KMU."],
-              ["Certif-Scope-Antwort", "Indikative CO2e-Bescheinigung", "Ein standardisiertes Dokument mit aggregierter spend-based Schaetzung."],
+              ["01 · KMU betroffen", "Ein Unternehmen erhält eine Anfrage", "Auslöser ist häufig Kunde, Auftraggeber, Bank, Versicherung oder ein kommerzieller Vorgang."],
+              ["02 · Passendes Format", "Nicht jede Anfrage verlangt eine umfassende Klimabilanz", "Europäische Referenzen betonen proportionierte Informationen für KMU."],
+              ["Certif-Scope-Antwort", "Indikative CO2e-Bescheinigung", "Ein standardisiertes Dokument mit aggregierter spend-based Schätzung."],
             ].map(([kicker, title, text]) => (
               <div key={title} className="rounded-2xl border border-[#0B3A63]/10 bg-[#F8FAFC] p-5">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#64748B]">{kicker}</p>
@@ -710,7 +710,7 @@ export function OfficialReferencesDE() {
 const steps = [
   ["01", "Eingabe", "Sie erfassen Ihre Daten", "Geben Sie Jahresausgaben, Bezugsjahr und einige Basisinformationen ein, um die Berechnung zu starten.", "Deklarierte Daten • kurzer Ablauf • einfache Eingabe"],
   ["02", "Berechnung", "Der Motor wendet eine standardisierte Methode an", "Der Ablauf nutzt eine indikative spend-based Logik auf Basis referenzierter Faktoren, um ein lesbares CO2e-Ergebnis zu erzeugen.", "Indikative Methode • Standardisierung • aggregiertes Ergebnis"],
-  ["03", "Ausgabe", "Sie erhalten ein Dokument zum Weitergeben", "Laden Sie ein standardisiertes PDF mit Dokument-ID herunter, passend fuer Kunden-, Lieferanten- oder Finanzpartneranfragen.", "PDF • Dokument-ID • dokumentarische Kontrolle"],
+  ["03", "Ausgabe", "Sie erhalten ein Dokument zum Weitergeben", "Laden Sie ein standardisiertes PDF mit Dokument-ID herunter, passend für Kunden-, Lieferanten- oder Finanzpartneranfragen.", "PDF • Dokument-ID • dokumentarische Kontrolle"],
 ];
 
 export function HowItWorksDE() {
@@ -719,7 +719,7 @@ export function HowItWorksDE() {
       <div className="mx-auto max-w-7xl px-6 md:px-8">
         <SectionHeader
           eyebrow="Ablauf"
-          title="So erhalten Sie schnell ein CO2e-Dokument fuer Ihr KMU"
+          title="So erhalten Sie schnell ein CO2e-Dokument für Ihr KMU"
           text="Daten erfassen, indikative spend-based Berechnung erhalten und ein standardisiertes Dokument zum Weitergeben erzeugen."
         />
         <div className="mt-16 grid items-center gap-12 lg:grid-cols-[0.96fr_1.04fr] lg:gap-14">
@@ -777,14 +777,14 @@ export function HowItWorksDE() {
             </div>
             <div className="mt-6 rounded-xl border border-[#1FB6C1]/20 bg-[#1FB6C1]/5 p-4 text-center">
               <p className="text-sm font-semibold text-[#0B3A63]">
-                Ein kurzer Ablauf fuer ein schnell uebermittelbares Dokument.
+                Ein kurzer Ablauf für ein schnell übermittelbares Dokument.
               </p>
             </div>
           </div>
         </div>
         <div className="mt-16 flex flex-col items-center gap-4 text-center">
           <p className="text-sm text-[#0B3A63]/80">
-            Kein Abo. Kein langes Projekt. Keine unnoetige Komplexitaet.
+            Kein Abo. Kein langes Projekt. Keine unnötige Komplexität.
           </p>
           <PrimaryLink>CO2e-Dokument erstellen</PrimaryLink>
         </div>
@@ -796,7 +796,7 @@ export function HowItWorksDE() {
 const useCases = [
   ["01", "Auf eine Lieferantenanfrage antworten", "Ein Kunde oder Lieferantenportal fragt einen CO2e-Beleg an. Ziel ist, zeitnah ein klares Dokument zu senden.", "Lieferantenfall ansehen", "/de/why-companies-ask"],
   ["02", "Auf eine Ausschreibung reagieren", "Die Unterlagen nennen einen CO2e-Punkt, ohne eine vertiefte Methode festzulegen. Ein standardisiertes Dokument kann passend sein.", "Ausschreibungsfall ansehen", "/de/why-companies-ask"],
-  ["03", "Schnell lesbar und zuordenbar machen", "Haeufig braucht der Empfaenger ein PDF mit Ergebnis, Methode, Grenzen und Dokument-ID.", "Beispiel ansehen", "/api/sample"],
+  ["03", "Schnell lesbar und zuordenbar machen", "Häufig braucht der Empfänger ein PDF mit Ergebnis, Methode, Grenzen und Dokument-ID.", "Beispiel ansehen", "/api/sample"],
 ];
 
 export function TestimonialsDE() {
@@ -804,7 +804,7 @@ export function TestimonialsDE() {
     <section id="testimonials" className="relative overflow-hidden bg-white py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-6 md:px-8">
         <SectionHeader
-          eyebrow="Anwendungsfaelle"
+          eyebrow="Anwendungsfälle"
           title="Wann dieses Dokument konkret hilft"
           text="Typische Situationen, in denen nicht ein umfangreiches Klimaprojekt gestartet werden soll, sondern schnell ein klares CO2e-Dokument gebraucht wird."
         />
@@ -817,13 +817,13 @@ export function TestimonialsDE() {
               Externe Anfrage - Reibung - Antwort zum Weitergeben
             </h3>
             <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[#64748B] md:text-base">
-              Meist geht es nicht darum, eine grosse Studie zu erstellen, sondern
+              Meist geht es nicht darum, eine große Studie zu erstellen, sondern
               das passende Dokument im passenden Umfang zu liefern.
             </p>
             <div className="mt-8 grid gap-4 md:grid-cols-3">
               {[
                 ["01 · Situation", "CO2e-Anfrage kommt", "Kunde, Bank, Versicherung, Lieferantenportal oder Ausschreibung."],
-                ["02 · Reibung", "Klassische Antworten sind zu schwer", "Zu viel Aufwand fuer eine einfache dokumentarische Anfrage."],
+                ["02 · Reibung", "Klassische Antworten sind zu aufwendig", "Zu viel Aufwand für eine einfache dokumentarische Anfrage."],
                 ["03 · Antwort", "Standardisiertes Dokument", "Aggregiertes Ergebnis, Methode, Grenzen und Dokument-ID."],
               ].map(([kicker, title, text]) => (
                 <div key={title} className="rounded-2xl border border-[#0B3A63]/10 bg-[#F8FAFC] p-5">
@@ -872,8 +872,8 @@ export function PricingDE() {
       <div className="mx-auto max-w-7xl px-6 md:px-8">
         <SectionHeader
           eyebrow="Preis"
-          title="Ein einfacher Preis fuer ein unmittelbar nutzbares Dokument"
-          text="In vielen Faellen geht es darum, schnell ein klares CO2e-Dokument zu liefern, ohne ein langes Projekt zu starten."
+          title="Ein einfacher Preis für ein unmittelbar nutzbares Dokument"
+          text="In vielen Fällen geht es darum, schnell ein klares CO2e-Dokument zu liefern, ohne ein langes Projekt zu starten."
         />
         <div className="mt-16 grid gap-8 lg:grid-cols-3">
           <div className="relative overflow-hidden rounded-[30px] border border-[#0B3A63]/10 bg-white p-8 shadow-[0_25px_60px_rgba(11,58,99,0.12)]">
@@ -911,7 +911,7 @@ export function PricingDE() {
               Lieferantendossier / Ausschreibung
             </h3>
             <p className="mt-4 text-sm leading-relaxed text-[#475569]">
-              Ein lesbares, standardisiertes CO2e-Dokument fuer Kunden-, Lieferanten-
+              Ein lesbares, standardisiertes CO2e-Dokument für Kunden-, Lieferanten-
               oder Vergabekontexte, wenn keine vertiefte fachliche Prüfung verlangt wird.
             </p>
             <div className="mt-6 space-y-3">
@@ -934,7 +934,7 @@ export function PricingDE() {
               <li>• Kein umfassendes THG-Inventar</li>
               <li>• Kein detailliertes Scope-1-/2-/3-Projekt</li>
               <li>• Kein CSRD-/ESRS-Bericht</li>
-              <li>• Keine Aussage ueber automatische Akzeptanz</li>
+              <li>• Keine Aussage über automatische Akzeptanz</li>
             </ul>
             <div className="mt-6">
               <a href="#cas-adaptes" className="inline-flex items-center justify-center rounded-xl border border-white/40 px-4 py-2 text-sm transition hover:bg-white/10">
@@ -946,7 +946,7 @@ export function PricingDE() {
         <div className="mx-auto mt-14 max-w-3xl text-center">
           <p className="text-sm leading-relaxed text-[#64748B] md:text-base">
             Wenn eine umfassende Klimabilanz, ein bestimmter Standard oder eine externe fachliche
-            Prüfung verlangt wird, ist ein anderer Ansatz erforderlich. Certif-Scope ist fuer
+            Prüfung verlangt wird, ist ein anderer Ansatz erforderlich. Certif-Scope ist für
             schnelle dokumentarische Anfragen gedacht.
           </p>
         </div>
@@ -956,20 +956,20 @@ export function PricingDE() {
 }
 
 const faqItems = [
-  ["Ist eine CO2-Bilanz fuer KMU verpflichtend?", "In vielen Faellen nein. Viele KMU erhalten CO2e-Anfragen aus Kunden-, Lieferanten-, Bank- oder Versicherungskontexten, ohne dass daraus automatisch eine allgemeine Pflicht entsteht."],
-  ["Warum fragen Kunden oder Einkaufsteams CO2e-Informationen an?", "Groessere Unternehmen integrieren ESG- und Klimainformationen zunehmend in Einkaufs- und Lieferantenprozesse. Oft dient ein CO2e-Indikator einer ersten Einordnung."],
-  ["Kann ich schnell ein CO2e-Dokument fuer eine Ausschreibung oder Lieferantenanfrage erhalten?", "Ja, wenn die Anfrage eine einfache dokumentarische Antwort erlaubt. Certif-Scope erstellt ein standardisiertes PDF auf Basis eingegebener Daten."],
-  ["Worin unterscheidet sich Certif-Scope von einer umfassenden Klimabilanz?", "Certif-Scope liefert eine indikative CO2e-Schaetzung auf spend-based Grundlage. Es ersetzt kein umfassendes THG-Inventar und keinen CSRD-/ESRS-Bericht."],
-  ["Brauche ich Energieabrechnungen, Kilometer oder technische Aktivitaetsdaten?", "Nein. Der Ansatz ist spend-based. Es werden Ausgabenkategorien genutzt, keine technischen Detaildaten wie kWh, Liter Kraftstoff oder gefahrene Kilometer."],
-  ["Wie laeuft die Erstellung ab?", "Sie erfassen Ausgaben und Basisinformationen. Danach wird eine indikative CO2e-Schaetzung erzeugt und als standardisiertes PDF ausgegeben."],
-  ["Wie lange dauert die Erstellung?", "Der Ablauf ist kurz und haengt von den eingegebenen Informationen ab. Es ist kein langes Beratungsprojekt vorgesehen."],
-  ["Was enthaelt das PDF?", "Das PDF enthaelt ein aggregiertes CO2e-Ergebnis, Metadaten, methodische Hinweise, sichtbare Grenzen und eine Dokument-ID."],
-  ["Kann das Dokument fuer Banken oder Versicherungen genutzt werden?", "Es kann genutzt werden, wenn ein einfacher CO2e-Indikator im Rahmen einer Vorpruefung oder ESG-Abfrage genuegt. Die Entscheidung ueber Akzeptanz liegt beim Empfaenger."],
-  ["Akzeptieren Kunden oder Einkaufsteams dieses Format?", "Das haengt von der konkreten Anfrage ab. Certif-Scope ist als indikatives, strukturiertes Dokument fuer einfache Anfragen positioniert."],
-  ["Welche Methodik wird genutzt?", "Certif-Scope nutzt eine spend-based Logik: Ausgaben werden mit Emissionsfaktoren verknuepft, um eine aggregierte CO2e-Schaetzung zu erzeugen."],
-  ["Wie funktioniert die Kontrolle des Dokuments?", "Das Dokument enthaelt eine Dokument-ID und Angaben zur Zuordnung. Diese Kontrolle betrifft das Dokument, nicht eine externe Validierung des CO2e-Ergebnisses."],
+  ["Ist eine CO2-Bilanz für KMU verpflichtend?", "In vielen Fällen nein. Viele KMU erhalten CO2e-Anfragen aus Kunden-, Lieferanten-, Bank- oder Versicherungskontexten, ohne dass daraus automatisch eine allgemeine Pflicht entsteht."],
+  ["Warum fragen Kunden oder Einkaufsteams CO2e-Informationen an?", "Größere Unternehmen integrieren ESG- und Klimainformationen zunehmend in Einkaufs- und Lieferantenprozesse. Oft dient ein CO2e-Indikator einer ersten Einordnung."],
+  ["Kann ich schnell ein CO2e-Dokument für eine Ausschreibung oder Lieferantenanfrage erhalten?", "Ja, wenn die Anfrage eine einfache dokumentarische Antwort erlaubt. Certif-Scope erstellt ein standardisiertes PDF auf Basis eingegebener Daten."],
+  ["Worin unterscheidet sich Certif-Scope von einer umfassenden Klimabilanz?", "Certif-Scope liefert eine indikative CO2e-Schätzung auf spend-based Grundlage. Es ersetzt kein umfassendes THG-Inventar und keinen CSRD-/ESRS-Bericht."],
+  ["Brauche ich Energieabrechnungen, Kilometer oder technische Aktivitätsdaten?", "Nein. Der Ansatz ist spend-based. Es werden Ausgabenkategorien genutzt, keine technischen Detaildaten wie kWh, Liter Kraftstoff oder gefahrene Kilometer."],
+  ["Wie läuft die Erstellung ab?", "Sie erfassen Ausgaben und Basisinformationen. Danach wird eine indikative CO2e-Schätzung erzeugt und als standardisiertes PDF ausgegeben."],
+  ["Wie lange dauert die Erstellung?", "Der Ablauf ist kurz und hängt von den eingegebenen Informationen ab. Es ist kein langes Beratungsprojekt vorgesehen."],
+  ["Was enthält das PDF?", "Das PDF enthält ein aggregiertes CO2e-Ergebnis, Metadaten, methodische Hinweise, sichtbare Grenzen und eine Dokument-ID."],
+  ["Kann das Dokument für Banken oder Versicherungen genutzt werden?", "Es kann genutzt werden, wenn ein einfacher CO2e-Indikator im Rahmen einer Vorprüfung oder ESG-Abfrage genügt. Die Entscheidung über Akzeptanz liegt beim Empfänger."],
+  ["Akzeptieren Kunden oder Einkaufsteams dieses Format?", "Das hängt von der konkreten Anfrage ab. Certif-Scope ist als indikatives, strukturiertes Dokument für einfache Anfragen positioniert."],
+  ["Welche Methodik wird genutzt?", "Certif-Scope nutzt eine spend-based Logik: Ausgaben werden mit Emissionsfaktoren verknüpft, um eine aggregierte CO2e-Schätzung zu erzeugen."],
+  ["Wie funktioniert die Kontrolle des Dokuments?", "Das Dokument enthält eine Dokument-ID und Angaben zur Zuordnung. Diese Kontrolle betrifft das Dokument, nicht eine externe Validierung des CO2e-Ergebnisses."],
   ["Werden detaillierte Finanzdaten dauerhaft gespeichert?", "Der Dienst ist datensparsam konzipiert. Detaillierte Eingaben werden nicht als dauerhafte Finanzhistorie aufgebaut."],
-  ["Welche Grenzen hat die Bescheinigung?", "Sie ist indikativ, spend-based und vom Nutzerinput abhaengig. Sie deckt kein umfassendes Scope-Inventar ab und ersetzt keine formelle Berichterstattung."],
+  ["Welche Grenzen hat die Bescheinigung?", "Sie ist indikativ, spend-based und vom Nutzerinput abhängig. Sie deckt kein umfassendes Scope-Inventar ab und ersetzt keine formelle Berichterstattung."],
 ];
 
 export function FAQDE() {
@@ -985,11 +985,11 @@ export function FAQDE() {
           FAQ • CO2-Bilanz KMU • Ausschreibungen • Banken
         </p>
         <h2 className="mb-5 text-center text-3xl font-extrabold tracking-tight text-[#0B3A63] md:text-4xl">
-          Haeufige Fragen zur CO2-Bilanz fuer KMU
+          Häufige Fragen zur CO2-Bilanz für KMU
         </h2>
         <p className="mx-auto mb-14 max-w-3xl text-center text-lg leading-relaxed text-[#475569]">
           Diese FAQ ordnet typische Fragen zu CO2e-Anfragen, KMU, Ausschreibungen,
-          Bankunterlagen und dem Unterschied zwischen einfacher Schaetzung und
+          Bankunterlagen und dem Unterschied zwischen einfacher Schätzung und
           umfassender Klimabilanz ein.
         </p>
         <div className="space-y-4" role="list">
@@ -1026,9 +1026,9 @@ export function FAQDE() {
         </div>
         <div className="mx-auto mt-10 max-w-3xl rounded-[20px] border border-[#0B3A63]/10 bg-white/90 p-5 shadow-sm md:p-6">
           <p className="text-center text-xs leading-relaxed text-[#64748B] md:text-sm">
-            Indikative Schaetzung auf Basis deklarierter Ausgaben. Kein CSRD-/ESRS-Bericht,
-            keine umfassende Scope-Abdeckung und kein Ersatz fuer ein vollstaendiges THG-Inventar.
-            Die Aussagekraft haengt von den Angaben des Nutzers ab.
+            Indikative Schätzung auf Basis deklarierter Ausgaben. Kein CSRD-/ESRS-Bericht,
+            keine umfassende Scope-Abdeckung und kein Ersatz für ein vollständiges THG-Inventar.
+            Die Aussagekraft hängt von den Angaben des Nutzers ab.
           </p>
         </div>
       </div>
