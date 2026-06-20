@@ -1,32 +1,35 @@
-import type { Metadata } from "next";
-import type { ReactNode } from "react";
 import "../../styles/index.css";
-import { GermanFooter, GermanHeader } from "./_components/GermanPublicPage";
 
+/* ======================================================
+   CONFIG DE
+====================================================== */
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-export const metadata: Metadata = {
-  title: {
-    default: "Certif-Scope Deutschland",
-    template: "%s | Certif-Scope Deutschland",
+/* ======================================================
+   METADATA DE — HORS INDEX POUR LANCEMENT FR
+====================================================== */
+export const metadata = {
+  robots: {
+    index: false,
+    follow: true,
   },
-  description:
-    "Indikative CO2e-Bescheinigungen fuer deutsche KMU, Lieferanten und B2B-Anfragen.",
-  metadataBase: new URL("https://www.certif-scope.com"),
 };
 
+/* ======================================================
+   LAYOUT DE
+   - volontairement minimal
+   - aucun header/footer
+====================================================== */
 export default function DELayout({
   children,
 }: {
-  children: ReactNode;
+  children: React.ReactNode;
 }) {
   return (
-    <html lang="de-DE" suppressHydrationWarning>
-      <body className="bg-white text-slate-950 antialiased">
-        <GermanHeader />
+    <html lang="de" suppressHydrationWarning>
+      <body className="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200">
         {children}
-        <GermanFooter />
       </body>
     </html>
   );
