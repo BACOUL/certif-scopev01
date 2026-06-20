@@ -253,6 +253,9 @@ export default async function VerifyPageFR({ searchParams }: VerifyPageProps) {
                 Scannez le QR code présent sur une attestation Certif-Scope pour
                 ouvrir cette page avec les éléments de vérification du document.
                 La vérification avancée du PDF signé reste disponible plus bas.
+                Le QR code permet un contrôle documentaire rapide. Il ne
+                remplace pas, à lui seul, la vérification technique avancée du
+                PDF signé lorsque celle-ci est nécessaire.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">
@@ -328,7 +331,8 @@ export default async function VerifyPageFR({ searchParams }: VerifyPageProps) {
                 <p className="text-gray-700 leading-relaxed">
                   Chaque attestation Certif-Scope peut contenir un QR code de
                   vérification. En le scannant, un tiers ouvre cette page avec
-                  les éléments nécessaires au contrôle documentaire.
+                  les éléments nécessaires au contrôle documentaire rapide et à
+                  la lecture du payload de vérification.
                 </p>
               </div>
             )}
@@ -440,6 +444,8 @@ export default async function VerifyPageFR({ searchParams }: VerifyPageProps) {
                       documentaires de contrôle. Elle ne transforme pas
                       l’attestation en audit carbone, bilan GES réglementaire,
                       certification officielle ou conformité CSRD/ESRS.
+                      Lorsque nécessaire, elle doit être complétée par la
+                      vérification technique avancée du PDF signé.
                     </p>
                   </div>
 
