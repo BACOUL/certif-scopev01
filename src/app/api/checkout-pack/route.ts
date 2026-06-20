@@ -3,7 +3,15 @@ import Stripe from "stripe";
 
 export const runtime = "nodejs";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+let stripeClient: Stripe | null = null;
+
+function getStripeClient() {
+  const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+  if (!stripeSecretKey) return null;
+
+  stripeClient ??= new Stripe(stripeSecretKey);
+  return stripeClient;
+}
 
 // ======================================================
 // CONFIG — PACKS (SOURCE DE VÉRITÉ UNIQUE)
@@ -51,6 +59,15 @@ export async function GET(req: Request) {
     "http://localhost:3000";
 
   const { amount, credits, label } = PACKS[pack];
+
+  const stripe = getStripeClient();
+
+  if (!stripe) {
+    return NextResponse.json(
+      { error: "MISSING_STRIPE_SECRET_KEY" },
+      { status: 500 }
+    );
+  }
 
   const session = await stripe.checkout.sessions.create({
     mode: "payment",

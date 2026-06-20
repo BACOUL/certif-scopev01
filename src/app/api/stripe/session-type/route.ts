@@ -3,7 +3,15 @@ import Stripe from "stripe";
 
 export const runtime = "nodejs";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+let stripeClient: Stripe | null = null;
+
+function getStripeClient() {
+  const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+  if (!stripeSecretKey) return null;
+
+  stripeClient ??= new Stripe(stripeSecretKey);
+  return stripeClient;
+}
 
 /**
  * Détermine le type de succès
@@ -32,6 +40,15 @@ export async function GET(req: Request) {
     }
 
     // ✅ CAS STRIPE
+    const stripe = getStripeClient();
+
+    if (!stripe) {
+      return NextResponse.json(
+        { error: "MISSING_STRIPE_SECRET_KEY" },
+        { status: 500 }
+      );
+    }
+
     const session = await stripe.checkout.sessions.retrieve(sessionId);
 
     const product = session.metadata?.product;

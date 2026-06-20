@@ -9,7 +9,15 @@ import {
   DEFAULT_ATTESTATION_LOCALE,
 } from "@/lib/attestation-i18n/index";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+let stripeClient: Stripe | null = null;
+
+function getStripeClient() {
+  const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+  if (!stripeSecretKey) return null;
+
+  stripeClient ??= new Stripe(stripeSecretKey);
+  return stripeClient;
+}
 
 /**
  * ======================================================
@@ -563,8 +571,15 @@ function getLocaleCopy(locale: AttestationLocale) {
 
 export async function GET(req: Request) {
   try {
-    if (!process.env.PDFSHIFT_API_KEY) {
+    const pdfShiftApiKey = process.env.PDFSHIFT_API_KEY;
+    const signingKey = process.env.CERTIFSCOPE_SIGNING_KEY;
+
+    if (!pdfShiftApiKey) {
       return new Response("PDFSHIFT_API_KEY missing", { status: 500 });
+    }
+
+    if (!signingKey) {
+      return new Response("CERTIFSCOPE_SIGNING_KEY missing", { status: 500 });
     }
 
     const { searchParams } = new URL(req.url);
@@ -579,6 +594,12 @@ export async function GET(req: Request) {
     if (sessionId.startsWith("key_")) {
       metadataRaw = Object.fromEntries(searchParams.entries());
     } else {
+      const stripe = getStripeClient();
+
+      if (!stripe) {
+        return new Response("STRIPE_SECRET_KEY missing", { status: 500 });
+      }
+
       const session = await stripe.checkout.sessions.retrieve(sessionId);
 
       if (session.payment_status !== "paid") {
@@ -2121,7 +2142,7 @@ export async function GET(req: Request) {
     const pdfResponse = await fetch("https://api.pdfshift.io/v3/convert/pdf", {
       method: "POST",
       headers: {
-        "X-API-Key": process.env.PDFSHIFT_API_KEY!,
+        "X-API-Key": pdfShiftApiKey,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
