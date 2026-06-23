@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     locale: "de_DE",
   },
   robots: {
-    index: true,
+    index: false,
     follow: true,
   },
 };
@@ -145,7 +145,7 @@ export default function PricingPageDE() {
       price: "89",
       priceCurrency: "EUR",
       availability: "https://schema.org/InStock",
-      url: "https://www.certif-scope.com/generate",
+      url: "https://www.certif-scope.com/de/erstellen",
       description:
         "Indikative CO₂e-Bescheinigung, standardisiertes und überprüfbares PDF, ohne Abo.",
     },
@@ -207,7 +207,7 @@ export default function PricingPageDE() {
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <Link
-                href="/generate"
+                href="/de/erstellen"
                 className="inline-flex min-h-[48px] items-center justify-center rounded-xl bg-[#1FB6C1] px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#19AAB4]"
               >
                 CO₂e-Bescheinigung für 89€ erstellen
@@ -259,7 +259,7 @@ export default function PricingPageDE() {
 
                   <div className="mt-6 flex justify-center">
                     <Link
-                      href="/generate"
+                      href="/de/erstellen"
                       className="inline-flex w-full max-w-[320px] items-center justify-center rounded-xl bg-[#1FB6C1] px-6 py-4 text-base font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#19AAB4]"
                     >
                       CO₂e-Bescheinigung erstellen
@@ -367,7 +367,7 @@ export default function PricingPageDE() {
               </p>
 
               <Link
-                href="/generate"
+                href="/de/erstellen"
                 className="mt-8 inline-flex min-h-[48px] items-center justify-center rounded-xl bg-[#1FB6C1] px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#19AAB4]"
               >
                 CO₂e-Bescheinigung erstellen
@@ -556,7 +556,7 @@ export default function PricingPageDE() {
 
               <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
                 <Link
-                  href="/generate"
+                  href="/de/erstellen"
                   className="inline-flex min-h-[48px] items-center justify-center rounded-xl bg-white px-6 py-3 text-sm font-semibold text-[#0B3A63] transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/90"
                 >
                   CO₂e-Bescheinigung erstellen

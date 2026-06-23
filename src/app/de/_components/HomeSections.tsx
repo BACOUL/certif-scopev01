@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useId, useState } from "react";
 
 const primaryCta = {
-  href: "/generate",
+  href: "/de/erstellen",
   label: "CO2e-Bescheinigung erstellen - 89 €",
 };
 
@@ -794,8 +794,8 @@ export function HowItWorksDE() {
 }
 
 const useCases = [
-  ["01", "Auf eine Lieferantenanfrage antworten", "Ein Kunde oder Lieferantenportal fragt einen CO2e-Beleg an. Ziel ist, zeitnah ein klares Dokument zu senden.", "Lieferantenfall ansehen", "/de/why-companies-ask"],
-  ["02", "Auf eine Ausschreibung reagieren", "Die Unterlagen nennen einen CO2e-Punkt, ohne eine vertiefte Methode festzulegen. Ein standardisiertes Dokument kann passend sein.", "Ausschreibungsfall ansehen", "/de/why-companies-ask"],
+  ["01", "Auf eine Lieferantenanfrage antworten", "Ein Kunde oder Lieferantenportal fragt einen CO2e-Beleg an. Ziel ist, zeitnah ein klares Dokument zu senden.", "Lieferantenfall ansehen", "/de/warum-unternehmen-co2-angaben-anfordern"],
+  ["02", "Auf eine Ausschreibung reagieren", "Die Unterlagen nennen einen CO2e-Punkt, ohne eine vertiefte Methode festzulegen. Ein standardisiertes Dokument kann passend sein.", "Ausschreibungsfall ansehen", "/de/warum-unternehmen-co2-angaben-anfordern"],
   ["03", "Schnell lesbar und zuordenbar machen", "Häufig braucht der Empfänger ein PDF mit Ergebnis, Methode, Grenzen und Dokument-ID.", "Beispiel ansehen", "/api/sample"],
 ];
 
@@ -899,7 +899,7 @@ export function PricingDE() {
             </ul>
             <div className="mt-8 flex flex-col gap-3">
               <PrimaryLink>Dokument erstellen</PrimaryLink>
-              <Link href="/de/pricing" className="inline-flex items-center justify-center rounded-xl border border-[#0B3A63]/14 bg-white px-6 py-3 text-sm font-semibold text-[#0B3A63] transition-all hover:bg-[#0B3A63] hover:text-white">
+              <Link href="/de/preise" className="inline-flex items-center justify-center rounded-xl border border-[#0B3A63]/14 bg-white px-6 py-3 text-sm font-semibold text-[#0B3A63] transition-all hover:bg-[#0B3A63] hover:text-white">
                 Details ansehen
               </Link>
             </div>
@@ -916,9 +916,9 @@ export function PricingDE() {
             </p>
             <div className="mt-6 space-y-3">
               {[
-                ["CO2e-Anfragen verstehen", "/de/why-companies-ask"],
+                ["CO2e-Anfragen verstehen", "/de/warum-unternehmen-co2-angaben-anfordern"],
                 ["Beispiel-PDF ansehen", "/api/sample"],
-                ["Dokument erstellen", "/generate"],
+                ["Dokument erstellen", "/de/erstellen"],
               ].map(([label, href]) => (
                 <Link key={label} href={href} className="block rounded-lg border border-[#0B3A63]/10 bg-white px-4 py-2 text-sm text-[#0B3A63] transition hover:bg-[#0B3A63] hover:text-white">
                   {label}
@@ -1020,7 +1020,7 @@ export function FAQDE() {
           })}
         </div>
         <div className="mt-10 text-center">
-          <Link href="/de/why-companies-ask" className="inline-flex items-center rounded-full border border-[#0B3A63]/10 bg-white px-4 py-2 text-sm font-semibold text-[#0B3A63] shadow-sm transition-colors hover:border-[#1FB6C1]/30 hover:text-[#1FB6C1]">
+          <Link href="/de/warum-unternehmen-co2-angaben-anfordern" className="inline-flex items-center rounded-full border border-[#0B3A63]/10 bg-white px-4 py-2 text-sm font-semibold text-[#0B3A63] shadow-sm transition-colors hover:border-[#1FB6C1]/30 hover:text-[#1FB6C1]">
             Hintergrund zu CO2e-Anfragen lesen
           </Link>
         </div>
