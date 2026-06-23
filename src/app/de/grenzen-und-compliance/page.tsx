@@ -8,6 +8,7 @@ export const metadata: Metadata = {
     canonical: "https://www.certif-scope.com/de/grenzen-und-compliance/",
     languages: {
       de: "https://www.certif-scope.com/de/grenzen-und-compliance/",
+      fr: "https://www.certif-scope.com/fr/product/compliance/",
     },
   },
   openGraph: {
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "de_DE",
   },
-  robots: { index: false, follow: true },
+  robots: { index: true, follow: true },
 };
 
 type BlockTone = "light" | "white" | "dark";

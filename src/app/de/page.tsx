@@ -37,6 +37,7 @@ export const metadata: Metadata = {
     canonical: "https://www.certif-scope.com/de/",
     languages: {
       de: "https://www.certif-scope.com/de/",
+      fr: "https://www.certif-scope.com/fr/",
     },
   },
   openGraph: {
@@ -57,7 +58,7 @@ export const metadata: Metadata = {
       "Spend-based CO2e-Schätzung + standardisiertes PDF für einfache dokumentarische Anfragen.",
   },
   robots: {
-    index: false,
+    index: true,
     follow: true,
   },
 };

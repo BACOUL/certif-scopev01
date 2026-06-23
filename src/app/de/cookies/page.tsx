@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 
 /* ======================================================
    SEO METADATA - COOKIES
-   Temporary noindex while /de/* remains in staging per docs/localization/de-DE-runtime-seo-policy.md
 ====================================================== */
 
 export const metadata: Metadata = {
@@ -13,6 +12,7 @@ export const metadata: Metadata = {
     canonical: "https://www.certif-scope.com/de/cookies/",
     languages: {
       de: "https://www.certif-scope.com/de/cookies/",
+      fr: "https://www.certif-scope.com/fr/cookies/",
     },
   },
   openGraph: {
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "de_DE",
   },
-  robots: { index: false, follow: true },
+  robots: { index: true, follow: true },
 };
 
 export default function CookieHinweisePageDE() {

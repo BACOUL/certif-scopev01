@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     canonical: "https://www.certif-scope.com/de/co2-bescheinigung-kmu/",
     languages: {
       de: "https://www.certif-scope.com/de/co2-bescheinigung-kmu/",
+      fr: "https://www.certif-scope.com/fr/attestation-co2-pme/",
     },
   },
   openGraph: {
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "de_DE",
   },
-  robots: { index: false, follow: true },
+  robots: { index: true, follow: true },
 };
 
 const directBenefits = [

@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     canonical: pageUrl,
     languages: {
       de: pageUrl,
+      fr: "https://www.certif-scope.com/fr/difference-bilan-carbone-attestation-co2e/",
     },
   },
   openGraph: {
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "de_DE",
   },
-  robots: { index: false, follow: true },
+  robots: { index: true, follow: true },
 };
 
 const requiredReminder =

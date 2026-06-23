@@ -7,11 +7,11 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 /* ======================================================
-   METADATA DE — HORS INDEX POUR LANCEMENT FR
+   METADATA DE - PUBLIC DEFAULT
 ====================================================== */
 export const metadata = {
   robots: {
-    index: false,
+    index: true,
     follow: true,
   },
 };

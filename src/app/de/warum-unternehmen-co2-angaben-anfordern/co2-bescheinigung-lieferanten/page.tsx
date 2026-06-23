@@ -5,9 +5,8 @@ import Link from "next/link";
 
 /* ======================================================
    SEO METADATA - DEUTSCHLAND
-   Index-Entscheidung: index.
-   Diese Seite erklärt, warum Kunden CO2-Angaben von Lieferanten anfordern.
-   Die transaktionale Lösungsseite bleibt:
+   Index-Entscheidung: noindex.
+   Diese Seite folgt der noindex-Strategie der FR-Quelle; die transaktionale Loesungsseite bleibt:
    /de/co2-nachweis-lieferanten/
 ====================================================== */
 
@@ -23,6 +22,7 @@ export const metadata: Metadata = {
     canonical: pageUrl,
     languages: {
       de: pageUrl,
+      fr: "https://www.certif-scope.com/fr/why-companies-ask/attestation-carbone-fournisseur/",
     },
   },
   openGraph: {
