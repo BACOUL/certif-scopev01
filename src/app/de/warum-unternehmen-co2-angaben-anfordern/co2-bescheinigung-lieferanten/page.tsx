@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "de_DE",
   },
-  robots: { index: true, follow: true },
+  robots: { index: false, follow: true },
 };
 
 /* ======================================================

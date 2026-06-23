@@ -57,7 +57,7 @@ export const metadata: Metadata = {
       "Spend-based CO2e-Schätzung + standardisiertes PDF für einfache dokumentarische Anfragen.",
   },
   robots: {
-    index: true,
+    index: false,
     follow: true,
   },
 };
