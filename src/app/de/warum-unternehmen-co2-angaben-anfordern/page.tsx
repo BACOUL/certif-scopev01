@@ -3,7 +3,7 @@ import Link from "next/link";
 
 /* ======================================================
    SEO METADATA - WARUM UNTERNEHMEN CO2-ANGABEN ANFORDERN (DE)
-   SEO-Rolle: indexierbarer Hub fuer das erklaerende Cluster.
+   Temporary noindex while /de/* remains in staging per docs/localization/de-DE-runtime-seo-policy.md
    Die transaktionalen Loesungsseiten bleiben separat:
    /de/co2-bescheinigung/
    /de/co2-bescheinigung-kmu/
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "de_DE",
   },
-  robots: { index: true, follow: true },
+  robots: { index: false, follow: true },
 };
 
 /* ======================================================
