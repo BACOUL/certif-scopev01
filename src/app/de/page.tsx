@@ -120,6 +120,17 @@ export default function HomeDE() {
             __html: JSON.stringify(jsonLdWebPage),
           }}
         />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              document.addEventListener('DOMContentLoaded', function () {
+                document.querySelectorAll('a[href="/api/sample"]').forEach(function (link) {
+                  link.setAttribute('href', '/api/sample?locale=de');
+                });
+              });
+            `,
+          }}
+        />
 
         {/* 1) Hero */}
         <HeroDE />
