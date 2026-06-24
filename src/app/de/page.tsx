@@ -120,6 +120,30 @@ export default function HomeDE() {
             __html: JSON.stringify(jsonLdWebPage),
           }}
         />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function () {
+                function useGermanPreview() {
+                  document.querySelectorAll('img[alt="Beispiel einer Certif-Scope CO2e-Bescheinigung"]').forEach(function (img) {
+                    img.setAttribute('src', '/preview-de.svg');
+                    img.setAttribute('srcset', '/preview-de.svg');
+                    img.removeAttribute('sizes');
+                  });
+                }
+
+                if (document.readyState === 'loading') {
+                  document.addEventListener('DOMContentLoaded', useGermanPreview);
+                } else {
+                  useGermanPreview();
+                }
+
+                setTimeout(useGermanPreview, 100);
+                setTimeout(useGermanPreview, 500);
+              })();
+            `,
+          }}
+        />
 
         {/* 1) Hero */}
         <HeroDE />
