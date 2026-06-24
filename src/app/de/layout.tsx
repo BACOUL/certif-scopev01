@@ -1,14 +1,12 @@
+// PATH: src/app/de/layout.tsx
+import HeaderDE from "@/components/de/Header";
+import FooterDE from "@/components/de/Footer";
+
 import "../../styles/index.css";
 
-/* ======================================================
-   CONFIG DE
-====================================================== */
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-/* ======================================================
-   METADATA DE - PUBLIC DEFAULT
-====================================================== */
 export const metadata = {
   robots: {
     index: true,
@@ -16,21 +14,19 @@ export const metadata = {
   },
 };
 
-/* ======================================================
-   LAYOUT DE
-   - volontairement minimal
-   - aucun header/footer
-====================================================== */
 export default function DELayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="de" suppressHydrationWarning>
-      <body className="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200">
-        {children}
-      </body>
-    </html>
+    <div
+      lang="de"
+      className="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200"
+    >
+      <HeaderDE />
+      <main className="pt-[110px]">{children}</main>
+      <FooterDE />
+    </div>
   );
 }
