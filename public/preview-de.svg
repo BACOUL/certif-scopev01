@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="2886" viewBox="0 0 1200 2886" role="img" aria-labelledby="title desc">
+  <title id="title">Deutschsprachige Vorschau einer Certif-Scope CO2e-Bescheinigung</title>
+  <desc id="desc">Zweiseitige Dokumentvorschau einer indikativen CO2e-Bescheinigung auf Deutsch.</desc>
+  <defs>
+    <linearGradient id="paper" x1="0" x2="0" y1="0" y2="1">
+      <stop stop-color="#ffffff" offset="0" />
+      <stop stop-color="#fbfdff" offset="1" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#0B3A63" flood-opacity="0.12"/>
+    </filter>
+    <style>
+      .paper{fill:url(#paper);stroke:#d6e0e7;stroke-width:2;filter:url(#shadow)}
+      .heading{fill:#0B3A63;font-family:Arial,Helvetica,sans-serif;font-weight:800;letter-spacing:.5px}
+      .sub{fill:#6f7e8b;font-family:Arial,Helvetica,sans-serif}
+      .text{fill:#223243;font-family:Arial,Helvetica,sans-serif}
+      .muted{fill:#81909d;font-family:Arial,Helvetica,sans-serif;font-weight:700;letter-spacing:.8px}
+      .box{fill:#ffffff;stroke:#c5d3dc;stroke-width:2}
+      .tint{fill:#eef7f8;stroke:#d6e0e7;stroke-width:2}
+      .line{stroke:#0B3A63;stroke-width:4}
+      .aqua{fill:#1FB6C1}
+      .watermark{fill:#0B3A63;opacity:.13;font-family:Arial,Helvetica,sans-serif;font-weight:800;letter-spacing:3px}
+      .small{font-size:16px}.xs{font-size:13px}.m{font-size:20px}.l{font-size:28px}.xl{font-size:38px}
+    </style>
+  </defs>
+
+  <rect width="1200" height="2886" fill="#f8fafc"/>
+
+  <g transform="translate(82 70)">
+    <rect class="paper" rx="6" width="1036" height="1320"/>
+    <g transform="translate(70 70)">
+      <circle cx="32" cy="32" r="28" fill="none" stroke="#0B3A63" stroke-width="10"/>
+      <path d="M18 32l10 10 20-24" fill="none" stroke="#1FB6C1" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="74" y="27" class="heading m">Certif-<tspan fill="#1FB6C1">Scope</tspan></text>
+      <text x="0" y="82" class="sub xs">https://www.certif-scope.com</text>
+      <text x="0" y="104" class="sub xs">Automatisierte Ausstellung · Standardisierte indikative Bescheinigung</text>
+      <g transform="translate(830 0)">
+        <rect x="0" y="0" width="86" height="86" fill="#fff" stroke="#d6e0e7"/>
+        <path d="M10 10h18v18H10zM58 10h18v18H58zM10 58h18v18H10zM39 12h8v8h-8zM48 22h10v10H48zM37 38h12v12H37zM60 45h8v8h-8zM72 59h6v17h-6zM43 66h19v8H43zM23 39h8v8h-8z" fill="#0B3A63"/>
+        <text x="-12" y="112" class="sub xs">Zur Demo-Prüfung scannen</text>
+      </g>
+      <line x1="0" y1="128" x2="916" y2="128" class="line"/>
+
+      <text x="458" y="205" text-anchor="middle" class="aqua xs" style="font-family:Arial;font-weight:800;letter-spacing:2px">INDIKATIVES CO₂E-DOKUMENT · STANDARDISIERT · KONTROLLIERBAR</text>
+      <text x="458" y="245" text-anchor="middle" class="heading l">INDIKATIVE BESCHEINIGUNG ZU CO₂E-EMISSIONEN</text>
+      <text x="458" y="278" text-anchor="middle" class="text small" font-weight="700">Ausgestellt nach der internen standardisierten Methodik Certif-Scope CS-SB-v1</text>
+      <text x="458" y="302" text-anchor="middle" class="sub xs">Nicht regulatorisch · Methodikbasiert · Indikative Bescheinigung</text>
+
+      <rect x="170" y="360" width="576" height="128" rx="12" class="box" stroke="#0B3A63" stroke-width="4"/>
+      <text x="458" y="395" text-anchor="middle" class="muted xs">ANGEGEBENE AGGREGIERTE INDIKATIVE EMISSIONEN</text>
+      <text x="458" y="437" text-anchor="middle" class="heading xl">15 tCO₂e</text>
+      <text x="458" y="466" text-anchor="middle" class="sub xs">Dokumentarische Schätzung auf Basis aggregierter angegebener Ausgaben.</text>
+
+      <g transform="translate(0 548)">
+        <rect width="916" height="72" rx="7" class="box"/>
+        <line x1="229" y1="0" x2="229" y2="72" stroke="#c5d3dc"/><line x1="458" y1="0" x2="458" y2="72" stroke="#c5d3dc"/><line x1="687" y1="0" x2="687" y2="72" stroke="#c5d3dc"/>
+        <text x="20" y="25" class="muted xs">REFERENZ DER BESCHEINIGUNG</text><text x="20" y="51" class="text small" font-weight="700">CS-SAMPLE-DE-2026-0001</text>
+        <text x="249" y="25" class="muted xs">AUSSTELLUNGSDATUM</text><text x="249" y="51" class="text small" font-weight="700">2026-05-20</text>
+        <text x="478" y="25" class="muted xs">GÜLTIG BIS</text><text x="478" y="51" class="text small" font-weight="700">2027-05-20</text>
+        <text x="707" y="25" class="muted xs">AUSSTELLER</text><text x="707" y="51" class="text small" font-weight="700">Certif-Scope</text>
+      </g>
+
+      <rect x="0" y="660" width="916" height="170" rx="8" class="box"/>
+      <text x="24" y="698" class="heading small">1. IDENTIFIKATION DER EINHEIT</text>
+      <text x="24" y="736" class="muted xs">NAME DER EINHEIT</text><text x="24" y="762" class="text small" font-weight="700">Beispielunternehmen GmbH</text>
+      <text x="24" y="800" class="muted xs">TÄTIGKEITSBEREICH</text><text x="24" y="826" class="text small" font-weight="700">Unternehmensdienstleistungen</text>
+      <text x="500" y="736" class="muted xs">LAND</text><text x="500" y="762" class="text small" font-weight="700">DE</text>
+      <text x="500" y="800" class="muted xs">REFERENZJAHR</text><text x="500" y="826" class="text small" font-weight="700">2026</text>
+
+      <g transform="translate(0 870)">
+        <rect width="445" height="128" rx="8" class="tint"/><rect x="471" width="445" height="128" rx="8" class="tint"/>
+        <text x="24" y="38" class="heading small">2. ART DES DOKUMENTS</text>
+        <text x="24" y="72" class="text xs">Indikative CO₂e-Bescheinigung für Information,</text><text x="24" y="94" class="text xs">Vorprüfung und Entscheidungsunterstützung.</text>
+        <text x="495" y="38" class="heading small">3. UMFANG</text>
+        <text x="495" y="72" class="text xs">Aus aggregierten Ausgabedaten abgeleitete</text><text x="495" y="94" class="text xs">indikative Schätzung nach spend-based Methodik.</text>
+      </g>
+
+      <g transform="translate(0 1034)">
+        <rect width="292" height="110" rx="8" class="box"/><rect x="312" width="292" height="110" rx="8" class="box"/><rect x="624" width="292" height="110" rx="8" class="box"/>
+        <text x="24" y="35" class="heading xs">ERHÖHTE VERTRAULICHKEIT</text><text x="24" y="66" class="text xs">Nur aggregiertes CO₂e-Ergebnis.</text>
+        <text x="336" y="35" class="heading xs">DOKUMENTARISCHE PRÜFUNG</text><text x="336" y="66" class="text xs">Referenz, QR-Code und Kontrollelemente.</text>
+        <text x="648" y="35" class="heading xs">BEGRENZTE GÜLTIGKEIT</text><text x="648" y="66" class="text xs">Datierte dokumentarische Einordnung.</text>
+      </g>
+      <text x="458" y="1240" text-anchor="middle" class="watermark" font-size="62" transform="rotate(-24 458 1240)">KOSTENLOSES BEISPIEL · KEINE AUSGESTELLTE BESCHEINIGUNG</text>
+      <text x="0" y="1278" class="sub xs">Indikative CO₂e-Bescheinigung · Ausgestellt von Certif-Scope · certif-scope.com</text><text x="916" y="1278" text-anchor="end" class="sub xs">Seite 1 / 2</text>
+    </g>
+  </g>
+
+  <g transform="translate(82 1510)">
+    <rect class="paper" rx="6" width="1036" height="1320"/>
+    <g transform="translate(70 70)">
+      <text x="0" y="40" class="heading l">METHODIK, PRÜFUNG UND GRENZEN</text>
+      <text x="0" y="72" class="sub small">Diese Seite erläutert die Methodik, Prüfelemente und dokumentarische Grenzen.</text>
+      <text x="916" y="38" text-anchor="end" class="sub xs">Referenz der Bescheinigung</text><text x="916" y="62" text-anchor="end" class="text small" font-weight="700">CS-SAMPLE-DE-2026-0001</text>
+
+      <rect x="0" y="110" width="916" height="200" rx="8" class="box"/>
+      <text x="24" y="150" class="heading small">6. METHODISCHES PRINZIP</text>
+      <text x="24" y="188" class="text xs">Certif-Scope deterministic spend-based methodology v1.0</text>
+      <rect x="24" y="218" width="520" height="58" rx="6" class="tint"/><text x="284" y="253" text-anchor="middle" class="heading xs">Aggregierte Ausgaben × Emissionsfaktoren = indikative CO₂e-Schätzung</text>
+      <rect x="570" y="218" width="322" height="58" rx="6" class="box"/><text x="592" y="243" class="muted xs">FAKTORENVERSION</text><text x="592" y="266" class="text xs">Certif-Scope factors v1</text>
+
+      <rect x="0" y="340" width="916" height="130" rx="8" class="tint"/>
+      <text x="24" y="378" class="heading small">7. REFERENZRAHMEN ZUR EINORDNUNG</text>
+      <text x="24" y="414" class="text xs">GHG Protocol · ISO 14064-1 · ISO 14083 · CSRD / ESRS / EU Taxonomy</text>
+      <text x="24" y="446" class="sub xs">Keine Zertifizierung, keine externe Verifizierung, kein regulatorischer Bericht.</text>
+
+      <g transform="translate(0 510)">
+        <rect width="445" height="210" rx="8" class="box" stroke="#1FB6C1" stroke-width="4"/><rect x="471" width="445" height="210" rx="8" class="box"/>
+        <text x="24" y="38" class="heading small">EINFACHE PRÜFUNG</text>
+        <text x="24" y="74" class="text xs">QR-Code scannen oder Referenz auf der Prüfseite verwenden.</text>
+        <text x="24" y="112" class="muted xs">SCHNELLPRÜFUNG</text><text x="24" y="138" class="text xs">Referenz · Datum · Gültigkeit · Ergebnis · Prüfseite</text>
+        <text x="24" y="176" class="text xs" fill="#0B3A63">https://www.certif-scope.com/de/pruefen/demo</text>
+        <text x="495" y="38" class="heading small">PRÜFBARES OBJEKT</text>
+        <text x="495" y="74" class="text xs">PDF, Kennung, QR-Code und Integritätselemente.</text>
+      </g>
+
+      <rect x="0" y="760" width="916" height="150" rx="8" class="box"/>
+      <text x="24" y="798" class="heading small">8. TECHNISCHER PRÜFANHANG</text>
+      <text x="24" y="834" class="muted xs">ALGORITHMUS</text><text x="220" y="834" class="text xs">BEISPIEL — NICHT SIGNIERT</text>
+      <text x="24" y="866" class="muted xs">HASH</text><text x="220" y="866" class="text xs">BEISPIEL_HASH_NICHT_GUELTIG</text>
+      <text x="24" y="898" class="muted xs">SIGNATUR</text><text x="220" y="898" class="text xs">BEISPIEL_SIGNATUR_NICHT_GUELTIG</text>
+
+      <rect x="0" y="950" width="916" height="170" rx="8" class="tint"/>
+      <text x="24" y="988" class="heading small">9. UMFANG UND GRENZEN</text>
+      <text x="24" y="1026" class="text xs">Keine physischen Aktivitätsdaten. Keine Scope-1- oder Scope-2-Emissionen.</text>
+      <text x="24" y="1060" class="heading xs">AUSDRÜCKLICHE AUSSCHLÜSSE</text><text x="24" y="1086" class="text xs">Kein vollständiges THG-Inventar, keine Zertifizierung, keine externe Validierung.</text>
+
+      <rect x="0" y="1170" width="916" height="70" rx="8" class="box" stroke="#0B3A63" stroke-width="3"/>
+      <text x="24" y="1208" class="heading small">10. ZUSAMMENFASSUNG DER DOKUMENTARISCHEN GÜLTIGKEIT</text>
+      <text x="24" y="1236" class="text xs">Kostenloses, ungültiges und nicht signiertes Beispiel. Keine nach Kauf ausgestellte Bescheinigung.</text>
+      <text x="458" y="700" text-anchor="middle" class="watermark" font-size="64" transform="rotate(-24 458 700)">KOSTENLOSES BEISPIEL · NICHT GÜLTIG</text>
+      <text x="0" y="1278" class="sub xs">Indikative CO₂e-Bescheinigung · Ausgestellt von Certif-Scope · certif-scope.com</text><text x="916" y="1278" text-anchor="end" class="sub xs">Seite 2 / 2</text>
+    </g>
+  </g>
+</svg>
