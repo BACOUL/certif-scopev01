@@ -7,7 +7,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Impressum | Certif-Scope",
   description:
-    "Rechtliche Angaben zu Herausgeber, Hosting, geistigem Eigentum, Haftungsgrenzen und Datenverarbeitungsgrundsaetzen von Certif-Scope.",
+    "Rechtliche Angaben zu Herausgeber, Hosting, geistigem Eigentum, Haftungsgrenzen und Datenverarbeitungsgrundsätzen von Certif-Scope.",
   alternates: {
     canonical: "https://www.certif-scope.com/de/impressum/",
     languages: {
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Impressum | Certif-Scope",
     description:
-      "Rechtliche Angaben zu Herausgeber, Hosting, Haftungsgrenzen und Datenverarbeitungsgrundsaetzen von Certif-Scope.",
+      "Rechtliche Angaben zu Herausgeber, Hosting, Haftungsgrenzen und Datenverarbeitungsgrundsätzen von Certif-Scope.",
     url: "https://www.certif-scope.com/de/impressum/",
     siteName: "Certif-Scope",
     type: "website",
@@ -97,7 +97,7 @@ export default function ImpressumPageDE() {
         <p className="text-lg text-gray-700 leading-relaxed max-w-3xl">
           Rechtliche Angaben zum Herausgeber der Website, zum Hosting, zum
           geistigen Eigentum, zu Haftungsgrenzen und zu den
-          Datenverarbeitungsgrundsaetzen von Certif-Scope.
+          Datenverarbeitungsgrundsätzen von Certif-Scope.
         </p>
 
         <div className="w-20 h-[2px] bg-gray-300 mt-10" />
@@ -116,7 +116,7 @@ export default function ImpressumPageDE() {
 
           <ul className="text-gray-700 space-y-2 text-sm leading-relaxed">
             <li><strong>Name:</strong> Jeason Alexandre Bacoul</li>
-            <li><strong>Handelsname:</strong> TimeProofs</li>
+            <li><strong>Handelsname:</strong> Certif-Scope</li>
             <li><strong>Rechtsform:</strong> Einzelunternehmer (Frankreich)</li>
             <li><strong>SIREN:</strong> 999356439</li>
             <li>
@@ -124,7 +124,7 @@ export default function ImpressumPageDE() {
               55000 Les Hauts-de-Chee, Frankreich
             </li>
             <li>
-              <strong>Umsatzsteuerregelung:</strong> franzoesische
+              <strong>Umsatzsteuerregelung:</strong> französische
               Kleinunternehmerregelung (Umsatzsteuer nicht anwendbar)
             </li>
             <li><strong>Kontakt-E-Mail:</strong> contact@certif-scope.com</li>
@@ -133,11 +133,11 @@ export default function ImpressumPageDE() {
 
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-            2. Verantwortlicher fuer die Veroeffentlichung
+            2. Verantwortlicher für die Veröffentlichung
           </h2>
 
           <p className="text-gray-700 leading-relaxed">
-            Verantwortlicher fuer die Veroeffentlichung und rechtlicher Vertreter
+            Verantwortlicher für die Veröffentlichung und rechtlicher Vertreter
             der Website ist Jeason Alexandre Bacoul.
             <br />
             Kontakt: <strong>contact@certif-scope.com</strong>
@@ -167,10 +167,10 @@ export default function ImpressumPageDE() {
           </h2>
 
           <p className="text-gray-700 leading-relaxed">
-            Saemtliche Inhalte dieser Website, einschliesslich Texte, Struktur,
-            Design, visuelle Identitaet und Code, sind durch die jeweils
-            anwendbaren Vorschriften zum geistigen Eigentum geschuetzt. Jede
-            Vervielfaeltigung, Aenderung oder Weiterverbreitung ohne vorherige
+            Sämtliche Inhalte dieser Website, einschließlich Texte, Struktur,
+            Design, visuelle Identität und Code, sind durch die jeweils
+            anwendbaren Vorschriften zum geistigen Eigentum geschützt. Jede
+            Vervielfältigung, Änderung oder Weiterverbreitung ohne vorherige
             schriftliche Zustimmung ist untersagt.
           </p>
         </section>
@@ -183,20 +183,20 @@ export default function ImpressumPageDE() {
           <p className="text-gray-700 leading-relaxed mb-4">
             Certif-Scope stellt deterministische CO2e-Berechnungen auf Grundlage
             von Ausgaben bereit, die vom Nutzer angegeben werden. Der Betreiber
-            haftet nicht fuer:
+            haftet nicht für:
           </p>
 
           <ul className="list-disc ml-6 text-gray-700 space-y-2 text-sm">
-            <li>unrichtige, unvollstaendige oder irrefuehrende Angaben der Nutzer</li>
+            <li>unrichtige, unvollständige oder irreführende Angaben der Nutzer</li>
             <li>die Auslegung oder Nutzung von Bescheinigungen durch Dritte</li>
             <li>Entscheidungen von Beschaffungs-, Finanz- oder sonstigen Stellen</li>
-            <li>jede Nutzung ausserhalb des indikativen und nicht regulatorischen Rahmens</li>
+            <li>jede Nutzung außerhalb des indikativen und nicht regulatorischen Rahmens</li>
           </ul>
 
           <p className="text-gray-700 leading-relaxed mt-4">
-            Certif-Scope-Bescheinigungen sind indikative Schaetzungen auf
+            Certif-Scope-Bescheinigungen sind indikative Schätzungen auf
             Grundlage einer spend-based Methode. Sie sind weder CSRD- oder
-            ESRS-Berichte noch fachliche Treibhausgas-Pruefungen oder regulatorische
+            ESRS-Berichte noch fachliche Treibhausgas-Prüfungen oder regulatorische
             Emissionsinventare.
           </p>
         </section>
@@ -209,9 +209,9 @@ export default function ImpressumPageDE() {
           <p className="text-gray-700 leading-relaxed">
             Certif-Scope folgt einem privacy-by-design-Modell und arbeitet ohne
             dauerhafte Speicherung der Eingabedaten. Vom Nutzer eingegebene
-            Finanzdaten werden voruebergehend im Arbeitsspeicher fuer die
+            Finanzdaten werden vorübergehend im Arbeitsspeicher für die
             Berechnung verarbeitet und nicht in Datenbanken gespeichert. Die
-            Pruefmechanismen beruhen nicht auf einer Speicherung von Dokumenten
+            Prüfmechanismen beruhen nicht auf einer Speicherung von Dokumenten
             oder auf Nutzerkonten.
           </p>
         </section>
@@ -222,7 +222,7 @@ export default function ImpressumPageDE() {
           </h2>
 
           <p className="text-gray-700 leading-relaxed">
-            Zur Meldung rechtswidriger Inhalte, missbraeuchlicher Nutzung des
+            Zur Meldung rechtswidriger Inhalte, missbräuchlicher Nutzung des
             Dienstes oder technischer Probleme wenden Sie sich bitte an:
             <br />
             <strong>contact@certif-scope.com</strong>
