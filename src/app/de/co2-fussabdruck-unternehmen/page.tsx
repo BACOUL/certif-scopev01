@@ -5,7 +5,6 @@ import Link from "next/link";
 
 /* ======================================================
    SEO METADATA - PAGE DE
-   Temporary noindex while /de/* remains in staging per docs/localization/de-DE-runtime-seo-policy.md
 ====================================================== */
 
 const pageUrl =
@@ -20,6 +19,7 @@ export const metadata: Metadata = {
     canonical: pageUrl,
     languages: {
       de: pageUrl,
+      fr: "https://www.certif-scope.com/fr/bilan-carbone-entreprise/",
     },
   },
   openGraph: {
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "de_DE",
   },
-  robots: { index: false, follow: true },
+  robots: { index: true, follow: true },
 };
 
 export default function CO2FussabdruckUnternehmenPageDE() {

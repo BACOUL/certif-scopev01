@@ -17,6 +17,7 @@ export const metadata: Metadata = {
     canonical: "https://www.certif-scope.com/de/co2-bilanz-kmu/pdf-vorlage/",
     languages: {
       de: "https://www.certif-scope.com/de/co2-bilanz-kmu/pdf-vorlage/",
+      fr: "https://www.certif-scope.com/fr/bilan-carbone-pme/modele-pdf/",
     },
   },
   openGraph: {
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "de_DE",
   },
-  robots: { index: false, follow: true },
+  robots: { index: true, follow: true },
 };
 
 export default function CO2BilanzKMUPDFVorlagePageDE() {

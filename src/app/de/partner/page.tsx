@@ -4,7 +4,6 @@ import type { Metadata } from "next";
 
 /* ======================================================
    SEO METADATA - PARTNER (DE)
-   Temporary noindex while /de/* remains in staging per docs/localization/de-DE-runtime-seo-policy.md
 ====================================================== */
 
 const pageUrl = "https://www.certif-scope.com/de/partner/";
@@ -17,6 +16,7 @@ export const metadata: Metadata = {
     canonical: pageUrl,
     languages: {
       de: pageUrl,
+      fr: "https://www.certif-scope.com/fr/partners/",
     },
   },
   openGraph: {
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "de_DE",
   },
-  robots: { index: false, follow: true },
+  robots: { index: true, follow: true },
 };
 
 function Section1DE() {

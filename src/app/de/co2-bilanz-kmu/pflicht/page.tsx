@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     canonical: "https://www.certif-scope.com/de/co2-bilanz-kmu/pflicht/",
     languages: {
       de: "https://www.certif-scope.com/de/co2-bilanz-kmu/pflicht/",
+      fr: "https://www.certif-scope.com/fr/bilan-carbone-pme/obligation/",
     },
   },
   openGraph: {
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "de_DE",
   },
-  robots: { index: false, follow: true },
+  robots: { index: true, follow: true },
 };
 
 const quickAnswers = [

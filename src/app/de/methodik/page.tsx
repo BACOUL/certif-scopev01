@@ -8,6 +8,7 @@ export const metadata: Metadata = {
     canonical: "https://www.certif-scope.com/de/methodik/",
     languages: {
       de: "https://www.certif-scope.com/de/methodik/",
+      fr: "https://www.certif-scope.com/fr/product/methodology/",
     },
   },
   openGraph: {
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "de_DE",
   },
-  robots: { index: false, follow: true },
+  robots: { index: true, follow: true },
 };
 
 type Tone = "white" | "light" | "dark";

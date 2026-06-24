@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 
 /* ======================================================
    SEO METADATA - KONTAKT
-   Temporary noindex while /de/* remains in staging per docs/localization/de-DE-runtime-seo-policy.md
 ====================================================== */
 
 export const metadata: Metadata = {
@@ -11,6 +10,10 @@ export const metadata: Metadata = {
     "Kontaktieren Sie Certif-Scope fuer Support, institutionelle Anfragen oder allgemeine Informationen zu CO2e-Bescheinigungen.",
   alternates: {
     canonical: "https://www.certif-scope.com/de/kontakt/",
+    languages: {
+      de: "https://www.certif-scope.com/de/kontakt/",
+      fr: "https://www.certif-scope.com/fr/contact/",
+    },
   },
   openGraph: {
     title: "Kontakt - Certif-Scope",
@@ -21,7 +24,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "de_DE",
   },
-  robots: { index: false, follow: true },
+  robots: { index: true, follow: true },
 };
 
 export default function KontaktPageDE() {

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     languages: {
       en: "https://www.certif-scope.com/why-companies-ask",
       fr: "https://www.certif-scope.com/fr/why-companies-ask",
-      de: "https://www.certif-scope.com/de/why-companies-ask",
+      de: "https://www.certif-scope.com/de/warum-unternehmen-co2-angaben-anfordern/",
     },
   },
   openGraph: {

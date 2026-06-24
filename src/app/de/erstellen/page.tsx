@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     canonical: "https://www.certif-scope.com/de/erstellen/",
     languages: {
       de: "https://www.certif-scope.com/de/erstellen/",
+      fr: "https://www.certif-scope.com/fr/generate/",
     },
   },
   openGraph: {
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "de_DE",
   },
-  robots: { index: false, follow: true },
+  robots: { index: true, follow: true },
 };
 
 export default function CreateDEPage() {

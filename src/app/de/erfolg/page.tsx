@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: "Zahlung bestätigt | Certif-Scope",
   description:
     "Ihre indikative CO₂e-Bescheinigung steht zum Download bereit. Speichern Sie Ihr PDF sofort: Certif-Scope bewahrt keine wiederherstellbare Kopie auf.",
-  // Temporary noindex while /de/* remains in staging per docs/localization/de-DE-runtime-seo-policy.md
+  // Payment success page remains noindex like the source success route.
   robots: {
     index: false,
     follow: true,

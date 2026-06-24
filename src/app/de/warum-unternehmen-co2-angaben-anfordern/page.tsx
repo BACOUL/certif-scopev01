@@ -3,7 +3,6 @@ import Link from "next/link";
 
 /* ======================================================
    SEO METADATA - WARUM UNTERNEHMEN CO2-ANGABEN ANFORDERN (DE)
-   Temporary noindex while /de/* remains in staging per docs/localization/de-DE-runtime-seo-policy.md
    Die transaktionalen Loesungsseiten bleiben separat:
    /de/co2-bescheinigung/
    /de/co2-bescheinigung-kmu/
@@ -25,6 +24,7 @@ export const metadata: Metadata = {
     canonical: pageUrl,
     languages: {
       de: pageUrl,
+      fr: "https://www.certif-scope.com/fr/why-companies-ask/",
     },
   },
   openGraph: {
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "de_DE",
   },
-  robots: { index: false, follow: true },
+  robots: { index: true, follow: true },
 };
 
 /* ======================================================

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 /* ======================================================
    SEO METADATA - ZAHLUNG ABGEBROCHEN
-   Temporary noindex while /de/* remains in staging per docs/localization/de-DE-runtime-seo-policy.md
+   Payment cancellation page remains noindex after public activation.
 ====================================================== */
 
 export const metadata: Metadata = {

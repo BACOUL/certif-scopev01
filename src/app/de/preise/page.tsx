@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     canonical: "https://www.certif-scope.com/de/preise/",
     languages: {
       de: "https://www.certif-scope.com/de/preise/",
+      fr: "https://www.certif-scope.com/fr/pricing/",
     },
   },
   openGraph: {
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
     locale: "de_DE",
   },
   robots: {
-    index: false,
+    index: true,
     follow: true,
   },
 };

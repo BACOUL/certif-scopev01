@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     canonical: "https://www.certif-scope.com/de/scope-1-2-3-erklaert/",
     languages: {
       de: "https://www.certif-scope.com/de/scope-1-2-3-erklaert/",
+      fr: "https://www.certif-scope.com/fr/scope-1-2-3-explication/",
     },
   },
   openGraph: {
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "de_DE",
   },
-  robots: { index: false, follow: true },
+  robots: { index: true, follow: true },
 };
 
 export default function Scopes123ErklaertDE() {

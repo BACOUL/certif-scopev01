@@ -16,6 +16,7 @@ export const metadata: Metadata = {
     canonical: "https://www.certif-scope.com/de/pruefen/",
     languages: {
       de: "https://www.certif-scope.com/de/pruefen/",
+      fr: "https://www.certif-scope.com/fr/verify/",
     },
   },
   openGraph: {
@@ -27,6 +28,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "de_DE",
   },
+  robots: { index: true, follow: true },
 };
 
 type SearchParamsInput =
