@@ -51,14 +51,33 @@ function SectionHeader({ eyebrow, title, text }: { eyebrow: string; title: strin
 }
 
 function AttestationPreview() {
+  const metaItems = [
+    ["Referenz der Bescheinigung", "CS-SAMPLE-DE-2024-0001"],
+    ["Ausstellungsdatum", "2024-05-20"],
+    ["Gültig bis", "2025-05-20"],
+    ["Aussteller", "Certif-Scope"],
+  ];
+
+  const summaryItems = [
+    ["Dokumentstatus", "Indikativ · Aggregiert · Kontrollierbar"],
+    ["Angezeigte Daten", "Nur CO2e-Ergebnis"],
+    ["Empfohlene Verwendung", "Lieferant · Kunde · Bank · Versicherung"],
+  ];
+
   return (
     <div className="relative mx-auto max-w-[760px] rounded-[34px] border border-[#0B3A63]/10 bg-white p-6 shadow-[0_28px_70px_rgba(11,58,99,0.14)] md:p-8">
-      <div className="relative overflow-hidden rounded-2xl border border-[#d8e2ea] bg-white px-5 py-6 md:px-8 md:py-7">
-        <div className="pointer-events-none absolute left-[8%] top-[34%] z-0 w-[84%] -rotate-[22deg] text-center text-2xl font-black uppercase tracking-[0.08em] text-[#0B3A63]/10 md:text-5xl">
-          Kostenloses Beispiel · nicht verwendbar
+      <div
+        aria-label="Vorschau einer ungültigen deutschen Beispielbescheinigung"
+        className="relative overflow-hidden rounded-2xl border border-[#d8e2ea] bg-white px-4 py-5 md:px-7 md:py-6"
+      >
+        <div className="pointer-events-none absolute left-[4%] top-[34%] z-0 w-[92%] -rotate-[22deg] text-center text-2xl font-black uppercase tracking-[0.08em] text-[#0B3A63]/10 md:text-5xl">
+          Beispiel · nicht verwendbar
+        </div>
+        <div className="pointer-events-none absolute bottom-5 right-5 z-0 rotate-[-16deg] rounded-lg border border-[#0B3A63]/10 px-3 py-2 text-[10px] font-black uppercase tracking-[0.14em] text-[#0B3A63]/15 md:text-xs">
+          Abgelaufenes Beispieldokument
         </div>
 
-        <div className="relative z-10 flex items-start justify-between gap-4 border-b-2 border-[#0B3A63] pb-5">
+        <div className="relative z-10 flex items-start justify-between gap-4 border-b-2 border-[#0B3A63] pb-4">
           <div>
             <LogoMark />
             <p className="mt-3 text-[10px] leading-relaxed text-[#64748B] md:text-xs">
@@ -68,59 +87,89 @@ function AttestationPreview() {
           </div>
           <div className="text-center">
             <MiniQr />
-            <p className="mt-2 text-[9px] text-[#0B3A63] md:text-[10px]">QR-Code scannen</p>
+            <p className="mt-2 text-[8px] text-[#0B3A63] md:text-[10px]">QR-Code scannen, um die Demo zu prüfen</p>
           </div>
         </div>
 
-        <div className="relative z-10 mt-7 text-center">
-          <p className="text-[10px] font-extrabold uppercase tracking-[0.22em] text-[#1FB6C1] md:text-xs">
-            Indikatives CO2e-Dokument · standardisiert · verifizierbar
+        <div className="relative z-10 mt-6 text-center">
+          <p className="text-[9px] font-extrabold uppercase tracking-[0.22em] text-[#1FB6C1] md:text-xs">
+            Indikatives CO2e-Dokument · standardisiert · kontrollierbar
           </p>
-          <h3 className="mt-2 text-xl font-black uppercase leading-tight text-[#0B3A63] md:text-3xl">
+          <h3 className="mt-2 text-lg font-black uppercase leading-tight text-[#0B3A63] md:text-3xl">
             Indikative Bescheinigung zu CO2e-Emissionen
           </h3>
-          <p className="mt-1 text-[11px] text-[#64748B] md:text-sm">
-            Ausgestellt nach der internen standardisierten Certif-Scope-Methodik CS-SB-v1
+          <p className="mt-1 text-[10px] text-[#64748B] md:text-sm">
+            Ausgestellt nach der internen standardisierten Methodik Certif-Scope CS-SB-v1
           </p>
-          <p className="text-[10px] text-[#64748B] md:text-xs">
+          <p className="text-[9px] text-[#64748B] md:text-xs">
             Nicht regulatorisch · Methodikbasiert · Indikative Bescheinigung
           </p>
         </div>
 
-        <div className="relative z-10 mx-auto mt-7 max-w-[560px] rounded-xl border-2 border-[#0B3A63] bg-white px-4 py-5 text-center">
-          <p className="text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#64748B] md:text-xs">
-            Deklarierte aggregierte indikative Emissionen
+        <div className="relative z-10 mx-auto mt-6 max-w-[560px] rounded-xl border-2 border-[#0B3A63] bg-white px-4 py-4 text-center">
+          <p className="text-[9px] font-extrabold uppercase tracking-[0.16em] text-[#64748B] md:text-xs">
+            Angegebene aggregierte indikative Emissionen
           </p>
           <p className="mt-1 font-serif text-4xl font-black text-[#0B3A63] md:text-5xl">
             15 tCO₂e
           </p>
-          <p className="mt-1 text-[10px] text-[#64748B] md:text-xs">
-            Dokumentarische Schätzung auf Basis deklarierter aggregierter Ausgaben.
+          <p className="mt-1 text-[9px] text-[#64748B] md:text-xs">
+            Dokumentarische Schätzung auf Basis aggregierter angegebener Ausgaben.
           </p>
         </div>
 
-        <div className="relative z-10 mt-6 grid grid-cols-2 overflow-hidden rounded-lg border border-[#cbd7e0] bg-white text-left md:grid-cols-4">
-          {[
-            ["Referenz der Bescheinigung", "CS-SAMPLE-DE-2026-0001"],
-            ["Ausstellungsdatum", "2026-05-20"],
-            ["Gültig bis", "2027-05-20"],
-            ["Aussteller", "Certif-Scope"],
-          ].map(([label, value]) => (
+        <div className="relative z-10 mt-5 grid grid-cols-2 overflow-hidden rounded-lg border border-[#cbd7e0] bg-white text-left md:grid-cols-4">
+          {metaItems.map(([label, value]) => (
             <div key={label} className="border-b border-r border-[#cbd7e0] p-3 last:border-r-0 md:border-b-0">
-              <p className="text-[8px] font-black uppercase tracking-[0.1em] text-[#81909D] md:text-[9px]">{label}</p>
-              <p className="mt-1 text-[10px] font-extrabold text-[#0B3A63] md:text-xs">{value}</p>
+              <p className="text-[7px] font-black uppercase tracking-[0.1em] text-[#81909D] md:text-[9px]">{label}</p>
+              <p className="mt-1 text-[9px] font-extrabold text-[#0B3A63] md:text-xs">{value}</p>
             </div>
           ))}
         </div>
 
-        <div className="relative z-10 mt-5 rounded-lg border border-[#d8e2ea] bg-[#EEF9FA] p-3 text-left">
-          <p className="text-[9px] font-black uppercase tracking-[0.08em] text-[#0B3A63] md:text-[10px]">
+        <div className="relative z-10 mt-4 rounded-lg border border-[#d8e2ea] bg-[#EEF9FA] p-3 text-left">
+          <p className="text-[8px] font-black uppercase tracking-[0.08em] text-[#0B3A63] md:text-[10px]">
             1. Identifikation der Einheit
           </p>
-          <p className="mt-1 text-[10px] text-[#223243] md:text-xs">
-            Muster GmbH · DE · Unternehmensdienstleistungen · Referenzjahr 2026
+          <p className="mt-1 text-[9px] text-[#223243] md:text-xs">
+            Beispielunternehmen GmbH · DE · Unternehmensdienstleistungen · Referenzjahr 2024
           </p>
         </div>
+
+        <div className="relative z-10 mt-3 grid gap-3 md:grid-cols-2">
+          <div className="rounded-lg border border-[#d8e2ea] bg-white p-3 text-left">
+            <p className="text-[8px] font-black uppercase tracking-[0.08em] text-[#0B3A63] md:text-[10px]">2. Art des Dokuments</p>
+            <p className="mt-1 text-[9px] leading-relaxed text-[#475569] md:text-[11px]">
+              Indikative CO2e-Bescheinigung zur Information, Vorprüfung und Entscheidungsunterstützung.
+            </p>
+          </div>
+          <div className="rounded-lg border border-[#d8e2ea] bg-white p-3 text-left">
+            <p className="text-[8px] font-black uppercase tracking-[0.08em] text-[#0B3A63] md:text-[10px]">3. Umfang</p>
+            <p className="mt-1 text-[9px] leading-relaxed text-[#475569] md:text-[11px]">
+              Spend-based Schätzung aus aggregierten Ausgabedaten, kein Audit und keine Zertifizierung.
+            </p>
+          </div>
+        </div>
+
+        <div className="relative z-10 mt-3 rounded-lg border border-[#d8e2ea] bg-[#EEF9FA] p-3 text-left">
+          <p className="text-[8px] font-black uppercase tracking-[0.08em] text-[#0B3A63] md:text-[10px]">4. Vorgesehene Verwendung</p>
+          <p className="mt-1 text-[9px] leading-relaxed text-[#475569] md:text-[11px]">
+            Kundenanfragen, Lieferantenportale, Ausschreibungen, Bankunterlagen oder Versicherungsanfragen.
+          </p>
+        </div>
+
+        <div className="relative z-10 mt-4 grid gap-2 text-left md:grid-cols-3">
+          {summaryItems.map(([label, value]) => (
+            <div key={label} className="rounded-lg border border-[#d8e2ea] bg-white p-3">
+              <p className="text-[7px] font-black uppercase tracking-[0.1em] text-[#81909D] md:text-[8px]">{label}</p>
+              <p className="mt-1 text-[9px] font-extrabold text-[#0B3A63] md:text-[10px]">{value}</p>
+            </div>
+          ))}
+        </div>
+
+        <p className="relative z-10 mt-4 border-t border-[#d8e2ea] pt-3 text-center text-[9px] font-bold uppercase tracking-[0.18em] text-[#0B3A63]/60 md:text-[10px]">
+          Kostenloses Beispiel · keine ausgestellte Bescheinigung
+        </p>
       </div>
     </div>
   );
