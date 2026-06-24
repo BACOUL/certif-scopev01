@@ -13,6 +13,33 @@ const IS_SAMPLE = true;
 // Paste only the base64 content of your logo here (no data: prefix, no newlines)
 const CERTIF_SCOPE_LOGO_BASE64 = "";
 
+const SUPPORTED_LOCALES: AttestationLocale[] = ["en", "fr", "de"];
+
+function isSupportedLocale(value: string | null): value is AttestationLocale {
+  return SUPPORTED_LOCALES.includes(value as AttestationLocale);
+}
+
+function resolveSampleLocale(req: Request): AttestationLocale {
+  const url = new URL(req.url);
+  const queryLocale = url.searchParams.get("lang")?.toLowerCase() || null;
+
+  if (isSupportedLocale(queryLocale)) {
+    return queryLocale;
+  }
+
+  const referer = req.headers.get("referer") || "";
+
+  if (referer.includes("/de")) {
+    return "de";
+  }
+
+  if (referer.includes("/fr")) {
+    return "fr";
+  }
+
+  return DEFAULT_ATTESTATION_LOCALE;
+}
+
 function escapeHtml(input: string) {
   return input
     .replace(/&/g, "&amp;")
@@ -21,6 +48,145 @@ function escapeHtml(input: string) {
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#39;");
 }
+
+const SAMPLE_METADATA: Record<
+  AttestationLocale,
+  {
+    companyName: string;
+    companySector: string;
+    entityIdentifier: string;
+    country: string;
+    year: string;
+    totalCO2e: string;
+    methodology: string;
+    issuerName: string;
+    issuerSite: string;
+    validityMonths: string;
+    standardRef: string;
+  }
+> = {
+  en: {
+    companyName: "Example Company Ltd (Fictional)",
+    companySector: "Example Sector",
+    entityIdentifier: "N/A",
+    country: "EU (Example)",
+    year: "20XX",
+    totalCO2e: "123.4",
+    methodology: "Sample methodology — illustrative only",
+    issuerName: "Certif-Scope (Sample)",
+    issuerSite: "https://certif-scope.com/sample",
+    validityMonths: "N/A",
+    standardRef: "SAMPLE — CS-SB-v1",
+  },
+  fr: {
+    companyName: "Entreprise Exemple SAS (fictive)",
+    companySector: "Secteur d'exemple",
+    entityIdentifier: "N/A",
+    country: "France (exemple)",
+    year: "20XX",
+    totalCO2e: "123.4",
+    methodology: "Méthodologie d'exemple — uniquement illustrative",
+    issuerName: "Certif-Scope (Exemple)",
+    issuerSite: "https://certif-scope.com/fr/",
+    validityMonths: "N/A",
+    standardRef: "EXEMPLE — CS-SB-v1",
+  },
+  de: {
+    companyName: "Muster GmbH (fiktiv)",
+    companySector: "Beispielbranche",
+    entityIdentifier: "N/A",
+    country: "Deutschland (Beispiel)",
+    year: "20XX",
+    totalCO2e: "123.4",
+    methodology: "Beispielmethodik — ausschließlich illustrativ",
+    issuerName: "Certif-Scope (Beispiel)",
+    issuerSite: "https://certif-scope.com/de/",
+    validityMonths: "N/A",
+    standardRef: "BEISPIEL — CS-SB-v1",
+  },
+};
+
+const SAMPLE_TEXT: Record<
+  AttestationLocale,
+  {
+    htmlTitlePrefix: string;
+    watermark: string;
+    subtitle: string;
+    verificationDisabled: string;
+    validUntil: string;
+    notApplicable: string;
+    documentNature: string;
+    referenceItemOne: string;
+    referenceItemTwo: string;
+    authenticityDisabled: string;
+    verificationPageDisabled: string;
+    publicKeyNotApplicable: string;
+    footerInvalid: string;
+    finalNotice: string;
+    filename: string;
+  }
+> = {
+  en: {
+    htmlTitlePrefix: "SAMPLE — ",
+    watermark: "SAMPLE — NO LEGAL VALUE",
+    subtitle: "Example document — no legal or regulatory value",
+    verificationDisabled: "Verification disabled",
+    validUntil: "Not applicable — sample document",
+    notApplicable: "Not applicable",
+    documentNature:
+      "SAMPLE DOCUMENT — This text is illustrative only and does not describe a real attestation.",
+    referenceItemOne: "References shown for illustration only",
+    referenceItemTwo: "No normative or regulatory alignment applies",
+    authenticityDisabled:
+      "This section is disabled for sample documents. No authenticity or verification applies.",
+    verificationPageDisabled: "Verification disabled for sample documents",
+    publicKeyNotApplicable: "Not applicable for sample documents",
+    footerInvalid: "SAMPLE DOCUMENT - INVALID",
+    finalNotice:
+      "THIS DOCUMENT IS A NON-VALID SAMPLE PROVIDED FOR DEMONSTRATION PURPOSES ONLY. IT HAS NO LEGAL, REGULATORY, CONTRACTUAL, OR EVIDENTIARY VALUE. IT MUST NOT BE USED OR PRESENTED AS AN OFFICIAL ATTESTATION.",
+    filename: "sample-attestation.pdf",
+  },
+  fr: {
+    htmlTitlePrefix: "EXEMPLE — ",
+    watermark: "EXEMPLE — NON VALABLE",
+    subtitle: "Document d'exemple — sans valeur juridique ou réglementaire",
+    verificationDisabled: "Vérification désactivée",
+    validUntil: "Non applicable — document d'exemple",
+    notApplicable: "Non applicable",
+    documentNature:
+      "DOCUMENT D'EXEMPLE — Ce texte est fourni uniquement à titre illustratif et ne décrit pas une attestation réelle.",
+    referenceItemOne: "Références affichées uniquement à titre d'illustration",
+    referenceItemTwo: "Aucun alignement normatif ou réglementaire applicable",
+    authenticityDisabled:
+      "Cette section est désactivée pour les documents d'exemple. Aucune authenticité ou vérification ne s'applique.",
+    verificationPageDisabled: "Vérification désactivée pour les documents d'exemple",
+    publicKeyNotApplicable: "Non applicable pour les documents d'exemple",
+    footerInvalid: "DOCUMENT D'EXEMPLE - NON VALABLE",
+    finalNotice:
+      "CE DOCUMENT EST UN EXEMPLE NON VALABLE FOURNI UNIQUEMENT À DES FINS DE DÉMONSTRATION. IL N'A AUCUNE VALEUR JURIDIQUE, RÉGLEMENTAIRE, CONTRACTUELLE OU PROBANTE. IL NE DOIT PAS ÊTRE UTILISÉ OU PRÉSENTÉ COMME UNE ATTESTATION OFFICIELLE.",
+    filename: "certif-scope-exemple-attestation.pdf",
+  },
+  de: {
+    htmlTitlePrefix: "BEISPIEL — ",
+    watermark: "BEISPIEL — NICHT VERWENDBAR",
+    subtitle: "Beispieldokument — ohne rechtlichen oder regulatorischen Wert",
+    verificationDisabled: "Verifizierung deaktiviert",
+    validUntil: "Nicht anwendbar — Beispieldokument",
+    notApplicable: "Nicht anwendbar",
+    documentNature:
+      "BEISPIELDOKUMENT — Dieser Text dient ausschließlich zur Veranschaulichung und beschreibt keine echte Bescheinigung.",
+    referenceItemOne: "Referenzen werden nur zur Veranschaulichung angezeigt",
+    referenceItemTwo: "Es gilt keine normative oder regulatorische Ausrichtung",
+    authenticityDisabled:
+      "Diese Sektion ist für Beispieldokumente deaktiviert. Es gilt keine Authentizität oder Verifizierung.",
+    verificationPageDisabled: "Verifizierung für Beispieldokumente deaktiviert",
+    publicKeyNotApplicable: "Nicht anwendbar für Beispieldokumente",
+    footerInvalid: "BEISPIELDOKUMENT - UNGÜLTIG",
+    finalNotice:
+      "DIESES DOKUMENT IST EIN NICHT GÜLTIGES BEISPIEL UND DIENT AUSSCHLIESSLICH DEMONSTRATIONSZWECKEN. ES HAT KEINEN RECHTLICHEN, REGULATORISCHEN, VERTRAGLICHEN ODER BEWEISRELEVANTEN WERT. ES DARF NICHT ALS OFFIZIELLE BESCHEINIGUNG VERWENDET ODER VORGELEGT WERDEN.",
+    filename: "certif-scope-beispiel-bescheinigung.pdf",
+  },
+};
 
 export async function GET(req: Request) {
   try {
@@ -33,32 +199,10 @@ export async function GET(req: Request) {
       return new Response("PDFSHIFT_API_KEY missing", { status: 500 });
     }
 
-    // 2️⃣ STRIPE NEUTRALISÉ (Simulation de session)
-    const session = {
-      metadata: {
-        companyName: "Example Company Ltd (Fictional)",
-        companySector: "Example Sector",
-        entityIdentifier: "N/A",
-        country: "EU (Example)",
-        year: "20XX",
-        totalCO2e: "123.4",
-        methodology: "Sample methodology — illustrative only",
-        attestationLocale: "en",
-        issuerName: "Certif-Scope (Sample)",
-        issuerSite: "https://certif-scope.com/sample",
-        validityMonths: "N/A",
-        standardRef: "SAMPLE — CS-SB-v1"
-      },
-    };
-
-    const metadataRaw = session.metadata;
-
-    // 3️⃣ LANGUE
-    const locale =
-      (metadataRaw.attestationLocale as AttestationLocale) ||
-      DEFAULT_ATTESTATION_LOCALE;
-
+    const locale = resolveSampleLocale(req);
     const i18n = ATTESTATION_I18N[locale] || ATTESTATION_I18N.en;
+    const sampleText = SAMPLE_TEXT[locale];
+    const metadataRaw = SAMPLE_METADATA[locale];
 
     // 4️⃣ CRYPTO NEUTRALISÉE
     const issuedDate = "20XX-XX-XX"; // Date fictive
@@ -83,7 +227,7 @@ export async function GET(req: Request) {
       totalCO2e: escapeHtml(metadataRaw.totalCO2e),
       methodology: escapeHtml(metadataRaw.methodology),
       issuedDate: escapeHtml(issuedDate),
-      validUntil: "Not applicable — sample document",
+      validUntil: escapeHtml(sampleText.validUntil),
       validityMonths: escapeHtml(metadataRaw.validityMonths),
       standardRef: escapeHtml(metadataRaw.standardRef),
       // Injections Sample
@@ -93,7 +237,7 @@ export async function GET(req: Request) {
     };
 
     // 6️⃣ QR CODE NEUTRALISÉ
-    const verifyUrl = "https://certif-scope.com/sample";
+    const verifyUrl = `https://certif-scope.com/${locale === "en" ? "sample" : `${locale}/sample`}`;
     const qrDataUrl = await QRCode.toDataURL(verifyUrl, { width: 120, margin: 1 });
 
     // HTML SAMPLE
@@ -102,7 +246,7 @@ export async function GET(req: Request) {
 <html lang="${locale}">
 <head>
 <meta charset="utf-8"/>
-<title>SAMPLE — ${metadata.issuerName}</title>
+<title>${sampleText.htmlTitlePrefix}${metadata.issuerName}</title>
 <style>
   @page {
     size: A4;
@@ -128,7 +272,6 @@ export async function GET(req: Request) {
 
   .container { padding: 0; }
 
-  /* 8️⃣ WATERMARK AJOUTÉ */
   .watermark {
     position: fixed;
     top: 40%;
@@ -136,7 +279,7 @@ export async function GET(req: Request) {
     width: 80%;
     text-align: center;
     font-size: 60px;
-    color: rgba(200, 0, 0, 0.1); /* Rouge très léger */
+    color: rgba(200, 0, 0, 0.1);
     transform: rotate(-30deg);
     z-index: 9999;
     pointer-events: none;
@@ -144,7 +287,6 @@ export async function GET(req: Request) {
     text-transform: uppercase;
   }
 
-  /* Footer Flow */
   .footer-static {
     width: 100%;
     font-size: 9px;
@@ -157,7 +299,6 @@ export async function GET(req: Request) {
     clear: both;
   }
 
-  /* Header */
   header {
     display:flex;
     justify-content:space-between;
@@ -178,11 +319,9 @@ export async function GET(req: Request) {
   .issuer-site { font-size:9px; color:var(--muted); margin-bottom:4px; }
   .issuer-meta { font-size:9px; color:var(--muted); }
 
-  /* QR */
   .qr { text-align:center; font-size:9px; }
   .qr img { width:90px; height:90px; border:1px solid #ddd; padding:4px; background:#fff; }
 
-  /* Title */
   .title {
     text-align:center;
     margin: 8px 0 10px;
@@ -190,11 +329,9 @@ export async function GET(req: Request) {
   }
   .title h1 { font-size:20px; margin:0; font-weight:700; letter-spacing:0.8px; text-transform:uppercase; color:var(--accent); }
   .title .formal-line { margin-top:4px; font-size:10px; color:#222; font-weight:600; font-family: Inter, Arial, sans-serif; }
-  /* 7️⃣ SOUS-TITRE AJOUTÉ */
   .title .subtitle { margin-top:4px; font-size:10px; color:#c00; font-weight:bold; text-transform: uppercase; } 
   .title .standard-ref { margin-top:4px; font-size:9px; color:var(--accent); font-weight:600; }
 
-  /* Result Panel */
   .result-panel {
     margin: 4px 0 14px;
     display:flex;
@@ -213,13 +350,11 @@ export async function GET(req: Request) {
   .result-label { font-size:9px; font-weight:700; color:#222; margin-bottom:4px; font-family: Inter, Arial, sans-serif; text-transform: uppercase; letter-spacing: 0.5px; }
   .result-value { font-family:var(--serif); font-size:26px; font-weight:800; color:var(--accent); margin:2px 0; letter-spacing:1px; }
 
-  /* Layout */
   .two-col { width: 100%; }
   .two-col > div { float: left; width: calc(100% - 310px); }
   .two-col > aside { float: right; width: 300px; margin-top: 0; }
   .clearfix::after { content: ""; display: block; clear: both; }
 
-  /* Sections */
   section { margin-bottom: 8px; padding-right:2px; }
   .section-title { font-family:var(--serif); font-size:11px; margin-bottom:4px; font-weight:700; color:var(--accent); text-transform:uppercase; font-variant:small-caps; border-bottom: 1px solid #eee; padding-bottom: 2px; display: inline-block; min-width: 100%; }
 
@@ -228,7 +363,6 @@ export async function GET(req: Request) {
   .meta-list li { margin-bottom: 2px; }
   .row { margin-bottom: 2px; }
 
-  /* Blocks */
   .verify-block { 
     border:1px solid var(--border-light); 
     padding:10px; 
@@ -240,7 +374,6 @@ export async function GET(req: Request) {
   .verify-title { font-weight:700; color:var(--accent); font-size:10px; margin-bottom:4px; text-transform: uppercase; letter-spacing: 0.5px; }
   .scope-summary { margin-top:8px; border-left:3px solid var(--border-light); padding-left:10px; font-size:9.5px; color:#222; }
 
-  /* Final clauses */
   .final-box { border-top:1px solid #ddd; margin-top:10px; padding-top:8px; }
   .final-stamp { border:1px solid #e0e0e0; padding:10px; font-style:italic; color:#222; background:#fff; font-size:10px; }
 
@@ -252,7 +385,7 @@ export async function GET(req: Request) {
 </style>
 </head>
 <body>
-<div class="watermark">SAMPLE — NO LEGAL VALUE</div>
+<div class="watermark">${sampleText.watermark}</div>
 
 <div class="container">
 
@@ -265,15 +398,15 @@ export async function GET(req: Request) {
 
     <div class="qr">
       <img src="${qrDataUrl}" alt="QR verification" />
-      <div class="small">Verification disabled</div>
+      <div class="small">${sampleText.verificationDisabled}</div>
     </div>
   </header>
 
   <div class="title">
-    <h1>SAMPLE — ${i18n.title}</h1>
+    <h1>${sampleText.htmlTitlePrefix}${i18n.title}</h1>
     <div class="formal-line">${i18n.standardReference}</div>
     <div class="standard-ref">${i18n.standardReferenceLabel} ${metadata.standardRef}</div>
-    <div class="subtitle">Example document — no legal or regulatory value</div>
+    <div class="subtitle">${sampleText.subtitle}</div>
   </div>
 
   <div class="result-panel" role="region" aria-label="Estimated emissions result">
@@ -292,14 +425,14 @@ export async function GET(req: Request) {
           <div class="row"><strong>${i18n.websiteLabel}:</strong> ${metadata.issuerSite}</div>
           <div class="row"><strong>${i18n.attestationReferenceLabel}:</strong> ${metadata.attestationId} <span class="small"> (${i18n.uniqueIdentifierLabel})</span></div>
           <div class="row"><strong>${i18n.issuedDateLabel}:</strong> ${metadata.issuedDate}</div>
-          <div class="row"><strong>${i18n.validUntilLabel}:</strong> Not applicable</div>
+          <div class="row"><strong>${i18n.validUntilLabel}:</strong> ${metadata.validUntil}</div>
         </div>
       </section>
 
       <section aria-labelledby="s2">
         <div class="section-title" id="s2">${i18n.documentNatureSectionTitle}</div>
         <div class="meta-list">
-          <div><strong>SAMPLE DOCUMENT — This text is illustrative only and does not describe a real attestation.</strong></div>
+          <div><strong>${sampleText.documentNature}</strong></div>
         </div>
       </section>
 
@@ -327,8 +460,8 @@ export async function GET(req: Request) {
         <div class="meta-list">
           <div style="margin-bottom:4px;"><em>${i18n.normativeText}</em></div>
           <ul>
-            <li>References shown for illustration only</li>
-            <li>No normative or regulatory alignment applies</li>
+            <li>${sampleText.referenceItemOne}</li>
+            <li>${sampleText.referenceItemTwo}</li>
           </ul>
         </div>
       </section>
@@ -338,7 +471,7 @@ export async function GET(req: Request) {
       <div class="verify-block" style="margin-top:0;">
         <div class="verify-title">${i18n.authenticityOverviewTitle}</div>
         <div class="small">
-          This section is disabled for sample documents. No authenticity or verification applies.
+          ${sampleText.authenticityDisabled}
         </div>
       </div>
 
@@ -366,7 +499,7 @@ export async function GET(req: Request) {
   </div>
 
   <div class="footer-static">
-    <div>SAMPLE DOCUMENT - INVALID</div>
+    <div>${sampleText.footerInvalid}</div>
     <div>${i18n.pageLabel} 1 / 2</div>
   </div>
 
@@ -405,7 +538,7 @@ export async function GET(req: Request) {
           </div>
 
           <div style="margin-top:8px;"><strong>${i18n.verificationPageLabel}:</strong><br/>
-            <span style="color:#666;">Verification disabled for sample documents</span>
+            <span style="color:#666;">${sampleText.verificationPageDisabled}</span>
           </div>
 
           <div class="small" style="margin-top:10px; border-top:1px solid #e0e0e0; padding-top:6px;">
@@ -424,7 +557,7 @@ export async function GET(req: Request) {
           <div class="small" style="margin-top:6px;">
             <strong>${i18n.publicKeyLabel}:</strong><br/>
             <span class="small">
-              Not applicable for sample documents
+              ${sampleText.publicKeyNotApplicable}
             </span>
           </div>
 
@@ -436,9 +569,7 @@ export async function GET(req: Request) {
         <div class="final-box">
           <div class="final-stamp">
             <div style="color:#c00; font-weight:bold; margin-bottom:8px;">
-              THIS DOCUMENT IS A NON-VALID SAMPLE PROVIDED FOR DEMONSTRATION PURPOSES ONLY.
-              IT HAS NO LEGAL, REGULATORY, CONTRACTUAL, OR EVIDENTIARY VALUE.
-              IT MUST NOT BE USED OR PRESENTED AS AN OFFICIAL ATTESTATION.
+              ${sampleText.finalNotice}
             </div>
             
             <div><strong>${i18n.issuedPursuantText}</strong></div>
@@ -450,7 +581,7 @@ export async function GET(req: Request) {
             </div>
             
             <div style="margin-top:6px;">
-              <strong>${i18n.validityPeriodLabel}:</strong> Not applicable
+              <strong>${i18n.validityPeriodLabel}:</strong> ${sampleText.notApplicable}
             </div>
 
             <div style="margin-top:8px; color:var(--muted); font-size:9px;"><strong>${i18n.noAuditText}</strong></div>
@@ -465,7 +596,7 @@ export async function GET(req: Request) {
   </div>
 
   <div class="footer-static">
-    <div>SAMPLE DOCUMENT - INVALID</div>
+    <div>${sampleText.footerInvalid}</div>
     <div>${i18n.pageLabel} 2 / 2</div>
   </div>
 
@@ -500,11 +631,10 @@ export async function GET(req: Request) {
 
     const pdfBuffer = Buffer.from(await pdfResponse.arrayBuffer());
     
-    // 1️⃣1️⃣ FILENAME MODIFIÉ
     return new Response(pdfBuffer, {
       headers: {
         "Content-Type": "application/pdf",
-        "Content-Disposition": `attachment; filename="sample-attestation.pdf"`,
+        "Content-Disposition": `attachment; filename="${sampleText.filename}"`,
         "Cache-Control": "no-store",
       },
     });
@@ -512,4 +642,4 @@ export async function GET(req: Request) {
     console.error(err);
     return new Response("Internal error", { status: 500 });
   }
-        }
+}
