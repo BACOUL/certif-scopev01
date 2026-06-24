@@ -10,35 +10,27 @@ import ScrollToTop from "@/components/ScrollToTop";
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const isGermanRoute = pathname === "/de" || pathname.startsWith("/de/");
 
-  // Close menu on navigation (mobile)
   useEffect(() => {
     const closeEvent = new Event("close-mobile-menu");
     window.dispatchEvent(closeEvent);
   }, [pathname]);
 
-  // The commercial site is currently French-first. Keep client language coherent.
-  useEffect(() => {
-    document.documentElement.lang = "fr";
-
-    try {
-      localStorage.setItem("lang", "fr");
-      localStorage.setItem("locale", "fr");
-      localStorage.setItem("i18n.lang", "fr");
-      localStorage.setItem("i18n.locale", "fr");
-    } catch {
-      // ignore private mode / blocked storage
-    }
-  }, []);
+  if (isGermanRoute) {
+    return (
+      <>
+        {children}
+        <ScrollToTop />
+      </>
+    );
+  }
 
   return (
     <>
       <HeaderFR />
-
       <main className="pt-[110px]">{children}</main>
-
       <FooterFR />
-
       <ScrollToTop />
     </>
   );
