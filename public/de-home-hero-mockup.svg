@@ -1,0 +1,67 @@
+<svg width="1600" height="1200" viewBox="0 0 1600 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="shadow" x="0" y="0" width="1600" height="1200" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="30" stdDeviation="45" flood-color="#0B3A63" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="1200" fill="#F8FAFC"/>
+  <ellipse cx="770" cy="650" rx="560" ry="360" fill="#1FB6C1" opacity="0.10"/>
+  <g transform="translate(335 155) rotate(-7 465 445)" filter="url(#shadow)">
+    <rect x="0" y="0" width="930" height="890" rx="28" fill="white" stroke="#D6E0E7" stroke-width="3"/>
+    <g transform="translate(70 55)">
+      <circle cx="38" cy="38" r="29" fill="none" stroke="#0B3A63" stroke-width="9" stroke-linecap="round" stroke-dasharray="136 50"/>
+      <circle cx="38" cy="38" r="29" fill="none" stroke="#1FB6C1" stroke-width="9" stroke-linecap="round" stroke-dasharray="58 128" transform="rotate(102 38 38)"/>
+      <path d="M24 40L35 50L57 27" stroke="#0B3A63" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="82" y="47" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="800" fill="#0B3A63">Certif-</text>
+      <text x="188" y="47" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="800" fill="#1FB6C1">Scope</text>
+      <text x="0" y="118" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#64748B">Automatisierte Ausstellung · Standardisierte indikative Bescheinigung</text>
+    </g>
+    <rect x="700" y="58" width="118" height="118" rx="8" fill="white" stroke="#D6E0E7" stroke-width="3"/>
+    <g fill="#0B3A63" transform="translate(722 80)">
+      <rect x="0" y="0" width="15" height="15"/><rect x="22" y="0" width="13" height="13"/><rect x="44" y="0" width="18" height="18"/><rect x="76" y="0" width="20" height="20"/>
+      <rect x="0" y="28" width="10" height="10"/><rect x="22" y="25" width="24" height="14"/><rect x="56" y="31" width="13" height="13"/><rect x="82" y="32" width="16" height="16"/>
+      <rect x="0" y="58" width="22" height="22"/><rect x="33" y="58" width="12" height="12"/><rect x="57" y="60" width="17" height="17"/><rect x="84" y="70" width="12" height="12"/>
+      <rect x="0" y="90" width="13" height="13"/><rect x="25" y="86" width="21" height="16"/><rect x="57" y="88" width="10" height="10"/><rect x="74" y="88" width="24" height="14"/>
+    </g>
+    <line x1="70" y1="230" x2="860" y2="230" stroke="#0B3A63" stroke-width="5"/>
+    <text x="465" y="292" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="800" letter-spacing="3" fill="#1FB6C1">INDIKATIVES CO₂E-DOKUMENT</text>
+    <text x="465" y="335" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="35" font-weight="800" fill="#0B3A63">CO₂E-BESCHEINIGUNG</text>
+    <text x="465" y="366" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#64748B">Standardisiert · datiert · dokumentarisch prüfbar</text>
+    <rect x="165" y="420" width="600" height="126" rx="18" fill="white" stroke="#0B3A63" stroke-width="5"/>
+    <text x="465" y="458" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="800" letter-spacing="2" fill="#64748B">AGGREGIERTES ERGEBNIS</text>
+    <text x="465" y="510" text-anchor="middle" font-family="Georgia, serif" font-size="58" font-weight="800" fill="#0B3A63">15 tCO₂e</text>
+    <text x="465" y="535" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#64748B">Beispielwert · nicht verwendbar</text>
+    <g transform="translate(90 600)">
+      <rect width="750" height="72" rx="9" fill="white" stroke="#C5D3DC" stroke-width="2"/>
+      <line x1="250" y1="0" x2="250" y2="72" stroke="#C5D3DC" stroke-width="2"/>
+      <line x1="500" y1="0" x2="500" y2="72" stroke="#C5D3DC" stroke-width="2"/>
+      <text x="24" y="28" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="800" fill="#81909D">DOKUMENT-ID</text>
+      <text x="24" y="52" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="800" fill="#0B3A63">CS-SAMPLE-DE</text>
+      <text x="274" y="28" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="800" fill="#81909D">STATUS</text>
+      <text x="274" y="52" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="800" fill="#0B3A63">Indikativ</text>
+      <text x="524" y="28" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="800" fill="#81909D">DATEN</text>
+      <text x="524" y="52" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="800" fill="#0B3A63">Aggregiert</text>
+    </g>
+    <g transform="translate(90 712)">
+      <rect width="350" height="94" rx="12" fill="#EEF7F8" stroke="#D6E0E7" stroke-width="2"/>
+      <text x="24" y="36" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="800" fill="#0B3A63">Dokumentarische Prüfung</text>
+      <text x="24" y="64" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#223243">QR-Code, ID und Datum sichtbar</text>
+      <rect x="400" width="350" height="94" rx="12" fill="#F7FAFC" stroke="#D6E0E7" stroke-width="2"/>
+      <text x="424" y="36" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="800" fill="#0B3A63">Keine CSRD/ESRS</text>
+      <text x="424" y="64" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#223243">Für einfache Anfragen gedacht</text>
+    </g>
+  </g>
+  <g transform="translate(125 178)">
+    <rect width="410" height="72" rx="16" fill="white" stroke="#0B3A63" stroke-width="3"/>
+    <text x="205" y="46" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#0B3A63">Daten → Berechnung → Bescheinigung</text>
+  </g>
+  <g transform="translate(102 780)">
+    <rect width="300" height="70" rx="14" fill="white" stroke="#0B3A63" stroke-width="3"/>
+    <text x="150" y="44" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800" fill="#0B3A63">PDF standardisiert</text>
+  </g>
+  <g transform="translate(1035 820)">
+    <rect width="320" height="86" rx="16" fill="white" stroke="#0B3A63" stroke-width="3"/>
+    <text x="48" y="40" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="800" fill="#0B3A63">✓ Geprüft</text>
+    <text x="48" y="67" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#64748B">ID: CS-SAMPLE-DE</text>
+  </g>
+</svg>
