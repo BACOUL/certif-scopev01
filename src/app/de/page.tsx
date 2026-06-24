@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 
 import ScrollUp from "@/components/Common/ScrollUp";
 
+import { HeroDE } from "./_components/HomeHeroDE";
 import {
   DifferentiationDE,
   FAQDE,
   FeaturesDE,
-  HeroDE,
   HowItWorksDE,
   OfficialReferencesDE,
   PricingDE,
