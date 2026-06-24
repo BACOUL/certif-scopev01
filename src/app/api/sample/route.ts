@@ -1,20 +1,9 @@
 export const runtime = "nodejs";
 
 import QRCode from "qrcode";
-import {
-  ATTESTATION_I18N,
-  AttestationLocale,
-  DEFAULT_ATTESTATION_LOCALE,
-} from "@/lib/attestation-i18n/index";
-
-// 1️⃣ MODE SAMPLE ACTIVÉ
-const IS_SAMPLE = true;
-
-// Paste only the base64 content of your logo here (no data: prefix, no newlines)
-const CERTIF_SCOPE_LOGO_BASE64 = "";
 
 function escapeHtml(input: string) {
-  return input
+  return String(input)
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
@@ -22,494 +11,288 @@ function escapeHtml(input: string) {
     .replace(/'/g, "&#39;");
 }
 
-export async function GET(req: Request) {
-  try {
-    // 1️⃣ VERROU DE SÉCURITÉ SAMPLE
-    if (!IS_SAMPLE) {
-      return new Response("Sample mode disabled", { status: 403 });
-    }
+const copy = {
+  fr: {
+    lang: "fr",
+    companyName: "Entreprise Exemple SAS",
+    companySector: "Services aux entreprises",
+    country: "FR",
+    attestationId: "CS-SAMPLE-2026-0001",
+    algorithm: "EXEMPLE — NON SIGNÉ",
+    hash: "SAMPLE_HASH_NOT_VALID",
+    signature: "SAMPLE_SIGNATURE_NOT_VALID",
+    publicKey: "SAMPLE_PUBLIC_KEY_NOT_VALID",
+    verificationDisplayUrl: "https://www.certif-scope.com/fr/verify/demo",
+    watermark1: "EXEMPLE GRATUIT",
+    watermark2: "NE CONSTITUE PAS UNE ATTESTATION ÉMISE",
+    title: "ATTESTATION INDICATIVE D’ÉMISSIONS DE CARBONE",
+    eyebrow: "DOCUMENT CO₂E INDICATIF · STANDARDISÉ · VÉRIFIABLE",
+    standard: "Émise selon la méthodologie standardisée interne Certif-Scope CS-SB-v1",
+    subtitle: "Non réglementaire · Fondée sur une méthodologie · Attestation indicative",
+    footer: "Attestation indicative d’émissions de carbone · Émise par Certif-Scope · certif-scope.com",
+    headerTagline: "Émission automatisée · Attestation indicative standardisée",
+    scan: "Scanner le QR code pour vérifier",
+    resultLabel: "ÉMISSIONS INDICATIVES AGRÉGÉES DÉCLARÉES",
+    resultSubline: "Estimation documentaire fondée sur des dépenses agrégées déclarées.",
+    resultBottom: "Base documentaire carbone simple, datée et vérifiable, destinée aux échanges professionnels.",
+    refLabel: "RÉFÉRENCE DE L’ATTESTATION",
+    issuedLabel: "DATE D’ÉMISSION",
+    validLabel: "VALABLE JUSQU’AU",
+    issuerLabel: "ÉMETTEUR",
+    entityTitle: "1. IDENTIFICATION DE L’ENTITÉ",
+    entityName: "NOM DE L’ENTITÉ",
+    countryLabel: "PAYS",
+    sectorLabel: "SECTEUR D’ACTIVITÉ",
+    yearLabel: "ANNÉE DE RÉFÉRENCE",
+    entityId: "IDENTIFIANT DE L’ENTITÉ",
+    natureTitle: "2. NATURE DU DOCUMENT",
+    natureText: "Ce document constitue une attestation indicative d’émissions de carbone, émise exclusivement à des fins d’information, d’aide à la décision et d’évaluation préliminaire.",
+    scopeTitle: "3. PÉRIMÈTRE",
+    scopeText: "Cette attestation fournit une estimation indicative des émissions de gaz à effet de serre, dérivée exclusivement de données de dépenses agrégées, selon une méthodologie basée sur les dépenses (spend-based).",
+    useTitle: "4. USAGE PRÉVU DU DOCUMENT",
+    useText: "Cette attestation peut être utilisée comme pièce carbone indicative dans un dossier fournisseur, une demande client, un appel d’offres, une demande bancaire, une demande d’assurance ou une démarche interne. Elle est adaptée aux situations où aucun audit carbone complet, aucune vérification externe et aucun référentiel réglementaire spécifique ne sont explicitement exigés.",
+    thirdTitle: "5. LECTURE PAR UN TIERS",
+    thirdText: "Un lecteur externe peut contrôler la cohérence documentaire de l’attestation à partir de son identifiant, de sa date d’émission, de sa période de validité, de son résultat agrégé et de la page de vérification.",
+    f1: "CONFIDENTIALITÉ RENFORCÉE",
+    f1t: "Aucune donnée financière détaillée n’est affichée dans cette attestation. Seul le résultat CO₂e agrégé est présenté afin de faciliter une transmission externe sans divulguer les dépenses internes détaillées.",
+    f2: "VÉRIFICATION DOCUMENTAIRE",
+    f2t: "L’attestation comporte une référence unique, un QR code et des éléments de contrôle permettant une vérification documentaire indépendante.",
+    f3: "VALIDITÉ ENCADRÉE",
+    f3t: "La période de validité reflète la pertinence temporelle des données et de la méthodologie.",
+    statusTitle: "STATUT DOCUMENTAIRE",
+    statusValue: "Indicatif · Agrégé · Vérifiable",
+    dataTitle: "DONNÉES AFFICHÉES",
+    dataValue: "Résultat CO₂e uniquement",
+    recommendedTitle: "USAGE RECOMMANDÉ",
+    recommendedValue: "Dossier fournisseur · Client · Banque · Assurance",
+    pageTwoTitle: "MÉTHODOLOGIE, VÉRIFICATION ET LIMITES",
+    pageTwoIntro: "Cette page précise la méthode utilisée, les références de contexte, les éléments de vérification et les limites documentaires de l’attestation.",
+    methodTitle: "6. PRINCIPE MÉTHODOLOGIQUE",
+    methodLabel: "Méthodologie",
+    methodText: "L’estimation repose sur une approche monétaire dite spend-based. Les dépenses agrégées déclarées par l’entité sont associées à des facteurs d’émission monétaires afin d’obtenir une estimation CO₂e indicative.",
+    formula: "Dépenses agrégées déclarées × facteurs d’émission monétaires = estimation CO₂e indicative",
+    factorLabel: "VERSION DES FACTEURS",
+    transferLabel: "TRANSFÉRABILITÉ",
+    transferValue: "Non transférable.",
+    refTitle: "7. CADRES DE RÉFÉRENCE CITÉS À TITRE DE CONTEXTE",
+    refText: "Les cadres suivants sont cités uniquement pour situer la méthode spend-based dans son contexte méthodologique. Ils ne constituent pas une validation, une certification ou une conformité réglementaire de l’attestation.",
+    refNote: "Ce document ne constitue ni un inventaire de gaz à effet de serre, ni un audit, ni une vérification, ni une déclaration réglementaire au sens de la CSRD, des ESRS ou de tout cadre équivalent.",
+    verifyTitle: "VÉRIFICATION SIMPLE",
+    verifyText: "Scanner le QR code ou utiliser la référence d’attestation sur la page officielle de vérification. La vérification permet de contrôler l’identifiant, l’émetteur, la date, la période de validité et les éléments d’intégrité documentaire.",
+    quickTitle: "Contrôle rapide possible",
+    quickItems: ["Référence", "Date", "Validité", "Résultat agrégé", "Page de vérification"],
+    verifyPageLabel: "Page de vérification documentaire",
+    objectTitle: "OBJET VÉRIFIABLE",
+    objectText: "Le PDF signé, son identifiant, son QR code et ses éléments d’intégrité constituent les éléments de contrôle documentaire.",
+    objectItems: ["Identifiant unique", "Émetteur déclaré", "Date d’émission", "Période de validité", "Résultat CO₂e agrégé", "Éléments d’intégrité"],
+    techTitle: "8. ANNEXE TECHNIQUE DE VÉRIFICATION",
+    techText: "Les éléments ci-dessous permettent une vérification documentaire avancée. Ils sont fournis à titre technique et ne nécessitent aucune action de la part d’un lecteur standard. Pour ce document exemple, ils sont volontairement fictifs et non vérifiables.",
+    algoLabel: "ALGORITHME",
+    hashLabel: "EMPREINTE DU CONTENU SIGNÉ (SHA-256)",
+    sigLabel: "SIGNATURE (BASE64)",
+    keyLabel: "CLÉ PUBLIQUE DE VÉRIFICATION DE L’ÉMETTEUR",
+    limitsTitle: "9. PÉRIMÈTRE ET LIMITES",
+    limitsIntro: "Aucune donnée d’activité physique. Aucune émission de Scope 1 ou de Scope 2. Modèle strictement indicatif.",
+    exclusionsTitle: "EXCLUSIONS EXPLICITES",
+    exclusionsText: "Aucune donnée physique détaillée, aucun calcul direct des émissions de Scope 1 ou Scope 2, aucun inventaire Scope 3 exhaustif, aucune certification et aucune validation externe ne sont inclus dans le périmètre de ce document.",
+    responsibilityTitle: "RESPONSABILITÉ",
+    responsibilityText: "Les résultats sont exclusivement dérivés de données fictives d’exemple et ne constituent pas une attestation émise à une entité réelle.",
+    languageNote: "Ce document est émis en langue française.",
+    methodologyNote: "CS-SB-v1 est une méthodologie standardisée interne maintenue par Certif-Scope.",
+    finalTitle: "10. SYNTHÈSE DE VALIDITÉ DOCUMENTAIRE",
+    finalText: "Cette attestation présente un exemple CO₂e indicatif, agrégé, daté et standardisé. Ce PDF est un exemple gratuit, non valable, non signé et ne constitue pas une attestation émise après achat.",
+    page: "Page",
+  },
+  de: {
+    lang: "de",
+    companyName: "Beispielunternehmen GmbH",
+    companySector: "Unternehmensdienstleistungen",
+    country: "DE",
+    attestationId: "CS-SAMPLE-DE-2026-0001",
+    algorithm: "BEISPIEL — NICHT SIGNIERT",
+    hash: "BEISPIEL_HASH_NICHT_GUELTIG",
+    signature: "BEISPIEL_SIGNATURE_NICHT_GUELTIG",
+    publicKey: "BEISPIEL_PUBLIC_KEY_NICHT_GUELTIG",
+    verificationDisplayUrl: "https://www.certif-scope.com/de/pruefen/demo",
+    watermark1: "KOSTENLOSES BEISPIEL",
+    watermark2: "KEINE AUSGESTELLTE BESCHEINIGUNG",
+    title: "INDIKATIVE BESCHEINIGUNG ZU CO₂E-EMISSIONEN",
+    eyebrow: "INDIKATIVES CO₂E-DOKUMENT · STANDARDISIERT · KONTROLLIERBAR",
+    standard: "Ausgestellt nach der internen standardisierten Methodik Certif-Scope CS-SB-v1",
+    subtitle: "Nicht regulatorisch · Methodikbasiert · Indikative Bescheinigung",
+    footer: "Indikative CO₂e-Bescheinigung · Ausgestellt von Certif-Scope · certif-scope.com",
+    headerTagline: "Automatisierte Ausstellung · Standardisierte indikative Bescheinigung",
+    scan: "QR-Code scannen, um die Demo zu prüfen",
+    resultLabel: "ANGEGEBENE AGGREGIERTE INDIKATIVE EMISSIONEN",
+    resultSubline: "Dokumentarische Schätzung auf Basis aggregierter angegebener Ausgaben.",
+    resultBottom: "Einfache, datierte und kontrollierbare CO₂e-Dokumentation für geschäftliche Unterlagen.",
+    refLabel: "REFERENZ DER BESCHEINIGUNG",
+    issuedLabel: "AUSSTELLUNGSDATUM",
+    validLabel: "GÜLTIG BIS",
+    issuerLabel: "AUSSTELLER",
+    entityTitle: "1. IDENTIFIKATION DER EINHEIT",
+    entityName: "NAME DER EINHEIT",
+    countryLabel: "LAND",
+    sectorLabel: "TÄTIGKEITSBEREICH",
+    yearLabel: "REFERENZJAHR",
+    entityId: "KENNUNG DER EINHEIT",
+    natureTitle: "2. ART DES DOKUMENTS",
+    natureText: "Dieses Dokument ist eine indikative CO₂e-Bescheinigung und dient ausschließlich der Information, der Vorprüfung und der Entscheidungsunterstützung.",
+    scopeTitle: "3. UMFANG",
+    scopeText: "Diese Bescheinigung liefert eine indikative Schätzung von Treibhausgasemissionen, abgeleitet ausschließlich aus aggregierten Ausgabedaten nach einer ausgabenbasierten Methodik (spend-based).",
+    useTitle: "4. VORGESEHENE VERWENDUNG",
+    useText: "Diese Bescheinigung kann als indikatives CO₂e-Dokument in Lieferantenunterlagen, Kundenanfragen, Ausschreibungen, Bankunterlagen, Versicherungsanfragen oder internen Vorgängen verwendet werden. Sie eignet sich für Situationen, in denen kein vollständiges CO₂-Audit, keine externe Prüfung und kein spezifischer regulatorischer Rahmen ausdrücklich verlangt werden.",
+    thirdTitle: "5. LESART DURCH DRITTE",
+    thirdText: "Ein externer Leser kann die dokumentarische Kohärenz der Bescheinigung anhand der Referenz, des Ausstellungsdatums, der Gültigkeit, des aggregierten Ergebnisses und der Prüfseite kontrollieren.",
+    f1: "ERHÖHTE VERTRAULICHKEIT",
+    f1t: "In dieser Bescheinigung werden keine detaillierten Finanzdaten angezeigt. Es wird nur das aggregierte CO₂e-Ergebnis dargestellt, um eine externe Weitergabe ohne Offenlegung interner Ausgabendetails zu erleichtern.",
+    f2: "DOKUMENTARISCHE PRÜFUNG",
+    f2t: "Die Bescheinigung enthält eine eindeutige Referenz, einen QR-Code und Kontrollelemente für eine unabhängige dokumentarische Prüfung.",
+    f3: "BEGRENZTE GÜLTIGKEIT",
+    f3t: "Die Gültigkeitsdauer spiegelt die zeitliche Relevanz der Daten und der Methodik wider.",
+    statusTitle: "DOKUMENTSTATUS",
+    statusValue: "Indikativ · Aggregiert · Kontrollierbar",
+    dataTitle: "ANGEZEIGTE DATEN",
+    dataValue: "Nur CO₂e-Ergebnis",
+    recommendedTitle: "EMPFOHLENE VERWENDUNG",
+    recommendedValue: "Lieferant · Kunde · Bank · Versicherung",
+    pageTwoTitle: "METHODIK, PRÜFUNG UND GRENZEN",
+    pageTwoIntro: "Diese Seite erläutert die verwendete Methodik, Kontextreferenzen, Prüfelemente und dokumentarische Grenzen der Bescheinigung.",
+    methodTitle: "6. METHODISCHES PRINZIP",
+    methodLabel: "Methodik",
+    methodText: "Die Schätzung beruht auf einem monetären, ausgabenbasierten Ansatz. Die von der Einheit angegebenen aggregierten Ausgaben werden mit monetären Emissionsfaktoren verknüpft, um eine indikative CO₂e-Schätzung zu erhalten.",
+    formula: "Aggregierte angegebene Ausgaben × monetäre Emissionsfaktoren = indikative CO₂e-Schätzung",
+    factorLabel: "FAKTORENVERSION",
+    transferLabel: "ÜBERTRAGBARKEIT",
+    transferValue: "Nicht übertragbar.",
+    refTitle: "7. REFERENZRAHMEN ZUR EINORDNUNG",
+    refText: "Die folgenden Rahmen werden nur genannt, um die spend-based Methodik methodisch einzuordnen. Sie stellen keine Validierung, Zertifizierung oder regulatorische Konformität der Bescheinigung dar.",
+    refNote: "Dieses Dokument ist weder ein Treibhausgasinventar noch ein Audit, keine Verifizierung und keine regulatorische Erklärung im Sinne von CSRD, ESRS oder einem vergleichbaren Rahmen.",
+    verifyTitle: "EINFACHE PRÜFUNG",
+    verifyText: "Den QR-Code scannen oder die Bescheinigungsreferenz auf der offiziellen Prüfseite verwenden. Die Prüfung erlaubt die Kontrolle von Kennung, Aussteller, Datum, Gültigkeitszeitraum und Integritätselementen.",
+    quickTitle: "Schnellprüfung möglich",
+    quickItems: ["Referenz", "Datum", "Gültigkeit", "Aggregiertes Ergebnis", "Prüfseite"],
+    verifyPageLabel: "Dokumentarische Prüfseite",
+    objectTitle: "PRÜFBARES OBJEKT",
+    objectText: "Das PDF, seine Kennung, der QR-Code und seine Integritätselemente bilden die dokumentarischen Kontrollelemente.",
+    objectItems: ["Eindeutige Kennung", "Angegebener Aussteller", "Ausstellungsdatum", "Gültigkeitszeitraum", "Aggregiertes CO₂e-Ergebnis", "Integritätselemente"],
+    techTitle: "8. TECHNISCHER PRÜFANHANG",
+    techText: "Die folgenden Elemente ermöglichen eine erweiterte dokumentarische Prüfung. Sie dienen technischen Zwecken und erfordern keine Aktion durch einen Standardleser. Bei diesem Beispieldokument sind sie absichtlich fiktiv und nicht verifizierbar.",
+    algoLabel: "ALGORITHMUS",
+    hashLabel: "FINGERABDRUCK DES SIGNIERTEN INHALTS (SHA-256)",
+    sigLabel: "SIGNATUR (BASE64)",
+    keyLabel: "ÖFFENTLICHER PRÜFSCHLÜSSEL DES AUSSTELLERS",
+    limitsTitle: "9. UMFANG UND GRENZEN",
+    limitsIntro: "Keine physischen Aktivitätsdaten. Keine Scope-1- oder Scope-2-Emissionen. Streng indikatives Modell.",
+    exclusionsTitle: "AUSDRÜCKLICHE AUSSCHLÜSSE",
+    exclusionsText: "Detaillierte physische Daten, eine direkte Berechnung von Scope-1- oder Scope-2-Emissionen, ein vollständiges Scope-3-Inventar, eine Zertifizierung und eine externe Validierung sind nicht Bestandteil dieses Dokuments.",
+    responsibilityTitle: "VERANTWORTUNG",
+    responsibilityText: "Die Ergebnisse beruhen ausschließlich auf fiktiven Beispieldaten und stellen keine für eine reale Einheit ausgestellte Bescheinigung dar.",
+    languageNote: "Dieses Dokument wird in deutscher Sprache ausgestellt.",
+    methodologyNote: "CS-SB-v1 ist eine von Certif-Scope gepflegte interne standardisierte Methodik.",
+    finalTitle: "10. ZUSAMMENFASSUNG DER DOKUMENTARISCHEN GÜLTIGKEIT",
+    finalText: "Diese Bescheinigung zeigt ein indikatives, aggregiertes, datiertes und standardisiertes CO₂e-Beispiel. Dieses PDF ist ein kostenloses, ungültiges und nicht signiertes Beispiel und stellt keine nach einem Kauf ausgestellte Bescheinigung dar.",
+    page: "Seite",
+  },
+};
 
-    if (!process.env.PDFSHIFT_API_KEY) {
+export async function GET(request: Request) {
+  try {
+    const pdfShiftApiKey = process.env.PDFSHIFT_API_KEY;
+
+    if (!pdfShiftApiKey) {
       return new Response("PDFSHIFT_API_KEY missing", { status: 500 });
     }
 
-    // 2️⃣ STRIPE NEUTRALISÉ (Simulation de session)
-    const session = {
-      metadata: {
-        companyName: "Example Company Ltd (Fictional)",
-        companySector: "Example Sector",
-        entityIdentifier: "N/A",
-        country: "EU (Example)",
-        year: "20XX",
-        totalCO2e: "123.4",
-        methodology: "Sample methodology — illustrative only",
-        attestationLocale: "en",
-        issuerName: "Certif-Scope (Sample)",
-        issuerSite: "https://certif-scope.com/sample",
-        validityMonths: "N/A",
-        standardRef: "SAMPLE — CS-SB-v1"
-      },
+    const locale = new URL(request.url).searchParams.get("locale") === "de" ? "de" : "fr";
+    const c = copy[locale];
+    const sample = {
+      issuerSite: "https://www.certif-scope.com",
+      issuerName: "Certif-Scope",
+      companyName: c.companyName,
+      companySector: c.companySector,
+      entityIdentifier: "—",
+      country: c.country,
+      year: "2026",
+      totalCO2e: "15",
+      attestationId: c.attestationId,
+      issuedDate: "2026-05-20",
+      validUntil: "2027-05-20",
+      methodology: "Certif-Scope deterministic spend-based methodology v1.0",
+      factorVersion: "Certif-Scope factors v1",
+      algorithm: c.algorithm,
+      hash: c.hash,
+      signature: c.signature,
+      publicKey: c.publicKey,
+      verificationDisplayUrl: c.verificationDisplayUrl,
     };
 
-    const metadataRaw = session.metadata;
+    const qrDataUrl = await QRCode.toDataURL(sample.verificationDisplayUrl, {
+      errorCorrectionLevel: "H",
+      width: 600,
+      margin: 4,
+      color: { dark: "#000000", light: "#FFFFFF" },
+    });
 
-    // 3️⃣ LANGUE
-    const locale =
-      (metadataRaw.attestationLocale as AttestationLocale) ||
-      DEFAULT_ATTESTATION_LOCALE;
+    const metadata = Object.fromEntries(
+      Object.entries(sample).map(([key, value]) => [key, escapeHtml(value)])
+    ) as Record<keyof typeof sample, string>;
 
-    const i18n = ATTESTATION_I18N[locale] || ATTESTATION_I18N.en;
+    const list = (items: string[]) => items.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
 
-    // 4️⃣ CRYPTO NEUTRALISÉE
-    const issuedDate = "20XX-XX-XX"; // Date fictive
-    const attestationId = "SAMPLE-000000";
-
-    const signatureResult = {
-      signatureBase64: "SAMPLE — NO CRYPTOGRAPHIC SIGNATURE",
-      hashHex: "SAMPLE — INVALID HASH",
-      algorithm: "N/A",
-    };
-
-    // 5️⃣ MÉTADONNÉES SAMPLE
-    const metadata = {
-      attestationId: attestationId,
-      issuerName: escapeHtml(metadataRaw.issuerName),
-      issuerSite: escapeHtml(metadataRaw.issuerSite),
-      companyName: escapeHtml(metadataRaw.companyName),
-      companySector: escapeHtml(metadataRaw.companySector),
-      entityIdentifier: escapeHtml(metadataRaw.entityIdentifier),
-      country: escapeHtml(metadataRaw.country),
-      year: escapeHtml(metadataRaw.year),
-      totalCO2e: escapeHtml(metadataRaw.totalCO2e),
-      methodology: escapeHtml(metadataRaw.methodology),
-      issuedDate: escapeHtml(issuedDate),
-      validUntil: "Not applicable — sample document",
-      validityMonths: escapeHtml(metadataRaw.validityMonths),
-      standardRef: escapeHtml(metadataRaw.standardRef),
-      // Injections Sample
-      signature: signatureResult.signatureBase64,
-      hash: signatureResult.hashHex,
-      algorithm: signatureResult.algorithm,
-    };
-
-    // 6️⃣ QR CODE NEUTRALISÉ
-    const verifyUrl = "https://certif-scope.com/sample";
-    const qrDataUrl = await QRCode.toDataURL(verifyUrl, { width: 120, margin: 1 });
-
-    // HTML SAMPLE
-    const html = `
-<!doctype html>
-<html lang="${locale}">
-<head>
-<meta charset="utf-8"/>
-<title>SAMPLE — ${metadata.issuerName}</title>
-<style>
-  @page {
-    size: A4;
-    margin: 12mm 14mm 12mm 14mm; 
-  }
-
-  body {
-    font-family: Inter, "Helvetica Neue", Arial, Helvetica, sans-serif;
-    font-size: 10px;
-    line-height: 1.4;
-    margin: 0;
-    color: #111;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  :root {
-    --serif: "Times New Roman", Georgia, "Garamond", serif;
-    --muted: #666;
-    --accent: #0b2b4a;
-    --border-light: #cfd8e3;
-    --bg-light: #f8fafc;
-  }
-
-  .container { padding: 0; }
-
-  /* 8️⃣ WATERMARK AJOUTÉ */
-  .watermark {
-    position: fixed;
-    top: 40%;
-    left: 10%;
-    width: 80%;
-    text-align: center;
-    font-size: 60px;
-    color: rgba(200, 0, 0, 0.1); /* Rouge très léger */
-    transform: rotate(-30deg);
-    z-index: 9999;
-    pointer-events: none;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-
-  /* Footer Flow */
-  .footer-static {
-    width: 100%;
-    font-size: 9px;
-    color: #666;
-    display: flex;
-    justify-content: space-between;
-    border-top: 1px solid #ddd;
-    padding-top: 8px;
-    margin-top: 20px;
-    clear: both;
-  }
-
-  /* Header */
-  header {
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-    border-bottom:3px solid var(--accent);
-    padding-bottom: 5px;
-    margin-bottom: 8px;
-  }
-
-  .issuer { max-width:68%; display:flex; flex-direction:column; justify-content:flex-start; }
-  .issuer-logo {
-    height: 75px;
-    max-width: 300px;
-    display: block;
-    margin-bottom: 5px;
-    object-fit: contain;
-  }
-  .issuer-site { font-size:9px; color:var(--muted); margin-bottom:4px; }
-  .issuer-meta { font-size:9px; color:var(--muted); }
-
-  /* QR */
-  .qr { text-align:center; font-size:9px; }
-  .qr img { width:90px; height:90px; border:1px solid #ddd; padding:4px; background:#fff; }
-
-  /* Title */
-  .title {
-    text-align:center;
-    margin: 8px 0 10px;
-    font-family:var(--serif);
-  }
-  .title h1 { font-size:20px; margin:0; font-weight:700; letter-spacing:0.8px; text-transform:uppercase; color:var(--accent); }
-  .title .formal-line { margin-top:4px; font-size:10px; color:#222; font-weight:600; font-family: Inter, Arial, sans-serif; }
-  /* 7️⃣ SOUS-TITRE AJOUTÉ */
-  .title .subtitle { margin-top:4px; font-size:10px; color:#c00; font-weight:bold; text-transform: uppercase; } 
-  .title .standard-ref { margin-top:4px; font-size:9px; color:var(--accent); font-weight:600; }
-
-  /* Result Panel */
-  .result-panel {
-    margin: 4px 0 14px;
-    display:flex;
-    justify-content:center;
-  }
-  
-  .result-box {
-    width:100%;
-    max-width:600px;
-    background:#ffffff;
-    border:3px solid var(--accent);
-    padding:8px 14px;
-    box-shadow: 0 4px 12px rgba(11,43,74,0.06);
-    text-align:center;
-  }
-  .result-label { font-size:9px; font-weight:700; color:#222; margin-bottom:4px; font-family: Inter, Arial, sans-serif; text-transform: uppercase; letter-spacing: 0.5px; }
-  .result-value { font-family:var(--serif); font-size:26px; font-weight:800; color:var(--accent); margin:2px 0; letter-spacing:1px; }
-
-  /* Layout */
-  .two-col { width: 100%; }
-  .two-col > div { float: left; width: calc(100% - 310px); }
-  .two-col > aside { float: right; width: 300px; margin-top: 0; }
-  .clearfix::after { content: ""; display: block; clear: both; }
-
-  /* Sections */
-  section { margin-bottom: 8px; padding-right:2px; }
-  .section-title { font-family:var(--serif); font-size:11px; margin-bottom:4px; font-weight:700; color:var(--accent); text-transform:uppercase; font-variant:small-caps; border-bottom: 1px solid #eee; padding-bottom: 2px; display: inline-block; min-width: 100%; }
-
-  .meta-list { font-size:10px; color:#222; }
-  .meta-list ul { margin-top: 2px; margin-bottom: 2px; padding-left: 14px; }
-  .meta-list li { margin-bottom: 2px; }
-  .row { margin-bottom: 2px; }
-
-  /* Blocks */
-  .verify-block { 
-    border:1px solid var(--border-light); 
-    padding:10px; 
-    background: var(--bg-light);
-    font-size:9.5px;
-    margin-top:6px;
-    border-radius: 2px;
-  }
-  .verify-title { font-weight:700; color:var(--accent); font-size:10px; margin-bottom:4px; text-transform: uppercase; letter-spacing: 0.5px; }
-  .scope-summary { margin-top:8px; border-left:3px solid var(--border-light); padding-left:10px; font-size:9.5px; color:#222; }
-
-  /* Final clauses */
-  .final-box { border-top:1px solid #ddd; margin-top:10px; padding-top:8px; }
-  .final-stamp { border:1px solid #e0e0e0; padding:10px; font-style:italic; color:#222; background:#fff; font-size:10px; }
-
-  .muted { color:var(--muted); font-size:9px; }
-  .small { font-size:9px; color:var(--muted); line-height: 1.3; }
-
-  .result-box, .verify-block, .final-stamp { page-break-inside: avoid; break-inside: avoid; }
-  @media print { .issuer-logo { height: 75px; max-width: 300px; } }
-</style>
-</head>
-<body>
-<div class="watermark">SAMPLE — NO LEGAL VALUE</div>
-
-<div class="container">
-
-  <header>
-    <div class="issuer">
-      ${CERTIF_SCOPE_LOGO_BASE64 ? `<img src="data:image/png;base64,${CERTIF_SCOPE_LOGO_BASE64}" class="issuer-logo" alt="Issuer logo" />` : ""}
-      <div class="issuer-site">${metadata.issuerSite}</div>
-      <div class="issuer-meta small">${i18n.headerTagline}</div>
-    </div>
-
-    <div class="qr">
-      <img src="${qrDataUrl}" alt="QR verification" />
-      <div class="small">Verification disabled</div>
-    </div>
-  </header>
-
-  <div class="title">
-    <h1>SAMPLE — ${i18n.title}</h1>
-    <div class="formal-line">${i18n.standardReference}</div>
-    <div class="standard-ref">${i18n.standardReferenceLabel} ${metadata.standardRef}</div>
-    <div class="subtitle">Example document — no legal or regulatory value</div>
-  </div>
-
-  <div class="result-panel" role="region" aria-label="Estimated emissions result">
-    <div class="result-box" role="figure" aria-labelledby="result-label">
-      <div id="result-label" class="result-label">${i18n.resultLabel}</div>
-      <div class="result-value">${metadata.totalCO2e} tCO₂e</div>
-    </div>
-  </div>
-
-  <div class="two-col clearfix">
-    <div>
-      <section aria-labelledby="s1">
-        <div class="section-title" id="s1">${i18n.issuerSectionTitle}</div>
-        <div class="meta-list">
-          <div class="row"><strong>${i18n.issuerLabel}:</strong> ${metadata.issuerName}</div>
-          <div class="row"><strong>${i18n.websiteLabel}:</strong> ${metadata.issuerSite}</div>
-          <div class="row"><strong>${i18n.attestationReferenceLabel}:</strong> ${metadata.attestationId} <span class="small"> (${i18n.uniqueIdentifierLabel})</span></div>
-          <div class="row"><strong>${i18n.issuedDateLabel}:</strong> ${metadata.issuedDate}</div>
-          <div class="row"><strong>${i18n.validUntilLabel}:</strong> Not applicable</div>
-        </div>
-      </section>
-
-      <section aria-labelledby="s2">
-        <div class="section-title" id="s2">${i18n.documentNatureSectionTitle}</div>
-        <div class="meta-list">
-          <div><strong>SAMPLE DOCUMENT — This text is illustrative only and does not describe a real attestation.</strong></div>
-        </div>
-      </section>
-
-      <section aria-labelledby="s3">
-        <div class="section-title" id="s3">${i18n.entitySectionTitle}</div>
-        <div class="meta-list">
-          <div class="row"><strong>${i18n.entityNameLabel}:</strong> ${metadata.companyName}</div>
-          <div class="row"><strong>${i18n.activitySectorLabel}:</strong> ${metadata.companySector}</div>
-          <div class="row"><strong>${i18n.entityIdentifierLabel}:</strong> ${metadata.entityIdentifier}</div>
-          <div class="row"><strong>${i18n.countryLabel}:</strong> ${metadata.country}</div>
-          <div class="row"><strong>${i18n.reportingYearLabel}:</strong> ${metadata.year}</div>
-        </div>
-      </section>
-
-      <section aria-labelledby="s4">
-        <div class="section-title" id="s4">${i18n.scopeSectionTitle}</div>
-        <div class="meta-list">
-          <div><strong>${i18n.scopeDescriptionLabel}:</strong> ${i18n.scopeText}</div>
-          <div style="margin-top:6px; font-size:10px; color:var(--muted);"><strong>${i18n.noteLabel}:</strong> ${i18n.scopeNote}</div>
-        </div>
-      </section>
-
-      <section aria-labelledby="s5">
-        <div class="section-title" id="s5">${i18n.referencesSectionTitle}</div>
-        <div class="meta-list">
-          <div style="margin-bottom:4px;"><em>${i18n.normativeText}</em></div>
-          <ul>
-            <li>References shown for illustration only</li>
-            <li>No normative or regulatory alignment applies</li>
-          </ul>
-        </div>
-      </section>
-    </div>
-
-    <aside>
-      <div class="verify-block" style="margin-top:0;">
-        <div class="verify-title">${i18n.authenticityOverviewTitle}</div>
-        <div class="small">
-          This section is disabled for sample documents. No authenticity or verification applies.
-        </div>
-      </div>
-
-      <div class="verify-block">
-        <div class="verify-title">${i18n.natureOfAttestationTitle}</div>
-        <div class="small">
-          ${i18n.natureOfAttestationText}
-        </div>
-      </div>
-
-      <div class="verify-block">
-        <div class="verify-title">${i18n.documentScopeSummaryTitle}</div>
-        <div style="font-size:9.5px; color:#222; margin-top:4px;">
-          ${i18n.documentScopeSummaryText}
-        </div>
-      </div>
-
-      <div class="verify-block">
-        <div class="verify-title">${i18n.documentValidityTitle}</div>
-        <div class="small">
-          ${i18n.documentValidityText}
-        </div>
-      </div>
-    </aside>
-  </div>
-
-  <div class="footer-static">
-    <div>SAMPLE DOCUMENT - INVALID</div>
-    <div>${i18n.pageLabel} 1 / 2</div>
-  </div>
-
-  <div style="page-break-after: always;"></div>
-
-  <div class="two-col clearfix">
-    <div>
-      <section aria-labelledby="s6">
-        <div class="section-title" id="s6">${i18n.declarationSectionTitle}</div>
-        <div class="meta-list">
-          <div style="font-style:italic; margin-bottom:4px;">${i18n.formalDeclarationLabel}</div>
-          <div class="row"><strong>${i18n.declarationLabel}:</strong> ${i18n.declarationText}</div>
-        </div>
-      </section>
-
-      <section aria-labelledby="s7">
-        <div class="section-title" id="s7">${i18n.methodologySectionTitle}</div>
-        <div class="meta-list">
-          <ul>
-            <li><strong>${i18n.methodologyLabel}:</strong> ${metadata.methodology}</li>
-            <li>${i18n.limitationsText}</li>
-            <li>${i18n.transferabilityText}</li>
-          </ul>
-        </div>
-      </section>
-
-      <section aria-labelledby="s8">
-        <div class="section-title" id="s8">${i18n.verificationSectionTitle}</div>
-        <div class="verify-block">
-          <div class="verify-title">${i18n.verificationBoxTitle}</div>
-
-          <div style="margin-top:8px;"><strong>${i18n.privacyLabel}:</strong> ${i18n.privacyText}</div>
-
-          <div class="small" style="margin-top:8px;">
-            ${i18n.pdfObjectText}
-          </div>
-
-          <div style="margin-top:8px;"><strong>${i18n.verificationPageLabel}:</strong><br/>
-            <span style="color:#666;">Verification disabled for sample documents</span>
-          </div>
-
-          <div class="small" style="margin-top:10px; border-top:1px solid #e0e0e0; padding-top:6px;">
-            <em>${i18n.technicalVerificationNote}</em>
-          </div>
-
-          <div class="small" style="margin-top:6px;">
-            <strong>${i18n.cryptographicIntegrityLabel}:</strong><br/>
-            ${i18n.algorithmLabel}: N/A<br/>
-            ${i18n.hashLabel}:<br/>
-            <span style="word-break:break-all;">SAMPLE — INVALID HASH</span><br/>
-            ${i18n.signatureLabel}:<br/>
-            <span style="word-break:break-all;">SAMPLE — NO CRYPTOGRAPHIC SIGNATURE</span>
-          </div>
-
-          <div class="small" style="margin-top:6px;">
-            <strong>${i18n.publicKeyLabel}:</strong><br/>
-            <span class="small">
-              Not applicable for sample documents
-            </span>
-          </div>
-
-        </div>
-      </section>
-
-      <section aria-labelledby="s9" style="margin-top:10px;">
-        <div class="section-title" id="s9">${i18n.finalClausesTitle}</div>
-        <div class="final-box">
-          <div class="final-stamp">
-            <div style="color:#c00; font-weight:bold; margin-bottom:8px;">
-              THIS DOCUMENT IS A NON-VALID SAMPLE PROVIDED FOR DEMONSTRATION PURPOSES ONLY.
-              IT HAS NO LEGAL, REGULATORY, CONTRACTUAL, OR EVIDENTIARY VALUE.
-              IT MUST NOT BE USED OR PRESENTED AS AN OFFICIAL ATTESTATION.
-            </div>
-            
-            <div><strong>${i18n.issuedPursuantText}</strong></div>
-            
-            <div style="margin-top:6px;"><strong>${i18n.legalEffectLabel}:</strong> ${i18n.legalEffectText}</div>
-            
-            <div style="margin-top:6px;">
-              <strong>${i18n.liabilityLabel}:</strong> ${i18n.liabilityText}
-            </div>
-            
-            <div style="margin-top:6px;">
-              <strong>${i18n.validityPeriodLabel}:</strong> Not applicable
-            </div>
-
-            <div style="margin-top:8px; color:var(--muted); font-size:9px;"><strong>${i18n.noAuditText}</strong></div>
-            <div style="margin-top:4px; color:var(--muted); font-size:9px;"><em>${i18n.methodologyNote}</em></div>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <aside>
-      </aside>
-  </div>
-
-  <div class="footer-static">
-    <div>SAMPLE DOCUMENT - INVALID</div>
-    <div>${i18n.pageLabel} 2 / 2</div>
-  </div>
-
-</div>
-</body>
-</html>
-`;
+    const html = `<!doctype html><html lang="${c.lang}"><head><meta charset="utf-8"/><title>${escapeHtml(c.title)}</title><style>
+    @page{size:A4;margin:7mm 10mm}:root{--ink:#223243;--heading:#0B3A63;--accent:#1FB6C1;--line:#d6e0e7;--line-strong:#c5d3dc;--panel-soft:#f7fafc;--panel-tint:#eef7f8;--muted:#6f7e8b;--muted-2:#81909d;--serif:"Times New Roman",Georgia,serif}*{box-sizing:border-box}html,body{margin:0;padding:0;background:#fff;color:var(--ink);font-family:Inter,Arial,Helvetica,sans-serif;font-size:9.3px;line-height:1.36;-webkit-font-smoothing:antialiased}.page{height:283mm;min-height:283mm;max-height:283mm;display:flex;flex-direction:column;overflow:hidden;position:relative;background:#fff}.page-one{page-break-after:always}.page::before{content:"${escapeHtml(c.watermark1)}";position:absolute;top:48%;left:50%;transform:translate(-50%,-50%) rotate(-28deg);color:rgba(11,58,99,.075);font-size:48px;font-weight:800;letter-spacing:2px;white-space:nowrap;pointer-events:none;z-index:50}.page::after{content:"${escapeHtml(c.watermark2)}";position:absolute;top:55%;left:50%;transform:translate(-50%,-50%) rotate(-28deg);color:rgba(11,58,99,.095);font-size:18px;font-weight:800;letter-spacing:1px;white-space:nowrap;pointer-events:none;z-index:50}.content{flex:1;display:flex;flex-direction:column;min-height:0}.page-one-flow{flex:1;display:flex;flex-direction:column;justify-content:space-around;gap:8px;min-height:0;padding-bottom:6px}.page-two-flow{display:flex;flex-direction:column;gap:8px;min-height:0}.footer{flex:0 0 auto;margin-top:6px;padding-top:4px;border-top:1px solid var(--line);display:flex;justify-content:space-between;color:var(--muted);font-size:7.3px}.header{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;padding-bottom:6px;border-bottom:2px solid var(--heading);break-inside:avoid}.header-left{flex:1;display:flex;flex-direction:column;align-items:flex-start;gap:3px}.logo{height:78px;width:auto;max-width:340px;object-fit:contain;display:block}.issuer-site,.header-tagline{color:var(--muted);font-size:7.6px;line-height:1.18}.issuer-site a{color:inherit;text-decoration:none}.qr-block{width:46mm;text-align:center;flex:0 0 auto}.qr{width:40mm;height:40mm;display:block;margin:0 auto;border:1px solid var(--line);padding:2mm;border-radius:4px;background:#fff}.qr-caption{margin-top:3px;font-size:6.4px;line-height:1.1;color:var(--ink)}.title-zone{text-align:center;padding-top:1px;break-inside:avoid}.eyebrow{color:var(--accent);font-size:7.3px;font-weight:800;letter-spacing:.95px;text-transform:uppercase;margin-bottom:4px}h1{margin:0;color:var(--heading);font-size:17px;line-height:1.05;font-weight:800;text-transform:uppercase;letter-spacing:.14px}.title-formal{margin-top:4px;color:var(--ink);font-size:8.3px;font-weight:700}.title-sub{margin-top:2px;color:var(--muted);font-size:7.5px}.result-wrap{display:flex;justify-content:center;break-inside:avoid}.result-box{width:74%;border:2px solid var(--heading);border-radius:10px;background:linear-gradient(180deg,#fff 0%,#fbfdff 100%);padding:13px 15px 14px;text-align:center;break-inside:avoid}.result-label{color:var(--muted);font-size:7.35px;font-weight:800;letter-spacing:.68px;text-transform:uppercase;margin-bottom:5px}.result-value{color:var(--heading);font-family:var(--serif);font-size:22px;line-height:1;font-weight:800;margin-bottom:4px}.result-subline{color:var(--muted);font-size:7.45px;margin-bottom:3px}.result-bottomline{color:var(--ink);font-size:7.3px;font-weight:700}.summary-grid,.status-strip{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line-strong);border-radius:6px;overflow:hidden;break-inside:avoid}.summary-cell{background:#fff;padding:7px 9px;border-right:1px solid var(--line-strong);min-height:38px}.summary-cell:last-child{border-right:none}.label,.summary-label,.status-label,.mini-label,.tech-label{display:block;color:var(--muted-2);font-size:6.5px;font-weight:800;letter-spacing:.42px;text-transform:uppercase;margin-bottom:3px}.value,.summary-value,.status-value,.mini-value{display:block;color:var(--ink);font-size:8.35px;font-weight:700;line-height:1.25;word-break:break-word}.card{border:1px solid var(--line);border-radius:6px;background:#fff;padding:10px 12px;break-inside:avoid}.soft{background:var(--panel-soft)}.tint{background:var(--panel-tint)}.card-title{margin:0 0 5px;color:var(--heading);font-size:8.6px;line-height:1.13;font-weight:800;letter-spacing:.3px;text-transform:uppercase}.card-text{margin:0;color:var(--ink);font-size:8.25px;line-height:1.34}.entity-card{min-height:98px;padding-top:11px;padding-bottom:11px}.entity-grid,.two-col,.verification-grid,.limit-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 30px}.two-col,.verification-grid{gap:9px}.two-col .card{min-height:78px;padding-top:11px;padding-bottom:11px}.wide-card{min-height:70px;padding-top:11px;padding-bottom:11px}.features{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;break-inside:avoid}.feature-card{border:1px solid var(--line);border-radius:6px;padding:13px 11px;background:var(--panel-soft);min-height:104px;break-inside:avoid}.feature-title,.verification-card h3,.limit-subtitle{margin:0 0 5px;color:var(--heading);font-size:8.45px;line-height:1.12;font-weight:800;text-transform:uppercase;letter-spacing:.3px}.feature-text,.limit-text{color:var(--ink);font-size:8.15px;line-height:1.32}.status-strip{grid-template-columns:repeat(3,1fr);min-height:52px}.status-cell{padding:10px 12px;min-height:52px;border-right:1px solid var(--line-strong);display:flex;flex-direction:column;justify-content:center}.status-cell:last-child{border-right:none}.status-value{color:var(--heading)}.page-two-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;break-inside:avoid}.page-two-head-left{flex:1;min-width:0}.page-two-title{margin:0;color:var(--heading);font-size:14.4px;font-weight:800;line-height:1.08;text-transform:uppercase;letter-spacing:.18px}.page-two-intro{margin-top:4px;color:var(--muted);font-size:7.9px;line-height:1.3}.page-two-ref{flex:0 0 185px;text-align:right;color:var(--muted);font-size:7.5px;line-height:1.3}.method-card{min-height:132px}.section-grid-2{display:grid;grid-template-columns:1.55fr 1fr;gap:8px;margin-top:8px}.formula-box,.mini-box{border:1px solid var(--line);border-radius:5px;background:var(--panel-soft);padding:8px 9px}.formula-box{min-height:53px;display:flex;align-items:center;justify-content:center;text-align:center;background:#eef7f8;color:var(--heading);font-size:8.45px;font-weight:700;line-height:1.28}.references-card{min-height:98px}.reference-list{margin:6px 0 0;padding-left:15px;columns:2;column-gap:24px}.reference-list li{margin-bottom:3px;break-inside:avoid;color:var(--ink);font-size:8.25px;line-height:1.3}.small-note{margin-top:5px;color:var(--muted);font-size:7.45px;line-height:1.3}.verification-card{border:1px solid var(--line);border-radius:6px;background:var(--panel-soft);padding:10px 11px;min-height:135px;break-inside:avoid}.verification-card.primary{background:#edf7f8;border-left:4px solid var(--accent);padding-left:9px}.verification-card p{margin:0 0 6px;color:var(--ink);font-size:8.25px;line-height:1.34}.verification-card ul{margin:0;padding-left:13px}.verification-card li{margin:0 0 2px 0;font-size:8.15px;line-height:1.28}.verification-link{color:var(--heading);font-weight:700;text-decoration:none;word-break:break-all}.tech-card{min-height:107px}.tech-card .small-note{margin-top:0;margin-bottom:7px}.technical-grid{display:grid;grid-template-columns:142px 1fr;gap:6px 10px;margin-top:4px}.tech-value{color:var(--ink);font-size:6.85px;line-height:1.22;word-break:break-all}.limits-card{min-height:127px}.limit-grid{gap:13px;margin-top:8px}.language-note{margin-top:8px;color:var(--ink);font-size:7.75px;font-weight:700;line-height:1.25}.doc-standard{margin-top:4px;color:var(--muted);font-size:7.2px;line-height:1.25}.final-card{border-color:var(--heading);min-height:58px;padding-top:11px;padding-bottom:11px}.final-card .card-text{font-size:8.45px;line-height:1.34}</style></head><body>
+  <div class="page page-one"><div class="content"><div class="page-one-flow">
+    <div class="header"><div class="header-left"><img src="https://www.certif-scope.com/logo.png" alt="Certif-Scope" class="logo"/><div class="issuer-site"><a href="${metadata.issuerSite}">${metadata.issuerSite}</a></div><div class="header-tagline">${escapeHtml(c.headerTagline)}</div></div><div class="qr-block"><img src="${qrDataUrl}" alt="QR demonstration" class="qr"/><div class="qr-caption">${escapeHtml(c.scan)}</div></div></div>
+    <div class="title-zone"><div class="eyebrow">${escapeHtml(c.eyebrow)}</div><h1>${escapeHtml(c.title)}</h1><div class="title-formal">${escapeHtml(c.standard)}</div><div class="title-sub">${escapeHtml(c.subtitle)}</div></div>
+    <div class="result-wrap"><div class="result-box"><div class="result-label">${escapeHtml(c.resultLabel)}</div><div class="result-value">${metadata.totalCO2e} tCO₂e</div><div class="result-subline">${escapeHtml(c.resultSubline)}</div><div class="result-bottomline">${escapeHtml(c.resultBottom)}</div></div></div>
+    <div class="summary-grid"><div class="summary-cell"><span class="summary-label">${escapeHtml(c.refLabel)}</span><span class="summary-value">${metadata.attestationId}</span></div><div class="summary-cell"><span class="summary-label">${escapeHtml(c.issuedLabel)}</span><span class="summary-value">${metadata.issuedDate}</span></div><div class="summary-cell"><span class="summary-label">${escapeHtml(c.validLabel)}</span><span class="summary-value">${metadata.validUntil}</span></div><div class="summary-cell"><span class="summary-label">${escapeHtml(c.issuerLabel)}</span><span class="summary-value">${metadata.issuerName}</span></div></div>
+    <div class="card entity-card"><h2 class="card-title">${escapeHtml(c.entityTitle)}</h2><div class="entity-grid"><div><span class="label">${escapeHtml(c.entityName)}</span><span class="value">${metadata.companyName}</span></div><div><span class="label">${escapeHtml(c.countryLabel)}</span><span class="value">${metadata.country}</span></div><div><span class="label">${escapeHtml(c.sectorLabel)}</span><span class="value">${metadata.companySector}</span></div><div><span class="label">${escapeHtml(c.yearLabel)}</span><span class="value">${metadata.year}</span></div><div><span class="label">${escapeHtml(c.entityId)}</span><span class="value">${metadata.entityIdentifier}</span></div><div><span class="label">${escapeHtml(c.refLabel)}</span><span class="value">${metadata.attestationId}</span></div></div></div>
+    <div class="two-col"><div class="card soft"><h2 class="card-title">${escapeHtml(c.natureTitle)}</h2><p class="card-text">${escapeHtml(c.natureText)}</p></div><div class="card soft"><h2 class="card-title">${escapeHtml(c.scopeTitle)}</h2><p class="card-text">${escapeHtml(c.scopeText)}</p></div></div>
+    <div class="card tint wide-card"><h2 class="card-title">${escapeHtml(c.useTitle)}</h2><p class="card-text">${escapeHtml(c.useText)}</p></div>
+    <div class="card tint wide-card"><h2 class="card-title">${escapeHtml(c.thirdTitle)}</h2><p class="card-text">${escapeHtml(c.thirdText)}</p></div>
+    <div class="features"><div class="feature-card"><div class="feature-title">${escapeHtml(c.f1)}</div><div class="feature-text">${escapeHtml(c.f1t)}</div></div><div class="feature-card"><div class="feature-title">${escapeHtml(c.f2)}</div><div class="feature-text">${escapeHtml(c.f2t)}</div></div><div class="feature-card"><div class="feature-title">${escapeHtml(c.f3)}</div><div class="feature-text">${escapeHtml(c.f3t)}</div></div></div>
+  </div><div class="status-strip"><div class="status-cell"><div class="status-label">${escapeHtml(c.statusTitle)}</div><div class="status-value">${escapeHtml(c.statusValue)}</div></div><div class="status-cell"><div class="status-label">${escapeHtml(c.dataTitle)}</div><div class="status-value">${escapeHtml(c.dataValue)}</div></div><div class="status-cell"><div class="status-label">${escapeHtml(c.recommendedTitle)}</div><div class="status-value">${escapeHtml(c.recommendedValue)}</div></div></div></div><div class="footer"><div>${escapeHtml(c.footer)}</div><div>${escapeHtml(c.page)} 1 / 2</div></div></div>
+  <div class="page page-two"><div class="content"><div class="page-two-flow">
+    <div class="page-two-top"><div class="page-two-head-left"><h2 class="page-two-title">${escapeHtml(c.pageTwoTitle)}</h2><div class="page-two-intro">${escapeHtml(c.pageTwoIntro)}</div></div><div class="page-two-ref"><div><strong>${escapeHtml(c.refLabel)}</strong><br/>${metadata.attestationId}</div><div style="margin-top:4px;"><strong>${escapeHtml(c.issuerLabel)}</strong><br/>${metadata.issuerName}</div></div></div>
+    <div class="card method-card"><h2 class="card-title">${escapeHtml(c.methodTitle)}</h2><p class="card-text"><strong>${escapeHtml(c.methodLabel)}</strong><br/>${metadata.methodology}</p><p class="card-text" style="margin-top:5px;">${escapeHtml(c.methodText)}</p><div class="section-grid-2"><div class="formula-box">${escapeHtml(c.formula)}</div><div><div class="mini-box" style="margin-bottom:8px;"><span class="mini-label">${escapeHtml(c.factorLabel)}</span><span class="mini-value">${metadata.factorVersion}</span></div><div class="mini-box"><span class="mini-label">${escapeHtml(c.transferLabel)}</span><span class="mini-value">${escapeHtml(c.transferValue)}</span></div></div></div></div>
+    <div class="card soft references-card"><h2 class="card-title">${escapeHtml(c.refTitle)}</h2><p class="card-text">${escapeHtml(c.refText)}</p><ul class="reference-list"><li>GHG Protocol — Scope 3 (spend-based)</li><li>ISO 14064-1</li><li>ISO 14083</li><li>CSRD / ESRS / EU Taxonomy</li></ul><div class="small-note">${escapeHtml(c.refNote)}</div></div>
+    <div class="verification-grid"><div class="verification-card primary"><h3>${escapeHtml(c.verifyTitle)}</h3><p>${escapeHtml(c.verifyText)}</p><p style="margin-top:6px;"><strong>${escapeHtml(c.quickTitle)}</strong></p><ul>${list(c.quickItems)}</ul><p style="margin-top:6px;"><strong>${escapeHtml(c.verifyPageLabel)}</strong><br/><a href="${metadata.verificationDisplayUrl}" class="verification-link">${metadata.verificationDisplayUrl}</a><br/><span class="small-note">${escapeHtml(c.refLabel)} : ${metadata.attestationId}</span></p></div><div class="verification-card"><h3>${escapeHtml(c.objectTitle)}</h3><p>${escapeHtml(c.objectText)}</p><ul>${list(c.objectItems)}</ul></div></div>
+    <div class="card tech-card"><h2 class="card-title">${escapeHtml(c.techTitle)}</h2><p class="small-note">${escapeHtml(c.techText)}</p><div class="technical-grid"><div class="tech-label">${escapeHtml(c.algoLabel)}</div><div class="tech-value">${metadata.algorithm}</div><div class="tech-label">${escapeHtml(c.hashLabel)}</div><div class="tech-value">${metadata.hash}</div><div class="tech-label">${escapeHtml(c.sigLabel)}</div><div class="tech-value">${metadata.signature}</div><div class="tech-label">${escapeHtml(c.keyLabel)}</div><div class="tech-value">${metadata.publicKey}</div></div></div>
+    <div class="card tint limits-card"><h2 class="card-title">${escapeHtml(c.limitsTitle)}</h2><p class="card-text">${escapeHtml(c.limitsIntro)}</p><div class="limit-grid"><div><div class="limit-subtitle">${escapeHtml(c.exclusionsTitle)}</div><div class="limit-text">${escapeHtml(c.exclusionsText)}</div></div><div><div class="limit-subtitle">${escapeHtml(c.responsibilityTitle)}</div><div class="limit-text">${escapeHtml(c.responsibilityText)}</div></div></div><div class="language-note">${escapeHtml(c.languageNote)}</div><div class="doc-standard">${escapeHtml(c.methodologyNote)}</div></div>
+  </div><div class="card final-card"><h2 class="card-title">${escapeHtml(c.finalTitle)}</h2><p class="card-text">${escapeHtml(c.finalText)}</p></div></div><div class="footer"><div>${escapeHtml(c.footer)}</div><div>${escapeHtml(c.page)} 2 / 2</div></div></div>
+</body></html>`;
 
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 15000); 
+    const timeoutId = setTimeout(() => controller.abort(), 20000);
 
     const pdfResponse = await fetch("https://api.pdfshift.io/v3/convert/pdf", {
       method: "POST",
-      headers: {
-        "X-API-Key": process.env.PDFSHIFT_API_KEY!,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        source: html,
-        format: "A4",
-        use_print: true,
-      }),
+      headers: { "X-API-Key": pdfShiftApiKey, "Content-Type": "application/json" },
+      body: JSON.stringify({ source: html, format: "A4", use_print: true }),
       signal: controller.signal,
     });
-    
+
     clearTimeout(timeoutId);
 
     if (!pdfResponse.ok) {
-      const error = await pdfResponse.text();
-      return new Response(error, { status: pdfResponse.status });
+      const errorText = await pdfResponse.text();
+      return new Response(errorText, { status: pdfResponse.status });
     }
 
     const pdfBuffer = Buffer.from(await pdfResponse.arrayBuffer());
-    
-    // 1️⃣1️⃣ FILENAME MODIFIÉ
+    const filename = locale === "de" ? "certif-scope-beispiel-bescheinigung.pdf" : "certif-scope-exemple-attestation.pdf";
+
     return new Response(pdfBuffer, {
       headers: {
         "Content-Type": "application/pdf",
-        "Content-Disposition": `attachment; filename="sample-attestation.pdf"`,
+        "Content-Disposition": `attachment; filename="${filename}"`,
         "Cache-Control": "no-store",
+        "X-Content-Type-Options": "nosniff",
       },
     });
-  } catch (err) {
-    console.error(err);
-    return new Response("Internal error", { status: 500 });
+  } catch (error) {
+    if (process.env.NODE_ENV !== "production") console.error(error);
+    return new Response("Internal Server Error", { status: 500 });
   }
-        }
+}
