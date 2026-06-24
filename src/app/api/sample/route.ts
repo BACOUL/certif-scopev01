@@ -157,6 +157,39 @@ export async function GET() {
       flex-direction: column;
       background: #ffffff;
       overflow: hidden;
+      position: relative;
+    }
+
+    .page::before {
+      content: "EXEMPLE GRATUIT";
+      position: absolute;
+      top: 48%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-28deg);
+      color: rgba(11, 58, 99, 0.075);
+      font-size: 48px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      line-height: 1;
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: 50;
+    }
+
+    .page::after {
+      content: "NE CONSTITUE PAS UNE ATTESTATION ÉMISE";
+      position: absolute;
+      top: 55%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-28deg);
+      color: rgba(11, 58, 99, 0.095);
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      line-height: 1;
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: 50;
     }
 
     .page.page-one { page-break-after: always; }
