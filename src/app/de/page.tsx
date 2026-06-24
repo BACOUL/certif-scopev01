@@ -124,22 +124,27 @@ export default function HomeDE() {
           dangerouslySetInnerHTML={{
             __html: `
               (function () {
-                function useGermanPreview() {
-                  document.querySelectorAll('img[alt="Beispiel einer Certif-Scope CO2e-Bescheinigung"]').forEach(function (img) {
-                    img.setAttribute('src', '/preview-de.svg');
-                    img.setAttribute('srcset', '/preview-de.svg');
+                function replaceImageByAlt(alt, src) {
+                  document.querySelectorAll('img[alt="' + alt + '"]').forEach(function (img) {
+                    img.setAttribute('src', src);
+                    img.setAttribute('srcset', src);
                     img.removeAttribute('sizes');
                   });
                 }
 
-                if (document.readyState === 'loading') {
-                  document.addEventListener('DOMContentLoaded', useGermanPreview);
-                } else {
-                  useGermanPreview();
+                function useGermanPreviews() {
+                  replaceImageByAlt('Beispiel einer indikativen CO2e-Bescheinigung mit aggregiertem Ergebnis, Methode und Dokument-ID.', '/hero-attestation-de.svg');
+                  replaceImageByAlt('Beispiel einer Certif-Scope CO2e-Bescheinigung', '/preview-de.svg');
                 }
 
-                setTimeout(useGermanPreview, 100);
-                setTimeout(useGermanPreview, 500);
+                if (document.readyState === 'loading') {
+                  document.addEventListener('DOMContentLoaded', useGermanPreviews);
+                } else {
+                  useGermanPreviews();
+                }
+
+                setTimeout(useGermanPreviews, 100);
+                setTimeout(useGermanPreviews, 500);
               })();
             `,
           }}
