@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Deutschsprachiges Certif-Scope Bescheinigungs-Mockup</title>
+  <desc id="desc">Mockup einer indikativen CO2e-Bescheinigung auf Deutsch für die deutsche Startseite.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#F8FAFC" />
+      <stop offset="1" stop-color="#EAF7F8" />
+    </linearGradient>
+    <linearGradient id="paper" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" />
+      <stop offset="1" stop-color="#FBFDFF" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="34" stdDeviation="36" flood-color="#0B3A63" flood-opacity="0.18"/>
+    </filter>
+    <style>
+      .paper{fill:url(#paper);stroke:#d6e0e7;stroke-width:2;filter:url(#shadow)}
+      .heading{fill:#0B3A63;font-family:Arial,Helvetica,sans-serif;font-weight:800;letter-spacing:.4px}
+      .text{fill:#223243;font-family:Arial,Helvetica,sans-serif}
+      .muted{fill:#6f7e8b;font-family:Arial,Helvetica,sans-serif;font-weight:700;letter-spacing:1px}
+      .sub{fill:#6f7e8b;font-family:Arial,Helvetica,sans-serif}
+      .aqua{fill:#1FB6C1}
+      .line{stroke:#0B3A63;stroke-width:5}
+      .box{fill:#fff;stroke:#c5d3dc;stroke-width:2}
+      .tint{fill:#eef7f8;stroke:#d6e0e7;stroke-width:2}
+      .watermark{fill:#0B3A63;opacity:.11;font-family:Arial,Helvetica,sans-serif;font-weight:800;letter-spacing:4px}
+    </style>
+  </defs>
+
+  <rect width="1600" height="1200" rx="48" fill="url(#bg)"/>
+  <circle cx="1360" cy="170" r="190" fill="#1FB6C1" opacity=".09"/>
+  <circle cx="185" cy="985" r="220" fill="#0B3A63" opacity=".06"/>
+
+  <g transform="translate(180 78) rotate(-2 620 520)">
+    <rect class="paper" x="0" y="0" width="1240" height="1044" rx="34"/>
+    <g transform="translate(82 70)">
+      <circle cx="36" cy="34" r="29" fill="none" stroke="#0B3A63" stroke-width="10"/>
+      <path d="M20 34l11 11 23-27" fill="none" stroke="#1FB6C1" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="84" y="30" class="heading" font-size="31">Certif-<tspan fill="#1FB6C1">Scope</tspan></text>
+      <text x="0" y="82" class="sub" font-size="15">https://www.certif-scope.com</text>
+      <text x="0" y="106" class="sub" font-size="15">Automatisierte Ausstellung · Standardisierte indikative Bescheinigung</text>
+
+      <g transform="translate(955 2)">
+        <rect x="0" y="0" width="92" height="92" rx="4" fill="#fff" stroke="#d6e0e7"/>
+        <path d="M11 11h20v20H11zM61 11h20v20H61zM11 61h20v20H11zM43 14h8v8h-8zM51 26h12v12H51zM40 42h14v14H40zM65 48h8v8h-8zM75 63h7v18h-7zM47 72h20v8H47zM25 42h8v8h-8z" fill="#0B3A63"/>
+        <text x="-22" y="120" class="sub" font-size="13">Zur Demo-Prüfung scannen</text>
+      </g>
+
+      <line x1="0" y1="132" x2="1048" y2="132" class="line"/>
+
+      <text x="524" y="220" text-anchor="middle" class="aqua" style="font-family:Arial;font-weight:800;letter-spacing:2px" font-size="15">INDIKATIVES CO₂E-DOKUMENT · STANDARDISIERT · KONTROLLIERBAR</text>
+      <text x="524" y="268" text-anchor="middle" class="heading" font-size="34">INDIKATIVE BESCHEINIGUNG ZU CO₂E-EMISSIONEN</text>
+      <text x="524" y="302" text-anchor="middle" class="text" font-size="16" font-weight="700">Ausgestellt nach der internen standardisierten Methodik Certif-Scope CS-SB-v1</text>
+      <text x="524" y="328" text-anchor="middle" class="sub" font-size="15">Nicht regulatorisch · Methodikbasiert · Indikative Bescheinigung</text>
+
+      <rect x="185" y="382" width="678" height="145" rx="14" class="box" stroke="#0B3A63" stroke-width="4"/>
+      <text x="524" y="420" text-anchor="middle" class="muted" font-size="15">ANGEGEBENE AGGREGIERTE INDIKATIVE EMISSIONEN</text>
+      <text x="524" y="474" text-anchor="middle" class="heading" font-size="54" style="font-family:Georgia,serif">15 tCO₂e</text>
+      <text x="524" y="507" text-anchor="middle" class="sub" font-size="15">Dokumentarische Schätzung auf Basis aggregierter angegebener Ausgaben.</text>
+
+      <g transform="translate(0 588)">
+        <rect width="1048" height="86" rx="8" class="box"/>
+        <line x1="262" y1="0" x2="262" y2="86" stroke="#c5d3dc"/>
+        <line x1="524" y1="0" x2="524" y2="86" stroke="#c5d3dc"/>
+        <line x1="786" y1="0" x2="786" y2="86" stroke="#c5d3dc"/>
+        <text x="24" y="31" class="muted" font-size="14">REFERENZ DER BESCHEINIGUNG</text><text x="24" y="61" class="text" font-size="17" font-weight="700">CS-SAMPLE-DE-2026-0001</text>
+        <text x="286" y="31" class="muted" font-size="14">AUSSTELLUNGSDATUM</text><text x="286" y="61" class="text" font-size="17" font-weight="700">2026-05-20</text>
+        <text x="548" y="31" class="muted" font-size="14">GÜLTIG BIS</text><text x="548" y="61" class="text" font-size="17" font-weight="700">2027-05-20</text>
+        <text x="810" y="31" class="muted" font-size="14">AUSSTELLER</text><text x="810" y="61" class="text" font-size="17" font-weight="700">Certif-Scope</text>
+      </g>
+
+      <rect x="0" y="720" width="1048" height="174" rx="10" class="box"/>
+      <text x="28" y="762" class="heading" font-size="18">1. IDENTIFIKATION DER EINHEIT</text>
+      <text x="28" y="806" class="muted" font-size="14">NAME DER EINHEIT</text><text x="28" y="836" class="text" font-size="17" font-weight="700">Beispielunternehmen GmbH</text>
+      <text x="28" y="878" class="muted" font-size="14">TÄTIGKEITSBEREICH</text><text x="28" y="908" class="text" font-size="17" font-weight="700">Unternehmensdienstleistungen</text>
+      <text x="594" y="806" class="muted" font-size="14">LAND</text><text x="594" y="836" class="text" font-size="17" font-weight="700">DE</text>
+      <text x="594" y="878" class="muted" font-size="14">REFERENZJAHR</text><text x="594" y="908" class="text" font-size="17" font-weight="700">2026</text>
+
+      <text x="524" y="735" text-anchor="middle" class="watermark" font-size="78" transform="rotate(-24 524 735)">KOSTENLOSES BEISPIEL · NICHT GÜLTIG</text>
+    </g>
+  </g>
+
+  <g transform="translate(1090 890)">
+    <rect x="0" y="0" width="350" height="92" rx="46" fill="#ffffff" stroke="#d6e0e7" filter="url(#shadow)"/>
+    <circle cx="54" cy="46" r="22" fill="#1FB6C1" opacity=".18"/>
+    <text x="94" y="53" class="heading" font-size="24">Dokument-ID</text>
+  </g>
+  <g transform="translate(890 1010)">
+    <rect x="0" y="0" width="470" height="92" rx="46" fill="#ffffff" stroke="#d6e0e7" filter="url(#shadow)"/>
+    <circle cx="54" cy="46" r="22" fill="#1FB6C1" opacity=".18"/>
+    <text x="94" y="53" class="heading" font-size="24">Aggregiertes Ergebnis</text>
+  </g>
+</svg>
