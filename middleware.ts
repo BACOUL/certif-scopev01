@@ -43,7 +43,13 @@ export function middleware(req: NextRequest) {
   res.headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=(), payment=()");
 
   // Cache strict routes sensibles
-  if (pathname.startsWith("/verify") || pathname.startsWith("/api")) {
+  if (
+    pathname.startsWith("/verify") ||
+    pathname.startsWith("/fr/verify") ||
+    pathname.startsWith("/de/pruefen") ||
+    pathname.startsWith("/de/technische-pruefung") ||
+    pathname.startsWith("/api")
+  ) {
     res.headers.set("Cache-Control", "no-store");
     return res;
   }
