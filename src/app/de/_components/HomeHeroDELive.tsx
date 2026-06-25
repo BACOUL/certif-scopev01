@@ -39,7 +39,7 @@ function DocumentMockup() {
   return (
     <div className="relative mx-auto aspect-[3/2] w-full max-w-[760px] overflow-hidden rounded-[28px] bg-white shadow-[0_28px_80px_rgba(11,58,99,0.10)]">
       <Image
-        src="/de-home-hero-exact.svg"
+        src="/de-home-hero-exact.png"
         alt="Deutsches Certif-Scope Mockup mit Bescheinigung, Standardisiertes PDF und Geprüft-Hinweis"
         fill
         sizes="(max-width: 1024px) 100vw, 760px"
