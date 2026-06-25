@@ -58,6 +58,10 @@ const nextConfig = {
       { source: "/data-processing", destination: "/fr/data-processing/", permanent: true },
       { source: "/about", destination: "/fr/", permanent: true },
       { source: "/en/:path*", destination: "/fr/", permanent: true },
+      { source: "/de/pricing", destination: "/de/preise/", permanent: true },
+      { source: "/de/pricing/", destination: "/de/preise/", permanent: true },
+      { source: "/de/why-companies-ask", destination: "/de/warum-unternehmen-co2-angaben-anfordern/", permanent: true },
+      { source: "/de/why-companies-ask/", destination: "/de/warum-unternehmen-co2-angaben-anfordern/", permanent: true },
     ];
   },
 };
