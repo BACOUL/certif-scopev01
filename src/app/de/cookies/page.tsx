@@ -76,10 +76,10 @@ export default function CookieHinweisePageDE() {
         <p
           className="text-lg text-gray-700 leading-relaxed max-w-3xl"
         >
-          Diese Cookie-Hinweise erklaeren, wie Certif-Scope Cookies und
-          aehnliche Technologien verwendet. Certif-Scope verfolgt einen strikten
-          Ansatz der Datenminimierung und beruecksichtigt DSGVO-Grundsaetze
-          sowie europaeische ePrivacy-Anforderungen.
+          Diese Cookie-Hinweise erklären, wie Certif-Scope Cookies und
+          ähnliche Technologien verwendet. Certif-Scope verfolgt einen strikten
+          Ansatz der Datenminimierung und berücksichtigt DSGVO-Grundsätze
+          sowie europäische ePrivacy-Anforderungen.
         </p>
 
         <div className="w-20 h-[2px] bg-gray-300 mt-10" />
@@ -94,9 +94,9 @@ export default function CookieHinweisePageDE() {
           </h2>
           <p className="text-gray-700 leading-relaxed">
             Cookies sind kleine Textdateien, die beim Besuch einer Website auf
-            Ihrem Geraet gespeichert werden. Sie werden typischerweise eingesetzt,
+            Ihrem Gerät gespeichert werden. Sie werden typischerweise eingesetzt,
             um den wesentlichen Betrieb der Website, Sicherheitsmechanismen und
-            grundlegende technische Praeferenzen zu ermoeglichen.
+            grundlegende technische Präferenzen zu ermöglichen.
           </p>
         </section>
 
@@ -107,9 +107,9 @@ export default function CookieHinweisePageDE() {
           </h2>
           <p className="text-gray-700 leading-relaxed">
             Certif-Scope verwendet nur eine sehr begrenzte Zahl streng
-            notwendiger Cookies fuer den technischen Betrieb und die Sicherheit
+            notwendiger Cookies für den technischen Betrieb und die Sicherheit
             der Website. Es werden keine Werbe-Cookies, Profiling-Cookies,
-            seitenuebergreifenden Tracking-Cookies, verhaltensbezogenen
+            seitenübergreifenden Tracking-Cookies, verhaltensbezogenen
             Analytics-Cookies oder Marketing-Cookies eingesetzt.
           </p>
         </section>
@@ -124,10 +124,10 @@ export default function CookieHinweisePageDE() {
             Streng notwendige Cookies
           </h3>
           <p className="text-gray-700 leading-relaxed mb-6">
-            Diese Cookies sind fuer den ordnungsgemaessen Betrieb der Website
-            erforderlich. Sie ermoeglichen insbesondere Sicherheitsfunktionen,
-            Navigation und wesentliche technische Ablaeufe. Eine Deaktivierung
-            kann die normale Funktion der Website beeintraechtigen.
+            Diese Cookies sind für den ordnungsgemäßen Betrieb der Website
+            erforderlich. Sie ermöglichen insbesondere Sicherheitsfunktionen,
+            Navigation und wesentliche technische Abläufe. Eine Deaktivierung
+            kann die normale Funktion der Website beeinträchtigen.
           </p>
 
           <h3 className="text-xl font-semibold text-[#0B3A63] mb-2">
@@ -136,7 +136,7 @@ export default function CookieHinweisePageDE() {
           <p className="text-gray-700 leading-relaxed">
             Certif-Scope verwendet keine Analyse-Cookies, keine
             Reichweitenmessung und kein Tracking, das Nutzer identifiziert oder
-            ihr Verhalten ueber verschiedene Websites hinweg auswertet.
+            ihr Verhalten über verschiedene Websites hinweg auswertet.
           </p>
         </section>
 
@@ -147,19 +147,19 @@ export default function CookieHinweisePageDE() {
           </h2>
           <p className="text-gray-700 leading-relaxed">
             Certif-Scope bindet keine Werbe- oder Tracking-Dienste ein.
-            Drittanbieter-Dienste werden nur genutzt, wenn sie fuer den Betrieb
+            Drittanbieter-Dienste werden nur genutzt, wenn sie für den Betrieb
             des Dienstes erforderlich sind: Hosting und Deployment,
-            Zahlungsabwicklung ueber Stripe, transaktionale E-Mails ueber
-            Resend, technischer Status von Zugangsschluesseln und Paketguthaben
-            ueber Cloudflare KV sowie technische PDF-Konvertierung ueber
+            Zahlungsabwicklung über Stripe, transaktionale E-Mails über
+            Resend, technischer Status von Zugangsschlüsseln und Paketguthaben
+            über Cloudflare KV sowie technische PDF-Konvertierung über
             PDFShift.
           </p>
           <p className="text-gray-700 leading-relaxed mt-4">
             Zahlungen werden von Stripe auf eigener Infrastruktur verarbeitet;
-            Certif-Scope speichert keine Zahlungsdaten. PDFShift erhaelt nur die
-            Informationen, die fuer die technische Erstellung der
+            Certif-Scope speichert keine Zahlungsdaten. PDFShift erhält nur die
+            Informationen, die für die technische Erstellung der
             PDF-Bescheinigung erforderlich sind, wenn diese Konvertierung
-            benoetigt wird. Diese Dienste werden von Certif-Scope nicht fuer
+            benötigt wird. Diese Dienste werden von Certif-Scope nicht für
             Marketing, Werbung oder Verhaltensanalyse eingesetzt.
           </p>
         </section>
@@ -170,10 +170,10 @@ export default function CookieHinweisePageDE() {
             5. Aufbewahrungsdauer von Cookies
           </h2>
           <p className="text-gray-700 leading-relaxed">
-            Die von Certif-Scope verwendeten Cookies sind hauptsaechlich
-            Session-Cookies, die beim Schliessen des Browsers geloescht werden.
+            Die von Certif-Scope verwendeten Cookies sind hauptsächlich
+            Session-Cookies, die beim Schließen des Browsers gelöscht werden.
             Notwendige technische Cookies haben eine begrenzte Lebensdauer und
-            werden nicht laenger aufbewahrt, als fuer den jeweiligen Zweck
+            werden nicht länger aufbewahrt, als für den jeweiligen Zweck
             erforderlich ist.
           </p>
         </section>
@@ -184,10 +184,10 @@ export default function CookieHinweisePageDE() {
             6. Verwaltung von Cookies
           </h2>
           <p className="text-gray-700 leading-relaxed">
-            Sie koennen Cookies ueber die Einstellungen Ihres Browsers steuern
+            Sie können Cookies über die Einstellungen Ihres Browsers steuern
             oder deaktivieren. Die Deaktivierung streng notwendiger Cookies kann
-            jedoch die Verfuegbarkeit oder Funktion einzelner Teile der Website
-            beeintraechtigen.
+            jedoch die Verfügbarkeit oder Funktion einzelner Teile der Website
+            beeinträchtigen.
           </p>
         </section>
 
@@ -197,9 +197,9 @@ export default function CookieHinweisePageDE() {
             7. Aktualisierung dieser Hinweise
           </h2>
           <p className="text-gray-700 leading-relaxed">
-            Diese Cookie-Hinweise koennen aktualisiert werden, um rechtliche,
+            Diese Cookie-Hinweise können aktualisiert werden, um rechtliche,
             technische oder betriebliche Entwicklungen abzubilden. Wesentliche
-            Aenderungen werden auf dieser Seite veroeffentlicht.
+            Änderungen werden auf dieser Seite veröffentlicht.
           </p>
         </section>
 
@@ -209,7 +209,7 @@ export default function CookieHinweisePageDE() {
             8. Kontakt
           </h2>
           <p className="text-gray-700 leading-relaxed">
-            Bei Fragen zu diesen Hinweisen koennen Sie uns kontaktieren:
+            Bei Fragen zu diesen Hinweisen können Sie uns kontaktieren:
             <br />
             <strong>contact@certif-scope.com</strong>
           </p>
