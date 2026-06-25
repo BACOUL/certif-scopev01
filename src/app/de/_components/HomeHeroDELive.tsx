@@ -4,9 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 const proofItems = [
-  "Festpreis 89 €",
+  "Festpreis: 89 € pro Dokument",
   "Kein Abo",
   "Standardisiertes PDF",
+  "Keine dauerhafte Speicherung detaillierter Finanzdaten",
   "Dokument-ID",
   "Nicht CSRD/ESRS",
 ];
@@ -17,7 +18,7 @@ function PrimaryLink() {
       href="/de/erstellen"
       className="inline-flex min-h-[56px] items-center justify-center rounded-lg bg-[#1FB6C1] px-8 py-4 text-base font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0B3A63] focus:outline-none focus:ring-2 focus:ring-[#0B3A63] focus:ring-offset-2"
     >
-      CO2e-Bescheinigung erstellen - 89 €
+      CO2e-Bescheinigung erstellen - 89 € pro Dokument
     </Link>
   );
 }
@@ -90,6 +91,12 @@ export function HeroDE() {
               PDF für einfache Anfragen aus Einkauf, Lieferantenmanagement,
               Finanzierung, Versicherung oder Ausschreibung - ohne ein umfassendes
               THG-Inventar zu starten.
+            </p>
+
+            <p className="mx-auto mt-4 max-w-2xl rounded-lg border border-[#1FB6C1]/25 bg-white px-4 py-3 text-sm font-semibold leading-relaxed text-[#0B3A63] shadow-sm lg:mx-0">
+              Keine dauerhafte Speicherung detaillierter Finanzdaten: Die
+              Berechnung erfolgt im Browser, eingegebene Ausgaben werden nicht
+              dauerhaft auf Certif-Scope-Servern gespeichert.
             </p>
 
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row lg:justify-start">
