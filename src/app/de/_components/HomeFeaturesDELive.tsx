@@ -32,7 +32,7 @@ function AttestationPreview() {
     <div className="relative mx-auto max-w-[620px] rounded-[34px] border border-[#0B3A63]/10 bg-white p-4 shadow-[0_28px_70px_rgba(11,58,99,0.14)] md:p-6">
       <div className="relative aspect-[1242/1756] w-full overflow-hidden rounded-2xl border border-[#d8e2ea] bg-white">
         <Image
-          src="/de-home-certificate-preview.svg"
+          src="/de-home-certificate-preview.png"
           alt="Deutsche Certif-Scope Beispielbescheinigung mit Wasserzeichen und veralteten Beispieldaten"
           fill
           sizes="(max-width: 768px) 92vw, 620px"
