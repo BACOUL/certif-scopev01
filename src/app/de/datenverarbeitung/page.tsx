@@ -5,9 +5,9 @@ import type { Metadata } from "next";
 ====================================================== */
 
 export const metadata: Metadata = {
-  title: "Ueberblick zur Datenverarbeitung | Certif-Scope",
+  title: "Überblick zur Datenverarbeitung | Certif-Scope",
   description:
-    "Ueberblick zur Datenverarbeitung durch Certif-Scope: Datenfluesse, Aufbewahrung, technische Dienstleister und Verantwortlichkeiten im Rahmen der DSGVO-Grundsaetze.",
+    "Überblick zur Datenverarbeitung durch Certif-Scope: Datenflüsse, Aufbewahrung, technische Dienstleister und Verantwortlichkeiten im Rahmen der DSGVO-Grundsätze.",
   alternates: {
     canonical: "https://www.certif-scope.com/de/datenverarbeitung/",
     languages: {
@@ -16,9 +16,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Ueberblick zur Datenverarbeitung | Certif-Scope",
+    title: "Überblick zur Datenverarbeitung | Certif-Scope",
     description:
-      "Ueberblick zur Datenverarbeitung durch Certif-Scope, einschliesslich Datenfluesse, Aufbewahrung und Rollenverteilung.",
+      "Überblick zur Datenverarbeitung durch Certif-Scope, einschließlich Datenflüsse, Aufbewahrung und Rollenverteilung.",
     url: "https://www.certif-scope.com/de/datenverarbeitung/",
     siteName: "Certif-Scope",
     type: "website",
@@ -66,13 +66,13 @@ export default function DatenverarbeitungPageDE() {
         </p>
 
         <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-6">
-          Ueberblick zur Datenverarbeitung
+          Überblick zur Datenverarbeitung
         </h1>
 
         <p className="text-lg text-gray-700 leading-relaxed max-w-3xl">
-          Dieses Dokument bietet einen nicht vertraglichen Ueberblick ueber die
+          Dieses Dokument bietet einen nicht vertraglichen Überblick über die
           Datenverarbeitung durch Certif-Scope. Es dient der Transparenz, der
-          institutionellen Einordnung und der internen Bewertung und ergaenzt die
+          institutionellen Einordnung und der internen Bewertung und ergänzt die
           Datenschutzhinweise.
         </p>
 
@@ -87,23 +87,23 @@ export default function DatenverarbeitungPageDE() {
             1. Zweck und Umfang
           </h2>
           <p className="text-gray-700 leading-relaxed">
-            Dieser Ueberblick zur Datenverarbeitung beschreibt die praktische
+            Dieser Überblick zur Datenverarbeitung beschreibt die praktische
             Logik des Datenumgangs bei Certif-Scope. Er ersetzt nicht die
             Datenschutzhinweise und stellt keinen Auftragsverarbeitungsvertrag
-            dar. Ziel ist ausschliesslich, auf allgemeiner Ebene zu erklaeren,
-            wie Daten innerhalb des Dienstes fliessen.
+            dar. Ziel ist ausschließlich, auf allgemeiner Ebene zu erklären,
+            wie Daten innerhalb des Dienstes fließen.
           </p>
         </section>
 
         {/* SECTION 2 */}
         <section>
           <h2 className="text-2xl font-bold text-[#0B3A63] mb-4">
-            2. Datenfluesse - Ueberblick
+            2. Datenflüsse - Überblick
           </h2>
           <p className="text-gray-700 leading-relaxed mb-4">
             Certif-Scope funktioniert nach einem deterministischen und
-            zustandsarmen Modell. Datenfluesse sind bewusst auf das begrenzt,
-            was fuer die Erstellung und Pruefung einer CO2e-Bescheinigung
+            zustandsarmen Modell. Datenflüsse sind bewusst auf das begrenzt,
+            was für die Erstellung und Prüfung einer CO2e-Bescheinigung
             notwendig ist.
           </p>
           <p className="text-gray-700 leading-relaxed">
@@ -112,14 +112,14 @@ export default function DatenverarbeitungPageDE() {
             Eingabe durch den Nutzer - Berechnung im Arbeitsspeicher - technische
             PDF-Erstellung - Download durch den Nutzer
             <br />
-            Die Pruefelemente werden direkt in das erzeugte Dokument integriert
+            Die Prüfelemente werden direkt in das erzeugte Dokument integriert
             und beruhen nicht auf einer Datenbankabfrage.
           </p>
           <p className="text-gray-700 leading-relaxed mt-4">
             Detaillierte Finanzdaten werden von Certif-Scope nicht gespeichert.
             Wenn die PDF-Konvertierung durch einen technischen Dienstleister
-            erfolgt, werden nur die fuer die Erstellung der PDF-Bescheinigung
-            notwendigen Informationen uebermittelt.
+            erfolgt, werden nur die für die Erstellung der PDF-Bescheinigung
+            notwendigen Informationen übermittelt.
           </p>
         </section>
 
@@ -131,9 +131,9 @@ export default function DatenverarbeitungPageDE() {
           <ul className="list-disc ml-6 text-gray-700 space-y-2">
             <li>Kontaktdaten (E-Mail-Adresse)</li>
             <li>optionale organisatorische Identifikationsdaten</li>
-            <li>angegebene Jahresausgaben (EUR) fuer die CO2e-Berechnung</li>
+            <li>angegebene Jahresausgaben (EUR) für die CO2e-Berechnung</li>
             <li>technische Metadaten (Hash, Zeitstempel, Version des Datensatzes)</li>
-            <li>minimale technische Protokolle fuer Sicherheit und Missbrauchspraevention</li>
+            <li>minimale technische Protokolle für Sicherheit und Missbrauchsprävention</li>
           </ul>
           <p className="text-gray-700 leading-relaxed mt-4">
             Es findet kein Verhaltensprofiling, keine Nutzerverfolgung, keine
@@ -151,9 +151,9 @@ export default function DatenverarbeitungPageDE() {
           <ul className="list-disc ml-6 text-gray-700 space-y-2">
             <li>deterministische und reproduzierbare Berechnungen</li>
             <li>Verarbeitung ohne dauerhafte Speicherung der Eingabedaten</li>
-            <li>Aktionen, die ausschliesslich vom Nutzer ausgeloest werden</li>
-            <li>einziger Zweck: Erstellung und Pruefung einer Bescheinigung</li>
-            <li>voruebergehende Verarbeitung im Arbeitsspeicher</li>
+            <li>Aktionen, die ausschließlich vom Nutzer ausgelöst werden</li>
+            <li>einziger Zweck: Erstellung und Prüfung einer Bescheinigung</li>
+            <li>vorübergehende Verarbeitung im Arbeitsspeicher</li>
           </ul>
         </section>
 
@@ -163,16 +163,16 @@ export default function DatenverarbeitungPageDE() {
             5. Speicherung und Aufbewahrung
           </h2>
           <p className="text-gray-700 leading-relaxed mb-4">
-            Finanzdaten, die fuer die CO2e-Berechnung verwendet werden, werden
+            Finanzdaten, die für die CO2e-Berechnung verwendet werden, werden
             nur im Arbeitsspeicher verarbeitet und nie in dauerhaften Datenbanken
             gespeichert.
           </p>
           <p className="text-gray-700 leading-relaxed">
-            Erzeugte PDF-Bescheinigungen werden direkt an den Nutzer uebergeben
+            Erzeugte PDF-Bescheinigungen werden direkt an den Nutzer übergeben
             und nicht von Certif-Scope aufbewahrt. E-Mail-Kommunikation kann bis
-            zu zwoelf (12) Monate fuer Support und Betrieb gespeichert werden.
-            Zugangsschluessel und Paketguthaben koennen einen minimalen
-            technischen Status erfordern, um Gueltigkeit und Verbrauch zu
+            zu zwölf (12) Monate für Support und Betrieb gespeichert werden.
+            Zugangsschlüssel und Paketguthaben können einen minimalen
+            technischen Status erfordern, um Gültigkeit und Verbrauch zu
             verwalten, ohne detaillierte Ausgabendaten zu speichern.
           </p>
         </section>
@@ -187,18 +187,18 @@ export default function DatenverarbeitungPageDE() {
           </p>
           <ul className="list-disc ml-6 text-gray-700 space-y-2">
             <li>Hosting- und Deployment-Infrastruktur</li>
-            <li>Stripe fuer die Zahlungsabwicklung</li>
-            <li>Resend fuer transaktionale E-Mails oder Support-E-Mails</li>
+            <li>Stripe für die Zahlungsabwicklung</li>
+            <li>Resend für transaktionale E-Mails oder Support-E-Mails</li>
             <li>
-              Cloudflare KV fuer den technischen Status von Zugangsschluesseln
+              Cloudflare KV für den technischen Status von Zugangsschlüsseln
               und Paketguthaben
             </li>
-            <li>PDFShift fuer die technische Umwandlung zur PDF-Erstellung</li>
+            <li>PDFShift für die technische Umwandlung zur PDF-Erstellung</li>
           </ul>
           <p className="text-gray-700 leading-relaxed mt-4">
             Zahlungsdaten werden von Stripe verarbeitet und nicht von
             Certif-Scope gespeichert. PDFShift kann nur die Daten erhalten, die
-            fuer die technische Produktion des angeforderten PDF erforderlich
+            für die technische Produktion des angeforderten PDF erforderlich
             sind. Alle Dienstleister arbeiten in einem vertraglichen Rahmen, der
             an die Anforderungen der DSGVO angelehnt ist.
           </p>
@@ -210,10 +210,10 @@ export default function DatenverarbeitungPageDE() {
             7. Rollen und Verantwortlichkeiten
           </h2>
           <p className="text-gray-700 leading-relaxed">
-            Certif-Scope handelt fuer die zur Bereitstellung des Dienstes
-            notwendigen Vorgange als Verantwortlicher. Nutzer bleiben fuer die
-            Richtigkeit, Angemessenheit und Zulaessigkeit der von ihnen
-            uebermittelten Informationen verantwortlich. Eine gemeinsame
+            Certif-Scope handelt für die zur Bereitstellung des Dienstes
+            notwendigen Vorgänge als Verantwortlicher. Nutzer bleiben für die
+            Richtigkeit, Angemessenheit und Zulässigkeit der von ihnen
+            übermittelten Informationen verantwortlich. Eine gemeinsame
             Verantwortlichkeit ist damit nicht verbunden.
           </p>
         </section>
@@ -224,8 +224,8 @@ export default function DatenverarbeitungPageDE() {
             8. Nicht vertraglicher Charakter
           </h2>
           <p className="text-gray-700 leading-relaxed">
-            Dieses Dokument dient ausschliesslich der Information. Es stellt
-            keinen Auftragsverarbeitungsvertrag dar und aendert keine
+            Dieses Dokument dient ausschließlich der Information. Es stellt
+            keinen Auftragsverarbeitungsvertrag dar und ändert keine
             vertraglichen oder rechtlichen Pflichten, die an anderer Stelle
             definiert sind.
           </p>
@@ -237,7 +237,7 @@ export default function DatenverarbeitungPageDE() {
             9. Aktualisierung und Kontakt
           </h2>
           <p className="text-gray-700 leading-relaxed">
-            Dieser Ueberblick kann aktualisiert werden, um technische,
+            Dieser Überblick kann aktualisiert werden, um technische,
             betriebliche oder rechtliche Entwicklungen abzubilden. Bei Fragen
             zur Datenverarbeitung:
             <br />
