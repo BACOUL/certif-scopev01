@@ -52,11 +52,11 @@ export default function FooterDE() {
                 Hauptleitfaden
               </p>
               <Link
-                href="/de/co2-bilanz-kmu/"
+                href="/de/co2-bescheinigung-kmu/"
                 className="mt-2 inline-flex text-sm font-semibold text-[#0B3A63] underline underline-offset-4 transition-colors hover:text-[#1FB6C1]"
-                aria-label="KMU: CO2-Bilanz oder CO2e-Bescheinigung einordnen"
+                aria-label="CO2-Bescheinigung für KMU"
               >
-                KMU: CO2-Bilanz-Anfrage einordnen →
+                CO2-Bescheinigung für KMU →
               </Link>
             </div>
 
@@ -97,6 +97,16 @@ export default function FooterDE() {
               <li>
                 <Link className={navLinkClass} href="/de/produkt/">
                   Überblick
+                </Link>
+              </li>
+              <li>
+                <Link className={navLinkClass} href="/de/co2-bescheinigung/">
+                  CO2-Bescheinigung Unternehmen
+                </Link>
+              </li>
+              <li>
+                <Link className={navLinkClass} href="/de/co2-bescheinigung-kmu/">
+                  CO2-Bescheinigung KMU
                 </Link>
               </li>
               <li>
@@ -146,11 +156,26 @@ export default function FooterDE() {
                 </Link>
               </li>
               <li>
+                <Link className={navLinkClass} href="/de/co2-nachweis-lieferanten/">
+                  CO2-Nachweis Lieferanten
+                </Link>
+              </li>
+              <li>
                 <Link
                   className={navLinkClass}
                   href="/de/co2-angaben-ausschreibung/"
                 >
                   Ausschreibung: welche CO2-Angaben liefern
+                </Link>
+              </li>
+              <li>
+                <Link className={navLinkClass} href="/de/bank-esg-unterlagen-kmu/">
+                  Bank ESG-Unterlagen KMU
+                </Link>
+              </li>
+              <li>
+                <Link className={navLinkClass} href="/de/versicherung-esg-unterlagen-kmu/">
+                  Versicherung ESG-Unterlagen KMU
                 </Link>
               </li>
               <li className="pt-2">
