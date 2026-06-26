@@ -20,6 +20,11 @@ export default function HeaderDE() {
   const routes = {
     home: "/de/",
     pillarBilanCarbonePME: "/de/co2-bilanz-kmu/",
+    co2Bescheinigung: "/de/co2-bescheinigung/",
+    co2BescheinigungKMU: "/de/co2-bescheinigung-kmu/",
+    supplierProof: "/de/co2-nachweis-lieferanten/",
+    tenderProof: "/de/co2-angaben-ausschreibung/",
+    bankProof: "/de/bank-esg-unterlagen-kmu/",
     product: "/de/produkt/",
     methodology: "/de/methodik/",
     compliance: "/de/grenzen-und-compliance/",
@@ -109,6 +114,11 @@ export default function HeaderDE() {
 
   const isAttestationActive =
     isActive(routes.product) ||
+    isActive(routes.co2Bescheinigung) ||
+    isActive(routes.co2BescheinigungKMU) ||
+    isActive(routes.supplierProof) ||
+    isActive(routes.tenderProof) ||
+    isActive(routes.bankProof) ||
     isActive(routes.methodology) ||
     isActive(routes.compliance) ||
     isActive(routes.privacy);
@@ -239,16 +249,58 @@ export default function HeaderDE() {
                   ref={dropdownPanelRef}
                   id="attestation-dropdown-desktop-de"
                   role="menu"
-                  className="absolute left-0 top-[calc(100%+14px)] z-[1100] w-72 overflow-hidden rounded-2xl border border-[#0B3A63]/10 bg-white p-3 shadow-[0_18px_40px_rgba(11,58,99,0.12)]"
+                  className="absolute left-0 top-[calc(100%+14px)] z-[1100] w-80 overflow-hidden rounded-2xl border border-[#0B3A63]/10 bg-white p-3 shadow-[0_18px_40px_rgba(11,58,99,0.12)]"
                 >
                   <div className="mb-2 rounded-xl border border-[#1FB6C1]/14 bg-[linear-gradient(180deg,rgba(31,182,193,0.08)_0%,rgba(31,182,193,0.03)_100%)] px-3 py-3">
                     <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#64748B]">
                       Produkt
                     </p>
                     <p className="mt-1 text-sm font-semibold text-[#0B3A63]">
-                      Dokument, Methode und Grenzen verstehen
+                      Dokument, Methode, Fälle und Grenzen verstehen
                     </p>
                   </div>
+
+                  <Link
+                    href={routes.co2BescheinigungKMU}
+                    onClick={closeAll}
+                    className={`${dropdownItemBase} ${
+                      isActive(routes.co2BescheinigungKMU) ? dropdownItemActive : ""
+                    }`}
+                  >
+                    CO2-Bescheinigung KMU
+                  </Link>
+
+                  <Link
+                    href={routes.supplierProof}
+                    onClick={closeAll}
+                    className={`${dropdownItemBase} ${
+                      isActive(routes.supplierProof) ? dropdownItemActive : ""
+                    }`}
+                  >
+                    CO2-Nachweis Lieferanten
+                  </Link>
+
+                  <Link
+                    href={routes.tenderProof}
+                    onClick={closeAll}
+                    className={`${dropdownItemBase} ${
+                      isActive(routes.tenderProof) ? dropdownItemActive : ""
+                    }`}
+                  >
+                    CO2-Angaben Ausschreibung
+                  </Link>
+
+                  <Link
+                    href={routes.bankProof}
+                    onClick={closeAll}
+                    className={`${dropdownItemBase} ${
+                      isActive(routes.bankProof) ? dropdownItemActive : ""
+                    }`}
+                  >
+                    Bank ESG-Unterlagen KMU
+                  </Link>
+
+                  <div className="my-2 border-t border-[#0B3A63]/8" />
 
                   <Link
                     href={routes.product}
@@ -387,6 +439,56 @@ export default function HeaderDE() {
                 id="attestation-dropdown-mobile-de"
                 className="ml-2 rounded-2xl border border-[#0B3A63]/10 bg-[#F8FAFC] p-2"
               >
+                <Link
+                  href={routes.co2BescheinigungKMU}
+                  onClick={closeAll}
+                  className={`block rounded-lg px-3 py-2.5 text-sm font-medium transition-colors duration-300 ${
+                    isActive(routes.co2BescheinigungKMU)
+                      ? "bg-white text-[#0B3A63]"
+                      : "text-[#475569] hover:bg-white hover:text-[#0B3A63]"
+                  }`}
+                >
+                  CO2-Bescheinigung KMU
+                </Link>
+
+                <Link
+                  href={routes.supplierProof}
+                  onClick={closeAll}
+                  className={`block rounded-lg px-3 py-2.5 text-sm font-medium transition-colors duration-300 ${
+                    isActive(routes.supplierProof)
+                      ? "bg-white text-[#0B3A63]"
+                      : "text-[#475569] hover:bg-white hover:text-[#0B3A63]"
+                  }`}
+                >
+                  CO2-Nachweis Lieferanten
+                </Link>
+
+                <Link
+                  href={routes.tenderProof}
+                  onClick={closeAll}
+                  className={`block rounded-lg px-3 py-2.5 text-sm font-medium transition-colors duration-300 ${
+                    isActive(routes.tenderProof)
+                      ? "bg-white text-[#0B3A63]"
+                      : "text-[#475569] hover:bg-white hover:text-[#0B3A63]"
+                  }`}
+                >
+                  CO2-Angaben Ausschreibung
+                </Link>
+
+                <Link
+                  href={routes.bankProof}
+                  onClick={closeAll}
+                  className={`block rounded-lg px-3 py-2.5 text-sm font-medium transition-colors duration-300 ${
+                    isActive(routes.bankProof)
+                      ? "bg-white text-[#0B3A63]"
+                      : "text-[#475569] hover:bg-white hover:text-[#0B3A63]"
+                  }`}
+                >
+                  Bank ESG-Unterlagen KMU
+                </Link>
+
+                <div className="my-2 border-t border-[#0B3A63]/8" />
+
                 <Link
                   href={routes.product}
                   onClick={closeAll}
