@@ -4,6 +4,7 @@ import ScrollUp from "@/components/Common/ScrollUp";
 
 import { FeaturesDE } from "./_components/HomeFeaturesDELive";
 import { HeroDE } from "./_components/HomeHeroDELive";
+import { FinalCtaDE } from "./_components/FinalCtaDE";
 import {
   DifferentiationDE,
   FAQDE,
@@ -153,6 +154,9 @@ export default function HomeDE() {
 
         {/* 11) FAQ */}
         <FAQDE />
+
+        {/* 12) CTA final */}
+        <FinalCtaDE />
       </main>
     </>
   );
