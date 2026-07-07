@@ -51,6 +51,18 @@
   </url>
 
   <url>
+    <loc>https://www.certif-scope.com/fr/why-companies-ask/attestation-carbone-fournisseur/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.certif-scope.com/fr/why-companies-ask/exigences-co2-banques-assurances/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://www.certif-scope.com/fr/scope-1-2-3-explication/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -79,6 +91,12 @@
     <loc>https://www.certif-scope.com/de/pruefen/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.certif-scope.com/de/warum-unternehmen-co2-angaben-anfordern/co2-bescheinigung-lieferanten/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 
 </urlset>
