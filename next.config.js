@@ -46,7 +46,7 @@ const nextConfig = {
       },
       {
         source: "/product/methodology/compliance",
-        destination: "/fr/product/methodology/compliance/",
+        destination: "/fr/product/compliance/",
         permanent: true,
       },
       {
@@ -72,6 +72,16 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: "/fr/bilan-carbone-pme",
+        destination: "/fr/bilan-carbone-pme/",
+        permanent: true,
+      },
+      {
+        source: "/fr/bilan-carbone-appel-offres",
+        destination: "/fr/bilan-carbone-appel-offres/",
+        permanent: true,
+      },
+      {
         source: "/fr/product",
         destination: "/fr/product/",
         permanent: true,
@@ -82,8 +92,18 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: "/fr/product/compliance",
+        destination: "/fr/product/compliance/",
+        permanent: true,
+      },
+      {
         source: "/fr/product/methodology/compliance",
-        destination: "/fr/product/methodology/compliance/",
+        destination: "/fr/product/compliance/",
+        permanent: true,
+      },
+      {
+        source: "/fr/product/methodology/compliance/",
+        destination: "/fr/product/compliance/",
         permanent: true,
       },
       {
@@ -136,6 +156,26 @@ const nextConfig = {
       {
         source: "/de/verify/",
         destination: "/de/pruefen/",
+        permanent: true,
+      },
+      {
+        source: "/de/co2-bilanz-kmu",
+        destination: "/de/co2-bilanz-kmu/",
+        permanent: true,
+      },
+      {
+        source: "/de/methodik",
+        destination: "/de/methodik/",
+        permanent: true,
+      },
+      {
+        source: "/de/grenzen-und-compliance",
+        destination: "/de/grenzen-und-compliance/",
+        permanent: true,
+      },
+      {
+        source: "/de/warum-unternehmen-co2-angaben-anfordern",
+        destination: "/de/warum-unternehmen-co2-angaben-anfordern/",
         permanent: true,
       },
 
