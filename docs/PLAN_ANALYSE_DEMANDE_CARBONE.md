@@ -1,9 +1,9 @@
 # Plan directeur - Analyse d'une demande carbone
 
-Statut : **approuve pour implementation, non commence**  
-Date de cadrage : **16 aout 2026**  
-Depot : **BACOUL/certif-scopev01**  
-Produit concerne : **Certif-Scope France**
+- Statut : **approuve pour implementation, non commence**
+- Date de cadrage : **16 aout 2026**
+- Depot : **BACOUL/certif-scopev01**
+- Produit concerne : **Certif-Scope France**
 
 ---
 
@@ -369,6 +369,71 @@ Destination : `/fr/generate/`
 
 Afficher les raisons detectees. Ne pas afficher de CTA d'achat principal.
 
+### Charte graphique obligatoire
+
+L'analyseur est une extension de Certif-Scope, pas une refonte. Il doit sembler appartenir au site actuel des sa premiere version.
+
+Avant d'ecrire le premier composant applicatif :
+
+- [ ] confirmer le SHA de production selon la section 5 ;
+- [ ] inventorier les styles effectivement utilises dans `src/styles/index.css` et `tailwind.config.js` ;
+- [ ] relever les motifs visuels de `Header.tsx`, `Hero.tsx`, `Footer.tsx`, des cartes, formulaires et CTA francais existants ;
+- [ ] noter dans le journal d'execution les polices, couleurs, espacements, rayons, ombres, largeurs de conteneur et points de rupture a reutiliser ;
+- [ ] joindre a la PR des captures de reference de la production avant modification.
+
+Regles de conception imperatives :
+
+- reutiliser les typographies, couleurs, espacements, rayons, ombres, conteneurs et composants deja presents ;
+- conserver la hierarchie visuelle et la densite des pages francaises ;
+- reprendre les styles existants des boutons principal et secondaire, des champs, des cartes et des messages ;
+- ne pas ajouter de police, palette, gradient, jeu d'icones ou nouvelle echelle de design ;
+- ne pas creer de styles globaux lorsqu'une classe ou un motif local existant suffit ;
+- ne pas refactoriser le design system ou les pages non concernees dans cette fonctionnalite ;
+- afficher une icone ou un libelle en plus de la couleur pour distinguer les trois resultats ;
+- conserver les sections existantes de l'accueil, sauf les changements de texte et de CTA explicitement prevus ;
+- documenter toute exception dans le journal de decisions avant de l'implementer.
+
+### Etats d'interface obligatoires
+
+Les etats suivants doivent etre concus, implementes et testes :
+
+- [ ] etat initial, champ vide et bouton desactive ;
+- [ ] saisie valide avec compteur ou indication de limite si necessaire ;
+- [ ] texte de moins de 30 caracteres avec message accessible ;
+- [ ] texte atteignant la limite de 12 000 caracteres sans debordement ;
+- [ ] resultat `compatible` ;
+- [ ] resultat `a_clarifier` ;
+- [ ] resultat `incompatible` ;
+- [ ] copie du message reussie avec confirmation visible et annoncee aux technologies d'assistance ;
+- [ ] echec de l'API Clipboard avec solution de copie manuelle ;
+- [ ] modification ou reinitialisation apres un resultat ;
+- [ ] analytics indisponible sans blocage de l'analyse ;
+- [ ] etats hover, focus visible, active et disabled de chaque controle ;
+- [ ] menu mobile ouvert et ferme apres l'ajout du nouveau lien.
+
+L'analyse etant synchrone dans le navigateur, ne pas afficher un faux chargement prolonge. Si un etat transitoire est necessaire pour eviter un double clic, il doit rester bref et ne pas bloquer la navigation clavier.
+
+### Validation visuelle obligatoire
+
+Comparer la production de reference et la preview Vercel aux formats suivants :
+
+- [ ] mobile etroit : `360 x 800` ;
+- [ ] mobile courant : `390 x 844` ;
+- [ ] tablette : `768 x 1024` ;
+- [ ] desktop : `1440 x 900`.
+
+Pour chaque format, verifier :
+
+- absence de defilement horizontal et de texte coupe ;
+- alignement avec les conteneurs, la grille et les espacements existants ;
+- coherence du Header, du Hero, des CTA, des cartes de resultat et du Footer ;
+- lisibilite du champ pour les textes longs ;
+- contraste WCAG AA, focus visible et information non transmise par la couleur seule ;
+- absence de saut de mise en page notable lors de l'affichage du resultat ;
+- conservation visuelle des pages existantes hors changements autorises.
+
+Les captures avant/apres et la liste des differences intentionnelles doivent figurer dans la PR. Une difference non expliquee bloque la fusion.
+
 ---
 
 ## 10. Integration dans le site
@@ -492,9 +557,14 @@ Inclure obligatoirement :
 ### Tests fonctionnels
 
 - [ ] saisie et reinitialisation ;
+- [ ] etat initial et bouton desactive ;
+- [ ] validation des seuils de 30 et 12 000 caracteres ;
 - [ ] resultat compatible et CTA vers `/fr/generate/` ;
 - [ ] resultat ambigu et copie du message ;
 - [ ] resultat incompatible sans CTA d'achat principal ;
+- [ ] confirmation apres copie du message ;
+- [ ] solution manuelle si l'API Clipboard echoue ;
+- [ ] analytics indisponible sans blocage ;
 - [ ] aucun texte brut dans l'URL ;
 - [ ] aucun texte brut dans le stockage navigateur ;
 - [ ] aucun texte brut dans les requetes reseau ;
@@ -520,6 +590,22 @@ Inclure obligatoirement :
 - [ ] `sitemap.xml` ;
 - [ ] canonical et hreflang.
 
+### Matrice de couverture anti-oubli
+
+Avant la fusion, chaque exigence des sections 5 a 15 doit etre reliee a une implementation et a une preuve. Completer cette matrice dans la description de la PR ou dans son commentaire de validation final :
+
+| ID / section | Exigence | Fichier ou commit | Test automatise ou manuel | Preuve | Statut |
+|---|---|---|---|---|---|
+| A completer | A completer | A completer | A completer | capture, log ou URL de preview | non commence |
+
+Regles :
+
+- aucune ligne ne peut etre marquee terminee sans preuve consultable ;
+- toute exigence non implementee doit etre declaree explicitement, jamais omise ;
+- toute nouvelle exigence decouverte est ajoutee au plan et a la matrice avant le code ;
+- la revue finale compare la matrice, le diff Git et la preview Vercel ;
+- une ligne manquante, ambigue ou sans preuve bloque la fusion.
+
 ---
 
 ## 14. Definition of Done
@@ -530,6 +616,12 @@ La V1 est terminee uniquement si :
 - [ ] les trois resultats fonctionnent ;
 - [ ] la precedence des regles est respectee ;
 - [ ] les 40 fixtures passent ;
+- [ ] l'inventaire de la charte du SHA de production est inscrit dans le journal d'execution ;
+- [ ] aucune police, palette ou regle visuelle non autorisee n'a ete ajoutee ;
+- [ ] tous les etats d'interface obligatoires ont ete verifies ;
+- [ ] les captures avant/apres aux quatre formats sont jointes a la PR ;
+- [ ] chaque difference visuelle est intentionnelle et documentee ;
+- [ ] la matrice de couverture ne contient aucune ligne manquante ou sans preuve ;
 - [ ] aucun texte utilisateur ne quitte le navigateur ;
 - [ ] l'accueil conduit vers l'analyseur ;
 - [ ] le resultat compatible conduit vers l'attestation actuelle ;
@@ -615,4 +707,3 @@ Completer une ligne apres chaque lot.
 | Date | Branche / commit | Lot realise | Verifications | Resultat | Prochaine action |
 |---|---|---|---|---|---|
 | A completer | A completer | Confirmation du SHA de production | Comparaison Vercel / GitHub | A completer | Creer la branche fonctionnelle |
-
