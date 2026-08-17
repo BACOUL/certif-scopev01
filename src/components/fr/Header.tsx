@@ -132,7 +132,7 @@ export default function HeaderFR() {
     <header
       id="top"
       role="banner"
-      className="fixed left-0 top-0 z-[1000] w-full border-b border-[#0B3A63]/8 bg-white/92 backdrop-blur-md"
+      className="fixed left-0 top-0 z-[1000] w-full border-b border-[#0B3A63]/10 bg-white/95 backdrop-blur-md"
     >
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-5 py-3 md:px-6 md:py-4">
         <Link
