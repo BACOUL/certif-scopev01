@@ -383,16 +383,16 @@ export default function BilanCarboneAppelOffresFR() {
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <Link
-                href="/fr/generate/"
+                href="/fr/analyser-demande-carbone/"
                 className="inline-flex min-h-[50px] items-center justify-center rounded-xl bg-[#1FB6C1] px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#19AAB4]"
               >
-                Générer une attestation pour mon dossier
+                Analyser la demande reçue
               </Link>
               <Link
-                href="/fr/pricing/"
+                href="/fr/generate/"
                 className="inline-flex min-h-[50px] items-center justify-center rounded-xl border border-[#0B3A63] bg-white px-6 py-3 text-sm font-semibold text-[#0B3A63] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0B3A63] hover:text-white"
               >
-                Voir le prix 89 €
+                Générer une attestation — 89 €
               </Link>
             </div>
           </header>

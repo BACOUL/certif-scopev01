@@ -182,36 +182,35 @@ export default function HomeFR() {
               <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-center">
                 <div className="lg:col-span-8">
                   <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-[#0B3A63]/70 md:text-sm">
-                    Réponse rapide — format standardisé
+                    Vérifier avant de produire
                   </p>
 
                   <h2 className="text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">
-                    Produire une attestation CO₂e indicative, claire et
-                    vérifiable
+                    Commencez par vérifier ce que votre destinataire exige
                   </h2>
 
                   <p className="mt-4 max-w-2xl text-lg leading-relaxed text-[#0B3A63]/80">
-                    Si votre demande relève du screening fournisseur, d’un appel
-                    d’offres ou d’une revue banque/assurance, l’objectif est un
-                    document lisible, archivable et cohérent : résultat CO₂e
-                    agrégé, année, méthode déclarée, limites explicites et
-                    vérification.
+                    Collez gratuitement la demande reçue. Vous saurez si une
+                    attestation CO₂e indicative semble adaptée, si un point doit
+                    être clarifié ou si un bilan plus complet est exigé.
                   </p>
 
                   <div className="mt-6 flex flex-wrap gap-3">
                     <Link
-                      href="/fr/generate"
+                      href="/fr/analyser-demande-carbone/"
                       className="inline-flex items-center justify-center rounded-xl bg-[#1FB6C1] px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0B3A63]"
                     >
-                      Générer mon attestation →
+                      Analyser ma demande gratuitement →
                     </Link>
 
-                    <Link
-                      href="/fr/pricing"
+                    <a
+                      href="/api/sample"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="inline-flex items-center justify-center rounded-xl border border-[#0B3A63] px-5 py-3 text-sm font-semibold text-[#0B3A63] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0B3A63] hover:text-white"
                     >
-                      Voir le prix
-                    </Link>
+                      Voir un exemple d’attestation
+                    </a>
 
                     <Link
                       href="/fr/bilan-carbone-pme"

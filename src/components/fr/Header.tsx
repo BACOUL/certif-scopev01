@@ -19,6 +19,7 @@ export default function HeaderFR() {
 
   const routes = {
     home: "/fr/",
+    analyzer: "/fr/analyser-demande-carbone/",
     pillarBilanCarbonePME: "/fr/bilan-carbone-pme/",
     product: "/fr/product/",
     methodology: "/fr/product/methodology/",
@@ -186,7 +187,7 @@ export default function HeaderFR() {
             ref={navDesktopRef}
             id="main-navigation-desktop"
             aria-label="Navigation principale"
-            className="flex items-center gap-7"
+            className="flex items-center gap-5 xl:gap-7"
           >
             <Link
               href={routes.home}
@@ -200,12 +201,23 @@ export default function HeaderFR() {
             </Link>
 
             <Link
+              href={routes.analyzer}
+              onClick={closeAll}
+              aria-current={isActive(routes.analyzer) ? "page" : undefined}
+              className={`${navLinkBase} ${
+                isActive(routes.analyzer) ? navLinkActive : ""
+              }`}
+            >
+              Analyser une demande
+            </Link>
+
+            <Link
               href={routes.pillarBilanCarbonePME}
               onClick={closeAll}
               aria-current={
                 isActive(routes.pillarBilanCarbonePME) ? "page" : undefined
               }
-              className={`${navLinkBase} ${
+              className={`${navLinkBase} hidden xl:inline ${
                 isActive(routes.pillarBilanCarbonePME) ? navLinkActive : ""
               }`}
             >
@@ -343,6 +355,17 @@ export default function HeaderFR() {
               }`}
             >
               Accueil
+            </Link>
+
+            <Link
+              href={routes.analyzer}
+              onClick={closeAll}
+              aria-current={isActive(routes.analyzer) ? "page" : undefined}
+              className={`${mobileLinkBase} ${
+                isActive(routes.analyzer) ? mobileLinkActive : mobileLinkInactive
+              }`}
+            >
+              Analyser une demande
             </Link>
 
             <Link

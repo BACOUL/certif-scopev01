@@ -96,8 +96,8 @@ export default function DataProcessingPage() {
           <p className="text-gray-700 leading-relaxed mb-4">
             Certif-Scope fonctionne selon un modèle de traitement déterministe
             et sans état (stateless). Les flux de données sont volontairement
-            limités à ce qui est strictement nécessaire pour générer et vérifier
-            une attestation CO₂e.
+            limités à ce qui est strictement nécessaire pour orienter une demande,
+            puis générer et vérifier une attestation CO₂e.
           </p>
           <p className="text-gray-700 leading-relaxed">
             Séquence de traitement typique :
@@ -115,6 +115,12 @@ export default function DataProcessingPage() {
             sous-traitant technique, seules les informations nécessaires à la
             production de l’attestation PDF sont transmises.
           </p>
+          <p className="text-gray-700 leading-relaxed mt-4">
+            Pour l’analyse d’une demande carbone, la séquence reste intégralement
+            locale : texte collé → règles déterministes en mémoire → résultat
+            affiché. Le texte brut n’est envoyé à aucun serveur, journal, outil de
+            mesure d’audience ou sous-traitant.
+          </p>
         </section>
 
         {/* SECTION 3 */}
@@ -128,6 +134,10 @@ export default function DataProcessingPage() {
             <li>Dépenses annuelles déclarées (€) utilisées pour le calcul CO₂e</li>
             <li>Métadonnées techniques (empreinte, horodatage, version du dataset)</li>
             <li>Journaux techniques minimaux à des fins de sécurité et de prévention des abus</li>
+            <li>
+              Pages vues et événements techniques agrégés, sans contenu saisi,
+              via Vercel Web Analytics
+            </li>
           </ul>
           <p className="text-gray-700 leading-relaxed mt-4">
             Aucun profilage comportemental, suivi utilisateur, enrichissement
@@ -146,7 +156,10 @@ export default function DataProcessingPage() {
             <li>Calculs déterministes et reproductibles</li>
             <li>Traitement sans stockage persistant des données d’entrée</li>
             <li>Actions initiées uniquement par l’utilisateur</li>
-            <li>Traitement à finalité unique (émission et vérification d’attestation)</li>
+            <li>
+              Traitement limité à l’orientation, l’émission et la vérification
+              d’attestation
+            </li>
             <li>Traitement temporaire en mémoire</li>
           </ul>
         </section>
@@ -182,7 +195,10 @@ export default function DataProcessingPage() {
             techniques :
           </p>
           <ul className="list-disc ml-6 text-gray-700 space-y-2">
-            <li>Infrastructure d’hébergement et de déploiement</li>
+            <li>
+              Vercel pour l’hébergement, le déploiement et la mesure d’audience
+              agrégée sans cookie
+            </li>
             <li>Stripe pour le traitement des paiements</li>
             <li>Resend pour l’envoi d’emails transactionnels ou de support</li>
             <li>
