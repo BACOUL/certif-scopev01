@@ -1,6 +1,6 @@
 # Plan directeur - Analyse d'une demande carbone
 
-- Statut : **approuve pour implementation, non commence**
+- Statut : **implementation en cours - code local valide, preview a verifier**
 - Date de cadrage : **16 aout 2026**
 - Depot : **BACOUL/certif-scopev01**
 - Produit concerne : **Certif-Scope France**
@@ -558,24 +558,24 @@ Fichiers potentiellement concernes :
 
 Ajouter au moins 40 fixtures :
 
-- [ ] 15 demandes compatibles ;
-- [ ] 15 demandes a clarifier ;
-- [ ] 10 demandes incompatibles.
+- [x] 15 demandes compatibles ;
+- [x] 15 demandes a clarifier ;
+- [x] 10 demandes incompatibles.
 
 Inclure obligatoirement :
 
-- [ ] texte vide ;
-- [ ] texte inferieur a 30 caracteres ;
-- [ ] texte superieur a 12 000 caracteres ;
-- [ ] accents et majuscules ;
-- [ ] apostrophes typographiques ;
-- [ ] texte copie depuis un email ;
-- [ ] exigences contradictoires ;
-- [ ] plusieurs standards dans le meme texte ;
-- [ ] HTML colle ;
-- [ ] texte sans rapport avec le carbone ;
-- [ ] ambiguite simple autour de "bilan carbone" ;
-- [ ] signal positif accompagne d'un signal bloquant.
+- [x] texte vide ;
+- [x] texte inferieur a 30 caracteres ;
+- [x] texte superieur a 12 000 caracteres ;
+- [x] accents et majuscules ;
+- [x] apostrophes typographiques ;
+- [x] texte copie depuis un email ;
+- [x] exigences contradictoires ;
+- [x] plusieurs standards dans le meme texte ;
+- [x] HTML colle ;
+- [x] texte sans rapport avec le carbone ;
+- [x] ambiguite simple autour de "bilan carbone" ;
+- [x] signal positif accompagne d'un signal bloquant.
 
 ### Tests fonctionnels
 
@@ -733,3 +733,4 @@ Completer une ligne apres chaque lot.
 |---|---|---|---|---|---|
 | 2026-08-17 | `feat/fr-request-analyzer` depuis `037bf479c5880e231c99af29353c3389a37a97f0` | Confirmation du SHA de production et creation de la branche fonctionnelle | Projet, domaines, deploiement, branche et SHA verifies dans Vercel ; comparaison avec GitHub | Production confirmee sur `certif-scope-international` ; branche fonctionnelle creee depuis le SHA exact | Inventorier la charte et produire les captures de reference |
 | 2026-08-17 | `feat/fr-request-analyzer` | Inventaire de la charte et direction visuelle non generique | Accueil public inspecte en navigateur ; `index.css`, Tailwind, Hero, Header, Footer et composants de preuve lus au SHA de production | Tokens et concept de controle documentaire inscrits dans `docs/DIRECTION_VISUELLE_ANALYSE_DEMANDE.md` | Completer les captures de reference puis implementer le moteur de regles |
+| 2026-08-17 | `feat/fr-request-analyzer` / `12052fbc733b7723e3517df143e89bd88a3c64ea` | Moteur deterministe, page d'analyse, integration FR, SEO, mesure minimale et information confidentialite | 40 fixtures metier et 8 controles de bord passes ; `tsc --noEmit` sans erreur ; `next build` reussi ; invariants Stripe, PDF et routes protegees inchanges | Code applicatif valide localement, sans route d'analyse ni transmission du texte saisi | Publier la branche, ouvrir la PR brouillon et verifier la preview aux quatre formats |
