@@ -121,6 +121,35 @@ export default function HomeDE() {
             __html: JSON.stringify(jsonLdWebPage),
           }}
         />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function () {
+                function replaceImageByAlt(alt, src) {
+                  document.querySelectorAll('img[alt="' + alt + '"]').forEach(function (img) {
+                    img.setAttribute('src', src);
+                    img.setAttribute('srcset', src);
+                    img.removeAttribute('sizes');
+                  });
+                }
+
+                function useGermanPreviews() {
+                  replaceImageByAlt('Beispiel einer indikativen CO2e-Bescheinigung mit aggregiertem Ergebnis, Methode und Dokument-ID.', '/hero-attestation-de.svg');
+                  replaceImageByAlt('Beispiel einer Certif-Scope CO2e-Bescheinigung', '/preview-de.svg');
+                }
+
+                if (document.readyState === 'loading') {
+                  document.addEventListener('DOMContentLoaded', useGermanPreviews);
+                } else {
+                  useGermanPreviews();
+                }
+
+                setTimeout(useGermanPreviews, 100);
+                setTimeout(useGermanPreviews, 500);
+              })();
+            `,
+          }}
+        />
 
         {/* 1) Hero */}
         <HeroDE />
