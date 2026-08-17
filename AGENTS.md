@@ -29,15 +29,18 @@ Ce document est la source de verite fonctionnelle et technique de cette evolutio
    - les pages allemandes ;
    - les routes API sensibles existantes.
 8. Ne pas fusionner les anciennes branches `codex/diagnostic-demande-carbone` ou `codex/fr-only-diagnostic-demande-carbone`. Elles peuvent seulement servir de reference textuelle.
-9. Une case du plan ne peut etre cochee que si son critere d'acceptation a ete verifie.
-10. Apres chaque lot, inscrire dans le journal d'execution : date, branche, commit, controles effectues, resultat et prochain point.
+9. Toute interface ajoutee doit prolonger strictement la charte graphique du SHA de production confirme. Utiliser comme references `src/styles/index.css`, `tailwind.config.js`, les composants FR existants et les captures de production realisees avant le code.
+10. Ne pas introduire de nouvelle police, palette, echelle d'espacement, largeur de conteneur, style de bouton ou langage d'icone sans decision explicite inscrite dans le journal de decisions.
+11. Une case du plan ne peut etre cochee que si son critere d'acceptation a ete verifie et si sa preuve figure dans la matrice de couverture.
+12. Apres chaque lot, inscrire dans le journal d'execution : date, branche, commit, controles effectues, resultat et prochain point.
 
 ## Qualite requise
 
 - TypeScript strict, aucune erreur de build.
 - Analyse couverte par les cas de test prevus dans le plan.
 - Accessibilite clavier et mobile verifiee.
+- Comparaison visuelle documentee entre la production et la preview aux largeurs prevues dans le plan.
+- Tous les etats de l'interface controles, y compris validation, copie, erreur, reinitialisation et les trois resultats.
 - Aucun texte utilisateur dans la telemetrie.
 - Preview Vercel validee avant fusion.
 - Aucun deploiement de production sans controle manuel du tunnel existant jusqu'au PDF.
-
