@@ -10,6 +10,10 @@ Avant toute modification liee a l'analyse d'une demande carbone, lire integralem
 
 `docs/PLAN_ANALYSE_DEMANDE_CARBONE.md`
 
+Pour toute interface, tout composant React ou toute modification du Hero, lire egalement :
+
+`docs/DIRECTION_VISUELLE_ANALYSE_DEMANDE.md`
+
 Ce document est la source de verite fonctionnelle et technique de cette evolution. Les taches doivent etre executees dans l'ordre de sa checklist. Ne pas elargir le perimetre sans une decision explicite ajoutee au journal de decisions du plan.
 
 ## Regles imperatives
@@ -29,16 +33,18 @@ Ce document est la source de verite fonctionnelle et technique de cette evolutio
    - les pages allemandes ;
    - les routes API sensibles existantes.
 8. Ne pas fusionner les anciennes branches `codex/diagnostic-demande-carbone` ou `codex/fr-only-diagnostic-demande-carbone`. Elles peuvent seulement servir de reference textuelle.
-9. Toute interface ajoutee doit prolonger strictement la charte graphique du SHA de production confirme. Utiliser comme references `src/styles/index.css`, `tailwind.config.js`, les composants FR existants et les captures de production realisees avant le code.
+9. Toute interface ajoutee doit prolonger strictement la charte graphique du SHA de production confirme et la direction de "controle documentaire" decrite dans le document visuel.
 10. Ne pas introduire de nouvelle police, palette, echelle d'espacement, largeur de conteneur, style de bouton ou langage d'icone sans decision explicite inscrite dans le journal de decisions.
-11. Une case du plan ne peut etre cochee que si son critere d'acceptation a ete verifie et si sa preuve figure dans la matrice de couverture.
-12. Apres chaque lot, inscrire dans le journal d'execution : date, branche, commit, controles effectues, resultat et prochain point.
+11. Ne pas utiliser les marqueurs visuels generiques des sites IA : gradients violet/bleu, halos decoratifs, etincelles, robot, interface de chat, bento de cartes, faux indicateurs de dashboard, trois cartes identiques ou pilules decoratives en serie.
+12. Une case du plan ne peut etre cochee que si son critere d'acceptation a ete verifie et si sa preuve figure dans la matrice de couverture.
+13. Apres chaque lot, inscrire dans le journal d'execution : date, branche, commit, controles effectues, resultat et prochain point.
 
 ## Qualite requise
 
 - TypeScript strict, aucune erreur de build.
 - Analyse couverte par les cas de test prevus dans le plan.
 - Accessibilite clavier et mobile verifiee.
+- Direction visuelle de controle documentaire respectee, sans motif interdit par le document visuel.
 - Comparaison visuelle documentee entre la production et la preview aux largeurs prevues dans le plan.
 - Tous les etats de l'interface controles, y compris validation, copie, erreur, reinitialisation et les trois resultats.
 - Aucun texte utilisateur dans la telemetrie.
