@@ -350,7 +350,9 @@ export default function RequestAnalyzer() {
   };
 
   const handleChange = (value: string) => {
-    setRequestText(value);
+    // Le navigateur applique déjà `maxLength`, mais on borne aussi l’état
+    // React pour couvrir l’autofill et les événements de saisie programmatiques.
+    setRequestText(value.slice(0, MAX_REQUEST_LENGTH));
     setAnalysis(null);
     setValidationMessage("");
     setCopyState("idle");
