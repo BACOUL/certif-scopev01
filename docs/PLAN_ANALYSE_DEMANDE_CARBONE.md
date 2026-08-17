@@ -140,12 +140,18 @@ src/components/fr/Hero.tsx
 src/components/fr/Header.tsx
 src/components/fr/Footer.tsx
 src/app/layout.tsx
+src/app/fr/privacy/page.tsx
+src/app/fr/cookies/page.tsx
+src/app/fr/data-processing/page.tsx
 public/sitemap.xml
 package.json
 package-lock.json
 ```
 
-Modifier une page de confidentialite uniquement si l'outil de mesure finalement active l'exige. Aucun autre fichier n'est prevu.
+Les trois pages d'information sur les donnees sont modifiees uniquement pour
+remplacer leurs affirmations devenues inexactes apres l'activation de Vercel Web
+Analytics et pour rappeler que le texte analyse reste dans le navigateur. Aucun
+autre fichier n'est prevu.
 
 ### Choix technique
 
@@ -715,6 +721,7 @@ Backlog possible, uniquement apres observation :
 | 2026-08-16 | V1 texte uniquement, cote navigateur | Lancement rapide, confidentialite et absence de cout d'API | Jeason |
 | 2026-08-16 | Trois statuts avec priorite au risque | Eviter de vendre une attestation inadaptee | Jeason |
 | 2026-08-17 | Direction visuelle "controle documentaire" et exclusion des codes generiques de sites IA | Donner a l'outil une identite Certif-Scope precise, credible et reconnaissable | Jeason |
+| 2026-08-17 | Mettre a jour les pages confidentialite, cookies et traitement des donnees lors de l'activation de Vercel Web Analytics | Les textes existants affirmaient qu'aucune mesure d'audience n'etait utilisee ; la documentation doit rester exacte et preciser qu'aucun texte saisi n'est transmis | Jeason |
 
 ---
 
