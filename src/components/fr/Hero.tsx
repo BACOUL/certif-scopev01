@@ -2,7 +2,6 @@
 
 import { track } from "@vercel/analytics";
 import Image from "next/image";
-import Link from "next/link";
 
 const proofItems = [
   "Prix fixe 89 €",
@@ -77,14 +76,14 @@ export default function Hero() {
             </p>
 
             <div className="hero-reveal mt-8 flex flex-col items-center justify-center gap-3 [animation-delay:320ms] sm:flex-row lg:justify-start">
-              <Link
+              <a
                 href="/fr/analyser-demande-carbone/"
                 onClick={trackAnalyzerStart}
                 aria-label="Analyser gratuitement la demande carbone reçue"
                 className="inline-flex min-h-[56px] w-full items-center justify-center rounded-lg bg-[#1FB6C1] px-8 py-4 text-base font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0B3A63] hover:shadow-[0_18px_36px_rgba(11,58,99,0.18)] focus:outline-none focus:ring-2 focus:ring-[#0B3A63] focus:ring-offset-2 sm:w-auto md:px-10"
               >
                 Analyser ma demande gratuitement
-              </Link>
+              </a>
 
               <a
                 href="/api/sample"

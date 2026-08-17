@@ -200,7 +200,7 @@ export default function HeaderFR() {
               Accueil
             </Link>
 
-            <Link
+            <a
               href={routes.analyzer}
               onClick={closeAll}
               aria-current={isActive(routes.analyzer) ? "page" : undefined}
@@ -209,7 +209,7 @@ export default function HeaderFR() {
               }`}
             >
               Analyser une demande
-            </Link>
+            </a>
 
             <Link
               href={routes.pillarBilanCarbonePME}
@@ -357,7 +357,7 @@ export default function HeaderFR() {
               Accueil
             </Link>
 
-            <Link
+            <a
               href={routes.analyzer}
               onClick={closeAll}
               aria-current={isActive(routes.analyzer) ? "page" : undefined}
@@ -366,7 +366,7 @@ export default function HeaderFR() {
               }`}
             >
               Analyser une demande
-            </Link>
+            </a>
 
             <Link
               href={routes.pillarBilanCarbonePME}
