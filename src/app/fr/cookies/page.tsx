@@ -128,7 +128,9 @@ export default function CookiePolicyPage() {
           <p className="text-gray-700 leading-relaxed">
             Certif-Scope n’utilise pas de cookies d’analyse, de mesure
             d’audience ou de suivi permettant d’identifier les utilisateurs ou
-            d’analyser leur comportement entre différents sites.
+            d’analyser leur comportement entre différents sites. La mesure
+            d’audience agrégée fournie par Vercel Web Analytics fonctionne sans
+            cookie et ne reçoit jamais le texte collé dans l’analyseur de demande.
           </p>
         </section>
 
@@ -138,12 +140,13 @@ export default function CookiePolicyPage() {
             4. Services tiers
           </h2>
           <p className="text-gray-700 leading-relaxed">
-            Certif-Scope n’intègre aucun service tiers publicitaire ou de suivi.
-            Les services tiers utilisés le sont uniquement lorsqu’ils sont
-            nécessaires au fonctionnement du service : hébergement et
-            déploiement, paiement via Stripe, emails transactionnels via Resend,
-            état technique des clés d’accès et crédits de packs via Cloudflare
-            KV, et conversion technique du PDF via PDFShift.
+            Certif-Scope n’intègre aucun service tiers publicitaire ou de suivi
+            inter-sites. Les services tiers utilisés le sont uniquement lorsqu’ils
+            sont nécessaires au fonctionnement du service : hébergement,
+            déploiement et mesure d’audience agrégée sans cookie via Vercel,
+            paiement via Stripe, emails transactionnels via Resend, état technique
+            des clés d’accès et crédits de packs via Cloudflare KV, et conversion
+            technique du PDF via PDFShift.
           </p>
           <p className="text-gray-700 leading-relaxed mt-4">
             Les paiements sont traités par Stripe sur sa propre infrastructure ;

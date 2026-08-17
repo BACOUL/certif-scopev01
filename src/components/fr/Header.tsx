@@ -19,6 +19,7 @@ export default function HeaderFR() {
 
   const routes = {
     home: "/fr/",
+    analyzer: "/fr/analyser-demande-carbone/",
     pillarBilanCarbonePME: "/fr/bilan-carbone-pme/",
     product: "/fr/product/",
     methodology: "/fr/product/methodology/",
@@ -131,7 +132,7 @@ export default function HeaderFR() {
     <header
       id="top"
       role="banner"
-      className="fixed left-0 top-0 z-[1000] w-full border-b border-[#0B3A63]/8 bg-white/92 backdrop-blur-md"
+      className="fixed left-0 top-0 z-[1000] w-full border-b border-[#0B3A63]/10 bg-white/95 backdrop-blur-md"
     >
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-5 py-3 md:px-6 md:py-4">
         <Link
@@ -186,7 +187,7 @@ export default function HeaderFR() {
             ref={navDesktopRef}
             id="main-navigation-desktop"
             aria-label="Navigation principale"
-            className="flex items-center gap-7"
+            className="flex items-center gap-5 xl:gap-7"
           >
             <Link
               href={routes.home}
@@ -199,13 +200,24 @@ export default function HeaderFR() {
               Accueil
             </Link>
 
+            <a
+              href={routes.analyzer}
+              onClick={closeAll}
+              aria-current={isActive(routes.analyzer) ? "page" : undefined}
+              className={`${navLinkBase} ${
+                isActive(routes.analyzer) ? navLinkActive : ""
+              }`}
+            >
+              Analyser une demande
+            </a>
+
             <Link
               href={routes.pillarBilanCarbonePME}
               onClick={closeAll}
               aria-current={
                 isActive(routes.pillarBilanCarbonePME) ? "page" : undefined
               }
-              className={`${navLinkBase} ${
+              className={`${navLinkBase} hidden xl:inline ${
                 isActive(routes.pillarBilanCarbonePME) ? navLinkActive : ""
               }`}
             >
@@ -344,6 +356,17 @@ export default function HeaderFR() {
             >
               Accueil
             </Link>
+
+            <a
+              href={routes.analyzer}
+              onClick={closeAll}
+              aria-current={isActive(routes.analyzer) ? "page" : undefined}
+              className={`${mobileLinkBase} ${
+                isActive(routes.analyzer) ? mobileLinkActive : mobileLinkInactive
+              }`}
+            >
+              Analyser une demande
+            </a>
 
             <Link
               href={routes.pillarBilanCarbonePME}

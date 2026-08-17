@@ -7,7 +7,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Politique de confidentialité — Certif-Scope",
   description:
-    "Politique de confidentialité et ePrivacy expliquant comment Certif-Scope traite les données selon une approche privacy-by-design, sans tracking et avec minimisation stricte.",
+    "Politique de confidentialité et ePrivacy expliquant comment Certif-Scope traite les données selon une approche privacy-by-design et de minimisation stricte.",
   alternates: {
     canonical: "https://www.certif-scope.com/fr/privacy/",
   },
@@ -114,7 +114,9 @@ export default function PrivacyPageFR() {
           <ul className="list-disc ml-6 text-gray-700 space-y-2">
             <li>pas de comptes utilisateurs ni de profils persistants</li>
             <li>pas de publicité, de profilage ni de tracking comportemental</li>
-            <li>pas d’analytics tiers ni de mesure d’audience</li>
+            <li>
+              mesure d’audience agrégée et sans cookie via Vercel Web Analytics
+            </li>
             <li>pas de cookies nécessitant le consentement</li>
             <li>pas de stockage des données financières détaillées saisies</li>
           </ul>
@@ -134,6 +136,12 @@ export default function PrivacyPageFR() {
             <li>dépenses annuelles (€) saisies pour le calcul CO₂e</li>
             <li>contenu des messages envoyés via les formulaires</li>
           </ul>
+          <p className="text-gray-700 leading-relaxed mt-4">
+            Le texte collé dans l’outil d’analyse d’une demande carbone reste
+            uniquement dans la mémoire du navigateur. Il n’est ni transmis à
+            Certif-Scope ou à Vercel Web Analytics, ni conservé après la fermeture
+            ou le rechargement de la page.
+          </p>
         </section>
 
         <section>
@@ -155,6 +163,12 @@ export default function PrivacyPageFR() {
             PDF. Aucun détail de répartition des dépenses n’est conservé ni
             journalisé par Certif-Scope.
           </p>
+          <p className="text-gray-700 leading-relaxed mt-4">
+            L’analyse d’une demande carbone est également réalisée localement dans
+            le navigateur par des règles déterministes. Aucun texte saisi n’est
+            envoyé vers une route d’analyse, un modèle externe ou un outil de
+            mesure d’audience.
+          </p>
         </section>
 
         <section>
@@ -162,16 +176,17 @@ export default function PrivacyPageFR() {
             4. Cookies, traceurs et ePrivacy
           </h2>
           <p className="text-gray-700 leading-relaxed mb-4">
-            Certif-Scope n’utilise ni cookies publicitaires, ni cookies de
-            tracking, ni outils d’analytics tiers. Aucun suivi marketing, aucune
-            analyse comportementale et aucun cookie publicitaire ne sont utilisés.
-            Le site ne repose pas sur des cookies nécessitant un consentement au
-            titre de la directive ePrivacy.
+            Certif-Scope n’utilise ni cookies publicitaires ni cookies de tracking.
+            Vercel Web Analytics mesure les pages consultées et, lorsque le plan le
+            permet, quelques événements techniques agrégés. Selon la documentation
+            de Vercel, cette mesure n’utilise pas de cookie et ne permet pas de
+            suivre une personne entre différents sites ou différents jours. Aucun
+            texte saisi dans l’analyseur n’est inclus dans ces événements.
           </p>
           <ul className="list-disc ml-6 text-gray-700 space-y-2">
-            <li>pas de cookies marketing ou analytics</li>
+            <li>pas de cookies marketing ou de mesure d’audience</li>
             <li>pas de tracking inter-sites ou comportemental</li>
-            <li>pas de bandeau de consentement requis</li>
+            <li>statistiques de fréquentation agrégées uniquement</li>
           </ul>
           <p className="text-gray-700 leading-relaxed mt-4">
             D’éventuels cookies strictement nécessaires, s’ils existent, sont
@@ -208,7 +223,10 @@ export default function PrivacyPageFR() {
             du service :
           </p>
           <ul className="list-disc ml-6 text-gray-700 space-y-2">
-            <li>un prestataire d’hébergement et de déploiement</li>
+            <li>
+              Vercel pour l’hébergement, le déploiement et la mesure d’audience
+              agrégée sans cookie
+            </li>
             <li>Stripe pour le traitement des paiements</li>
             <li>Resend pour la délivrance d’emails transactionnels ou de support</li>
             <li>

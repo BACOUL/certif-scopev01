@@ -1,6 +1,6 @@
 # Plan directeur - Analyse d'une demande carbone
 
-- Statut : **approuve pour implementation, non commence**
+- Statut : **implementation en cours - code local valide, preview a verifier**
 - Date de cadrage : **16 aout 2026**
 - Depot : **BACOUL/certif-scopev01**
 - Produit concerne : **Certif-Scope France**
@@ -93,14 +93,25 @@ Si une modification de l'un de ces elements devient indispensable, interrompre l
 
 ### Procedure obligatoire
 
-- [ ] Ouvrir le projet Vercel lie a `certif-scope.com`.
-- [ ] Relever la branche de production.
-- [ ] Relever le SHA exact du dernier deploiement de production.
-- [ ] Comparer ce SHA avec les branches GitHub.
-- [ ] Noter le resultat dans le journal d'execution.
-- [ ] Creer `feat/fr-request-analyzer` depuis ce SHA exact.
-- [ ] Ne pas partir de `main` par defaut.
+- [x] Ouvrir le projet Vercel lie a `certif-scope.com`.
+- [x] Relever la branche de production.
+- [x] Relever le SHA exact du dernier deploiement de production.
+- [x] Comparer ce SHA avec les branches GitHub.
+- [x] Noter le resultat dans le journal d'execution.
+- [x] Creer `feat/fr-request-analyzer` depuis ce SHA exact.
+- [x] Ne pas partir de `main` par defaut.
 - [ ] Ne pas changer la branche de production Vercel pendant cette fonctionnalite.
+
+### Verification realisee le 17 aout 2026
+
+- projet Vercel : `certif-scopev01` (`prj_66F0ETsFfNuBQ81rpPZZVl66OScL`) ;
+- domaines de production : `certif-scope.com` et `www.certif-scope.com` ;
+- deploiement de production : `dpl_AnZ7jKTeA9uT6HeQXAAKjS89fg6b`, etat `READY` ;
+- branche Git source : `certif-scope-international` ;
+- SHA applicatif deploye : `037bf479c5880e231c99af29353c3389a37a97f0` ;
+- date du deploiement source : `2026-07-11 19:00:38 UTC` ;
+- la fusion documentaire `d098aa8d71d41835e61eba05bc56d7281711aa51` a genere une preview `READY`, sans cible `production` ;
+- la branche `feat/fr-request-analyzer` a ete creee depuis le SHA applicatif deploye, avant toute modification applicative.
 
 ### Critere d'acceptation
 
@@ -129,12 +140,18 @@ src/components/fr/Hero.tsx
 src/components/fr/Header.tsx
 src/components/fr/Footer.tsx
 src/app/layout.tsx
+src/app/fr/privacy/page.tsx
+src/app/fr/cookies/page.tsx
+src/app/fr/data-processing/page.tsx
 public/sitemap.xml
 package.json
 package-lock.json
 ```
 
-Modifier une page de confidentialite uniquement si l'outil de mesure finalement active l'exige. Aucun autre fichier n'est prevu.
+Les trois pages d'information sur les donnees sont modifiees uniquement pour
+remplacer leurs affirmations devenues inexactes apres l'activation de Vercel Web
+Analytics et pour rappeler que le texte analyse reste dans le navigateur. Aucun
+autre fichier n'est prevu.
 
 ### Choix technique
 
@@ -373,12 +390,18 @@ Afficher les raisons detectees. Ne pas afficher de CTA d'achat principal.
 
 L'analyseur est une extension de Certif-Scope, pas une refonte. Il doit sembler appartenir au site actuel des sa premiere version.
 
+La specification visuelle detaillee et les motifs interdits sont definis dans :
+
+`docs/DIRECTION_VISUELLE_ANALYSE_DEMANDE.md`
+
+Ce document est obligatoire pour le Hero, la page d'analyse et chaque etat de resultat.
+
 Avant d'ecrire le premier composant applicatif :
 
-- [ ] confirmer le SHA de production selon la section 5 ;
-- [ ] inventorier les styles effectivement utilises dans `src/styles/index.css` et `tailwind.config.js` ;
-- [ ] relever les motifs visuels de `Header.tsx`, `Hero.tsx`, `Footer.tsx`, des cartes, formulaires et CTA francais existants ;
-- [ ] noter dans le journal d'execution les polices, couleurs, espacements, rayons, ombres, largeurs de conteneur et points de rupture a reutiliser ;
+- [x] confirmer le SHA de production selon la section 5 ;
+- [x] inventorier les styles effectivement utilises dans `src/styles/index.css` et `tailwind.config.js` ;
+- [x] relever les motifs visuels de `Header.tsx`, `Hero.tsx`, `Footer.tsx`, des cartes, formulaires et CTA francais existants ;
+- [x] noter dans le journal d'execution les polices, couleurs, espacements, rayons, ombres, largeurs de conteneur et points de rupture a reutiliser ;
 - [ ] joindre a la PR des captures de reference de la production avant modification.
 
 Regles de conception imperatives :
@@ -535,24 +558,24 @@ Fichiers potentiellement concernes :
 
 Ajouter au moins 40 fixtures :
 
-- [ ] 15 demandes compatibles ;
-- [ ] 15 demandes a clarifier ;
-- [ ] 10 demandes incompatibles.
+- [x] 15 demandes compatibles ;
+- [x] 15 demandes a clarifier ;
+- [x] 10 demandes incompatibles.
 
 Inclure obligatoirement :
 
-- [ ] texte vide ;
-- [ ] texte inferieur a 30 caracteres ;
-- [ ] texte superieur a 12 000 caracteres ;
-- [ ] accents et majuscules ;
-- [ ] apostrophes typographiques ;
-- [ ] texte copie depuis un email ;
-- [ ] exigences contradictoires ;
-- [ ] plusieurs standards dans le meme texte ;
-- [ ] HTML colle ;
-- [ ] texte sans rapport avec le carbone ;
-- [ ] ambiguite simple autour de "bilan carbone" ;
-- [ ] signal positif accompagne d'un signal bloquant.
+- [x] texte vide ;
+- [x] texte inferieur a 30 caracteres ;
+- [x] texte superieur a 12 000 caracteres ;
+- [x] accents et majuscules ;
+- [x] apostrophes typographiques ;
+- [x] texte copie depuis un email ;
+- [x] exigences contradictoires ;
+- [x] plusieurs standards dans le meme texte ;
+- [x] HTML colle ;
+- [x] texte sans rapport avec le carbone ;
+- [x] ambiguite simple autour de "bilan carbone" ;
+- [x] signal positif accompagne d'un signal bloquant.
 
 ### Tests fonctionnels
 
@@ -697,6 +720,8 @@ Backlog possible, uniquement apres observation :
 | 2026-08-16 | Ajouter l'analyse comme porte d'entree | Repondre a la demande recue plutot que vendre un document abstrait | Jeason |
 | 2026-08-16 | V1 texte uniquement, cote navigateur | Lancement rapide, confidentialite et absence de cout d'API | Jeason |
 | 2026-08-16 | Trois statuts avec priorite au risque | Eviter de vendre une attestation inadaptee | Jeason |
+| 2026-08-17 | Direction visuelle "controle documentaire" et exclusion des codes generiques de sites IA | Donner a l'outil une identite Certif-Scope precise, credible et reconnaissable | Jeason |
+| 2026-08-17 | Mettre a jour les pages confidentialite, cookies et traitement des donnees lors de l'activation de Vercel Web Analytics | Les textes existants affirmaient qu'aucune mesure d'audience n'etait utilisee ; la documentation doit rester exacte et preciser qu'aucun texte saisi n'est transmis | Jeason |
 
 ---
 
@@ -706,4 +731,8 @@ Completer une ligne apres chaque lot.
 
 | Date | Branche / commit | Lot realise | Verifications | Resultat | Prochaine action |
 |---|---|---|---|---|---|
-| A completer | A completer | Confirmation du SHA de production | Comparaison Vercel / GitHub | A completer | Creer la branche fonctionnelle |
+| 2026-08-17 | `feat/fr-request-analyzer` depuis `037bf479c5880e231c99af29353c3389a37a97f0` | Confirmation du SHA de production et creation de la branche fonctionnelle | Projet, domaines, deploiement, branche et SHA verifies dans Vercel ; comparaison avec GitHub | Production confirmee sur `certif-scope-international` ; branche fonctionnelle creee depuis le SHA exact | Inventorier la charte et produire les captures de reference |
+| 2026-08-17 | `feat/fr-request-analyzer` | Inventaire de la charte et direction visuelle non generique | Accueil public inspecte en navigateur ; `index.css`, Tailwind, Hero, Header, Footer et composants de preuve lus au SHA de production | Tokens et concept de controle documentaire inscrits dans `docs/DIRECTION_VISUELLE_ANALYSE_DEMANDE.md` | Completer les captures de reference puis implementer le moteur de regles |
+| 2026-08-17 | `feat/fr-request-analyzer` / `12052fbc733b7723e3517df143e89bd88a3c64ea` | Moteur deterministe, page d'analyse, integration FR, SEO, mesure minimale et information confidentialite | 40 fixtures metier et 8 controles de bord passes ; `tsc --noEmit` sans erreur ; `next build` reussi ; invariants Stripe, PDF et routes protegees inchanges | Code applicatif valide localement, sans route d'analyse ni transmission du texte saisi | Publier la branche, ouvrir la PR brouillon et verifier la preview aux quatre formats |
+| 2026-08-17 | `feat/fr-request-analyzer` / `5ebb90f4b37d19cae0e0944aed4bb56234a8039e` | Correction de la lisibilite du Header FR sur mobile en mode sombre | Capture Android fournie ; 48 tests passes ; `tsc --noEmit` et `next build` reussis ; rendu sombre controle en 360, 390, 768 et 1280 px ; deploiement Vercel reussi et preview inspectee | Fond calcule `rgba(255, 255, 255, 0.95)` en local et dans la preview, logo lisible et aucun debordement horizontal ; Hero, Stripe, calcul carbone, PDF et pages allemandes inchanges | Controler manuellement le tunnel Stripe vers PDF avant fusion |
+| 2026-08-17 | `feat/fr-request-analyzer` / `cd0db0144118d1fa0bcb4b4058181760ae734215` | Suppression de l'ecart sous le Header FR et fiabilisation de l'ouverture de l'analyseur | Incident reproduit sur le deploiement signale ; 48 tests passes ; `tsc --noEmit` et `next build` reussis ; recette sombre en 360, 390, 768 et 1280 px ; deploiement Vercel reussi ; clic depuis l'accueil et analyse compatible executes dans la preview | Ecart entre Header et contenu inferieur a 1 px aux quatre formats, aucun debordement, analyseur charge sans exception et resultat/CTA coherents ; aucune erreur applicative observee | Controler manuellement le tunnel Stripe vers PDF avant fusion |

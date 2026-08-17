@@ -95,6 +95,14 @@ export default function FooterFR() {
 
             <ul className="mt-5 space-y-3">
               <li>
+                <Link
+                  className={navLinkClass}
+                  href="/fr/analyser-demande-carbone/"
+                >
+                  Analyser une demande
+                </Link>
+              </li>
+              <li>
                 <Link className={navLinkClass} href="/fr/product/">
                   Présentation
                 </Link>
