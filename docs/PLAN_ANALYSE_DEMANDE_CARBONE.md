@@ -384,12 +384,18 @@ Afficher les raisons detectees. Ne pas afficher de CTA d'achat principal.
 
 L'analyseur est une extension de Certif-Scope, pas une refonte. Il doit sembler appartenir au site actuel des sa premiere version.
 
+La specification visuelle detaillee et les motifs interdits sont definis dans :
+
+`docs/DIRECTION_VISUELLE_ANALYSE_DEMANDE.md`
+
+Ce document est obligatoire pour le Hero, la page d'analyse et chaque etat de resultat.
+
 Avant d'ecrire le premier composant applicatif :
 
-- [ ] confirmer le SHA de production selon la section 5 ;
-- [ ] inventorier les styles effectivement utilises dans `src/styles/index.css` et `tailwind.config.js` ;
-- [ ] relever les motifs visuels de `Header.tsx`, `Hero.tsx`, `Footer.tsx`, des cartes, formulaires et CTA francais existants ;
-- [ ] noter dans le journal d'execution les polices, couleurs, espacements, rayons, ombres, largeurs de conteneur et points de rupture a reutiliser ;
+- [x] confirmer le SHA de production selon la section 5 ;
+- [x] inventorier les styles effectivement utilises dans `src/styles/index.css` et `tailwind.config.js` ;
+- [x] relever les motifs visuels de `Header.tsx`, `Hero.tsx`, `Footer.tsx`, des cartes, formulaires et CTA francais existants ;
+- [x] noter dans le journal d'execution les polices, couleurs, espacements, rayons, ombres, largeurs de conteneur et points de rupture a reutiliser ;
 - [ ] joindre a la PR des captures de reference de la production avant modification.
 
 Regles de conception imperatives :
@@ -708,6 +714,7 @@ Backlog possible, uniquement apres observation :
 | 2026-08-16 | Ajouter l'analyse comme porte d'entree | Repondre a la demande recue plutot que vendre un document abstrait | Jeason |
 | 2026-08-16 | V1 texte uniquement, cote navigateur | Lancement rapide, confidentialite et absence de cout d'API | Jeason |
 | 2026-08-16 | Trois statuts avec priorite au risque | Eviter de vendre une attestation inadaptee | Jeason |
+| 2026-08-17 | Direction visuelle "controle documentaire" et exclusion des codes generiques de sites IA | Donner a l'outil une identite Certif-Scope precise, credible et reconnaissable | Jeason |
 
 ---
 
@@ -718,3 +725,4 @@ Completer une ligne apres chaque lot.
 | Date | Branche / commit | Lot realise | Verifications | Resultat | Prochaine action |
 |---|---|---|---|---|---|
 | 2026-08-17 | `feat/fr-request-analyzer` depuis `037bf479c5880e231c99af29353c3389a37a97f0` | Confirmation du SHA de production et creation de la branche fonctionnelle | Projet, domaines, deploiement, branche et SHA verifies dans Vercel ; comparaison avec GitHub | Production confirmee sur `certif-scope-international` ; branche fonctionnelle creee depuis le SHA exact | Inventorier la charte et produire les captures de reference |
+| 2026-08-17 | `feat/fr-request-analyzer` | Inventaire de la charte et direction visuelle non generique | Accueil public inspecte en navigateur ; `index.css`, Tailwind, Hero, Header, Footer et composants de preuve lus au SHA de production | Tokens et concept de controle documentaire inscrits dans `docs/DIRECTION_VISUELLE_ANALYSE_DEMANDE.md` | Completer les captures de reference puis implementer le moteur de regles |
