@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import { cookies } from "next/headers";
 import SuccessClient from "./SuccessClient";
 
 export const runtime = "nodejs";
@@ -14,6 +15,26 @@ export const metadata = {
   },
 };
 
+async function reportCampaignPurchase(sessionId: string | null) {
+  if (!sessionId) return;
+  try {
+    const cookieStore = await cookies();
+    const campaignRef = cookieStore.get("certif_scope_ref")?.value;
+    if (!campaignRef) return;
+
+    await fetch("https://super-ia-gateway-production.up.railway.app/api/purchase", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ session_id: sessionId, cs_ref: campaignRef }),
+      cache: "no-store",
+      signal: AbortSignal.timeout(5000),
+    });
+  } catch (error) {
+    // L'attribution commerciale ne doit jamais empêcher l'accès au PDF payé.
+    console.error("CAMPAIGN_PURCHASE_REPORT_FAILED", error);
+  }
+}
+
 export default async function SuccessPage({
   searchParams,
 }: {
@@ -24,6 +45,8 @@ export default async function SuccessPage({
     typeof resolvedSearchParams?.session_id === "string"
       ? resolvedSearchParams.session_id
       : null;
+
+  await reportCampaignPurchase(sessionId);
 
   return (
     <main className="min-h-screen bg-[#F8FAFC] px-6 py-12 md:py-16">
