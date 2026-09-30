@@ -14,7 +14,7 @@ const steps = [
     id: "02",
     eyebrow: "Calcul",
     title: "Le moteur applique une méthode standardisée",
-    text: "Le calcul utilise une méthode indicative spend-based fondée sur des référentiels reconnus pour produire un résultat CO₂e cohérent et lisible.",
+    text: "Le calcul utilise une méthode indicative spend-based fondée sur les catégories de dépenses et les coefficients internes documentés dans notre méthodologie.",
     meta: "Méthode indicative • Standardisation • Résultat agrégé",
   },
   {

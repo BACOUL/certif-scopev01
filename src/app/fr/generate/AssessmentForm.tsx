@@ -405,26 +405,6 @@ export default function AssessmentForm() {
         <h2 id="assessment-step-title" tabIndex={-1} className="text-xl font-bold text-[#0B3A63]">Étape {step} sur 3 — {["Entreprise et contexte", "Dépenses annuelles", "Vérification avant paiement"][step - 1]}</h2>
         {Object.values(errors).some(Boolean) && <div id="form-error-summary" tabIndex={-1} role="alert" className="rounded-lg border border-red-200 bg-red-50 p-4 text-red-800">{Object.values(errors).filter(Boolean).map((error, i) => <p key={i}>{error}</p>)}</div>}
         <div hidden={step !== 1} className="space-y-6">
-        {/* INTRO */}
-        <div>
-          <p className="text-sm text-gray-500 mb-2">
-            Étape 1 sur 3 — Entreprise & contexte
-          </p>
-
-          <h3 className="text-xl font-bold text-[#0B3A63] mb-3">
-            Générez votre attestation carbone
-          </h3>
-
-          <p className="text-gray-600 text-lg leading-relaxed">
-            Estimation indicative basée sur les dépenses. Pas d'audit. Aucune
-            donnée physique requise.
-          </p>
-
-          <p className="text-sm text-gray-500 mt-3">
-            <strong>Prix :</strong> 89 € · Paiement unique · Sans abonnement
-          </p>
-        </div>
-
         {/* ÉTAPE 1 */}
         <Accordion
           title="Informations entreprise"
