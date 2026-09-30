@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 
 const featureItems = [
@@ -26,18 +25,11 @@ const featureItems = [
   },
 ];
 
-const proofPills = [
-  "Résultat agrégé",
-  "Méthode synthétique",
-  "ID vérifiable",
-  "Format standardisé",
-];
-
 export default function FeaturesFR() {
   return (
     <section
       id="features"
-      className="relative overflow-hidden bg-[#F8FAFC] py-20 md:py-28"
+      className="relative overflow-hidden bg-[#F8FAFC] py-12 md:py-16"
     >
       <div className="absolute inset-0 -z-30 bg-[linear-gradient(180deg,#F8FAFC_0%,#ffffff_100%)]" />
       <div className="absolute left-[-8%] top-20 -z-10 h-60 w-60 rounded-full bg-[#1FB6C1]/6 blur-3xl" />
@@ -50,7 +42,7 @@ export default function FeaturesFR() {
           </p>
 
           <h2 className="features-reveal mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl [animation-delay:100ms]">
-            Voici exactement le document que vous transmettez
+            Ce que contient votre attestation
           </h2>
 
           <p className="features-reveal mx-auto mt-5 max-w-2xl text-base leading-relaxed text-[#475569] md:text-lg [animation-delay:200ms]">
@@ -59,45 +51,7 @@ export default function FeaturesFR() {
           </p>
         </div>
 
-        <div className="mt-16 grid items-center gap-12 lg:grid-cols-[1.02fr_0.98fr] lg:gap-14">
-          <div
-            className="features-visual relative"
-            style={{ animationDelay: "280ms" }}
-          >
-            <div className="absolute left-1/2 top-[8%] -z-20 h-[360px] w-[360px] -translate-x-1/2 rounded-full bg-[#1FB6C1]/10 blur-3xl md:h-[440px] md:w-[440px]" />
-            <div className="absolute left-1/2 top-[22%] -z-20 h-[280px] w-[560px] -translate-x-1/2 rounded-full bg-[#0B3A63]/7 blur-3xl md:h-[340px] md:w-[680px]" />
-
-            <div className="relative mx-auto max-w-[720px]">
-              <p className="text-center text-xs uppercase tracking-[0.18em] text-[#64748B] mb-3">
-                Aperçu du document
-              </p>
-
-              <div className="relative overflow-hidden rounded-[30px] border border-[#0B3A63]/10 bg-white shadow-[0_28px_70px_rgba(11,58,99,0.14)]">
-                <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(31,182,193,0.55),transparent)]" />
-                <Image
-                  src="/attestation-example-fr.webp"
-                  alt="Exemple d’attestation carbone Certif-Scope"
-                  width={778}
-                  height={1100}
-                  loading="lazy"
-                  sizes="(max-width: 1024px) 100vw, 720px"
-                  className="h-auto w-full"
-                />
-              </div>
-
-              <div className="mt-6 flex flex-wrap justify-center gap-3">
-                {proofPills.map((pill) => (
-                  <span
-                    key={pill}
-                    className="rounded-full border border-[#0B3A63]/12 bg-white px-4 py-2 text-xs font-medium text-[#0B3A63] shadow-sm md:text-sm"
-                  >
-                    {pill}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-
+        <div className="mx-auto mt-10 max-w-4xl">
           <div className="space-y-5">
             {featureItems.map((item, index) => (
               <div
@@ -171,25 +125,9 @@ export default function FeaturesFR() {
           }
         }
 
-        @keyframes revealScale {
-          from {
-            opacity: 0;
-            transform: translateY(18px) scale(0.988);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-          }
-        }
-
         .features-reveal {
           opacity: 0;
           animation: revealUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-        }
-
-        .features-visual {
-          opacity: 0;
-          animation: revealScale 0.95s cubic-bezier(0.22, 1, 0.36, 1) forwards;
         }
 
         .features-card {
@@ -205,7 +143,6 @@ export default function FeaturesFR() {
 
         @media (prefers-reduced-motion: reduce) {
           .features-reveal,
-          .features-visual,
           .features-card {
             animation: none !important;
             opacity: 1 !important;
