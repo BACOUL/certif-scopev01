@@ -10,18 +10,18 @@ const featureItems = [
   },
   {
     id: "02",
-    title: "Méthode indiquée",
-    text: "Une approche spend-based explicitée, avec un cadrage synthétique du périmètre, des hypothèses et du caractère indicatif.",
+    title: "Méthode et périmètre",
+    text: "Les catégories, coefficients internes et limites de l’estimation sont décrits dans la méthodologie.",
   },
   {
     id: "03",
-    title: "Méthode transparente",
-    text: "Les catégories, coefficients internes et limites du calcul sont décrits dans la méthodologie.",
+    title: "Entreprise et année de référence",
+    text: "Le nom de votre entreprise, l’année des dépenses et la date d’émission figurent dans le document.",
   },
   {
     id: "04",
     title: "Vérification documentaire",
-    text: "Un identifiant unique et un bloc de vérification permettant un contrôle simple de l’authenticité du PDF.",
+    text: "Un identifiant et des informations documentaires lisibles ; la signature nécessite un contrôle technique distinct.",
   },
 ];
 

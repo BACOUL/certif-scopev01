@@ -46,7 +46,7 @@ export default function RecipientView() {
               href="/api/sample"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-7 inline-flex min-h-[54px] w-full items-center justify-center rounded-lg bg-[#1FB6C1] px-7 py-3 text-base font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0B3A63] focus:outline-none focus:ring-2 focus:ring-[#0B3A63] focus:ring-offset-2 sm:w-auto"
+              className="mt-7 inline-flex min-h-[54px] w-full items-center justify-center rounded-lg bg-[#0B3A63] px-7 py-3 text-base font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0B3A63] focus:outline-none focus:ring-2 focus:ring-[#0B3A63] focus:ring-offset-2 sm:w-auto"
             >
               Voir un exemple gratuit
             </a>

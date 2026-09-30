@@ -129,9 +129,7 @@ export default function SuccessClient({
             </p>
 
             <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-[#0B3A63]/70">
-              Après fermeture de cette page, le document ne pourra pas être
-              récupéré automatiquement. En cas de perte, une réémission peut
-              être nécessaire selon les conditions applicables.
+              Pour un paiement unitaire, vérifiez aussi l’email de livraison prévu par le service, ainsi que les courriers indésirables. En cas d’incident, contactez le support avec votre référence de commande avant tout nouvel achat.
             </p>
 
             <button
@@ -155,8 +153,7 @@ export default function SuccessClient({
             </p>
 
             <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-[#0B3A63]/75">
-              Vos clés d’accès ont été générées et envoyées par email
-              immédiatement après paiement. Conservez-les soigneusement.
+              Les clés d’accès sont envoyées par email après confirmation du paiement. Chaque clé permet de générer un document et doit être utilisée dans les 365 jours suivant sa création. Vérifiez les courriers indésirables puis contactez le support si l’email n’arrive pas, sans racheter le pack.
             </p>
 
             <a
@@ -238,6 +235,10 @@ export default function SuccessClient({
           )}
         </div>
       </div>
+
+      {(type === "error" || type === "missing-session" || type === "pack") && (
+        <p className="text-center text-sm text-[#0B3A63]"><a href="mailto:support@certif-scope.com" className="font-semibold underline">Contacter le support avec la référence de commande</a> · Ne repassez pas commande pour résoudre un incident.</p>
+      )}
 
       {type === "error" && (
         <p className="text-center text-sm leading-relaxed text-[#0B3A63]/70">

@@ -159,7 +159,7 @@ export default function VerifyDemoPageFR() {
                   href="/api/sample"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex min-h-[48px] items-center justify-center rounded-lg bg-[#1FB6C1] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#1FB6C1]/90 focus:outline-none focus:ring-2 focus:ring-[#0B3A63] focus:ring-offset-2"
+                  className="inline-flex min-h-[48px] items-center justify-center rounded-lg bg-[#0B3A63] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#0B3A63]/90 focus:outline-none focus:ring-2 focus:ring-[#0B3A63] focus:ring-offset-2"
                 >
                   Télécharger un exemple gratuit
                 </Link>

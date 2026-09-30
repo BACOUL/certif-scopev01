@@ -36,3 +36,18 @@ Base confirmée dans Vercel : production `037bf479c5880e231c99af29353c3389a37a97
 - Contrôle Search Console, indexation, liens, métadonnées et performances sur mobile réel.
 
 Aucune modification des routes API sensibles, coefficients, prix Stripe, signature ou génération des PDF dans ce lot. Les pages allemandes n'ont pas été éditées.
+
+## Lot complémentaire — 30 septembre 2026
+
+- Un seul aperçu visible sur l’accueil ; les caractéristiques distinguent résultat, méthode, entreprise/année et lecture documentaire.
+- Boutons principaux bleu foncé/texte blanc ; fonctionnement en trois étapes sans second schéma répétitif.
+- Bloc partagé du prix à 89 € sur accueil, tarifs et produit ; assistance et conditions de réémission décrites sans gratuité promise.
+- FAQ centrée sur la commande et alignée sur les coefficients internes et l’acceptation à confirmer.
+- Tarifs et produit raccourcis ; réutilisation du PDF, clés à usage unique et délai de 365 jours expliqués selon le webhook existant.
+- Après-achat : email de livraison unitaire prévu par le webhook, archivage et recours au support ; aucun nouvel achat recommandé pour un incident.
+- Vérification : lecture du QR explicitement distinguée de la validation de signature. Exemple textuel identifié comme explicatif ; détails techniques renvoyés vers la documentation.
+- Méthode : absence de provenance externe documentée signalée ; aucune source ni validation inventée.
+- Calcul, coefficients, émission PDF, signature et routes API restent inchangés.
+- Revue React : pas de nouvel effet ni requête ; composants statiques sans hydratation ajoutée ; boutons FAQ typés et état mis à jour fonctionnellement.
+- Contrôles locaux : TypeScript PASS, build de production PASS, régression existante PASS, diff sans erreur d’espacement. Les boutons des composants communs FR et des pages guides sont également corrigés.
+- Restent à vérifier : rendu mobile/desktop, tunnel unitaire et pack jusqu’au PDF, fonctionnement réel des emails et compatibilité du contrôle technique. La provenance des facteurs doit encore être établie.

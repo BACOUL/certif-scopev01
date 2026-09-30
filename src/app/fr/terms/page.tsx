@@ -178,8 +178,7 @@ export default function TermsPageFR() {
             de l’archivage de son PDF.
           </p>
           <p className="text-gray-700 leading-relaxed mb-4">
-            Une réémission peut être accordée à la discrétion de Certif-Scope et
-            produira un nouvel identifiant ainsi qu’une nouvelle période de validité.
+            Pour une erreur de saisie, un incident de téléchargement ou un document perdu, contactez le support avec la référence de commande avant tout nouvel achat. Une réémission peut être accordée après examen et produira un nouvel identifiant. Elle n’est pas automatiquement incluse dans le prix initial ; les conditions et tout paiement éventuel sont précisés avant une nouvelle commande.
           </p>
         </section>
 

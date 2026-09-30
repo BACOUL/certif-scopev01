@@ -319,7 +319,7 @@ export default function HeaderFR() {
           <Link
             href={routes.generate}
             onClick={closeAll}
-            className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-[#1FB6C1] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(31,182,193,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#19AAB4]"
+            className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-[#0B3A63] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(31,182,193,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#082C4B]"
           >
             Générer
           </Link>
@@ -464,7 +464,7 @@ export default function HeaderFR() {
             <Link
               href={routes.generate}
               onClick={closeAll}
-              className="inline-flex min-h-[48px] w-full items-center justify-center rounded-xl bg-[#1FB6C1] px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(31,182,193,0.22)] transition-all duration-300 hover:bg-[#19AAB4]"
+              className="inline-flex min-h-[48px] w-full items-center justify-center rounded-xl bg-[#0B3A63] px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(31,182,193,0.22)] transition-all duration-300 hover:bg-[#082C4B]"
             >
               Générer une attestation
             </Link>

@@ -166,7 +166,7 @@ export default function HomeFR() {
         <section
           id="final-cta"
           data-section="final-cta"
-          className="relative overflow-hidden bg-[#F8FAFC] py-20 md:py-28"
+          className="relative overflow-hidden bg-[#F8FAFC] py-12 md:py-16"
           aria-label="Appel à l’action final"
         >
           <div className="absolute inset-0 -z-30 bg-[linear-gradient(180deg,#F8FAFC_0%,#ffffff_100%)]" />
@@ -197,7 +197,7 @@ export default function HomeFR() {
                   <div className="mt-6 flex flex-wrap gap-3">
                     <Link
                       href="/fr/generate"
-                      className="inline-flex items-center justify-center rounded-xl bg-[#1FB6C1] px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0B3A63]"
+                      className="inline-flex items-center justify-center rounded-xl bg-[#0B3A63] px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0B3A63]"
                     >
                       Générer mon attestation →
                     </Link>

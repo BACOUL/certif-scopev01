@@ -6,92 +6,67 @@ import { useId, useState } from "react";
 export default function FAQFR() {
   const uid = useId();
   const [open, setOpen] = useState<number | null>(0);
-  const toggle = (i: number) => setOpen(open === i ? null : i);
+  const toggle = (i: number) => setOpen(current => current === i ? null : i);
 
   const items = [
-    {
-      q: "Le bilan carbone est-il obligatoire pour une PME ?",
-      a: "Dans la majorité des cas, non. La plupart des PME ne sont pas soumises à une obligation réglementaire générale de bilan carbone. En pratique, cette information est surtout demandée par des clients, dans les appels d’offres, lors d’un référencement fournisseur, ou par des banques et assureurs dans le cadre d’une revue ESG ou d’une analyse de risque.",
-    },
-    {
-      q: "Pourquoi un client ou un acheteur demande-t-il un bilan carbone à une PME ?",
-      a: "Parce que les grandes entreprises intègrent de plus en plus des critères ESG dans leurs processus achats. Dans ce contexte, un bilan carbone PME ou un indicateur CO₂e sert souvent à comparer les fournisseurs, documenter un dossier ou répondre à une exigence de conformité fournisseur.",
-    },
-    {
-      q: "Puis-je obtenir un document carbone rapidement pour un appel d’offres ou une demande fournisseur ?",
-      a: "Oui. Certif-Scope permet de générer un document CO₂e standardisé en quelques minutes à partir des dépenses annuelles. L’objectif est de répondre rapidement à une demande externe sans devoir lancer un audit carbone complet.",
-    },
-    {
-      q: "Quelle est la différence entre Certif-Scope et un bilan carbone complet ?",
-      a: "Certif-Scope fournit une estimation CO₂e indicative basée sur les dépenses annuelles. Ce n’est pas un inventaire complet des émissions, ni un audit réglementaire, ni un reporting CSRD/ESRS. C’est une solution simple et pragmatique pour répondre à une demande de tiers quand un indicateur carbone est requis rapidement.",
-    },
-    {
-      q: "Ai-je besoin de factures d’énergie, de kilomètres ou de données d’activité ?",
-      a: "Non. Certif-Scope utilise une approche spend-based. Seules les dépenses annuelles par catégories sont nécessaires. Il n’est pas demandé de données physiques comme les kWh, les litres de carburant, les kilomètres parcourus ou des relevés techniques détaillés.",
-    },
-    {
-      q: "Comment faire un bilan carbone PME rapidement avec Certif-Scope ?",
-      a: "Le processus est simple : vous renseignez vos dépenses annuelles, le calcul CO₂e est effectué automatiquement selon une logique spend-based, puis vous obtenez un PDF standardisé avec un résultat carbone agrégé et des éléments de vérification documentaire.",
-    },
-    {
-      q: "Combien de temps faut-il pour générer le document ?",
-      a: "La génération se fait en quelques minutes selon les informations saisies. Il n’y a ni mission de conseil, ni collecte longue de données opérationnelles, ni délai d’audit.",
-    },
-    {
-      q: "Que contient exactement le document généré ?",
-      a: "Le document inclut un résultat CO₂e agrégé, les métadonnées essentielles, la version de la méthodologie utilisée, des informations de vérification documentaire et un format standardisé conçu pour être lu rapidement par un client, une équipe achats, une banque ou un assureur.",
-    },
-    {
-      q: "Cette estimation carbone peut-elle être utilisée dans un dossier bancaire ou d’assurance ?",
-      a: "Oui, lorsqu’un indicateur carbone simplifié est demandé dans le cadre d’une revue ESG, d’une analyse de risque ou d’un dossier de financement. Le document ne remplace pas une documentation réglementaire complète, mais il répond à de nombreux besoins de screening et de revue préliminaire.",
-    },
-    {
-      q: "Les clients ou équipes achats acceptent-ils ce type de document ?",
-      a: "Oui, lorsqu’ils recherchent un format standardisé, rapide à lire et comparable entre fournisseurs. Certif-Scope n’est pas présenté comme un audit certifié, mais comme un document indicatif structuré pour les cas où un indicateur CO₂e est demandé rapidement.",
-    },
-    {
-      q: "Quelle méthodologie est utilisée ?",
-      a: "Certif-Scope applique une méthode spend-based fondée sur la formule dépenses € × facteur d’émission. Cette approche s’appuie sur des référentiels reconnus et des bases de facteurs d’émission versionnées. Elle permet de produire une estimation cohérente à partir des dépenses déclarées, sans collecte de données physiques détaillées.",
-    },
-    {
-      q: "Comment fonctionne la vérification ?",
-      a: "Le document intègre des éléments de vérification documentaire : identifiant, QR code ou référence permettant de contrôler l’authenticité et l’intégrité de l’attestation. Cette vérification concerne le document et ne constitue pas un audit ni une validation externe du résultat carbone.",
-    },
-    {
-      q: "Les données financières sont-elles stockées ?",
-      a: "Non. Les calculs sont conçus selon une logique privacy by design. Les données détaillées nécessaires au calcul ne sont pas conservées comme base de données métier persistante. Le service vise à limiter au maximum la conservation d’informations sensibles.",
-    },
-    {
-      q: "Quelles sont les limites de cette attestation carbone PME ?",
-      a: "Il s’agit d’une estimation indicative basée sur les dépenses. Elle n’est pas auditée, ne couvre pas un inventaire complet des scopes 1, 2 et 3, n’est pas un rapport CSRD/ESRS, et ne remplace pas une mission carbone complète lorsqu’un cadre réglementaire ou contractuel détaillé l’exige.",
-    },
-  ];
+  {
+    "q": "Est-ce adapté à ma demande ?",
+    "a": "Certif-Scope fournit une estimation indicative fondée sur sept catégories de dépenses externes. Envoyez l’exemple à votre destinataire pour confirmer qu’il accepte cette méthode et ce périmètre. L’absence de norme imposée ne garantit pas son acceptation. Le document ne remplace pas un audit, un inventaire GES complet ou un reporting réglementaire."
+  },
+  {
+    "q": "Quelles données dois-je préparer ?",
+    "a": "Préparez le nom de l’entreprise, l’année de référence et vos dépenses externes annuelles hors taxes en euros : numérique, services professionnels, biens, logistique, déplacements, hébergement et événements, autres achats externes. Chaque dépense doit être comptée une seule fois. Renseignez 0 uniquement pour une catégorie réellement nulle ; une donnée inconnue doit être complétée."
+  },
+  {
+    "q": "Que reçois-je pour 89 € ?",
+    "a": "Un PDF personnalisé indiquant votre entreprise, l’année, la date d’émission, l’estimation CO₂e agrégée, la méthode et ses limites, ainsi que les éléments de vérification documentaire. Le prix est par document, sans abonnement. Le support peut être contacté pour une question sur la commande ou un incident de téléchargement ; un audit et une validation externe des émissions ne sont pas inclus."
+  },
+  {
+    "q": "Quelle méthode et quels coefficients sont utilisés ?",
+    "a": "Le calcul multiplie les dépenses de chaque catégorie par un coefficient interne, puis additionne les résultats. La page Méthodologie publie les valeurs, unités, version, exemple de calcul et limites. Ces coefficients ne sont pas présentés comme certifiés ou validés par un organisme externe. Le secteur déclaré ne modifie pas les coefficients."
+  },
+  {
+    "q": "Puis-je envoyer le même PDF à plusieurs destinataires ?",
+    "a": "Oui, pour la même entreprise, la même année de référence et les mêmes données, si chaque destinataire accepte son périmètre. Les packs servent à créer plusieurs documents distincts, pas à multiplier les exemplaires d’un même PDF."
+  },
+  {
+    "q": "Comment fonctionnent les packs ?",
+    "a": "Après confirmation du paiement, les clés sont envoyées à l’adresse email utilisée pour la commande. Chaque clé permet de générer une attestation et doit être utilisée dans les 365 jours suivant sa création. Saisissez et vérifiez une clé dans le formulaire avant de générer le document. Si l’email n’arrive pas, vérifiez les courriers indésirables puis contactez le support sans racheter le pack."
+  },
+  {
+    "q": "Puis-je corriger une erreur après émission ?",
+    "a": "Vérifiez vos données dans le récapitulatif avant de payer. Après émission, contactez le support avec la référence de commande et la correction demandée. Une réémission peut nécessiter un nouveau document ; elle n’est pas automatiquement gratuite. Les conditions vous seront précisées avant toute nouvelle commande."
+  },
+  {
+    "q": "Que faire si le téléchargement échoue ou si je perds mon PDF ?",
+    "a": "En cas d’échec, réessayez depuis la page de retour et contactez le support si nécessaire, sans repasser commande. Pour un paiement unitaire, vérifiez aussi l’email de livraison prévu par le service et les courriers indésirables. Archivez votre PDF dès réception : Certif-Scope ne conserve pas de copie récupérable. Une réémission d’un document perdu doit être examinée par le support."
+  },
+  {
+    "q": "Que confirme la vérification documentaire ?",
+    "a": "Le QR code donne accès aux données documentaires transmises. Leur lecture ne prouve pas, à elle seule, l’authenticité du PDF. Les éléments de signature nécessitent un contrôle technique distinct. Aucune de ces opérations ne valide les dépenses déclarées ou les émissions réelles."
+  }
+];
+
 
   return (
     <section
       id="faq"
       data-section="faq"
-      className="relative w-full py-24 bg-white"
+      className="relative w-full py-12 md:py-16 bg-white"
     >
       <div className="absolute inset-0 bg-gradient-to-b from-white via-[#F8FAFC] to-[#F3FBFC] -z-10" />
 
       <div className="max-w-4xl mx-auto px-6">
         <p className="inline-flex items-center rounded-full border border-[#0B3A63]/10 bg-white/90 px-4 py-2 text-[11px] md:text-xs font-semibold uppercase tracking-[0.14em] text-[#0B3A63]/75 shadow-sm mx-auto mb-5">
-          FAQ • Bilan carbone PME • Appels d’offres • Banques
+          Avant et après votre commande
         </p>
 
         <h2 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] text-center mb-5 tracking-tight">
-          Questions fréquentes sur le bilan carbone PME
+          Vos questions avant de commander
         </h2>
 
-        <p className="text-center text-[#475569] max-w-3xl mx-auto text-lg leading-relaxed mb-14">
-          Cette FAQ répond aux principales questions sur le{" "}
-          <strong className="text-[#0B3A63] font-semibold">
-            bilan carbone PME
-          </strong>
-          , son caractère obligatoire ou non, son usage dans les appels d’offres,
-          les demandes clients, les dossiers bancaires et la différence entre une
-          estimation CO₂e simplifiée et un audit carbone complet.
+        <p className="text-center text-[#475569] max-w-3xl mx-auto text-lg leading-relaxed mb-8">
+          Données à préparer, contenu du document, packs et assistance : les informations utiles pour décider et recevoir votre PDF.
         </p>
 
         <div className="space-y-4" role="list">
@@ -107,6 +82,7 @@ export default function FAQFR() {
               >
                 <button
                   id={btnId}
+                  type="button"
                   onClick={() => toggle(i)}
                   aria-expanded={open === i}
                   aria-controls={panelId}

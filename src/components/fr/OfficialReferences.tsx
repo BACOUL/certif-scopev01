@@ -147,7 +147,7 @@ export default function OfficialReferencesFR() {
           <div className="or-reveal mt-8 flex flex-wrap justify-center gap-3 [animation-delay:380ms]">
             <Link
               href="/fr/generate"
-              className="inline-flex items-center justify-center rounded-xl bg-[#1FB6C1] px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#19AAB4] hover:shadow-[0_18px_36px_rgba(31,182,193,0.34)] md:px-7 md:py-4 md:text-base"
+              className="inline-flex items-center justify-center rounded-xl bg-[#0B3A63] px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#082C4B] hover:shadow-[0_18px_36px_rgba(31,182,193,0.34)] md:px-7 md:py-4 md:text-base"
             >
               Générer mon document CO₂e
             </Link>
@@ -368,7 +368,7 @@ export default function OfficialReferencesFR() {
         <div className="or-reveal mt-12 flex flex-wrap justify-center gap-3 [animation-delay:920ms]">
           <Link
             href="/fr/generate"
-            className="inline-flex items-center justify-center rounded-xl bg-[#1FB6C1] px-8 py-4 text-base font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#19AAB4] hover:shadow-[0_18px_36px_rgba(31,182,193,0.34)]"
+            className="inline-flex items-center justify-center rounded-xl bg-[#0B3A63] px-8 py-4 text-base font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#082C4B] hover:shadow-[0_18px_36px_rgba(31,182,193,0.34)]"
           >
             Générer mon document CO₂e
           </Link>

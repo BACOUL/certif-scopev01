@@ -73,7 +73,7 @@ export default function Hero() {
               <Link
                 href="/fr/generate/"
                 aria-label="Générer mon attestation CO₂e indicative pour 89 euros"
-                className="inline-flex min-h-[56px] w-full items-center justify-center rounded-lg bg-[#1FB6C1] px-8 py-4 text-base font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0B3A63] hover:shadow-[0_18px_36px_rgba(11,58,99,0.18)] focus:outline-none focus:ring-2 focus:ring-[#0B3A63] focus:ring-offset-2 sm:w-auto md:px-10"
+                className="inline-flex min-h-[56px] w-full items-center justify-center rounded-lg bg-[#0B3A63] px-8 py-4 text-base font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0B3A63] hover:shadow-[0_18px_36px_rgba(11,58,99,0.18)] focus:outline-none focus:ring-2 focus:ring-[#0B3A63] focus:ring-offset-2 sm:w-auto md:px-10"
               >
                 Générer mon attestation — 89 €
               </Link>
