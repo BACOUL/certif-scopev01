@@ -44,7 +44,7 @@ export default function PartnersPageFR() {
     <section
       id="partners"
       data-section="partners"
-      className="max-w-7xl mx-auto px-6 pt-12 pb-24"
+      className="max-w-7xl mx-auto px-6 pt-8 pb-16 md:pt-12 md:pb-24"
     >
       {/* JSON-LD — WebPage (STRICT, NON-COMMERCIAL CLAIMS) */}
       <script
@@ -71,7 +71,7 @@ export default function PartnersPageFR() {
       <div id="top" />
 
       {/* CANONICAL PAGE HEADER */}
-      <header className="mb-14">
+      <header className="mb-8 md:mb-14">
         <p className="uppercase text-xs tracking-wider text-[#64748B] mb-3">
           Attestations CO₂e — Partenaires
         </p>

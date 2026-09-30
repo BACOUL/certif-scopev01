@@ -8,13 +8,8 @@ import ScrollUp from "@/components/Common/ScrollUp";
 // FR — composants définitifs
 import HeroFR from "@/components/fr/Hero";
 import UseCaseDecisionTable from "@/components/fr/UseCaseDecisionTable";
-import ProblemSolutionFR from "@/components/fr/ProblemSolution";
-import DifferentiationFR from "@/components/fr/Differentiation";
 import FeaturesFR from "@/components/fr/Features";
-import RecipientView from "@/components/fr/RecipientView";
-import OfficialReferencesFR from "@/components/fr/OfficialReferences";
 import HowItWorksFR from "@/components/fr/HowItWorks";
-import TestimonialsFR from "@/components/fr/Testimonials";
 import PricingFR from "@/components/fr/Pricing";
 import FAQFR from "@/components/fr/FAQ";
 
@@ -140,25 +135,26 @@ export default function HomeFR() {
         <UseCaseDecisionTable />
 
         {/* 3) Problème / besoin réel */}
-        <ProblemSolutionFR />
+
 
         {/* 4) Différenciation / pourquoi cette réponse */}
-        <DifferentiationFR />
+
 
         {/* 5) Produit / document concret */}
         <FeaturesFR />
 
         {/* 6) Ce que le destinataire verra */}
-        <RecipientView />
+
 
         {/* 7) Références officielles / légitimation de la méthode */}
-        <OfficialReferencesFR />
+
 
         {/* 8) Comment ça marche */}
         <HowItWorksFR />
+      <section className="mx-auto max-w-7xl px-6 py-12"><h2 className="text-2xl font-bold text-[#0B3A63]">Un doute avant de payer ?</h2><p className="mt-3 max-w-3xl text-gray-700">Consultez l’exemple avec votre destinataire pour confirmer le périmètre attendu. Certif-Scope fournit une estimation indicative, sans validation externe des émissions.</p><div className="mt-5 flex flex-wrap gap-5"><Link className="font-semibold underline text-[#0B3A63]" href="/fr/contact/">Nous contacter</Link><Link className="font-semibold underline text-[#0B3A63]" href="/fr/product/methodology/">Comprendre le calcul</Link></div></section>
 
         {/* 9) Cas d’usage terrain */}
-        <TestimonialsFR />
+
 
         {/* 10) Pricing */}
         <PricingFR />

@@ -22,7 +22,7 @@ const steps = [
     eyebrow: "Sortie",
     title: "Vous obtenez un document prêt à transmettre",
     text: "Téléchargez une attestation carbone PDF, standardisée et vérifiable, utile pour une demande client, un dossier fournisseur ou un besoin de réponse rapide.",
-    meta: "PDF • ID unique • Vérification indépendante",
+    meta: "PDF • ID unique • Vérification documentaire",
   },
 ];
 

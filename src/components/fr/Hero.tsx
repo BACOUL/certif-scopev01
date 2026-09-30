@@ -16,10 +16,10 @@ function HeroVisual() {
     <div className="relative mx-auto max-w-[780px]">
       <Image
         itemProp="primaryImageOfPage"
-        src="/hero-attestation.webp"
+        src="/attestation-example-fr.webp"
         alt="Exemple d’attestation CO₂e indicative prête à transmettre, avec résultat agrégé, méthode déclarée et identifiant vérifiable."
-        width={1600}
-        height={1200}
+        width={778}
+        height={1100}
         priority
         className="h-auto w-full"
       />
@@ -48,16 +48,16 @@ export default function Hero() {
               className="hero-reveal inline-flex items-center gap-3 rounded-lg border border-[#0B3A63]/10 bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#0B3A63] shadow-sm md:text-xs"
             >
               <span className="inline-block h-2.5 w-2.5 rounded-full bg-[#1FB6C1]" />
-              Demande client, fournisseur, banque ou appel d’offres
+              Pour les demandes documentaires simples
             </p>
 
             <h1
               itemProp="headline"
-              className="hero-reveal mx-auto mt-5 max-w-4xl text-4xl font-extrabold leading-tight text-[#0B3A63] [animation-delay:120ms] md:text-5xl lg:mx-0 lg:text-6xl"
+              className="hero-reveal mx-auto mt-5 max-w-4xl text-3xl font-extrabold leading-tight text-[#0B3A63] [animation-delay:120ms] md:text-5xl lg:mx-0 lg:text-5xl"
             >
-              On vous demande un bilan carbone ?
+              Une demande carbone à traiter ?
               <br />
-              Obtenez une attestation CO₂e indicative prête à transmettre.
+              Préparez votre document CO₂e indicatif.
             </h1>
 
             <p
@@ -65,13 +65,13 @@ export default function Hero() {
               className="hero-reveal mx-auto mt-6 max-w-2xl text-base leading-relaxed text-[#0B3A63]/80 [animation-delay:220ms] md:text-lg lg:mx-0"
             >
               Un PDF standardisé, daté et vérifiable pour répondre rapidement à
-              une demande client, fournisseur, bancaire, assurantielle ou
-              d’appel d’offres — sans lancer un audit carbone complet.
+              une demande documentaire simple, si votre destinataire accepte
+              une estimation fondée sur vos dépenses.
             </p>
 
             <div className="hero-reveal mt-8 flex flex-col items-center justify-center gap-3 [animation-delay:320ms] sm:flex-row lg:justify-start">
               <Link
-                href="/fr/generate"
+                href="/fr/generate/"
                 aria-label="Générer mon attestation CO₂e indicative pour 89 euros"
                 className="inline-flex min-h-[56px] w-full items-center justify-center rounded-lg bg-[#1FB6C1] px-8 py-4 text-base font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0B3A63] hover:shadow-[0_18px_36px_rgba(11,58,99,0.18)] focus:outline-none focus:ring-2 focus:ring-[#0B3A63] focus:ring-offset-2 sm:w-auto md:px-10"
               >

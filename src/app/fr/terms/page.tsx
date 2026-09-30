@@ -38,7 +38,7 @@ export default function TermsPageFR() {
     <section
       id="terms"
       data-section="terms"
-      className="max-w-7xl mx-auto px-6 pt-12 pb-24"
+      className="max-w-7xl mx-auto px-6 pt-8 pb-16 md:pt-12 md:pb-24"
     >
       {/* JSON-LD — WebPage (LEGAL / TERMS) */}
       <script
@@ -89,7 +89,7 @@ export default function TermsPageFR() {
       <div id="top" />
 
       {/* EN-TÊTE CANONIQUE */}
-      <header className="mb-14">
+      <header className="mb-8 md:mb-14">
         <p className="uppercase text-xs tracking-wider text-[#64748B] mb-3">
           Attestation CO₂e — Cadre légal
         </p>

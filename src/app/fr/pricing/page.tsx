@@ -65,15 +65,15 @@ const packs = [
   {
     name: "Pack de 5",
     price: "349€",
-    unit: "69€ par attestation",
-    text: "Pour plusieurs dossiers fournisseurs ou plusieurs demandes clients sur l’année.",
+    unit: "69,80€ par attestation",
+    text: "Pour produire cinq documents distincts, selon vos entités ou années de référence.",
     href: "/api/checkout-pack?pack=5",
   },
   {
     name: "Pack de 10",
     price: "590€",
     unit: "59€ par attestation",
-    text: "Pour une utilisation régulière dans les réponses commerciales, achats ou appels d’offres.",
+    text: "Pour produire dix documents distincts. Un même PDF peut être présenté à plusieurs destinataires.",
     href: "/api/checkout-pack?pack=10",
   },
   {
@@ -428,6 +428,7 @@ export default function PricingPageFR() {
         </div>
       </section>
 
+      <section className="mx-auto max-w-7xl px-6 py-10"><div className="max-w-3xl rounded-xl border bg-white p-5"><h2 className="text-xl font-bold text-[#0B3A63]">Avant de payer 89 €</h2><ul className="mt-3 list-disc space-y-2 pl-5 text-gray-700"><li>Prix total par document : 89 €, TVA non applicable selon le régime indiqué dans les mentions légales.</li><li>Vérifiez l’entreprise, l’année et vos montants avant de confirmer.</li><li>Le téléchargement intervient après confirmation du paiement. En cas d’échec, contactez le support sans recommander immédiatement.</li><li>Pour une correction ou un justificatif de paiement, contactez le support avec la référence de votre commande.</li><li>L’acceptation du document par un destinataire n’est pas garantie.</li></ul><Link href="/fr/contact/" className="mt-4 inline-block font-semibold text-[#0B3A63] underline">Contacter le support</Link></div></section>
       <section
         id="packs"
         data-section="packs"
@@ -444,9 +445,9 @@ export default function PricingPageFR() {
             </h2>
 
             <p className="mt-5 text-base leading-relaxed text-[#475569] md:text-lg">
-              Les packs sont destinés aux organisations qui doivent produire
-              plusieurs documents dans l’année : plusieurs dossiers, plusieurs
-              entités, plusieurs fournisseurs ou plusieurs demandes clients.
+              Les packs servent à produire plusieurs documents distincts. Il n’est
+              pas nécessaire de générer un nouveau PDF pour chaque destinataire
+              lorsque l’entité, l’année et les données restent identiques.
             </p>
           </div>
 

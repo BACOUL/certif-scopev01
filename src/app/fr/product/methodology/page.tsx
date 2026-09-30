@@ -1,18 +1,6 @@
 import type { Metadata } from "next";
-
-import Section1 from "./sections/Section1";
-import Section2 from "./sections/Section2";
-import Section3 from "./sections/Section3";
-import Section4 from "./sections/Section4";
-import Section5 from "./sections/Section5";
-import Section6 from "./sections/Section6";
-import Section7 from "./sections/Section7";
-import Section8 from "./sections/Section8";
-import Section9 from "./sections/Section9";
-import Section10 from "./sections/Section10";
-import Section11 from "./sections/Section11";
-import Section12 from "./sections/Section12";
-
+import Link from "next/link";
+import { CATEGORIES, EMISSION_FACTORS, FACTOR_VERSION, METHODOLOGY } from "@/lib/indicative-model";
 export const metadata: Metadata = {
   title: "Méthodologie spend-based CO₂e PME | Certif-Scope",
   description:
@@ -36,128 +24,16 @@ export const metadata: Metadata = {
 };
 
 export default function MethodologyPage() {
-  return (
-    <section
-      id="methodology"
-      data-section="methodology"
-      className="max-w-7xl mx-auto px-6 pt-12 pb-24"
-    >
-      {/* TOP ANCHOR */}
-      <div id="top" />
-
-      {/* CANONICAL PAGE HEADER — IDENTICAL TO ALL SECONDARY PAGES */}
-      <header className="mb-14">
-        <p
-          data-i18n="methodology.label"
-          className="uppercase text-xs tracking-wider text-[#64748B] mb-3"
-        >
-          Attestation CO₂e — Méthodologie
-        </p>
-
-        <h1
-          data-i18n="methodology.h1"
-          className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-6"
-        >
-          Méthodologie spend-based de l’attestation CO₂e
-        </h1>
-
-        <p
-          data-i18n="methodology.subtitle"
-          className="text-lg text-gray-700 leading-relaxed max-w-3xl"
-        >
-          Cette page explique comment Certif-Scope estime un résultat CO₂e
-          indicatif à partir des dépenses déclarées : modèle spend-based,
-          facteurs d’émission, logique de calcul, règles de mise à jour,
-          confidentialité et limites d’usage.
-        </p>
-
-        <div className="w-20 h-[2px] bg-gray-300 mt-10" />
-      </header>
-
-      {/* TABLE OF CONTENTS — CANONICAL & LOCKED */}
-      <nav
-        aria-label="Sections de la méthodologie"
-        className="mb-16 max-w-4xl p-6 bg-[#F8FAFC] border border-gray-200 rounded-xl shadow-sm"
-      >
-        <ol className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-[#0B3A63] font-medium list-decimal list-inside">
-          <li>
-            <a href="#s1" className="hover:text-[#1FB6C1] transition">
-              Portée &amp; objectif de la méthodologie
-            </a>
-          </li>
-          <li>
-            <a href="#s2" className="hover:text-[#1FB6C1] transition">
-              Fondements théoriques
-            </a>
-          </li>
-          <li>
-            <a href="#s3" className="hover:text-[#1FB6C1] transition">
-              Modèle mathématique
-            </a>
-          </li>
-          <li>
-            <a href="#s4" className="hover:text-[#1FB6C1] transition">
-              Définitions des catégories &amp; limites
-            </a>
-          </li>
-          <li>
-            <a href="#s5" className="hover:text-[#1FB6C1] transition">
-              Règles de normalisation des entrées
-            </a>
-          </li>
-          <li>
-            <a href="#s6" className="hover:text-[#1FB6C1] transition">
-              Chaîne de transformation
-            </a>
-          </li>
-          <li>
-            <a href="#s7" className="hover:text-[#1FB6C1] transition">
-              Logique d’affectation des facteurs d’émission
-            </a>
-          </li>
-          <li>
-            <a href="#s8" className="hover:text-[#1FB6C1] transition">
-              Flux de calcul &amp; structure des formules
-            </a>
-          </li>
-          <li>
-            <a href="#s9" className="hover:text-[#1FB6C1] transition">
-              Contrôles internes &amp; garde-fous de calcul
-            </a>
-          </li>
-          <li>
-            <a href="#s10" className="hover:text-[#1FB6C1] transition">
-              Versionnage des facteurs &amp; modèle de mise à jour
-            </a>
-          </li>
-          <li>
-            <a href="#s11" className="hover:text-[#1FB6C1] transition">
-              Cycle de mise à jour du dataset &amp; contrôles de cohérence
-            </a>
-          </li>
-          <li>
-            <a href="#s12" className="hover:text-[#1FB6C1] transition">
-              Données, confidentialité &amp; conformité RGPD
-            </a>
-          </li>
-        </ol>
-      </nav>
-
-      {/* CONTENT — CANONICAL WIDTH & ORDER */}
-      <div className="max-w-4xl mx-auto space-y-24">
-        <Section1 />
-        <Section2 />
-        <Section3 />
-        <Section4 />
-        <Section5 />
-        <Section6 />
-        <Section7 />
-        <Section8 />
-        <Section9 />
-        <Section10 />
-        <Section11 />
-        <Section12 />
-      </div>
-    </section>
-  );
+  return <section className="mx-auto max-w-7xl px-6 py-8 md:py-12">
+    <header className="mb-8 max-w-3xl"><p className="text-sm text-[#64748B]">Méthode et périmètre</p><h1 className="mt-3 text-3xl font-bold text-[#0B3A63]">Comment votre estimation CO₂e est calculée</h1><p className="mt-4 text-gray-700">Certif-Scope convertit sept catégories de dépenses en une estimation indicative. Le résultat couvre uniquement les dépenses renseignées, pas l’ensemble des émissions de l’entreprise.</p></header>
+    <div className="max-w-4xl space-y-8">
+      <section><h2 className="text-xl font-bold text-[#0B3A63]">1. Données utilisées</h2><p className="mt-3 text-gray-700">Utilisez les dépenses externes annuelles hors taxes, en euros, pour la même année. Une dépense ne doit être saisie qu’une fois. Les salaires, taxes et opérations internes sont exclus. Le secteur déclaré sert à identifier l’activité : il ne modifie pas les coefficients.</p><p className="mt-3 text-gray-700">Un montant nul est différent d’un montant inconnu. Le formulaire demande de compléter les sept catégories ; ne remplacez pas une donnée inconnue par zéro.</p></section>
+      <section><h2 className="text-xl font-bold text-[#0B3A63]">2. Catégories et coefficients utilisés</h2><p className="mt-3 text-gray-700">Version : {FACTOR_VERSION}. Les valeurs ci-dessous sont les coefficients internes actuellement utilisés. Cette publication n’atteste ni d’une certification ni d’une validation externe de ces coefficients.</p>
+      <div className="mt-4 overflow-x-auto rounded-xl border"><table className="w-full text-left text-sm"><caption className="sr-only">Coefficients internes en kilogrammes de CO₂e par euro hors taxes</caption><thead className="bg-[#F8FAFC]"><tr><th scope="col" className="p-3">Catégorie</th><th scope="col" className="p-3">Dépenses incluses</th><th scope="col" className="p-3">kg CO₂e / €</th></tr></thead><tbody>{CATEGORIES.map(item => <tr key={item.key} className="border-t"><th scope="row" className="p-3 font-medium">{item.label}</th><td className="p-3">{item.includes}</td><td className="p-3">{EMISSION_FACTORS[item.key].toLocaleString("fr-FR")}</td></tr>)}</tbody></table></div></section>
+      <section><h2 className="text-xl font-bold text-[#0B3A63]">3. Formule et exemple</h2><p className="mt-3 text-gray-700">Chaque montant est multiplié par le coefficient de sa catégorie. La somme en kilogrammes est divisée par 1 000 pour obtenir des tonnes, puis arrondie à une décimale.</p><p className="mt-3 rounded-xl bg-[#F8FAFC] p-4">1 000 € de services numériques × 0,30 = 300 kg CO₂e = 0,3 tCO₂e, si toutes les autres catégories sont nulles.</p><p className="mt-3 text-sm text-gray-600">Modèle : {METHODOLOGY}. Deux saisies identiques avec ces mêmes coefficients donnent le même résultat ; cela ne démontre pas la précision environnementale de l’estimation.</p></section>
+      <section><h2 className="text-xl font-bold text-[#0B3A63]">4. Ce que le résultat ne couvre pas</h2><ul className="mt-3 list-disc space-y-2 pl-5 text-gray-700"><li>Les émissions directes de Scope 1 et l’électricité de Scope 2.</li><li>Un inventaire exhaustif du Scope 3 ou une empreinte produit.</li><li>Une validation des factures, des données saisies ou des émissions réelles.</li><li>Un audit, une certification ou un reporting réglementaire.</li></ul><p className="mt-3 text-gray-700">Les prix et les catégories agrégées peuvent varier sans refléter la variation des émissions physiques. Aucun intervalle d’incertitude validé n’est fourni.</p></section>
+      <section><h2 className="text-xl font-bold text-[#0B3A63]">5. Données et vérification</h2><p className="mt-3 text-gray-700">Le calcul des dépenses est réalisé dans votre navigateur. La génération du PDF utilise le résultat agrégé et les informations qui figurent dans le document. La vérification documentaire ne valide pas l’exactitude des dépenses ni les émissions réelles.</p><Link href="/fr/privacy/" className="mt-3 inline-block font-semibold text-[#0B3A63] underline">Lire la politique de confidentialité</Link></section>
+      <section className="rounded-xl border bg-[#F8FAFC] p-5"><h2 className="text-xl font-bold text-[#0B3A63]">Avant de commander</h2><p className="mt-3 text-gray-700">Transmettez l’exemple à votre destinataire et demandez si cette méthode et ce périmètre répondent à sa demande. Son acceptation n’est pas garantie.</p><div className="mt-4 flex flex-wrap gap-5"><a href="/api/sample" className="font-semibold underline text-[#0B3A63]">Voir l’exemple</a><Link href="/fr/contact/" className="font-semibold underline text-[#0B3A63]">Poser une question</Link><Link href="/fr/generate/" className="font-semibold underline text-[#0B3A63]">Préparer mon document</Link></div></section>
+    </div>
+  </section>;
 }

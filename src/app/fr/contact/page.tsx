@@ -24,10 +24,10 @@ export default function ContactPage() {
     <section
       id="contact"
       data-section="contact"
-      className="max-w-7xl mx-auto px-6 pt-12 pb-24"
+      className="max-w-7xl mx-auto px-6 pt-8 pb-16 md:pt-12 md:pb-24"
     >
       {/* EN-TÊTE PAGE — ALIGNEMENT CANONIQUE */}
-      <header className="mb-14">
+      <header className="mb-8 md:mb-14">
         <p
           className="uppercase text-xs tracking-wider text-[#64748B] mb-3"
         >
@@ -43,15 +43,14 @@ export default function ContactPage() {
         <p
           className="text-lg text-gray-700 leading-relaxed max-w-3xl"
         >
-          Cette page fournit les informations de contact officielles de
-          Certif-Scope, incluant le support, les demandes institutionnelles et
-          les demandes générales liées aux attestations CO₂e et à la
-          méthodologie.
+          Une question avant de commander, une erreur de saisie ou un problème
+          de téléchargement ? Contactez directement Certif-Scope.
         </p>
 
         <div className="w-20 h-[2px] bg-gray-300 mt-10" />
       </header>
 
+      <div className="mb-8 max-w-4xl rounded-xl border bg-[#F8FAFC] p-5"><h2 className="text-xl font-bold text-[#0B3A63]">Avant achat</h2><p className="mt-3 text-gray-700">Consultez le PDF d’exemple avec votre destinataire. Nous pouvons expliquer le périmètre, mais ne pouvons pas garantir son acceptation.</p><div className="mt-4 flex flex-wrap gap-5"><a href="/api/sample" className="font-semibold underline text-[#0B3A63]">Voir l’exemple</a><a href="mailto:contact@certif-scope.com" className="font-semibold underline text-[#0B3A63]">Poser une question</a></div><p className="mt-4 text-sm text-gray-600">Service exploité par Jeason Alexandre Bacoul, entrepreneur individuel. Les informations complètes figurent dans les <a className="underline" href="/fr/legal/">mentions légales</a>.</p></div>
       {/* CONTENU — LARGEUR CANONIQUE */}
       <div className="max-w-4xl space-y-14">
 
@@ -68,11 +67,11 @@ export default function ContactPage() {
 
           <ul className="list-disc ml-6 text-gray-700 space-y-2">
             <li>
-              <strong>support@certif-scope.com</strong> — support technique,
+              <a className="font-semibold underline text-[#0B3A63]" href="mailto:support@certif-scope.com">support@certif-scope.com</a> — support technique,
               génération d’attestations, accès et utilisation
             </li>
             <li>
-              <strong>contact@certif-scope.com</strong> — demandes
+              <a className="font-semibold underline text-[#0B3A63]" href="mailto:contact@certif-scope.com">contact@certif-scope.com</a> — demandes
               institutionnelles, méthodologiques ou générales
             </li>
           </ul>

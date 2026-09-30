@@ -143,7 +143,7 @@ export default function CarbonAttestationTenderFR() {
     <section
       id="carbon-attestation-tender"
       data-section="carbon-attestation-tender"
-      className="max-w-7xl mx-auto px-6 pt-12 pb-24"
+      className="max-w-7xl mx-auto px-6 pt-8 pb-16 md:pt-12 md:pb-24"
     >
       {/* JSON-LD */}
       <script
@@ -167,7 +167,7 @@ export default function CarbonAttestationTenderFR() {
       <div id="top" />
 
       {/* HEADER */}
-      <header className="mb-14">
+      <header className="mb-8 md:mb-14">
         <p className="uppercase text-xs tracking-wider text-[#64748B] mb-3">
           Comprendre les demandes “bilan carbone” — Appels d’offres (screening)
         </p>

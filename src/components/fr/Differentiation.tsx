@@ -12,7 +12,7 @@ const valueCards = [
     text: "Un document conçu pour être compris immédiatement par un client, un acheteur ou un partenaire.",
   },
   {
-    title: "Vérification indépendante",
+    title: "Vérification documentaire",
     text: "Chaque attestation intègre un identifiant unique pour une vérification simple et crédible.",
   },
   {
@@ -89,7 +89,7 @@ export default function Differentiation() {
             {/* CERTIF */}
             <div className="border-r border-[#1FB6C1]/20 bg-[#1FB6C1]/5 px-6 py-5">
               <span className="inline-block mb-2 rounded-full bg-[#1FB6C1]/10 px-3 py-1 text-[10px] font-semibold text-[#1FB6C1]">
-                Recommandé dans la majorité des cas
+                Pour une demande indicative confirmée
               </span>
               <p className="text-[11px] uppercase tracking-[0.16em] text-[#64748B] font-semibold">
                 Certif-Scope

@@ -26,7 +26,7 @@ export default function PricingFR() {
           </h2>
 
           <p className="price-reveal mt-5 text-base leading-relaxed text-[#475569] md:text-lg">
-            Dans la majorité des cas, l’objectif est de fournir rapidement un document carbone clair,
+            Pour une demande documentaire simple, l’objectif est de fournir un document carbone clair,
             sans lancer une mission longue ou complexe.
           </p>
         </div>

@@ -44,7 +44,7 @@ export default function UseCaseDecisionTable() {
     <section
       id="cas-adaptes"
       aria-labelledby="cas-adaptes-title"
-      className="bg-white py-20 md:py-24"
+      className="bg-white py-12 md:py-16"
     >
       <div className="mx-auto max-w-7xl px-6 md:px-8">
         <div className="mx-auto max-w-3xl text-center">
@@ -62,12 +62,13 @@ export default function UseCaseDecisionTable() {
           <p className="mt-5 text-base leading-relaxed text-[#0B3A63]/80 md:text-lg">
             Certif-Scope est conçu pour les demandes documentaires simples. Si
             un audit complet, une norme précise ou une vérification externe est
-            exigée, il faut suivre cette exigence.
+            exigée, il faut suivre cette exigence. L’absence de méthode imposée
+            ne garantit pas l’acceptation du PDF : demandez confirmation avant achat.
           </p>
         </div>
 
         <div className="mt-12 grid gap-5 md:grid-cols-2">
-          <DecisionList title="Adapté" items={adaptedCases} />
+          <DecisionList title="À confirmer avec le destinataire" items={adaptedCases} />
           <DecisionList title="Non adapté" items={notAdaptedCases} />
         </div>
 

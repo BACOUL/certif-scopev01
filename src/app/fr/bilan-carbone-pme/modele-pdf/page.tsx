@@ -184,7 +184,7 @@ export default function BilanCarbonePMEModelePDFPageFR() {
     <section
       id="bilan-carbone-pme-modele-pdf"
       data-section="bilan-carbone-pme-modele-pdf"
-      className="max-w-7xl mx-auto px-6 pt-12 pb-24"
+      className="max-w-7xl mx-auto px-6 pt-8 pb-16 md:pt-12 md:pb-24"
     >
       <script
         type="application/ld+json"
@@ -209,7 +209,7 @@ export default function BilanCarbonePMEModelePDFPageFR() {
 
       <div id="top" />
 
-      <header className="mb-14">
+      <header className="mb-8 md:mb-14">
         <p className="uppercase text-xs tracking-wider text-[#64748B] mb-3">
           Cluster FR — Bilan carbone PME : modèle PDF
         </p>

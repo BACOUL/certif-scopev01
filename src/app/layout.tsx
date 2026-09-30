@@ -50,7 +50,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fr" suppressHydrationWarning>
+    <html lang="fr" className="light" suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"
@@ -81,7 +81,7 @@ export default function RootLayout({
         />
       </head>
 
-      <body className="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+      <body className="bg-white text-gray-800">
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>

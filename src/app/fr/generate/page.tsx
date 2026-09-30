@@ -27,14 +27,14 @@ export default function GenerateFRPage() {
     <section
       id="generate"
       data-section="generate"
-      className="max-w-7xl mx-auto px-6 pt-12 pb-24"
+      className="max-w-7xl mx-auto px-6 pt-8 pb-16 md:pt-12 md:pb-24"
     >
-      <header className="mb-14">
+      <header className="mb-6">
         <p className="uppercase text-xs tracking-wider text-[#64748B] mb-3">
           Attestation CO₂e indicative — Génération PME
         </p>
 
-        <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-6">
+        <h1 className="text-2xl md:text-3xl font-extrabold text-[#0B3A63] mb-4">
           Générer une attestation CO₂e indicative pour votre PME
         </h1>
 

@@ -38,7 +38,7 @@ export default function WhyCompaniesAskOverviewGuideFR() {
     <section
       id="why-companies-ask-guide"
       data-section="why-companies-ask-guide"
-      className="max-w-7xl mx-auto px-6 pt-12 pb-24"
+      className="max-w-7xl mx-auto px-6 pt-8 pb-16 md:pt-12 md:pb-24"
     >
       {/* JSON-LD — WebPage (HUB GUIDE) */}
       <script
@@ -81,7 +81,7 @@ export default function WhyCompaniesAskOverviewGuideFR() {
       <div id="top" />
 
       {/* HEADER */}
-      <header className="mb-14">
+      <header className="mb-8 md:mb-14">
         <p className="uppercase text-xs tracking-wider text-[#64748B] mb-3">
           Comprendre les demandes CO₂e — Vue d’ensemble
         </p>

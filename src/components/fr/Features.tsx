@@ -16,8 +16,8 @@ const featureItems = [
   },
   {
     id: "03",
-    title: "Sources référencées",
-    text: "Des facteurs d’émission issus de référentiels reconnus, pour une estimation cohérente et documentée.",
+    title: "Méthode transparente",
+    text: "Les catégories, coefficients internes et limites du calcul sont décrits dans la méthodologie.",
   },
   {
     id: "04",
@@ -75,10 +75,10 @@ export default function FeaturesFR() {
               <div className="relative overflow-hidden rounded-[30px] border border-[#0B3A63]/10 bg-white shadow-[0_28px_70px_rgba(11,58,99,0.14)]">
                 <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(31,182,193,0.55),transparent)]" />
                 <Image
-                  src="/preview.webp"
+                  src="/attestation-example-fr.webp"
                   alt="Exemple d’attestation carbone Certif-Scope"
-                  width={1200}
-                  height={800}
+                  width={778}
+                  height={1100}
                   loading="lazy"
                   sizes="(max-width: 1024px) 100vw, 720px"
                   className="h-auto w-full"

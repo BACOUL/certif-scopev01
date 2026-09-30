@@ -46,7 +46,7 @@ export default function VerifyTechnicalPageFR() {
     <section
       id="verify-technical"
       data-section="verify-technical"
-      className="max-w-7xl mx-auto px-6 pt-12 pb-24"
+      className="max-w-7xl mx-auto px-6 pt-8 pb-16 md:pt-12 md:pb-24"
     >
       {/* JSON-LD — TECHNICAL WEBPAGE */}
       <script
@@ -70,7 +70,7 @@ export default function VerifyTechnicalPageFR() {
 
       <div id="top" />
 
-      <header className="mb-14">
+      <header className="mb-8 md:mb-14">
         <p className="uppercase text-xs tracking-wider text-[#64748B] mb-3">
           Attestation CO₂e — Vérification technique
         </p>

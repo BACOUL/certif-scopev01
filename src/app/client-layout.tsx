@@ -29,7 +29,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   return (
     <>
       <HeaderFR />
-      <main className="pt-[110px]">{children}</main>
+      <main className="pt-[88px] lg:pt-[110px]">{children}</main>
       <FooterFR />
       <ScrollToTop />
     </>
