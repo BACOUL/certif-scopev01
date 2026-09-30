@@ -25,7 +25,7 @@ export async function GET(req: Request) {
 
   try {
     const session = await stripe.checkout.sessions.retrieve(sessionId);
-    const paid = session.payment_status === "paid" || session.status === "complete";
+    const paid = session.payment_status === "paid";
     const matches = String(session.metadata?.campaignRef || "") === campaignRef;
     const product = String(session.metadata?.product || "");
     if (!paid || !matches || product !== "certif-scope-attestation") {
