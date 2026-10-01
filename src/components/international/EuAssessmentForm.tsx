@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useMemo, useState } from "react";
+import { useId, useState } from "react";
 import {
   EMISSION_FACTORS,
   METHODOLOGY,
@@ -8,7 +8,6 @@ import {
 } from "@/lib/indicative-model";
 import {
   DEFAULT_COUNTRY_BY_LOCALE,
-  EU_COUNTRY_CODES,
   getEuFlowCopy,
   localizedCountryName,
   type EuNonCoreLocale,
@@ -33,7 +32,10 @@ const inputClass =
 const primaryButton =
   "inline-flex min-h-[52px] items-center justify-center rounded-xl bg-[#0B3A63] px-6 py-3 font-semibold text-white hover:bg-[#082C4B] disabled:cursor-not-allowed disabled:opacity-60";
 
-export default function EuAssessmentForm({ locale }: { locale: EuNonCoreLocale }) {
+export default function EuAssessmentForm({ locale, countryOptions }: {
+  locale: EuNonCoreLocale;
+  countryOptions: { code: string; label: string }[];
+}) {
   const c = getEuFlowCopy(locale);
   const home = EU_HOME_COPY[locale];
   const id = useId();
@@ -66,14 +68,6 @@ export default function EuAssessmentForm({ locale }: { locale: EuNonCoreLocale }
         10,
     ) / 10;
   const redeeming = keyStatus === "valid" && credits > 0;
-  const countryOptions = useMemo(
-    () =>
-      EU_COUNTRY_CODES.map((code) => ({
-        code,
-        label: localizedCountryName(locale, code),
-      })).sort((a, b) => a.label.localeCompare(b.label, locale)),
-    [locale],
-  );
 
   function showError(message: string) {
     setErrors([message]);
@@ -278,7 +272,10 @@ export default function EuAssessmentForm({ locale }: { locale: EuNonCoreLocale }
                 placeholder="0"
                 className={inputClass}
                 value={expenses[key]}
-                onChange={(event) => setExpenses((previous) => ({ ...previous, [key]: event.target.value }))}
+                onChange={(event) => {
+                  const value = event.currentTarget.value;
+                  setExpenses((previous) => ({ ...previous, [key]: value }));
+                }}
               />
             </Field>
           ))}

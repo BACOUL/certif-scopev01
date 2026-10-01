@@ -9,6 +9,8 @@ let capturedCheckout,
   capturedHtml,
   capturedQr,
   paid = true;
+let event, capturedMail, capturedPdfUrl;
+const kv = new Map();
 const metadata = {
   companyName: "Example <Company>",
   companySector: "Services aux entreprises",
@@ -19,6 +21,7 @@ const metadata = {
 };
 class StripeMock {
   constructor() {
+    this.webhooks = { constructEvent: () => event };
     this.checkout = {
       sessions: {
         create: async (value) => {
@@ -64,6 +67,11 @@ function load(filename) {
     clearTimeout,
     process: { env: testEnv },
     fetch: async (url, init) => {
+      if (url.startsWith("https://api.cloudflare.com/")) {
+        if (init?.method === "PUT") { kv.set(url, JSON.parse(init.body)); return new Response("{}"); }
+        return kv.has(url) ? Response.json(kv.get(url)) : new Response("", { status: 404 });
+      }
+      if (url.includes("/api/attestation/")) { capturedPdfUrl = url; return new Response("%PDF-test", { headers: { "Content-Type": "application/pdf" } }); }
       assert.equal(url, "https://api.pdfshift.io/v3/convert/pdf");
       capturedHtml = JSON.parse(init.body).source;
       return new Response("%PDF-test", {
@@ -71,6 +79,7 @@ function load(filename) {
       });
     },
     require(name) {
+      if (name === "resend") return { Resend: class { constructor() { this.emails = { send: async value => { capturedMail = value; return { data: { id: "offline" } }; } }; } } };
       if (name === "stripe") return StripeMock;
       if (name === "next/headers")
         return { cookies: async () => ({ get: () => undefined }) };
@@ -78,7 +87,7 @@ function load(filename) {
         return {
           toDataURL: async (url) => {
             capturedQr = url;
-            return "data:image/png;base64,";
+            return require("qrcode").toDataURL(url);
           },
         };
       if (name === "@/lib/sign")
@@ -117,7 +126,8 @@ function load(filename) {
   );
   return module.exports;
 }
-(async () => {
+module.exports = { load, metadata, testEnv, captured: () => ({ checkout: capturedCheckout, html: capturedHtml, qr: capturedQr, mail: capturedMail, pdfUrl: capturedPdfUrl }), setPaid: value => { paid = value; }, setEvent: value => { event = value; } };
+if (require.main === module) (async () => {
   const { paths, SITE_LOCALES, SECTORS, sectorLabel } = load(
     "src/lib/site-locales.ts",
   );
@@ -151,7 +161,7 @@ function load(filename) {
   const invalid = await checkout.POST(
     new Request("https://example.test/api/checkout", {
       method: "POST",
-      body: JSON.stringify({ ...metadata, attestationLocale: "es" }),
+      body: JSON.stringify({ ...metadata, attestationLocale: "xx" }),
     }),
   );
   assert.equal(invalid.status, 400);

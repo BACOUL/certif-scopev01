@@ -3,6 +3,7 @@ export const runtime = "nodejs";
 import Stripe from "stripe";
 import { isEuNonCoreLocale } from "@/lib/eu-flow";
 import { buildEuAttestationPdf } from "@/lib/eu-attestation-pdf";
+import { isAuthorizedKeyDownload } from "@/lib/key-download";
 
 let stripeClient: Stripe | null = null;
 function getStripeClient() {
@@ -20,6 +21,7 @@ export async function GET(req: Request) {
 
     let metadata: Record<string, unknown>;
     if (sessionId.startsWith("key_")) {
+      if (!isAuthorizedKeyDownload(searchParams)) return new Response("Invalid download authorization", { status: 403 });
       metadata = Object.fromEntries(searchParams.entries());
     } else {
       const stripe = getStripeClient();

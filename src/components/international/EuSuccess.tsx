@@ -21,7 +21,7 @@ export default function EuSuccess({
     setError("");
     try {
       const response = await fetch(
-        `/api/attestation/eu?session_id=${encodeURIComponent(sessionId)}`,
+        `/api/attestation/issue?session_id=${encodeURIComponent(sessionId)}`,
       );
       if (
         !response.ok ||

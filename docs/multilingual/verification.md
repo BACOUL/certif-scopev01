@@ -1,5 +1,7 @@
 # Certif-Scope — harmonisation anglais / allemand
 
+La reprise européenne et ses limites sont documentées dans [eu24-verification.md](eu24-verification.md). Le présent rapport décrit la première étape FR/EN/DE ; son état de livraison ne décrit pas la reprise ultérieure des 24 langues.
+
 Base : `b5a5d002af3b0e31697079a011545c631d79cfa7` de la branche `fix/conversion-readability-20260930`.
 Branche locale : `fix/multilingual-fr-en-de-20261001`.
 

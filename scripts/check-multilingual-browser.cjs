@@ -44,7 +44,7 @@ let browser;
   for (const locale of ["en", "de", "fr"]) {
     await page.setViewport({ width: 1440, height: 900 });
     await page.goto(`http://127.0.0.1:3010/${locale}/`, {
-      waitUntil: "networkidle0",
+      waitUntil: "networkidle2",
     });
     assert.equal(
       await page.evaluate(() => document.documentElement.lang),
@@ -71,7 +71,7 @@ let browser;
   for (const locale of ["en", "de"]) {
     const pathname = locale === "en" ? "generate" : "erstellen";
     await page.goto(`http://127.0.0.1:3010/${locale}/${pathname}/`, {
-      waitUntil: "networkidle0",
+      waitUntil: "networkidle2",
     });
     const next = await page.$("main button");
     await next.click();
@@ -86,7 +86,7 @@ let browser;
     await page.waitForSelector('main input[inputmode="decimal"]');
     const inputs = await page.$$('main input[inputmode="decimal"]');
     assert.equal(inputs.length, 7);
-    for (const input of inputs) await input.type("1000");
+    for (const input of inputs) await input.type("1000", { delay: 20 });
     const buttons = await page.$$("main button");
     await buttons[buttons.length - 1].click();
     await page.waitForSelector('main input[type="checkbox"]');
@@ -153,7 +153,7 @@ let browser;
     "de/erfolg",
   ]) {
     const response = await page.goto(`http://127.0.0.1:3010/${pathname}/`, {
-      waitUntil: "networkidle0",
+      waitUntil: "networkidle2",
     });
     assert.equal(response.status(), 200, pathname);
     assert.ok(await page.$("main h1"), pathname);

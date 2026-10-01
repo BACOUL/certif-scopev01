@@ -179,7 +179,7 @@ h1 { margin:0; color:#0B3A63; font-size:24px; line-height:1.15; letter-spacing:.
   <div class="title">
     <h1>${escapeHtml(c.title)}</h1>
     <div class="subtitle">${escapeHtml(c.subtitle)}</div>
-    ${sample ? `<div class="demo">DEMO · SAMPLE · NOT A LIVE ATTESTATION</div>` : ""}
+    ${sample ? `<div class="demo">DEMO · ${escapeHtml(c.title)}</div>` : ""}
   </div>
 
   <div class="result">
@@ -200,8 +200,8 @@ h1 { margin:0; color:#0B3A63; font-size:24px; line-height:1.15; letter-spacing:.
       <div class="entity-row"><div class="label">${escapeHtml(c.sector)}</div><div class="value">${escapeHtml(data.companySector)}</div></div>
       <div class="entity-row"><div class="label">${escapeHtml(c.country)}</div><div class="value">${escapeHtml(data.country)}</div></div>
       <div class="entity-row"><div class="label">${escapeHtml(c.year)}</div><div class="value">${escapeHtml(data.year)}</div></div>
-      <div class="entity-row"><div class="label">ID</div><div class="value">${escapeHtml(data.entityIdentifier || "—")}</div></div>
-      <div class="entity-row"><div class="label">Method</div><div class="value">CS-SB-v1</div></div>
+      <div class="entity-row"><div class="label">${escapeHtml(c.reference)}</div><div class="value">${escapeHtml(data.entityIdentifier || "—")}</div></div>
+      <div class="entity-row"><div class="label">${escapeHtml(c.methodTitle)}</div><div class="value">CS-SB-v1</div></div>
     </div>
   </div>
 
@@ -238,9 +238,9 @@ h1 { margin:0; color:#0B3A63; font-size:24px; line-height:1.15; letter-spacing:.
   </div>
 
   <div class="integrity">
-    <div><strong>Document integrity</strong> · ${escapeHtml(integrity.algorithm)} · ${escapeHtml(factorVersion)}</div>
+    <div><strong>${escapeHtml(c.verificationTitle)}</strong> · ${escapeHtml(integrity.algorithm)} · ${escapeHtml(factorVersion)}</div>
     <div class="integrity-row">SHA-256: ${escapeHtml(integrity.hash)}</div>
-    <div class="integrity-row">Signature: ${escapeHtml(integrity.signature)}</div>
+    <div class="integrity-row">Ed25519: ${escapeHtml(integrity.signature)}</div>
   </div>
 
   <div class="footer">

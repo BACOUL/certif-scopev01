@@ -64,7 +64,7 @@ export default function LanguageSwitcher({ locale }: { locale: EuLocale }) {
         ? "Sprache der Website"
         : locale === "en"
           ? "Site language"
-          : "Language";
+          : EU_LOCALE_LABELS[locale];
 
   return (
     <label className="relative inline-flex shrink-0 items-center">

@@ -110,7 +110,8 @@ export async function POST(req: Request) {
         ...(emailForDelivery && { emailForDelivery: String(emailForDelivery) }),
         ...(campaignRef && { campaignRef }),
       },
-      locale: isCoreLocale(uiLocale) ? uiLocale : "auto",
+      // Stripe supports 23 EU languages; Irish uses the English payment UI.
+      locale: uiLocale === "ga" ? "en" : uiLocale,
       success_url: `${base}${successPath(uiLocale)}?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${base}${generatePath(uiLocale)}`,
     });

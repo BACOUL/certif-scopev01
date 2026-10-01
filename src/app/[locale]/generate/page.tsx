@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import EuFlowShell from "@/components/international/EuFlowShell";
 import EuAssessmentForm from "@/components/international/EuAssessmentForm";
 import { EU_HOME_COPY } from "@/lib/eu-home-locales";
-import { isEuNonCoreLocale } from "@/lib/eu-flow";
+import { isEuNonCoreLocale, EU_COUNTRY_CODES, localizedCountryName } from "@/lib/eu-flow";
 
 type Params = Promise<{ locale: string }>;
 
@@ -24,7 +24,9 @@ export default async function GeneratePage({ params }: { params: Params }) {
   if (!isEuNonCoreLocale(locale)) notFound();
   return (
     <EuFlowShell locale={locale}>
-      <EuAssessmentForm locale={locale} />
+      <EuAssessmentForm locale={locale} countryOptions={EU_COUNTRY_CODES.map(code => ({
+        code, label: localizedCountryName(locale, code),
+      })).sort((a, b) => a.label.localeCompare(b.label, locale))} />
     </EuFlowShell>
   );
 }

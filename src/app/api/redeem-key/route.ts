@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import crypto from "crypto";
 import { isEuNonCoreLocale } from "@/lib/eu-flow";
+import { authorizeKeyDownload } from "@/lib/key-download";
 
 export const runtime = "nodejs";
 
@@ -135,6 +136,7 @@ export async function POST(req: Request) {
     });
 
     const locale = String(attestationLocale).toLowerCase();
+    authorizeKeyDownload(params);
     const issuePath = isEuNonCoreLocale(locale)
       ? "/api/attestation/eu"
       : "/api/attestation/issue";

@@ -4,6 +4,9 @@ import Stripe from "stripe";
 import QRCode from "qrcode";
 import { paths, sectorLabel } from "@/lib/site-locales";
 import { signCanonicalPayload, makeAttestationId } from "@/lib/sign";
+import { isEuNonCoreLocale } from "@/lib/eu-flow";
+import { buildEuAttestationPdf } from "@/lib/eu-attestation-pdf";
+import { isAuthorizedKeyDownload } from "@/lib/key-download";
 import {
   ATTESTATION_I18N,
   type AttestationLocale,
@@ -593,6 +596,7 @@ export async function GET(req: Request) {
     let metadataRaw: Record<string, unknown> = {};
 
     if (sessionId.startsWith("key_")) {
+      if (!isAuthorizedKeyDownload(searchParams)) return new Response("Invalid download authorization", { status: 403 });
       metadataRaw = Object.fromEntries(searchParams.entries());
     } else {
       const stripe = getStripeClient();
@@ -610,6 +614,28 @@ export async function GET(req: Request) {
       metadataRaw = (session.metadata || {}) as Record<string, unknown>;
     }
 
+    const documentLocale = String(metadataRaw.attestationLocale || "").toLowerCase();
+    if (isEuNonCoreLocale(documentLocale)) {
+      const totalCO2e = Number(String(metadataRaw.totalCO2e ?? "").replace(",", "."));
+      if (!metadataRaw.companyName || !metadataRaw.companySector || !metadataRaw.year || !metadataRaw.country || !Number.isFinite(totalCO2e) || totalCO2e < 0) {
+        return new Response("Invalid attestation metadata", { status: 400 });
+      }
+      const { buffer, filename } = await buildEuAttestationPdf({
+        companyName: String(metadataRaw.companyName),
+        companySector: String(metadataRaw.companySector),
+        entityIdentifier: String(metadataRaw.entityIdentifier || ""),
+        year: String(metadataRaw.year),
+        country: String(metadataRaw.country),
+        totalCO2e,
+        factorVersion: String(metadataRaw.factorVersion || "Certif-Scope factors v1"),
+      }, documentLocale);
+      return new Response(buffer, { headers: {
+        "Content-Type": "application/pdf",
+        "Content-Disposition": `attachment; filename="${filename}"`,
+        "Cache-Control": "no-store",
+        "X-Content-Type-Options": "nosniff",
+      } });
+    }
     const locale = resolveLocale(metadataRaw.attestationLocale);
     const externalI18n = {
       ...(((ATTESTATION_I18N[locale] ||
