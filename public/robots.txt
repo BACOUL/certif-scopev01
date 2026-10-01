@@ -13,3 +13,4 @@ Disallow: /test/
 Disallow: /*?*
 
 Sitemap: https://www.certif-scope.com/sitemap.xml
+Sitemap: https://www.certif-scope.com/sitemap-eu.xml
