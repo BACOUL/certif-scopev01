@@ -86,6 +86,7 @@ export const ATTESTATION_DE = {
   referencesList: [
     "GHG Protocol – Scope 3 (spend-based)",
     "ISO 14064-1 (Referenz)",
+    "ISO 14083 (Referenz)",
     "CSRD / ESRS / EU-Taxonomie (Kontext)",
   ],
 

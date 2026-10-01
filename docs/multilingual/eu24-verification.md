@@ -6,9 +6,17 @@ Branche : `fix/multilingual-fr-en-de-20261001`. Reprise depuis `d4bd1bec91265599
 
 Les 24 accueils disposent de leur langue HTML, titre, description, canonical et 25 alternates (24 langues + x-default). Le sitemap européen contient les accueils localisés. Les 21 langues supplémentaires disposent d'un formulaire en trois étapes, d'un retour de paiement, d'un téléchargement PDF, d'un exemple PDF, d'une page de lecture QR et d'un email de livraison traduit.
 
-FR/EN/DE gardent leurs modèles PDF existants sur deux pages. Les 21 autres langues utilisent un modèle partagé traduit sur une page : il ne s'agit pas d'une reproduction intégrale des modèles FR/EN/DE. Les guides, pages commerciales secondaires et pages légales ne sont pas tous traduits en 24 langues. Ce périmètre ne constitue donc pas un site intégralement traduit dans chaque langue.
+Les 24 langues utilisent désormais le même gabarit PDF sur deux pages, extrait du modèle français. Les dix rubriques, le logo, les blocs et l’annexe technique sont communs ; seuls les textes traduits, les valeurs et les formats locaux changent. Les guides, pages commerciales secondaires et pages légales ne sont pas tous traduits en 24 langues. Ce périmètre ne constitue donc pas un site intégralement traduit dans chaque langue.
 
 Stripe reçoit explicitement la langue du site pour les 23 langues prises en charge dans la version installée du SDK. La page de paiement irlandaise utilise l'anglais ; le site, le PDF et l'email restent en irlandais. Les prix, coefficients et arrondis existants sont conservés.
+
+## Harmonisation PDF sur deux pages
+
+- Un renderer HTML/CSS commun est utilisé par les attestations FR/EN/DE et par les attestations européennes, y compris les exemples.
+- Les 21 nouvelles traductions reprennent aussi les rubriques absentes du modèle court : nature, périmètre, lecture par un tiers, confidentialité, références, exclusions, annexe et synthèse.
+- La référence ISO 14083 présente en français est également rétablie dans les dictionnaires EN/DE.
+- Les signatures des fixtures ont une longueur Ed25519 réaliste.
+- `scripts/check-pdf-parity.cjs` vérifie la complétude des traductions, l’identité de la structure DOM et des styles avec FR, les dix rubriques, le logo et le QR, les débordements/chevauchements et le nombre réel de pages par `pdfinfo`. Les 24 rendus ont deux pages et aucune coupure détectée. Une revue visuelle des rendus FR/ES/DE/FI/EL/BG/GA/PL a été effectuée.
 
 ## Corrections de cette reprise
 
@@ -26,6 +34,7 @@ npm run build
 node scripts/check-ui-regressions.cjs
 node scripts/check-multilingual.cjs
 node scripts/check-eu-contracts.cjs
+CHROMIUM_EXECUTABLE_PATH=/chemin/vers/chromium node scripts/check-pdf-parity.cjs
 CHROMIUM_EXECUTABLE_PATH=/chemin/vers/chromium node scripts/check-eu-browser.cjs
 CHROMIUM_EXECUTABLE_PATH=/chemin/vers/chromium node scripts/check-multilingual-browser.cjs
 ```

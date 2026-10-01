@@ -98,7 +98,7 @@ function load(filename) {
               .createHash("sha256")
               .update(JSON.stringify(payload))
               .digest("hex"),
-            signatureBase64: "test-signature",
+            signatureBase64: Buffer.alloc(64, 7).toString("base64"),
           }),
           makeAttestationId: (year, hash) => `CS-${year}-${hash.slice(0, 8)}`,
         };
