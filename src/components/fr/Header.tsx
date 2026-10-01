@@ -5,9 +5,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
+import { FR_HOME_NAV, type HomeNavigation } from "@/lib/home-navigation";
+import type { EuHomeLocale } from "@/lib/eu-home-locales";
 import LanguageSwitcher from "@/components/international/LanguageSwitcher";
 
-export default function HeaderFR() {
+export default function HeaderFR({
+  locale = "fr",
+  navigation = FR_HOME_NAV,
+}: {
+  locale?: EuHomeLocale;
+  navigation?: HomeNavigation;
+}) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [dropdown, setDropdown] = useState(false);
@@ -18,17 +26,7 @@ export default function HeaderFR() {
   const dropdownButtonRef = useRef<HTMLButtonElement | null>(null);
   const dropdownPanelRef = useRef<HTMLDivElement | null>(null);
 
-  const routes = {
-    home: "/fr/",
-    pillarBilanCarbonePME: "/fr/bilan-carbone-pme/",
-    product: "/fr/product/",
-    methodology: "/fr/product/methodology/",
-    compliance: "/fr/product/compliance/",
-    privacy: "/fr/privacy/",
-    verify: "/fr/verify/",
-    pricing: "/fr/pricing/",
-    generate: "/fr/generate/",
-  };
+  const { routes, labels } = navigation;
 
   const closeAll = () => {
     setDropdown(false);
@@ -58,8 +56,7 @@ export default function HeaderFR() {
       const clickedInsideMobileNav =
         navMobileRef.current?.contains(target) ?? false;
 
-      const clickedInsideBurger =
-        burgerRef.current?.contains(target) ?? false;
+      const clickedInsideBurger = burgerRef.current?.contains(target) ?? false;
 
       const clickedInsideDropdownButton =
         dropdownButtonRef.current?.contains(target) ?? false;
@@ -106,7 +103,8 @@ export default function HeaderFR() {
     return value.endsWith("/") ? value.slice(0, -1) : value;
   };
 
-  const isActive = (href: string) => normalizePath(pathname) === normalizePath(href);
+  const isActive = (href: string) =>
+    normalizePath(pathname) === normalizePath(href);
 
   const isAttestationActive =
     isActive(routes.product) ||
@@ -115,7 +113,7 @@ export default function HeaderFR() {
     isActive(routes.privacy);
 
   const navLinkBase =
-    "relative text-sm font-medium text-[#475569] transition-colors duration-300 hover:text-[#0B3A63]";
+    "relative max-w-[130px] text-center text-sm font-medium text-[#475569] transition-colors duration-300 hover:text-[#0B3A63]";
   const navLinkActive = "text-[#0B3A63]";
 
   const dropdownItemBase =
@@ -132,13 +130,13 @@ export default function HeaderFR() {
     <header
       id="top"
       role="banner"
-      className="fixed left-0 top-0 z-[1000] w-full border-b border-[#0B3A63]/8 bg-white/92 backdrop-blur-md"
+      className="border-[#0B3A63]/8 bg-white/92 fixed left-0 top-0 z-[1000] w-full border-b backdrop-blur-md"
     >
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-5 py-3 md:px-6 md:py-4">
         <Link
           href={routes.home}
           onClick={closeAll}
-          aria-label="Accueil Certif-Scope"
+          aria-label={`Certif-Scope ${labels.home}`}
           className="shrink-0"
         >
           <Image
@@ -151,7 +149,7 @@ export default function HeaderFR() {
           />
         </Link>
 
-        <LanguageSwitcher locale="fr" />
+        <LanguageSwitcher locale={locale} />
 
         <button
           ref={burgerRef}
@@ -160,10 +158,10 @@ export default function HeaderFR() {
             setOpen((prev) => !prev);
             setDropdown(false);
           }}
-          aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
+          aria-label={labels.menu}
           aria-expanded={open}
           aria-controls="main-navigation-mobile"
-          className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#0B3A63]/10 bg-white text-[#0B3A63] shadow-sm transition-all duration-300 hover:bg-[#F8FAFC] lg:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#0B3A63]/10 bg-white text-[#0B3A63] shadow-sm transition-all duration-300 hover:bg-[#F8FAFC] xl:hidden"
         >
           <span className="relative flex h-4 w-5 flex-col items-center justify-between">
             <span
@@ -184,11 +182,11 @@ export default function HeaderFR() {
           </span>
         </button>
 
-        <div className="hidden items-center gap-4 lg:flex">
+        <div className="hidden items-center gap-4 xl:flex">
           <nav
             ref={navDesktopRef}
             id="main-navigation-desktop"
-            aria-label="Navigation principale"
+            aria-label={labels.menu}
             className="flex items-center gap-7"
           >
             <Link
@@ -199,7 +197,7 @@ export default function HeaderFR() {
                 isActive(routes.home) ? navLinkActive : ""
               }`}
             >
-              Accueil
+              {labels.home}
             </Link>
 
             <Link
@@ -212,7 +210,7 @@ export default function HeaderFR() {
                 isActive(routes.pillarBilanCarbonePME) ? navLinkActive : ""
               }`}
             >
-              Bilan carbone PME
+              {labels.guide}
             </Link>
 
             <div className="relative">
@@ -225,9 +223,9 @@ export default function HeaderFR() {
                 aria-controls="attestation-dropdown-desktop"
                 className={`${navLinkBase} ${
                   isAttestationActive ? navLinkActive : ""
-                } flex items-center gap-2`}
+                } flex max-w-[150px] items-center gap-2`}
               >
-                Attestation CO₂e
+                {labels.product}
                 <span
                   className={`text-[10px] transition-transform duration-300 ${
                     dropdown ? "rotate-180" : ""
@@ -244,12 +242,12 @@ export default function HeaderFR() {
                   role="menu"
                   className="absolute left-0 top-[calc(100%+14px)] z-[1100] w-72 overflow-hidden rounded-2xl border border-[#0B3A63]/10 bg-white p-3 shadow-[0_18px_40px_rgba(11,58,99,0.12)]"
                 >
-                  <div className="mb-2 rounded-xl border border-[#1FB6C1]/14 bg-[linear-gradient(180deg,rgba(31,182,193,0.08)_0%,rgba(31,182,193,0.03)_100%)] px-3 py-3">
+                  <div className="border-[#1FB6C1]/14 mb-2 rounded-xl border bg-[linear-gradient(180deg,rgba(31,182,193,0.08)_0%,rgba(31,182,193,0.03)_100%)] px-3 py-3">
                     <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#64748B]">
-                      Produit
+                      {labels.product}
                     </p>
                     <p className="mt-1 text-sm font-semibold text-[#0B3A63]">
-                      Comprendre le document, sa méthode et son périmètre
+                      {labels.presentation}
                     </p>
                   </div>
 
@@ -260,7 +258,7 @@ export default function HeaderFR() {
                       isActive(routes.product) ? dropdownItemActive : ""
                     }`}
                   >
-                    Présentation
+                    {labels.presentation}
                   </Link>
 
                   <Link
@@ -270,7 +268,7 @@ export default function HeaderFR() {
                       isActive(routes.methodology) ? dropdownItemActive : ""
                     }`}
                   >
-                    Méthodologie
+                    {labels.methodology}
                   </Link>
 
                   <Link
@@ -280,7 +278,7 @@ export default function HeaderFR() {
                       isActive(routes.compliance) ? dropdownItemActive : ""
                     }`}
                   >
-                    Cadre &amp; conformité
+                    {labels.compliance}
                   </Link>
 
                   <Link
@@ -290,7 +288,7 @@ export default function HeaderFR() {
                       isActive(routes.privacy) ? dropdownItemActive : ""
                     }`}
                   >
-                    Confidentialité
+                    {labels.privacy}
                   </Link>
                 </div>
               )}
@@ -304,7 +302,7 @@ export default function HeaderFR() {
                 isActive(routes.verify) ? navLinkActive : ""
               }`}
             >
-              Vérifier
+              {labels.verify}
             </Link>
 
             <Link
@@ -315,7 +313,7 @@ export default function HeaderFR() {
                 isActive(routes.pricing) ? navLinkActive : ""
               }`}
             >
-              Tarification
+              {labels.pricing}
             </Link>
           </nav>
 
@@ -324,7 +322,7 @@ export default function HeaderFR() {
             onClick={closeAll}
             className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-[#0B3A63] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(31,182,193,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#082C4B]"
           >
-            Générer
+            {labels.generate}
           </Link>
         </div>
       </div>
@@ -332,8 +330,8 @@ export default function HeaderFR() {
       <div
         ref={navMobileRef}
         id="main-navigation-mobile"
-        aria-label="Navigation principale mobile"
-        className={`px-4 pb-4 lg:hidden ${open ? "block" : "hidden"}`}
+        aria-label={labels.menu}
+        className={`px-4 pb-4 xl:hidden ${open ? "block" : "hidden"}`}
       >
         <div className="overflow-hidden rounded-[24px] border border-[#0B3A63]/10 bg-white p-4 shadow-[0_18px_40px_rgba(11,58,99,0.12)]">
           <div className="flex flex-col gap-2">
@@ -345,7 +343,7 @@ export default function HeaderFR() {
                 isActive(routes.home) ? mobileLinkActive : mobileLinkInactive
               }`}
             >
-              Accueil
+              {labels.home}
             </Link>
 
             <Link
@@ -360,7 +358,7 @@ export default function HeaderFR() {
                   : mobileLinkInactive
               }`}
             >
-              Bilan carbone PME
+              {labels.guide}
             </Link>
 
             <button
@@ -375,7 +373,7 @@ export default function HeaderFR() {
                   : "text-[#475569] hover:bg-[#F8FAFC] hover:text-[#0B3A63]"
               }`}
             >
-              <span>Attestation CO₂e</span>
+              <span>{labels.product}</span>
               <span
                 className={`text-[10px] transition-transform duration-300 ${
                   dropdown ? "rotate-180" : ""
@@ -399,7 +397,7 @@ export default function HeaderFR() {
                       : "text-[#475569] hover:bg-white hover:text-[#0B3A63]"
                   }`}
                 >
-                  Présentation
+                  {labels.presentation}
                 </Link>
 
                 <Link
@@ -411,7 +409,7 @@ export default function HeaderFR() {
                       : "text-[#475569] hover:bg-white hover:text-[#0B3A63]"
                   }`}
                 >
-                  Méthodologie
+                  {labels.methodology}
                 </Link>
 
                 <Link
@@ -423,7 +421,7 @@ export default function HeaderFR() {
                       : "text-[#475569] hover:bg-white hover:text-[#0B3A63]"
                   }`}
                 >
-                  Cadre &amp; conformité
+                  {labels.compliance}
                 </Link>
 
                 <Link
@@ -435,7 +433,7 @@ export default function HeaderFR() {
                       : "text-[#475569] hover:bg-white hover:text-[#0B3A63]"
                   }`}
                 >
-                  Confidentialité
+                  {labels.privacy}
                 </Link>
               </div>
             )}
@@ -448,7 +446,7 @@ export default function HeaderFR() {
                 isActive(routes.verify) ? mobileLinkActive : mobileLinkInactive
               }`}
             >
-              Vérifier
+              {labels.verify}
             </Link>
 
             <Link
@@ -459,17 +457,17 @@ export default function HeaderFR() {
                 isActive(routes.pricing) ? mobileLinkActive : mobileLinkInactive
               }`}
             >
-              Tarification
+              {labels.pricing}
             </Link>
           </div>
 
-          <div className="mt-4 border-t border-[#0B3A63]/8 pt-4">
+          <div className="border-[#0B3A63]/8 mt-4 border-t pt-4">
             <Link
               href={routes.generate}
               onClick={closeAll}
               className="inline-flex min-h-[48px] w-full items-center justify-center rounded-xl bg-[#0B3A63] px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(31,182,193,0.22)] transition-all duration-300 hover:bg-[#082C4B]"
             >
-              Générer une attestation
+              {labels.generate}
             </Link>
           </div>
         </div>

@@ -1,18 +1,11 @@
 // PATH: src/app/fr/page.tsx
 
 import type { Metadata } from "next";
-import Link from "next/link";
 
 import ScrollUp from "@/components/Common/ScrollUp";
 import { EU_HOME_ALTERNATES } from "@/lib/eu-locales-core";
 
-// FR — composants définitifs
-import HeroFR from "@/components/fr/Hero";
-import UseCaseDecisionTable from "@/components/fr/UseCaseDecisionTable";
-import FeaturesFR from "@/components/fr/Features";
-import HowItWorksFR from "@/components/fr/HowItWorks";
-import PricingFR from "@/components/fr/Pricing";
-import FAQFR from "@/components/fr/FAQ";
+import Homepage from "@/components/international/Homepage";
 
 /* ======================================================
    SEO / IA — META FR (HOME)
@@ -126,140 +119,7 @@ export default function HomeFR() {
           }}
         />
 
-        {/* 1) Hero */}
-        <HeroFR />
-
-        {/* 2) Est-ce adapté à votre demande */}
-        <UseCaseDecisionTable />
-
-        {/* 3) Problème / besoin réel */}
-
-
-        {/* 4) Différenciation / pourquoi cette réponse */}
-
-
-        {/* 5) Produit / document concret */}
-        <FeaturesFR />
-
-        {/* 6) Ce que le destinataire verra */}
-
-
-        {/* 7) Références officielles / légitimation de la méthode */}
-
-
-        {/* 8) Comment ça marche */}
-        <HowItWorksFR />
-      <section className="mx-auto max-w-7xl px-6 py-12"><h2 className="text-2xl font-bold text-[#0B3A63]">Un doute avant de payer ?</h2><p className="mt-3 max-w-3xl text-gray-700">Consultez l’exemple avec votre destinataire pour confirmer le périmètre attendu. Certif-Scope fournit une estimation indicative, sans validation externe des émissions.</p><div className="mt-5 flex flex-wrap gap-5"><Link className="font-semibold underline text-[#0B3A63]" href="/fr/contact/">Nous contacter</Link><Link className="font-semibold underline text-[#0B3A63]" href="/fr/product/methodology/">Comprendre le calcul</Link></div></section>
-
-        {/* 9) Cas d’usage terrain */}
-
-
-        {/* 10) Pricing */}
-        <PricingFR />
-
-        {/* 11) FAQ */}
-        <FAQFR />
-
-        {/* 12) CTA final */}
-        <section
-          id="final-cta"
-          data-section="final-cta"
-          className="relative overflow-hidden bg-[#F8FAFC] py-12 md:py-16"
-          aria-label="Appel à l’action final"
-        >
-          <div className="absolute inset-0 -z-30 bg-[linear-gradient(180deg,#F8FAFC_0%,#ffffff_100%)]" />
-          <div className="absolute left-[-8%] top-16 -z-10 h-60 w-60 rounded-full bg-[#1FB6C1]/6 blur-3xl" />
-          <div className="absolute right-[-6%] bottom-10 -z-10 h-80 w-80 rounded-full bg-[#0B3A63]/6 blur-3xl" />
-
-          <div className="mx-auto max-w-6xl px-6">
-            <div className="rounded-[30px] border border-[#0B3A63]/10 bg-white p-8 shadow-[0_25px_60px_rgba(11,58,99,0.10)] md:p-12">
-              <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-center">
-                <div className="lg:col-span-8">
-                  <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-[#0B3A63]/70 md:text-sm">
-                    Réponse rapide — format standardisé
-                  </p>
-
-                  <h2 className="text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">
-                    Produire une attestation CO₂e indicative, claire et
-                    vérifiable
-                  </h2>
-
-                  <p className="mt-4 max-w-2xl text-lg leading-relaxed text-[#0B3A63]/80">
-                    Si votre demande relève du screening fournisseur, d’un appel
-                    d’offres ou d’une revue banque/assurance, l’objectif est un
-                    document lisible, archivable et cohérent : résultat CO₂e
-                    agrégé, année, méthode déclarée, limites explicites et
-                    vérification.
-                  </p>
-
-                  <div className="mt-6 flex flex-wrap gap-3">
-                    <Link
-                      href="/fr/generate"
-                      className="inline-flex items-center justify-center rounded-xl bg-[#0B3A63] px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0B3A63]"
-                    >
-                      Générer mon attestation →
-                    </Link>
-
-                    <Link
-                      href="/fr/pricing"
-                      className="inline-flex items-center justify-center rounded-xl border border-[#0B3A63] px-5 py-3 text-sm font-semibold text-[#0B3A63] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0B3A63] hover:text-white"
-                    >
-                      Voir le prix
-                    </Link>
-
-                    <Link
-                      href="/fr/bilan-carbone-pme"
-                      className="inline-flex items-center justify-center rounded-xl border border-[#0B3A63]/20 px-4 py-3 text-sm font-medium text-[#0B3A63] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#F8FAFC]"
-                    >
-                      Lire le guide PME →
-                    </Link>
-                  </div>
-                </div>
-
-                <div className="lg:col-span-4">
-                  <div className="rounded-[24px] border border-[#0B3A63]/10 bg-[#F8FAFC] p-6">
-                    <h3 className="mb-3 text-lg font-semibold text-[#0B3A63]">
-                      Rappel de périmètre
-                    </h3>
-
-                    <ul className="ml-6 list-disc space-y-2 text-sm text-[#0B3A63]/80">
-                      <li>estimation indicative en spend-based</li>
-                      <li>résultat agrégé en tCO₂e</li>
-                      <li>document standardisé et vérifiable</li>
-                      <li>non audit, non inventaire complet</li>
-                      <li>non reporting CSRD/ESRS</li>
-                    </ul>
-
-                    <div className="mt-5 flex flex-wrap gap-3">
-                      <Link
-                        href="/fr/verify"
-                        className="inline-flex items-center justify-center rounded-lg border border-[#0B3A63]/20 px-4 py-2 text-sm text-[#0B3A63] transition-colors hover:bg-white"
-                      >
-                        Vérifier →
-                      </Link>
-
-                      <Link
-                        href="/fr/privacy/"
-                        className="inline-flex items-center justify-center rounded-lg border border-[#0B3A63]/20 px-4 py-2 text-sm text-[#0B3A63] transition-colors hover:bg-white"
-                      >
-                        Confidentialité →
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-10 flex flex-wrap gap-3">
-                <a
-                  href="#main-content"
-                  className="inline-flex items-center justify-center rounded-lg border border-[#0B3A63]/20 px-4 py-2 text-sm text-[#0B3A63] transition-colors hover:bg-[#F8FAFC]"
-                >
-                  Haut de page
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
+        <Homepage locale="fr" />
       </main>
     </>
   );
