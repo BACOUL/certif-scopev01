@@ -132,12 +132,6 @@ export const SECTORS = [
   {
     value: "transport_logistics",
     fr: "Transport, logistique & livraison",
-    en: "Transport, logistics & retail",
-    de: "Handel, Vertrieb & Verkauf",
-  },
-  {
-    value: "transport_logistics",
-    fr: "Transport, logistique & livraison",
     en: "Transport, logistics & delivery",
     de: "Transport, Logistik & Lieferung",
   },
