@@ -1,50 +1,78 @@
 "use client";
-import { usePathname, useSearchParams } from "next/navigation";
-import Link from "next/link";
+
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import {
-  localeNames,
   paths,
   SITE_LOCALES,
   type PageKey,
   type SiteLocale,
 } from "@/lib/site-locales";
-export default function LanguageSwitcher({ locale }: { locale: SiteLocale }) {
-  const pathname = usePathname().replace(/\/$/, "") + "/";
+import {
+  EU_LOCALES,
+  EU_LOCALE_LABELS,
+  isEuLocale,
+  type EuLocale,
+} from "@/lib/eu-locales-core";
+
+function isCoreLocale(locale: EuLocale): locale is SiteLocale {
+  return SITE_LOCALES.includes(locale as SiteLocale);
+}
+
+export default function LanguageSwitcher({ locale }: { locale: EuLocale }) {
+  const router = useRouter();
+  const pathname = usePathname();
   const search = useSearchParams();
-  const page =
-    (Object.keys(paths[locale]) as PageKey[]).find(
-      (k) => paths[locale][k] === pathname,
-    ) || "home";
+  const normalizedPath = `${pathname.replace(/\/$/, "") || ""}/`;
+  const coreLocale = isCoreLocale(locale) ? locale : null;
+
+  const page: PageKey = coreLocale
+    ? (Object.keys(paths[coreLocale]) as PageKey[]).find(
+        (key) => paths[coreLocale][key] === normalizedPath,
+      ) || "home"
+    : "home";
+
   const parameter =
     page === "success" ? "session_id" : page === "verify" ? "v" : null;
   const value = parameter ? search.get(parameter) : null;
   const suffix =
     parameter && value ? `?${parameter}=${encodeURIComponent(value)}` : "";
+
+  const destinationFor = (target: EuLocale) => {
+    if (isCoreLocale(target)) {
+      return coreLocale
+        ? `${paths[target][page]}${suffix}`
+        : paths[target].home;
+    }
+    return `/${target}/`;
+  };
+
+  const label =
+    locale === "fr"
+      ? "Langue du site"
+      : locale === "de"
+        ? "Sprache der Website"
+        : locale === "en"
+          ? "Site language"
+          : "Language";
+
   return (
-    <nav
-      aria-label={
-        {
-          fr: "Langue du site",
-          en: "Site language",
-          de: "Sprache der Website",
-        }[locale]
-      }
-      className="flex shrink-0 flex-wrap items-center gap-1 text-xs font-semibold"
-    >
-      {SITE_LOCALES.map((l) => (
-        <Link
-          key={l}
-          href={`${paths[l][page]}${suffix}`}
-          hrefLang={l}
-          lang={l}
-          aria-label={localeNames[l]}
-          aria-current={l === locale ? "page" : undefined}
-          className={`rounded-md px-2 py-2 ${l === locale ? "bg-[#0B3A63] text-white" : "text-[#0B3A63] hover:bg-[#F8FAFC]"}`}
-        >
-          <span className="sm:hidden">{l.toUpperCase()}</span>
-          <span className="hidden sm:inline">{localeNames[l]}</span>
-        </Link>
-      ))}
-    </nav>
+    <label className="relative inline-flex shrink-0 items-center">
+      <span className="sr-only">{label}</span>
+      <select
+        aria-label={label}
+        value={locale}
+        onChange={(event) => {
+          const target = event.target.value;
+          if (isEuLocale(target)) router.push(destinationFor(target));
+        }}
+        className="min-h-[42px] max-w-[150px] cursor-pointer rounded-xl border border-[#0B3A63]/15 bg-white px-3 py-2 pr-8 text-sm font-semibold text-[#0B3A63] shadow-sm outline-none transition hover:border-[#0B3A63]/30 focus:border-[#1FB6C1] focus:ring-2 focus:ring-[#1FB6C1]/20 sm:max-w-[180px]"
+      >
+        {EU_LOCALES.map((target) => (
+          <option key={target} value={target} lang={target}>
+            {EU_LOCALE_LABELS[target]}
+          </option>
+        ))}
+      </select>
+    </label>
   );
 }
