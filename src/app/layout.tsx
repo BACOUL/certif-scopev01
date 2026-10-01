@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import ClientLayout from "./client-layout";
+import { headers } from "next/headers";
+import { siteLocale } from "@/lib/site-locales";
 import "../styles/index.css";
 
 export const dynamic = "force-dynamic";
@@ -44,13 +46,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const locale = siteLocale((await headers()).get("x-site-locale"));
   return (
-    <html lang="fr" className="light" suppressHydrationWarning>
+    <html lang={locale} className="light" suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"
@@ -75,7 +78,7 @@ export default function RootLayout({
               "@type": "WebSite",
               name: "Certif-Scope",
               url: "https://www.certif-scope.com/fr/",
-              inLanguage: "fr-FR",
+              inLanguage: locale,
             }),
           }}
         />

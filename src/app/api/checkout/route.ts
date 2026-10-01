@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import Stripe from "stripe";
+import { SITE_LOCALES, paths, siteLocale as resolveSiteLocale, sectorLabel } from "@/lib/site-locales";
 
 export const runtime = "nodejs";
 
@@ -12,10 +13,7 @@ function getStripeClient() {
   return stripeClient;
 }
 
-const ALLOWED_ATTESTATION_LOCALES = [
-  "en", "fr", "de", "es", "it", "pt", "nl", "pl", "cs", "sk", "hu",
-  "ro", "bg", "hr", "sl", "et", "lv", "lt", "mt", "el", "fi", "sv", "da", "ga",
-] as const;
+const ALLOWED_ATTESTATION_LOCALES = SITE_LOCALES;
 type AttestationLocale = (typeof ALLOWED_ATTESTATION_LOCALES)[number];
 
 export async function POST(req: Request) {
@@ -31,7 +29,7 @@ export async function POST(req: Request) {
     const body = await req.json();
     const {
       companyName, companySector, entityIdentifier, year, country, totalCO2e,
-      methodology, attestationLocale, emailForDelivery,
+      methodology, attestationLocale, emailForDelivery, siteLocale,
     } = body;
 
     if (!companyName || !companySector || !year || !country) {
@@ -45,6 +43,7 @@ export async function POST(req: Request) {
     }
 
     const cookieStore = await cookies();
+    const uiLocale = resolveSiteLocale(siteLocale);
     const campaignRef = String(cookieStore.get("certif_scope_ref")?.value || "").slice(0, 500);
 
     const session = await stripe.checkout.sessions.create({
@@ -55,7 +54,7 @@ export async function POST(req: Request) {
       metadata: {
         product: "certif-scope-attestation",
         companyName: String(companyName),
-        companySector: String(companySector),
+        companySector: sectorLabel(String(companySector), attestationLocale),
         entityIdentifier: String(entityIdentifier || ""),
         year: String(year),
         country: String(country),
@@ -63,11 +62,13 @@ export async function POST(req: Request) {
         methodology: String(methodology),
         attestationLocale: String(attestationLocale),
         referenceLocale: "en",
+        siteLocale: uiLocale,
         ...(emailForDelivery && { emailForDelivery: String(emailForDelivery) }),
         ...(campaignRef && { campaignRef }),
       },
-      success_url: `${BASE_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${BASE_URL}/generate`,
+      locale: uiLocale,
+      success_url: `${BASE_URL.replace(/\/$/, "")}${paths[uiLocale].success}?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${BASE_URL.replace(/\/$/, "")}${paths[uiLocale].generate}`,
     });
 
     return NextResponse.json({ url: session.url });

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
+import { paths, siteLocale } from "@/lib/site-locales";
 
 export const runtime = "nodejs";
 
@@ -43,15 +44,14 @@ const PACKS: Record<
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const pack = searchParams.get("pack");
+  const locale = siteLocale(searchParams.get("siteLocale"));
 
   if (!pack || !PACKS[pack]) {
-    return NextResponse.json(
-      { error: "INVALID_PACK" },
-      { status: 400 }
-    );
+    return NextResponse.json({ error: "INVALID_PACK" }, { status: 400 });
   }
 
   const origin =
+    process.env.NEXT_PUBLIC_BASE_URL?.replace(/\/$/, "") ||
     req.headers.get("origin") ||
     (req.headers.get("x-forwarded-proto") &&
       req.headers.get("host") &&
@@ -65,12 +65,13 @@ export async function GET(req: Request) {
   if (!stripe) {
     return NextResponse.json(
       { error: "MISSING_STRIPE_SECRET_KEY" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 
   const session = await stripe.checkout.sessions.create({
     mode: "payment",
+    locale,
 
     // ✅ FACTURE STRIPE AUTOMATIQUE
     invoice_creation: {
@@ -83,7 +84,12 @@ export async function GET(req: Request) {
           currency: "eur",
           unit_amount: amount,
           product_data: {
-            name: label,
+            name:
+              locale === "de"
+                ? `Certif-Scope — Paket mit ${credits} Bescheinigungen`
+                : locale === "fr"
+                  ? `Certif-Scope — Pack de ${credits} attestations`
+                  : label,
           },
         },
         quantity: 1,
@@ -94,10 +100,11 @@ export async function GET(req: Request) {
       product: "certif-scope-pack",
       pack,
       credits: String(credits),
+      siteLocale: locale,
     },
 
-    success_url: `${origin}/success?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${origin}/pricing`,
+    success_url: `${origin}${paths[locale].success}?session_id={CHECKOUT_SESSION_ID}`,
+    cancel_url: `${origin}${paths[locale].pricing}#packs`,
   });
 
   return NextResponse.redirect(session.url!, 303);

@@ -10,6 +10,9 @@ export const metadata: Metadata = {
     canonical: "https://www.certif-scope.com/fr/pricing/",
     languages: {
       fr: "https://www.certif-scope.com/fr/pricing/",
+      en: "https://www.certif-scope.com/en/pricing/",
+      de: "https://www.certif-scope.com/de/preise/",
+      "x-default": "https://www.certif-scope.com/fr/pricing/",
     },
   },
   openGraph: {

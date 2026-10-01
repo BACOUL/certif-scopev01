@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
+import LanguageSwitcher from "@/components/international/LanguageSwitcher";
 
 export default function HeaderFR() {
   const pathname = usePathname();
@@ -149,6 +150,8 @@ export default function HeaderFR() {
             className="h-auto w-[142px] sm:w-[152px] md:w-[180px]"
           />
         </Link>
+
+        <LanguageSwitcher locale="fr" />
 
         <button
           ref={burgerRef}

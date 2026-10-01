@@ -44,7 +44,9 @@ export const metadata: Metadata = {
     canonical: "https://www.certif-scope.com/fr/",
     languages: {
       fr: "https://www.certif-scope.com/fr/",
+      en: "https://www.certif-scope.com/en/",
       de: "https://www.certif-scope.com/de/",
+      "x-default": "https://www.certif-scope.com/fr/",
     },
   },
   openGraph: {

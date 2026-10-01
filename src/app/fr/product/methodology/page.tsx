@@ -9,6 +9,9 @@ export const metadata: Metadata = {
     canonical: "https://www.certif-scope.com/fr/product/methodology/",
     languages: {
       fr: "https://www.certif-scope.com/fr/product/methodology/",
+      en: "https://www.certif-scope.com/en/product/methodology/",
+      de: "https://www.certif-scope.com/de/methodik/",
+      "x-default": "https://www.certif-scope.com/fr/product/methodology/",
     },
   },
   openGraph: {

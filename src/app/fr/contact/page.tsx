@@ -6,6 +6,12 @@ export const metadata: Metadata = {
     "Contactez Certif-Scope pour le support, les demandes institutionnelles ou toute information générale relative aux attestations carbone.",
   alternates: {
     canonical: "https://www.certif-scope.com/fr/contact/",
+    languages: {
+      fr: "https://www.certif-scope.com/fr/contact/",
+      en: "https://www.certif-scope.com/en/contact/",
+      de: "https://www.certif-scope.com/de/kontakt/",
+      "x-default": "https://www.certif-scope.com/fr/contact/",
+    },
   },
   openGraph: {
     title: "Contact — Certif-Scope",

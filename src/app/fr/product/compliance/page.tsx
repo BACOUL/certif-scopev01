@@ -8,6 +8,9 @@ export const metadata: Metadata = {
     canonical: "https://www.certif-scope.com/fr/product/compliance/",
     languages: {
       fr: "https://www.certif-scope.com/fr/product/compliance/",
+      en: "https://www.certif-scope.com/en/product/compliance/",
+      de: "https://www.certif-scope.com/de/grenzen-und-compliance/",
+      "x-default": "https://www.certif-scope.com/fr/product/compliance/",
     },
   },
   openGraph: {

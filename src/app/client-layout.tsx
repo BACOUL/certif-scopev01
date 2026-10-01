@@ -11,13 +11,15 @@ import ScrollToTop from "@/components/ScrollToTop";
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isGermanRoute = pathname === "/de" || pathname.startsWith("/de/");
+  const isEnglishRoute = pathname === "/en" || pathname.startsWith("/en/");
 
   useEffect(() => {
+    document.documentElement.lang = isGermanRoute ? "de" : isEnglishRoute ? "en" : "fr";
     const closeEvent = new Event("close-mobile-menu");
     window.dispatchEvent(closeEvent);
-  }, [pathname]);
+  }, [pathname, isGermanRoute, isEnglishRoute]);
 
-  if (isGermanRoute) {
+  if (isGermanRoute || isEnglishRoute) {
     return (
       <>
         {children}

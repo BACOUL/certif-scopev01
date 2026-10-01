@@ -9,6 +9,12 @@ export const metadata: Metadata = {
     "Générez une attestation CO₂e indicative pour PME, basée sur les dépenses, sans audit complet ni stockage des données financières détaillées.",
   alternates: {
     canonical: "https://www.certif-scope.com/fr/generate/",
+    languages: {
+      fr: "https://www.certif-scope.com/fr/generate/",
+      en: "https://www.certif-scope.com/en/generate/",
+      de: "https://www.certif-scope.com/de/erstellen/",
+      "x-default": "https://www.certif-scope.com/fr/generate/",
+    },
   },
   openGraph: {
     title: "Générer une attestation CO₂e PME | Certif-Scope",

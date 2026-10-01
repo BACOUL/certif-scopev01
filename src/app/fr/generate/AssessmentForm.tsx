@@ -9,6 +9,7 @@ import { useId, useState } from "react";
 ====================================================== */
 
 import { EMISSION_FACTORS, METHODOLOGY, parseExpense as toNumber } from "@/lib/indicative-model";
+import { localeNames, sectorLabel } from "@/lib/site-locales";
 
 const ACCEPTED_SCOPE_ERROR =
   "Veuillez confirmer que vous comprenez le périmètre indicatif de l’attestation avant de continuer.";
@@ -315,13 +316,14 @@ export default function AssessmentForm() {
 
     const basePayload = {
       companyName: companyName.trim(),
-      companySector: selectedSectorLabel,
+      companySector: sectorLabel(sector, attestationLocale),
       entityIdentifier: companyId.trim() || "",
       year: String(year),
       country,
       totalCO2e,
       methodology: METHODOLOGY,
       attestationLocale,
+      siteLocale: "fr",
     };
 
     const payload = {
@@ -383,6 +385,7 @@ export default function AssessmentForm() {
     { label: "Secteur", value: displayedSectorLabel },
     { label: "Résultat estimé", value: resultLabel },
     { label: "Document", value: "Attestation CO₂e indicative PDF" },
+    { label: "Langue de l’attestation", value: localeNames[attestationLocale] },
     { label: "Prix", value: isRedeeming ? "1 crédit du pack" : "89 € · TVA non applicable" },
     { label: "Livraison", value: isRedeeming ? "Après utilisation du crédit" : "Après confirmation du paiement" },
   ];

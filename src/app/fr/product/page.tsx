@@ -10,8 +10,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.certif-scope.com/fr/product/",
     languages: {
-      en: "https://www.certif-scope.com/product/",
       fr: "https://www.certif-scope.com/fr/product/",
+      en: "https://www.certif-scope.com/en/product/",
+      de: "https://www.certif-scope.com/de/produkt/",
+      "x-default": "https://www.certif-scope.com/fr/product/",
     },
   },
   openGraph: {

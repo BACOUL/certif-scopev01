@@ -24,7 +24,9 @@ export function middleware(req: NextRequest) {
   const pathname = req.nextUrl.pathname;
   if (isBypassPath(pathname)) return NextResponse.next();
 
-  const res = NextResponse.next();
+  const requestHeaders = new Headers(req.headers);
+  requestHeaders.set("x-site-locale", /^\/de(?:\/|$)/.test(pathname) ? "de" : /^\/en(?:\/|$)/.test(pathname) ? "en" : "fr");
+  const res = NextResponse.next({ request: { headers: requestHeaders } });
   res.headers.set("X-Content-Type-Options", "nosniff");
   res.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
   res.headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=(), payment=()");
@@ -51,5 +53,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/verify/:path*", "/api/:path*", "/de/:path*", "/fr/:path*"],
+  matcher: ["/verify/:path*", "/api/:path*", "/de/:path*", "/fr/:path*", "/en/:path*"],
 };

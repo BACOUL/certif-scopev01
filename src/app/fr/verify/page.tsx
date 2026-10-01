@@ -21,8 +21,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.certif-scope.com/fr/verify/",
     languages: {
-      en: "https://www.certif-scope.com/verify",
       fr: "https://www.certif-scope.com/fr/verify/",
+      en: "https://www.certif-scope.com/en/verify/",
+      de: "https://www.certif-scope.com/de/pruefen/",
+      "x-default": "https://www.certif-scope.com/fr/verify/",
     },
   },
   openGraph: {

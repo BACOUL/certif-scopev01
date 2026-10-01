@@ -200,7 +200,7 @@ const COPY: Record<AttestationLocale, Copy> = {
       "Cette page précise la méthode utilisée, les références de contexte, les éléments de vérification et les limites documentaires de l’attestation.",
     methodologySectionTitle: "PRINCIPE MÉTHODOLOGIQUE",
     methodologyLabel: "Méthodologie",
-    methodologyValue: "Certif-Scope deterministic spend-based methodology v1.0",
+    methodologyValue: "Méthodologie déterministe Certif-Scope fondée sur les dépenses v1.0",
     methodologyText:
       "L’estimation repose sur une approche monétaire dite spend-based. Les dépenses agrégées déclarées par l’entité sont associées à des facteurs d’émission monétaires afin d’obtenir une estimation CO₂e indicative.",
     formulaText:
@@ -323,7 +323,7 @@ const COPY: Record<AttestationLocale, Copy> = {
       "Diese Seite erläutert die verwendete Methodik, Kontextreferenzen, Prüfelemente und dokumentarische Grenzen der Bescheinigung.",
     methodologySectionTitle: "METHODISCHES PRINZIP",
     methodologyLabel: "Methodik",
-    methodologyValue: "Certif-Scope deterministic spend-based methodology v1.0",
+    methodologyValue: "Deterministische ausgabenbasierte Certif-Scope-Methodik v1.0",
     methodologyText:
       "Die Schätzung beruht auf einem monetären, ausgabenbasierten Ansatz. Die von der Einheit deklarierten aggregierten Ausgaben werden mit monetären Emissionsfaktoren verknüpft, um eine indikative CO₂e-Schätzung zu erhalten.",
     formulaText:
@@ -562,7 +562,7 @@ const SAMPLE_DATA: Record<AttestationLocale, SampleData> = {
     hash: "SAMPLE_INVALID_HASH_0000000000000000000000000000000000000000000000000000000000000000",
     signature: "SAMPLE_INVALID_SIGNATURE_BASE64",
     publicKey: "SAMPLE_INVALID_PUBLIC_KEY",
-    verificationDisplayUrl: "https://www.certif-scope.com/verify/demo",
+    verificationDisplayUrl: "https://www.certif-scope.com/en/verify/demo/",
   },
 };
 
@@ -678,6 +678,7 @@ li { margin-bottom:2.3px; }
 .limits-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:8px; }
 .sub-title { margin:0 0 4px; color:var(--heading); font-size:8.5px; line-height:1.12; font-weight:800; text-transform:uppercase; }
 .final-synthesis { border:1.7px solid var(--heading); border-radius:7px; min-height:58px; padding:12px 13px; background:#fff; }
+.page-two .page-two-header { padding-top:22px; }
 .invalid-banner { position:absolute; top:5px; left:50%; transform:translateX(-50%); z-index:2; border:1px solid rgba(200,0,0,.35); color:#a00000; background:rgba(255,255,255,.82); border-radius:999px; padding:4px 11px; font-size:7px; font-weight:900; letter-spacing:.08em; text-transform:uppercase; }
 </style>
 </head>
