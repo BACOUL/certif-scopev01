@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { EU_HOME_ALTERNATES } from "@/lib/eu-locales-core";
 
 export const SITE_LOCALES = ["fr", "en", "de"] as const;
 export type SiteLocale = (typeof SITE_LOCALES)[number];
@@ -67,18 +68,23 @@ export function pageMetadata(
   description: string,
 ): Metadata {
   const url = `https://www.certif-scope.com${paths[locale][page]}`;
+  const languages =
+    page === "home"
+      ? EU_HOME_ALTERNATES
+      : Object.fromEntries([
+          ...SITE_LOCALES.map((l) => [
+            l,
+            `https://www.certif-scope.com${paths[l][page]}`,
+          ]),
+          ["x-default", `https://www.certif-scope.com${paths.fr[page]}`],
+        ]);
+
   return {
     title: `${title} | Certif-Scope`,
     description,
     alternates: {
       canonical: url,
-      languages: Object.fromEntries([
-        ...SITE_LOCALES.map((l) => [
-          l,
-          `https://www.certif-scope.com${paths[l][page]}`,
-        ]),
-        ["x-default", `https://www.certif-scope.com${paths.fr[page]}`],
-      ]),
+      languages,
     },
     openGraph: {
       title,
@@ -121,6 +127,12 @@ export const SECTORS = [
     value: "wholesale_retail",
     fr: "Commerce, distribution & vente",
     en: "Trade, distribution & retail",
+    de: "Handel, Vertrieb & Verkauf",
+  },
+  {
+    value: "transport_logistics",
+    fr: "Transport, logistique & livraison",
+    en: "Transport, logistics & retail",
     de: "Handel, Vertrieb & Verkauf",
   },
   {
