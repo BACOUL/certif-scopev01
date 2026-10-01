@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import ClientLayout from "./client-layout";
 import { headers } from "next/headers";
-import { siteLocale } from "@/lib/site-locales";
+import { isEuLocale } from "@/lib/eu-locales-core";
 import "../styles/index.css";
 
 export const dynamic = "force-dynamic";
@@ -10,7 +10,7 @@ export const revalidate = 0;
 export const metadata: Metadata = {
   title: "Certif-Scope — Attestation CO₂e indicative pour PME",
   description:
-    "Certif-Scope aide les PME françaises à générer une attestation CO₂e indicative, standardisée et vérifiable.",
+    "Certif-Scope aide les PME à préparer un document CO₂e indicatif, standardisé et vérifiable pour les demandes documentaires simples.",
   icons: {
     icon: [
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
@@ -26,8 +26,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Certif-Scope — Attestation CO₂e indicative pour PME",
     description:
-      "Attestation CO₂e indicative, standardisée et vérifiable pour les PME françaises.",
-    url: "https://www.certif-scope.com/fr/",
+      "Document CO₂e indicatif, standardisé et vérifiable pour les demandes documentaires des PME.",
+    url: "https://www.certif-scope.com/",
     siteName: "Certif-Scope",
     images: [
       {
@@ -37,7 +37,6 @@ export const metadata: Metadata = {
         alt: "CO₂e Attestation Preview",
       },
     ],
-    locale: "fr_FR",
     type: "website",
   },
   twitter: {
@@ -51,7 +50,9 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const locale = siteLocale((await headers()).get("x-site-locale"));
+  const requestedLocale = (await headers()).get("x-site-locale") || "fr";
+  const locale = isEuLocale(requestedLocale) ? requestedLocale : "fr";
+
   return (
     <html lang={locale} className="light" suppressHydrationWarning>
       <head>
@@ -62,10 +63,8 @@ export default async function RootLayout({
               "@context": "https://schema.org",
               "@type": "Organization",
               name: "Certif-Scope",
-              url: "https://www.certif-scope.com/fr/",
+              url: "https://www.certif-scope.com/",
               logo: "https://www.certif-scope.com/logo.png",
-              description:
-                "Attestations CO₂e indicatives pour PME françaises, utilisables dans les demandes fournisseurs, banques, assurances et appels d’offres.",
             }),
           }}
         />
@@ -77,7 +76,7 @@ export default async function RootLayout({
               "@context": "https://schema.org",
               "@type": "WebSite",
               name: "Certif-Scope",
-              url: "https://www.certif-scope.com/fr/",
+              url: "https://www.certif-scope.com/",
               inLanguage: locale,
             }),
           }}
