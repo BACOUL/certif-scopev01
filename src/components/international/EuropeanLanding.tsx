@@ -1,13 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import LanguageSwitcher from "./LanguageSwitcher";
-import {
-  EU_HOME_COPY,
-  EU_LOCALE_NAMES,
-  type EuHomeLocale,
-} from "@/lib/eu-home-locales";
-
-const fullProductLocales = ["fr", "en", "de"] as const;
+import { EU_HOME_COPY, type EuHomeLocale } from "@/lib/eu-home-locales";
 
 type LandingLocale = Exclude<EuHomeLocale, "fr" | "en" | "de">;
 
@@ -45,22 +39,21 @@ export default function EuropeanLanding({ locale }: { locale: LandingLocale }) {
               <p className="mt-6 max-w-3xl text-lg leading-relaxed text-[#475569]">
                 {c.intro}
               </p>
-              <div className="mt-7 rounded-2xl border border-[#1FB6C1]/20 bg-white p-5">
-                <p className="text-sm font-semibold text-[#0B3A63]">
-                  PDF · Français · English · Deutsch
-                </p>
-                <div className="mt-4 flex flex-wrap gap-3">
-                  {fullProductLocales.map((l) => (
-                    <Link
-                      key={l}
-                      href={`/${l}/`}
-                      hrefLang={l}
-                      className="rounded-xl bg-[#0B3A63] px-4 py-3 text-sm font-semibold text-white hover:bg-[#082C4B]"
-                    >
-                      {EU_LOCALE_NAMES[l]}
-                    </Link>
-                  ))}
-                </div>
+              <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+                <Link
+                  href={`/${locale}/generate/`}
+                  className="inline-flex min-h-[54px] items-center justify-center rounded-xl bg-[#0B3A63] px-6 py-3 text-center font-semibold text-white shadow-sm hover:bg-[#082C4B]"
+                >
+                  {c.cta}
+                </Link>
+                <a
+                  href={`/api/attestation/eu-sample?lang=${locale}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-[54px] items-center justify-center rounded-xl border border-[#0B3A63]/20 bg-white px-6 py-3 text-center font-semibold text-[#0B3A63] hover:border-[#0B3A63]"
+                >
+                  {c.sample}
+                </a>
               </div>
             </div>
             <Image
