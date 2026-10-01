@@ -18,6 +18,8 @@ function isCoreLocale(locale: EuLocale): locale is SiteLocale {
   return SITE_LOCALES.includes(locale as SiteLocale);
 }
 
+type SharedFlowPage = "home" | "generate" | "success" | "verify";
+
 export default function LanguageSwitcher({ locale }: { locale: EuLocale }) {
   const router = useRouter();
   const pathname = usePathname();
@@ -25,25 +27,34 @@ export default function LanguageSwitcher({ locale }: { locale: EuLocale }) {
   const normalizedPath = `${pathname.replace(/\/$/, "") || ""}/`;
   const coreLocale = isCoreLocale(locale) ? locale : null;
 
-  const page: PageKey = coreLocale
+  const corePage: PageKey = coreLocale
     ? (Object.keys(paths[coreLocale]) as PageKey[]).find(
         (key) => paths[coreLocale][key] === normalizedPath,
       ) || "home"
     : "home";
 
-  const parameter =
-    page === "success" ? "session_id" : page === "verify" ? "v" : null;
+  const segments = pathname.split("/").filter(Boolean);
+  const nonCoreRoute = !coreLocale ? segments[1] || "" : "";
+  const sharedPage: SharedFlowPage = coreLocale
+    ? corePage === "generate" || corePage === "success" || corePage === "verify"
+      ? corePage
+      : "home"
+    : nonCoreRoute === "generate" || nonCoreRoute === "success" || nonCoreRoute === "verify"
+      ? nonCoreRoute
+      : "home";
+
+  const parameter = sharedPage === "success" ? "session_id" : sharedPage === "verify" ? "v" : null;
   const value = parameter ? search.get(parameter) : null;
-  const suffix =
-    parameter && value ? `?${parameter}=${encodeURIComponent(value)}` : "";
+  const suffix = parameter && value ? `?${parameter}=${encodeURIComponent(value)}` : "";
 
   const destinationFor = (target: EuLocale) => {
     if (isCoreLocale(target)) {
-      return coreLocale
-        ? `${paths[target][page]}${suffix}`
-        : paths[target].home;
+      if (coreLocale && sharedPage === "home") return paths[target][corePage];
+      return `${paths[target][sharedPage]}${suffix}`;
     }
-    return `/${target}/`;
+
+    if (sharedPage === "home") return `/${target}/`;
+    return `/${target}/${sharedPage}/${suffix}`;
   };
 
   const label =
