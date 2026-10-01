@@ -17,6 +17,14 @@ export const EU_HOME_URLS = Object.fromEntries(
   EU_LOCALES.map((locale) => [locale, `/${locale}/`]),
 ) as Record<EuLocale, string>;
 
+export const EU_HOME_ALTERNATES = Object.fromEntries([
+  ...EU_LOCALES.map((locale) => [
+    locale,
+    `https://www.certif-scope.com/${locale}/`,
+  ]),
+  ["x-default", "https://www.certif-scope.com/fr/"],
+]);
+
 export function isEuLocale(value: string): value is EuLocale {
   return EU_LOCALES.includes(value as EuLocale);
 }
