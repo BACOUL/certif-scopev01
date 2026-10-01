@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import ScrollUp from "@/components/Common/ScrollUp";
+import { EU_HOME_ALTERNATES } from "@/lib/eu-locales-core";
 
 // FR — composants définitifs
 import HeroFR from "@/components/fr/Hero";
@@ -42,12 +43,7 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: "https://www.certif-scope.com/fr/",
-    languages: {
-      fr: "https://www.certif-scope.com/fr/",
-      en: "https://www.certif-scope.com/en/",
-      de: "https://www.certif-scope.com/de/",
-      "x-default": "https://www.certif-scope.com/fr/",
-    },
+    languages: EU_HOME_ALTERNATES,
   },
   openGraph: {
     type: "website",
