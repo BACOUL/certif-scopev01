@@ -46,8 +46,8 @@ export default function EuropeanLanding({ locale }: { locale: LandingLocale }) {
                 {c.intro}
               </p>
               <div className="mt-7 rounded-2xl border border-[#1FB6C1]/20 bg-white p-5">
-                <p className="text-sm leading-relaxed text-[#475569]">
-                  Certif-Scope is currently generated end-to-end in French, English and German. This page provides the localized product explanation; choose one of the production languages below to continue.
+                <p className="text-sm font-semibold text-[#0B3A63]">
+                  PDF · Français · English · Deutsch
                 </p>
                 <div className="mt-4 flex flex-wrap gap-3">
                   {fullProductLocales.map((l) => (
