@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { isEuLocale } from "./src/lib/eu-locales-core";
 
 function isBypassPath(pathname: string) {
   if (
@@ -13,6 +14,7 @@ function isBypassPath(pathname: string) {
     pathname === "/favicon.ico" ||
     pathname === "/robots.txt" ||
     pathname === "/sitemap.xml" ||
+    pathname === "/sitemap-eu.xml" ||
     pathname === "/manifest.webmanifest"
   ) return true;
 
@@ -24,8 +26,11 @@ export function middleware(req: NextRequest) {
   const pathname = req.nextUrl.pathname;
   if (isBypassPath(pathname)) return NextResponse.next();
 
+  const firstSegment = pathname.split("/").filter(Boolean)[0] || "fr";
+  const locale = isEuLocale(firstSegment) ? firstSegment : "fr";
   const requestHeaders = new Headers(req.headers);
-  requestHeaders.set("x-site-locale", /^\/de(?:\/|$)/.test(pathname) ? "de" : /^\/en(?:\/|$)/.test(pathname) ? "en" : "fr");
+  requestHeaders.set("x-site-locale", locale);
+
   const res = NextResponse.next({ request: { headers: requestHeaders } });
   res.headers.set("X-Content-Type-Options", "nosniff");
   res.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
@@ -53,5 +58,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/verify/:path*", "/api/:path*", "/de/:path*", "/fr/:path*", "/en/:path*"],
+  matcher: ["/:path*"],
 };
