@@ -1,4 +1,5 @@
 import Image from "next/image";
+import MethodologyBadge from "@/components/MethodologyBadge";
 import Link from "next/link";
 import { internationalCopy } from "@/lib/international-copy";
 import { formCopy } from "@/lib/form-copy";
@@ -61,9 +62,7 @@ export function Home({ locale }: { locale: Locale }) {
           className={`${container} grid items-center gap-10 lg:grid-cols-[0.96fr_1.04fr] lg:gap-14`}
         >
           <div>
-            <p className="inline-flex rounded-lg border bg-white px-4 py-2 text-xs font-semibold uppercase tracking-wider text-[#0B3A63]">
-              {c.tagline}
-            </p>
+            <MethodologyBadge locale={locale} />
             <h1 className="mt-5 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-5xl">
               {c.hero}
               <br />

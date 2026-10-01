@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import MethodologyBadge from "@/components/MethodologyBadge";
 
 const proofItems = [
   "Prix fixe 89 €",
@@ -43,13 +44,7 @@ export default function Hero() {
       <div className="mx-auto max-w-7xl px-6 pb-14 pt-8 md:px-8 md:pb-20 md:pt-14">
         <div className="grid items-center gap-10 lg:grid-cols-[0.96fr_1.04fr] lg:gap-14">
           <div className="text-center lg:text-left">
-            <p
-              itemProp="about"
-              className="hero-reveal inline-flex items-center gap-3 rounded-lg border border-[#0B3A63]/10 bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#0B3A63] shadow-sm md:text-xs"
-            >
-              <span className="inline-block h-2.5 w-2.5 rounded-full bg-[#1FB6C1]" />
-              Pour les demandes documentaires simples
-            </p>
+            <MethodologyBadge locale="fr" />
 
             <h1
               itemProp="headline"
@@ -65,8 +60,8 @@ export default function Hero() {
               className="hero-reveal mx-auto mt-6 max-w-2xl text-base leading-relaxed text-[#0B3A63]/80 [animation-delay:220ms] md:text-lg lg:mx-0"
             >
               Un PDF standardisé, daté et vérifiable pour répondre rapidement à
-              une demande documentaire simple, si votre destinataire accepte
-              une estimation fondée sur vos dépenses.
+              une demande documentaire simple, si votre destinataire accepte une
+              estimation fondée sur vos dépenses.
             </p>
 
             <div className="hero-reveal mt-8 flex flex-col items-center justify-center gap-3 [animation-delay:320ms] sm:flex-row lg:justify-start">
@@ -97,7 +92,7 @@ export default function Hero() {
               {proofItems.map((item) => (
                 <span
                   key={item}
-                  className="rounded-lg border border-[#0B3A63]/12 bg-white px-4 py-2 text-xs font-semibold text-[#0B3A63] shadow-sm md:text-sm"
+                  className="border-[#0B3A63]/12 rounded-lg border bg-white px-4 py-2 text-xs font-semibold text-[#0B3A63] shadow-sm md:text-sm"
                 >
                   {item}
                 </span>
