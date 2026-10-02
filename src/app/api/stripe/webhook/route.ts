@@ -2,13 +2,11 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import crypto from "crypto";
 import { Resend } from "resend";
+import { getEuFlowCopy, isEuNonCoreLocale } from "@/lib/eu-flow";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-/* ======================================================
-   ENV RUNTIME
-====================================================== */
 type WebhookEnv = {
   STRIPE_SECRET_KEY: string;
   STRIPE_WEBHOOK_SECRET: string;
@@ -29,24 +27,17 @@ function getWebhookEnv(): WebhookEnv {
     CLOUDFLARE_API_TOKEN: process.env.CLOUDFLARE_API_TOKEN,
     KEY_SECRET: process.env.KEY_SECRET,
   };
-
-  const missing = Object.values(env).some((value) => !value);
-  if (missing) {
+  if (Object.values(env).some((value) => !value)) {
     throw new Error("Missing required webhook environment variables");
   }
-
   return env as WebhookEnv;
 }
 
 const KEY_VALIDITY_DAYS = 365;
-
-/* ======================================================
-   EMAIL I18N (FR / DE / EN)
-====================================================== */
-type Locale = "fr" | "de" | "en";
+type CoreLocale = "fr" | "de" | "en";
 
 const EMAIL_I18N: Record<
-  Locale,
+  CoreLocale,
   {
     packSubject: (pack: string) => string;
     packBody: (credits: number, keys: string[]) => string;
@@ -57,71 +48,51 @@ const EMAIL_I18N: Record<
   fr: {
     packSubject: (pack) => `Vos clés d’accès Certif-Scope (${pack})`,
     packBody: (credits, keys) => `
-<p>Bonjour,</p>
-<p>Merci pour votre achat.</p>
-<p>Voici vos <strong>${credits} clés d’accès</strong> :</p>
-<pre>${keys.join("\n")}</pre>
-<p>Chaque clé permet de générer <strong>une attestation CO₂e</strong>.</p>
-<p>— Certif-Scope</p>
-`,
+<p>Bonjour,</p><p>Merci pour votre achat.</p>
+<p>Voici vos <strong>${credits} clés d’accès</strong> :</p><pre>${keys.join("\n")}</pre>
+<p>Chaque clé permet de générer <strong>une attestation CO₂e</strong>.</p><p>— Certif-Scope</p>`,
     attestationSubject: "Votre attestation CO₂e — Certif-Scope",
-    attestationBody: `
-<p>Votre attestation CO₂e est jointe à cet email.</p>
-<ul>
-  <li>Document émis une seule fois</li>
-  <li>Aucune conservation côté Certif-Scope</li>
-  <li>Archivage à votre charge</li>
-</ul>
-<p>— Certif-Scope</p>
-`,
+    attestationBody: `<p>Votre attestation CO₂e est jointe à cet email.</p><ul><li>Document émis une seule fois</li><li>Aucune conservation côté Certif-Scope</li><li>Archivage à votre charge</li></ul><p>— Certif-Scope</p>`,
   },
   de: {
     packSubject: (pack) => `Ihre Certif-Scope-Zugangsschlüssel (${pack})`,
-    packBody: (credits, keys) => `
-<p>Guten Tag,</p>
-<p>Vielen Dank für Ihren Kauf.</p>
-<p>Hier sind Ihre <strong>${credits} Zugangsschlüssel</strong>:</p>
-<pre>${keys.join("\n")}</pre>
-<p>Jeder Schlüssel ermöglicht <strong>eine CO₂e-Bescheinigung</strong>.</p>
-<p>— Certif-Scope</p>
-`,
+    packBody: (credits, keys) => `<p>Guten Tag,</p><p>Vielen Dank für Ihren Kauf.</p><p>Hier sind Ihre <strong>${credits} Zugangsschlüssel</strong>:</p><pre>${keys.join("\n")}</pre><p>Jeder Schlüssel ermöglicht <strong>eine CO₂e-Bescheinigung</strong>.</p><p>— Certif-Scope</p>`,
     attestationSubject: "Ihre CO₂e-Bescheinigung — Certif-Scope",
-    attestationBody: `
-<p>Ihre CO₂e-Bescheinigung ist beigefügt.</p>
-<ul>
-  <li>Einmalige Ausstellung</li>
-  <li>Keine Speicherung</li>
-  <li>Bitte sicher archivieren</li>
-</ul>
-<p>— Certif-Scope</p>
-`,
+    attestationBody: `<p>Ihre CO₂e-Bescheinigung ist beigefügt.</p><ul><li>Einmalige Ausstellung</li><li>Keine Speicherung</li><li>Bitte sicher archivieren</li></ul><p>— Certif-Scope</p>`,
   },
   en: {
     packSubject: (pack) => `Your Certif-Scope access keys (${pack})`,
-    packBody: (credits, keys) => `
-<p>Hello,</p>
-<p>Thank you for your purchase.</p>
-<p>Here are your <strong>${credits} access keys</strong>:</p>
-<pre>${keys.join("\n")}</pre>
-<p>Each key allows the generation of <strong>one CO₂e attestation</strong>.</p>
-<p>— Certif-Scope</p>
-`,
+    packBody: (credits, keys) => `<p>Hello,</p><p>Thank you for your purchase.</p><p>Here are your <strong>${credits} access keys</strong>:</p><pre>${keys.join("\n")}</pre><p>Each key allows the generation of <strong>one CO₂e attestation</strong>.</p><p>— Certif-Scope</p>`,
     attestationSubject: "Your CO₂e Attestation — Certif-Scope",
-    attestationBody: `
-<p>Your CO₂e attestation is attached to this email.</p>
-<ul>
-  <li>Issued once</li>
-  <li>No storage by Certif-Scope</li>
-  <li>Please archive it securely</li>
-</ul>
-<p>— Certif-Scope</p>
-`,
+    attestationBody: `<p>Your CO₂e attestation is attached to this email.</p><ul><li>Issued once</li><li>No storage by Certif-Scope</li><li>Please archive it securely</li></ul><p>— Certif-Scope</p>`,
   },
 };
 
-/* ======================================================
-   HELPERS — KEYS
-====================================================== */
+function coreLocale(input: unknown): CoreLocale {
+  return input === "de" ? "de" : input === "en" ? "en" : "fr";
+}
+
+function html(value: string): string {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function attestationEmail(locale: string) {
+  if (isEuNonCoreLocale(locale)) {
+    const copy = getEuFlowCopy(locale).success;
+    return {
+      subject: `${copy.ready} — Certif-Scope`,
+      body: `<p>${html(copy.ready)}</p><p>${html(copy.archive)}</p><p>— Certif-Scope</p>`,
+    };
+  }
+  const copy = EMAIL_I18N[coreLocale(locale)];
+  return { subject: copy.attestationSubject, body: copy.attestationBody };
+}
+
 function sign(body: string, keySecret: string): string {
   return crypto
     .createHmac("sha256", keySecret)
@@ -147,16 +118,12 @@ function computeExpiryDate(): string {
   return d.toISOString();
 }
 
-/* ======================================================
-   CLOUDFLARE KV
-====================================================== */
 function getKvBase(env: WebhookEnv): string {
   return `https://api.cloudflare.com/client/v4/accounts/${env.CLOUDFLARE_ACCOUNT_ID}/storage/kv/namespaces/${env.CF_KV_NAMESPACE_ID}/values`;
 }
 
 async function kvPut(env: WebhookEnv, key: string, value: unknown) {
-  const kvBase = getKvBase(env);
-  const res = await fetch(`${kvBase}/${key}`, {
+  const res = await fetch(`${getKvBase(env)}/${key}`, {
     method: "PUT",
     headers: {
       Authorization: `Bearer ${env.CLOUDFLARE_API_TOKEN}`,
@@ -168,8 +135,7 @@ async function kvPut(env: WebhookEnv, key: string, value: unknown) {
 }
 
 async function kvGet(env: WebhookEnv, key: string) {
-  const kvBase = getKvBase(env);
-  const res = await fetch(`${kvBase}/${key}`, {
+  const res = await fetch(`${getKvBase(env)}/${key}`, {
     method: "GET",
     headers: { Authorization: `Bearer ${env.CLOUDFLARE_API_TOKEN}` },
   });
@@ -178,9 +144,6 @@ async function kvGet(env: WebhookEnv, key: string) {
   return res.json();
 }
 
-/* ======================================================
-   STRIPE WEBHOOK — FINAL
-====================================================== */
 export async function POST(req: Request) {
   let env: WebhookEnv;
   try {
@@ -189,24 +152,19 @@ export async function POST(req: Request) {
     console.error("Missing required webhook environment variables");
     return NextResponse.json(
       { error: "Missing required webhook environment variables" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 
   const stripe = new Stripe(env.STRIPE_SECRET_KEY);
   const resend = new Resend(env.RESEND_API_KEY);
-
   const rawBody = await req.text();
   const sig = req.headers.get("stripe-signature");
   if (!sig) return new NextResponse("Missing signature", { status: 400 });
 
   let event: Stripe.Event;
   try {
-    event = stripe.webhooks.constructEvent(
-      rawBody,
-      sig,
-      env.STRIPE_WEBHOOK_SECRET
-    );
+    event = stripe.webhooks.constructEvent(rawBody, sig, env.STRIPE_WEBHOOK_SECRET);
   } catch {
     return new NextResponse("Invalid signature", { status: 400 });
   }
@@ -217,7 +175,6 @@ export async function POST(req: Request) {
 
   const session = event.data.object as Stripe.Checkout.Session;
   const metadata = session.metadata || {};
-
   const processedKey = `processed:${session.id}`;
   if (await kvGet(env, processedKey)) {
     return NextResponse.json({ received: true });
@@ -228,19 +185,11 @@ export async function POST(req: Request) {
     session.customer_email ||
     metadata.emailForDelivery ||
     null;
-
   if (!email) throw new Error("MISSING_EMAIL");
 
-  const locale: Locale =
-    metadata.attestationLocale === "de"
-      ? "de"
-      : metadata.attestationLocale === "en"
-      ? "en"
-      : "fr";
-
-  const i18n = EMAIL_I18N[locale];
-
   if (metadata.product === "certif-scope-pack") {
+    const packLocale = coreLocale(metadata.siteLocale || metadata.attestationLocale);
+    const i18n = EMAIL_I18N[packLocale];
     const credits = Number(metadata.credits || 0);
     const pack = metadata.pack || "standard";
     if (credits <= 0) throw new Error("INVALID_PACK_METADATA");
@@ -250,6 +199,7 @@ export async function POST(req: Request) {
       const key = generateAccessKey(env.KEY_SECRET);
       await kvPut(env, key, {
         credits: 1,
+        usedCredits: 0,
         createdAt: new Date().toISOString(),
         expiresAt: computeExpiryDate(),
         stripeSessionId: session.id,
@@ -271,20 +221,26 @@ export async function POST(req: Request) {
     const host = req.headers.get("host");
     if (!proto || !host) throw new Error("INVALID_ORIGIN");
 
-    const issueUrl = `${proto}://${host}/api/attestation/issue?session_id=${session.id}`;
+    const requestedLocale = String(metadata.attestationLocale || "fr").toLowerCase();
+    const issuePath = isEuNonCoreLocale(requestedLocale)
+      ? "/api/attestation/eu"
+      : "/api/attestation/issue";
+    const issueUrl = `${proto}://${host}${issuePath}?session_id=${session.id}`;
     const pdfRes = await fetch(issueUrl);
-    if (!pdfRes.ok) throw new Error("PDF_GENERATION_FAILED");
+    if (!pdfRes.ok || !pdfRes.headers.get("content-type")?.includes("application/pdf")) {
+      throw new Error("PDF_GENERATION_FAILED");
+    }
 
     const pdfBuffer = Buffer.from(await pdfRes.arrayBuffer());
-
+    const mail = attestationEmail(requestedLocale);
     await resend.emails.send({
       from: "Certif-Scope <no-reply@certif-scope.com>",
       to: email,
-      subject: i18n.attestationSubject,
-      html: i18n.attestationBody,
+      subject: mail.subject,
+      html: mail.body,
       attachments: [
         {
-          filename: `certif-scope-attestation-${session.id}.pdf`,
+          filename: `certif-scope-attestation-${session.id}-${requestedLocale}.pdf`,
           content: pdfBuffer,
           contentType: "application/pdf",
         },

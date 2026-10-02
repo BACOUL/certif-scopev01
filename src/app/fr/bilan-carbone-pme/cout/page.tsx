@@ -290,7 +290,7 @@ export default function BilanCarbonePMECoutPageFR() {
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <Link
                 href="/fr/pricing/"
-                className="inline-flex min-h-[50px] items-center justify-center rounded-xl bg-[#1FB6C1] px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#19AAB4]"
+                className="inline-flex min-h-[50px] items-center justify-center rounded-xl bg-[#0B3A63] px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#082C4B]"
               >
                 Voir le prix Certif-Scope 89€
               </Link>
@@ -514,7 +514,7 @@ export default function BilanCarbonePMECoutPageFR() {
               </p>
               <Link
                 href="/fr/pricing/"
-                className="mt-8 inline-flex min-h-[48px] items-center justify-center rounded-xl bg-[#1FB6C1] px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#19AAB4]"
+                className="mt-8 inline-flex min-h-[48px] items-center justify-center rounded-xl bg-[#0B3A63] px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#082C4B]"
               >
                 Voir l’offre à 89€
               </Link>

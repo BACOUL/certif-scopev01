@@ -21,8 +21,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.certif-scope.com/fr/verify/",
     languages: {
-      en: "https://www.certif-scope.com/verify",
       fr: "https://www.certif-scope.com/fr/verify/",
+      en: "https://www.certif-scope.com/en/verify/",
+      de: "https://www.certif-scope.com/de/pruefen/",
+      "x-default": "https://www.certif-scope.com/fr/verify/",
     },
   },
   openGraph: {
@@ -253,9 +255,7 @@ export default async function VerifyPageFR({ searchParams }: VerifyPageProps) {
                 Scannez le QR code présent sur une attestation Certif-Scope pour
                 ouvrir cette page avec les éléments de vérification du document.
                 La vérification avancée du PDF signé reste disponible plus bas.
-                Le QR code permet un contrôle documentaire rapide. Il ne
-                remplace pas, à lui seul, la vérification technique avancée du
-                PDF signé lorsque celle-ci est nécessaire.
+                Le QR code permet de lire les informations transmises. Cette lecture ne vérifie pas la signature ni l’authenticité du PDF.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">
@@ -309,6 +309,13 @@ export default async function VerifyPageFR({ searchParams }: VerifyPageProps) {
       )}
 
       <div className="max-w-4xl mx-auto">
+        {!hasQrVerification && (
+          <aside className="mb-8 rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC] p-5">
+            <h2 className="text-xl font-bold text-[#0B3A63]">Comprendre le résultat affiché</h2>
+            <p className="mt-3 text-gray-700">Exemple explicatif, sans attestation réelle : « Données lisibles » signifie que le nom, les dates et les informations transmises peuvent être affichés. Cela ne signifie pas « Signature validée » ni « Émissions validées ».</p>
+            <p className="mt-3 text-gray-700">Une date dépassée signale l’expiration documentaire annoncée. L’acceptation de l’estimation et la vérification de sa signature restent des contrôles distincts.</p>
+          </aside>
+        )}
         {/* VERIFICATION QR */}
         <section id="verification-qr" className="mb-12 scroll-mt-4 md:scroll-mt-6">
           <div
@@ -331,8 +338,7 @@ export default async function VerifyPageFR({ searchParams }: VerifyPageProps) {
                 <p className="text-gray-700 leading-relaxed">
                   Chaque attestation Certif-Scope peut contenir un QR code de
                   vérification. En le scannant, un tiers ouvre cette page avec
-                  les éléments nécessaires au contrôle documentaire rapide et à
-                  la lecture du payload de vérification.
+                  les éléments nécessaires au contrôle documentaire rapide et à la lecture des informations transmises.
                 </p>
               </div>
             )}
@@ -357,10 +363,7 @@ export default async function VerifyPageFR({ searchParams }: VerifyPageProps) {
                     </p>
 
                     <p className="mt-4 text-sm text-gray-600">
-                      Format attendu pour le QR code :{" "}
-                      <code className="rounded bg-white px-2 py-1 text-[#0B3A63]">
-                        /fr/verify/?v=...
-                      </code>
+                      Pour commencer, ouvrez le lien du QR code présent sur votre PDF.
                     </p>
                   </div>
                 </div>
@@ -375,12 +378,11 @@ export default async function VerifyPageFR({ searchParams }: VerifyPageProps) {
                   </p>
 
                   <h1 className="text-2xl md:text-3xl font-extrabold text-white leading-tight">
-                    Attestation détectée et lisible
+                    Données du QR code lisibles
                   </h1>
 
                   <p className="mt-3 text-sm md:text-base text-[#EAF6F8] leading-relaxed">
-                    Le QR code correspond à une attestation Certif-Scope
-                    contenant des éléments de vérification exploitables.
+                    Les informations transmises par ce QR code sont affichées ci-dessous. La signature et l’authenticité du document ne sont pas contrôlées par cette lecture.
                   </p>
                 </div>
 
@@ -407,7 +409,7 @@ export default async function VerifyPageFR({ searchParams }: VerifyPageProps) {
                         >
                           {attestationExpired
                             ? "Attestation expirée"
-                            : "Attestation en période de validité"}
+                            : "Date de validité transmise à contrôler"}
                         </p>
                       </div>
 
@@ -424,24 +426,21 @@ export default async function VerifyPageFR({ searchParams }: VerifyPageProps) {
                     <p className="mt-4 text-sm text-gray-700 leading-relaxed">
                       {attestationExpired
                         ? "Le document reste techniquement lisible, mais sa date de validité est dépassée. Il doit être considéré comme expiré pour un usage courant."
-                        : "La date de validité indiquée dans l’attestation n’est pas dépassée. Le document reste une attestation CO₂e indicative selon les limites précisées dans le PDF."}
+                        : "Consultez la date transmise ci-dessus. Son affichage ne valide ni la signature, ni l’authenticité du document, ni son acceptation par votre destinataire."}
                     </p>
                   </div>
 
                   <div className="mb-6 rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC] p-5">
                     <p className="text-xs uppercase tracking-[0.16em] text-gray-500 mb-2">
-                      Conclusion de vérification
+                      Résultat de la lecture
                     </p>
 
                     <p className="text-base font-semibold text-[#0B3A63] leading-relaxed">
-                      Les éléments transmis par le QR code sont cohérents,
-                      lisibles et rattachés à une attestation émise au format
-                      Certif-Scope.
+                      Les données transmises sont lisibles. Cette page ne confirme pas qu’elles proviennent d’un document authentique.
                     </p>
 
                     <p className="mt-3 text-sm text-gray-700 leading-relaxed">
-                      Cette vérification confirme la présence d’éléments
-                      documentaires de contrôle. Elle ne transforme pas
+                      Ce résultat est une lecture des données transmises, sans validation cryptographique de leur signature. Cette lecture ne transforme pas
                       l’attestation en audit carbone, bilan GES réglementaire,
                       certification officielle ou conformité CSRD/ESRS.
                       Lorsque nécessaire, elle doit être complétée par la
@@ -627,105 +626,10 @@ export default async function VerifyPageFR({ searchParams }: VerifyPageProps) {
           </div>
         </section>
 
-        {/* VERIFICATION TECHNIQUE AVANCEE */}
-        <section className="mb-12 rounded-3xl border border-[#E2E8F0] bg-white p-6 md:p-8 shadow-sm">
-          <p className="uppercase text-xs tracking-[0.18em] text-[#64748B] mb-3">
-            Méthode conservée
-          </p>
-
-          <h2 className="text-2xl md:text-3xl font-bold text-[#0B3A63] mb-4">
-            Vérification technique avancée
-          </h2>
-
-          <p className="text-gray-700 leading-relaxed mb-5">
-            La vérification par QR code simplifie l’accès aux éléments de
-            contrôle. Pour une analyse plus complète, la vérification technique
-            du PDF signé reste disponible.
-          </p>
-
-          <p className="text-sm text-gray-600 mb-8">
-            Vous recherchez les détails techniques de vérification ?{" "}
-            <Link
-              href="/fr/verify/technical"
-              className="text-[#0B3A63] underline underline-offset-4 hover:no-underline"
-            >
-              Documentation technique de vérification
-            </Link>
-          </p>
-
-          <div className="space-y-10">
-            <section>
-              <h3 className="text-xl font-bold text-[#0B3A63] mb-3">
-                1. Utiliser le PDF original
-              </h3>
-
-              <p className="text-gray-700 leading-relaxed">
-                Obtenez le fichier PDF original contenant l’attestation. Seul le
-                document PDF original peut être vérifié. Les captures d’écran,
-                impressions ou fichiers modifiés ne peuvent pas être
-                authentifiés avec le même niveau de contrôle.
-              </p>
-            </section>
-
-            <section>
-              <h3 className="text-xl font-bold text-[#0B3A63] mb-3">
-                2. Vérifier avec des outils PDF standards
-              </h3>
-
-              <p className="text-gray-700 leading-relaxed mb-4">
-                Pour vérifier la signature numérique intégrée, vous pouvez
-                utiliser un lecteur PDF prenant en charge les signatures
-                numériques, comme Adobe Acrobat, Foxit ou un outil équivalent.
-              </p>
-
-              <p className="text-gray-700 leading-relaxed mb-4">
-                Ouvrez le PDF signé, localisez le panneau de signature et
-                sélectionnez « Valider la signature » afin de confirmer que le
-                document n’a pas été modifié et que la signature est valide.
-              </p>
-
-              <div className="bg-[#F8FAFC] border-l-4 border-[#0B3A63] p-4">
-                <p className="text-sm text-gray-700">
-                  Cette vérification confirme l’{" "}
-                  <strong>authenticité documentaire</strong> du signataire et
-                  l’<strong>intégrité</strong> du contenu signé.
-                </p>
-              </div>
-            </section>
-
-            <section>
-              <h3 className="text-xl font-bold text-[#0B3A63] mb-3">
-                3. Vérification cryptographique manuelle
-              </h3>
-
-              <p className="text-gray-700 leading-relaxed mb-4">
-                Pour une vérification avancée ou une intégration dans des
-                workflows de conformité automatisés, la signature Ed25519 peut
-                être vérifiée directement à l’aide de la clé publique ci-dessous.
-              </p>
-
-              <ul className="list-disc pl-6 text-gray-700 space-y-1 mb-6">
-                <li>Extraire la charge signée et la signature du PDF.</li>
-                <li>Vérifier la signature avec la clé publique ci-dessous.</li>
-                <li>
-                  Vérifier que l’identifiant d’attestation correspond aux
-                  données signées.
-                </li>
-              </ul>
-
-              <p className="text-sm font-semibold text-gray-800 mb-2">
-                Clé publique de vérification Certif-Scope — Ed25519
-              </p>
-
-              <pre className="text-sm bg-white border border-gray-300 rounded-md p-4 overflow-x-auto break-all whitespace-pre-wrap text-gray-600 font-mono">
-                {CERTIFSCOPE_PUBLIC_KEY_BASE64}
-              </pre>
-
-              <p className="mt-2 text-xs text-gray-500">
-                Cette clé est publique, permanente et ne change pas.
-              </p>
-            </section>
-          </div>
+        <section className="mb-8 rounded-3xl border border-[#E2E8F0] bg-white p-6 md:p-8">
+          <h2 className="text-2xl font-bold text-[#0B3A63]">Contrôle technique du document</h2>
+          <p className="mt-4 leading-relaxed text-gray-700">Lire les données d’un QR code et vérifier une signature sont deux opérations différentes. L’affichage des informations ci-dessus ne prouve pas à lui seul que le PDF est authentique ou inchangé.</p>
+          <Link href="/fr/verify/technical/" className="mt-4 inline-block font-semibold text-[#0B3A63] underline">Consulter la documentation de vérification technique</Link>
         </section>
 
         {/* LIMITES JURIDIQUES */}

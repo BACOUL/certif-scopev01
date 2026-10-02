@@ -24,6 +24,8 @@ export default function SuccessClient({
   const [sessionId, setSessionId] = useState<string | null>(
     initialSessionId
   );
+  const [downloading, setDownloading] = useState(false);
+  const [downloadError, setDownloadError] = useState("");
   const [type, setType] = useState<SuccessType>("loading");
 
   // ======================================================
@@ -76,9 +78,25 @@ export default function SuccessClient({
   // ======================================================
   // DOWNLOAD HANDLER — STRIPE ONLY
   // ======================================================
-  const handleDownload = () => {
-    if (!sessionId) return;
-    window.location.href = `/api/attestation/issue?session_id=${sessionId}`;
+  const handleDownload = async () => {
+    if (!sessionId || downloading) return;
+    setDownloading(true);
+    setDownloadError("");
+    try {
+      const response = await fetch(`/api/attestation/issue?session_id=${encodeURIComponent(sessionId)}`);
+      if (!response.ok || !response.headers.get("content-type")?.includes("application/pdf")) throw new Error("PDF unavailable");
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "attestation-certif-scope.pdf";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.setTimeout(() => URL.revokeObjectURL(url), 60000);
+    } catch {
+      setDownloadError("Le téléchargement a échoué. Vous pouvez réessayer depuis cette page, ou contacter le support. Ne repassez pas commande pour résoudre cet incident.");
+    } finally { setDownloading(false); }
   };
 
   // ======================================================
@@ -90,7 +108,7 @@ export default function SuccessClient({
         <div className="mx-auto mb-5 h-1.5 w-16 rounded-full bg-[#1FB6C1]" />
 
         <h1 className="text-3xl font-extrabold text-[#0B3A63] md:text-4xl">
-          Paiement confirmé
+          {type === "attestation" || type === "pack" ? "Commande retrouvée" : "Vérification de votre commande"}
         </h1>
 
         {type === "loading" && (
@@ -111,18 +129,20 @@ export default function SuccessClient({
             </p>
 
             <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-[#0B3A63]/70">
-              Après fermeture de cette page, le document ne pourra pas être
-              récupéré automatiquement. En cas de perte, une réémission peut
-              être nécessaire selon les conditions applicables.
+              Pour un paiement unitaire, vérifiez aussi l’email de livraison prévu par le service, ainsi que les courriers indésirables. En cas d’incident, contactez le support avec votre référence de commande avant tout nouvel achat.
             </p>
 
             <button
               type="button"
               onClick={handleDownload}
+              disabled={downloading}
+              aria-busy={downloading}
               className="mt-7 inline-flex w-full items-center justify-center rounded-xl bg-[#0B3A63] px-8 py-3 font-semibold text-white transition hover:opacity-90 sm:w-auto"
             >
-              Télécharger mon attestation PDF
+              {downloading ? "Préparation du téléchargement…" : "Télécharger mon attestation PDF"}
             </button>
+            {downloadError && <p role="alert" className="mt-4 text-sm text-red-700">{downloadError}</p>}
+            <p className="mt-4 text-sm"><a href="mailto:support@certif-scope.com" className="font-semibold underline text-[#0B3A63]">Contacter le support</a></p>
           </>
         )}
 
@@ -133,8 +153,7 @@ export default function SuccessClient({
             </p>
 
             <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-[#0B3A63]/75">
-              Vos clés d’accès ont été générées et envoyées par email
-              immédiatement après paiement. Conservez-les soigneusement.
+              Les clés d’accès sont envoyées par email après confirmation du paiement. Chaque clé permet de générer un document et doit être utilisée dans les 365 jours suivant sa création. Vérifiez les courriers indésirables puis contactez le support si l’email n’arrive pas, sans racheter le pack.
             </p>
 
             <a
@@ -216,6 +235,10 @@ export default function SuccessClient({
           )}
         </div>
       </div>
+
+      {(type === "error" || type === "missing-session" || type === "pack") && (
+        <p className="text-center text-sm text-[#0B3A63]"><a href="mailto:support@certif-scope.com" className="font-semibold underline">Contacter le support avec la référence de commande</a> · Ne repassez pas commande pour résoudre un incident.</p>
+      )}
 
       {type === "error" && (
         <p className="text-center text-sm leading-relaxed text-[#0B3A63]/70">

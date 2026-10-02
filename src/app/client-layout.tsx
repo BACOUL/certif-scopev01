@@ -7,17 +7,23 @@ import { usePathname } from "next/navigation";
 import HeaderFR from "@/components/fr/Header";
 import FooterFR from "@/components/fr/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
+import { isEuLocale } from "@/lib/eu-locales-core";
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const isGermanRoute = pathname === "/de" || pathname.startsWith("/de/");
+  const firstSegment = pathname.split("/").filter(Boolean)[0] || "fr";
+  const localizedEuRoute = isEuLocale(firstSegment) ? firstSegment : null;
+  const hasOwnLocalizedShell = Boolean(
+    localizedEuRoute && localizedEuRoute !== "fr",
+  );
 
   useEffect(() => {
+    document.documentElement.lang = localizedEuRoute || "fr";
     const closeEvent = new Event("close-mobile-menu");
     window.dispatchEvent(closeEvent);
-  }, [pathname]);
+  }, [pathname, localizedEuRoute]);
 
-  if (isGermanRoute) {
+  if (hasOwnLocalizedShell) {
     return (
       <>
         {children}
@@ -29,7 +35,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   return (
     <>
       <HeaderFR />
-      <main className="pt-[110px]">{children}</main>
+      <main className="pt-[88px] lg:pt-[110px]">{children}</main>
       <FooterFR />
       <ScrollToTop />
     </>

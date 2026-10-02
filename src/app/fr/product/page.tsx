@@ -1,18 +1,7 @@
-// PATH: src/app/fr/product/page.tsx
-
 import type { Metadata } from "next";
-
-import Section1FR from "./sections/Section1";
-import Section2FR from "./sections/Section2";
-import Section3FR from "./sections/Section3";
-import Section4FR from "./sections/Section4";
-import Section5FR from "./sections/Section5";
-import Section6FR from "./sections/Section6";
-import Section7FR from "./sections/Section7";
-
-/* ======================================================
-   SEO METADATA — PAGE PRODUIT FR (CANONICAL + HREFLANG)
-====================================================== */
+import Image from "next/image";
+import Link from "next/link";
+import OfferDetails from "@/components/fr/OfferDetails";
 
 export const metadata: Metadata = {
   title: "Attestation CO₂e PME : produit, PDF et limites | Certif-Scope",
@@ -21,8 +10,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.certif-scope.com/fr/product/",
     languages: {
-      en: "https://www.certif-scope.com/product/",
       fr: "https://www.certif-scope.com/fr/product/",
+      en: "https://www.certif-scope.com/en/product/",
+      de: "https://www.certif-scope.com/de/produkt/",
+      "x-default": "https://www.certif-scope.com/fr/product/",
     },
   },
   openGraph: {
@@ -37,136 +28,43 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-/* ======================================================
-   PAGE
-====================================================== */
 
 export default function ProductPageFR() {
   return (
-    <section
-      id="product"
-      data-section="product"
-      className="max-w-7xl mx-auto px-6 pt-12 pb-24"
-    >
-      {/* JSON-LD — SERVICE (FR, CANONICAL) */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Service",
-            name: "Attestation CO₂e Certif-Scope",
-            description:
-              "Attestation CO₂e indicative et standardisée, basée sur les dépenses, conçue pour fournir un document carbone simple avec ID vérifiable dans les dossiers clients, fournisseurs, bancaires, assurantiels et appels d’offres.",
-            provider: {
-              "@type": "Organization",
-              name: "Certif-Scope",
-              url: "https://www.certif-scope.com",
-            },
-            offers: {
-              "@type": "Offer",
-              priceCurrency: "EUR",
-              price: "89",
-              url: "https://www.certif-scope.com/fr/pricing/",
-            },
-          }),
-        }}
-      />
-
-      {/* TOP ANCHOR */}
-      <div id="top" />
-
-      {/* EN-TÊTE PAGE */}
-      <header className="mb-14">
-        <p className="uppercase text-xs tracking-wider text-[#64748B] mb-3">
-          Attestation CO₂e — Produit
-        </p>
-
-        <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-6">
-          Vue d’ensemble du produit
-        </h1>
-
-        <p className="text-lg text-gray-700 leading-relaxed max-w-3xl">
-          Une présentation structurée de l’attestation CO₂e : bénéfices,
-          cas d’usage, contenu du PDF, contrôle d’intégrité documentaire et
-          limites explicites.
-        </p>
-
-        <div className="w-20 h-[2px] bg-gray-300 mt-10" />
+    <section id="product" className="mx-auto max-w-7xl px-6 py-8 md:px-8 md:py-12">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org", "@type": "Service", name: "Attestation CO₂e indicative Certif-Scope",
+        offers: { "@type": "Offer", priceCurrency: "EUR", price: "89", url: "https://www.certif-scope.com/fr/pricing/" }
+      }) }} />
+      <header className="max-w-3xl">
+        <h1 className="text-3xl font-extrabold text-[#0B3A63] md:text-4xl">Votre attestation CO₂e : contenu, exemple et limites</h1>
+        <p className="mt-4 text-lg leading-relaxed text-[#475569]">Un PDF personnalisé à partir de vos dépenses annuelles, à utiliser lorsque votre destinataire accepte cette estimation indicative.</p>
       </header>
-
-      {/* SOMMAIRE */}
-      <nav
-        aria-label="Sections produit"
-        className="mb-16 max-w-4xl p-6 bg-[#F8FAFC] border border-gray-200 rounded-xl shadow-sm"
-      >
-        <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-[#0B3A63] font-medium">
-          <li>
-            <a
-              href="#product-overview"
-              className="hover:text-[#1FB6C1] transition"
-            >
-              1. Présentation du produit
-            </a>
-          </li>
-          <li>
-            <a href="#key-benefits" className="hover:text-[#1FB6C1] transition">
-              2. Bénéfices clés
-            </a>
-          </li>
-          <li>
-            <a
-              href="#why-the-product-exists"
-              className="hover:text-[#1FB6C1] transition"
-            >
-              3. Pourquoi ce produit existe
-            </a>
-          </li>
-          <li>
-            <a
-              href="#attestation-pdf-contents"
-              className="hover:text-[#1FB6C1] transition"
-            >
-              4. Contenu du PDF
-            </a>
-          </li>
-          <li>
-            <a
-              href="#verification-and-integrity"
-              className="hover:text-[#1FB6C1] transition"
-            >
-              5. Vérification & intégrité
-            </a>
-          </li>
-          <li>
-            <a
-              href="#usage-scenarios"
-              className="hover:text-[#1FB6C1] transition"
-            >
-              6. Scénarios d’usage
-            </a>
-          </li>
-          <li>
-            <a
-              href="#limitations-and-fit"
-              className="hover:text-[#1FB6C1] transition"
-            >
-              7. Limites & adéquation
-            </a>
-          </li>
-        </ul>
-      </nav>
-
-      {/* CONTENU */}
-      <div className="max-w-4xl mx-auto space-y-24">
-        <Section1FR />
-        <Section2FR />
-        <Section3FR />
-        <Section4FR />
-        <Section5FR />
-        <Section6FR />
-        <Section7FR />
+      <div className="mt-8 grid items-start gap-8 lg:grid-cols-2">
+        <div className="rounded-[26px] border border-[#0B3A63]/10 bg-[#F8FAFC] p-5">
+          <Image src="/attestation-example-fr.webp" alt="Première page du PDF exemple Certif-Scope, document de démonstration" width={778} height={1100} sizes="(max-width: 1024px) 100vw, 50vw" className="h-auto w-full" />
+          <a href="/api/sample" className="mt-4 inline-block font-semibold text-[#0B3A63] underline">Ouvrir l’exemple PDF complet</a>
+        </div>
+        <div className="rounded-[26px] border border-[#0B3A63]/10 bg-white p-6 md:p-8">
+          <OfferDetails />
+          <Link href="/fr/generate/" className="mt-6 inline-flex min-h-[52px] items-center justify-center rounded-xl bg-[#0B3A63] px-6 py-3 font-semibold text-white hover:bg-[#082C4B]">Préparer mon attestation — 89 €</Link>
+        </div>
       </div>
+      <section className="mt-10 max-w-4xl">
+        <h2 className="text-2xl font-bold text-[#0B3A63]">Dans quel cas l’utiliser ?</h2>
+        <p className="mt-4 leading-relaxed text-[#475569]">Pour une demande documentaire simple d’un client, fournisseur, acheteur ou partenaire qui accepte une estimation fondée sur les dépenses. Envoyez-lui l’exemple avant achat. Si une méthode, un périmètre détaillé ou une validation externe sont imposés, cette attestation peut ne pas convenir.</p>
+      </section>
+      <section className="mt-8 max-w-4xl rounded-[26px] border border-[#0B3A63]/10 bg-[#F8FAFC] p-6">
+        <h2 className="text-2xl font-bold text-[#0B3A63]">Ce que l’estimation couvre</h2>
+        <p className="mt-4 leading-relaxed text-[#475569]">Sept catégories de dépenses externes annuelles hors taxes sont converties avec des coefficients internes publiés. Le résultat ne représente pas l’ensemble des émissions de l’entreprise : il ne couvre ni les émissions directes de Scope 1, ni l’électricité de Scope 2, ni un inventaire exhaustif de Scope 3.</p>
+        <p className="mt-4 leading-relaxed text-[#475569]">L’année de référence décrit les dépenses utilisées. La période documentaire de 12 mois à compter de l’émission ne transforme pas ces données en mesures actualisées et ne garantit pas leur acceptation.</p>
+        <Link href="/fr/product/methodology/" className="mt-4 inline-block font-semibold text-[#0B3A63] underline">Voir les coefficients et un exemple de calcul</Link>
+      </section>
+      <section className="mt-8 max-w-4xl">
+        <h2 className="text-2xl font-bold text-[#0B3A63]">Lire et contrôler le document</h2>
+        <p className="mt-4 leading-relaxed text-[#475569]">Le QR code permet de lire les données documentaires transmises. Leur affichage ne constitue pas à lui seul une authentification du PDF. Les éléments de signature nécessitent un contrôle technique distinct ; ils ne valident pas les dépenses ou les émissions réelles.</p>
+        <div className="mt-4 flex flex-wrap gap-5"><Link href="/fr/verify/" className="font-semibold text-[#0B3A63] underline">Comprendre la vérification</Link><Link href="/fr/pricing/#packs" className="font-semibold text-[#0B3A63] underline">Voir les packs</Link><Link href="/fr/contact/" className="font-semibold text-[#0B3A63] underline">Poser une question</Link></div>
+      </section>
     </section>
   );
 }

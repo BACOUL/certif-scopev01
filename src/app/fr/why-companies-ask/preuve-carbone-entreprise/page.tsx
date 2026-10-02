@@ -45,7 +45,7 @@ export default function CompanyCarbonProofFR() {
     <section
       id="company-carbon-proof"
       data-section="company-carbon-proof"
-      className="max-w-7xl mx-auto px-6 pt-12 pb-24"
+      className="max-w-7xl mx-auto px-6 pt-8 pb-16 md:pt-12 md:pb-24"
     >
       {/* JSON-LD — WebPage (GUIDE) */}
       <script
@@ -88,7 +88,7 @@ export default function CompanyCarbonProofFR() {
       <div id="top" />
 
       {/* PAGE HEADER */}
-      <header className="mb-14">
+      <header className="mb-8 md:mb-14">
         <p className="uppercase text-xs tracking-wider text-[#64748B] mb-3">
           Comprendre les demandes CO₂e — Synthèse “justificatif”
         </p>

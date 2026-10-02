@@ -31,7 +31,7 @@ export default function FRLayout({
   return (
     <div
       lang="fr"
-      className="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200"
+      className="bg-white text-gray-800"
     >
       {children}
     </div>

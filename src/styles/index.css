@@ -7,6 +7,7 @@
 /* Juste ce qui est nécessaire — sans casser Tailwind */
 html {
   scroll-padding-top: 6rem;
+  color-scheme: light;
 }
 
 body {
@@ -27,4 +28,15 @@ pre, code {
   white-space: pre-wrap;
   word-wrap: break-word;
   max-width: 100%;
+}
+
+/* Shared readability and keyboard navigation. */
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visible {
+  outline: 3px solid #0B3A63;
+  outline-offset: 3px;
+}
+input, select, textarea { color: #1E293B; background-color: white; font-size: 16px; }
+summary { cursor: pointer; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }

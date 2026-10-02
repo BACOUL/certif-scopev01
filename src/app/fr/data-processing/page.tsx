@@ -24,7 +24,7 @@ export default function DataProcessingPage() {
     <section
       id="data-processing"
       data-section="data-processing"
-      className="max-w-7xl mx-auto px-6 pt-12 pb-24"
+      className="max-w-7xl mx-auto px-6 pt-8 pb-16 md:pt-12 md:pb-24"
     >
       {/* JSON-LD — BreadcrumbList */}
       <script
@@ -52,7 +52,7 @@ export default function DataProcessingPage() {
       />
 
       {/* EN-TÊTE PAGE — ALIGNEMENT CANONIQUE */}
-      <header className="mb-14">
+      <header className="mb-8 md:mb-14">
         <p className="uppercase text-xs tracking-wider text-[#64748B] mb-3">
           Protection des données & RGPD
         </p>

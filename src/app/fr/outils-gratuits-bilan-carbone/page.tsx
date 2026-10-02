@@ -166,7 +166,7 @@ export default function FreeCarbonToolsFR() {
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
               href="/fr/generate/"
-              className="inline-flex items-center justify-center rounded-xl bg-[#1FB6C1] px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all hover:-translate-y-0.5 hover:bg-[#0B3A63]"
+              className="inline-flex items-center justify-center rounded-xl bg-[#0B3A63] px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all hover:-translate-y-0.5 hover:bg-[#0B3A63]"
             >
               Générer mon attestation CO2e →
             </Link>

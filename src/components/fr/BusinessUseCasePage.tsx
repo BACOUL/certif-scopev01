@@ -55,7 +55,7 @@ function PrimaryCtas() {
     <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
       <Link
         href="/fr/generate"
-        className="inline-flex min-h-[48px] items-center justify-center rounded-lg bg-[#1FB6C1] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#1FB6C1]/90 focus:outline-none focus:ring-2 focus:ring-[#0B3A63] focus:ring-offset-2"
+        className="inline-flex min-h-[48px] items-center justify-center rounded-lg bg-[#0B3A63] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#0B3A63]/90 focus:outline-none focus:ring-2 focus:ring-[#0B3A63] focus:ring-offset-2"
       >
         Générer mon attestation — 89 €
       </Link>

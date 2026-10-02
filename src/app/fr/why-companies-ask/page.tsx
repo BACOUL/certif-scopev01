@@ -45,7 +45,7 @@ export default function WhyCompaniesAskPage() {
     <section
       id="why-companies-ask"
       data-section="why-companies-ask"
-      className="max-w-7xl mx-auto px-6 pt-12 pb-24"
+      className="max-w-7xl mx-auto px-6 pt-8 pb-16 md:pt-12 md:pb-24"
     >
       {/* JSON-LD — WebPage (STRICT, NON-PRODUCT) */}
       <script
@@ -88,7 +88,7 @@ export default function WhyCompaniesAskPage() {
       <div id="top" />
 
       {/* HEADER */}
-      <header className="mb-14">
+      <header className="mb-8 md:mb-14">
         <p className="uppercase text-xs tracking-wider text-[#64748B] mb-3">
           Exigence CO₂ fournisseurs — justificatif / preuve carbone
         </p>

@@ -41,7 +41,6 @@ const nextConfig = {
         permanent: true,
       },
       { source: "/", destination: "/fr/", permanent: true },
-      { source: "/en", destination: "/fr/", permanent: true },
       { source: "/generate", destination: "/fr/generate/", permanent: true },
       { source: "/verify", destination: "/fr/verify/", permanent: true },
       { source: "/verify/technical", destination: "/fr/verify/technical/", permanent: true },
@@ -57,7 +56,6 @@ const nextConfig = {
       { source: "/cookies", destination: "/fr/cookies/", permanent: true },
       { source: "/data-processing", destination: "/fr/data-processing/", permanent: true },
       { source: "/about", destination: "/fr/", permanent: true },
-      { source: "/en/:path*", destination: "/fr/", permanent: true },
     ];
   },
 };

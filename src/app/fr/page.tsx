@@ -4,17 +4,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import ScrollUp from "@/components/Common/ScrollUp";
+import { EU_HOME_ALTERNATES } from "@/lib/eu-locales-core";
 
 // FR — composants définitifs
 import HeroFR from "@/components/fr/Hero";
 import UseCaseDecisionTable from "@/components/fr/UseCaseDecisionTable";
-import ProblemSolutionFR from "@/components/fr/ProblemSolution";
-import DifferentiationFR from "@/components/fr/Differentiation";
 import FeaturesFR from "@/components/fr/Features";
-import RecipientView from "@/components/fr/RecipientView";
-import OfficialReferencesFR from "@/components/fr/OfficialReferences";
 import HowItWorksFR from "@/components/fr/HowItWorks";
-import TestimonialsFR from "@/components/fr/Testimonials";
 import PricingFR from "@/components/fr/Pricing";
 import FAQFR from "@/components/fr/FAQ";
 
@@ -47,10 +43,7 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: "https://www.certif-scope.com/fr/",
-    languages: {
-      fr: "https://www.certif-scope.com/fr/",
-      de: "https://www.certif-scope.com/de/",
-    },
+    languages: EU_HOME_ALTERNATES,
   },
   openGraph: {
     type: "website",
@@ -140,25 +133,26 @@ export default function HomeFR() {
         <UseCaseDecisionTable />
 
         {/* 3) Problème / besoin réel */}
-        <ProblemSolutionFR />
+
 
         {/* 4) Différenciation / pourquoi cette réponse */}
-        <DifferentiationFR />
+
 
         {/* 5) Produit / document concret */}
         <FeaturesFR />
 
         {/* 6) Ce que le destinataire verra */}
-        <RecipientView />
+
 
         {/* 7) Références officielles / légitimation de la méthode */}
-        <OfficialReferencesFR />
+
 
         {/* 8) Comment ça marche */}
         <HowItWorksFR />
+      <section className="mx-auto max-w-7xl px-6 py-12"><h2 className="text-2xl font-bold text-[#0B3A63]">Un doute avant de payer ?</h2><p className="mt-3 max-w-3xl text-gray-700">Consultez l’exemple avec votre destinataire pour confirmer le périmètre attendu. Certif-Scope fournit une estimation indicative, sans validation externe des émissions.</p><div className="mt-5 flex flex-wrap gap-5"><Link className="font-semibold underline text-[#0B3A63]" href="/fr/contact/">Nous contacter</Link><Link className="font-semibold underline text-[#0B3A63]" href="/fr/product/methodology/">Comprendre le calcul</Link></div></section>
 
         {/* 9) Cas d’usage terrain */}
-        <TestimonialsFR />
+
 
         {/* 10) Pricing */}
         <PricingFR />
@@ -170,7 +164,7 @@ export default function HomeFR() {
         <section
           id="final-cta"
           data-section="final-cta"
-          className="relative overflow-hidden bg-[#F8FAFC] py-20 md:py-28"
+          className="relative overflow-hidden bg-[#F8FAFC] py-12 md:py-16"
           aria-label="Appel à l’action final"
         >
           <div className="absolute inset-0 -z-30 bg-[linear-gradient(180deg,#F8FAFC_0%,#ffffff_100%)]" />
@@ -201,7 +195,7 @@ export default function HomeFR() {
                   <div className="mt-6 flex flex-wrap gap-3">
                     <Link
                       href="/fr/generate"
-                      className="inline-flex items-center justify-center rounded-xl bg-[#1FB6C1] px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0B3A63]"
+                      className="inline-flex items-center justify-center rounded-xl bg-[#0B3A63] px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0B3A63]"
                     >
                       Générer mon attestation →
                     </Link>

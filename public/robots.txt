@@ -4,6 +4,8 @@ Allow: /
 
 Disallow: /api/
 Disallow: /success/
+Disallow: /en/success/
+Disallow: /de/erfolg/
 Disallow: /cancel/
 Disallow: /error/
 Disallow: /test/
@@ -11,3 +13,4 @@ Disallow: /test/
 Disallow: /*?*
 
 Sitemap: https://www.certif-scope.com/sitemap.xml
+Sitemap: https://www.certif-scope.com/sitemap-eu.xml

@@ -63,7 +63,7 @@ export default function FooterFR() {
             <div className="mt-6 flex flex-wrap gap-3">
               <Link
                 href="/fr/generate/"
-                className={`${footerButtonBase} bg-[#1FB6C1] text-white shadow-[0_12px_30px_rgba(31,182,193,0.20)] hover:-translate-y-0.5 hover:bg-[#19AAB4]`}
+                className={`${footerButtonBase} bg-[#0B3A63] text-white shadow-[0_12px_30px_rgba(31,182,193,0.20)] hover:-translate-y-0.5 hover:bg-[#082C4B]`}
               >
                 Générer →
               </Link>

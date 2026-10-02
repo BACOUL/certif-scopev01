@@ -44,7 +44,7 @@ export default function UseCaseDecisionTable() {
     <section
       id="cas-adaptes"
       aria-labelledby="cas-adaptes-title"
-      className="bg-white py-20 md:py-24"
+      className="bg-white py-12 md:py-16"
     >
       <div className="mx-auto max-w-7xl px-6 md:px-8">
         <div className="mx-auto max-w-3xl text-center">
@@ -62,19 +62,20 @@ export default function UseCaseDecisionTable() {
           <p className="mt-5 text-base leading-relaxed text-[#0B3A63]/80 md:text-lg">
             Certif-Scope est conçu pour les demandes documentaires simples. Si
             un audit complet, une norme précise ou une vérification externe est
-            exigée, il faut suivre cette exigence.
+            exigée, il faut suivre cette exigence. L’absence de méthode imposée
+            ne garantit pas l’acceptation du PDF : demandez confirmation avant achat.
           </p>
         </div>
 
         <div className="mt-12 grid gap-5 md:grid-cols-2">
-          <DecisionList title="Adapté" items={adaptedCases} />
+          <DecisionList title="À confirmer avec le destinataire" items={adaptedCases} />
           <DecisionList title="Non adapté" items={notAdaptedCases} />
         </div>
 
         <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Link
             href="/fr/generate"
-            className="inline-flex min-h-[54px] w-full items-center justify-center rounded-lg bg-[#1FB6C1] px-7 py-3 text-base font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0B3A63] focus:outline-none focus:ring-2 focus:ring-[#0B3A63] focus:ring-offset-2 sm:w-auto"
+            className="inline-flex min-h-[54px] w-full items-center justify-center rounded-lg bg-[#0B3A63] px-7 py-3 text-base font-semibold text-white shadow-[0_12px_30px_rgba(31,182,193,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0B3A63] focus:outline-none focus:ring-2 focus:ring-[#0B3A63] focus:ring-offset-2 sm:w-auto"
           >
             Générer mon attestation — 89 €
           </Link>

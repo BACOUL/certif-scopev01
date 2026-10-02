@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 
 /* ======================================================
    CERTIF-SCOPE — MODÈLE DE CALCUL (CÔTÉ CLIENT)
@@ -8,19 +8,8 @@ import { useState } from "react";
    LANGUES : EN / FR / DE (attestation uniquement)
 ====================================================== */
 
-// kgCO₂e / €
-const EMISSION_FACTORS = {
-  it: 0.30,
-  services: 0.22,
-  goods: 0.45,
-  logistics: 0.18,
-  travel: 0.25,
-  accommodation: 0.27,
-  other: 0.25,
-} as const;
-
-const METHODOLOGY =
-  "Certif-Scope deterministic spend-based methodology v1.0";
+import { EMISSION_FACTORS, METHODOLOGY, parseExpense as toNumber } from "@/lib/indicative-model";
+import { localeNames, sectorLabel } from "@/lib/site-locales";
 
 const ACCEPTED_SCOPE_ERROR =
   "Veuillez confirmer que vous comprenez le périmètre indicatif de l’attestation avant de continuer.";
@@ -35,6 +24,8 @@ type FormErrors = {
   companyName?: string;
   sector?: string;
   acceptedScope?: string;
+  expenses?: string;
+  year?: string;
   submit?: string;
 };
 
@@ -78,11 +69,6 @@ const SECTORS = [
    CALCUL & UTILITAIRES
 ====================================================== */
 
-function toNumber(value: string): number {
-  if (!value) return 0;
-
-  return Number(value.replace(",", ".")) || 0;
-}
 
 function calculateTotalCO2e(expenses: Record<string, number>) {
   let totalKg = 0;
@@ -114,11 +100,14 @@ function Accordion({
   defaultOpen?: boolean;
 }) {
   const [open, setOpen] = useState(defaultOpen);
+  const panelId = useId();
 
   return (
     <div className="border border-gray-200 rounded-xl overflow-hidden">
       <button
         type="button"
+        aria-expanded={open}
+        aria-controls={panelId}
         onClick={() => setOpen(!open)}
         className="w-full flex justify-between items-center px-5 py-4 bg-[#F8FAFC] text-left"
       >
@@ -127,7 +116,7 @@ function Accordion({
       </button>
 
       {open && (
-        <div className="px-5 py-6 bg-white space-y-5">
+        <div id={panelId} className="px-5 py-6 bg-white space-y-5">
           {intro && (
             <p className="text-sm text-gray-600 leading-relaxed">
               {intro}
@@ -146,6 +135,7 @@ function Accordion({
 
 export default function AssessmentForm() {
   const currentYear = new Date().getFullYear();
+  const [step, setStep] = useState(1);
 
   const [companyName, setCompanyName] = useState("");
   const [companyId, setCompanyId] = useState("");
@@ -187,13 +177,45 @@ export default function AssessmentForm() {
     Object.entries(expenses).map(([k, v]) => [k, toNumber(v)])
   );
 
-  const totalCO2e = calculateTotalCO2e(numericExpenses);
+  const expensesValid = Object.values(numericExpenses).every(Number.isFinite);
+  const hasExpenses = Object.values(numericExpenses).some(value => value > 0);
+  const totalCO2e = expensesValid ? calculateTotalCO2e(numericExpenses) : 0;
+  const resultLabel = !expensesValid ? "Corrigez les montants" : hasExpenses ? `${totalCO2e} tCO₂e` : "À calculer";
+
+  const stepErrors = (stage: number): FormErrors => {
+    const next: FormErrors = {};
+    if (stage === 1) {
+      if (!companyName.trim()) next.companyName = "Renseignez le nom de l’entreprise.";
+      if (!sector) next.sector = "Sélectionnez un secteur d’activité.";
+      if (!Number.isInteger(year) || year < 2000 || year > currentYear) next.year = `Choisissez une année entre 2000 et ${currentYear}.`;
+    }
+    if (stage === 2) {
+      if (!expensesValid) next.expenses = "Utilisez des montants positifs ou nuls, avec au maximum deux décimales.";
+      else if (Object.values(expenses).some(value => !value.trim())) next.expenses = "Renseignez chaque catégorie. Indiquez 0 uniquement si la dépense est réellement nulle. Si elle est inconnue, réunissez vos données avant de continuer.";
+      else if (!hasExpenses) next.expenses = "Déclarez au moins une dépense supérieure à 0 €.";
+    }
+    return next;
+  };
+
+  const goToStep = (nextStep: number) => {
+    if (nextStep > step) {
+      const nextErrors = stepErrors(step);
+      if (Object.keys(nextErrors).length) {
+        setErrors(nextErrors);
+        window.setTimeout(() => document.getElementById("form-error-summary")?.focus(), 0);
+        return;
+      }
+    }
+    setErrors({});
+    setStep(nextStep);
+    window.setTimeout(() => document.getElementById("assessment-step-title")?.focus(), 0);
+  };
 
   const selectedSectorLabel =
     SECTORS.find((s) => s.value === sector)?.label || sector;
 
   const validate = (): boolean => {
-    const nextErrors: FormErrors = {};
+    const nextErrors: FormErrors = { ...stepErrors(1), ...stepErrors(2) };
 
     if (!companyName.trim()) {
       nextErrors.companyName =
@@ -269,6 +291,8 @@ export default function AssessmentForm() {
 
   const handleSubmit = async () => {
     if (!validate()) {
+      if (Object.keys(stepErrors(1)).length) setStep(1);
+      else if (Object.keys(stepErrors(2)).length) setStep(2);
       scrollToErrorSummary();
       return;
     }
@@ -292,13 +316,14 @@ export default function AssessmentForm() {
 
     const basePayload = {
       companyName: companyName.trim(),
-      companySector: selectedSectorLabel,
+      companySector: sectorLabel(sector, attestationLocale),
       entityIdentifier: companyId.trim() || "",
       year: String(year),
       country,
       totalCO2e,
       methodology: METHODOLOGY,
       attestationLocale,
+      siteLocale: "fr",
     };
 
     const payload = {
@@ -358,10 +383,11 @@ export default function AssessmentForm() {
     { label: "Année", value: String(year) },
     { label: "Pays", value: country },
     { label: "Secteur", value: displayedSectorLabel },
-    { label: "Résultat estimé", value: `${totalCO2e} tCO₂e` },
+    { label: "Résultat estimé", value: resultLabel },
     { label: "Document", value: "Attestation CO₂e indicative PDF" },
-    { label: "Prix", value: "89 €" },
-    { label: "Livraison", value: "Immédiate après paiement" },
+    { label: "Langue de l’attestation", value: localeNames[attestationLocale] },
+    { label: "Prix", value: isRedeeming ? "1 crédit du pack" : "89 € · TVA non applicable" },
+    { label: "Livraison", value: isRedeeming ? "Après utilisation du crédit" : "Après confirmation du paiement" },
   ];
 
   const handleDisabledSubmitClick = () => {
@@ -373,36 +399,15 @@ export default function AssessmentForm() {
     }
   };
 
-  const missingRequiredFields = [
-    errors.companyName && "Nom de l'entreprise / entité légale",
-    errors.sector && "Secteur d'activité principal",
-    errors.acceptedScope && "Confirmation du périmètre indicatif",
-    errors.submit && "Au moins une dépense externe annuelle supérieure à 0 €",
-  ].filter(Boolean) as string[];
-
   return (
-    <main className="min-h-screen bg-white">
-      <section className="max-w-3xl mx-auto px-6 pt-16 pb-20 space-y-10">
-        {/* INTRO */}
-        <div>
-          <p className="text-sm text-gray-500 mb-2">
-            Étape 1 sur 3 — Entreprise & contexte
-          </p>
-
-          <h1 className="text-3xl md:text-4xl font-extrabold text-[#0B3A63] mb-3">
-            Générez votre attestation carbone
-          </h1>
-
-          <p className="text-gray-600 text-lg leading-relaxed">
-            Estimation indicative basée sur les dépenses. Pas d'audit. Aucune
-            donnée physique requise.
-          </p>
-
-          <p className="text-sm text-gray-500 mt-3">
-            <strong>Prix :</strong> 89 € · Paiement unique · Sans abonnement
-          </p>
-        </div>
-
+    <div className="bg-white">
+      <section className="max-w-3xl mx-auto px-0 pt-2 pb-8 space-y-6">
+        <nav aria-label="Progression du formulaire" className="grid grid-cols-3 gap-2 text-sm">
+          {["Entreprise", "Dépenses", "Vérification"].map((label, index) => <div key={label} aria-current={step === index + 1 ? "step" : undefined} className={`rounded-lg border px-3 py-3 ${step === index + 1 ? "bg-[#0B3A63] text-white" : "bg-[#F8FAFC] text-gray-600"}`}>{index + 1}. {label}</div>)}
+        </nav>
+        <h2 id="assessment-step-title" tabIndex={-1} className="text-xl font-bold text-[#0B3A63]">Étape {step} sur 3 — {["Entreprise et contexte", "Dépenses annuelles", "Vérification avant paiement"][step - 1]}</h2>
+        {Object.values(errors).some(Boolean) && <div id="form-error-summary" tabIndex={-1} role="alert" className="rounded-lg border border-red-200 bg-red-50 p-4 text-red-800">{Object.values(errors).filter(Boolean).map((error, i) => <p key={i}>{error}</p>)}</div>}
+        <div hidden={step !== 1} className="space-y-6">
         {/* ÉTAPE 1 */}
         <Accordion
           title="Informations entreprise"
@@ -411,11 +416,12 @@ export default function AssessmentForm() {
         >
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium">
+              <label htmlFor="company-name" className="block text-sm font-medium">
                 Nom de l'entreprise / entité légale *
               </label>
 
               <input
+                id="company-name"
                 type="text"
                 value={companyName}
                 aria-invalid={Boolean(errors.companyName)}
@@ -435,11 +441,12 @@ export default function AssessmentForm() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium">
+              <label htmlFor="company-sector" className="block text-sm font-medium">
                 Secteur d'activité principal *
               </label>
 
               <select
+                id="company-sector"
                 value={sector}
                 aria-invalid={Boolean(errors.sector)}
                 onChange={(e) => setSector(e.target.value)}
@@ -466,11 +473,12 @@ export default function AssessmentForm() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium">
+              <label htmlFor="company-id" className="block text-sm font-medium">
                 Identifiant entreprise (optionnel)
               </label>
 
               <input
+                id="company-id"
                 type="text"
                 value={companyId}
                 onChange={(e) => setCompanyId(e.target.value)}
@@ -488,12 +496,16 @@ export default function AssessmentForm() {
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium">
+              <label htmlFor="reference-year" className="block text-sm font-medium">
                 Année de référence
               </label>
 
               <input
+                id="reference-year"
                 type="number"
+                min={2000}
+                max={currentYear}
+                aria-invalid={Boolean(errors.year)}
                 value={year}
                 onChange={(e) => setYear(Number(e.target.value))}
                 className="w-full border border-gray-300 rounded-md px-4 py-2 mt-1"
@@ -501,11 +513,12 @@ export default function AssessmentForm() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium">
+              <label htmlFor="main-country" className="block text-sm font-medium">
                 Pays principal
               </label>
 
               <select
+                id="main-country"
                 value={country}
                 onChange={(e) => setCountry(e.target.value)}
                 className="w-full border border-gray-300 rounded-md px-4 py-2 mt-1"
@@ -517,11 +530,12 @@ export default function AssessmentForm() {
             </div>
 
             <div className="md:col-span-2">
-              <label className="block text-sm font-medium">
+              <label htmlFor="attestation-language" className="block text-sm font-medium">
                 Langue de l'attestation
               </label>
 
               <select
+                id="attestation-language"
                 value={attestationLocale}
                 onChange={(e) =>
                   setAttestationLocale(e.target.value as AttestationLocale)
@@ -536,6 +550,9 @@ export default function AssessmentForm() {
           </div>
         </Accordion>
 
+        <button type="button" onClick={() => goToStep(2)} className="w-full rounded-xl bg-[#0B3A63] px-6 py-3 font-semibold text-white">Continuer vers les dépenses</button>
+        </div>
+        <div hidden={step !== 2} className="space-y-6">
         {/* ÉTAPE 2 — DÉCLARATION DES RESSOURCES */}
         <p className="text-sm text-gray-500">
           Étape 2 sur 3 — Déclaration des ressources
@@ -543,7 +560,7 @@ export default function AssessmentForm() {
 
         <Accordion
           title="Déclaration des ressources / dépenses externes annuelles (€)"
-          intro="Indiquez vos principaux montants annuels par catégorie. Des estimations raisonnables suffisent. Ces données servent uniquement au calcul spend-based de l’attestation indicative."
+          intro="Indiquez les dépenses externes annuelles hors taxes en euros, sur une même année. Chaque dépense doit figurer dans une seule catégorie. Écartez salaires, taxes et dépenses internes. Saisissez 0 pour une catégorie réellement nulle ; une donnée inconnue ne doit pas être remplacée par 0."
           defaultOpen
         >
           {errors.submit && (
@@ -557,7 +574,7 @@ export default function AssessmentForm() {
             hint="Logiciels, cloud, SaaS, infogérance"
             value={expenses.it}
             onChange={(v) => update("it", v)}
-            hasError={Boolean(errors.submit)}
+            hasError={Boolean(errors.expenses)}
           />
 
           <Input
@@ -565,7 +582,7 @@ export default function AssessmentForm() {
             hint="Conseil, comptabilité, juridique"
             value={expenses.services}
             onChange={(v) => update("services", v)}
-            hasError={Boolean(errors.submit)}
+            hasError={Boolean(errors.expenses)}
           />
 
           <Input
@@ -573,7 +590,7 @@ export default function AssessmentForm() {
             hint="Fournitures de bureau, équipements, matériaux"
             value={expenses.goods}
             onChange={(v) => update("goods", v)}
-            hasError={Boolean(errors.submit)}
+            hasError={Boolean(errors.expenses)}
           />
 
           <Input
@@ -581,7 +598,7 @@ export default function AssessmentForm() {
             hint="Fret, livraison, transporteurs"
             value={expenses.logistics}
             onChange={(v) => update("logistics", v)}
-            hasError={Boolean(errors.submit)}
+            hasError={Boolean(errors.expenses)}
           />
 
           <Input
@@ -589,7 +606,7 @@ export default function AssessmentForm() {
             hint="Vols, trains, taxis, location de voitures"
             value={expenses.travel}
             onChange={(v) => update("travel", v)}
-            hasError={Boolean(errors.submit)}
+            hasError={Boolean(errors.expenses)}
           />
 
           <Input
@@ -597,7 +614,7 @@ export default function AssessmentForm() {
             hint="Hôtels, conférences, événements d'entreprise"
             value={expenses.accommodation}
             onChange={(v) => update("accommodation", v)}
-            hasError={Boolean(errors.submit)}
+            hasError={Boolean(errors.expenses)}
           />
 
           <Input
@@ -605,10 +622,14 @@ export default function AssessmentForm() {
             hint="Marketing, abonnements, frais divers"
             value={expenses.other}
             onChange={(v) => update("other", v)}
-            hasError={Boolean(errors.submit)}
+            hasError={Boolean(errors.expenses)}
           />
         </Accordion>
 
+        <div className="flex gap-3"><button type="button" onClick={() => goToStep(1)} className="rounded-xl border px-5 py-3 text-[#0B3A63]">Retour</button><button type="button" onClick={() => goToStep(3)} className="flex-1 rounded-xl bg-[#0B3A63] px-5 py-3 font-semibold text-white">Voir le récapitulatif</button></div>
+        </div>
+        <div hidden={step !== 3} className="space-y-6">
+        <button type="button" onClick={() => goToStep(2)} className="font-semibold text-[#0B3A63] underline">Modifier mes dépenses</button>
         {/* ÉTAPE 3 */}
         <p className="text-sm text-gray-500">
           Étape 3 sur 3 — Résultat & attestation
@@ -620,7 +641,7 @@ export default function AssessmentForm() {
           </p>
 
           <p className="text-3xl font-bold text-[#0B3A63]">
-            {totalCO2e} tCO₂e
+            {resultLabel}
           </p>
 
           <p className="text-xs text-gray-500 mt-2">
@@ -636,10 +657,10 @@ export default function AssessmentForm() {
 
           <ul className="text-sm text-gray-600 list-disc pl-5 space-y-1">
             <li>Attestation carbone PDF signée</li>
-            <li>Format institutionnel standardisé</li>
+            <li>Format PDF standardisé</li>
             <li>Méthodologie indicative basée sur la dépense</li>
             <li>Document avec ID vérifiable</li>
-            <li>Livraison immédiate après paiement</li>
+            <li>Téléchargement après confirmation du paiement</li>
           </ul>
         </div>
 
@@ -657,7 +678,8 @@ export default function AssessmentForm() {
             <div className="flex flex-col sm:flex-row gap-3 sm:items-center min-w-0">
               <input
                 type="text"
-                placeholder="XXXX-XXXX-XXXX"
+                aria-label="Clé d’accès du pack"
+              placeholder="XXXX-XXXX-XXXX"
                 value={accessKey}
                 onChange={(e) => {
                   setAccessKey(e.target.value);
@@ -809,25 +831,6 @@ export default function AssessmentForm() {
           )}
         </div>
 
-        {missingRequiredFields.length > 0 && (
-          <div
-            id="form-error-summary"
-            role="alert"
-            className="rounded-xl border-2 border-red-300 bg-red-50 p-5 text-red-800 shadow-sm"
-          >
-            <p className="font-semibold text-base mb-2">
-              Impossible d’ouvrir Stripe pour le moment.
-            </p>
-            <p className="text-sm mb-3">
-              Veuillez compléter les champs obligatoires suivants :
-            </p>
-            <ul className="list-disc pl-5 text-sm space-y-1 font-medium">
-              {missingRequiredFields.map((field) => (
-                <li key={field}>{field}</li>
-              ))}
-            </ul>
-          </div>
-        )}
 
         <div
           onClick={isSubmitDisabled ? handleDisabledSubmitClick : undefined}
@@ -857,8 +860,10 @@ export default function AssessmentForm() {
           uniquement sur les informations fournies. Elle ne constitue pas un
           audit de gaz à effet de serre ni un rapport de conformité.
         </p>
+        <p className="text-sm text-gray-600">Un doute sur l’usage du document ? <a className="underline text-[#0B3A63]" href="/fr/contact/">Contactez-nous avant paiement</a>. <a className="underline text-[#0B3A63]" href="/api/sample" target="_blank" rel="noopener noreferrer">Voir le PDF d’exemple</a>.</p>
+        </div>
       </section>
-    </main>
+    </div>
   );
 }
 
@@ -879,11 +884,15 @@ function Input({
   onChange: (v: string) => void;
   hasError?: boolean;
 }) {
+  const id = useId();
   return (
     <div>
-      <label className="block text-sm font-medium">{label}</label>
+      <label htmlFor={id} className="block text-sm font-medium">{label}</label>
 
       <input
+        id={id}
+        aria-describedby={`${id}-hint`}
+        placeholder="Ex. : 1 250,50 ou 0"
         type="text"
         inputMode="decimal"
         min="0"
@@ -895,7 +904,7 @@ function Input({
         }`}
       />
 
-      <p className="text-xs text-gray-500 mt-1">{hint}</p>
+      <p id={`${id}-hint`} className="text-xs text-gray-500 mt-1">{hint}</p>
     </div>
   );
 }
