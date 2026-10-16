@@ -2,6 +2,10 @@ User-agent: *
 
 Allow: /
 
+# Next.js JS/CSS and optimized images may have ?dpl= or other query strings.
+# Keep this explicit Allow more specific than the query-string Disallow below.
+Allow: /_next/
+
 Disallow: /api/
 Disallow: /success/
 Disallow: /en/success/
