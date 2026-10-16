@@ -40,6 +40,12 @@ const nextConfig = {
         destination: "https://www.certif-scope.com/:path*",
         permanent: true,
       },
+      // Legacy DE paths reported as 404 by Search Console. Preserve the correct locale.
+      { source: "/de/pricing/", destination: "/de/preise/", permanent: true },
+      { source: "/de/generate/", destination: "/de/erstellen/", permanent: true },
+      { source: "/de/verify/", destination: "/de/pruefen/", permanent: true },
+      { source: "/de/product/methodology/", destination: "/de/methodik/", permanent: true },
+      { source: "/de/why-companies-ask/", destination: "/de/warum-unternehmen-co2-angaben-anfordern/", permanent: true },
       { source: "/", destination: "/fr/", permanent: true },
       { source: "/generate", destination: "/fr/generate/", permanent: true },
       { source: "/verify", destination: "/fr/verify/", permanent: true },
