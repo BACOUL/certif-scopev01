@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ClientLayout from "./client-layout";
+import { Analytics } from "@vercel/analytics/next";
 import { headers } from "next/headers";
 import { isEuLocale } from "@/lib/eu-locales-core";
 import "../styles/index.css";
@@ -85,6 +86,7 @@ export default async function RootLayout({
 
       <body className="bg-white text-gray-800">
         <ClientLayout>{children}</ClientLayout>
+        <Analytics />
       </body>
     </html>
   );
