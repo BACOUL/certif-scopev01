@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import OfferDetails from "@/components/fr/OfferDetails";
+import BeforeBuyingFR from "@/components/fr/BeforeBuyingFR";
 
 export const metadata: Metadata = {
   title: "Attestation CO₂e PME : produit, PDF et limites | Certif-Scope",
@@ -40,6 +41,7 @@ export default function ProductPageFR() {
         <h1 className="text-3xl font-extrabold text-[#0B3A63] md:text-4xl">Votre attestation CO₂e : contenu, exemple et limites</h1>
         <p className="mt-4 text-lg leading-relaxed text-[#475569]">Un PDF personnalisé à partir de vos dépenses annuelles, à utiliser lorsque votre destinataire accepte cette estimation indicative.</p>
       </header>
+      <BeforeBuyingFR />
       <div className="mt-8 grid items-start gap-8 lg:grid-cols-2">
         <div className="rounded-[26px] border border-[#0B3A63]/10 bg-[#F8FAFC] p-5">
           <Image src="/attestation-example-fr.webp" alt="Première page du PDF exemple Certif-Scope, document de démonstration" width={778} height={1100} sizes="(max-width: 1024px) 100vw, 50vw" className="h-auto w-full" />

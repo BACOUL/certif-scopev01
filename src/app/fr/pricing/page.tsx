@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import OfferDetails from "@/components/fr/OfferDetails";
+import BeforeBuyingFR from "@/components/fr/BeforeBuyingFR";
 
 export const metadata: Metadata = {
   title: "Prix attestation CO₂e PME : 89€ sans abonnement | Certif-Scope",
@@ -68,6 +69,7 @@ export default function PricingPageFR() {
         <h1 className="text-3xl font-extrabold text-[#0B3A63] md:text-4xl">Un document à 89 €, sans abonnement</h1>
         <p className="mt-4 text-lg leading-relaxed text-[#475569]">Pour une demande qui accepte une estimation indicative fondée sur vos dépenses. Confirmez le périmètre avec votre destinataire avant de commander.</p>
       </header>
+      <BeforeBuyingFR />
       <section className="mt-8 grid gap-8 rounded-[30px] border border-[#0B3A63]/10 bg-[#F8FAFC] p-6 md:p-8 lg:grid-cols-[1fr_2fr]">
         <div>
           <h2 className="text-xl font-bold text-[#0B3A63]">Attestation unitaire</h2>
