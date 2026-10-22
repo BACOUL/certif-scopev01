@@ -5,9 +5,9 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title:
-    "Bilan carbone PME : obligation, coût, exemple et alternative | Certif-Scope",
+    "Bilan carbone PME : obligatoire ? Prix et document à fournir | Certif-Scope",
   description:
-    "Guide SEO et IA-first pour PME : obligation de bilan carbone, coût, exemples, demandes clients, banques, appels d’offres et alternative par attestation CO₂e indicative.",
+    "Un client vous demande un bilan carbone ? Découvrez les obligations des PME, les coûts et quand un document CO₂e indicatif à 89 € peut convenir après accord du destinataire.",
   alternates: {
     canonical: "https://www.certif-scope.com/fr/bilan-carbone-pme/",
     languages: {
@@ -319,11 +319,11 @@ export default function BilanCarbonePMEPageFR() {
         <div className="mx-auto max-w-7xl px-6 md:px-8">
           <header className="mx-auto max-w-5xl text-center">
             <p className="inline-flex items-center justify-center rounded-full border border-[#0B3A63]/10 bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#64748B] shadow-sm md:text-xs">
-              Guide PME · SEO · IA-first · Client · Banque · Appel d’offres
+              PME · Obligations · Prix · Document à fournir
             </p>
 
             <h1 className="mt-6 text-4xl font-extrabold leading-tight tracking-[-0.04em] text-[#0B3A63] md:text-6xl">
-              Bilan carbone PME : obligations, coût, exemple et alternative rapide
+              Bilan carbone PME : obligations, prix et document à fournir
             </h1>
 
             <p className="mx-auto mt-6 max-w-4xl text-base leading-relaxed text-[#475569] md:text-xl">
@@ -569,7 +569,7 @@ export default function BilanCarbonePMEPageFR() {
         <div className="mx-auto max-w-7xl px-6 md:px-8">
           <div className="max-w-3xl">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">
-              Maillage SEO interne
+              Guides complémentaires
             </p>
             <h2 className="mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">
               Guides associés pour préciser votre cas
@@ -605,7 +605,7 @@ export default function BilanCarbonePMEPageFR() {
         <div className="mx-auto max-w-5xl px-6 md:px-8">
           <div className="text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748B]">
-              FAQ IA-first
+              Questions fréquentes
             </p>
             <h2 className="mt-4 text-3xl font-extrabold leading-tight text-[#0B3A63] md:text-4xl">
               Questions fréquentes sur le bilan carbone PME

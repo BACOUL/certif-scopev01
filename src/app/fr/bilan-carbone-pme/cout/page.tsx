@@ -5,9 +5,9 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title:
-    "Coût bilan carbone PME : prix, alternatives et attestation CO₂e | Certif-Scope",
+    "Prix bilan carbone PME : coût et alternatives | Certif-Scope",
   description:
-    "Combien coûte un bilan carbone pour une PME ? Comprenez les niveaux de prix, la différence entre audit complet et document CO₂e indicatif, et pourquoi Certif-Scope propose une attestation à 89€.",
+    "Quel prix pour un bilan carbone PME ? Comparez les démarches complètes et découvrez quand une attestation CO₂e indicative à 89 € peut convenir, selon les exigences du destinataire.",
   alternates: {
     canonical: "https://www.certif-scope.com/fr/bilan-carbone-pme/cout/",
     languages: {
@@ -273,7 +273,7 @@ export default function BilanCarbonePMECoutPageFR() {
             </p>
 
             <h1 className="mt-6 text-4xl font-extrabold leading-tight tracking-[-0.04em] text-[#0B3A63] md:text-6xl">
-              Coût d’un bilan carbone PME : quel prix payer selon le besoin ?
+              Prix d’un bilan carbone PME : quel coût selon le besoin ?
             </h1>
 
             <p className="mx-auto mt-6 max-w-4xl text-base leading-relaxed text-[#475569] md:text-xl">

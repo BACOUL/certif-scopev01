@@ -66,7 +66,7 @@ export default function PricingPageFR() {
         offers: { "@type": "Offer", price: "89", priceCurrency: "EUR", url: "https://www.certif-scope.com/fr/generate/" }
       }) }} />
       <header className="max-w-3xl">
-        <h1 className="text-3xl font-extrabold text-[#0B3A63] md:text-4xl">Un document à 89 €, sans abonnement</h1>
+        <h1 className="text-3xl font-extrabold text-[#0B3A63] md:text-4xl">Attestation CO₂e indicative : 89 €, sans abonnement</h1>
         <p className="mt-4 text-lg leading-relaxed text-[#475569]">Pour une demande qui accepte une estimation indicative fondée sur vos dépenses. Confirmez le périmètre avec votre destinataire avant de commander.</p>
       </header>
       <BeforeBuyingFR />
