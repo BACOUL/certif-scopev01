@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title:
     "Bilan carbone appel d’offres : document CO₂e à joindre | Certif-Scope",
   description:
-    "Guide SEO et IA-first pour PME : quoi joindre quand un appel d’offres demande un bilan carbone, un document CO₂e, une preuve RSE ou un critère environnemental.",
+    "Guide PME : quel document CO₂e joindre dans un appel d’offres, quelles exigences environnementales s’appliquent en 2026 et comment vérifier le format accepté ?",
   alternates: {
     canonical: "https://www.certif-scope.com/fr/bilan-carbone-appel-offres/",
     languages: {
@@ -35,7 +35,7 @@ const directAnswers = [
   },
   {
     title: "Que joindre rapidement ?",
-    text: "Si aucune norme complète n’est imposée, une attestation CO₂e indicative peut servir de pièce carbone : résultat agrégé, année, méthode, limites, PDF et ID vérifiable.",
+    text: "Une attestation CO₂e indicative peut être une pièce complémentaire uniquement si son périmètre et son format répondent à la demande de l’acheteur ; confirmer le besoin avant achat.",
   },
   {
     title: "Quand l’attestation ne suffit pas ?",
@@ -86,7 +86,7 @@ const decisionRows = [
   {
     demand: "Le dossier demande un indicateur carbone sans méthode imposée",
     answer:
-      "Une attestation CO₂e indicative peut souvent être jointe comme document de screening, avec limites et méthode visibles.",
+      "Une attestation CO₂e indicative peut être proposée comme complément documentaire, après vérification du périmètre et de son acceptation par le destinataire.",
   },
   {
     demand: "Le mémoire technique demande une information RSE ou CO₂e",
@@ -173,6 +173,22 @@ const processSteps = [
 
 const relatedPages = [
   {
+    title: "Marchés publics 2026 : obligations environnementales",
+    text: "Comprendre l'évolution des critères depuis août 2026 et ce qu'elle implique réellement pour les PME.",
+    href: "/fr/marches-publics-2026-obligations-environnementales/",
+  },
+  {
+    title: "Critère environnemental : comment répondre ?",
+    text: "Lire le règlement de consultation et choisir des preuves adaptées à votre prestation.",
+    href: "/fr/critere-environnemental-appel-offres-comment-repondre/",
+  },
+  {
+    title: "Exemple BOAMP : critère environnemental à 10 %",
+    text: "Décrypter une pondération réelle sans la confondre avec une obligation générale.",
+    href: "/fr/exemple-marche-public-critere-environnemental-10-pour-cent/",
+  },
+
+  {
     title: "Bilan carbone PME",
     text: "Comprendre quoi fournir quand une PME reçoit une demande carbone générale.",
     href: "/fr/bilan-carbone-pme/",
@@ -211,7 +227,7 @@ const faq = [
   },
   {
     q: "Que joindre si le dossier demande un bilan carbone sans précision ?",
-    a: "Un document CO₂e indicatif, daté, archivable et avec ID vérifiable peut servir de première réponse si aucune méthode complète n’est imposée. Il doit préciser sa méthode, son année, son périmètre et ses limites.",
+    a: "Clarifier d’abord l’exigence auprès de l’acheteur. Un document CO₂e indicatif, daté et vérifiable peut être proposé comme complément seulement si le périmètre, la méthode et le format sont acceptés.",
   },
   {
     q: "L’attestation Certif-Scope remplace-t-elle un audit carbone ?",
@@ -396,6 +412,18 @@ export default function BilanCarboneAppelOffresFR() {
               </Link>
             </div>
           </header>
+
+          <section aria-label="Actualité commande publique 2026" className="mx-auto mt-12 max-w-5xl rounded-[28px] border border-[#1FB6C1]/25 bg-[#EAF7F8] px-6 py-7 md:px-8">
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#0C8996]">Actualité réglementaire · Novembre 2026</p>
+            <h2 className="mt-3 text-2xl font-extrabold text-[#0B3A63]">Marchés publics : les critères environnementaux évoluent depuis août 2026</h2>
+            <p className="mt-3 text-base leading-8 text-[#475569]">
+              Les règles d'attribution des nouveaux marchés prennent désormais en compte les caractéristiques environnementales de l'offre. Cela ne rend pas un bilan carbone d'entreprise obligatoire dans chaque dossier et ne garantit pas l'acceptation d'une attestation indicative.
+            </p>
+            <div className="mt-5 flex flex-wrap gap-3">
+              <Link href="/fr/marches-publics-2026-obligations-environnementales/" className="rounded-xl bg-[#0B3A63] px-5 py-3 text-sm font-semibold text-white">Comprendre les règles 2026</Link>
+              <Link href="/fr/critere-environnemental-appel-offres-comment-repondre/" className="rounded-xl border border-[#0B3A63]/20 bg-white px-5 py-3 text-sm font-semibold text-[#0B3A63]">Préparer une réponse</Link>
+            </div>
+          </section>
 
           <section className="mt-12 rounded-[34px] border border-[#1FB6C1]/25 bg-[#F8FAFC] p-6 shadow-[0_18px_45px_rgba(11,58,99,0.07)] md:p-8">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#0B3A63]/70">

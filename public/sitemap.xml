@@ -444,4 +444,21 @@
   <url><loc>https://www.certif-scope.com/en/terms/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.certif-scope.com/en/cookies/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.certif-scope.com/en/data-processing/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Guides commande publique 2026, sourcés et reliés à la page appel d'offres -->
+  <url>
+    <loc>https://www.certif-scope.com/fr/marches-publics-2026-obligations-environnementales/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.certif-scope.com/fr/critere-environnemental-appel-offres-comment-repondre/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.certif-scope.com/fr/exemple-marche-public-critere-environnemental-10-pour-cent/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
