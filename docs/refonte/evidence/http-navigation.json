@@ -1,0 +1,128 @@
+{
+  "checks": [
+    {
+      "path": "/fr",
+      "status": 200
+    },
+    {
+      "path": "/fr/generate",
+      "status": 200
+    },
+    {
+      "path": "/fr/pricing",
+      "status": 200
+    },
+    {
+      "path": "/fr/methodology",
+      "status": 200
+    },
+    {
+      "path": "/fr/legal",
+      "status": 200
+    },
+    {
+      "path": "/fr/privacy",
+      "status": 200
+    },
+    {
+      "path": "/fr/terms",
+      "status": 200
+    },
+    {
+      "path": "/fr/contact",
+      "status": 200
+    },
+    {
+      "path": "/fr/verify",
+      "status": 200
+    },
+    {
+      "path": "/en",
+      "status": 200
+    },
+    {
+      "path": "/en/generate",
+      "status": 200
+    },
+    {
+      "path": "/en/pricing",
+      "status": 200
+    },
+    {
+      "path": "/en/methodology",
+      "status": 200
+    },
+    {
+      "path": "/en/legal",
+      "status": 200
+    },
+    {
+      "path": "/en/privacy",
+      "status": 200
+    },
+    {
+      "path": "/en/terms",
+      "status": 200
+    },
+    {
+      "path": "/en/contact",
+      "status": 200
+    },
+    {
+      "path": "/en/verify",
+      "status": 200
+    },
+    {
+      "path": "/de",
+      "status": 200
+    },
+    {
+      "path": "/de/generate",
+      "status": 200
+    },
+    {
+      "path": "/de/pricing",
+      "status": 200
+    },
+    {
+      "path": "/de/methodology",
+      "status": 200
+    },
+    {
+      "path": "/de/legal",
+      "status": 200
+    },
+    {
+      "path": "/de/privacy",
+      "status": 200
+    },
+    {
+      "path": "/de/terms",
+      "status": 200
+    },
+    {
+      "path": "/de/contact",
+      "status": 200
+    },
+    {
+      "path": "/de/verify",
+      "status": 200
+    },
+    {
+      "path": "/api/sample?locale=fr",
+      "status": 200,
+      "bytes": 22493
+    },
+    {
+      "path": "/api/sample?locale=en",
+      "status": 200,
+      "bytes": 22124
+    },
+    {
+      "path": "/api/sample?locale=de",
+      "status": 200,
+      "bytes": 23212
+    }
+  ],
+  "note": "HTTP responses only, not browser E2E."
+}
