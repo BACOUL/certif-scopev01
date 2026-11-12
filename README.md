@@ -14,7 +14,7 @@ Node >=20; `npm ci`, `npm test`, `npm run build`, `npm run typecheck`, `npm audi
 - `CARBON_DATABASE_URL`: dedicated disposable PostgreSQL database. Never reuse production.
 - `CARBON_BASE_URL`: exact test origin.
 - `CARBON_STRIPE_KEY`: Stripe test key only, `CARBON_WEBHOOK_SECRET`: test endpoint signing secret.
-- `CARBON_SIGNING_KEY`: Ed25519 private PEM, never commit. Configure the corresponding public verifier key as required by `src/app/api/carbon/verify/route.ts`.
+- `CARBON_SIGNING_KEY`: Ed25519 private PEM, never commit. The verifier derives its public key from this configured private key; key rotation and long-term public-key publication remain to be implemented.
 - `CARBON_TEST_CHECKOUT=true`: enables test checkout only after the isolated dependencies are prepared.
 
 `npm run db:migrate` applies `migrations/001_carbon.sql` to the configured dedicated database. `npm run db:purge` removes expired delivery records. Neither has been run against a remote environment; scheduling and recovery are not configured.

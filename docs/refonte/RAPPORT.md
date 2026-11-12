@@ -49,6 +49,7 @@ Les anciennes routes sensibles de clés, consommation, packs, attestations et en
 | Compilation | Réussie | `evidence/build.txt` |
 | TypeScript | Réussi | `evidence/typecheck.txt` |
 | Audit dépendances npm | 0 vulnérabilité rapportée | `evidence/dependency-audit.json`, ne remplace pas un audit de sécurité exhaustif |
+| Navigation HTTP | 30 contrôles réussis | `evidence/http-navigation.json` : 27 pages et 3 PDF ; ne teste pas les interactions navigateur |
 | Navigateur automatisé | Non validé | Chromium bloqué par les restrictions de sockets du runtime ; aperçu manuel initial partiel, pas de preuve E2E finale |
 | Stripe sandbox réel | Non exécuté | Aucun secret de test configuré ; aucun paiement réel déclenché |
 
