@@ -1,42 +1,40 @@
 {
-  "name": "startup-nextjs-template",
+  "name": "certif-scope-supplier-carbon",
   "version": "2.2.1",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "node scripts/dev.mjs",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "tsc --noEmit",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "typecheck": "tsc --noEmit",
+    "test:browser": "node tests/browser.mjs",
+    "db:migrate": "node scripts/carbon-db.mjs migrate",
+    "db:purge": "node scripts/carbon-db.mjs purge"
   },
   "dependencies": {
-    "@react-pdf/renderer": "^4.3.2",
-    "@sparticuz/chromium": "^143.0.4",
-    "@tailwindcss/postcss": "^4.1.3",
-    "@vercel/analytics": "^2.0.1",
-    "eslint": "^9.24.0",
-    "eslint-config-next": "15.1.6",
-    "next": "16.0.10",
-    "next-themes": "^0.2.1",
+    "@react-pdf/renderer": "^4.9.0",
+    "next": "^16.4.6",
+    "pg": "^8.23.1",
     "postcss": "^8.5.6",
-    "puppeteer-core": "^24.35.0",
-    "qrcode": "^1.5.4",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "stripe": "^20.2.0",
-    "tailwindcss": "^3.4.14",
-    "uuid": "^13.0.0",
-    "resend": "^4.0.0"
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "stripe": "^23.0.0",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "^0.5.16",
     "@types/node": "^20.8.9",
+    "@types/pg": "^8.23.1",
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.0",
-    "autoprefixer": "^10.4.23",
-    "prettier": "^3.2.5",
-    "prettier-plugin-tailwindcss": "^0.6.11",
+    "puppeteer-core": "^25.17.0",
+    "tsx": "^4.23.15",
     "typescript": "^5.3.3"
   },
   "engines": {
     "node": ">=20"
-  }
+  },
+  "type": "module"
 }

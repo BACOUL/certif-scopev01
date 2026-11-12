@@ -1,0 +1,54 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> certif-scope-supplier-carbon@2.2.1 build
+> next build
+
+▲ Next.js 16.4.6 (Turbopack)
+✓ Running next.config.js took 24ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 703ms
+  Running TypeScript ...
+  Finished TypeScript in 2.0s ...
+  Collecting page data using 8 workers ...
+  Generating static pages using 8 workers (0/20) ...
+  Generating static pages using 8 workers (5/20) 
+  Generating static pages using 8 workers (10/20) 
+  Generating static pages using 8 workers (15/20) 
+✓ Generating static pages using 8 workers (20/20) in 390ms
+Turbopack build encountered 1 warning:
+./tailwind.config.js
+Warning: Specified module format (EcmaScript Modules) is not matching the module format of the source code (CommonJs)
+The EcmaScript module format was specified in the package.json that is affecting this source file or by using an special extension, but it looks like that CommonJs syntax is used in the source code.
+Exports made by CommonJs syntax will lead to a runtime error, since the module is in EcmaScript mode. Either change the "type" field in the package.json or replace CommonJs syntax with EcmaScript import/export syntax in the source file.
+
+
+  Finalizing page optimization ...
+
+Route (app)
+┌ ƒ /_not-found
+├ ƒ /[[...path]]
+├ ƒ /api/admin/create-key
+├ ƒ /api/attestation/eu
+├ ƒ /api/attestation/eu-sample
+├ ƒ /api/attestation/issue
+├ ƒ /api/campaign/purchase-proof
+├ ƒ /api/carbon/preview
+├ ƒ /api/carbon/verify
+├ ƒ /api/check-key
+├ ƒ /api/checkout
+├ ƒ /api/checkout-pack
+├ ƒ /api/key/consume
+├ ƒ /api/keys
+├ ƒ /api/outreach/send
+├ ƒ /api/redeem-key
+├ ƒ /api/sample
+├ ƒ /api/session-type
+├ ƒ /api/stripe/session-type
+└ ƒ /api/stripe/webhook
+
+
+ƒ Proxy (Middleware)
+
+ƒ  (Dynamic)  server-rendered on demand
+

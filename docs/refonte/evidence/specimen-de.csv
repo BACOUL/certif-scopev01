@@ -1,0 +1,2 @@
+report_id,reporting_year,energy_mwh,scope1_tco2e,scope2_location_tco2e,scope1_2_tco2e,biogenic_co2_t,coverage_status,methodology_version
+SPECIMEN,2025,10,0,0.394,0.394,0,declared_sources_covered,CS-ENERGY-1.0.0
