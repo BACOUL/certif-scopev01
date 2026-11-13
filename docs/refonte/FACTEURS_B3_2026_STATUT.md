@@ -39,3 +39,7 @@ Les preuves sont placées **hors git** dans `.private/release-evidence.json`. L'
 - Le dataset open data historique **v23.6** est en **Licence Ouverte 2.0** ; on ne peut **pas déduire automatiquement** que toutes les données, notamment issues d’ecoinvent ou d’autres fournisseurs, sont diffusables sous cette même licence dans la v23.11. Source : https://data.ademe.fr/datasets/base-carboner.
 - Avant d’intégrer un export 23.11 et de **vendre une fiche calculée grâce à ces données**, faire approuver par écrit la version des conditions acceptées, l’attribution nécessaire, les droits de réutilisation commerciale dans un logiciel, les restrictions de redistribution et les restrictions propres aux jeux de données. Les droits d’affichage des facteurs dans un PDF/CSV doivent aussi être évalués.
 - Le verrou `release:gate` exige maintenant séparément `ademe_23_11_terms_and_commercial_reuse_approved`. **Aucune valeur v23.11 n’a été fabriquée ni importée.**
+
+## Vigilance sur les totaux B3
+
+Une somme d'énergie déjà connue n'est **pas** nécessairement la consommation énergétique totale si au moins une source d'énergie pertinente reste inconnue. La fiche et le CSV affichent dorénavant la distinction entre total complet et quantités seulement renseignées ; le JSON signé donne le drapeau `energyTotalComplete`. La répartition en énergie renouvelable peut rester inconnue alors que la consommation totale est connue. Cette différence est testée dans les trois langues.
