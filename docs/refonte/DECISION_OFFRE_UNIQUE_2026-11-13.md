@@ -19,10 +19,10 @@ Références officielles : https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=C
 
 ## Réalité technique et limites du moteur actuel
 
-Le moteur de la PR n°107 **ne remplit pas encore tous les indicateurs et cas B3** :
+Le moteur de la PR n°107 **ne remplit pas encore tous les indicateurs et cas B3**, malgré les améliorations enregistrées après cette première décision :
 
-- Périodes actuellement limitées aux années 2023–2025 ; facteurs ADEME historiques, à actualiser/valider.
-- Pas de ventilation vérifiable de la consommation entre énergies renouvelables et non renouvelables.
+- Périodes 2023–2025 en calcul historique ; 2026 désormais disponible **en aperçu provisoire uniquement** (année non close), achat 2026 toujours bloqué ; facteurs ADEME historiques à actualiser/valider.
+- Ventilation renouvelable/non renouvelable désormais **calculée en MWh uniquement quand chaque ligne possède une quantité renouvelable justifiée par un relevé ou une facture** ; sinon, la ventilation s'affiche « non renseignée » (jamais zéro inventé). Ces déclarations ne sont pas auditées.
 - Absence des facteurs nécessaires pour de nombreux postes pertinents : fluides frigorigènes, combustibles autres que gaz/diesel/essence, processus industriels, chaleur/vapeur/froid achetés, autoproduction.
 - Marché limité à la France continentale. Les postes déclarés concernés sans facteur validé empêchent actuellement l'achat.
 - Vérification Ed25519 **des données JSON**, non signature PAdES du PDF ; aucune certification ni vérification de la véracité des déclarations.
