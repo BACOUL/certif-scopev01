@@ -8,7 +8,7 @@ export const assessmentSchema = z.object({
  sources: z.object(Object.fromEntries(CATEGORIES.map(k => [k, z.enum(["known", "not_applicable", "unknown"])])) as Record<typeof CATEGORIES[number], z.ZodEnum<{ known: "known"; not_applicable: "not_applicable"; unknown: "unknown" }>>).strict(),
  activities: z.array(z.object({
   id: z.string().regex(/^[a-zA-Z0-9_-]{1,40}$/), kind: z.enum(Object.keys(FACTORS) as [keyof typeof FACTORS, ...Array<keyof typeof FACTORS>]),
-  quantity: z.number().finite().min(0).max(1e9), unit: z.enum(["kWh", "kWh PCS", "kWh PCI", "L"]),
+  quantity: z.number().finite().min(0).max(1e9), unit: z.enum(["kWh", "kWh PCS", "kWh PCI", "L", "kg"]),
   energyKwh: z.number().finite().min(0).max(1e9).optional(),
   renewableEnergyKwh: z.number().finite().min(0).max(1e9).optional(),
   quality: z.enum(["invoice", "estimate", "declaration"]), evidence: text,
@@ -28,6 +28,8 @@ export const assessmentSchema = z.object({
   if(f.energy!==null && a.energyKwh!==undefined)ctx.addIssue({code:"custom",message:"UNEXPECTED_ENERGY"});
   if(f.energy===null && ((a.quantity===0)!==(a.energyKwh===0)))ctx.addIssue({code:"custom",message:"INCONSISTENT_FUEL_ENERGY"});
   const energyKwh=f.energy===null?a.energyKwh:a.quantity*f.energy;
+  if(a.kind.startsWith("refrigerant_") && (a.renewableEnergyKwh!==undefined || a.energyKwh!==undefined))
+   ctx.addIssue({code:"custom",message:"REFRIGERANT_HAS_NO_ENERGY_DATA"});
   if(a.renewableEnergyKwh!==undefined && a.quality!=="invoice")
    ctx.addIssue({code:"custom",message:"RENEWABLE_SHARE_NEEDS_DOCUMENTED_RECORD"});
   if(a.renewableEnergyKwh!==undefined && energyKwh!==undefined && a.renewableEnergyKwh>energyKwh+1e-7)
