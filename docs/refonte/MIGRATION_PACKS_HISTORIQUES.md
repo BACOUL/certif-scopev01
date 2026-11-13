@@ -36,7 +36,7 @@ Créer localement `.private/legacy-credits.private.json` :
       "credits": 1,
       "usedCredits": 0,
       "expiresAt": "2027-01-01T00:00:00.000Z",
-      "stripeSessionId": "cs_test_reference-fictive123",
+      "stripeSessionId": "cs_test_referencefictive123",
       "reconciliation": {
         "payment": "paid_non_refunded",
         "evidenceRef": "référence privée de rapprochement Stripe",
