@@ -3,7 +3,7 @@ import {calculateSpend} from "../spend/calculate";
 import {SPEND_COPY} from "../spend/copy";
 import { calculate } from "./calculate";
 import { digest, secret, signReport } from "./crypto";
-import { db as defaultDb, PAID_SQL, CREDIT_SQL } from "./store";
+import { db as defaultDb, PAID_SQL, CREDIT_SQL, ATTACH_SESSION_SQL } from "./store";
 import { stripe as defaultStripe, isPaidSession, PRODUCT, PRICE } from "./payment";
 import { COPY } from "./copy";
 export function createCarbonService(db=defaultDb,stripe=defaultStripe){
@@ -22,12 +22,36 @@ async function createCheckout(input:unknown, origin:string,product="supplier-car
  integration_identifier:"certif_scope_review_qmtvsnbx",
  success_url:`${origin}/${snapshot.assessment.locale}/success?report=${id}`,cancel_url:`${origin}/${snapshot.assessment.locale}/${product===PRODUCT?"generate":"spend"}`,
  },{idempotencyKey:`carbon-${id}`});
- await sql.query("UPDATE carbon_reports SET session_id=$2 WHERE id=$1",[id,session.id]);
+ if(!session.id || !session.url)throw new Error("CHECKOUT_UNAVAILABLE");
+ await sql.query("UPDATE carbon_reports SET session_id=$2 WHERE id=$1 AND status='draft'",[id,session.id]);
  return {url:session.url,id,token};
 }
 async function fulfill(sessionId:string){
  const s=await stripe().checkout.sessions.retrieve(sessionId);
- const r=await db().query("SELECT * FROM carbon_reports WHERE session_id=$1 AND expires_at>now()",[s.id]);const row=r.rows[0];
+ let r=await db().query("SELECT * FROM carbon_reports WHERE session_id=$1 AND expires_at>now()",[s.id]);let row=r.rows[0];
+ // A Stripe test Checkout can be created successfully while the subsequent
+ // database UPDATE fails. Re-associate only a *paid, authentic, server-retrieved*
+ // session with the exact previously created report and immutable snapshot hash.
+ // Never create a report from untrusted webhook metadata.
+ if(!row &&
+    s.livemode===false && s.mode==="payment" && s.status==="complete" &&
+    s.payment_status==="paid" && s.currency==="eur" && s.amount_total===PRICE &&
+    typeof s.payment_intent==="string" &&
+    typeof s.metadata?.reportId==="string" && typeof s.metadata?.snapshotHash==="string" &&
+    s.client_reference_id===s.metadata.reportId &&
+    s.metadata.reportId.length===36 && /^[a-f0-9]{64}$/.test(s.metadata.snapshotHash)){
+  const pending=await db().query("SELECT id,session_id,status,snapshot,snapshot_hash FROM carbon_reports WHERE id=$1 AND expires_at>now()",[s.metadata.reportId]);
+  const orphan=pending.rows[0];
+  if(orphan && orphan.status==="draft" && !orphan.session_id &&
+     orphan.snapshot_hash===s.metadata.snapshotHash &&
+     (orphan.snapshot.product||PRODUCT)===s.metadata.product){
+   await db().query(ATTACH_SESSION_SQL,[s.id,orphan.id,orphan.snapshot_hash]);
+  }
+  // Concurrent webhook and success-page callbacks may race. The conditional
+  // SQL above is single-winner; always re-read the authoritative row.
+  r=await db().query("SELECT * FROM carbon_reports WHERE session_id=$1 AND expires_at>now()",[s.id]);
+  row=r.rows[0];
+ }
  if(!row || !isPaidSession(s,row))throw new Error("PAYMENT_PENDING");
  const pi=await stripe().paymentIntents.retrieve(String(s.payment_intent),{expand:["latest_charge"]});
  const charge=pi.latest_charge;
