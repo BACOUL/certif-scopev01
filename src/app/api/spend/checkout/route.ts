@@ -1,10 +1,14 @@
-import {createCheckout} from "@/lib/carbon/service";
-import {body,json,failure} from "@/lib/carbon/http";
-import {rateLimit} from "@/lib/carbon/store";
-import {digest} from "@/lib/carbon/crypto";
-export async function POST(req:Request){try{
- const b=await body(req);if(b.acceptTerms!==true)throw new Error("INELIGIBLE");
- if(process.env.CARBON_TEST_CHECKOUT!=="true")throw new Error("SALES_DISABLED");
- await rateLimit(digest(["checkout",req.headers.get("x-vercel-forwarded-for")||"shared"]),20);
- return json(await createCheckout(b.assessment,new URL(req.url).origin,"spend-indicative-v2"));
-}catch(e){return failure(e);}}
+import { json } from "@/lib/carbon/http";
+
+/**
+ * The spend-based attestation is a legacy-only service.
+ * No new public purchase is allowed. Historical completed orders and existing
+ * migrated credit entitlements remain handled by the dedicated support paths.
+ */
+export async function POST() {
+ return json({
+  error: "LEGACY_PRODUCT_NOT_FOR_SALE",
+  message: "The spend-based statement is not offered for new purchase. Contact support for an existing order.",
+ }, 410);
+}
+export const GET = POST;
