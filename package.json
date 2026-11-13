@@ -11,7 +11,8 @@
     "typecheck": "tsc --noEmit",
     "test:browser": "node tests/browser.mjs",
     "db:migrate": "node scripts/carbon-db.mjs migrate",
-    "db:purge": "node scripts/carbon-db.mjs purge"
+    "db:purge": "node scripts/carbon-db.mjs purge",
+    "legacy:inspect": "node --import tsx scripts/inspect-legacy-credits.mjs"
   },
   "dependencies": {
     "@react-pdf/renderer": "^4.9.0",
