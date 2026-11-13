@@ -2,7 +2,7 @@ import { randomUUID, createHmac } from "node:crypto";
 import {calculateSpend} from "../spend/calculate";
 import {SPEND_COPY} from "../spend/copy";
 import { calculate } from "./calculate";
-import { digest, secret, signReport } from "./crypto";
+import { digest, secret, signReport, verifyReport, trustedVerificationKeys } from "./crypto";
 import { db as defaultDb, PAID_SQL, CREDIT_SQL, ATTACH_SESSION_SQL } from "./store";
 import { stripe as defaultStripe, isPaidSession, PRODUCT, PRICE } from "./payment";
 import { COPY } from "./copy";
@@ -68,8 +68,20 @@ async function issue(id:string,token:string){
  if(r.rows[0].session_id)await fulfill(r.rows[0].session_id);
  r=await db().query("SELECT * FROM carbon_reports WHERE id=$1 AND status='paid'",[id]);
  const row=r.rows[0];if(!row)throw new Error("PAYMENT_PENDING");
- if(row.document)return row.document;
+ // Check every delivery, including cached signed files. An immutable hash must
+ // match the record and the cached envelope must authenticate under an
+ // operator-trusted current or archived key, never a user-supplied public key.
  if(digest(row.snapshot)!==row.snapshot_hash)throw new Error("SNAPSHOT_CORRUPT");
+ if(row.document){
+  const envelope=row.document;
+  const report=envelope?.report;
+  const keys=trustedVerificationKeys(process.env.CARBON_SIGNING_KEY,process.env.CARBON_VERIFY_PUBLIC_KEYS_JSON);
+  if(report?.id!==row.id || digest(report?.calculation)!==row.snapshot_hash ||
+     !keys.some(publicKey=>verifyReport(envelope,publicKey))){
+   throw new Error("DOCUMENT_CORRUPT");
+  }
+  return envelope;
+ }
  // The factor version is immutable: issue exactly the reviewed, server-calculated snapshot.
  const report={id:row.id,issuedAt:new Date(row.paid_at).toISOString(),calculation:row.snapshot};
  const envelope=signReport(report);
