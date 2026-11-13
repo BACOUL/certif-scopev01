@@ -78,3 +78,10 @@ Seule la PR brouillon 107 est modifiée. Ne pas fusionner, ne pas mettre en prod
 - **Catégorisation** : chaleur achetée/autoproduction exclues de la sous-catégorie « combustibles », tout en étant prises en compte dans la détection des sources énergétiques manquantes. Aucun facteur d'émission inventé.
 - **Pagination** : test rendu PDF en FR/EN/DE pour les déclarations partielles, puis correction du débordement par report de l'avertissement historique ADEME sur la page des sources.
 - **CI** : [run 43481798509](https://github.com/BACOUL/certif-scopev01/actions/runs/43481798509), 101 tests réussis / 101, zéro échec ; TypeScript, build et 22 contrôles HTTP/PDF réussis ; zéro vulnérabilité signalée par npm audit. Aucun test de vente Stripe distant ni aucune production. Statut commercial **inchangé : BLOQUÉ**.
+
+## Correction du flux remboursement avant paiement confirmé
+
+- **Défaut traité :** lorsque `charge.refunded` ou `charge.dispute.created` arrivait avant la fin du Checkout, le rapport n'avait pas encore de `payment_intent` associé et l'ancien `UPDATE` ne révoquait rien. Désormais le webhook conserve le veto de l'identifiant de paiement, le vérifie avant attribution des droits et le conserve en cas de réessai.
+- Chaque événement de révocation est enregistré dans une transaction SQL avec sa trace de dédoublonnage ; rollback simulé, répétition, paiement déjà accordé et paiement pas encore accordé sont couverts.
+- **CI de référence :** [run 43514726829](https://github.com/BACOUL/certif-scopev01/actions/runs/43514726829) : **105 tests / 105**, TypeScript, build, audit npm et 22 contrôles HTTP/PDF réussis. **Sans transaction réelle avec Stripe et sans environnement de production.**
+- **Risque résiduel à tester :** concurrence des webhooks et pages de paiement sur un PostgreSQL distant, événements adverses Stripe réels, conservation des identifiants de paiement et sauvegardes. Nouvelle table `carbon_payment_blocks` : migration de la base de recette requise avant une validation intégrée.
