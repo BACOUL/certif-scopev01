@@ -1,6 +1,11 @@
 import Stripe from "stripe";
 export const PRODUCT="supplier-carbon-v1";
+export const SPEND_PRODUCT="spend-indicative-v2";
 export const PRICE=8900;
+/** Whitelist of billable products. Stripe metadata must not be trusted without fulfill() checks. */
+export function isSupportedProduct(value: unknown): value is typeof PRODUCT | typeof SPEND_PRODUCT {
+ return value===PRODUCT || value===SPEND_PRODUCT;
+}
 export function stripe(){
  const key=process.env.CARBON_STRIPE_KEY;
  // Deliberately test-only on this review branch. No inherited production credentials.
