@@ -161,3 +161,9 @@ test('B3 sale: empty completely excluded inventory cannot be issued as a zero-em
  a.sources=Object.fromEntries(CATEGORIES.map(c=>[c,"not_applicable"])) as typeof a.sources;
  assert.equal(calculate(a).saleEligible,false);
 });
+
+// An activity row must never contradict the declared applicability of its source.
+test('reject recorded energy source marked unknown instead of known',()=>{
+ const a=base();a.sources.electricity='unknown';
+ assert.throws(()=>calculate(a),/SOURCE_CONFLICT/);
+});
