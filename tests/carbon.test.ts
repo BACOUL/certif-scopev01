@@ -230,3 +230,23 @@ test('refrigerant kg/litre mismatch, invented energy and renewable fields reject
  b.activities[1].unit="kg";b.activities[1].energyKwh=100;assert.throws(()=>calculate(b));
  delete b.activities[1].energyKwh;b.activities[1].renewableEnergyKwh=0;assert.throws(()=>calculate(b));
 });
+
+// Guard against double counting one gas invoice in both PCS and PCI units.
+test('same gas invoice cannot be reported twice as PCS and PCI',()=>{
+ const a=base();a.sources.gas="known";
+ a.activities.push(
+  {id:"gas1",kind:"gas_pcs",quantity:1000,unit:"kWh PCS",quality:"invoice",evidence:"Invoice 0101"},
+  {id:"gas2",kind:"gas_pci",quantity:900,unit:"kWh PCI",quality:"invoice",evidence:"  invoice 0101  "}
+ );
+ assert.throws(()=>calculate(a),/DUPLICATE_EVIDENCE/);
+});
+test('pure refrigerant documented release PDF and CSV still generate',async()=>{
+ const a=base();a.sources.refrigerants="known";
+ a.activities.push({id:"leak",kind:"refrigerant_hfc134a",quantity:2,unit:"kg",quality:"invoice",evidence:"documented service leakage"});
+ const report={...sample(),calculation:calculate(a)};
+ const bytes=await pdf(report,true);
+ assert.equal(bytes.subarray(0,4).toString(),"%PDF");
+ const pages=(bytes.toString("latin1").match(/\/Type\s*\/Page\b/g)||[]).length;
+ assert.equal(pages,3,"HFC specimen should preserve three-page PDF");
+ assert.match(csv(report),/scope1_tco2e/);
+});
