@@ -44,4 +44,10 @@ Ne pas faire croire que 89 € est un coût d'obligation légale, ni que les cli
 **P4 – recette :** tests calculs & vulnérabilités, vrai achat Stripe **mode test** et webhook, restaurations/récupération de commande, vérification PDF, mobile/accessibilité, revue juridique RGPD/TVA/CGV.
 **P5 – preuve de marché :** faire relire le PDF par des acheteurs et responsables RSE, puis faire confirmer à des PME si 89 € est acceptable ; sans preuve de demande, ne pas miser sur le seul règlement.
 
+## Sources techniques 2026 et concurrence gratuite (à intégrer à la recette)
+
+- **ADEME Base Empreinte**, source nationale officielle : Base Carbone **v23.11** annoncée en 2026. La PR utilise encore **v23.6** ; **ne pas** changer les facteurs automatiquement sans vérifier leurs IDs, scopes, composantes « combustion » ou « électricité location-based », dates, unités et licence. Source : https://base-empreinte.ademe.fr/
+- **EFRAG**, norme volontaire **VS** : modèle numérique officiel **v2.0.0 du 4 novembre 2026** et convertisseur **XBRL gratuit**. Il faut comparer les champs B3 du produit à ce modèle et documenter les équivalences, pas prétendre que notre CSV/JSON est déjà du XBRL officiel. Source : https://www.efrag.org/en/vs-digital-template-and-xbrl-taxonomy
+- EFRAG référence aussi des **calculateurs carbone gratuits**. Le seul argument « un PDF à 89 € » ne suffit pas comme différenciation démontrée. Valeur à tester : saisie simplifiée, calculs fiables avec facteurs millésimés, contrôle des données manquantes, PDF lisible et échange pratique avec l'acheteur. Source : https://www.efrag.org/en/smes-and-sustainability-reporting
+
 **Seuil d'ouverture :** aucun paiement public tant que les P0–P4 ne sont pas réussis et qu'une validation explicite du propriétaire n'a pas été donnée. Aucun changement de production dans cette étape.
