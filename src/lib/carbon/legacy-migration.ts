@@ -54,7 +54,7 @@ function isoDate(value: unknown): value is string {
     date.getUTCMonth() + 1 === Number(match[2]) &&
     date.getUTCDate() === Number(match[3]);
 }
-function validKey(key: unknown, secret: string): key is string {
+export function verifyLegacyKey(key: unknown, secret: string): key is string {
   if (typeof key !== "string" || !/^CS-(?:[A-F0-9]{4}-){4}[A-F0-9]{8}$/.test(key)) return false;
   const body = key.split("-").slice(0, 5).join("-");
   const signature = createHmac("sha256", secret).update(body).digest("hex").slice(0, 8).toUpperCase();
@@ -77,7 +77,7 @@ export function planLegacyImport(records: unknown, keySecret: string, now = new 
   for (const record of records) {
     if (!record || typeof record !== "object" || Array.isArray(record)) throw Error("INVALID_MANIFEST");
     const r = record as Partial<LegacyKeyRecord>;
-    if (!validKey(r.key, keySecret)) throw Error("INVALID_LEGACY_KEY");
+    if (!verifyLegacyKey(r.key, keySecret)) throw Error("INVALID_LEGACY_KEY");
     const keyHash = digest(r.key);
     if (seen.has(keyHash)) throw Error("DUPLICATE_LEGACY_KEY");
     seen.add(keyHash);
