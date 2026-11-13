@@ -10,7 +10,7 @@ import {sample} from '../src/lib/carbon/sample';
 import {digest,signReport,verifyReport,canonical,trustedVerificationKeys} from '../src/lib/carbon/crypto';
 import {csv,pdf} from '../src/lib/carbon/document';
 import {isPaidSession,PRODUCT,PRICE,stripe} from '../src/lib/carbon/payment';
-import {PAID_SQL,CREDIT_SQL} from '../src/lib/carbon/store';
+import {PAID_SQL,CREDIT_SQL,ATTACH_SESSION_SQL} from '../src/lib/carbon/store';
 import {POST as preview} from '../src/app/api/carbon/preview/route';
 import {POST as checkout} from '../src/app/api/checkout/route';
 import {POST as webhook} from '../src/app/api/stripe/webhook/route';
@@ -73,14 +73,17 @@ test('service integration: draft -> checkout stub -> unpaid -> paid -> stable is
  const query=async(sql:string,args?:any[])=>{const r=await db.query(sql,args);return {...r,rowCount:r.rows.length || r.affectedRows || 0};};
  const adapter:any={query,connect:async()=>({query,release(){}})};
  let session:any,refunded=false,providerError=false,checkoutArgs:any;
- const fakeStripe:any={checkout:{sessions:{create:async(args:any)=>{checkoutArgs=args;session={...paid,id:'cs_test_integrated',metadata:args.metadata,payment_status:'unpaid'};return {...session,url:'https://checkout.stripe.com/test'};},retrieve:async()=>{if(providerError)throw Error('provider failed');return session;}}},paymentIntents:{retrieve:async()=>({status:'succeeded',latest_charge:{refunded,amount_refunded:refunded?8900:0,disputed:false}})}};
+ const fakeStripe:any={checkout:{sessions:{create:async(args:any)=>{checkoutArgs=args;session={...paid,id:'cs_test_integrated',metadata:args.metadata,client_reference_id:args.client_reference_id,payment_status:'unpaid'};return {...session,url:'https://checkout.stripe.com/test'};},retrieve:async()=>{if(providerError)throw Error('provider failed');return session;}}},paymentIntents:{retrieve:async()=>({status:'succeeded',latest_charge:{refunded,amount_refunded:refunded?8900:0,disputed:false}})}};
  const svc=createCarbonService(()=>adapter,()=>fakeStripe);
  process.env.CARBON_TEST_CHECKOUT='true';process.env.CARBON_BASE_URL='http://localhost:3000';process.env.CARBON_SIGNING_KEY=privateKey;
  try{
  const order=await svc.createCheckout(base(),'http://localhost:3000');assert.equal(checkoutArgs.line_items[0].price_data.unit_amount,8900);assert.equal(checkoutArgs.metadata.totalCO2e,undefined);assert.equal(checkoutArgs.metadata.company,undefined);
+ // Simulate the session_id write being lost after Stripe created a valid session.
+ await db.query('UPDATE carbon_reports SET session_id=NULL WHERE id=$1',[order.id]);
  await assert.rejects(()=>svc.issue(order.id,'wrong'),/UNAUTHORIZED/);
  await assert.rejects(()=>svc.issue(order.id,order.token),/PAYMENT_PENDING/);
  session.payment_status='paid';await svc.fulfill(session.id);await svc.fulfill(session.id);
+ assert.equal((await db.query<any>('SELECT session_id FROM carbon_reports WHERE id=$1',[order.id])).rows[0].session_id,session.id);
  const docs=await Promise.all(Array.from({length:5},()=>svc.issue(order.id,order.token)));assert.ok(docs.every(d=>digest(d)===digest(docs[0])));assert.ok(verifyReport(docs[0],publicKey));
  providerError=true;await assert.rejects(()=>svc.issue(order.id,order.token));providerError=false;
  refunded=true;await assert.rejects(()=>svc.issue(order.id,order.token),/REVOKED/);refunded=false;await assert.rejects(()=>svc.issue(order.id,order.token),/REVOKED/);
@@ -249,4 +252,18 @@ test('pure refrigerant documented release PDF and CSV still generate',async()=>{
  const pages=(bytes.toString("latin1").match(/\/Type\s*\/Page\b/g)||[]).length;
  assert.equal(pages,3,"HFC specimen should preserve three-page PDF");
  assert.match(csv(report),/scope1_tco2e/);
+});
+
+test('Stripe recovery: recovery SQL cannot replace a linked, revoked or expired session',async()=>{
+ const db=new PGlite();await db.exec(readFileSync('migrations/001_carbon.sql','utf8'));
+ const id='00000000-0000-4000-8000-000000000021';
+ await db.query("INSERT INTO carbon_reports(id,secret_hash,snapshot,snapshot_hash) VALUES($1,'secret','{}','hash')",[id]);
+ const first=await db.query(ATTACH_SESSION_SQL,['cs_test_first',id,'hash']);assert.equal(first.rows.length,1);
+ assert.equal((await db.query(ATTACH_SESSION_SQL,['cs_test_replace',id,'hash'])).rows.length,0);
+ assert.equal((await db.query(ATTACH_SESSION_SQL,['cs_test_replace',id,'different'])).rows.length,0);
+ await db.query("UPDATE carbon_reports SET session_id=NULL,status='revoked' WHERE id=$1",[id]);
+ assert.equal((await db.query(ATTACH_SESSION_SQL,['cs_test_revoked',id,'hash'])).rows.length,0);
+ await db.query("UPDATE carbon_reports SET status='draft',expires_at=now()-interval '1 day' WHERE id=$1",[id]);
+ assert.equal((await db.query(ATTACH_SESSION_SQL,['cs_test_expired',id,'hash'])).rows.length,0);
+ await db.close();
 });
