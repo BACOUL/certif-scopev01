@@ -39,7 +39,7 @@ test("regulatory copy includes current EU 2026/470, 2026/1560 B3 and limits in a
   assert.match(markup, /2026\/470/);
   assert.match(markup, /2026\/1560/);
   assert.match(markup, /450/);
-  assert.match(markup, /1[ .\u00a0]?000/);
+  assert.match(markup, /1[ .,\u00a0]?000/);
   assert.match(markup, /B3/);
   assert.match(markup, /2027/);
  }
