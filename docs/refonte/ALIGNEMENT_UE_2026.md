@@ -21,14 +21,14 @@ L'attestation indicative fondée sur les dépenses est un **service historique**
 |---|---|---|
 | Identité, période, contrôle opérationnel et sources | Implémentation FR/EN/DE | Vérifier formalisme et cohérence du périmètre, existence et clôture des années |
 | Énergie totale en MWh | Disponible pour électricité, gaz et carburants avec énergie PCI fournie par client | Vérifier PCS/PCI, conversions, cas d'énergie achetée/autoproduite, absence de double compte |
-| Ventilation électricité/combustibles et renouvelable/non renouvelable si disponible | **Absente** | Ajouter saisie d'attributs énergétiques étayés et tableau B3 conditionnel |
+| Ventilation électricité/combustibles et renouvelable/non renouvelable si disponible | **Implémentée avec limites** : champ facultatif kWh renouvelables avec justificatif de type facture/relevé ; ventilation partielle indiquée comme inconnue et non comme zéro | Tester la véracité des justificatifs, l'absence de double compte et la couverture de toutes les formes d'énergie |
 | Scope 1 | Gaz, diesel B7, essence E10 seulement | Ajouter catalogue de sources/facteurs contrôlés pour fluides frigorigènes, autres combustibles et procédés, ou interdire « couverture B3 » |
 | Scope 2 location-based | Électricité FR continentale seulement | Ajouter chaleur, vapeur et froid achetés, vérifier facteur géographique et millésime |
-| Facteurs et années | ADEME historique ; saisie limitée 2023–2025 | Cataloguer sources officielles/version/composante/période, valider année 2026 avant d'ouvrir 2026 |
+| Facteurs et années | ADEME historique ; années 2023–2025, **2026 en aperçu provisoire sans achat** | Vérifier v23.11, les licences et les facteurs compatibles avant toute vente portant sur 2026 |
 | Preuves et qualité des déclarations | Justifications textuelles et origine des données, sans audit | Distinguer facture, estimation, déclaration ; expliciter les limites et les exclusions |
-| Document et intégrité | PDF, CSV, JSON signé Ed25519 ; PDF non signé | Ajouter tableau d'alignement B3 et statut de couverture ; ne pas parler de certification ni de PDF cryptographiquement signé |
+| Document et intégrité | PDF avec logo historique, tableau des énergies et limites B3 ; CSV de ventilation ; JSON signé Ed25519 ; PDF non signé | Effectuer contrôle visuel du PDF en FR/EN/DE, tests de pagination et signature sans prétendre certification |
 | Disponibilité commerciale | Paiement volontairement désactivé | Recette Stripe **test** / remboursements / récupération / TVA, migration anciens crédits avant mise en vente |
-| Localisation / langues / SEO | FR/EN/DE partiel, 21 autres locales en attente | Retirer les promesses réglementaires non fondées et restaurer un SEO exact sans indexer pages incomplètes |
+| Localisation / langues / SEO | Page d'accueil FR/EN/DE enrichie, messages réglementaires corrigés ; 21 autres locales en attente ; pages **noindex** sur branche de validation | Auditer les anciennes routes SEO, traductions restantes et recette mobile avant déploiement |
 
 ## Positionnement acceptable dès maintenant (site de validation)
 > « Fiche carbone fournisseur : préparez certaines données de consommation énergétique et d'émissions de votre entreprise, avec un périmètre, des facteurs et des limites vérifiables. Inspirée de la rubrique B3 du standard volontaire européen (UE) 2026/1560. »
