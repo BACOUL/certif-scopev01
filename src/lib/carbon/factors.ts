@@ -13,3 +13,8 @@ export type SourceKind = keyof typeof FACTORS;
 export const CATEGORIES = ["electricity", "gas", "diesel_b7", "petrol_e10", "other_fuels", "refrigerants", "purchased_heat", "processes", "self_generation"] as const;
 export type Category = typeof CATEGORIES[number];
 export function category(kind: SourceKind): Category { return kind.startsWith("gas_") ? "gas" : kind as Category; }
+
+/** Only create activity rows for supported sources. Unsupported source selections remain reportable as missing. */
+export function firstSupportedKind(source: Category): SourceKind | undefined {
+ return (Object.keys(FACTORS) as SourceKind[]).find(kind => category(kind) === source);
+}
