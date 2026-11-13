@@ -6,7 +6,7 @@ import {PGlite} from '@electric-sql/pglite';
 import {calculate} from '../src/lib/carbon/calculate';
 import {FACTORS,CATEGORIES,firstSupportedKind} from '../src/lib/carbon/factors';
 import {sample} from '../src/lib/carbon/sample';
-import {digest,signReport,verifyReport,canonical} from '../src/lib/carbon/crypto';
+import {digest,signReport,verifyReport,canonical,trustedVerificationKeys} from '../src/lib/carbon/crypto';
 import {csv,pdf} from '../src/lib/carbon/document';
 import {isPaidSession,PRODUCT,PRICE,stripe} from '../src/lib/carbon/payment';
 import {PAID_SQL,CREDIT_SQL} from '../src/lib/carbon/store';
@@ -183,4 +183,24 @@ test('confirmed checkout grants at least 30 days of access after payment',async(
   const repeated=await db.query(PAID_SQL,[id,'pi-30',new Date(confirmation.getTime()+1000),'session','hash']);
   assert.equal(repeated.rows.length,0);
  }finally{await db.close();}
+});
+
+test('archive of trusted public signing keys survives a signer rotation',()=>{
+ const old=generateKeyPairSync('ed25519'),current=generateKeyPairSync('ed25519'),untrusted=generateKeyPairSync('ed25519');
+ const privOld=old.privateKey.export({type:'pkcs8',format:'pem'}).toString();
+ const privNow=current.privateKey.export({type:'pkcs8',format:'pem'}).toString();
+ const pubOld=old.publicKey.export({type:'spki',format:'pem'}).toString();
+ const pubNow=current.publicKey.export({type:'spki',format:'pem'}).toString();
+ const report=sample();
+ const first=signReport(report,privOld),next=signReport(report,privNow);
+ const keys=trustedVerificationKeys(privNow,JSON.stringify([pubOld,pubOld]));
+ assert.equal(keys.length,2);
+ assert.ok(keys.some(k=>verifyReport(first,k)));
+ assert.ok(keys.some(k=>verifyReport(next,k)));
+ const forged=signReport(report,untrusted.privateKey.export({type:'pkcs8',format:'pem'}).toString());
+ assert.equal(keys.some(k=>verifyReport(forged,k)),false);
+ assert.throws(()=>trustedVerificationKeys(privNow,JSON.stringify(['not-a-public-key'])));
+ assert.throws(()=>trustedVerificationKeys(privNow,JSON.stringify(Array(13).fill(pubOld))));
+ assert.deepEqual(trustedVerificationKeys(undefined,JSON.stringify([pubOld])),[pubOld]);
+ assert.ok(pubNow.includes('BEGIN PUBLIC KEY'));
 });
