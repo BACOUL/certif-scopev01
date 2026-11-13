@@ -34,3 +34,7 @@ jobs:
         run: npm test
       - name: Production build validation (no deployment)
         run: npm run build
+      - name: Audit high-severity dependency vulnerabilities
+        run: npm audit --audit-level=high
+      - name: Smoke test FR/EN/DE pages and sample PDFs without payments
+        run: node scripts/http-smoke.mjs
