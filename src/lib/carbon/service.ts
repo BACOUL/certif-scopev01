@@ -34,7 +34,7 @@ async function fulfill(sessionId:string){
  if(pi.status!=="succeeded" || !charge || typeof charge==="string" || charge.refunded || charge.amount_refunded>0 || charge.disputed){
   await db().query("UPDATE carbon_reports SET status='revoked' WHERE id=$1",[row.id]);throw new Error("REVOKED");
  }
- await db().query(PAID_SQL,[row.id,s.payment_intent,new Date(s.created*1000),s.id,row.snapshot_hash]);
+ await db().query(PAID_SQL,[row.id,s.payment_intent,new Date(),s.id,row.snapshot_hash]);
 }
 async function issue(id:string,token:string){
  if(!/^[0-9a-f-]{36}$/.test(id)||!token||token.length>128)throw new Error("UNAUTHORIZED");
