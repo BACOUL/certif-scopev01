@@ -94,6 +94,8 @@ test("spend indicative: produce real PDF and numeric CSV samples in FR/EN/DE", a
   const buffer = await spendPdf(report, true);
   assert.equal(buffer.subarray(0, 4).toString("utf8"), "%PDF");
   assert.ok(buffer.length > 3000);
+  // Count PDF page objects, not /Pages collection objects. Detect accidental overflow.
+  assert.equal((buffer.toString("latin1").match(/\\/Type\\s*\\/Page\\b/g) || []).length, 2, `Expected a two-page spend PDF in ${locale}`);
   const csv = spendCsv(report);
   assert.ok(csv.includes("factor_id,eur_ex_vat,kgco2e"));
   assert.ok(csv.includes("43445"));
@@ -154,4 +156,17 @@ test("spend purchase: price and product verified server-side before signed docum
   delete process.env.CARBON_SIGNING_KEY;
   await database.close();
  }
+});
+
+test("spend indicative: nine expense categories still fit the two-page PDF", async () => {
+ const assessment: any = input();
+ assessment.expenses = Object.keys(SPEND_FACTORS).map((factorId, index) => ({
+  id: `line_${index}`, factorId, eurExVat: 1000, evidence: `invoice_${index}`,
+ }));
+ const report = {
+  id: "SPECIMEN-SPEND-9", issuedAt: "2026-11-13T00:00:00Z",
+  calculation: calculateSpend(assessment),
+ };
+ const buffer = await spendPdf(report, true);
+ assert.equal((buffer.toString("latin1").match(/\\/Type\\s*\\/Page\\b/g) || []).length, 2);
 });
