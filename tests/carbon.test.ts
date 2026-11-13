@@ -113,7 +113,17 @@ test('service credits: rollback on invalid key, idempotent redemption and exhaus
  const token='test-access',key='a'.repeat(40),id='00000000-0000-4000-8000-000000000002';
  await db.query("INSERT INTO carbon_reports(id,secret_hash,snapshot,snapshot_hash) VALUES($1,$2,$3,$4)",[id,digest(token),JSON.stringify(sample().calculation),digest(sample().calculation)]);await db.query("INSERT INTO carbon_credits(key_hash,remaining,expires_at) VALUES($1,1,now()+interval '1 day')",[digest(key)]);
  await assert.rejects(()=>svc.redeem(id,'wrong',key),/UNAUTHORIZED/);assert.equal((await db.query<any>('SELECT remaining FROM carbon_credits')).rows[0].remaining,1);
- await svc.redeem(id,token,key);await svc.redeem(id,token,key);assert.equal((await db.query<any>('SELECT remaining FROM carbon_credits')).rows[0].remaining,0);assert.equal((await db.query('SELECT * FROM carbon_redemptions')).rows.length,1);
+ // A customer can redeem a credit near the end of the draft's 30-day life.
+ // The newly issued document must remain accessible for at least 30 days.
+ await db.query("UPDATE carbon_reports SET expires_at=now()+interval '2 minutes' WHERE id=$1",[id]);
+ await svc.redeem(id,token,key);
+ const first=(await db.query<any>("SELECT paid_at,expires_at FROM carbon_reports WHERE id=$1",[id])).rows[0];
+ assert.ok(new Date(first.expires_at).getTime()-new Date(first.paid_at).getTime()>=30*86400000-1000);
+ await svc.redeem(id,token,key);
+ const second=(await db.query<any>("SELECT paid_at,expires_at FROM carbon_reports WHERE id=$1",[id])).rows[0];
+ assert.equal(new Date(first.paid_at).getTime(),new Date(second.paid_at).getTime());
+ assert.equal(new Date(first.expires_at).getTime(),new Date(second.expires_at).getTime());
+ assert.equal((await db.query<any>('SELECT remaining FROM carbon_credits')).rows[0].remaining,0);assert.equal((await db.query('SELECT * FROM carbon_redemptions')).rows.length,1);
  await assert.rejects(()=>svc.redeem(id,token,'b'.repeat(40)),/UNAUTHORIZED/);await db.close();
 });
 
