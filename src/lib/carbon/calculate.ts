@@ -7,7 +7,7 @@ export function calculate(input: unknown) {
  const missing: string[] = [];
  for(const c of CATEGORIES){
   const rows=assessment.activities.filter(a=>category(a.kind)===c);
-  if(assessment.sources[c]==="not_applicable" && rows.length)throw new Error("SOURCE_CONFLICT");
+  if(assessment.sources[c]!=="known" && rows.length)throw new Error("SOURCE_CONFLICT");
   if(assessment.sources[c]==="unknown" || (assessment.sources[c]==="known" && rows.length===0))missing.push(c);
  }
  if(assessment.start!==`${assessment.year}-01-01` || assessment.end!==`${assessment.year}-12-31`)warnings.push("PARTIAL_YEAR");
