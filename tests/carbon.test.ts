@@ -4,7 +4,7 @@ import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {generateKeyPairSync} from 'node:crypto';
 import {PGlite} from '@electric-sql/pglite';
 import {calculate} from '../src/lib/carbon/calculate';
-import {FACTORS,CATEGORIES} from '../src/lib/carbon/factors';
+import {FACTORS,CATEGORIES,firstSupportedKind} from '../src/lib/carbon/factors';
 import {sample} from '../src/lib/carbon/sample';
 import {digest,signReport,verifyReport,canonical} from '../src/lib/carbon/crypto';
 import {csv,pdf} from '../src/lib/carbon/document';
@@ -134,4 +134,30 @@ test('B3 CSV retains unknowns as blanks, not misleading zeros',()=>{
  const r=sample();const content=csv(r);
  assert.match(content,/electricity_mwh,fuels_mwh,renewable_energy_mwh,nonrenewable_energy_mwh,energy_split_complete/);
  assert.match(content,/,false,/);
+});
+
+test('B3 source mapping: unsupported category has no activity kind; no form crash when marked relevant',()=>{
+ assert.equal(firstSupportedKind("refrigerants"),undefined);
+ assert.equal(firstSupportedKind("purchased_heat"),undefined);
+ assert.equal(firstSupportedKind("other_fuels"),undefined);
+ assert.equal(firstSupportedKind("electricity"),"electricity");
+ assert.equal(firstSupportedKind("gas"),"gas_pcs");
+});
+test('B3 energy: unknown electricity or fuel is not silently shown as 0 renewable',()=>{
+ const a=base();a.sources.electricity="unknown";a.activities=[];
+ let r=calculate(a);
+ assert.equal(r.energyBreakdown.electricity.renewableMwh,null);
+ assert.equal(r.energyBreakdown.total.nonRenewableMwh,null);
+ assert.equal(r.saleEligible,false);
+ const b=base();b.activities[0].renewableEnergyKwh=1000;
+ b.sources.diesel_b7="unknown";
+ r=calculate(b);
+ assert.equal(r.energyBreakdown.electricity.renewableMwh,1);
+ assert.equal(r.energyBreakdown.fuels.nonRenewableMwh,null);
+ assert.equal(r.energyBreakdown.total.renewableMwh,null);
+});
+test('B3 sale: empty completely excluded inventory cannot be issued as a zero-emission company',()=>{
+ const a=base();a.activities=[];
+ a.sources=Object.fromEntries(CATEGORIES.map(c=>[c,"not_applicable"])) as typeof a.sources;
+ assert.equal(calculate(a).saleEligible,false);
 });
