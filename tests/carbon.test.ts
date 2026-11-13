@@ -46,7 +46,7 @@ test('CSV cannot execute spreadsheet formula from declared company',()=>{const s
 const row={id:'report',snapshot_hash:'hash',session_id:'cs_test_A'};
 const paid:any={id:'cs_test_A',created:1794480000,mode:'payment',status:'complete',payment_status:'paid',livemode:false,currency:'eur',amount_total:PRICE,metadata:{product:PRODUCT,reportId:'report',snapshotHash:'hash'},client_reference_id:'report',payment_intent:'pi_test'};
 test('accept only matching paid checkout session',()=>assert.ok(isPaidSession(paid,row)));
-for(const patch of [{payment_status:'unpaid'},{status:'expired'},{livemode:true},{currency:'usd'},{amount_total:1},{id:'cs_test_B'},{mode:'subscription'},{metadata:{...paid.metadata,snapshotHash:'tampered'}},{metadata:{...paid.metadata,product:'old-attestation'}},{payment_intent:null}])test(`reject payment mismatch ${JSON.stringify(patch)}`,()=>assert.equal(isPaidSession({...paid,...patch},row),false));
+for(const patch of [{payment_status:'unpaid'},{status:'expired'},{livemode:true},{currency:'usd'},{amount_total:1},{id:'cs_test_B'},{mode:'subscription'},{metadata:{...paid.metadata,snapshotHash:'tampered'}},{metadata:{...paid.metadata,product:'old-attestation'}},{client_reference_id:'other-report'},{payment_intent:null}])test(`reject payment mismatch ${JSON.stringify(patch)}`,()=>assert.equal(isPaidSession({...paid,...patch},row),false));
 test('live Stripe key never enabled on review branch',()=>{const old=process.env.CARBON_STRIPE_KEY;process.env.CARBON_STRIPE_KEY='sk_live_fake';assert.throws(()=>stripe(),/SALES_DISABLED/);if(old)process.env.CARBON_STRIPE_KEY=old;else delete process.env.CARBON_STRIPE_KEY;});
 test('API preview calculates server-side and rejects cross-origin',async()=>{const ok=await preview(request(base()));assert.equal(ok.status,200);close((await ok.json()).totalT,.394);assert.equal((await preview(request(base(),'https://evil.example'))).status,403);});
 test('API rejects oversized request without exposing internals',async()=>{const r=await preview(request({x:'a'.repeat(33000)}));assert.equal(r.status,400);assert.ok(!(await r.text()).includes('stack'));});
@@ -77,7 +77,7 @@ test('service integration: draft -> checkout stub -> unpaid -> paid -> stable is
  const svc=createCarbonService(()=>adapter,()=>fakeStripe);
  process.env.CARBON_TEST_CHECKOUT='true';process.env.CARBON_BASE_URL='http://localhost:3000';process.env.CARBON_SIGNING_KEY=privateKey;
  try{
- const order=await svc.createCheckout(base(),'http://localhost:3000');assert.equal(checkoutArgs.line_items[0].price_data.unit_amount,8900);assert.equal(checkoutArgs.metadata.totalCO2e,undefined);assert.equal(checkoutArgs.metadata.company,undefined);
+ const order=await svc.createCheckout(base(),'http://localhost:3000');assert.equal(checkoutArgs.line_items[0].price_data.unit_amount,8900);assert.equal(checkoutArgs.metadata.totalCO2e,undefined);assert.equal(checkoutArgs.metadata.company,undefined);assert.equal(JSON.stringify(checkoutArgs).includes(order.token),false);
  // Simulate the session_id write being lost after Stripe created a valid session.
  await db.query('UPDATE carbon_reports SET session_id=NULL WHERE id=$1',[order.id]);
  await assert.rejects(()=>svc.issue(order.id,'wrong'),/UNAUTHORIZED/);
