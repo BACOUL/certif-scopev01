@@ -4,7 +4,8 @@ import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {generateKeyPairSync} from 'node:crypto';
 import {PGlite} from '@electric-sql/pglite';
 import {calculate} from '../src/lib/carbon/calculate';
-import {FACTORS,CATEGORIES,firstSupportedKind} from '../src/lib/carbon/factors';
+import {FACTORS,ADEME_FACTORS,CATEGORIES,firstSupportedKind} from '../src/lib/carbon/factors';
+import {PURE_F_GASES, EU_F_GAS_SOURCE, EU_F_GAS_VERSION} from '../src/lib/carbon/refrigerants';
 import {sample} from '../src/lib/carbon/sample';
 import {digest,signReport,verifyReport,canonical,trustedVerificationKeys} from '../src/lib/carbon/crypto';
 import {csv,pdf} from '../src/lib/carbon/document';
@@ -36,7 +37,7 @@ test('partial period explicitly blocks sale and is not annualised',()=>{const r=
 test('exclusions always yield partial coverage',()=>assert.equal(calculate({...base(),exclusions:'remote site'}).coverage,'partial'));
 test('unconfirmed declaration rejected',()=>assert.throws(()=>calculate({...base(),confirmed:false})));
 test('all nine sources required explicitly',()=>{const b:any=base();delete b.sources.refrigerants;assert.throws(()=>calculate(b));});
-test('factor values, boundaries, record IDs and biogenic values match official saved records',()=>{const rows=JSON.parse(readFileSync('docs/refonte/evidence/ademe-records.json','utf8'));for(const f of Object.values(FACTORS)){const r=rows.find(r=>r._id===f.row);assert.ok(r);assert.equal(r["Identifiant_de_l'élément"],f.id);assert.equal(r.Total_poste_non_décomposé,f.value);assert.equal(r.Type_poste,f.boundary);assert.equal(r.CO2b||0,f.biogenic);assert.equal(r.Localisation_géographique,'France continentale');}});
+test('factor values, boundaries, record IDs and biogenic values match official saved records',()=>{const rows=JSON.parse(readFileSync('docs/refonte/evidence/ademe-records.json','utf8'));for(const f of Object.values(ADEME_FACTORS)){const r=rows.find(r=>r._id===f.row);assert.ok(r);assert.equal(r["Identifiant_de_l'élément"],f.id);assert.equal(r.Total_poste_non_décomposé,f.value);assert.equal(r.Type_poste,f.boundary);assert.equal(r.CO2b||0,f.biogenic);assert.equal(r.Localisation_géographique,'France continentale');}});
 test('canonical JSON independent of key order',()=>assert.equal(canonical({b:1,a:{d:2,c:3}}),canonical({a:{c:3,d:2},b:1})));
 const keys=generateKeyPairSync('ed25519');const privateKey=keys.privateKey.export({format:'pem',type:'pkcs8'}).toString();const publicKey=keys.publicKey.export({format:'pem',type:'spki'}).toString();
 test('signature covers identity, sources, factors, results and limitations',()=>{const signed=signReport(sample(),privateKey);assert.ok(verifyReport(signed,publicKey));for(const mutate of [(r:any)=>r.calculation.assessment.company='fake',(r:any)=>r.calculation.lines[0].factor.value=0,(r:any)=>r.calculation.totalT=0,(r:any)=>r.calculation.warnings=[]]){const changed=structuredClone(signed);mutate(changed.report);assert.equal(verifyReport(changed,publicKey),false);}});
@@ -137,7 +138,7 @@ test('B3 CSV retains unknowns as blanks, not misleading zeros',()=>{
 });
 
 test('B3 source mapping: unsupported category has no activity kind; no form crash when marked relevant',()=>{
- assert.equal(firstSupportedKind("refrigerants"),undefined);
+ assert.equal(firstSupportedKind("refrigerants"),"refrigerant_hfc32");
  assert.equal(firstSupportedKind("purchased_heat"),undefined);
  assert.equal(firstSupportedKind("other_fuels"),undefined);
  assert.equal(firstSupportedKind("electricity"),"electricity");
@@ -203,4 +204,29 @@ test('archive of trusted public signing keys survives a signer rotation',()=>{
  assert.throws(()=>trustedVerificationKeys(privNow,JSON.stringify(Array(13).fill(pubOld))));
  assert.deepEqual(trustedVerificationKeys(undefined,JSON.stringify([pubOld])),[pubOld]);
  assert.ok(pubNow.includes('BEGIN PUBLIC KEY'));
+});
+
+test('EU F-gas pure HFC factors exactly match Regulation 2024/573 Annex I 100-year GWP',()=>{
+ assert.deepEqual(PURE_F_GASES,{refrigerant_hfc32:{id:"HFC-32",value:675},refrigerant_hfc134a:{id:"HFC-134a",value:1430},refrigerant_hfc125:{id:"HFC-125",value:3500},refrigerant_hfc143a:{id:"HFC-143a",value:4470}});
+ assert.equal(EU_F_GAS_SOURCE,"https://eur-lex.europa.eu/eli/reg/2024/573/oj");
+ assert.equal(EU_F_GAS_VERSION,"EU-2024-573-ANNEX-I-GWP100");
+});
+test('pure HFC-32 leakage 0.5 kg is 0.3375 tCO2e scope 1, without adding energy',()=>{
+ const b=base();
+ b.sources.refrigerants="known";
+ b.activities.push({id:"leak",kind:"refrigerant_hfc32",quantity:0.5,unit:"kg",quality:"invoice",evidence:"service record mass released"});
+ const r=calculate(b);
+ close(r.scope1T,0.3375);close(r.scope2LocationT,0.394);close(r.energyMwh,10);
+ close(r.energyBreakdown.total.totalMwh,10);
+ assert.equal(r.lines[1].factor.source,EU_F_GAS_SOURCE);
+ assert.equal(r.lines[1].factor.version,EU_F_GAS_VERSION);
+ assert.ok(r.warnings.includes("PURE_F_GAS_ONLY_MASS_RELEASE_NOT_CHARGE"));
+});
+test('refrigerant kg/litre mismatch, invented energy and renewable fields rejected',()=>{
+ const b:any=base();b.sources.refrigerants="known";
+ b.activities.push({id:"leak",kind:"refrigerant_hfc134a",quantity:1,unit:"kg",quality:"invoice",evidence:"maintenance record"});
+ close(calculate(b).scope1T,1.43);
+ b.activities[1].unit="L";assert.throws(()=>calculate(b));
+ b.activities[1].unit="kg";b.activities[1].energyKwh=100;assert.throws(()=>calculate(b));
+ delete b.activities[1].energyKwh;b.activities[1].renewableEnergyKwh=0;assert.throws(()=>calculate(b));
 });
