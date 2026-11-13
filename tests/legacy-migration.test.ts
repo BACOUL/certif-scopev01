@@ -6,6 +6,7 @@ import { PGlite } from "@electric-sql/pglite";
 import { digest } from "../src/lib/carbon/crypto";
 import { SPEND_PRODUCT, PRODUCT } from "../src/lib/carbon/payment";
 import { applyLegacyImport, planLegacyImport } from "../src/lib/carbon/legacy-migration";
+import { readCreditStatus } from "../src/lib/carbon/credit-status";
 
 const KEY_SECRET = "this-is-a-synthetic-test-secret";
 function key(n: number) {
@@ -124,5 +125,47 @@ test("legacy migration: conflicting re-import and product collisions rollback at
   )).rows.length, 0);
  } finally {
   await database.close();
+ }
+});
+
+test("legacy credit balance: reads only imported signed keys, never recreates credits", async () => {
+ const database = new PGlite();
+ await database.exec(readFileSync("migrations/001_carbon.sql", "utf8"));
+ try {
+  const original = key(31), forged = original.slice(0, -8) + "00000000";
+  const missing = await readCreditStatus(database as any, original, KEY_SECRET, now);
+  assert.deepEqual(missing, { valid: false, remainingCredits: 0 });
+  const plan = planLegacyImport([record(31)], KEY_SECRET, now);
+  await applyLegacyImport(database as any, plan);
+  assert.deepEqual(await readCreditStatus(database as any, original, KEY_SECRET, now),
+   { valid: true, remainingCredits: 1, product: SPEND_PRODUCT });
+  assert.deepEqual(await readCreditStatus(database as any, forged, KEY_SECRET, now),
+   { valid: false, remainingCredits: 0 });
+  assert.deepEqual(await readCreditStatus(database as any, original, undefined, now),
+   { valid: false, remainingCredits: 0 });
+  await database.query("UPDATE carbon_credits SET remaining=0 WHERE key_hash=$1", [digest(original)]);
+  assert.deepEqual(await readCreditStatus(database as any, original, KEY_SECRET, now),
+   { valid: true, remainingCredits: 0, product: SPEND_PRODUCT });
+  assert.equal((await database.query<{remaining:number}>(
+   "SELECT remaining FROM carbon_credits WHERE key_hash=$1", [digest(original)],
+  )).rows[0].remaining, 0);
+ } finally { await database.close(); }
+});
+
+test("legacy credit balance: expired keys stay invalid even with remaining credits", async () => {
+ const database = new PGlite();
+ await database.exec(readFileSync("migrations/001_carbon.sql", "utf8"));
+ try {
+  const original = key(42);
+  const plan = planLegacyImport([record(42, { expiresAt: "2025-12-01T00:00:00.000Z" })], KEY_SECRET, now);
+  await applyLegacyImport(database as any, plan);
+  assert.deepEqual(await readCreditStatus(database as any, original, KEY_SECRET, now),
+   { valid: false, remainingCredits: 0 });
+ } finally { await database.close(); }
+});
+
+test("legacy import: invalid calendar dates are rejected", () => {
+ for (const expiresAt of ["2028-02-30T00:00:00.000Z", "2028-13-01T00:00:00.000Z", "2030-01-00T00:00:00.000Z"]) {
+  assert.throws(() => planLegacyImport([record(51, { expiresAt })], KEY_SECRET, now), /EXPIRY_REQUIRES_REVIEW/);
  }
 });
