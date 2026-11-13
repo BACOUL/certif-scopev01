@@ -4,7 +4,7 @@ export function db(){
  if(!process.env.CARBON_DATABASE_URL)throw new Error("DATABASE_UNAVAILABLE");
  return pool??=new Pool({connectionString:process.env.CARBON_DATABASE_URL,max:4,connectionTimeoutMillis:5000,statement_timeout:10000});
 }
-export const PAID_SQL=`UPDATE carbon_reports SET status='paid',payment_intent=$2,paid_at=COALESCE(paid_at,$3),expires_at=GREATEST(expires_at,$3::timestamptz + interval '30 days') WHERE id=$1 AND session_id=$4 AND snapshot_hash=$5 AND status='draft' RETURNING id`;
+export const PAID_SQL=`UPDATE carbon_reports SET status='paid',payment_intent=$2,paid_at=COALESCE(paid_at,$3),expires_at=GREATEST(expires_at,$3::timestamptz + interval '30 days') WHERE id=$1 AND session_id=$4 AND snapshot_hash=$5 AND status='draft' AND NOT EXISTS (SELECT 1 FROM carbon_payment_blocks b WHERE b.payment_intent=$2) RETURNING id`;
 // Restore a paid test checkout whose Stripe session was created but whose original
 // post-Stripe UPDATE failed. Session metadata is verified server-side before this SQL.
 export const ATTACH_SESSION_SQL=`UPDATE carbon_reports SET session_id=$1 WHERE id=$2 AND snapshot_hash=$3 AND session_id IS NULL AND status='draft' AND expires_at>now() RETURNING id`;
