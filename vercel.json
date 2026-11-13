@@ -1,1 +1,11 @@
-{"git":{"deploymentEnabled":false}}
+{
+  "git": {
+    "deploymentEnabled": false
+  },
+  "crons": [
+    {
+      "path": "/api/internal/purge",
+      "schedule": "0 4 * * *"
+    }
+  ]
+}
