@@ -11,7 +11,9 @@ async function createCheckout(input:unknown, origin:string,product="supplier-car
  if(process.env.CARBON_TEST_CHECKOUT!=="true")throw new Error("SALES_DISABLED");
  if(origin!==process.env.CARBON_BASE_URL)throw new Error("ORIGIN");
  if(!process.env.CARBON_SIGNING_KEY)throw new Error("SIGNING_UNAVAILABLE");
- if(![PRODUCT,"spend-indicative-v2"].includes(product))throw new Error("INELIGIBLE");
+ // The historic spend-based report is a legacy credit-only service.
+ // Never create a new Stripe sale for a retired product.
+ if(product!==PRODUCT)throw new Error("INELIGIBLE");
  const snapshot=product===PRODUCT?calculate(input):calculateSpend(input);if(!snapshot.saleEligible)throw new Error("INELIGIBLE");
  const id=randomUUID(),token=secret(),hash=digest(snapshot);
  const sql=db();
