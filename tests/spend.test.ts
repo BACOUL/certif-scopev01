@@ -84,7 +84,7 @@ test("spend indicative: signed JSON detects tampering without claiming PDF signa
  const signed = signReport(spendSample(), privatePem);
  assert.equal(verifyReport(signed, publicPem), true);
  const changed = structuredClone(signed);
- changed.report.calculation.totalT = 0;
+ (changed.report as ReturnType<typeof spendSample>).calculation.totalT = 0;
  assert.equal(verifyReport(changed, publicPem), false);
 });
 
