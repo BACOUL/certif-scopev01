@@ -8,9 +8,9 @@
 
 ## Contrôles techniques sur la branche
 
-**Dernier contrôle complet du code : GitHub Actions run 43454566306 (commit b2f9d77a2eb38d166adcd175b60786f1a56fc444), conclusion success.**
+**Dernier contrôle complet du code : GitHub Actions run 43481798509 (commit 5fb42f92308afb6c3566f9470c6cd0d76d1f51bb), conclusion success.**
 
-- 97 tests réussis, zéro échec, sur moteur, API, documents, intégrité, anciennes attestations, migrateur fictif, refus de paiements incohérents et protections anti-doublons.
+- 101 tests réussis, zéro échec, sur moteur, API, documents, intégrité, anciennes attestations, migrateur fictif, refus de paiements incohérents et protections anti-doublons.
 - TypeScript et compilation Next.js réussis.
 - Audit npm : zéro vulnérabilité signalée ; ce n'est pas un audit de sécurité approfondi.
 - 22 contrôles HTTP : accueil/formulaire/prix/méthode/confidentialité/vérification en FR/EN/DE, PDF spécimens et route absente.
