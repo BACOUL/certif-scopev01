@@ -1,4 +1,4 @@
-import { createHash, createHmac, timingSafeEqual } from "node:crypto";
+import { createHmac, timingSafeEqual } from "node:crypto";
 import { digest } from "./crypto";
 import { SPEND_PRODUCT } from "./payment";
 
@@ -44,10 +44,15 @@ export type SqlClient = {
 };
 
 function isoDate(value: unknown): value is string {
-  return typeof value === "string" &&
-    /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,3})?Z$/.test(value) &&
-    Number.isFinite(Date.parse(value)) &&
-    new Date(value).toISOString() === new Date(Date.parse(value)).toISOString();
+  if (typeof value !== "string") return false;
+  const match = /^(\d{4})-(\d{2})-(\d{2})T\d{2}:\d{2}:\d{2}(?:\.\d{1,3})?Z$/.exec(value);
+  if (!match) return false;
+  const millis = Date.parse(value);
+  if (!Number.isFinite(millis)) return false;
+  const date = new Date(millis);
+  return date.getUTCFullYear() === Number(match[1]) &&
+    date.getUTCMonth() + 1 === Number(match[2]) &&
+    date.getUTCDate() === Number(match[3]);
 }
 function validKey(key: unknown, secret: string): key is string {
   if (typeof key !== "string" || !/^CS-(?:[A-F0-9]{4}-){4}[A-F0-9]{8}$/.test(key)) return false;
