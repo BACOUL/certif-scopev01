@@ -34,3 +34,10 @@ Tests use PGlite and simulated Stripe responses. They do not prove a live Stripe
 
 ## Enhanced payment integrity (simulated; not a live transaction)
 The server now requires the Checkout session reference to match the existing report and independently checks the test-mode PaymentIntent and expanded captured Charge, including payment IDs, status, EUR currency, exactly 8,900 euro cents collected, and the absence of refunds or disputes. Pending/unexpanded Stripe responses do **not** revoke a customer order. Only a confirmed refund or dispute does. Cached report JSON envelopes are rechecked against the stored snapshot hash and operator-trusted Ed25519 public keys on every download. These controls are covered by automated tests, not a live Stripe sandbox run.
+
+## Protection des remboursements et litiges Stripe (mode test)
+
+- Une notification Stripe signée `charge.refunded` ou `charge.dispute.created` écrit atomiquement un veto durable sur le PaymentIntent dans `carbon_payment_blocks`, révoque tout document déjà lié et enregistre l'identifiant d'événement. Cela couvre aussi un remboursement arrivé avant `checkout.session.completed`.
+- `PAID_SQL` refuse toute confirmation dont le PaymentIntent est bloqué, et la livraison recontrôle le paiement à chaque accès. Relecture idempotente, blocages et rollback sont testés sur PostgreSQL embarqué ; **une recette réelle en environnement Stripe test reste obligatoire**.
+- **Migration de schéma obligatoire dans la base de recette avant toute activation** : rejouer `npm run db:migrate` avec `CARBON_DATABASE_URL` explicitement pointée vers une base PostgreSQL de recette isolée ; une base historique ne contient pas `carbon_payment_blocks` tant que cette migration n'a pas été exécutée. Ne pas lancer sur la production sans procédure de sauvegarde et autorisation.
+- Politique de durée de conservation des veto PaymentIntent et contrôle des courses multi-processus restent à valider avant publication.
