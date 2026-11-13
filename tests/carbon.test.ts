@@ -167,3 +167,20 @@ test('reject recorded energy source marked unknown instead of known',()=>{
  const a=base();a.sources.electricity='unknown';
  assert.throws(()=>calculate(a),/SOURCE_CONFLICT/);
 });
+
+// Delivery access is anchored to actual payment confirmation, not checkout session creation.
+test('confirmed checkout grants at least 30 days of access after payment',async()=>{
+ const db=new PGlite();
+ await db.exec(readFileSync('migrations/001_carbon.sql','utf8'));
+ try{
+  const id='00000000-0000-4000-8000-00000000a030';
+  await db.query("INSERT INTO carbon_reports(id,secret_hash,snapshot,snapshot_hash,session_id,expires_at) VALUES($1,'secret','{}','hash','session',now()+interval '1 day')",[id]);
+  const confirmation=new Date();
+  const paid=await db.query(PAID_SQL,[id,'pi-30',confirmation,'session','hash']);
+  assert.equal(paid.rows.length,1);
+  const {rows}=await db.query<{paid_at:Date;expires_at:Date}>("SELECT paid_at,expires_at FROM carbon_reports WHERE id=$1",[id]);
+  assert.ok(new Date(rows[0].expires_at).getTime()-new Date(rows[0].paid_at).getTime()>=30*24*60*60*1000-1000);
+  const repeated=await db.query(PAID_SQL,[id,'pi-30',new Date(confirmation.getTime()+1000),'session','hash']);
+  assert.equal(repeated.rows.length,0);
+ }finally{await db.close();}
+});
