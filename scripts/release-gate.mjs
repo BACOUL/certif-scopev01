@@ -12,6 +12,7 @@ import {resolve} from "node:path";
 
 export const REQUIRED = [
  "ademe_23_11_licensed_export_verified",
+ "ademe_23_11_terms_and_commercial_reuse_approved",
  "factor_boundaries_units_years_and_geography_cross_checked",
  "b3_scope1_scope2_and_energy_cases_reviewed",
  "stripe_real_sandbox_e2e_and_webhook_verified",
