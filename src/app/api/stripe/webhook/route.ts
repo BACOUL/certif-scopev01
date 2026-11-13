@@ -1,6 +1,7 @@
 import {stripe,isSupportedProduct} from "@/lib/carbon/payment";
 import {fulfill} from "@/lib/carbon/service";
 import {db} from "@/lib/carbon/store";
+import {recordPaymentRevocation} from "@/lib/carbon/revocation";
 import {json} from "@/lib/carbon/http";
 import type Stripe from "stripe";
 export async function POST(req:Request){
@@ -15,8 +16,13 @@ export async function POST(req:Request){
  // price, product, report ID and immutable snapshot before granting access.
  if(isSupportedProduct(s.metadata?.product) && s.payment_status==="paid")await fulfill(s.id);
  }else if(event.type==="charge.refunded" || event.type==="charge.dispute.created"){
- const obj=event.data.object as {payment_intent?:string};
- if(obj.payment_intent)await db().query("UPDATE carbon_reports SET status='revoked' WHERE payment_intent=$1",[obj.payment_intent]);
+ const obj=event.data.object as {payment_intent?:string | null};
+ if(typeof obj.payment_intent==="string"){
+  // Commit the durable veto and report revocation together. The veto also
+  // covers a refund/dispute that arrives before the checkout is fulfilled.
+  await recordPaymentRevocation(obj.payment_intent,event.id,event.type==="charge.refunded"?"refund":"dispute");
+  return json({received:true});
+ }
  }
  // No external side effect before entitlement; duplicate delivery is safe (conditional UPDATE).
  await db().query("INSERT INTO carbon_events(id) VALUES($1) ON CONFLICT DO NOTHING",[event.id]);
