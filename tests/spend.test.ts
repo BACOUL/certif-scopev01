@@ -102,54 +102,39 @@ test("spend indicative: produce real PDF and numeric CSV samples in FR/EN/DE", a
  }
 });
 
-test("spend purchase: price and product verified server-side before signed document access", async () => {
+test("retired spend attestation: new Stripe purchase blocked, existing spend credit can still issue signed document", async () => {
  const { PGlite } = await import("@electric-sql/pglite");
  const { readFileSync } = await import("node:fs");
  const { createCarbonService } = await import("../src/lib/carbon/service");
+ const { digest } = await import("../src/lib/carbon/crypto");
  const database = new PGlite();
  await database.exec(readFileSync("migrations/001_carbon.sql", "utf8"));
  const query = async (sql: string, args?: any[]) => {
   const result = await database.query(sql, args);
   return { ...result, rowCount: result.rows.length || result.affectedRows || 0 };
  };
- const adapter: any = { query };
- let session: any;
- const fakeStripe: any = {
-  checkout: { sessions: {
-   create: async (args: any) => {
-    session = {
-     id: "cs_test_spend_integration", mode: "payment", status: "complete",
-     payment_status: "unpaid", livemode: false, currency: "eur",
-     amount_total: args.line_items[0].price_data.unit_amount,
-     metadata: args.metadata, client_reference_id:args.client_reference_id, payment_intent: "pi_test_spend_integration", created: 1794480000,
-    };
-    return { ...session, url: "https://checkout.stripe.com/test" };
-   },
-   retrieve: async () => session,
-  } },
-  paymentIntents: { retrieve: async () => ({
-   id:"pi_test_spend_integration",livemode:false,currency:"eur",amount:PRICE,amount_received:PRICE,status:"succeeded", latest_charge: { payment_intent:"pi_test_spend_integration",livemode:false,currency:"eur",amount:PRICE,paid:true,captured:true,status:"succeeded",refunded:false,amount_refunded:0,disputed:false },
-  }) },
- };
- const svc = createCarbonService(() => adapter, () => fakeStripe);
+ const adapter: any = { query,connect:async()=>({query,release(){}}) };
+ const svc = createCarbonService(() => adapter);
  const keys = generateKeyPairSync("ed25519");
+ const creditKey="s".repeat(40);
+ const requestId="00000000-0000-4000-8000-000000000098";
  process.env.CARBON_TEST_CHECKOUT = "true";
  process.env.CARBON_BASE_URL = "http://localhost:3000";
  process.env.CARBON_SIGNING_KEY = keys.privateKey.export({ type: "pkcs8", format: "pem" }).toString();
  try {
-  const order = await svc.createCheckout(input(), "http://localhost:3000", SPEND_PRODUCT);
-  assert.equal(session.metadata.product, SPEND_PRODUCT);
-  assert.equal(session.amount_total, PRICE);
-  assert.equal(session.metadata.totalT, undefined);
-  await assert.rejects(() => svc.issue(order.id, order.token), /PAYMENT_PENDING/);
-  session.payment_status = "paid";
-  await svc.fulfill(session.id);
-  const envelope = await svc.issue(order.id, order.token);
-  assert.equal(envelope.report.calculation.product, SPEND_PRODUCT);
-  assert.equal(envelope.report.calculation.totalT, 1.085);
-  assert.equal(verifyReport(envelope, keys.publicKey.export({ type: "spki", format: "pem" }).toString()), true);
-  const second = await svc.issue(order.id, order.token);
-  assert.deepEqual(second, envelope);
+  await assert.rejects(() => svc.createCheckout(input(), "http://localhost:3000", SPEND_PRODUCT), /INELIGIBLE/);
+  assert.equal((await database.query("SELECT id FROM carbon_reports")).rows.length,0);
+  await database.query("INSERT INTO carbon_credits(key_hash,remaining,expires_at,product) VALUES($1,1,now()+interval '1 year',$2)",[digest(creditKey),SPEND_PRODUCT]);
+  const order=await svc.creditOrder(input(),SPEND_PRODUCT,creditKey,requestId);
+  assert.equal(order.id,requestId);
+  const envelope=await svc.issue(order.id,order.token);
+  assert.equal(envelope.report.calculation.product,SPEND_PRODUCT);
+  assert.equal(envelope.report.calculation.totalT,1.085);
+  assert.equal(verifyReport(envelope,keys.publicKey.export({type:"spki",format:"pem"}).toString()),true);
+  const second=await svc.creditOrder(input(),SPEND_PRODUCT,creditKey,requestId);
+  assert.equal(second.id,requestId);
+  assert.deepEqual(await svc.issue(order.id,order.token),envelope);
+  assert.equal((await database.query("SELECT remaining FROM carbon_credits")).rows[0].remaining,0);
  } finally {
   delete process.env.CARBON_TEST_CHECKOUT;
   delete process.env.CARBON_BASE_URL;
