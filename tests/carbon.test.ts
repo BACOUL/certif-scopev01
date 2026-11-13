@@ -350,7 +350,7 @@ test('incomplete energy disclosure generates FR EN DE PDF without a pagination o
   const report={id:"PARTIAL-ENERGY-CHECK",issuedAt:"2026-11-13T12:00:00.000Z",calculation:calculate(input)};
   const buffer=await pdf(report,true);
   assert.equal(buffer.subarray(0,4).toString(),"%PDF");
-  const pages=(buffer.toString("latin1").match(/\\/Type\\s*\\/Page\\b/g)||[]).length;
+  const pages=(buffer.toString("latin1").match(/\/Type\s*\/Page\b/g)||[]).length;
   assert.equal(pages,3,`Incomplete-energy PDF overflow in ${locale}: ${pages} pages`);
  }
 });
