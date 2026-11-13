@@ -70,7 +70,7 @@ test("both products: webhook allowlist and Stripe entitlement validator reject c
  const session: any = {
   id: row.session_id, mode: "payment", status: "complete", payment_status: "paid",
   livemode: false, currency: "eur", amount_total: PRICE, payment_intent: "pi_test",
-  metadata: { product: SPEND_PRODUCT, reportId: row.id, snapshotHash: row.snapshot_hash },
+  metadata: { product: SPEND_PRODUCT, reportId: row.id, snapshotHash: row.snapshot_hash },client_reference_id:row.id,
  };
  assert.equal(isPaidSession(session, row), true);
  assert.equal(isPaidSession({ ...session, metadata: { ...session.metadata, product: PRODUCT } }, row), false);
@@ -121,14 +121,14 @@ test("spend purchase: price and product verified server-side before signed docum
      id: "cs_test_spend_integration", mode: "payment", status: "complete",
      payment_status: "unpaid", livemode: false, currency: "eur",
      amount_total: args.line_items[0].price_data.unit_amount,
-     metadata: args.metadata, payment_intent: "pi_test_spend_integration", created: 1794480000,
+     metadata: args.metadata, client_reference_id:args.client_reference_id, payment_intent: "pi_test_spend_integration", created: 1794480000,
     };
     return { ...session, url: "https://checkout.stripe.com/test" };
    },
    retrieve: async () => session,
   } },
   paymentIntents: { retrieve: async () => ({
-   status: "succeeded", latest_charge: { refunded: false, amount_refunded: 0, disputed: false },
+   id:"pi_test_spend_integration",livemode:false,currency:"eur",amount:PRICE,amount_received:PRICE,status:"succeeded", latest_charge: { payment_intent:"pi_test_spend_integration",livemode:false,currency:"eur",amount:PRICE,paid:true,captured:true,status:"succeeded",refunded:false,amount_refunded:0,disputed:false },
   }) },
  };
  const svc = createCarbonService(() => adapter, () => fakeStripe);
