@@ -102,7 +102,7 @@ async function redeem(id:string,token:string,key:string){
  if(old.rowCount){if(old.rows[0].key_hash!==digest(key))throw new Error("UNAUTHORIZED");await c.query("COMMIT");return;}
  const credit=await c.query(CREDIT_SQL,[digest(key),row.snapshot.product||PRODUCT]);if(!credit.rowCount)throw new Error("UNAUTHORIZED");
  await c.query("INSERT INTO carbon_redemptions(report_id,key_hash) VALUES($1,$2)",[id,digest(key)]);
- await c.query("UPDATE carbon_reports SET status='paid',paid_at=now() WHERE id=$1",[id]);
+ await c.query("UPDATE carbon_reports SET status='paid',paid_at=COALESCE(paid_at,now()),expires_at=GREATEST(expires_at,now()+interval '30 days') WHERE id=$1 AND status='draft'",[id]);
  await c.query("COMMIT");
  }catch(e){await c.query("ROLLBACK");throw e;}finally{c.release();}
 }
