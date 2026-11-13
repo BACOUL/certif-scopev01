@@ -21,16 +21,19 @@ export function calculate(input: unknown) {
  // B3 §32: energy split is disclosed only when each relevant line is supported by a declared value.
 // Missing renewable information is null (never an inferred zero). Location-based GHG totals are independent of this split.
  type EnergyLine = (typeof lines)[number];
- const split=(rows:EnergyLine[])=>{
+ const split=(rows:EnergyLine[], sourceMissing=false)=>{
   const totalKwh=rows.reduce((sum,l)=>sum+l.energyKwh,0);
-  const complete=rows.every(l=>l.renewableEnergyKwh!==undefined);
+  const complete=!sourceMissing && rows.every(l=>l.renewableEnergyKwh!==undefined);
   const renewableKwh=complete?rows.reduce((sum,l)=>sum+l.renewableEnergyKwh!,0):null;
   return {totalMwh:totalKwh/1000,renewableMwh:renewableKwh===null?null:renewableKwh/1000,
    nonRenewableMwh:renewableKwh===null?null:(totalKwh-renewableKwh)/1000,complete};
  };
- const electricitySplit=split(lines.filter(l=>l.kind==="electricity"));
- const fuelsSplit=split(lines.filter(l=>l.kind!=="electricity"));
- const energyBreakdown={electricity:electricitySplit,fuels:fuelsSplit,total:split(lines)};
+ const electricitySplit=split(lines.filter(l=>l.kind==="electricity"),missing.includes("electricity"));
+ const fuelsSplit=split(lines.filter(l=>l.kind!=="electricity"),
+   ["gas","diesel_b7","petrol_e10","other_fuels"].some(kind=>missing.includes(kind)));
+ const missingEnergy=["electricity","gas","diesel_b7","petrol_e10","other_fuels","purchased_heat","self_generation"]
+   .some(kind=>missing.includes(kind));
+ const energyBreakdown={electricity:electricitySplit,fuels:fuelsSplit,total:split(lines,missingEnergy)};
  if(!energyBreakdown.total.complete)warnings.push("ENERGY_SPLIT_NOT_AVAILABLE");
  const scope1Kg=lines.filter(l=>l.factor.scope===1).reduce((s,l)=>s+l.kgCO2e,0);
  const scope2Kg=lines.filter(l=>l.factor.scope===2).reduce((s,l)=>s+l.kgCO2e,0);
@@ -38,6 +41,6 @@ export function calculate(input: unknown) {
   energyMwh:energyBreakdown.total.totalMwh,energyBreakdown,biogenicCO2T:lines.reduce((s,l)=>s+l.biogenicCO2kg,0)/1000,
   coverage:missing.length || assessment.exclusions?"partial":"declared_sources_covered", missing, warnings:[...new Set(warnings)],
   // Source refresh and external methodology validation are release blockers, not hidden claims.
-  saleEligible:assessment.year<2026 && missing.length===0 && !assessment.exclusions && !warnings.includes("PARTIAL_YEAR")};
+  saleEligible:assessment.year<2026 && lines.length>0 && missing.length===0 && !assessment.exclusions && !warnings.includes("PARTIAL_YEAR")};
 }
 export type Calculation = ReturnType<typeof calculate>;
