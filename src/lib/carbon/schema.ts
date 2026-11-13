@@ -28,6 +28,8 @@ export const assessmentSchema = z.object({
   if(f.energy!==null && a.energyKwh!==undefined)ctx.addIssue({code:"custom",message:"UNEXPECTED_ENERGY"});
   if(f.energy===null && ((a.quantity===0)!==(a.energyKwh===0)))ctx.addIssue({code:"custom",message:"INCONSISTENT_FUEL_ENERGY"});
   const energyKwh=f.energy===null?a.energyKwh:a.quantity*f.energy;
+  if(a.renewableEnergyKwh!==undefined && a.quality!=="invoice")
+   ctx.addIssue({code:"custom",message:"RENEWABLE_SHARE_NEEDS_DOCUMENTED_RECORD"});
   if(a.renewableEnergyKwh!==undefined && energyKwh!==undefined && a.renewableEnergyKwh>energyKwh+1e-7)
    ctx.addIssue({code:"custom",message:"RENEWABLE_EXCEEDS_TOTAL_ENERGY"});
  }
