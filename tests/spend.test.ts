@@ -95,7 +95,7 @@ test("spend indicative: produce real PDF and numeric CSV samples in FR/EN/DE", a
   assert.equal(buffer.subarray(0, 4).toString("utf8"), "%PDF");
   assert.ok(buffer.length > 3000);
   // Count PDF page objects, not /Pages collection objects. Detect accidental overflow.
-  assert.equal((buffer.toString("latin1").match(/\\/Type\\s*\\/Page\\b/g) || []).length, 2, `Expected a two-page spend PDF in ${locale}`);
+  assert.equal((buffer.toString("latin1").match(/\/Type\s*\/Page\b/g) || []).length, 2, `Expected a two-page spend PDF in ${locale}`);
   const csv = spendCsv(report);
   assert.ok(csv.includes("factor_id,eur_ex_vat,kgco2e"));
   assert.ok(csv.includes("43445"));
@@ -168,5 +168,5 @@ test("spend indicative: nine expense categories still fit the two-page PDF", asy
   calculation: calculateSpend(assessment),
  };
  const buffer = await spendPdf(report, true);
- assert.equal((buffer.toString("latin1").match(/\\/Type\\s*\\/Page\\b/g) || []).length, 2);
+ assert.equal((buffer.toString("latin1").match(/\/Type\s*\/Page\b/g) || []).length, 2);
 });
