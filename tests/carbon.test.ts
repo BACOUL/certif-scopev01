@@ -306,3 +306,39 @@ test('Stripe test payment: intent and captured charge must match paid session an
   assert.equal(isCapturedTestPayment(paid,{...intent,latest_charge:{...intent.latest_charge,...change}}),false,JSON.stringify(change));
  }
 });
+
+test('partial B3 inventory never presents recorded MWh as the complete company energy total',()=>{
+ const b=base();b.sources.gas="unknown";
+ const r=calculate(b);
+ assert.equal(r.energyMwh,10); // Known measurement, not full energy consumption.
+ assert.equal(r.energyTotalComplete,false);
+ assert.equal(r.energyBreakdown.electricity.totalComplete,true);
+ assert.equal(r.energyBreakdown.fuels.totalComplete,false);
+ assert.equal(r.energyBreakdown.total.totalComplete,false);
+ assert.ok(r.warnings.includes("ENERGY_TOTAL_INCOMPLETE"));
+ assert.equal(r.saleEligible,false);
+ const fields=csv({id:"TEST-PARTIAL",issuedAt:"2026-11-13T12:00:00Z",calculation:r}).trim().split("\r\n");
+ const head=fields[0].split(","),row=fields[1].split(",");
+ assert.equal(row[head.indexOf("energy_mwh")],"");
+ assert.equal(row[head.indexOf("electricity_mwh")],"10");
+ assert.equal(row[head.indexOf("fuels_mwh")],"");
+ assert.equal(row[head.indexOf("reported_energy_mwh")],"10");
+ assert.equal(row[head.indexOf("energy_total_complete")],"false");
+});
+test('unknown purchased heat blocks full energy total, but must not be incorrectly classed as fuel',()=>{
+ const b=base();b.sources.purchased_heat="unknown";
+ const r=calculate(b);
+ assert.equal(r.energyBreakdown.fuels.totalComplete,true);
+ assert.equal(r.energyTotalComplete,false);
+ assert.equal(r.coverage,"partial");
+});
+test('complete energy total can be known even when its renewable split is unknown',()=>{
+ const r=calculate(base());
+ assert.equal(r.energyTotalComplete,true);
+ assert.equal(r.energyBreakdown.total.complete,false);
+ const fields=csv({id:"TEST-COMPLETE",issuedAt:"2026-11-13T12:00:00Z",calculation:r}).trim().split("\r\n");
+ const head=fields[0].split(","),row=fields[1].split(",");
+ assert.equal(row[head.indexOf("energy_mwh")],"10");
+ assert.equal(row[head.indexOf("energy_total_complete")],"true");
+ assert.equal(row[head.indexOf("renewable_energy_mwh")],"");
+});
