@@ -14,6 +14,7 @@ test("release gate refuses launch when independent evidence is not present",()=>
   assert.equal(r.status,1,r.stderr);
   assert.match(r.stderr,/RELEASE BLOCKED/);
   assert.match(r.stderr,/ademe_23_11_licensed_export_verified/);
+  assert.match(r.stderr,/ademe_23_11_terms_and_commercial_reuse_approved/);
   assert.match(r.stderr,/stripe_real_sandbox_e2e_and_webhook_verified/);
   assert.match(r.stderr,/owner_explicit_release_approval/);
  }finally{rmSync(isolated,{recursive:true,force:true});}
