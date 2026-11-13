@@ -29,7 +29,7 @@ test("purge removes expired reports, linked redemptions and stale limits only",a
   }
   await pg.query("UPDATE carbon_reports SET expires_at=now()-interval '1 second' WHERE id=$1",[expired]);
   await pg.query("UPDATE carbon_reports SET expires_at=now()+interval '20 days' WHERE id=$1",[active]);
-  await pg.query("UPDATE carbon_reports SET expires_at=now()+interval '1 second' WHERE id=$1",[later]);
+  await pg.query("UPDATE carbon_reports SET expires_at=now()+interval '1 day' WHERE id=$1",[later]);
   await pg.query("INSERT INTO carbon_redemptions(report_id,key_hash) VALUES($1,'old')",[expired]);
   await pg.query("INSERT INTO carbon_redemptions(report_id,key_hash) VALUES($1,'valid')",[active]);
   await pg.query("INSERT INTO carbon_events(id,created_at) VALUES('stale',now()-interval '31 days'),('new',now())");
