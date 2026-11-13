@@ -1,4 +1,4 @@
-import {stripe,PRODUCT} from "@/lib/carbon/payment";
+import {stripe,isSupportedProduct} from "@/lib/carbon/payment";
 import {fulfill} from "@/lib/carbon/service";
 import {db} from "@/lib/carbon/store";
 import {json} from "@/lib/carbon/http";
@@ -11,7 +11,9 @@ export async function POST(req:Request){
  try{
  if(["checkout.session.completed","checkout.session.async_payment_succeeded"].includes(event.type)){
  const s=event.data.object as Stripe.Checkout.Session;
- if(s.metadata?.product===PRODUCT && s.payment_status==="paid")await fulfill(s.id);
+ // Only supported products are processed; fulfill() rechecks the paid session,
+ // price, product, report ID and immutable snapshot before granting access.
+ if(isSupportedProduct(s.metadata?.product) && s.payment_status==="paid")await fulfill(s.id);
  }else if(event.type==="charge.refunded" || event.type==="charge.dispute.created"){
  const obj=event.data.object as {payment_intent?:string};
  if(obj.payment_intent)await db().query("UPDATE carbon_reports SET status='revoked' WHERE payment_intent=$1",[obj.payment_intent]);
