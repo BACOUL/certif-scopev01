@@ -18,6 +18,16 @@ Node >=20; `npm ci`, `npm test`, `npm run build`, `npm run typecheck`, `npm audi
 - `CARBON_VERIFY_PUBLIC_KEYS_JSON`: optional JSON array of up to 12 previously trusted Ed25519 public PEM keys. Keep old verification keys available across signing-key rotations; never take verification keys from uploaded files or user input. Publishing, archiving, backing up and independently authenticating the keys remains an operational release blocker.
 - `CARBON_TEST_CHECKOUT=true`: enables test checkout only after the isolated dependencies are prepared.
 
-`npm run db:migrate` applies `migrations/001_carbon.sql` to the configured dedicated database. `npm run db:purge` removes expired delivery records. Neither has been run against a remote environment; scheduling and recovery are not configured.
+`npm run db:migrate` applies `migrations/001_carbon.sql` to a dedicated database. `npm run db:purge` manually removes expired delivery records. **Neither command has been run against a remote environment.**
+
+## Protected expiry cleanup (not deployed)
+- The review branch contains a **daily 04:00 UTC** Vercel Cron declaration in `vercel.json`. Vercel Cron runs only after an explicitly approved production deployment; this repository currently disables deployments.
+- Configure `CRON_SECRET` as a randomly generated secret of at least 32 UTF-8 bytes in the Vercel project **before** deployment. Do not commit or paste this secret into chat/logs.
+- `GET /api/internal/purge` requires the exact `Authorization: Bearer <CRON_SECRET>` header, otherwise returns 401 (or 503 when unconfigured). It deletes only expired delivery reports and associated redemption rows plus old webhook dedupe/rate limit rows inside one transaction.
+- Monitor cron execution failures and alert the operator; configure backup/restore validation, delete-policy checks and vendor data retention separately. **Scheduling code does not prove a purge has run**.
+- Report expiry does not delete historical Stripe invoices or statutory accounting records. Retention obligations and backup policies require legal review.
+
+## Checkout orphan recovery (test mode only)
+If Stripe created a test checkout but the database write of `session_id` failed, `fulfill` can attach an already-paid, server-retrieved session to its pre-existing report **only** if the full immutable hash, product, report ID, client reference, amount, currency and test mode match. No report is created from incoming webhook metadata. This improves technical recovery, but a customer who lost the browser access token still requires a secure support recovery procedure; independent end-to-end Stripe sandbox tests remain required.
 
 Tests use PGlite and simulated Stripe responses. They do not prove a live Stripe or distributed PostgreSQL workflow. Example signed JSON files use an ephemeral test key, whose public half is included with the specimens; no private key is persisted.
