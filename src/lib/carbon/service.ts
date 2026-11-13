@@ -4,7 +4,7 @@ import {SPEND_COPY} from "../spend/copy";
 import { calculate } from "./calculate";
 import { digest, secret, signReport, verifyReport, trustedVerificationKeys } from "./crypto";
 import { db as defaultDb, PAID_SQL, CREDIT_SQL, ATTACH_SESSION_SQL } from "./store";
-import { stripe as defaultStripe, isPaidSession, PRODUCT, PRICE } from "./payment";
+import { stripe as defaultStripe, isPaidSession, isCapturedTestPayment, PRODUCT, PRICE } from "./payment";
 import { COPY } from "./copy";
 export function createCarbonService(db=defaultDb,stripe=defaultStripe){
 async function createCheckout(input:unknown, origin:string,product="supplier-carbon-v1"){
@@ -55,9 +55,13 @@ async function fulfill(sessionId:string){
  if(!row || !isPaidSession(s,row))throw new Error("PAYMENT_PENDING");
  const pi=await stripe().paymentIntents.retrieve(String(s.payment_intent),{expand:["latest_charge"]});
  const charge=pi.latest_charge;
- if(pi.status!=="succeeded" || !charge || typeof charge==="string" || charge.refunded || charge.amount_refunded>0 || charge.disputed){
+ // A payment in processing state or a charge not yet expanded is pending;
+ // transient Stripe API propagation must not revoke a genuine order.
+ if(pi.status!=="succeeded" || !charge || typeof charge==="string")throw new Error("PAYMENT_PENDING");
+ if(charge.refunded || charge.amount_refunded>0 || charge.disputed){
   await db().query("UPDATE carbon_reports SET status='revoked' WHERE id=$1",[row.id]);throw new Error("REVOKED");
  }
+ if(!isCapturedTestPayment(s,pi))throw new Error("PAYMENT_PENDING");
  await db().query(PAID_SQL,[row.id,s.payment_intent,new Date(),s.id,row.snapshot_hash]);
 }
 async function issue(id:string,token:string){
