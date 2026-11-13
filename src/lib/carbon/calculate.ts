@@ -1,8 +1,9 @@
 import { assessmentSchema } from "./schema";
 import { FACTORS, METHOD, SOURCE, CATEGORIES, category } from "./factors";
+import {EU_F_GAS_VERSION} from "./refrigerants";
 export function calculate(input: unknown) {
  const assessment = assessmentSchema.parse(input);
- const warnings: string[] = ["NOT_AUDITED", "SCOPE3_EXCLUDED", "MARKET_BASED_NOT_CALCULATED", "HISTORICAL_FACTORS"];
+ const warnings: string[] = ["NOT_AUDITED", "SCOPE3_EXCLUDED", "MARKET_BASED_NOT_CALCULATED"];
  if(assessment.year===2026)warnings.push("2026_PROVISIONAL");
  const missing: string[] = [];
  for(const c of CATEGORIES){
@@ -14,9 +15,9 @@ export function calculate(input: unknown) {
  if(assessment.exclusions)warnings.push("DECLARED_EXCLUSIONS");
  const lines=assessment.activities.map(a=>{
   const f=FACTORS[a.kind];
-  if(f.year!==assessment.year)warnings.push("FACTOR_YEAR_DIFFERS");
+  if(!("version" in f) && f.year!==assessment.year)warnings.push("FACTOR_YEAR_DIFFERS");
   if(a.quality!=="invoice")warnings.push("UNVERIFIED_ACTIVITY");
-  return {...a, factor:{...f,source:SOURCE,version:"ADEME-V23.6",retrieved:"2026-11-12"}, kgCO2e:a.quantity*f.value, biogenicCO2kg:a.quantity*f.biogenic, energyKwh:f.energy===null?a.energyKwh!:a.quantity*f.energy};
+  return {...a, factor:{...f,source:("source" in f?f.source:SOURCE),version:("version" in f?f.version:"ADEME-V23.6"),retrieved:"2026-11-13"}, kgCO2e:a.quantity*f.value, biogenicCO2kg:a.quantity*f.biogenic, energyKwh:f.energy===null?a.energyKwh!:a.quantity*f.energy};
  });
  // B3 §32: energy split is disclosed only when each relevant line is supported by a declared value.
 // Missing renewable information is null (never an inferred zero). Location-based GHG totals are independent of this split.
@@ -29,11 +30,13 @@ export function calculate(input: unknown) {
    nonRenewableMwh:renewableKwh===null?null:(totalKwh-renewableKwh)/1000,complete};
  };
  const electricitySplit=split(lines.filter(l=>l.kind==="electricity"),missing.includes("electricity"));
- const fuelsSplit=split(lines.filter(l=>l.kind!=="electricity"),
+ const fuelsSplit=split(lines.filter(l=>l.kind!=="electricity" && category(l.kind)!=="refrigerants"),
    ["gas","diesel_b7","petrol_e10","other_fuels"].some(kind=>missing.includes(kind)));
  const missingEnergy=["electricity","gas","diesel_b7","petrol_e10","other_fuels","purchased_heat","self_generation"]
    .some(kind=>missing.includes(kind));
- const energyBreakdown={electricity:electricitySplit,fuels:fuelsSplit,total:split(lines,missingEnergy)};
+ const energyBreakdown={electricity:electricitySplit,fuels:fuelsSplit,total:split(lines.filter(l=>category(l.kind)!=="refrigerants"),missingEnergy)};
+ if(lines.some(l=>l.factor.source===SOURCE))warnings.push("HISTORICAL_FACTORS");
+ if(lines.some(l=>l.factor.version===EU_F_GAS_VERSION))warnings.push("PURE_F_GAS_ONLY_MASS_RELEASE_NOT_CHARGE");
  if(!energyBreakdown.total.complete)warnings.push("ENERGY_SPLIT_NOT_AVAILABLE");
  const scope1Kg=lines.filter(l=>l.factor.scope===1).reduce((s,l)=>s+l.kgCO2e,0);
  const scope2Kg=lines.filter(l=>l.factor.scope===2).reduce((s,l)=>s+l.kgCO2e,0);
