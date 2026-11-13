@@ -99,3 +99,59 @@ test("spend indicative: produce real PDF and numeric CSV samples in FR/EN/DE", a
   assert.ok(csv.includes("43445"));
  }
 });
+
+test("spend purchase: price and product verified server-side before signed document access", async () => {
+ const { PGlite } = await import("@electric-sql/pglite");
+ const { readFileSync } = await import("node:fs");
+ const { createCarbonService } = await import("../src/lib/carbon/service");
+ const database = new PGlite();
+ await database.exec(readFileSync("migrations/001_carbon.sql", "utf8"));
+ const query = async (sql: string, args?: any[]) => {
+  const result = await database.query(sql, args);
+  return { ...result, rowCount: result.rows.length || result.affectedRows || 0 };
+ };
+ const adapter: any = { query };
+ let session: any;
+ const fakeStripe: any = {
+  checkout: { sessions: {
+   create: async (args: any) => {
+    session = {
+     id: "cs_test_spend_integration", mode: "payment", status: "complete",
+     payment_status: "unpaid", livemode: false, currency: "eur",
+     amount_total: args.line_items[0].price_data.unit_amount,
+     metadata: args.metadata, payment_intent: "pi_test_spend_integration", created: 1794480000,
+    };
+    return { ...session, url: "https://checkout.stripe.com/test" };
+   },
+   retrieve: async () => session,
+  } },
+  paymentIntents: { retrieve: async () => ({
+   status: "succeeded", latest_charge: { refunded: false, amount_refunded: 0, disputed: false },
+  }) },
+ };
+ const svc = createCarbonService(() => adapter, () => fakeStripe);
+ const keys = generateKeyPairSync("ed25519");
+ process.env.CARBON_TEST_CHECKOUT = "true";
+ process.env.CARBON_BASE_URL = "http://localhost:3000";
+ process.env.CARBON_SIGNING_KEY = keys.privateKey.export({ type: "pkcs8", format: "pem" }).toString();
+ try {
+  const order = await svc.createCheckout(input(), "http://localhost:3000", SPEND_PRODUCT);
+  assert.equal(session.metadata.product, SPEND_PRODUCT);
+  assert.equal(session.amount_total, PRICE);
+  assert.equal(session.metadata.totalT, undefined);
+  await assert.rejects(() => svc.issue(order.id, order.token), /PAYMENT_PENDING/);
+  session.payment_status = "paid";
+  await svc.fulfill(session.id);
+  const envelope = await svc.issue(order.id, order.token);
+  assert.equal(envelope.report.calculation.product, SPEND_PRODUCT);
+  assert.equal(envelope.report.calculation.totalT, 1.085);
+  assert.equal(verifyReport(envelope, keys.publicKey.export({ type: "spki", format: "pem" }).toString()), true);
+  const second = await svc.issue(order.id, order.token);
+  assert.deepEqual(second, envelope);
+ } finally {
+  delete process.env.CARBON_TEST_CHECKOUT;
+  delete process.env.CARBON_BASE_URL;
+  delete process.env.CARBON_SIGNING_KEY;
+  await database.close();
+ }
+});
