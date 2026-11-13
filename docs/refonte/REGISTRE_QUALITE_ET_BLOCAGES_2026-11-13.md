@@ -61,3 +61,11 @@ Seule la PR brouillon 107 est modifiée. Ne pas fusionner, ne pas mettre en prod
 - Contrôles de non-réassociation d'un dossier révoqué, expiré ou déjà lié, et rejet d'une métadonnée Stripe ou référence client altérée.
 - Route Vercel Cron quotidienne protégée par `CRON_SECRET` (32 octets minimum), nettoyage transactionnel des rapports expirés et lignes de crédits liées, des anciens événements et des limites expirées. **La PR est non déployée** et le secret ni la base de données de production ne sont configurés par cette modification.
 - Les exigences d'archivage légales, les factures Stripe, les sauvegardes, le contrôle de l'exécution du cron et la récupération d'un client ayant perdu son jeton de téléchargement restent des **blocages de lancement**.
+
+## Complément — récupération privée et vérification des paiements
+
+- Ajout du code client `CS1.<id UUIDv4>.<jeton aléatoire 256 bits>` : affichage et copie **avant** la redirection Stripe, confirmation de sauvegarde, récupération manuelle sur la page de téléchargement et validation côté serveur. Seule l'empreinte du jeton est conservée en base ; le jeton n'est ni transmis à Stripe, ni présent dans une URL.
+- La méthode ne retrouve **pas** automatiquement un secret perdu définitivement. La récupération d'identité par le support devra faire l'objet d'une procédure indépendante ; ne jamais divulguer un secret par téléphone ou simple email non authentifié.
+- La délivrance d'un document signé en cache vérifie désormais à chaque fois l'intégrité du dossier et la signature par une clé publique opérateur reconnue, y compris après rotation de clé si le trousseau archivé est bien configuré.
+- Durcissement en mode test : correspondance de la référence client et vérification indépendante du `PaymentIntent` et de la `Charge` effectivement capturée (montant, devise, statut, mode test, remboursement, litige). Un paiement simplement en attente ne révoque plus automatiquement le dossier.
+- **Reste indispensable :** Stripe réellement testé en bac à sable avec authentification 3D Secure, paiement différé, remboursements, webhook et navigateur ; revue UX mobile réelle ; ADEME v23.11, périmètre B3, législation et clients historiques.
