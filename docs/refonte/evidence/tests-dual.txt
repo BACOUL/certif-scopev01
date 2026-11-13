@@ -1,0 +1,68 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> certif-scope-supplier-carbon@2.2.1 test
+> node --import tsx --test tests/*.test.ts
+
+✔ office manual reference: 10,000 × .0394 / 1000 = .394 t; 10 MWh (6.204289ms)
+✔ gas and fleet manual reference; separate biogenic CO2 and PCI (0.637822ms)
+✔ gas PCI quantity is not converted a second time (0.461676ms)
+✔ industrial case remains partial and cannot be sold (0.333132ms)
+✔ missing does not silently become zero (36.048353ms)
+✔ explicit zero with evidence is accepted (0.500154ms)
+✔ known source without line is incomplete (0.299221ms)
+✔ not applicable source cannot have rows (2.071865ms)
+✔ reject invalid quantity -1 (0.824664ms)
+✔ reject invalid quantity NaN (0.442598ms)
+✔ reject invalid quantity Infinity (0.223417ms)
+✔ reject invalid quantity 10000000000 (0.801439ms)
+✔ reject invalid quantity 1000 (0.308916ms)
+✔ reject invalid quantity null (0.26509ms)
+✔ reject invalid quantity undefined (0.144247ms)
+✔ reject client supplied total and factors (0.496989ms)
+✔ reject unsupported country and future year (0.411691ms)
+✔ reject mismatched units (2.72841ms)
+✔ reject duplicate ids and duplicate source evidence (0.475297ms)
+✔ fuel energy required, no invented litre conversion (0.334195ms)
+✔ period validation includes nonexistent dates and cross-year input (1.758833ms)
+✔ partial period explicitly blocks sale and is not annualised (0.494236ms)
+✔ exclusions always yield partial coverage (0.236637ms)
+✔ unconfirmed declaration rejected (0.26514ms)
+✔ all nine sources required explicitly (0.194313ms)
+✔ factor values, boundaries, record IDs and biogenic values match official saved records (0.520325ms)
+✔ canonical JSON independent of key order (0.19919ms)
+✔ signature covers identity, sources, factors, results and limitations (2.467492ms)
+✔ wrong signature/key and unsigned object are rejected (0.826968ms)
+✔ CSV cannot execute spreadsheet formula from declared company (0.580586ms)
+✔ accept only matching paid checkout session (0.165219ms)
+✔ reject payment mismatch {"payment_status":"unpaid"} (0.069025ms)
+✔ reject payment mismatch {"status":"expired"} (0.060802ms)
+✔ reject payment mismatch {"livemode":true} (0.047662ms)
+✔ reject payment mismatch {"currency":"usd"} (0.0336ms)
+✔ reject payment mismatch {"amount_total":1} (0.039269ms)
+✔ reject payment mismatch {"id":"cs_test_B"} (0.069665ms)
+✔ reject payment mismatch {"mode":"subscription"} (0.031638ms)
+✔ reject payment mismatch {"metadata":{"product":"supplier-carbon-v1","reportId":"report","snapshotHash":"tampered"}} (0.043836ms)
+✔ reject payment mismatch {"metadata":{"product":"old-attestation","reportId":"report","snapshotHash":"hash"}} (0.029735ms)
+✔ reject payment mismatch {"payment_intent":null} (0.023976ms)
+✔ live Stripe key never enabled on review branch (0.278149ms)
+✔ API preview calculates server-side and rejects cross-origin (5.996635ms)
+✔ API rejects oversized request without exposing internals (1.070035ms)
+✔ checkout disabled by default, no provider called (0.849842ms)
+✔ webhook rejects missing or invalid signature (3.623516ms)
+✔ PostgreSQL migration, conditional fulfillment, unique document, atomic last credit and rollback (3446.528861ms)
+✔ render actual PDF and CSV for FR EN DE (three pages minimum) (250.491927ms)
+✔ service integration: draft -> checkout stub -> unpaid -> paid -> stable issuance -> tamper/refund/expiry rejection (756.696215ms)
+✔ service credits: rollback on invalid key, idempotent redemption and exhausted balance (758.971691ms)
+ℹ tests 50
+ℹ suites 0
+ℹ pass 50
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6467.8325
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.2
+npm notice To update run: npm install -g npm@12.2.2
+npm notice

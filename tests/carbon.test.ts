@@ -58,8 +58,8 @@ test('PostgreSQL migration, conditional fulfillment, unique document, atomic las
  r=await db.query(PAID_SQL,[id,'pi',new Date(),'session','hash']);assert.equal(r.rows.length,1);
  r=await db.query(PAID_SQL,[id,'pi',new Date(),'session','hash']);assert.equal(r.rows.length,0);
  await db.query("UPDATE carbon_reports SET document=COALESCE(document,$2::jsonb) WHERE id=$1",[id,'{"version":1}']);await db.query("UPDATE carbon_reports SET document=COALESCE(document,$2::jsonb) WHERE id=$1",[id,'{"version":2}']);assert.deepEqual((await db.query<any>('SELECT document FROM carbon_reports')).rows[0].document,{version:1});
- await db.exec("INSERT INTO carbon_credits VALUES('key',1,now()+interval '1 day')");
- const attempts=await Promise.all(Array.from({length:10},()=>db.query(CREDIT_SQL,['key'])));assert.equal(attempts.reduce((n,r)=>n+r.rows.length,0),1);
+ await db.exec("INSERT INTO carbon_credits(key_hash,remaining,expires_at) VALUES('key',1,now()+interval '1 day')");
+ const attempts=await Promise.all(Array.from({length:10},()=>db.query(CREDIT_SQL,['key',PRODUCT])));assert.equal(attempts.reduce((n,r)=>n+r.rows.length,0),1);
  await db.exec("BEGIN; UPDATE carbon_credits SET remaining=10 WHERE key_hash='key'; ROLLBACK;");assert.equal((await db.query<any>('SELECT remaining FROM carbon_credits')).rows[0].remaining,0);
  await db.exec("UPDATE carbon_reports SET status='revoked'");assert.equal((await db.query(PAID_SQL,[id,'pi',new Date(),'session','hash'])).rows.length,0);
  await db.close();
@@ -90,7 +90,7 @@ test('service integration: draft -> checkout stub -> unpaid -> paid -> stable is
 test('service credits: rollback on invalid key, idempotent redemption and exhausted balance',async()=>{
  const {createCarbonService}=await import('../src/lib/carbon/service');const db=new PGlite();await db.exec(readFileSync('migrations/001_carbon.sql','utf8'));const query=async(sql:string,args?:any[])=>{const r=await db.query(sql,args);return {...r,rowCount:r.rows.length || r.affectedRows || 0};};const adapter:any={query,connect:async()=>({query,release(){}})};const svc=createCarbonService(()=>adapter);
  const token='test-access',key='a'.repeat(40),id='00000000-0000-4000-8000-000000000002';
- await db.query("INSERT INTO carbon_reports(id,secret_hash,snapshot,snapshot_hash) VALUES($1,$2,$3,$4)",[id,digest(token),JSON.stringify(sample().calculation),digest(sample().calculation)]);await db.query("INSERT INTO carbon_credits VALUES($1,1,now()+interval '1 day')",[digest(key)]);
+ await db.query("INSERT INTO carbon_reports(id,secret_hash,snapshot,snapshot_hash) VALUES($1,$2,$3,$4)",[id,digest(token),JSON.stringify(sample().calculation),digest(sample().calculation)]);await db.query("INSERT INTO carbon_credits(key_hash,remaining,expires_at) VALUES($1,1,now()+interval '1 day')",[digest(key)]);
  await assert.rejects(()=>svc.redeem(id,'wrong',key),/UNAUTHORIZED/);assert.equal((await db.query<any>('SELECT remaining FROM carbon_credits')).rows[0].remaining,1);
  await svc.redeem(id,token,key);await svc.redeem(id,token,key);assert.equal((await db.query<any>('SELECT remaining FROM carbon_credits')).rows[0].remaining,0);assert.equal((await db.query('SELECT * FROM carbon_redemptions')).rows.length,1);
  await assert.rejects(()=>svc.redeem(id,token,'b'.repeat(40)),/UNAUTHORIZED/);await db.close();

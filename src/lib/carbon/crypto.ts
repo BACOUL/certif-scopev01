@@ -12,6 +12,6 @@ export function signReport(report:unknown, pem=process.env.CARBON_SIGNING_KEY){
  if(key.asymmetricKeyType!=="ed25519")throw new Error("WRONG_KEY_TYPE");
  return {report,hash:digest(report),algorithm:"Ed25519",signature:sign(null,Buffer.from(canonical(report)),key).toString("base64"),keyId:digest(createPublicKey(key).export({type:"spki",format:"pem"}).toString()).slice(0,16)};
 }
-export function verifyReport(envelope:{report:unknown;signature:string;hash:string}, publicPem:string){
- try{return envelope.hash===digest(envelope.report) && verify(null,Buffer.from(canonical(envelope.report)),createPublicKey(publicPem),Buffer.from(envelope.signature,"base64"));}catch{return false;}
+export function verifyReport(envelope:{report:unknown;signature:string;hash:string;algorithm?:string;keyId?:string}, publicPem:string){
+ try{if(envelope.algorithm!=="Ed25519"||envelope.keyId!==digest(publicPem).slice(0,16))return false;return envelope.hash===digest(envelope.report) && verify(null,Buffer.from(canonical(envelope.report)),createPublicKey(publicPem),Buffer.from(envelope.signature,"base64"));}catch{return false;}
 }

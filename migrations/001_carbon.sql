@@ -8,3 +8,6 @@ CREATE TABLE IF NOT EXISTS carbon_events (id text PRIMARY KEY, created_at timest
 CREATE TABLE IF NOT EXISTS carbon_credits (key_hash text PRIMARY KEY, remaining integer NOT NULL CHECK(remaining>=0), expires_at timestamptz NOT NULL);
 CREATE TABLE IF NOT EXISTS carbon_redemptions (report_id uuid PRIMARY KEY REFERENCES carbon_reports(id), key_hash text NOT NULL);
 CREATE TABLE IF NOT EXISTS carbon_limits (key text PRIMARY KEY, hits integer NOT NULL, expires_at timestamptz NOT NULL);
+
+ALTER TABLE carbon_credits ADD COLUMN IF NOT EXISTS product text NOT NULL DEFAULT 'supplier-carbon-v1' CHECK(product IN ('supplier-carbon-v1','spend-indicative-v2'));
+CREATE TABLE IF NOT EXISTS carbon_legacy_imports (source_id text PRIMARY KEY, manifest_hash text NOT NULL, key_hash text UNIQUE NOT NULL, imported_at timestamptz NOT NULL DEFAULT now());
