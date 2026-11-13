@@ -5,6 +5,13 @@ CREATE TABLE IF NOT EXISTS carbon_reports (
  paid_at timestamptz, document jsonb
 );
 CREATE TABLE IF NOT EXISTS carbon_events (id text PRIMARY KEY, created_at timestamptz NOT NULL DEFAULT now());
+-- A signed Stripe refund/dispute can arrive before the Checkout completion event.
+-- Persist a veto by PaymentIntent so a late success cannot issue the report.
+CREATE TABLE IF NOT EXISTS carbon_payment_blocks (
+ payment_intent text PRIMARY KEY,
+ reason text NOT NULL CHECK (reason IN ('refund','dispute')),
+ created_at timestamptz NOT NULL DEFAULT now()
+);
 CREATE TABLE IF NOT EXISTS carbon_credits (key_hash text PRIMARY KEY, remaining integer NOT NULL CHECK(remaining>=0), expires_at timestamptz NOT NULL);
 CREATE TABLE IF NOT EXISTS carbon_redemptions (report_id uuid PRIMARY KEY REFERENCES carbon_reports(id), key_hash text NOT NULL);
 CREATE TABLE IF NOT EXISTS carbon_limits (key text PRIMARY KEY, hits integer NOT NULL, expires_at timestamptz NOT NULL);
