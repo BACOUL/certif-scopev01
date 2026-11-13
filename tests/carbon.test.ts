@@ -123,3 +123,15 @@ test('2026 preliminary energy preview allowed until today, but cannot be sold',(
  const r=calculate(b);assert.equal(r.saleEligible,false);assert.ok(r.warnings.includes('2026_PROVISIONAL'));
  assert.throws(()=>calculate({...b,end:'2026-12-31'}));
 });
+
+test('renewable B3 classification requires documentary-grade activity data',()=>{
+ const b=base();b.activities[0].renewableEnergyKwh=2000;b.activities[0].quality='declaration';
+ assert.throws(()=>calculate(b));
+ b.activities[0].quality='estimate';
+ assert.throws(()=>calculate(b));
+});
+test('B3 CSV retains unknowns as blanks, not misleading zeros',()=>{
+ const r=sample();const content=csv(r);
+ assert.match(content,/electricity_mwh,fuels_mwh,renewable_energy_mwh,nonrenewable_energy_mwh,energy_split_complete/);
+ assert.match(content,/,false,/);
+});
