@@ -9,7 +9,7 @@ import {PURE_F_GASES, EU_F_GAS_SOURCE, EU_F_GAS_VERSION} from '../src/lib/carbon
 import {sample} from '../src/lib/carbon/sample';
 import {digest,signReport,verifyReport,canonical,trustedVerificationKeys} from '../src/lib/carbon/crypto';
 import {csv,pdf} from '../src/lib/carbon/document';
-import {isPaidSession,PRODUCT,PRICE,stripe} from '../src/lib/carbon/payment';
+import {isPaidSession,isCapturedTestPayment,PRODUCT,PRICE,stripe} from '../src/lib/carbon/payment';
 import {PAID_SQL,CREDIT_SQL,ATTACH_SESSION_SQL} from '../src/lib/carbon/store';
 import {POST as preview} from '../src/app/api/carbon/preview/route';
 import {POST as checkout} from '../src/app/api/checkout/route';
@@ -44,7 +44,7 @@ test('signature covers identity, sources, factors, results and limitations',()=>
 test('wrong signature/key and unsigned object are rejected',()=>{const s=signReport(sample(),privateKey);assert.equal(verifyReport({...s,signature:'garbage'},publicKey),false);assert.equal(verifyReport(s,generateKeyPairSync('ed25519').publicKey.export({format:'pem',type:'spki'}).toString()),false);});
 test('CSV cannot execute spreadsheet formula from declared company',()=>{const s=sample();s.calculation.assessment.company='=HYPERLINK("https://evil")';const out=csv(s);assert.ok(!out.includes('HYPERLINK'));assert.ok(out.includes('scope2_location_tco2e'));});
 const row={id:'report',snapshot_hash:'hash',session_id:'cs_test_A'};
-const paid:any={id:'cs_test_A',created:1794480000,mode:'payment',status:'complete',payment_status:'paid',livemode:false,currency:'eur',amount_total:PRICE,metadata:{product:PRODUCT,reportId:'report',snapshotHash:'hash'},payment_intent:'pi_test'};
+const paid:any={id:'cs_test_A',created:1794480000,mode:'payment',status:'complete',payment_status:'paid',livemode:false,currency:'eur',amount_total:PRICE,metadata:{product:PRODUCT,reportId:'report',snapshotHash:'hash'},client_reference_id:'report',payment_intent:'pi_test'};
 test('accept only matching paid checkout session',()=>assert.ok(isPaidSession(paid,row)));
 for(const patch of [{payment_status:'unpaid'},{status:'expired'},{livemode:true},{currency:'usd'},{amount_total:1},{id:'cs_test_B'},{mode:'subscription'},{metadata:{...paid.metadata,snapshotHash:'tampered'}},{metadata:{...paid.metadata,product:'old-attestation'}},{payment_intent:null}])test(`reject payment mismatch ${JSON.stringify(patch)}`,()=>assert.equal(isPaidSession({...paid,...patch},row),false));
 test('live Stripe key never enabled on review branch',()=>{const old=process.env.CARBON_STRIPE_KEY;process.env.CARBON_STRIPE_KEY='sk_live_fake';assert.throws(()=>stripe(),/SALES_DISABLED/);if(old)process.env.CARBON_STRIPE_KEY=old;else delete process.env.CARBON_STRIPE_KEY;});
@@ -73,7 +73,7 @@ test('service integration: draft -> checkout stub -> unpaid -> paid -> stable is
  const query=async(sql:string,args?:any[])=>{const r=await db.query(sql,args);return {...r,rowCount:r.rows.length || r.affectedRows || 0};};
  const adapter:any={query,connect:async()=>({query,release(){}})};
  let session:any,refunded=false,providerError=false,checkoutArgs:any;
- const fakeStripe:any={checkout:{sessions:{create:async(args:any)=>{checkoutArgs=args;session={...paid,id:'cs_test_integrated',metadata:args.metadata,client_reference_id:args.client_reference_id,payment_status:'unpaid'};return {...session,url:'https://checkout.stripe.com/test'};},retrieve:async()=>{if(providerError)throw Error('provider failed');return session;}}},paymentIntents:{retrieve:async()=>({status:'succeeded',latest_charge:{refunded,amount_refunded:refunded?8900:0,disputed:false}})}};
+ const fakeStripe:any={checkout:{sessions:{create:async(args:any)=>{checkoutArgs=args;session={...paid,id:'cs_test_integrated',metadata:args.metadata,client_reference_id:args.client_reference_id,payment_status:'unpaid'};return {...session,url:'https://checkout.stripe.com/test'};},retrieve:async()=>{if(providerError)throw Error('provider failed');return session;}}},paymentIntents:{retrieve:async()=>({id:'pi_test',livemode:false,currency:'eur',amount:PRICE,amount_received:PRICE,status:'succeeded',latest_charge:{payment_intent:'pi_test',livemode:false,currency:'eur',amount:PRICE,paid:true,captured:true,status:'succeeded',refunded,amount_refunded:refunded?8900:0,disputed:false}})}};
  const svc=createCarbonService(()=>adapter,()=>fakeStripe);
  process.env.CARBON_TEST_CHECKOUT='true';process.env.CARBON_BASE_URL='http://localhost:3000';process.env.CARBON_SIGNING_KEY=privateKey;
  try{
@@ -283,4 +283,16 @@ test('Stripe recovery: recovery SQL cannot replace a linked, revoked or expired 
  await db.query("UPDATE carbon_reports SET status='draft',expires_at=now()-interval '1 day' WHERE id=$1",[id]);
  assert.equal((await db.query(ATTACH_SESSION_SQL,['cs_test_expired',id,'hash'])).rows.length,0);
  await db.close();
+});
+
+test('Stripe test payment: intent and captured charge must match paid session and EUR 89',()=>{
+ const intent:any={id:'pi_test',livemode:false,currency:'eur',amount:PRICE,amount_received:PRICE,status:'succeeded',
+  latest_charge:{payment_intent:'pi_test',livemode:false,currency:'eur',amount:PRICE,paid:true,captured:true,status:'succeeded',refunded:false,amount_refunded:0,disputed:false}};
+ assert.equal(isCapturedTestPayment(paid,intent),true);
+ for(const change of [{id:'pi_wrong'},{livemode:true},{currency:'usd'},{amount:1},{amount_received:0},{status:'processing'},{latest_charge:null}]){
+  assert.equal(isCapturedTestPayment(paid,{...intent,...change}),false,JSON.stringify(change));
+ }
+ for(const change of [{payment_intent:'pi_wrong'},{livemode:true},{currency:'usd'},{amount:0},{paid:false},{captured:false},{status:'pending'},{refunded:true},{amount_refunded:1},{disputed:true}]){
+  assert.equal(isCapturedTestPayment(paid,{...intent,latest_charge:{...intent.latest_charge,...change}}),false,JSON.stringify(change));
+ }
 });
