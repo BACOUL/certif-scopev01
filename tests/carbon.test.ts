@@ -82,7 +82,16 @@ test('service integration: draft -> checkout stub -> unpaid -> paid -> stable is
  await db.query('UPDATE carbon_reports SET session_id=NULL WHERE id=$1',[order.id]);
  await assert.rejects(()=>svc.issue(order.id,'wrong'),/UNAUTHORIZED/);
  await assert.rejects(()=>svc.issue(order.id,order.token),/PAYMENT_PENDING/);
- session.payment_status='paid';await svc.fulfill(session.id);await svc.fulfill(session.id);
+ session.payment_status='paid';
+ const originalMetadata=session.metadata;
+ session.metadata={...originalMetadata,snapshotHash:'0'.repeat(64)};
+ await assert.rejects(()=>svc.fulfill(session.id),/PAYMENT_PENDING/);
+ assert.equal((await db.query<any>('SELECT session_id FROM carbon_reports WHERE id=$1',[order.id])).rows[0].session_id,null);
+ session.metadata=originalMetadata;
+ session.client_reference_id='a-different-report';
+ await assert.rejects(()=>svc.fulfill(session.id),/PAYMENT_PENDING/);
+ session.client_reference_id=order.id;
+ await svc.fulfill(session.id);await svc.fulfill(session.id);
  assert.equal((await db.query<any>('SELECT session_id FROM carbon_reports WHERE id=$1',[order.id])).rows[0].session_id,session.id);
  const docs=await Promise.all(Array.from({length:5},()=>svc.issue(order.id,order.token)));assert.ok(docs.every(d=>digest(d)===digest(docs[0])));assert.ok(verifyReport(docs[0],publicKey));
  providerError=true;await assert.rejects(()=>svc.issue(order.id,order.token));providerError=false;
