@@ -342,3 +342,15 @@ test('complete energy total can be known even when its renewable split is unknow
  assert.equal(row[head.indexOf("energy_total_complete")],"true");
  assert.equal(row[head.indexOf("renewable_energy_mwh")],"");
 });
+
+test('incomplete energy disclosure generates FR EN DE PDF without a pagination overflow',async()=>{
+ for(const locale of ["fr","en","de"] as const){
+  const input=structuredClone(sample(locale).calculation.assessment);
+  input.sources.gas="unknown";
+  const report={id:"PARTIAL-ENERGY-CHECK",issuedAt:"2026-11-13T12:00:00.000Z",calculation:calculate(input)};
+  const buffer=await pdf(report,true);
+  assert.equal(buffer.subarray(0,4).toString(),"%PDF");
+  const pages=(buffer.toString("latin1").match(/\\/Type\\s*\\/Page\\b/g)||[]).length;
+  assert.equal(pages,3,`Incomplete-energy PDF overflow in ${locale}: ${pages} pages`);
+ }
+});
