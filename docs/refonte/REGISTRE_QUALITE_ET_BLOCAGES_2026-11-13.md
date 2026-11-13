@@ -30,7 +30,7 @@
 
 **A. Exactitude des facteurs et du périmètre**
 - Obtenir légalement les données officielles Base Carbone v23.11 ; conserver les identifiants, années, géographies, unités, limites et licences ; vérifier indépendamment les composantes *directes* versus amont/ACV.
-- Couvrir les sources réellement pertinentes à B3 : autres combustibles, fluides frigorigènes, procédés, chaleur/vapeur/froid achetés, autoproduction et ventilation énergétique. **Le moteur reste partiel**, même lorsque les sources actuelles sont renseignées. L'exercice 2026 reste en aperçu, non vendable.
+- Couvrir les sources réellement pertinentes à B3 : autres combustibles, mélanges ou gaz frigorigènes non listés, procédés, chaleur/vapeur/froid achetés, autoproduction. **Quatre gaz purs** ont été ajoutés avec PRP de l'annexe I du règlement UE 2024/573 ; la ventilation énergétique est conditionnelle aux justificatifs, sans audit. **Le moteur reste partiel**, même lorsque les sources actuelles sont renseignées. L'exercice 2026 reste en aperçu, non vendable.
 - Effectuer une validation externe de dossiers réels et vérifier les erreurs d'unité, de données manquantes et de double comptage. Un champ « facture/relevé » ne prouve pas qu'un justificatif a été audité.
 
 **B. Clients, paiement, données**
@@ -47,3 +47,10 @@
 ## Règle de décision
 **Statut : NON COMMERCIALISABLE / NE PAS DÉPLOYER.**
 Seule la PR brouillon 107 est modifiée. Ne pas fusionner, ne pas mettre en production, ne pas activer les paiements sur le domaine, et ne pas présenter la fiche comme « certifiée », « homologuée », « conforme intégralement B3 » ou obligatoire tant qu'une validation indépendante, juridique et technique complète et l'autorisation explicite du propriétaire n'existent pas.
+
+## Complément du 13 novembre — valeurs HFC et verrou de publication
+
+- Catalogue des gaz fluorés purs documenté au règlement UE **2024/573**, annexe I, PRP sur 100 ans : **HFC-32 = 675 ; HFC-134a = 1 430 ; HFC-125 = 3 500 ; HFC-143a = 4 470 kgCO₂e/kg émis**. Ce sont des coefficients réglementaires pour gaz **purs**, pas des facteurs ADEME v23.11 ; ne pas utiliser sur un mélange ou la charge d'une installation.
+- Contrôle du double comptage PCS/PCI avec le même justificatif ; source et unité du coefficient affichées dans le PDF, l'aperçu et le JSON. Les exemples d'activité avec fluide n'ajoutent pas d'énergie fictive.
+- Ajout de `scripts/release-gate.mjs` et de `npm run release:gate`. Le contrôle bloque par défaut faute de preuves privées sur ADEME, les postes B3, Stripe en mode test, anciens droits, tests PDF, juridique, rétention et accord du propriétaire. **Ce contrôle n'active jamais les ventes ni le déploiement.**
+- Voir `docs/refonte/FACTEURS_B3_2026_STATUT.md` pour la matrice technique actuelle et les étapes de réconciliation de l'export ADEME v23.11.
