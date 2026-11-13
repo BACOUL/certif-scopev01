@@ -64,7 +64,17 @@ async function fulfill(sessionId:string){
   await db().query("UPDATE carbon_reports SET status='revoked' WHERE id=$1",[row.id]);throw new Error("REVOKED");
  }
  if(!isCapturedTestPayment(s,pi))throw new Error("PAYMENT_PENDING");
- await db().query(PAID_SQL,[row.id,s.payment_intent,new Date(),s.id,row.snapshot_hash]);
+ const grant=await db().query(PAID_SQL,[row.id,s.payment_intent,new Date(),s.id,row.snapshot_hash]);
+ if(!grant.rowCount){
+  const blocked=await db().query("SELECT 1 FROM carbon_payment_blocks WHERE payment_intent=$1",[s.payment_intent]);
+  if(blocked.rows.length){
+   await db().query("UPDATE carbon_reports SET status='revoked' WHERE id=$1 AND status='draft'",[row.id]);
+   throw new Error("REVOKED");
+  }
+  const current=await db().query("SELECT status FROM carbon_reports WHERE id=$1",[row.id]);
+  if(current.rows[0]?.status==="revoked")throw new Error("REVOKED");
+  if(current.rows[0]?.status!=="paid")throw new Error("PAYMENT_PENDING");
+ }
 }
 async function issue(id:string,token:string){
  if(!/^[0-9a-f-]{36}$/.test(id)||!token||token.length>128)throw new Error("UNAUTHORIZED");
