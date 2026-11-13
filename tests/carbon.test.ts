@@ -27,7 +27,7 @@ test('known source without line is incomplete',()=>{const b=base();b.activities=
 test('not applicable source cannot have rows',()=>{const b=base();b.sources.electricity='not_applicable';assert.throws(()=>calculate(b),/SOURCE_CONFLICT/);});
 for(const value of [-1,NaN,Infinity,1e10,'1000',null,undefined])test(`reject invalid quantity ${String(value)}`,()=>{const b:any=base();b.activities[0].quantity=value;assert.throws(()=>calculate(b));});
 test('reject client supplied total and factors',()=>{assert.throws(()=>calculate({...base(),totalCO2e:0}));const b:any=base();b.activities[0].factor=0;assert.throws(()=>calculate(b));});
-test('reject unsupported country and future year',()=>{assert.throws(()=>calculate({...base(),country:'DE'}));assert.throws(()=>calculate({...base(),year:2026}));});
+test('reject unsupported country and future reporting year',()=>{assert.throws(()=>calculate({...base(),country:'DE'}));assert.throws(()=>calculate({...base(),year:2027}));});
 test('reject mismatched units',()=>{const b=base();b.activities[0].unit='L';assert.throws(()=>calculate(b));});
 test('reject duplicate ids and duplicate source evidence',()=>{const b=base();b.activities.push({...b.activities[0]});assert.throws(()=>calculate(b));b.activities[1].id='new';assert.throws(()=>calculate(b));});
 test('fuel energy required, no invented litre conversion',()=>{const b=base();b.sources.diesel_b7='known';b.activities.push({id:'d',kind:'diesel_b7',quantity:1,unit:'L',quality:'invoice',evidence:'d'});assert.throws(()=>calculate(b));});
@@ -94,4 +94,32 @@ test('service credits: rollback on invalid key, idempotent redemption and exhaus
  await assert.rejects(()=>svc.redeem(id,'wrong',key),/UNAUTHORIZED/);assert.equal((await db.query<any>('SELECT remaining FROM carbon_credits')).rows[0].remaining,1);
  await svc.redeem(id,token,key);await svc.redeem(id,token,key);assert.equal((await db.query<any>('SELECT remaining FROM carbon_credits')).rows[0].remaining,0);assert.equal((await db.query('SELECT * FROM carbon_redemptions')).rows.length,1);
  await assert.rejects(()=>svc.redeem(id,token,'b'.repeat(40)),/UNAUTHORIZED/);await db.close();
+});
+
+test('B3 energy: renewable share supplied with evidence does not alter location-based scope 2',()=>{
+ const b=base();b.activities[0].renewableEnergyKwh=4000;
+ const r=calculate(b);close(r.energyBreakdown.electricity.totalMwh,10);
+ close(r.energyBreakdown.electricity.renewableMwh!,4);
+ close(r.energyBreakdown.electricity.nonRenewableMwh!,6);
+ close(r.energyBreakdown.total.renewableMwh!,4);
+ close(r.scope2LocationT,.394);
+});
+test('B3 energy: unknown is not silently zero, including among multiple lines',()=>{
+ const b=base();b.sources.gas='known';b.activities[0].renewableEnergyKwh=4000;
+ b.activities.push({id:'gas',kind:'gas_pci',quantity:1000,unit:'kWh PCI',quality:'invoice',evidence:'gas invoice'});
+ const r=calculate(b);close(r.energyBreakdown.electricity.renewableMwh!,4);
+ assert.equal(r.energyBreakdown.fuels.renewableMwh,null);
+ assert.equal(r.energyBreakdown.total.renewableMwh,null);
+ assert.ok(r.warnings.includes('ENERGY_SPLIT_NOT_AVAILABLE'));
+});
+test('B3 energy: explicit zero supported; reject renewable quantities exceeding energy',()=>{
+ const b=base();b.activities[0].renewableEnergyKwh=0;
+ assert.equal(calculate(b).energyBreakdown.total.nonRenewableMwh,10);
+ b.activities[0].renewableEnergyKwh=10001;
+ assert.throws(()=>calculate(b));
+});
+test('2026 preliminary energy preview allowed until today, but cannot be sold',()=>{
+ const b=base();b.year=2026;b.start='2026-01-01';b.end='2026-10-31';
+ const r=calculate(b);assert.equal(r.saleEligible,false);assert.ok(r.warnings.includes('2026_PROVISIONAL'));
+ assert.throws(()=>calculate({...b,end:'2026-12-31'}));
 });
