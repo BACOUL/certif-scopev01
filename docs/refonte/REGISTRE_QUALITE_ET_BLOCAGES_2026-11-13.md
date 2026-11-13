@@ -54,3 +54,10 @@ Seule la PR brouillon 107 est modifiée. Ne pas fusionner, ne pas mettre en prod
 - Contrôle du double comptage PCS/PCI avec le même justificatif ; source et unité du coefficient affichées dans le PDF, l'aperçu et le JSON. Les exemples d'activité avec fluide n'ajoutent pas d'énergie fictive.
 - Ajout de `scripts/release-gate.mjs` et de `npm run release:gate`. Le contrôle bloque par défaut faute de preuves privées sur ADEME, les postes B3, Stripe en mode test, anciens droits, tests PDF, juridique, rétention et accord du propriétaire. **Ce contrôle n'active jamais les ventes ni le déploiement.**
 - Voir `docs/refonte/FACTEURS_B3_2026_STATUT.md` pour la matrice technique actuelle et les étapes de réconciliation de l'export ADEME v23.11.
+
+## Suite — reprise de session Stripe et purge protégée
+
+- Rapprochement automatique **uniquement en mode test** d'une session de paiement déjà confirmée lorsque son écriture en base a été perdue. Le rapprochement exige le même identifiant de dossier, le même hash d'inventaire, le même produit, la même référence client, la somme exacte, la devise EUR et un paiement serveur confirmé ; pas de création de commande depuis un webhook reçu.
+- Contrôles de non-réassociation d'un dossier révoqué, expiré ou déjà lié, et rejet d'une métadonnée Stripe ou référence client altérée.
+- Route Vercel Cron quotidienne protégée par `CRON_SECRET` (32 octets minimum), nettoyage transactionnel des rapports expirés et lignes de crédits liées, des anciens événements et des limites expirées. **La PR est non déployée** et le secret ni la base de données de production ne sont configurés par cette modification.
+- Les exigences d'archivage légales, les factures Stripe, les sauvegardes, le contrôle de l'exécution du cron et la récupération d'un client ayant perdu son jeton de téléchargement restent des **blocages de lancement**.
