@@ -94,6 +94,14 @@ test('service integration: draft -> checkout stub -> unpaid -> paid -> stable is
  await svc.fulfill(session.id);await svc.fulfill(session.id);
  assert.equal((await db.query<any>('SELECT session_id FROM carbon_reports WHERE id=$1',[order.id])).rows[0].session_id,session.id);
  const docs=await Promise.all(Array.from({length:5},()=>svc.issue(order.id,order.token)));assert.ok(docs.every(d=>digest(d)===digest(docs[0])));assert.ok(verifyReport(docs[0],publicKey));
+ const corrupt=structuredClone(docs[0]);corrupt.report.calculation.totalT=999;
+ await db.query("UPDATE carbon_reports SET document=$2::jsonb WHERE id=$1",[order.id,JSON.stringify(corrupt)]);
+ await assert.rejects(()=>svc.issue(order.id,order.token),/DOCUMENT_CORRUPT/);
+ await db.query("UPDATE carbon_reports SET document=$2::jsonb WHERE id=$1",[order.id,JSON.stringify(docs[0])]);
+ const oldSnapshot=(await db.query<any>("SELECT snapshot FROM carbon_reports WHERE id=$1",[order.id])).rows[0].snapshot;
+ await db.query("UPDATE carbon_reports SET snapshot=$2::jsonb WHERE id=$1",[order.id,JSON.stringify({...oldSnapshot,totalT:999})]);
+ await assert.rejects(()=>svc.issue(order.id,order.token),/SNAPSHOT_CORRUPT/);
+ await db.query("UPDATE carbon_reports SET snapshot=$2::jsonb WHERE id=$1",[order.id,JSON.stringify(oldSnapshot)]);
  providerError=true;await assert.rejects(()=>svc.issue(order.id,order.token));providerError=false;
  refunded=true;await assert.rejects(()=>svc.issue(order.id,order.token),/REVOKED/);refunded=false;await assert.rejects(()=>svc.issue(order.id,order.token),/REVOKED/);
  await db.query("UPDATE carbon_reports SET expires_at=now()-interval '1 day' WHERE id=$1",[order.id]);await assert.rejects(()=>svc.issue(order.id,order.token),/UNAUTHORIZED/);
