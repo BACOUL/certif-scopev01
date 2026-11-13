@@ -77,6 +77,9 @@ test('service integration: draft -> checkout stub -> unpaid -> paid -> stable is
  const svc=createCarbonService(()=>adapter,()=>fakeStripe);
  process.env.CARBON_TEST_CHECKOUT='true';process.env.CARBON_BASE_URL='http://localhost:3000';process.env.CARBON_SIGNING_KEY=privateKey;
  try{
+ await assert.rejects(()=>svc.createCheckout(base(),'http://localhost:3000','spend-indicative-v2'),/INELIGIBLE/);
+ const legacyRows=await db.query("SELECT count(*)::int AS n FROM carbon_reports");
+ assert.equal(legacyRows.rows[0].n,0);
  const order=await svc.createCheckout(base(),'http://localhost:3000');assert.equal(checkoutArgs.line_items[0].price_data.unit_amount,8900);assert.equal(checkoutArgs.metadata.totalCO2e,undefined);assert.equal(checkoutArgs.metadata.company,undefined);assert.equal(JSON.stringify(checkoutArgs).includes(order.token),false);
  // Simulate the session_id write being lost after Stripe created a valid session.
  await db.query('UPDATE carbon_reports SET session_id=NULL WHERE id=$1',[order.id]);
