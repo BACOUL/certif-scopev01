@@ -32,3 +32,10 @@ Le script `npm run release:gate` exige une preuve privée pour chaque contrôle 
 Les preuves sont placées **hors git** dans `.private/release-evidence.json`. L'absence ou l'incomplétude de ces preuves provoque une sortie non nulle. **Même lorsque ce script réussit, il ne remplace pas une revue indépendante, et il ne déploie pas le site.**
 
 **Décision : NON PRÊT À COMMERCIALISER.** La PR reste en brouillon, les ventes réelles sont désactivées et aucun changement de production n'est autorisé.
+
+## Autorisations de réutilisation des données 2026
+
+- La page publique ADEME confirme que la **v23.11 est disponible**, mais son portail conditionne consultation et export à un **compte gratuit et à l’acceptation des conditions juridiques**. Source primaire : https://base-empreinte.ademe.fr/ et https://affichage-environnemental.ademe.fr/node/45.
+- Le dataset open data historique **v23.6** est en **Licence Ouverte 2.0** ; on ne peut **pas déduire automatiquement** que toutes les données, notamment issues d’ecoinvent ou d’autres fournisseurs, sont diffusables sous cette même licence dans la v23.11. Source : https://data.ademe.fr/datasets/base-carboner.
+- Avant d’intégrer un export 23.11 et de **vendre une fiche calculée grâce à ces données**, faire approuver par écrit la version des conditions acceptées, l’attribution nécessaire, les droits de réutilisation commerciale dans un logiciel, les restrictions de redistribution et les restrictions propres aux jeux de données. Les droits d’affichage des facteurs dans un PDF/CSV doivent aussi être évalués.
+- Le verrou `release:gate` exige maintenant séparément `ademe_23_11_terms_and_commercial_reuse_approved`. **Aucune valeur v23.11 n’a été fabriquée ni importée.**
