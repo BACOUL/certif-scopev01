@@ -20,7 +20,7 @@ export const assessmentSchema = z.object({
  ctx.addIssue({code:"custom",message:"INVALID_PERIOD"});
  if(x.year===2026 && x.end>new Date().toISOString().slice(0,10))ctx.addIssue({code:"custom",message:"FUTURE_PERIOD_NOT_ALLOWED"});
  if(new Set(x.activities.map(a=>a.id)).size!==x.activities.length)ctx.addIssue({code:"custom",message:"DUPLICATE_ACTIVITY"});
- if(new Set(x.activities.map(a=>`${a.kind}|${a.evidence.trim().toLowerCase()}`)).size!==x.activities.length)ctx.addIssue({code:"custom",message:"DUPLICATE_EVIDENCE"});
+ if(new Set(x.activities.map(a=>`${a.kind.startsWith("gas_")?"gas":a.kind}|${a.evidence.trim().toLowerCase()}`)).size!==x.activities.length)ctx.addIssue({code:"custom",message:"DUPLICATE_EVIDENCE"});
  for(const a of x.activities){
   const f=FACTORS[a.kind];
   if(a.unit!==f.unit)ctx.addIssue({code:"custom",message:"UNIT_MISMATCH"});
