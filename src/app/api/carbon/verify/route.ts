@@ -1,4 +1,12 @@
-import {createPrivateKey,createPublicKey} from "node:crypto";
 import {body,json,failure} from "@/lib/carbon/http";
-import {verifyReport} from "@/lib/carbon/crypto";
-export async function POST(req:Request){try{const b=await body(req,262144);const key=process.env.CARBON_SIGNING_KEY;if(!key)throw new Error("SIGNING_UNAVAILABLE");const publicKey=createPublicKey(createPrivateKey(key)).export({type:"spki",format:"pem"}).toString();return json({valid:verifyReport(b,publicKey),publicKey});}catch(e){return failure(e);}}
+import {verifyReport,trustedVerificationKeys} from "@/lib/carbon/crypto";
+export const runtime="nodejs";
+/** The request cannot choose its own verification key. All keys are operator-trusted. */
+export async function POST(req:Request){
+ try {
+  const envelope=await body(req,262144);
+  const keys=trustedVerificationKeys(process.env.CARBON_SIGNING_KEY,process.env.CARBON_VERIFY_PUBLIC_KEYS_JSON);
+  const matchingKey=keys.find(key=>verifyReport(envelope,key));
+  return json({valid:Boolean(matchingKey),publicKey:matchingKey||null});
+ } catch(e) {return failure(e);}
+}
