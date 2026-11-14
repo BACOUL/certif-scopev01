@@ -49,7 +49,7 @@ test("standalone recovery rejects malformed, other-version and URL-embedded capa
   "CS2."+id+"."+token,
   "CS1."+id+"."+"x".repeat(44),
   "https://example.com/success?code="+valid,
-  "CS1."+id.toUpperCase()+"."+token,
+  "CS1."+id.replace("-4000-","-4ABC-")+"."+token,
   "CS1."+id+"."+token+"\\n"+valid,""
  ])assert.equal(parseStandaloneRecoveryCode(code),null,String(code));
 });
