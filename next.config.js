@@ -19,6 +19,22 @@ const nextConfig = {
     removeConsole: process.env.NODE_ENV === "production",
   },
 
+  // REVIEW_ONLY_LOCK: this draft branch is a display-only copy of the old site.
+  // All API endpoints, including GET-based Stripe pack checkout, must be unreachable.
+  // Remove only as part of a separately approved and tested production release.
+  async rewrites() {
+    return {
+      beforeFiles: [
+        { source: "/api/:path*", destination: "/review-blocked" },
+        { source: "/success", destination: "/review-blocked" },
+        { source: "/:locale/success", destination: "/review-blocked" },
+        { source: "/:locale/erfolg", destination: "/review-blocked" },
+      ],
+      afterFiles: [],
+      fallback: [],
+    };
+  },
+
   async headers() {
     return [
       {
