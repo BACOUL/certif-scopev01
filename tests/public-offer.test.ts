@@ -27,7 +27,7 @@ test("product qualification: fit, exclusions and recipient acceptance are visibl
   const markup = renderToStaticMarkup(Offers({ locale }));
   for (const phrase of expected[locale]) assert.ok(markup.includes(phrase), `${locale}: missing ${phrase}`);
   assert.equal((markup.match(/<li>/g) ?? []).length, 6);
-  assert.match(markup, /api\\/sample\\?locale=/);
+  assert.ok(markup.includes(`/api/sample?locale=${locale}`));
   assert.equal(markup.includes(`/${locale}/spend`), false);
  }
 });
