@@ -56,6 +56,20 @@ try {
     assert.ok(pageHtml.includes('data-offer-transition="2026"'), path + ": no updated commercial explanation");
   }
 
+  const simulation = await request("/fr/generate/");
+  assert.equal(simulation.status, 200, "Supplier simulator must live in original generation route");
+  const simHtml = await simulation.text();
+  for (const phrase of [
+    "simulation-fournisseur",
+    "Calculer ma simulation gratuite",
+    "Électricité achetée",
+    "scope 1",
+    "Ancienne attestation CO₂e",
+    "Consulter le formulaire historique",
+  ]) {
+    assert.ok(simHtml.includes(phrase), "Original generate page must preserve both forms: " + phrase);
+  }
+
   const supplier = await request("/fr/fiche-carbone-fournisseur/");
   assert.equal(supplier.status, 200, "New supplier information route missing");
   const supplierHtml = await supplier.text();
@@ -77,7 +91,7 @@ try {
   assert.equal(checkout.status, 403, "API checkout must be denied before Stripe execution");
   const blockedPost = await request("/review-blocked/", {method:"POST", headers:{"content-type":"application/json"}, body:"{}"});
   assert.equal(blockedPost.status, 403, "The denial route must reject writes");
-  console.log("Read-only preview smoke passed: updated homepage, old product, old pricing, future supplier sheet and blocked API requests.");
+  console.log("Read-only preview smoke passed: supplier simulator, legacy form, original pages and blocked APIs.");
 } finally {
   server.kill("SIGTERM");
   await Promise.race([new Promise(resolve=>server.once("exit",resolve)), wait(2000)]);
