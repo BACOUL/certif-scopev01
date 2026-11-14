@@ -17,6 +17,21 @@ test("public offer: exactly one supplier carbon product promoted in FR, EN and D
  }
 });
 
+test("product qualification: fit, exclusions and recipient acceptance are visible in each locale", () => {
+ const expected = {
+  fr: ["Cette fiche peut vous convenir", "Cette fiche ne répond pas", "Avant de payer", "2023", "2025", "2026", "scope 3"],
+  en: ["This data sheet may suit you", "This data sheet is not suitable", "Before payment", "2023", "2025", "2026", "scope 3"],
+  de: ["Dieses Datenblatt kann passen", "Dieses Datenblatt reicht nicht aus", "Vor dem Bezahlen", "2023", "2025", "2026", "Scope 3"]
+ } as const;
+ for (const locale of ["fr", "en", "de"] as const) {
+  const markup = renderToStaticMarkup(Offers({ locale }));
+  for (const phrase of expected[locale]) assert.ok(markup.includes(phrase), `${locale}: missing ${phrase}`);
+  assert.equal((markup.match(/<li>/g) ?? []).length, 6);
+  assert.match(markup, /api\\/sample\\?locale=/);
+  assert.equal(markup.includes(`/${locale}/spend`), false);
+ }
+});
+
 test("legacy spend checkout: no new purchases including when test checkout flag is enabled", async () => {
  const oldFlag=process.env.CARBON_TEST_CHECKOUT;
  try {
