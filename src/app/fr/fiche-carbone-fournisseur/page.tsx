@@ -28,13 +28,18 @@ export default function SupplierSheet2026InfoPage() {
           existants. Elle vise à structurer des données d'énergie et d'émissions
           déclarées utiles dans les échanges entre une entreprise et ses partenaires.
         </p>
+        <Link href="/fr/generate/#simulation-fournisseur"
+          className="mt-6 inline-flex min-h-12 items-center justify-center rounded-xl bg-[#0B3A63] px-6 py-3 text-sm font-semibold text-white hover:bg-[#082C4B]">
+          Essayer la simulation gratuite — sans paiement
+        </Link>
         <div role="status" className="mt-6 rounded-xl border border-[#0B3A63]/20 bg-[#F8FAFC] p-5">
           <strong className="text-[#0B3A63]">Offre en préparation — aucun achat disponible.</strong>
           <p className="mt-2 text-sm leading-relaxed text-[#475569]">
             Prix de travail envisagé : 89 € par fiche, non confirmé pour la vente.
-            Le moteur, les facteurs d'émission, les droits de réutilisation,
-            les PDF, les paiements et la conservation des anciens droits clients
-            doivent encore être validés.
+            Un moteur de calcul est désormais intégré en simulation gratuite.
+            Les facteurs d'émission, les droits de réutilisation, les PDF,
+            les paiements et les droits des anciens clients doivent encore être
+            validés avant toute vente.
           </p>
         </div>
       </div>
