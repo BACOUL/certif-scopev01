@@ -45,3 +45,12 @@ Décision corrigée le 14 novembre 2026 : **conserver le site existant et le met
 - La nouvelle section B3 est une information réglementaire, **pas** la preuve d'un moteur conforme B3.
 - Aucun choix de commercialisation n'est implémenté par cette première étape.
 - La branche est une base de travail conservatrice : elle protège le site, mais ne suffit pas encore pour vendre un nouveau document.
+
+## Étape technique ajoutée — export de simulation CSV (14 novembre 2026)
+
+- Le formulaire fournisseur existant conserve son calcul local sans API et sans vente.
+- Un fichier CSV de **simulation non signée** devient téléchargeable depuis les résultats.
+- Les colonnes sont explicites : scope, facteurs, émissions, énergie documentée, total d'énergie seulement si complet, ventilation renouvelable et état de couverture.
+- Aucune identité d'entreprise, aucun texte de justificatif ni clé client n'est exporté. Les champs inconnus restent vides plutôt que remplacés par zéro.
+- Le contrôle du moteur vérifie désormais la cohérence de cet export.
+- **Ceci n'est pas le PDF final, ni un document réglementaire, ni un bon de commande.** Paiements et APIs clients restent bloqués.
