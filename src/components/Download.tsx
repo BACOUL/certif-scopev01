@@ -1,7 +1,7 @@
 "use client";
 import {useEffect,useState} from "react";
 import {COPY,type Locale} from "@/lib/carbon/copy";
-import {parseStandaloneRecoveryCode} from "@/lib/carbon/recovery";
+import {resolveDeliveryAccess} from "@/lib/carbon/recovery";
 import RecoveryCode from "./RecoveryCode";
 
 export default function Download({locale,id}:{locale:Locale;id:string}){
@@ -18,12 +18,9 @@ export default function Download({locale,id}:{locale:Locale;id:string}){
  async function download(format:"pdf"|"csv"|"json"){
   setBusy(true);setError("");
   try{
-   const recovered=enteredCode.trim()?parseStandaloneRecoveryCode(enteredCode):null;
-   // A known report ID must never be silently replaced by another order.
-   if(enteredCode.trim()&&(!recovered||(id&&recovered.id!==id)))throw Error(c.recoveryInvalid);
-   const reportId=recovered?.id||id;
-   const token=recovered?.token||storedToken;
-   if(!reportId||!token)throw Error(c.recoveryInvalid);
+   const access=resolveDeliveryAccess(id,storedReportId,storedToken,enteredCode);
+   if(!access)throw Error(c.recoveryInvalid);
+   const {id:reportId,token}=access;
    const res=await fetch("/api/attestation/issue",{
     method:"POST",
     headers:{"Content-Type":"application/json"},
@@ -36,11 +33,11 @@ export default function Download({locale,id}:{locale:Locale;id:string}){
    }
    // Only persist a manually supplied code when it has just passed the
    // server-side access and payment checks.
-   if(recovered){
+   if(access.manual){
     setStoredReportId(reportId);
-    setStoredToken(recovered.token);
+    setStoredToken(token);
     setEnteredCode("");
-    try{sessionStorage.setItem(`carbon-${reportId}`,recovered.token);}catch{}
+    try{sessionStorage.setItem(`carbon-${reportId}`,token);}catch{}
    }
    const url=URL.createObjectURL(await res.blob());
    const a=document.createElement("a");a.href=url;a.download=`carbon-${reportId}.${format}`;
