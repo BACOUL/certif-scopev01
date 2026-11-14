@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Hero from "@/components/fr/Hero";
+import RegulatoryUpdate2026 from "@/components/fr/RegulatoryUpdate2026";
 import UseCaseDecisionTable from "@/components/fr/UseCaseDecisionTable";
 import Features from "@/components/fr/Features";
 import HowItWorks from "@/components/fr/HowItWorks";
@@ -17,6 +18,7 @@ export default function Homepage({ locale }: { locale: EuHomeLocale }) {
       <UseCaseDecisionTable copy={copy} />
       <Features copy={copy} />
       <HowItWorks copy={copy} />
+      {locale === "fr" && <RegulatoryUpdate2026 />}
       <section id="before-payment" className="mx-auto max-w-7xl px-6 py-12">
         <h2 className="text-2xl font-bold text-[#0B3A63]">{copy.doubt}</h2>
         <p className="mt-3 max-w-3xl text-gray-700">{copy.doubtText}</p>
