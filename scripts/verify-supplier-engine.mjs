@@ -130,7 +130,7 @@ try {
 
   const completeCsv = simulationCsv(full);
   const partialCsv = simulationCsv(incomplete);
-  const parseCsv = (csv) => csv.replace(/^\\uFEFF/, "").trim().split("\\r\\n").map((line) => line.split(";"));
+  const parseCsv = (csv) => csv.replace(/^\uFEFF/, "").trim().split("\r\n").map((line) => line.split(";"));
   const completeRows = parseCsv(completeCsv);
   const partialRows = parseCsv(partialCsv);
   assert.equal(completeRows[0].length, 17);
