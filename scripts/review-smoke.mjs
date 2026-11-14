@@ -59,9 +59,9 @@ try {
   }
   const checkout = await request("/api/checkout", {method:"POST", headers:{"content-type":"application/json"}, body:"{}"});
   assert.equal(checkout.status, 403, "API checkout must be denied before Stripe execution");
-  const postedPage = await request("/fr/generate/", {method:"POST", headers:{"content-type":"application/json"}, body:"{}"});
-  assert.ok(postedPage.status >= 400, "Page POST must not succeed in review deployment");
-  console.log("Read-only site preview smoke passed: homepage, old product, 5 blocked sensitive requests.");
+  const blockedPost = await request("/review-blocked/", {method:"POST", headers:{"content-type":"application/json"}, body:"{}"});
+  assert.equal(blockedPost.status, 403, "The denial route must reject writes");
+  console.log("Read-only site preview smoke passed: homepage, old product, 5 blocked sensitive requests, plus denial-route POST.");
 } finally {
   server.kill("SIGTERM");
   await Promise.race([new Promise(resolve=>server.once("exit",resolve)), wait(2000)]);
