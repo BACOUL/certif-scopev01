@@ -59,7 +59,7 @@ try {
   const supplier = await request("/fr/fiche-carbone-fournisseur/");
   assert.equal(supplier.status, 200, "New supplier information route missing");
   const supplierHtml = await supplier.text();
-  for (const required of ["Offre en préparation","scope 1","scope 2","2026/1560","89 €","non disponible"]) {
+  for (const required of ["Offre en préparation","scope 1","scope 2","2026/1560","89 €","aucun achat disponible"]) {
     assert.ok(supplierHtml.includes(required), "Supplier info missing: "+required);
   }
   assert.ok(supplierHtml.includes("noindex"), "Unlaunched product page must not be indexed");
