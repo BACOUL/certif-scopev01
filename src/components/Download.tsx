@@ -11,7 +11,11 @@ export default function Download({locale,id}:{locale:Locale;id:string}){
 
  useEffect(()=>{
   setStoredReportId(id);
-  try{setStoredToken(id?sessionStorage.getItem(`carbon-${id}`)||"":"");}
+  try{
+   const stored=id?sessionStorage.getItem(`carbon-${id}`)||"":"";
+   // Session storage is untrusted: never render a malformed capability.
+   setStoredToken(resolveDeliveryAccess(id,id,stored,"")?stored:"");
+  }
   catch{setStoredToken("");}
  },[id]);
 
