@@ -44,7 +44,7 @@ try {
   const html = await page.text();
   assert.ok(html.includes("reglementation-2026-title"), "Original homepage regulation section missing");
   assert.ok(html.includes("Aperçu Certif-Scope en lecture seule"), "Visible preview warning missing");
-  assert.match(page.headers.get("x-robots-tag") || "", /noindex/, "Review page indexed unexpectedly");
+  assert.ok(html.includes("noindex,nofollow,noarchive"), "Review page must include noindex meta");
 
   const product = await request("/fr/product/");
   assert.equal(product.status, 200, "Original product page missing");
