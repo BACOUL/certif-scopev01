@@ -32,6 +32,15 @@ export default function SupplierSheet2026InfoPage() {
           className="mt-6 inline-flex min-h-12 items-center justify-center rounded-xl bg-[#0B3A63] px-6 py-3 text-sm font-semibold text-white hover:bg-[#082C4B]">
           Essayer la simulation gratuite — sans paiement
         </Link>
+        <div className="mt-4">
+          <a href="/fr/fiche-carbone-fournisseur/specimen/"
+            className="inline-flex min-h-12 items-center rounded-xl border border-[#0B3A63] px-6 py-3 text-sm font-semibold text-[#0B3A63] hover:bg-[#F8FAFC]">
+            Voir le spécimen PDF fictif de la future fiche
+          </a>
+          <p className="mt-2 text-sm text-[#475569]">
+            Document de démonstration non signé, sans valeur réglementaire et sans données clients.
+          </p>
+        </div>
         <div role="status" className="mt-6 rounded-xl border border-[#0B3A63]/20 bg-[#F8FAFC] p-5">
           <strong className="text-[#0B3A63]">Offre en préparation — aucun achat disponible.</strong>
           <p className="mt-2 text-sm leading-relaxed text-[#475569]">
