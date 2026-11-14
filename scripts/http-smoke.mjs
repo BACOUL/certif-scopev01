@@ -32,7 +32,11 @@ try{
    assert.match(res.headers.get("content-type")||"",/text\/html/,path);
    const html=await res.text();
    assert.ok(html.length>1000,path+": unexpectedly short HTML");
-   if(path==="/"+locale)assert.ok(html.includes("2026/1560"),path+": EU basis absent");
+   if(path==="/"+locale){
+    assert.ok(html.includes("2026/1560"),path+": EU basis absent");
+    assert.ok(html.includes("supplier-faq-title"),path+": FAQ section absent");
+    assert.ok(html.includes("/"+locale+"/recover"),path+": document recovery link absent");
+   }
    if(path==="/"+locale+"/recover"){
     assert.ok(html.includes("CS1"),path+": private code recovery missing");
     assert.match(html,/type="password"/,path+": private code field missing");
