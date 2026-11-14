@@ -174,6 +174,14 @@ export const FR_HOME_COPY: HomeContent = {
   packsLink: "Besoin de plusieurs documents ?",
   faq: [
     {
+      q: "Quelle différence entre l'ancienne attestation et la future fiche fournisseur ?",
+      a: "L’attestation historique estime des émissions à partir de sept catégories de dépenses externes. La nouvelle fiche, encore en préparation et indisponible à l’achat, reposera sur des quantités d’énergie et des émissions directes (scope 1) et liées à l’énergie achetée (scope 2 location-based). Aucun de ces documents ne constitue à lui seul une déclaration B3 complète ni une certification. Les droits des anciennes commandes et des packs doivent être conservés et rapprochés avant toute migration.",
+    },
+    {
+      q: "Est-il obligatoire d'acheter une fiche carbone depuis la réglementation 2026 ?",
+      a: "Non. Le règlement délégué (UE) 2026/1560 fixe une norme volontaire d’information de durabilité ; il n’impose pas à toutes les PME d’acheter un produit Certif-Scope. Vérifiez ce que votre client demande exactement et si une méthode ou une assurance particulière est exigée.",
+    },
+    {
       q: "Est-ce adapté à ma demande ?",
       a: "Certif-Scope fournit une estimation indicative fondée sur sept catégories de dépenses externes. Envoyez l’exemple à votre destinataire pour confirmer qu’il accepte cette méthode et ce périmètre. L’absence de norme imposée ne garantit pas son acceptation. Le document ne remplace pas un audit, un inventaire GES complet ou un reporting réglementaire.",
     },
