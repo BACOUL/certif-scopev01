@@ -15,9 +15,9 @@ import Homepage from "@/components/international/Homepage";
 
 export const metadata: Metadata = {
   title:
-    "Bilan carbone entreprise (PME) : attestation CO₂e indicative | Certif-Scope",
+    "Données carbone fournisseur 2026 et attestation CO₂e | Certif-Scope",
   description:
-    "Bilan carbone entreprise / PME : obtenez un indicateur CO₂e indicatif (spend-based : dépenses × facteurs d’émission) avec une attestation standardisée et vérifiable. Utile pour appels d’offres, fournisseurs, banques, assurances et screening ESG. Méthode inspirée du GHG Protocol Scope 3 et références officielles VSME/EFRAG. Ce document n’est ni un bilan carbone complet, ni un audit, ni un reporting CSRD/ESRS.",
+    "Certif-Scope conserve son attestation CO₂e historique fondée sur les dépenses et prépare une fiche de données carbone fournisseur sur l’énergie et les émissions scopes 1 et 2. Nouvelle fiche non disponible à l’achat. Aucun document ne garantit à lui seul la conformité B3.",
   keywords: [
     "bilan carbone entreprise",
     "bilan carbone PME",
@@ -41,9 +41,9 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     title:
-      "Bilan carbone entreprise (PME) : attestation CO₂e indicative | Certif-Scope",
+      "Données carbone fournisseur 2026 et attestation CO₂e | Certif-Scope",
     description:
-      "Indicateur CO₂e indicatif (spend-based) + attestation standardisée et vérifiable. Utile pour appels d’offres, fournisseurs, banques, assurances et screening ESG. Références officielles VSME/EFRAG et GHG Protocol Scope 3.",
+      "Découvrir la future fiche de données carbone fournisseur (énergie, scopes 1 et 2) et l’attestation historique fondée sur les dépenses, avec leurs limites. Nouvelle fiche en préparation.",
     url: "https://www.certif-scope.com/fr/",
     siteName: "Certif-Scope",
     locale: "fr_FR",
@@ -51,9 +51,9 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "Bilan carbone entreprise (PME) : attestation CO₂e indicative | Certif-Scope",
+      "Données carbone fournisseur 2026 et attestation CO₂e | Certif-Scope",
     description:
-      "Indicateur CO₂e indicatif (spend-based) + attestation vérifiable pour appels d’offres, fournisseurs, banques et screening ESG. Méthode inspirée du GHG Protocol Scope 3.",
+      "Ancienne attestation CO₂e fondée sur les dépenses et future fiche de données carbone fournisseur — information sur les limites et la réglementation volontaire 2026.",
   },
   robots: {
     index: true,
@@ -83,10 +83,10 @@ export default function HomeFR() {
   const jsonLdWebPage = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    name: "Bilan carbone entreprise (PME) : attestation CO₂e indicative | Certif-Scope",
+    name: "Données carbone fournisseur 2026 et attestation CO₂e | Certif-Scope",
     url: pageUrl,
     description:
-      "Accueil France : indicateur CO₂e indicatif (spend-based) + attestation standardisée et vérifiable, pour screening appels d’offres, fournisseurs, banque et assurance. Méthode inspirée du GHG Protocol Scope 3, avec références officielles VSME/EFRAG. Non audit, non bilan GES réglementaire, non reporting CSRD/ESRS.",
+      "Accueil France : présentation de l’attestation CO₂e historique fondée sur les dépenses et de la future fiche de données carbone fournisseur. Informations sur la norme volontaire européenne 2026/1560. Nouvelle fiche non commercialisée et sans garantie de conformité réglementaire.",
     isPartOf: {
       "@type": "WebSite",
       name: "Certif-Scope",
