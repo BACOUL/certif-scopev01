@@ -25,6 +25,8 @@ jobs:
           cache: npm
       - name: Install locked dependencies
         run: npm ci
+      - name: Verify supplier carbon calculator ported from PR 107
+        run: node scripts/verify-supplier-engine.mjs
       - name: Check preservation and honest regulatory copy
         run: |
           node --input-type=module <<'NODE'
