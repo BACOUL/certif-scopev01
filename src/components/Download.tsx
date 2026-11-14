@@ -52,9 +52,9 @@ export default function Download({locale,id}:{locale:Locale;id:string}){
  }
 
  return <div className="content">
-  <h1>{c.steps[4]}</h1>
-  <p>{c.notice}</p>
-  <p>{c.pending}</p>
+  <h1>{id?c.steps[4]:c.recover}</h1>
+  <p>{id?c.notice:c.recoverIntro}</p>
+  {id&&<p>{c.pending}</p>}
   {storedToken&&storedReportId&&<RecoveryCode locale={locale} id={storedReportId} token={storedToken}/>}
   <label>{c.recoveryPaste}
    <input type="password" autoComplete="off" maxLength={100} spellCheck={false}
