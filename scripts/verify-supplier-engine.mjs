@@ -15,8 +15,10 @@ try {
     "--outDir", buildDir,
     "--esModuleInterop", "--skipLibCheck", "--strict",
     "src/lib/carbon/calculate.ts",
+    "src/lib/carbon/export.ts",
   ], { stdio: "inherit" });
   const { calculate } = require("../" + buildDir + "/calculate.js");
+  const { simulationCsv } = require("../" + buildDir + "/export.js");
   const { CATEGORIES, FACTORS } = require("../" + buildDir + "/factors.js");
   const near = (actual, expected) =>
     assert.ok(Math.abs(actual - expected) < 1e-9, actual + " != " + expected);
@@ -125,6 +127,25 @@ try {
   assert.throws(() => calculate(unconfirmed));
   assert.equal(FACTORS.electricity.value, 0.0394);
   assert.equal(FACTORS.refrigerant_hfc32.value, 675);
+
+  const completeCsv = simulationCsv(full);
+  const partialCsv = simulationCsv(incomplete);
+  const parseCsv = (csv) => csv.replace(/^\\uFEFF/, "").trim().split("\\r\\n").map((line) => line.split(";"));
+  const completeRows = parseCsv(completeCsv);
+  const partialRows = parseCsv(partialCsv);
+  assert.equal(completeRows[0].length, 17);
+  assert.equal(completeRows[1].length, 17);
+  assert.equal(completeRows[1][9], "10", "Full energy total is available when all sources are covered");
+  assert.equal(completeRows[1][10], "4");
+  assert.equal(completeRows[1][11], "6");
+  assert.equal(partialRows[1][8], "10", "Measured subtotal remains traceable");
+  assert.equal(partialRows[1][9], "", "Missing source must not become a false company total");
+  assert.equal(partialRows[1][12], "partial");
+  assert.equal(partialRows[1][13], "gas");
+  assert.ok(!completeCsv.includes("Entreprise Exemple"), "No company identity in exported file");
+  assert.ok(!completeCsv.includes("Facture électricité de test"), "No entered evidence in exported file");
+  assert.ok(completeCsv.includes("SIMULATION_NON_CERTIFIEE"), "Simulation must be unmistakable");
+  console.log("Supplier CSV tests passed: energy completeness, renewable split, partial totals and data minimisation.");
 
   console.log("Supplier engine tests passed: historical factors, scopes 1/2, energy, missing sources, refrigerant, 2026 and invalid inputs.");
 } finally {
