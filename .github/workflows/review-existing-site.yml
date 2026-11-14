@@ -45,7 +45,7 @@ jobs:
           }
           assert.equal(JSON.parse(read("vercel.json")).git.deploymentEnabled,false);
           const previewGuard=read("src/proxy.ts");
-          for(const fragment of ['VERCEL_ENV !== "preview"','request.method === "GET"','path.startsWith("/api/")','success|erfolg','status: 403','noindex, nofollow']){
+          for(const fragment of ['VERCEL_ENV === "preview"','prj_uB8VwMP9wnONmHvVbrTPxyqYXD65','request.method === "GET"','path.startsWith("/api/")','success|erfolg','status: 403','noindex, nofollow']){
             assert.ok(previewGuard.includes(fragment),`preview read-only guard missing: ${fragment}`);
           }
 
