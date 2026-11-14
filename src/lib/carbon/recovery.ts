@@ -28,3 +28,20 @@ export function parseRecoveryCode(id:string,raw:string):string|null {
  const parsed=parseStandaloneRecoveryCode(raw);
  return parsed?.id===id?parsed.token:null;
 }
+
+/**
+ * Select the credentials for a document download. A pasted code takes
+ * precedence, and cannot silently switch an explicitly addressed report.
+ * Recovered credentials can be reused on the same page after a first download.
+ */
+export function resolveDeliveryAccess(
+ routeId:string,storedReportId:string,storedToken:string,pastedCode:string
+):{id:string;token:string;manual:boolean}|null {
+ if(pastedCode.trim()){
+  const parsed=parseStandaloneRecoveryCode(pastedCode);
+  return parsed&&(!routeId||parsed.id===routeId)?{...parsed,manual:true}:null;
+ }
+ const id=routeId||storedReportId;
+ if(!UUID_V4.test(id)||!TOKEN.test(storedToken)||(routeId&&storedReportId&&storedReportId!==routeId))return null;
+ return {id,token:storedToken,manual:false};
+}
