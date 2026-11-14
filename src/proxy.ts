@@ -1,14 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 
 /**
- * Display-only safeguard for the original Certif-Scope website on Vercel Preview.
+ * Display-only safeguard for the original Certif-Scope website on Vercel Preview\n * or on the isolated review project (even for its initial production-target deploy).
  *
  * The historical site has live Stripe/credits/PDF routes (including GET endpoints).
  * Never call them from a visual review deployment. This is NOT a replacement
  * for isolated project credentials or an audit of the business routes.
  */
 export function proxy(request: NextRequest) {
-  if (process.env.VERCEL_ENV !== "preview") {
+  const reviewDeployment = process.env.VERCEL_ENV === "preview" || process.env.VERCEL_PROJECT_ID === "prj_uB8VwMP9wnONmHvVbrTPxyqYXD65";
+  if (!reviewDeployment) {
     return NextResponse.next();
   }
 
