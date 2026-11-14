@@ -76,13 +76,13 @@ export type HomeContent = {
 
 export const FR_HOME_COPY: HomeContent = {
   alternativeHeadline:
-    "Attestation CO₂e indicative prête à transmettre pour répondre à une demande documentaire sans audit carbone complet.",
-  hero: "Une demande carbone à traiter ?",
-  heroSecond: "Préparez votre document CO₂e indicatif.",
+    "Fiche de données carbone fournisseur en préparation, sur le site Certif-Scope existant. Attestation historique conservée.",
+  hero: "Les données carbone de vos fournisseurs,",
+  heroSecond: "Certif-Scope évolue pour 2026.",
   description:
-    "Un PDF standardisé, daté et vérifiable pour répondre rapidement à une demande documentaire simple, si votre destinataire accepte une estimation fondée sur vos dépenses.",
-  generate: "Générer mon attestation — 89 €",
-  sample: "Télécharger un exemple gratuit",
+    "Nous préparons une fiche fondée sur la consommation d’énergie et les émissions des scopes 1 et 2, avec un périmètre documenté. L’ancienne attestation basée sur les dépenses et les droits des clients existants sont conservés. Nouvelle fiche non encore disponible à l’achat.",
+  generate: "Découvrir la nouvelle fiche",
+  sample: "Voir le PDF historique",
   confirm: "À confirmer avec le destinataire",
   unsuitable: "Non adapté",
   suitable: [
@@ -100,9 +100,9 @@ export const FR_HOME_COPY: HomeContent = {
     "Reporting CSRD / ESRS demandé",
   ],
   decisionEyebrow: "Décision rapide",
-  suited: "Est-ce adapté à votre demande ?",
+  suited: "Quel type de données votre client attend-il ?",
   suitedIntro:
-    "Certif-Scope est conçu pour les demandes documentaires simples. Si un audit complet, une norme précise ou une vérification externe est exigée, il faut suivre cette exigence. L’absence de méthode imposée ne garantit pas l’acceptation du PDF : demandez confirmation avant achat.",
+    "L’attestation historique est une estimation fondée sur les dépenses. Elle ne répond pas à une demande de quantités d’énergie et d’émissions des scopes 1 et 2. La future fiche fournisseur vise une partie de ces données, mais elle n’est pas encore commercialisée. Faites confirmer le périmètre exigé par le destinataire.",
   features: [
     {
       id: "01",
@@ -125,14 +125,14 @@ export const FR_HOME_COPY: HomeContent = {
       text: "Un identifiant et des informations documentaires lisibles ; la signature nécessite un contrôle technique distinct.",
     },
   ],
-  featuresEyebrow: "Attestation carbone",
-  contents: "Ce que contient votre attestation",
+  featuresEyebrow: "Évolution du document carbone",
+  contents: "Ce que nous préparons pour la future fiche",
   featuresIntro:
-    "Un document conçu pour répondre directement à une demande client, un appel d’offres ou un dossier fournisseur.",
+    "Présentation des fonctionnalités visées. La nouvelle fiche n’est pas encore disponible à l’achat et ses limites seront explicitées avant toute ouverture commerciale.",
   clarification: "Clarification importante",
   limits:
-    "Il s’agit d’une attestation indicative basée sur les dépenses déclarées. Ce document ne constitue ni un inventaire GES complet, ni un audit réglementaire, ni un reporting CSRD/ESRS.",
-  ready: "Un document prêt à être envoyé immédiatement.",
+    "La future fiche de données carbone ne sera ni un audit, ni une certification, ni un inventaire GES complet. L’ancienne attestation basée sur les dépenses ne couvre pas les informations énergétiques et les scopes 1 et 2 demandés dans B3.",
+  ready: "La nouvelle fiche est encore en phase de validation.",
   methodologyLink: "Consulter la méthodologie complète",
   steps: [
     {
@@ -151,8 +151,8 @@ export const FR_HOME_COPY: HomeContent = {
       text: "Après confirmation du paiement ou utilisation d’une clé de pack, téléchargez votre document. Conservez une copie avant de le transmettre.",
     },
   ],
-  stepsTitle: "Votre document en trois étapes",
-  prepare: "Préparer mon attestation",
+  stepsTitle: "La future fiche : les trois étapes prévues",
+  prepare: "Découvrir le projet de fiche",
   included: [
     "Un PDF personnalisé au nom de votre entreprise",
     "Une estimation CO₂e agrégée à partir des dépenses déclarées",
@@ -160,18 +160,18 @@ export const FR_HOME_COPY: HomeContent = {
     "La méthode, sa version et les limites de l’estimation",
     "Un identifiant et les éléments de vérification documentaire",
   ],
-  includedTitle: "Ce que comprennent les 89 €",
+  includedTitle: "Fonctionnalités envisagées pour la future fiche",
   reuse:
-    "Paiement unique par document, sans abonnement. TVA non applicable selon le régime indiqué dans les mentions légales. Un même PDF peut être transmis à plusieurs destinataires pour la même entreprise, la même année et les mêmes données.",
+    "Le tarif de travail envisagé est de 89 € par fiche. Aucun tarif ni aucune vente de la nouvelle offre ne sont ouverts à ce stade. L’ancienne attestation et les crédits achetés auparavant doivent être conservés.",
   support:
     "Le support peut être contacté pour un incident de téléchargement, une question sur la commande ou une demande de correction. Une réémission n’est pas automatiquement incluse : ses conditions sont précisées après examen de votre demande.",
   notIncluded:
-    "Le prix ne comprend pas un audit, une validation externe des émissions ni une garantie d’acceptation du document.",
+    "La future fiche ne garantira ni l’acceptation par un destinataire, ni la conformité B3 complète, ni une validation externe des émissions.",
   contactLink: "Une question avant de commander ?",
-  priceTitle: "89 € pour votre attestation CO₂e indicative",
-  priceDetail: "Par document · sans abonnement",
-  prepareDocument: "Préparer mon document",
-  packsLink: "Besoin de plusieurs documents ?",
+  priceTitle: "Future fiche fournisseur : prix envisagé de 89 €",
+  priceDetail: "Prix envisagé · ventes non ouvertes",
+  prepareDocument: "Découvrir le périmètre prévu",
+  packsLink: "Consulter les conditions des anciennes attestations",
   faq: [
     {
       q: "Quelle différence entre l'ancienne attestation et la future fiche fournisseur ?",
@@ -225,11 +225,11 @@ export const FR_HOME_COPY: HomeContent = {
   guideLink: "Lire le guide complet sur le bilan carbone PME →",
   faqLimits:
     "Estimation indicative basée sur les dépenses. Non auditée, non conforme CSRD/ESRS, sans couverture complète des scopes 1, 2 et 3, et ne remplace pas un inventaire complet des émissions. Les résultats dépendent des informations fournies par l’utilisateur.",
-  finalEyebrow: "Réponse rapide — format standardisé",
-  finalTitle: "Produire une attestation CO₂e indicative, claire et vérifiable",
+  finalEyebrow: "Une évolution, sans perdre l’ancien Certif-Scope",
+  finalTitle: "Préparer des données carbone fournisseur traçables",
   finalIntro:
-    "Si votre demande relève du screening fournisseur, d’un appel d’offres ou d’une revue banque/assurance, l’objectif est un document lisible, archivable et cohérent : résultat CO₂e agrégé, année, méthode déclarée, limites explicites et vérification.",
-  finalGenerate: "Générer mon attestation →",
+    "La future fiche vise un document clair sur les consommations énergétiques et les émissions scopes 1 et 2, avec les sources et les limites de calcul. Elle reste en préparation ; consultez son périmètre avant d’envisager un achat.",
+  finalGenerate: "Découvrir la fiche fournisseur →",
   pricingLink: "Voir le prix",
   finalGuide: "Lire le guide PME →",
   scopeTitle: "Rappel de périmètre",
@@ -246,7 +246,7 @@ export const FR_HOME_COPY: HomeContent = {
   locale: "fr",
   image: "/attestation-example-fr.webp",
   sampleAlt:
-    "Exemple d’attestation CO₂e indicative prête à transmettre, avec résultat agrégé, méthode déclarée et identifiant vérifiable.",
+    "Image du PDF historique Certif-Scope fondé sur les dépenses. Ce modèle ne représente pas la future fiche fournisseur.",
   badges: [
     "Prix fixe 89 €",
     "Sans abonnement",
@@ -255,8 +255,8 @@ export const FR_HOME_COPY: HomeContent = {
     "Non audit / non CSRD",
   ],
   links: {
-    generate: "/fr/generate/",
-    sample: "/api/sample",
+    generate: "/fr/fiche-carbone-fournisseur/",
+    sample: "/attestation-example-fr.webp",
     methodology: "/fr/product/methodology/",
     contact: "/fr/contact/",
     packs: "/fr/pricing/#packs",
@@ -265,9 +265,9 @@ export const FR_HOME_COPY: HomeContent = {
     verify: "/fr/verify/",
     privacy: "/fr/privacy/",
   },
-  doubt: "Un doute avant de payer ?",
+  doubt: "Besoin de savoir si la future fiche conviendra ?",
   doubtText:
-    "Consultez l’exemple avec votre destinataire pour confirmer le périmètre attendu. Certif-Scope fournit une estimation indicative, sans validation externe des émissions.",
+    "Demandez à votre destinataire s’il attend des consommations d’énergie, les scopes 1 et 2 ou un reporting complet. La nouvelle fiche est en préparation ; l’ancienne attestation dépense ne remplace pas les données B3.",
   contact: "Nous contacter",
   calculation: "Comprendre le calcul",
 };
