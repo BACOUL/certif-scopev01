@@ -44,6 +44,11 @@ jobs:
             assert.ok(existsSync(p),`original route deleted: ${p}`);
           }
           assert.equal(JSON.parse(read("vercel.json")).git.deploymentEnabled,false);
+          const previewGuard=read("src/proxy.ts");
+          for(const fragment of ['VERCEL_ENV !== "preview"','request.method === "GET"','path.startsWith("/api/")','success|erfolg','status: 403','noindex, nofollow']){
+            assert.ok(previewGuard.includes(fragment),`preview read-only guard missing: ${fragment}`);
+          }
+
           console.log("Original site preserved; regulatory update and deployment safeguard verified.");
           NODE
       - name: Compile original site with regulatory changes
