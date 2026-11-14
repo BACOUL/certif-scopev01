@@ -78,6 +78,15 @@ try {
   }
   assert.ok(supplierHtml.includes("noindex"), "Unlaunched product page must not be indexed");
   assert.ok(!supplierHtml.includes('href="/api/checkout'), "Future product must not expose live payment CTA");
+  assert.ok(supplierHtml.includes("/fr/fiche-carbone-fournisseur/specimen/"), "Fictional PDF specimen link missing");
+
+  const pdfSample = await request("/fr/fiche-carbone-fournisseur/specimen/");
+  assert.equal(pdfSample.status, 200, "Fictional supplier PDF specimen must be downloadable without payment");
+  assert.ok((pdfSample.headers.get("content-type") || "").startsWith("application/pdf"));
+  assert.ok((pdfSample.headers.get("content-disposition") || "").includes("specimen"));
+  const pdfBytes = new Uint8Array(await pdfSample.arrayBuffer());
+  assert.ok(pdfBytes.length > 2500, "Specimen PDF is unexpectedly small");
+  assert.equal(String.fromCharCode(...pdfBytes.slice(0, 5)), "%PDF-", "Response must be a real PDF");
 
   for (const path of [
     "/api/checkout-pack?pack=5",
