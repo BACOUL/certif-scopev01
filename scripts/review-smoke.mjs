@@ -63,7 +63,7 @@ try {
     "simulation-fournisseur",
     "Calculer ma simulation gratuite",
     "Électricité achetée",
-    "scope 1",
+    "Scope 1",
     "Ancienne attestation CO₂e",
     "Consulter le formulaire historique",
   ]) {
