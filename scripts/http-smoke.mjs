@@ -26,13 +26,17 @@ try{
  assert.ok(ready,"Next.js server did not start. "+stderr.slice(-1500));
  let count=0;
  for(const locale of ["fr","en","de"]){
-  for(const path of ["/"+locale,"/"+locale+"/generate","/"+locale+"/pricing","/"+locale+"/verify","/"+locale+"/methodology","/"+locale+"/privacy"]){
+  for(const path of ["/"+locale,"/"+locale+"/generate","/"+locale+"/pricing","/"+locale+"/verify","/"+locale+"/methodology","/"+locale+"/privacy","/"+locale+"/recover"]){
    const res=await request(path);
    assert.equal(res.status,200,path+": "+res.status);
    assert.match(res.headers.get("content-type")||"",/text\/html/,path);
    const html=await res.text();
    assert.ok(html.length>1000,path+": unexpectedly short HTML");
    if(path==="/"+locale)assert.ok(html.includes("2026/1560"),path+": EU basis absent");
+   if(path==="/"+locale+"/recover"){
+    assert.ok(html.includes("CS1"),path+": private code recovery missing");
+    assert.match(html,/type="password"/,path+": private code field missing");
+   }
    count++;
   }
   const pdf=await request("/api/sample?locale="+locale);
