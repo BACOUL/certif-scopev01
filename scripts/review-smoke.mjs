@@ -25,7 +25,7 @@ for (const stream of [server.stdout, server.stderr]) {
 }
 const root = "http://127.0.0.1:" + port;
 async function request(path, init = {}) {
-  return fetch(root + path, { signal: AbortSignal.timeout(15000), redirect: "manual", ...init });
+  return fetch(root + path, { signal: AbortSignal.timeout(15000), redirect: "follow", ...init });
 }
 try {
   let ready = false;
