@@ -19,3 +19,12 @@
 .resource-links a{color:#0f5544;font-weight:700}
 @media(max-width:800px){.feature-grid{grid-template-columns:1fr}.simple-steps{grid-template-columns:1fr 1fr}.limits-panel{display:block}.resource-links{margin-top:20px}.feature-section{margin:46px 0}.feature-card{min-height:auto}.feature-card h3{margin:14px 0 8px}}
 @media(max-width:520px){.simple-steps{grid-template-columns:1fr}.hero h1{font-size:38px}.limits-panel{padding:24px}.feature-card{padding:21px}}
+
+/* FAQ: readable, keyboard-accessible native disclosures without client-side JS. */
+.faq-items{display:grid;gap:12px;max-width:900px}
+.faq-item{background:#fff;border:1px solid #dce3d7;border-radius:12px;padding:0 22px}
+.faq-item summary{cursor:pointer;font-weight:700;font-size:16px;padding:22px 20px 22px 0;line-height:1.5}
+.faq-item[open] summary{border-bottom:1px solid #dce3d7}
+.faq-item p{margin:14px 0 22px;color:#48625b;line-height:1.7;max-width:80ch}
+.faq-item summary:focus-visible{outline:3px solid #d99032;outline-offset:4px}
+@media(max-width:520px){.faq-item{padding:0 16px}.faq-item summary{font-size:15px;padding:18px 4px 18px 0}}
