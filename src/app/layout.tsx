@@ -58,6 +58,7 @@ export default async function RootLayout({
   return (
     <html lang={locale} className="light" suppressHydrationWarning>
       <head>
+        {reviewMode && <meta name="robots" content="noindex,nofollow,noarchive" />}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
