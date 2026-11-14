@@ -1,7 +1,7 @@
 import {test} from "node:test";
 import assert from "node:assert/strict";
 import {randomBytes} from "node:crypto";
-import {recoveryCode,parseRecoveryCode,parseStandaloneRecoveryCode} from "../src/lib/carbon/recovery";
+import {recoveryCode,parseRecoveryCode,parseStandaloneRecoveryCode,resolveDeliveryAccess} from "../src/lib/carbon/recovery";
 import React from "react";
 import {renderToStaticMarkup} from "react-dom/server";
 import Download from "../src/components/Download";
@@ -62,4 +62,21 @@ test("download form renders without a report ID so code-only recovery remains po
   assert.equal(html.includes(token),false);
   assert.equal(html.includes("success?code="),false);
  }
+});
+
+test("standalone delivery may download multiple formats without repasting code",()=>{
+ const code=recoveryCode(id,token);
+ const first=resolveDeliveryAccess("","","",code);
+ assert.deepEqual(first,{id,token,manual:true});
+ assert.deepEqual(resolveDeliveryAccess("",first!.id,first!.token,""),{id,token,manual:false});
+ assert.deepEqual(resolveDeliveryAccess(id,id,token,""),{id,token,manual:false});
+});
+
+test("recovery never switches an explicitly selected report or accepts corrupted storage",()=>{
+ const code=recoveryCode(id,token);
+ assert.equal(resolveDeliveryAccess(other,other,token,code),null);
+ assert.equal(resolveDeliveryAccess(id,other,token,""),null);
+ assert.equal(resolveDeliveryAccess("",id,token.slice(0,-1),""),null);
+ assert.equal(resolveDeliveryAccess("","",token,""),null);
+ assert.equal(resolveDeliveryAccess("",id,token,"CS2."+id+"."+token),null);
 });
