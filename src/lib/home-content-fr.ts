@@ -95,7 +95,7 @@ export const FR_HOME_COPY: HomeContent = {
   exclusions: [
     "Audit carbone complet exigé",
     "Norme ISO, GHG Protocol complet ou méthode imposée",
-    "Scope 1 / 2 / 3 détaillé exigé",
+    "Report B3 complet ou Scope 3 détaillé exigé",
     "Vérification externe obligatoire",
     "Reporting CSRD / ESRS demandé",
   ],
@@ -104,26 +104,10 @@ export const FR_HOME_COPY: HomeContent = {
   suitedIntro:
     "L’attestation historique est une estimation fondée sur les dépenses. Elle ne répond pas à une demande de quantités d’énergie et d’émissions des scopes 1 et 2. La future fiche fournisseur vise une partie de ces données, mais elle n’est pas encore commercialisée. Faites confirmer le périmètre exigé par le destinataire.",
   features: [
-    {
-      id: "01",
-      title: "Résultat CO₂e lisible",
-      text: "Un résultat agrégé clair, conçu pour être compris immédiatement par un client, un acheteur, une banque ou un partenaire.",
-    },
-    {
-      id: "02",
-      title: "Méthode et périmètre",
-      text: "Les catégories, coefficients internes et limites de l’estimation sont décrits dans la méthodologie.",
-    },
-    {
-      id: "03",
-      title: "Entreprise et année de référence",
-      text: "Le nom de votre entreprise, l’année des dépenses et la date d’émission figurent dans le document.",
-    },
-    {
-      id: "04",
-      title: "Vérification documentaire",
-      text: "Un identifiant et des informations documentaires lisibles ; la signature nécessite un contrôle technique distinct.",
-    },
+    { id: "01", title: "Énergie consommée", text: "Présentation prévue des quantités d’énergie déclarées et de leur période de référence, avec des unités explicites." },
+    { id: "02", title: "Émissions scopes 1 et 2", text: "Distinction des émissions directes et de celles associées à l’énergie achetée selon la localisation ; couverture soumise à la validation du moteur." },
+    { id: "03", title: "Sources, facteurs et limites", text: "Indication des facteurs utilisés, du périmètre effectivement couvert et des catégories non applicables, inconnues ou non prises en charge." },
+    { id: "04", title: "Document traçable", text: "PDF et données associées prévus avec contrôle technique d’intégrité ; aucun audit des déclarations n’est réalisé." },
   ],
   featuresEyebrow: "Évolution du document carbone",
   contents: "Ce que nous préparons pour la future fiche",
@@ -135,30 +119,18 @@ export const FR_HOME_COPY: HomeContent = {
   ready: "La nouvelle fiche est encore en phase de validation.",
   methodologyLink: "Consulter la méthodologie complète",
   steps: [
-    {
-      id: "01",
-      title: "Préparez vos données",
-      text: "Renseignez votre entreprise et sept catégories de dépenses externes annuelles hors taxes. Vérifiez avec votre destinataire que ce périmètre répond à sa demande.",
-    },
-    {
-      id: "02",
-      title: "Vérifiez votre estimation",
-      text: "Consultez le résultat indicatif, l’entreprise et l’année de référence dans le récapitulatif avant paiement. Vous pouvez revenir modifier votre saisie.",
-    },
-    {
-      id: "03",
-      title: "Téléchargez et archivez votre PDF",
-      text: "Après confirmation du paiement ou utilisation d’une clé de pack, téléchargez votre document. Conservez une copie avant de le transmettre.",
-    },
+    { id: "01", title: "Réunir les consommations", text: "Préparer l’exercice, les factures ou relevés d’énergie, les quantités de combustibles et les autres émissions directes pertinentes." },
+    { id: "02", title: "Vérifier la couverture", text: "Distinguer les sources effectivement calculées, non applicables ou inconnues, sans transformer les données manquantes en zéro." },
+    { id: "03", title: "Obtenir la fiche après validation", text: "La génération PDF, les exports et les paiements ne seront ouverts qu’après vérification des calculs, de la délivrance et des conditions légales." },
   ],
   stepsTitle: "La future fiche : les trois étapes prévues",
   prepare: "Découvrir le projet de fiche",
   included: [
-    "Un PDF personnalisé au nom de votre entreprise",
-    "Une estimation CO₂e agrégée à partir des dépenses déclarées",
-    "L’année de référence et la date d’émission",
-    "La méthode, sa version et les limites de l’estimation",
-    "Un identifiant et les éléments de vérification documentaire",
+    "Fiche PDF personnalisée après validation et ouverture du service",
+    "Consommations d’énergie et exercices déclarés, selon le périmètre couvert",
+    "Émissions directes scope 1 et énergie achetée scope 2 location-based calculées",
+    "Méthode, facteurs officiels vérifiés, unités et exclusions visibles",
+    "Exports et contrôle technique des données, sans certification externe",
   ],
   includedTitle: "Fonctionnalités envisagées pour la future fiche",
   reuse:
@@ -190,11 +162,11 @@ export const FR_HOME_COPY: HomeContent = {
       a: "Préparez le nom de l’entreprise, l’année de référence et vos dépenses externes annuelles hors taxes en euros : numérique, services professionnels, biens, logistique, déplacements, hébergement et événements, autres achats externes. Chaque dépense doit être comptée une seule fois. Renseignez 0 uniquement pour une catégorie réellement nulle ; une donnée inconnue doit être complétée.",
     },
     {
-      q: "Que reçois-je pour 89 € ?",
+      q: "Que contenait l’ancienne attestation à 89 € ?",
       a: "Un PDF personnalisé indiquant votre entreprise, l’année, la date d’émission, l’estimation CO₂e agrégée, la méthode et ses limites, ainsi que les éléments de vérification documentaire. Le prix est par document, sans abonnement. Le support peut être contacté pour une question sur la commande ou un incident de téléchargement ; un audit et une validation externe des émissions ne sont pas inclus.",
     },
     {
-      q: "Quelle méthode et quels coefficients sont utilisés ?",
+      q: "Quelle méthode utilisait l’ancienne attestation ?",
       a: "Le calcul multiplie les dépenses de chaque catégorie par un coefficient interne, puis additionne les résultats. La page Méthodologie publie les valeurs, unités, version, exemple de calcul et limites. Ces coefficients ne sont pas présentés comme certifiés ou validés par un organisme externe. Le secteur déclaré ne modifie pas les coefficients.",
     },
     {
@@ -219,9 +191,9 @@ export const FR_HOME_COPY: HomeContent = {
     },
   ],
   faqEyebrow: "Avant et après votre commande",
-  faqTitle: "Vos questions avant de commander",
+  faqTitle: "Vos questions sur la future fiche et l’attestation historique",
   faqIntro:
-    "Données à préparer, contenu du document, packs et assistance : les informations utiles pour décider et recevoir votre PDF.",
+    "Différence entre les deux documents, norme volontaire de 2026, anciennes commandes et conditions de la future ouverture commerciale.",
   guideLink: "Lire le guide complet sur le bilan carbone PME →",
   faqLimits:
     "Estimation indicative basée sur les dépenses. Non auditée, non conforme CSRD/ESRS, sans couverture complète des scopes 1, 2 et 3, et ne remplace pas un inventaire complet des émissions. Les résultats dépendent des informations fournies par l’utilisateur.",
@@ -237,21 +209,21 @@ export const FR_HOME_COPY: HomeContent = {
   privacyLink: "Confidentialité →",
   backTop: "Haut de page",
   scopeItems: [
-    "estimation indicative en spend-based",
-    "résultat agrégé en tCO₂e",
-    "document standardisé et vérifiable",
-    "non audit, non inventaire complet",
-    "non reporting CSRD/ESRS",
+    "future fiche énergie et scopes 1/2 en validation",
+    "ancienne attestation de dépenses distincte",
+    "pas de rapport B3 complet garanti",
+    "pas d’audit, ni de certification",
+    "nouveaux achats non ouverts en Preview",
   ],
   locale: "fr",
   image: "/attestation-example-fr.webp",
   sampleAlt:
     "Image du PDF historique Certif-Scope fondé sur les dépenses. Ce modèle ne représente pas la future fiche fournisseur.",
   badges: [
-    "Prix fixe 89 €",
-    "Sans abonnement",
-    "PDF standardisé",
-    "ID vérifiable",
+    "Nouvelle fiche en préparation",
+    "Énergie + scopes 1/2",
+    "Site historique conservé",
+    "Anciennes commandes préservées",
     "Non audit / non CSRD",
   ],
   links: {
