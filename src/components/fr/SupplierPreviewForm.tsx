@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { calculate, type Calculation } from "@/lib/carbon/calculate";
+import { simulationCsv } from "@/lib/carbon/export";
 import { assessmentSchema } from "@/lib/carbon/schema";
 import {
   CATEGORIES,
@@ -51,6 +52,18 @@ const fmt = (value: number) =>
 const fieldClass = "mt-1 block w-full min-h-11 rounded-xl border border-[#0B3A63]/20 bg-white px-3 py-2 text-[#1f2937] outline-none focus:border-[#0B3A63] focus:ring-2 focus:ring-[#0B3A63]/20";
 const labelClass = "block text-sm font-semibold text-[#0B3A63]";
 const panelClass = "rounded-[26px] border border-[#0B3A63]/10 bg-white p-5 shadow-sm md:p-7";
+
+function downloadSimulationCsv(result: Calculation) {
+  const blob = new Blob([simulationCsv(result)], { type: "text/csv;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = `certif-scope-simulation-${result.assessment.year}.csv`;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
 
 export default function SupplierPreviewForm() {
   const [profile, setProfile] = useState({
@@ -421,6 +434,18 @@ export default function SupplierPreviewForm() {
                 et les catégories non prises en charge restent des blocages avant vente.
               </p>
             )}
+            <div className="mt-6">
+              <button type="button" onClick={() => downloadSimulationCsv(result)}
+                className="min-h-12 rounded-xl border border-[#0B3A63] bg-white px-5 py-3 font-semibold text-[#0B3A63] hover:bg-[#F8FAFC]">
+                Télécharger le CSV de simulation (non signé)
+              </button>
+              <p className="mt-2 text-sm leading-relaxed text-[#475569]">
+                Le CSV est généré localement, sans envoi au serveur. Il ne contient
+                ni l’identité de l’entreprise, ni les références des justificatifs,
+                ni un total énergétique inventé lorsque des sources sont inconnues.
+                Il ne constitue pas la fiche PDF commerciale.
+              </p>
+            </div>
             <p className="mt-5 font-semibold text-[#0B3A63]">
               Cette étape permet uniquement de vérifier la saisie et les calculs indicatifs.
               La délivrance des PDF, les exports signés et Stripe ne sont pas connectés.
