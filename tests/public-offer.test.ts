@@ -2,6 +2,8 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { renderToStaticMarkup } from "react-dom/server";
 import Offers from "../src/components/Offers";
+import B3LandingSections from "../src/components/B3LandingSections";
+import Shell from "../src/components/Shell";
 import Regulatory from "../src/components/Regulatory";
 import { POST as spendCheckout } from "../src/app/api/spend/checkout/route";
 
@@ -57,5 +59,29 @@ test("regulatory copy includes current EU 2026/470, 2026/1560 B3 and limits in a
   assert.match(markup, /1[ .,\u00a0]?000/);
   assert.match(markup, /B3/);
   assert.match(markup, /2027/);
+ }
+});
+
+test("site FAQ provides pre-purchase answers and legacy customer guidance in all locales",()=>{
+ const anchors={
+  fr:["Questions fréquentes avant de commander","Quelles données faut-il préparer","Et mon ancienne attestation","Les ventes restent désactivées"],
+  en:["Frequently asked questions before ordering","What records do I need","What about my older spend-based","Sales remain disabled"],
+  de:["Häufige Fragen vor der Bestellung","Welche Unterlagen brauche ich","Was passiert mit meiner alten","Verkäufe bleiben"]
+ } as const;
+ for(const locale of ["fr","en","de"] as const){
+  const html=renderToStaticMarkup(B3LandingSections({locale}));
+  for(const phrase of anchors[locale])assert.ok(html.includes(phrase),locale+": missing "+phrase);
+  assert.equal((html.match(/<details /g)||[]).length,5,locale+": FAQ count");
+  assert.equal((html.match(/<summary>/g)||[]).length,5,locale+": semantic summary");
+  assert.ok(html.includes("2026/1560"));
+ }
+});
+
+test("site navigation provides a discoverable private-file retrieval route for existing buyers",()=>{
+ for(const locale of ["fr","en","de"] as const){
+  const html=renderToStaticMarkup(Shell({locale,children:""}));
+  assert.ok(html.includes(`href="/${locale}/recover"`),locale+": missing access-recovery navigation");
+  assert.ok(html.includes(`href="/${locale}/verify"`),locale+": missing verification link");
+  assert.ok(!html.includes("CS1."),locale+": no recovery secret belongs in navigation");
  }
 });
