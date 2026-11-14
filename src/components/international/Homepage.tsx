@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Hero from "@/components/fr/Hero";
 import RegulatoryUpdate2026 from "@/components/fr/RegulatoryUpdate2026";
+import ProductEvolutionFR from "@/components/fr/ProductEvolutionFR";
 import UseCaseDecisionTable from "@/components/fr/UseCaseDecisionTable";
 import Features from "@/components/fr/Features";
 import HowItWorks from "@/components/fr/HowItWorks";
@@ -15,6 +16,7 @@ export default function Homepage({ locale }: { locale: EuHomeLocale }) {
   return (
     <>
       <Hero copy={copy} />
+      {locale === "fr" && <ProductEvolutionFR />}
       <UseCaseDecisionTable copy={copy} />
       <Features copy={copy} />
       <HowItWorks copy={copy} />
