@@ -1,0 +1,40 @@
+name: Certif-Scope two-product validation
+
+on:
+  push:
+    branches:
+      - refactor/supplier-carbon-sheet-20261112
+  pull_request:
+    branches:
+      - fix/multilingual-fr-en-de-20261001
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Set up Node.js 22
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Check TypeScript
+        run: npm run typecheck
+      - name: Test both products and payment safeguards
+        run: npm test
+      - name: Production build validation (no deployment)
+        run: npm run build
+      - name: Audit high-severity dependency vulnerabilities
+        run: npm audit --audit-level=high
+      - name: Smoke test FR/EN/DE pages and sample PDFs without payments
+        run: node scripts/http-smoke.mjs

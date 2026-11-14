@@ -1,119 +1,43 @@
-# Certif-Scope - Official README (English Version)
+# Certif-Scope — supplier carbon data sheet (review branch)
 
-1. DESCRIPTION
+Development only. **Do not merge or deploy to production.** Current sales are disabled; live Stripe keys are rejected. Historical packs require migration.
 
-Certif-Scope generates an indicative CO2e attestation based exclusively on a company’s annual financial spending (€). The methodology is spend-based, recognized only for GHG Protocol Scope 3 Category 1 (Purchased Goods and Services). Certif-Scope does not calculate: Scope 1, Scope 2, full Scope 3, physical emissions, CSRD/ESRS regulatory inventories, or environmental audits. The output is non-regulatory, indicative, and fully dependent on user-provided financial data.
+See [the status, evidence and launch blockers](docs/refonte/RAPPORT.md).
 
-2. PURPOSE AND SCOPE
+## Local verification
 
-Certif-Scope provides a standardized CO2e indicator that is deterministic, reproducible, cryptographically verifiable, and compliant with GDPR (no data storage). It is designed for indicative institutional use such as banking, insurance, public procurement, ESG pre-screening, accounting firms, and SMEs. It does not replace a regulatory carbon footprint or CSRD/ESRS disclosure.
+Node >=20; `npm ci`, `npm test`, `npm run build`, `npm run typecheck`, `npm audit`.
+`npm run dev` serves the review UI. FR/EN/DE implemented; other locales are availability notices.
 
-3. METHODOLOGY
+## Isolated test environment only
 
-Official formula:
-CO2e = Spending(€) × EmissionFactor(kgCO2e/€)
+- `CARBON_DATABASE_URL`: dedicated disposable PostgreSQL database. Never reuse production.
+- `CARBON_BASE_URL`: exact test origin.
+- `CARBON_STRIPE_KEY`: Stripe test key only, `CARBON_WEBHOOK_SECRET`: test endpoint signing secret.
+- `CARBON_SIGNING_KEY`: Ed25519 private PEM, never commit. The verifier derives its current public key from this configured private key.
+- `CARBON_VERIFY_PUBLIC_KEYS_JSON`: optional JSON array of up to 12 previously trusted Ed25519 public PEM keys. Keep old verification keys available across signing-key rotations; never take verification keys from uploaded files or user input. Publishing, archiving, backing up and independently authenticating the keys remains an operational release blocker.
+- `CARBON_TEST_CHECKOUT=true`: enables test checkout only after the isolated dependencies are prepared.
 
-Emission factors:
-- Sector-level macroeconomic EEIO factors
-- Expressed in kgCO2e per euro spent
-- Versioned MAJOR.MINOR.PATCH
-- No combustion factors (no kWh, liters, km, tons)
+`npm run db:migrate` applies `migrations/001_carbon.sql` to a dedicated database. `npm run db:purge` manually removes expired delivery records. **Neither command has been run against a remote environment.**
 
-Allowed inputs:
-- Annual spending (€) distributed across predefined categories such as IT, transport, professional services, energy (invoice € only), travel, office supplies, marketing, subcontracting, waste (€)
+## Protected expiry cleanup (not deployed)
+- The review branch contains a **daily 04:00 UTC** Vercel Cron declaration in `vercel.json`. Vercel Cron runs only after an explicitly approved production deployment; this repository currently disables deployments.
+- Configure `CRON_SECRET` as a randomly generated secret of at least 32 UTF-8 bytes in the Vercel project **before** deployment. Do not commit or paste this secret into chat/logs.
+- `GET /api/internal/purge` requires the exact `Authorization: Bearer <CRON_SECRET>` header, otherwise returns 401 (or 503 when unconfigured). It deletes only expired delivery reports and associated redemption rows plus old webhook dedupe/rate limit rows inside one transaction.
+- Monitor cron execution failures and alert the operator; configure backup/restore validation, delete-policy checks and vendor data retention separately. **Scheduling code does not prove a purge has run**.
+- Report expiry does not delete historical Stripe invoices or statutory accounting records. Retention obligations and backup policies require legal review.
 
-Forbidden inputs:
-- kWh
-- liters
-- km
-- tons
-- physical activity data
-- direct fuel/energy usage
-- Scope 1 and Scope 2 calculations
-- full Scope 3 inventory
+## Checkout orphan recovery (test mode only)
+If Stripe created a test checkout but the database write of `session_id` failed, `fulfill` can attach an already-paid, server-retrieved session to its pre-existing report **only** if the full immutable hash, product, report ID, client reference, amount, currency and test mode match. No report is created from incoming webhook metadata. This improves technical recovery. Before redirecting to Stripe, the user can now securely copy a **private 256-bit recovery capability** (`CS1.<report_uuid>.<base64url_token>`). A separate confirmation is required before redirect. After payment, a customer can paste that code on the download page in another tab or device; the API validates the report ID and token before returning a file. The code never appears in a checkout URL or Stripe metadata and is not emailed. A customer who loses **both** the browser session and this private code still needs a separately verified support procedure. Independent end-to-end Stripe sandbox and browser/device tests remain required.
 
-4. WORKFLOW
+Tests use PGlite and simulated Stripe responses. They do not prove a live Stripe or distributed PostgreSQL workflow. Example signed JSON files use an ephemeral test key, whose public half is included with the specimens; no private key is persisted.
 
-1. User selects the year of analysis
-2. User enters spending amounts per category (€)
-3. Certif-Scope applies sector emission factors
-4. The system calculates total and category-level CO2e
-5. An attestation is generated including:
-- total estimated CO2e
-- category breakdown
-- spending inputs
-- emission factor values
-- dataset version
-- cryptographic hash
-- timestamp
-- attestation ID
-- mandatory legal disclaimer
+## Enhanced payment integrity (simulated; not a live transaction)
+The server now requires the Checkout session reference to match the existing report and independently checks the test-mode PaymentIntent and expanded captured Charge, including payment IDs, status, EUR currency, exactly 8,900 euro cents collected, and the absence of refunds or disputes. Pending/unexpanded Stripe responses do **not** revoke a customer order. Only a confirmed refund or dispute does. Cached report JSON envelopes are rechecked against the stored snapshot hash and operator-trusted Ed25519 public keys on every download. These controls are covered by automated tests, not a live Stripe sandbox run.
 
-5. ATTESTATION STRUCTURE (PDF/JSON)
+## Protection des remboursements et litiges Stripe (mode test)
 
-Indicators:
-- Total CO2e estimate
-- CO2e per category
-- Spending per category
-
-Metadata:
-- Dataset version
-- Timestamp
-- Unique attestation ID
-- SHA-256 hash
-
-Mandatory disclaimer:
-This attestation provides an indicative CO2e estimate based solely on spend-based methodology. It is not a regulatory carbon report and must not be used for CSRD/ESRS disclosure. The user is fully responsible for the accuracy of financial data provided.
-
-6. SECURITY AND VERIFICATION
-
-Certif-Scope ensures:
-- Digital signature or SHA-256 cryptographic hash
-- Offline verification capability
-- PDF/A stable format
-- No user data stored
-- No personal data collected
-- No external transmission of inputs
-
-7. COMPLIANCE
-
-Certif-Scope aligns with:
-- GHG Protocol (spend-based method for Scope 3 Category 1)
-- ISO 14064-1 principles (transparency, consistency, reproducibility)
-- GDPR (no data retention)
-
-Certif-Scope is not:
-- a CSRD/ESRS reporting tool
-- a certified carbon footprint
-- a physical emissions inventory
-- a Scope 1/2 calculator
-
-8. LIMITATIONS
-
-- Indicative results only
-- Based solely on financial spending
-- Do not represent actual physical emissions
-- Accuracy depends entirely on user input
-- Not suitable for regulatory reporting
-- Not an audit or certification of emissions
-
-9. PRICING MODEL
-
-- Fixed price per attestation
-- No subscription
-- No data storage
-- Instant calculation
-
-10. TARGET USERS
-
-- SMEs
-- Accounting firms
-- Banks (ESG screening)
-- Insurance companies
-- Public institutions
-- ESG consultants
-- Due diligence workflows
-
-CONCLUSION
-
-Certif-Scope generates indicative CO2e attestations based exclusively on financial spending, without Scope 1/2, without physical data, and without regulatory applicability. The method is transparent, reproducible, secure, and aligned with GHG Protocol spend-based guidance for Scope 3 Category 1.
+- Une notification Stripe signée `charge.refunded` ou `charge.dispute.created` écrit atomiquement un veto durable sur le PaymentIntent dans `carbon_payment_blocks`, révoque tout document déjà lié et enregistre l'identifiant d'événement. Cela couvre aussi un remboursement arrivé avant `checkout.session.completed`.
+- `PAID_SQL` refuse toute confirmation dont le PaymentIntent est bloqué, et la livraison recontrôle le paiement à chaque accès. Relecture idempotente, blocages et rollback sont testés sur PostgreSQL embarqué ; **une recette réelle en environnement Stripe test reste obligatoire**.
+- **Migration de schéma obligatoire dans la base de recette avant toute activation** : rejouer `npm run db:migrate` avec `CARBON_DATABASE_URL` explicitement pointée vers une base PostgreSQL de recette isolée ; une base historique ne contient pas `carbon_payment_blocks` tant que cette migration n'a pas été exécutée. Ne pas lancer sur la production sans procédure de sauvegarde et autorisation.
+- Politique de durée de conservation des veto PaymentIntent et contrôle des courses multi-processus restent à valider avant publication.

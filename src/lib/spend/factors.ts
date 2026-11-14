@@ -1,0 +1,110 @@
+export const SPEND_FACTORS = {
+  "43350": {
+    "id": "43350",
+    "row": "j9N80XtV4r7_bapfY7RE2",
+    "label": "Entreposage et services auxiliaires des transports - 2023",
+    "value": 147,
+    "unit": "kgCO2e/keuro (2023) HT",
+    "uncertainty": 80,
+    "priceYear": 2023,
+    "source": "https://data.ademe.fr/datasets/base-carboner",
+    "version": "ADEME V23.6 / extraction 2026-11-13",
+    "description": "NAF-H52 - Cette division comprend les activités d'entreposage et les services auxiliaires des transports, tels que l'exploitation des infrastructures de transport (comme les ports, aéroports, gares, infrastructures à péage, etc.), les activités de manutention du fret et l'organisation du transport de fret (acheminement des produits, recherche de transporteurs)."
+  },
+  "43370": {
+    "id": "43370",
+    "row": "VMy0nw6QhhY1_wQ1YRYXc",
+    "label": "Papier et carton - 2023",
+    "value": 357,
+    "unit": "kgCO2e/keuro (2023) HT",
+    "uncertainty": 80,
+    "priceYear": 2023,
+    "source": "https://data.ademe.fr/datasets/base-carboner",
+    "version": "ADEME V23.6 / extraction 2026-11-13",
+    "description": "NAF-C17 - Cette division couvre la fabrication de la pâte à papier, du papier ou des produits en papier recyclé ou non."
+  },
+  "43420": {
+    "id": "43420",
+    "row": "O0VNioJdck6k3kB9FC8zn",
+    "label": "Produits informatiques, électroniques et optiques - 2023",
+    "value": 216,
+    "unit": "kgCO2e/keuro (2023) HT",
+    "uncertainty": 80,
+    "priceYear": 2023,
+    "source": "https://data.ademe.fr/datasets/base-carboner",
+    "version": "ADEME V23.6 / extraction 2026-11-13",
+    "description": "NAF-C26 - Cette division couvre la fabrication d'ordinateurs, équipements informatiques, équipements de communication, composants électroniques, produits électroniques grand public, instruments de mesure, équipements médicaux (irradiation, électromédicaux), équipements optiques, ainsi que la fabrication de supports magnétiques et optiques."
+  },
+  "43445": {
+    "id": "43445",
+    "row": "lkfnfZ8MqNmvJzmwxbHfW",
+    "label": "Programmation, conseil IT / Services d'information – 2023",
+    "value": 75,
+    "unit": "kgCO2e/keuro (2023) HT",
+    "uncertainty": 80,
+    "priceYear": 2023,
+    "source": "https://data.ademe.fr/datasets/base-carboner",
+    "version": "ADEME V23.6 / extraction 2026-11-13",
+    "description": "NAF-J62_63 - Cette division couvre les activités liées aux technologies de l'information : développement, test, maintenance de logiciels, conception de systèmes informatiques, gestion des installations informatiques et traitement des données. Elle inclut également les portails de recherche sur Internet, le traitement et l’hébergement de données."
+  },
+  "43525": {
+    "id": "43525",
+    "row": "tSr4kpCs7gGf8a6neV9vp",
+    "label": "Services d'hébergement et de restauration - 2023",
+    "value": 250,
+    "unit": "kgCO2e/keuro (2023) HT",
+    "uncertainty": 80,
+    "priceYear": 2023,
+    "source": "https://data.ademe.fr/datasets/base-carboner",
+    "version": "ADEME V23.6 / extraction 2026-11-13",
+    "description": "NAF-I - Cette section comprend la mise à disposition de lieux d'hébergement pour des séjours de courte durée pour des visiteurs ou d'autres voyageurs ainsi que la fourniture de repas complets pour consommation immédiate. Cette section ne comprend pas la mise à disposition de lieux d'hébergement pour des séjours de longue durée à titre de résidence principale, classée dans les activités immobilières."
+  },
+  "43490": {
+    "id": "43490",
+    "row": "YN5UPL5RVRHQEUA4U1h9f",
+    "label": "Services de publicité et d'études de marché - 2023",
+    "value": 113,
+    "unit": "kgCO2e/keuro (2023) HT",
+    "uncertainty": 80,
+    "priceYear": 2023,
+    "source": "https://data.ademe.fr/datasets/base-carboner",
+    "version": "ADEME V23.6 / extraction 2026-11-13",
+    "description": "NAF-M73 - Cette division comprend la création de campagnes publicitaires et la diffusion de la publicité ainsi créée dans les périodiques et journaux, à la radio et à la télévision ou dans d'autres médias, ainsi que la conception de structures et de sites d'affichage"
+  },
+  "43545": {
+    "id": "43545",
+    "row": "H-x1fmNQ4spyqitT0C1-A",
+    "label": "Services juridiques et comptables/ services des sièges sociaux/ conseil de gestion - 2023",
+    "value": 67,
+    "unit": "kgCO2e/keuro (2023) HT",
+    "uncertainty": 80,
+    "priceYear": 2023,
+    "source": "https://data.ademe.fr/datasets/base-carboner",
+    "version": "ADEME V23.6 / extraction 2026-11-13",
+    "description": "NAF-M69_70 - Cette division couvre les activités juridiques, incluant la représentation en justice, le conseil, la rédaction d’actes (statuts, brevets, testaments) et les services notariaux. Elle englobe aussi la comptabilité, l’audit et la tenue de livres. Elle inclut le conseil en gestion (stratégie, finances, marketing, RH, production) ainsi que la supervision et la gestion des unités d’une entreprise, notamment les sièges sociaux..)"
+  },
+  "43565": {
+    "id": "43565",
+    "row": "KQN9xoLo7Rm55pITJHBSd",
+    "label": "Transports aériens - 2023",
+    "value": 914,
+    "unit": "kgCO2e/keuro (2023) HT",
+    "uncertainty": 80,
+    "priceYear": 2023,
+    "source": "https://data.ademe.fr/datasets/base-carboner",
+    "version": "ADEME V23.6 / extraction 2026-11-13",
+    "description": "NAF-H51 - Cette division comprend le transport aérien ou spatial de passagers et de marchandises."
+  },
+  "43570": {
+    "id": "43570",
+    "row": "kpl5W1hQD7dh_A7jwGrfw",
+    "label": "Transports terrestres et transports par conduites - 2023",
+    "value": 319,
+    "unit": "kgCO2e/keuro (2023) HT",
+    "uncertainty": 80,
+    "priceYear": 2023,
+    "source": "https://data.ademe.fr/datasets/base-carboner",
+    "version": "ADEME V23.6 / extraction 2026-11-13",
+    "description": "NAF-H49 - Cette division couvre les activités de transport de passagers et de marchandises par la route et le rail, ainsi que le transport de marchandises par conduites."
+  }
+} as const;

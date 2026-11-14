@@ -29,3 +29,10 @@ yarn-error.log*
 
 # vercel metadata (must be ignored)
 .vercel
+
+*.tsbuildinfo
+.env
+
+# customer Cloudflare exports, reconciliation files and audit data never belong in git
+.private/
+*.legacy-credits.private.json

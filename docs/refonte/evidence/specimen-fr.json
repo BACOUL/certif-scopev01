@@ -1,0 +1,90 @@
+{
+  "report": {
+    "id": "SPECIMEN",
+    "issuedAt": "2026-11-12T00:00:00.000Z",
+    "calculation": {
+      "methodology": "CS-ENERGY-1.0.0",
+      "assessment": {
+        "locale": "fr",
+        "company": "EXEMPLE / EXAMPLE SARL",
+        "identifier": "FICTIF / FICTIONAL",
+        "country": "FR",
+        "year": 2025,
+        "boundary": "Bureau / Office - France continentale",
+        "declarant": "Exemple / Example",
+        "start": "2025-01-01",
+        "end": "2025-12-31",
+        "sources": {
+          "electricity": "known",
+          "gas": "not_applicable",
+          "diesel_b7": "not_applicable",
+          "petrol_e10": "not_applicable",
+          "other_fuels": "not_applicable",
+          "refrigerants": "not_applicable",
+          "purchased_heat": "not_applicable",
+          "processes": "not_applicable",
+          "self_generation": "not_applicable"
+        },
+        "activities": [
+          {
+            "id": "office",
+            "kind": "electricity",
+            "quantity": 10000,
+            "unit": "kWh",
+            "quality": "invoice",
+            "evidence": "SPECIMEN"
+          }
+        ],
+        "exclusions": "",
+        "confirmed": true
+      },
+      "lines": [
+        {
+          "id": "office",
+          "kind": "electricity",
+          "quantity": 10000,
+          "unit": "kWh",
+          "quality": "invoice",
+          "evidence": "SPECIMEN",
+          "factor": {
+            "id": "43273",
+            "row": "JF-Ssewkm48XeLYhjMd0C",
+            "value": 0.0394,
+            "scope": 2,
+            "unit": "kWh",
+            "year": 2023,
+            "energy": 1,
+            "biogenic": 0,
+            "boundary": "Combustion à la centrale",
+            "validity": "Année 2023",
+            "source": "https://data.ademe.fr/datasets/base-carboner",
+            "version": "ADEME-V23.6",
+            "retrieved": "2026-11-12"
+          },
+          "kgCO2e": 394,
+          "biogenicCO2kg": 0,
+          "energyKwh": 10000
+        }
+      ],
+      "scope1T": 0,
+      "scope2LocationT": 0.394,
+      "totalT": 0.394,
+      "energyMwh": 10,
+      "biogenicCO2T": 0,
+      "coverage": "declared_sources_covered",
+      "missing": [],
+      "warnings": [
+        "NOT_AUDITED",
+        "SCOPE3_EXCLUDED",
+        "MARKET_BASED_NOT_CALCULATED",
+        "HISTORICAL_FACTORS",
+        "FACTOR_YEAR_DIFFERS"
+      ],
+      "saleEligible": true
+    }
+  },
+  "hash": "1ff30ed2eae9f6114e3f788ec1b5730d4e0255cef6406dea5d0d61e4acd88bd3",
+  "algorithm": "Ed25519",
+  "signature": "iDKhTA5jypUdQAbEBh8KYYllzMzP2WfxfJj5sMoTcroe2hC4AuV6OMTESg0CepSJb6hrxG9yiEDjLmh4/yiEDA==",
+  "keyId": "a567bf7be25178f8"
+}
