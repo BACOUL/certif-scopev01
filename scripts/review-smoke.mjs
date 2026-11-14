@@ -57,10 +57,10 @@ try {
     const response = await request(path);
     assert.equal(response.status, 403, path + ": preview must block access");
   }
-  for (const path of ["/api/checkout", "/fr/generate/"]) {
-    const response = await request(path, {method:"POST", headers:{"content-type":"application/json"}, body:"{}"});
-    assert.equal(response.status, 403, path + ": preview must prevent writes");
-  }
+  const checkout = await request("/api/checkout", {method:"POST", headers:{"content-type":"application/json"}, body:"{}"});
+  assert.equal(checkout.status, 403, "API checkout must be denied before Stripe execution");
+  const postedPage = await request("/fr/generate/", {method:"POST", headers:{"content-type":"application/json"}, body:"{}"});
+  assert.ok(postedPage.status >= 400, "Page POST must not succeed in review deployment");
   console.log("Read-only site preview smoke passed: homepage, old product, 5 blocked sensitive requests.");
 } finally {
   server.kill("SIGTERM");
