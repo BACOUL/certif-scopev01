@@ -61,6 +61,9 @@ export default function RegulatoryUpdate2026() {
           <a href="https://eur-lex.europa.eu/eli/dir/2026/470/oj" target="_blank" rel="noopener noreferrer" className="underline">
             Directive européenne 2026/470
           </a>
+          <Link href="/fr/fiche-carbone-fournisseur/" className="underline">
+            Découvrir la future fiche fournisseur
+          </Link>
           <Link href="/fr/product/methodology/" className="underline">
             Méthode de l’attestation actuelle
           </Link>
