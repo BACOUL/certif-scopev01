@@ -7,7 +7,7 @@ Mis en place le 26 novembre 2026 après l'annonce par le propriétaire de la deu
 - Ce fichier pilote les travaux et remplace les anciennes orientations commerciales contradictoires (notamment réserver l'attestation historique aux anciens clients). Le document REPRISE_SITE_EXISTANT_2026-11-14.md reste une archive technique utile ; ne pas reprendre la PR #107 comme base.
 - Direction de travail : préserver l'attestation historique à 89 € et préparer séparément la fiche carbone fournisseur B3. Prix de la nouvelle fiche, pays effectivement couverts, modalités de packs et périmètre de lancement à faire valider. Ne pas annoncer une conformité globale ou une obligation d'achat.
 - Aucun merge, déploiement production, paiement réel, migration de données ou changement de DNS sans autorisation explicite. Maintenir les garde-fous de la PR, aucune donnée client réelle en recette. Préserver le site qui vend.
-- **Lot courant : A — inventaire et protection du patrimoine.** A01 validé le 27 novembre 2026 ; prochain : A02.
+- **Lot courant : A — inventaire et protection du patrimoine.** A01 et A02 validés le 27 novembre 2026 ; prochain : A03.
 
 ## Protocole obligatoire à chaque reprise
 1. Lire ce fichier, le journal et les décisions. Vérifier la branche, le SHA, l'état de la PR et les écarts de production. Ne pas ouvrir un nouveau chantier si le lot courant n'est pas clôturé, sauf incident de sécurité.
@@ -21,7 +21,7 @@ Légende : [ ] non validé ; [x] preuve inscrite au journal. Un point bloqué es
 ## Lots séquentiels — critères de sortie
 ### A — Inventaire, protection et référence de production
 - [x] A01 Identifier déploiement réellement actif (projet, branche, SHA, domaines) et comparer à la base PR #108 ; intégrer les changements ultérieurs sans écraser la production.
-- [ ] A02 Inventorier routes FR/EN/DE, pages SEO, composants, formulaire, moteur, PDF, vérification, commandes, crédits, packs, services, emails, Stripe et flux de données.
+- [x] A02 Inventorier routes FR/EN/DE et 21 autres langues européennes, pages SEO, composants, formulaire, moteur, PDF, vérification, commandes, crédits, packs, services, emails, Stripe et flux de données.
 - [ ] A03 Capturer référence fonctionnelle et visuelle de l'ancien site et PDF avec données fictives ; définir tests de non-régression et inventaire des URL.
 - [ ] A04 Auditer présence de secrets dans dépôt/historique, notamment .env.local (sans afficher ses valeurs) ; si exposition, bloquer, organiser révocation/rotation avec accord et sécuriser.
 - [ ] A05 Documenter stratégie de sauvegarde et retour arrière, isoler les environnements, maintenir verrou preview et déploiement automatique désactivé.
@@ -55,9 +55,9 @@ Légende : [ ] non validé ; [x] preuve inscrite au journal. Un point bloqué es
 **Sortie :** PDF et formulaires testés avec preuves visuelles et fonctionnelles, aucun remplacement du produit historique.
 
 ### E — Site, contenu et référencement
-- [ ] E01 Préserver design, navigation, responsive, routes et pages historiques ; différencier deux offres sur accueil/produit/prix sans CTA trompeurs.
+- [ ] E01 Préserver design, navigation, responsive, routes et pages historiques des 24 langues ; différencier deux offres sur accueil/produit/prix sans CTA trompeurs.
 - [ ] E02 Comparatif d'usages, exemples PDF, FAQ, méthode, restrictions réglementaires, prix TTC/HT selon obligations, parcours avant achat.
-- [ ] E03 Vérifier intégralité des textes FR/EN/DE, erreurs, emails, pages légales et SEO ; pas de langue ou de pays vendu sans support correspondant.
+- [ ] E03 Vérifier intégralité des textes FR/EN/DE, erreurs, emails, pages légales et SEO ; préserver les parcours historiques des 21 autres langues et leurs PDF/emails ; pas de langue ou de pays vendu sans support correspondant.
 - [ ] E04 Préserver URL, redirections, liens internes, canonicals, hreflang, sitemap, robots, données structurées ; pages réglementaires sourcées utiles, pas de pages dupliquées.
 - [ ] E05 Recette UX desktop/mobile, accessibilité clavier/contraste, performance, formulaires, analytics et consentement approprié ; préparer suivi Search Console et conversions.
 **Sortie :** preview visuelle comparable, liens et indexabilité de production vérifiés en recette, aucune modification publique.
@@ -73,7 +73,7 @@ Légende : [ ] non validé ; [x] preuve inscrite au journal. Un point bloqué es
 
 ### G — Recette de release
 - [ ] G01 CI sur SHA candidat : npm ci, tests moteur/historique, tests intégration, TypeScript, build, lint fonctionnel, audit dépendances et smoke HTTP.
-- [ ] G02 Recette navigateur desktop/mobile des deux parcours FR/EN/DE, PDF contrôlés visuellement et cas d'erreur ; validation de non-régression des routes/SEO.
+- [ ] G02 Recette navigateur desktop/mobile des deux parcours FR/EN/DE et du parcours historique dans les 21 autres langues, PDF contrôlés visuellement et cas d'erreur ; validation de non-régression des routes/SEO.
 - [ ] G03 Recette bout en bout avec Stripe test, crédits, emails, vérification, accès et restauration ; rapport résultats et défauts.
 - [ ] G04 Revue finale juridique/méthodologique et sécurité, vérification de la matrice B3, validation des prix et périmètre.
 - [ ] G05 Préparer candidat en environnement isolé avec garde-fous de preview ; plan de transition des verrous API/noindex vers configuration de production testé sans activer de paiements réels.
@@ -108,5 +108,7 @@ Internationalisation géographique supplémentaire, nouvelles offres, campagnes 
 | 2026-11-26 | INIT | PR #108 vérifiée ouverte, brouillon, non fusionnée ; tête c041c22e8866a46f03fb6dfd5a5d36391cc5d674 avant création du plan. Historique CI success constaté ; aucun nouveau test exécuté. | Plan initial créé. Prochain : A01, puis A02–A06. |
 
 | 2026-11-27 | A01 | Vercel : [production](https://vercel.com/jeason1/certif-scopev01/477nglz8o) ID `dpl_89K5rMzS2fyFDmneFfhYF4XwqDiv`, READY, alias certif-scope.com et www.certif-scope.com, branche `fix/multilingual-fr-en-de-20261001`, SHA `71e6cd87a8c04041ff58be4db99a6fa49cb8c40a`. Projet de revue séparé `certif-scope-revue-2026`, staging READY ID `dpl_9pm7ybrxmarqu6jzWvt5gFwQvZPk`, SHA `c041c22e8866a46f03fb6dfd5a5d36391cc5d674`. [Comparaison GitHub](https://github.com/BACOUL/certif-scopev01/compare/71e6cd87a8c04041ff58be4db99a6fa49cb8c40a...c2ab0df29c0f5926ecc0220b56c42f03e2340871) : 57 commits d'avance, 0 de retard, 29 fichiers (dont plan directeur), aucune suppression de fichier ; branche de base identique à production. PR brouillon, vercel.json désactive déploiements Git. | A01 validé par métadonnées Vercel et comparaison GitHub ; pas de test HTTP, paiement ou déploiement. Preview en retard d'un commit documentaire avant cette mise à jour. Prochain : A02. |
+
+| 2026-11-27 | A02 | [Inventaire de référence](https://github.com/BACOUL/certif-scopev01/blob/refonte/conserver-site-existant-20261114/docs/refonte/A02_INVENTAIRE_PRODUCTION.md), commit `9f11ec98e17d0dd378137dc43edec2aa736d1202` : 120 fichiers page, 16 API, 108 URL des sitemaps, 24 langues, 7 catégories historiques, packs et dépendances. Pages publiques FR/DE consultées via cache web ; EN/sitemap live non récupérés. | Inventaire statique validé, pas de recette live ou de services externes ; A03 capture visuelle et comportement réel, A04/A06 sécurité/coûts. Aucun paiement, API commerciale ni déploiement. |
 
 Pour chaque validation : ajouter une ligne avec ID, commit de code, lien vers résultat/test, date, limite et prochaine action. Aucun secret ni donnée client dans ce fichier.
