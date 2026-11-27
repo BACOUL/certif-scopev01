@@ -95,7 +95,7 @@ jobs:
                 assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false);
                 assert.equal(errors.length,0,errors.join(";"));
                 console.log("BLOCKED",locale,JSON.stringify(attempted));
-                const unexpected=attempted.filter(s=>s.includes(origin+"/api/")&&!["GET "+origin+"/api/sample","HEAD "+origin+"/api/sample","GET "+origin+"/api/attestation/eu-sample","HEAD "+origin+"/api/attestation/eu-sample"].includes(s));
+                const unexpected=attempted.filter(s=>s.includes(origin+"/api/")&&!["GET "+origin+"/api/sample","HEAD "+origin+"/api/sample","GET "+origin+"/api/attestation/eu-sample","HEAD "+origin+"/api/attestation/eu-sample"].includes(s.replace(/\/$/,"")));
                 assert.deepEqual(unexpected,[],"unexpected API attempt (all blocked)");
                 await page.screenshot({path:output+"/"+locale+"-recap.png",fullPage:true});
                 results.push({locale,status:"pass",categories:7,displayedTotal:text.match(/1[.,]9(?:2)?\b/)[0],blockedExternalRequests:attempted.length,errors});
