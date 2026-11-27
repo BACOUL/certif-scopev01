@@ -48,10 +48,10 @@ Légende : [ ] non validé ; [x] preuve inscrite au journal. Un point bloqué es
 **Sortie :** tests reproductibles, cas de référence chiffrés et validation méthodologique ; facteurs et limites traçables.
 
 ### D — PDF et parcours produits
-- [ ] D01 Améliorer PDF historique sans casser format/droits/vérification ; sources, catégories, réserves, cohérence calcul/PDF, date, identité, version.
+- [ ] D01 Améliorer PDF historique à partir du gabarit commun existant (logo, hiérarchie, dix rubriques, QR, deux pages comme cible), sans casser format/droits/vérification ; sources, catégories, réserves, cohérence calcul/PDF, date, identité, version. Voir B03_METHODE_ET_CONSERVATION_PDF.md.
 - [ ] D02 Adapter seulement les champs et textes du formulaire et du PDF historiques dont la modification est justifiée par B/C. Le formulaire physique et son spécimen restent isolés, hors première livraison.
 - [ ] D03 Vérification documentaire et identifiants, intégrité, accès sécurisé, conservation et récupération ; ne pas confondre authenticité du fichier et véracité des déclarations.
-- [ ] D04 Préserver le gabarit historique de deux pages et ses 24 langues ; actualiser les textes nécessaires, contrôler accents, valeurs, unités, sauts de page et pagination ; spécimens fictifs identifiés.
+- [ ] D04 Préserver le gabarit historique de deux pages et ses 24 langues ; actualiser les textes nécessaires, contrôler accents, valeurs, unités, sauts de page et pagination ; spécimens fictifs identifiés. Ne pas réduire la lisibilité ou retirer des réserves pour tenir sur deux pages ; proposer une annexe séparée si indispensable, à valider avant changement.
 - [ ] D05 Tester erreurs de génération, reprises, cohérence formulaire/calcul/CSV/PDF, données minimales et maximales.
 **Sortie :** PDF et formulaires testés avec preuves visuelles et fonctionnelles, aucun remplacement du produit historique.
 
@@ -168,3 +168,6 @@ Pour chaque validation : ajouter une ligne avec ID, commit de code, lien vers r�
 | 2026-11-27 | B01 complément | [Dossier B01](B01_REGLEMENTATION_EUROPEENNE.md), commit 8f8aac80b1cd5dd98de42ab76a56cdca2f25e197. Exemption transitoire facultative des États pour certains exercices 2025/2026, délai transposition 19/03/2027, distinction ESRS 2026/1563 et norme volontaire 2026/1560. Recherche de correctifs non concluante ; accès direct EUR-Lex et notifications nationales bloqué. | B01 non cochée ; recontrôler versions et transpositions avant B05/publication. Aucune conclusion juridique nationale. |
 
 | 2026-11-27 | B02 préparation | [Matrice B3](B02_MATRICE_B3.md), commit f5724f160102be7d47d8bc702165c107c86d03c1 : 9 axes comparés au code spend-based et au prototype physique isolé. Lacunes : énergie, séparation scopes, facteurs historiques, catégories non supportées, pays/année/langues, effectif, scope 3, revendications commerciales. Tests d'acceptation proposés. | B02 non cochée : confronter aux PDF/formulaires et sources complètes ; B03/B04 doivent arbitrer périmètre et méthode, pas de nouveau produit automatique. A04/A05/A06 et B01 restent ouverts. Aucun changement applicatif ni production. |
+
+
+| 2026-11-27 | Décision propriétaire + B03 | Conserver la base du document existant. [Cadrage B03](B03_METHODE_ET_CONSERVATION_PDF.md), commit a73ae8a72d303e5dbd863d41d3675d5013fee292 : matrice des dix rubriques, base commune 24 langues, séparation dépenses/physique/scope 3, sources primaires GHG Protocol/ADEME/UE, schéma signé historique et besoin de versionner toute nouvelle couverture vérifiable. | B03 ouvert : facteurs et droits à vérifier, allégations et revue qualifiée, périmètre à arbitrer en B04. Aucun changement de gabarit, code, PDF émis, paiement ou production. |
