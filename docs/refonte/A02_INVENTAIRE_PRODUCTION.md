@@ -1,0 +1,272 @@
+# A02 — Inventaire de référence du site historique (27 novembre 2026)
+Source immuable : [commit de production](https://github.com/BACOUL/certif-scopev01/tree/71e6cd87a8c04041ff58be4db99a6fa49cb8c40a) ; domaine canonique https://www.certif-scope.com ; A01 a confirmé l'alias Vercel. Inventaire statique complet des chemins page/API et URL des deux sitemaps ; arbre Git de 609 entrées, non tronqué. Existence du code ne prouve pas l'accessibilité ni le bon fonctionnement réel.
+
+## Patrimoine commercial à préserver
+- Attestation indicative spend-based 89 €, paiement unique ; packs 5/10/50 à 349/590/2450 € selon page publique. Ne jamais visiter les liens checkout-pack en recette publique (GET créant une session Stripe).
+- Accueil, produit, prix, formulaire, aide à la décision avant achat, exemple gratuit, méthodologie, conformité, vérification QR et démo, contact, partenaires, politiques, guides PME, fournisseurs, banque, assurance, appels d'offres, 3 guides marchés publics 2026. Anciennes routes et redirections à préserver.
+- 24 langues : FR/EN/DE (parcours principaux et pages secondaires) + BG HR CS DA NL ET FI EL HU GA IT LV LT MT PL PT RO SK SL ES SV. Les 21 autres ont accueil/formulaire/succès/vérification via routes dynamiques, PDF/exemple/email localisés selon code et dossier historique ; pas 24 sites éditoriaux complets. Choix indépendant langue site/document. Paiement irlandais en anglais selon recette historique. La nouvelle fiche peut avoir un périmètre distinct ; aucune suppression de l'offre historique.
+- Moteur historique CS-SB-v1 : 7 catégories (IT, services, biens, logistique, voyages, hébergement, autres), coefficients existants 0,30/0,22/0,45/0,18/0,25/0,27/0,25 ; validation de provenance et méthode au lot C, aucun changement de facteur ici.
+- PDF historique deux pages, gabarit commun, signature, identifiant, QR, version/méthode ; fichiers src/lib/attestation-pdf-template.ts, attestation-pdf-copy.ts, eu-attestation-pdf.ts, attestation-i18n/* ; lib/attestations/attestation.en.html (ancien fichier, usage à confirmer). PDFShift utilisé pour route historique ; renderer européen distinct.
+- Parcours : formulaire -> checkout Stripe -> retour succès / webhook checkout.session.completed -> génération PDF après contrôle de session ou autorisation de téléchargement par clé -> livraison Resend ; données de commande et métadonnées à cartographier plus finement en F. Vérification QR par tiers. Packs : achat -> clé/crédits Cloudflare KV -> vérification/consommation -> autorisation HMAC limitée -> PDF. Contrôler compatibilité anciennes signatures/clés ; ne pas accéder à de vraies commandes.
+- Services identifiés par imports/appels : Vercel/Next.js, Stripe, Cloudflare KV, PDFShift, Resend ; analytics Vercel (activation réelle à vérifier), ressources images/fonts, attribution cs_ref et cookie certif_scope_ref, routes outreach/campaign, administration de clés. Auditer droits et coûts en A04/A06 puis F. Ne pas déclencher ces routes.
+- Contrôles historiques disponibles : scripts/check-eu-browser.cjs, scripts/check-eu-contracts.cjs, scripts/check-home-parity.cjs, scripts/check-multilingual-browser.cjs, scripts/check-multilingual.cjs, scripts/check-pdf-parity.cjs, scripts/check-ui-regressions.cjs. Voir [recette européenne historique](https://github.com/BACOUL/certif-scopev01/blob/71e6cd87a8c04041ff58be4db99a6fa49cb8c40a/docs/multilingual/eu24-verification.md) : résultats anciens, non rejoués.
+- Risques à vérifier : concurrence lecture/écriture KV sur consommation de crédits (ne pas supposer atomicité), autorisations admin, sources coefficients, middleware historique vs nouveau proxy, conservation SEO et 24 langues. Revoir avant ouverture commerciale.
+
+## Pages publiques consultées
+Le 27/11 : consultation via index web des pages FR accueil/prix/produit et DE accueil ; contenu fourni par cache daté, **pas** preuve de disponibilité HTTP actuelle. EN et sitemap live non récupérés par cet outil. Vercel READY confirmé en A01. Aucun navigateur visuel, aucun paiement, aucune route API commerciale appelé. Captures/recette HTTP réelle et spécimens fictifs relèvent de A03 ; tests complets en G.
+
+## Inventaire des 120 fichiers page (inclut routes dynamiques et anciennes routes redirigées)
+- `src/app/[locale]/generate/page.tsx`
+- `src/app/[locale]/page.tsx`
+- `src/app/[locale]/success/page.tsx`
+- `src/app/[locale]/verify/page.tsx`
+- `src/app/cancel/page.tsx`
+- `src/app/contact/page.tsx`
+- `src/app/cookies/page.tsx`
+- `src/app/data-processing/page.tsx`
+- `src/app/de/abbruch/page.tsx`
+- `src/app/de/agb/page.tsx`
+- `src/app/de/bank-esg-unterlagen-kmu/page.tsx`
+- `src/app/de/co2-angaben-ausschreibung/page.tsx`
+- `src/app/de/co2-bescheinigung-kmu/page.tsx`
+- `src/app/de/co2-bescheinigung/page.tsx`
+- `src/app/de/co2-bilanz-kmu/beispiel/page.tsx`
+- `src/app/de/co2-bilanz-kmu/kosten/page.tsx`
+- `src/app/de/co2-bilanz-kmu/page.tsx`
+- `src/app/de/co2-bilanz-kmu/pdf-vorlage/page.tsx`
+- `src/app/de/co2-bilanz-kmu/pflicht/page.tsx`
+- `src/app/de/co2-bilanz-vs-co2-bescheinigung/page.tsx`
+- `src/app/de/co2-dokument-lieferanten/page.tsx`
+- `src/app/de/co2-fussabdruck-unternehmen/page.tsx`
+- `src/app/de/co2-nachweis-lieferanten/page.tsx`
+- `src/app/de/cookies/page.tsx`
+- `src/app/de/datenschutz/page.tsx`
+- `src/app/de/datenverarbeitung/page.tsx`
+- `src/app/de/erfolg/page.tsx`
+- `src/app/de/erstellen/page.tsx`
+- `src/app/de/grenzen-und-compliance/page.tsx`
+- `src/app/de/impressum/page.tsx`
+- `src/app/de/kontakt/page.tsx`
+- `src/app/de/kostenlose-co2-bilanz-tools/page.tsx`
+- `src/app/de/kostenloser-co2-rechner-bank/page.tsx`
+- `src/app/de/methodik/page.tsx`
+- `src/app/de/page.tsx`
+- `src/app/de/partner/page.tsx`
+- `src/app/de/preise/page.tsx`
+- `src/app/de/produkt/page.tsx`
+- `src/app/de/pruefen/demo/page.tsx`
+- `src/app/de/pruefen/page.tsx`
+- `src/app/de/scope-1-2-3-erklaert/page.tsx`
+- `src/app/de/technische-pruefung/page.tsx`
+- `src/app/de/versicherung-esg-unterlagen-kmu/page.tsx`
+- `src/app/de/warum-unternehmen-co2-angaben-anfordern/banken-versicherungen/page.tsx`
+- `src/app/de/warum-unternehmen-co2-angaben-anfordern/co2-bescheinigung-ausschreibung/page.tsx`
+- `src/app/de/warum-unternehmen-co2-angaben-anfordern/co2-bescheinigung-kmu/page.tsx`
+- `src/app/de/warum-unternehmen-co2-angaben-anfordern/co2-bescheinigung-lieferanten/page.tsx`
+- `src/app/de/warum-unternehmen-co2-angaben-anfordern/co2-nachweis-unternehmen/page.tsx`
+- `src/app/de/warum-unternehmen-co2-angaben-anfordern/leitfaden/page.tsx`
+- `src/app/de/warum-unternehmen-co2-angaben-anfordern/page.tsx`
+- `src/app/en/[...slug]/page.tsx`
+- `src/app/en/page.tsx`
+- `src/app/en/success/page.tsx`
+- `src/app/error/page.tsx`
+- `src/app/fr/attestation-carbone/page.tsx`
+- `src/app/fr/attestation-co2-pme/page.tsx`
+- `src/app/fr/bilan-carbone-appel-offres/page.tsx`
+- `src/app/fr/bilan-carbone-assurance-pme/page.tsx`
+- `src/app/fr/bilan-carbone-banque-pme/page.tsx`
+- `src/app/fr/bilan-carbone-entreprise/page.tsx`
+- `src/app/fr/bilan-carbone-fournisseur/page.tsx`
+- `src/app/fr/bilan-carbone-gratuit-banque/page.tsx`
+- `src/app/fr/bilan-carbone-pme/cout/page.tsx`
+- `src/app/fr/bilan-carbone-pme/exemple/page.tsx`
+- `src/app/fr/bilan-carbone-pme/modele-pdf/page.tsx`
+- `src/app/fr/bilan-carbone-pme/obligation/page.tsx`
+- `src/app/fr/bilan-carbone-pme/page.tsx`
+- `src/app/fr/cancel/page.tsx`
+- `src/app/fr/contact/page.tsx`
+- `src/app/fr/cookies/page.tsx`
+- `src/app/fr/critere-environnemental-appel-offres-comment-repondre/page.tsx`
+- `src/app/fr/data-processing/page.tsx`
+- `src/app/fr/difference-bilan-carbone-attestation-co2e/page.tsx`
+- `src/app/fr/document-carbone-fournisseur/page.tsx`
+- `src/app/fr/exemple-marche-public-critere-environnemental-10-pour-cent/page.tsx`
+- `src/app/fr/generate/page.tsx`
+- `src/app/fr/legal/page.tsx`
+- `src/app/fr/marches-publics-2026-obligations-environnementales/page.tsx`
+- `src/app/fr/outils-gratuits-bilan-carbone/page.tsx`
+- `src/app/fr/page.tsx`
+- `src/app/fr/partners/page.tsx`
+- `src/app/fr/pricing/page.tsx`
+- `src/app/fr/privacy/page.tsx`
+- `src/app/fr/product/compliance/page.tsx`
+- `src/app/fr/product/methodology/page.tsx`
+- `src/app/fr/product/page.tsx`
+- `src/app/fr/scope-1-2-3-explication/page.tsx`
+- `src/app/fr/terms/page.tsx`
+- `src/app/fr/verify/demo/page.tsx`
+- `src/app/fr/verify/page.tsx`
+- `src/app/fr/verify/technical/page.tsx`
+- `src/app/fr/why-companies-ask/attestation-carbone-appel-offres/page.tsx`
+- `src/app/fr/why-companies-ask/attestation-carbone-fournisseur/page.tsx`
+- `src/app/fr/why-companies-ask/attestation-carbone-pme/page.tsx`
+- `src/app/fr/why-companies-ask/exigences-co2-banques-assurances/page.tsx`
+- `src/app/fr/why-companies-ask/guide/page.tsx`
+- `src/app/fr/why-companies-ask/page.tsx`
+- `src/app/fr/why-companies-ask/preuve-carbone-entreprise/page.tsx`
+- `src/app/generate/page.tsx`
+- `src/app/legal/page.tsx`
+- `src/app/page.tsx`
+- `src/app/partners/page.tsx`
+- `src/app/pricing/page.tsx`
+- `src/app/privacy/page.tsx`
+- `src/app/product/methodology/compliance/page.tsx`
+- `src/app/product/methodology/page.tsx`
+- `src/app/product/page.tsx`
+- `src/app/regulations/page.tsx`
+- `src/app/signin/page.tsx`
+- `src/app/signup/page.tsx`
+- `src/app/success/page.tsx`
+- `src/app/terms/page.tsx`
+- `src/app/verify/page.tsx`
+- `src/app/verify/technical/page.tsx`
+- `src/app/why-companies-ask/carbon-attestation-smes/page.tsx`
+- `src/app/why-companies-ask/carbon-attestation-tender/page.tsx`
+- `src/app/why-companies-ask/co2-requirements-banks-insurers/page.tsx`
+- `src/app/why-companies-ask/company-carbon-proof/page.tsx`
+- `src/app/why-companies-ask/page.tsx`
+- `src/app/why-companies-ask/supplier-carbon-attestation/page.tsx`
+
+## Inventaire des 16 routes API (ne pas appeler sur la production pour les tests)
+- `src/app/api/admin/create-key/route.ts`
+- `src/app/api/attestation/eu-sample/route.ts`
+- `src/app/api/attestation/eu/route.ts`
+- `src/app/api/attestation/issue/route.ts`
+- `src/app/api/campaign/purchase-proof/route.ts`
+- `src/app/api/check-key/route.ts`
+- `src/app/api/checkout-pack/route.ts`
+- `src/app/api/checkout/route.ts`
+- `src/app/api/key/consume/route.ts`
+- `src/app/api/keys/route.ts`
+- `src/app/api/outreach/send/route.ts`
+- `src/app/api/redeem-key/route.ts`
+- `src/app/api/sample/route.ts`
+- `src/app/api/session-type/route.ts`
+- `src/app/api/stripe/session-type/route.ts`
+- `src/app/api/stripe/webhook/route.ts`
+
+## URL listées dans les deux sitemaps du commit (108 uniques)
+- https://www.certif-scope.com/fr/
+- https://www.certif-scope.com/fr/attestation-co2-pme/
+- https://www.certif-scope.com/fr/bilan-carbone-pme/
+- https://www.certif-scope.com/fr/outils-gratuits-bilan-carbone/
+- https://www.certif-scope.com/fr/bilan-carbone-gratuit-banque/
+- https://www.certif-scope.com/fr/bilan-carbone-pme/obligation/
+- https://www.certif-scope.com/fr/bilan-carbone-pme/cout/
+- https://www.certif-scope.com/fr/bilan-carbone-pme/exemple/
+- https://www.certif-scope.com/fr/bilan-carbone-fournisseur/
+- https://www.certif-scope.com/fr/bilan-carbone-appel-offres/
+- https://www.certif-scope.com/fr/bilan-carbone-banque-pme/
+- https://www.certif-scope.com/fr/bilan-carbone-assurance-pme/
+- https://www.certif-scope.com/fr/document-carbone-fournisseur/
+- https://www.certif-scope.com/fr/difference-bilan-carbone-attestation-co2e/
+- https://www.certif-scope.com/fr/scope-1-2-3-explication/
+- https://www.certif-scope.com/fr/product/
+- https://www.certif-scope.com/fr/product/methodology/
+- https://www.certif-scope.com/fr/product/compliance/
+- https://www.certif-scope.com/fr/pricing/
+- https://www.certif-scope.com/fr/generate/
+- https://www.certif-scope.com/fr/verify/
+- https://www.certif-scope.com/fr/verify/demo/
+- https://www.certif-scope.com/fr/why-companies-ask/
+- https://www.certif-scope.com/fr/why-companies-ask/attestation-carbone-pme/
+- https://www.certif-scope.com/fr/why-companies-ask/attestation-carbone-appel-offres/
+- https://www.certif-scope.com/fr/why-companies-ask/exigences-co2-banques-assurances/
+- https://www.certif-scope.com/fr/contact/
+- https://www.certif-scope.com/fr/legal/
+- https://www.certif-scope.com/fr/privacy/
+- https://www.certif-scope.com/fr/terms/
+- https://www.certif-scope.com/fr/cookies/
+- https://www.certif-scope.com/fr/data-processing/
+- https://www.certif-scope.com/de/
+- https://www.certif-scope.com/de/co2-bescheinigung/
+- https://www.certif-scope.com/de/co2-bescheinigung-kmu/
+- https://www.certif-scope.com/de/co2-bilanz-kmu/
+- https://www.certif-scope.com/de/kostenlose-co2-bilanz-tools/
+- https://www.certif-scope.com/de/kostenloser-co2-rechner-bank/
+- https://www.certif-scope.com/de/co2-angaben-ausschreibung/
+- https://www.certif-scope.com/de/co2-nachweis-lieferanten/
+- https://www.certif-scope.com/de/co2-dokument-lieferanten/
+- https://www.certif-scope.com/de/co2-bilanz-kmu/kosten/
+- https://www.certif-scope.com/de/co2-bilanz-kmu/beispiel/
+- https://www.certif-scope.com/de/co2-bilanz-kmu/pdf-vorlage/
+- https://www.certif-scope.com/de/co2-bilanz-kmu/pflicht/
+- https://www.certif-scope.com/de/co2-fussabdruck-unternehmen/
+- https://www.certif-scope.com/de/co2-bilanz-vs-co2-bescheinigung/
+- https://www.certif-scope.com/de/scope-1-2-3-erklaert/
+- https://www.certif-scope.com/de/bank-esg-unterlagen-kmu/
+- https://www.certif-scope.com/de/versicherung-esg-unterlagen-kmu/
+- https://www.certif-scope.com/de/produkt/
+- https://www.certif-scope.com/de/methodik/
+- https://www.certif-scope.com/de/grenzen-und-compliance/
+- https://www.certif-scope.com/de/preise/
+- https://www.certif-scope.com/de/erstellen/
+- https://www.certif-scope.com/de/pruefen/
+- https://www.certif-scope.com/de/pruefen/demo/
+- https://www.certif-scope.com/de/technische-pruefung/
+- https://www.certif-scope.com/de/warum-unternehmen-co2-angaben-anfordern/
+- https://www.certif-scope.com/de/warum-unternehmen-co2-angaben-anfordern/leitfaden/
+- https://www.certif-scope.com/de/warum-unternehmen-co2-angaben-anfordern/co2-bescheinigung-ausschreibung/
+- https://www.certif-scope.com/de/warum-unternehmen-co2-angaben-anfordern/co2-bescheinigung-kmu/
+- https://www.certif-scope.com/de/warum-unternehmen-co2-angaben-anfordern/co2-nachweis-unternehmen/
+- https://www.certif-scope.com/de/warum-unternehmen-co2-angaben-anfordern/banken-versicherungen/
+- https://www.certif-scope.com/de/partner/
+- https://www.certif-scope.com/de/kontakt/
+- https://www.certif-scope.com/de/impressum/
+- https://www.certif-scope.com/de/datenschutz/
+- https://www.certif-scope.com/de/agb/
+- https://www.certif-scope.com/de/cookies/
+- https://www.certif-scope.com/de/datenverarbeitung/
+- https://www.certif-scope.com/en/
+- https://www.certif-scope.com/en/generate/
+- https://www.certif-scope.com/en/product/
+- https://www.certif-scope.com/en/pricing/
+- https://www.certif-scope.com/en/product/methodology/
+- https://www.certif-scope.com/en/product/compliance/
+- https://www.certif-scope.com/en/contact/
+- https://www.certif-scope.com/en/verify/
+- https://www.certif-scope.com/en/legal/
+- https://www.certif-scope.com/en/privacy/
+- https://www.certif-scope.com/en/terms/
+- https://www.certif-scope.com/en/cookies/
+- https://www.certif-scope.com/en/data-processing/
+- https://www.certif-scope.com/fr/marches-publics-2026-obligations-environnementales/
+- https://www.certif-scope.com/fr/critere-environnemental-appel-offres-comment-repondre/
+- https://www.certif-scope.com/fr/exemple-marche-public-critere-environnemental-10-pour-cent/
+- https://www.certif-scope.com/bg/
+- https://www.certif-scope.com/hr/
+- https://www.certif-scope.com/cs/
+- https://www.certif-scope.com/da/
+- https://www.certif-scope.com/nl/
+- https://www.certif-scope.com/et/
+- https://www.certif-scope.com/fi/
+- https://www.certif-scope.com/el/
+- https://www.certif-scope.com/hu/
+- https://www.certif-scope.com/ga/
+- https://www.certif-scope.com/it/
+- https://www.certif-scope.com/lv/
+- https://www.certif-scope.com/lt/
+- https://www.certif-scope.com/mt/
+- https://www.certif-scope.com/pl/
+- https://www.certif-scope.com/pt/
+- https://www.certif-scope.com/ro/
+- https://www.certif-scope.com/sk/
+- https://www.certif-scope.com/sl/
+- https://www.certif-scope.com/es/
+- https://www.certif-scope.com/sv/
+
+## Redirections et SEO
+Source : next.config.js, middleware.ts, src/lib/site-locales.ts, src/lib/eu-locales-core.ts, src/app/[locale]/page.tsx, src/app/en/[...slug]/page.tsx, public/robots.txt, public/sitemap*.xml. www canonique, slash final, redirections anciennes FR et DE. Les routes dynamiques EN et EU ne doivent pas être confondues avec une route unique réellement accessible. Développer une matrice de tests URL/langues et vérifier noindex approprié ; ne pas reprendre globalement le noindex de preview en production.
+
+## Critère A02
+Inventaire des éléments présents dans le code et de leurs dépendances établi ; aucune validation fonctionnelle des services ou URL live à ce stade. A03 doit capturer le comportement public réel et compléter les écarts ; A04/A05/A06 documentent sécurité, isolation et coûts.
