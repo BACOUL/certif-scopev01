@@ -1,0 +1,69 @@
+name: B03 - Source publique ADEME
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - refonte/conserver-site-existant-20261114
+    paths:
+      - '.github/workflows/b03-ademe-public-factors.yml'
+permissions:
+  contents: read
+jobs:
+  public-factors:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Fetch and inventory public monetary factors only
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json, urllib.request, urllib.parse, hashlib, re, unicodedata, time, sys
+          base = 'https://data.ademe.fr/data-fair/api/v1/datasets/base-carboner'
+          def get(url):
+              assert url.startswith(base)
+              req=urllib.request.Request(url,headers={'Accept':'application/json','User-Agent':'Certif-Scope-methodology-review/1.0'})
+              with urllib.request.urlopen(req,timeout=45) as res:
+                  raw=res.read(30_000_001)
+              if len(raw)>30_000_000: raise ValueError('Public response too large')
+              return json.loads(raw),hashlib.sha256(raw).hexdigest()
+          def norm(s):
+              return ''.join(c for c in unicodedata.normalize('NFKD',str(s).lower()) if not unicodedata.combining(c))
+          meta,digest=get(base)
+          keys=[x['key'] for x in meta['schema']]
+          print('Public dataset:',meta.get('title'),'updated:',meta.get('updatedAt'),'metadata sha256:',digest)
+          print('Schema:',json.dumps(keys,ensure_ascii=False))
+          fields=['Type_Ligne',"Identifiant_de_l'élément","Type_de_l'élément","Statut_de_l'élément",'Nom_base_français','Nom_attribut_français','Nom_frontière_français','Code_de_la_catégorie','Unité_français','Contributeur','Source']
+          extra=[k for k in keys if re.search(r'total|validit|incertitude|localisation|date_de|date_d|commentaire',norm(k)) and not re.search(r'anglais|espagnol',norm(k))]
+          fields=list(dict.fromkeys(fields+extra+['_id']))
+          assert all(k in keys for k in fields if k!='_id')
+          # Data Fair full-text filter is only a discovery step; validate contributor and
+          # actual row type and units locally. Never accept unfiltered matches as factors.
+          query={'qs':'Contributeur:"SDES/INSEE"','size':500,'select':','.join(fields)}
+          url=base+'/lines?'+urllib.parse.urlencode(query)
+          rows=[]; seen=set(); expected=None
+          for _ in range(10):
+              result,digest=get(url)
+              batch=result.get('results')
+              if not isinstance(batch,list): raise ValueError('Unexpected public API response')
+              if expected is None: expected=result.get('total')
+              print('Page count:',len(batch),'reported total:',result.get('total'),'sha256:',digest)
+              for row in batch:
+                  identity=row.get('_id') or json.dumps(row,sort_keys=True,ensure_ascii=False)
+                  if identity in seen: raise ValueError('Duplicate row across pages')
+                  seen.add(identity);rows.append(row)
+              url=result.get('next')
+              if not url: break
+              if not isinstance(url,str) or not url.startswith(base+'/lines?'): raise ValueError('Unexpected pagination URL')
+              time.sleep(0.25)
+          else: raise ValueError('Pagination limit exceeded')
+          if isinstance(expected,int) and len(rows)!=expected: raise ValueError('Incomplete result')
+          def is_monetary(row):
+              u=norm(row.get('Unité_français',''))
+              return bool(re.search(r'€|eur',u))
+          candidates=[r for r in rows if r.get('Contributeur')=='SDES/INSEE' and r.get('Type_Ligne')=='Elément' and r.get("Type_de_l'élément")=="Facteur d'émission" and str(r.get("Statut_de_l'élément",'')).startswith('Valide') and is_monetary(r)]
+          print('Contributor rows:',len(rows),'valid monetary candidates:',len(candidates))
+          if not candidates: raise ValueError('No verified monetary candidates; do not infer factors')
+          for r in candidates:
+              print('CANDIDATE '+json.dumps({k:r.get(k) for k in fields if r.get(k) is not None},ensure_ascii=False,separators=(',',':')))
+          print('Discovery only. Values not approved for Certif-Scope; verify geography, prices, period, boundaries, and category mapping.')
+          PY
