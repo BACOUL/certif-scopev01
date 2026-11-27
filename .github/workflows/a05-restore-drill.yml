@@ -48,6 +48,7 @@ jobs:
             if(n==="next/server")return {NextResponse:{json:(data,opts)=>Response.json(data,opts)}};
             throw Error("Unexpected module");
           },process:{env},fetch:localFetch,console,Date,Number});
+          (async () => {
           const now = new Date();
           const future = new Date(now.getTime()+86400000).toISOString();
           const past = new Date(now.getTime()-86400000).toISOString();
@@ -93,4 +94,5 @@ jobs:
           assert.equal(kv.get("processed:fixture-order").product,"certif-scope-pack");
           console.log("PASS: synthetic encrypted snapshot, exact restoration, tamper rejection, nonempty destination rejection, historical key balance/expiry/legacy/missing semantics, processed marker preserved");
           console.log("Scope: in-memory exercise only; no Cloudflare network, production export, real credentials or client data.");
+          })().catch(error => { console.error(error); process.exitCode = 1; });
           NODE
