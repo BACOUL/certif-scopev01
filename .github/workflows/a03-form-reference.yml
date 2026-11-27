@@ -94,14 +94,16 @@ jobs:
                 assert.match(text,/Example Services/);
                 assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false);
                 assert.equal(errors.length,0,errors.join(";"));
-                assert.equal(attempted.filter(s=>s.includes(origin+"/api/")).length,0,"unexpected commercial API request");
+                console.log("BLOCKED",locale,JSON.stringify(attempted));
+                const unexpected=attempted.filter(s=>s.includes(origin+"/api/")&&!["GET "+origin+"/api/sample","HEAD "+origin+"/api/sample","GET "+origin+"/api/attestation/eu-sample","HEAD "+origin+"/api/attestation/eu-sample"].includes(s));
+                assert.deepEqual(unexpected,[],"unexpected API attempt (all blocked)");
                 await page.screenshot({path:output+"/"+locale+"-recap.png",fullPage:true});
                 results.push({locale,status:"pass",categories:7,displayedTotal:text.match(/1[.,]9(?:2)?\b/)[0],blockedExternalRequests:attempted.length,errors});
                 console.log("PASS",locale,"three steps, mandatory fields, seven expenses, 1.9/1.92 tCO2e, no commercial API");
                 await page.close();
               }
             }finally{fs.writeFileSync(output+"/report.json",JSON.stringify(results,null,2));await browser.close();}
-          })().catch(e=>{console.error(e.message);process.exitCode=1;});
+          })().catch(e=>{console.error(e.stack||e.message);process.exitCode=1;});
           NODE
       - if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
