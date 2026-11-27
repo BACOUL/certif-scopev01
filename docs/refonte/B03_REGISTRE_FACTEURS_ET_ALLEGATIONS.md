@@ -42,3 +42,24 @@ A. Actualiser le modèle monétaire existant avec facteurs traçables : préserv
 B. Ajouter au document existant un module physique scopes 1/2 et énergie, seulement si facteurs/couverture validés, sans renommer le calcul historique ni changer le gabarit à l'aveugle. Étudier une estimation indirecte facultative et distincte ; pas d'addition de périmètres chevauchants.
 C. Inventaire scope 3 exhaustif : collecte et revue supplémentaires ; hors première livraison selon la décision actuelle.
 B03 reste ouvert : provenance historique, récupération des lignes officielles et cartographie détaillée, géographies, revue qualifiée et B04. B01/B02 et A04–A06 ouverts. Aucun changement de code, PDF ou production.
+
+
+## 7. Extraction officielle réussie — 27 novembre 2026
+[Workflow public](https://github.com/BACOUL/certif-scopev01/actions/runs/46065781033), job 140730615087, commit 405ea362c881dc280c749c1404d640b76e5b6e45. API ADEME interrogée sans authentification : filtre contributeur SDES/INSEE, 280 lignes déclarées et reçues, 280 éléments génériques valides de type facteur d'émission et unité monétaire, 280 identifiants distincts. [Archive de preuve](evidence/B03_ADEME_SDES_INSEE_MONETARY_20261127.json) commit 13cb3e0810311fd9731cd32b388df6f5925d99f6, relue : 56 lignes par année de prix 2019 à 2023, toutes France continentale, unité kgCO2e/kEUR HT. Le champ Période_de_validité vaut respectivement 2022 à 2026 ; il ne signifie pas que les facteurs sont exprimés en euros de cette année. Champ Incertitude=80 sur les 280 lignes : ne pas l'interpréter comme un intervalle de confiance statistique. Certains champs Source/frontière sont absents ; provenance générale SDES/INSEE et documentation officielle, frontière à qualifier par méthode et poste. Métadonnées API updatedAt 2026-06-30, portail V23.6 ; empreintes des réponses brutes consignées dans archive. Licence Ouverte mentionnée sur portail, attribution ADEME/SDES/INSEE à conserver. Extraction documentée, pas base de production.
+
+### Correspondances candidates (millésime de prix 2023)
+Toutes les valeurs suivantes sont des exemples de catégories réelles, pas des moyennes des sept rubriques historiques. Identifiants exacts dans archive.
+| Rubrique visible à conserver | Nature d'achat candidate | ID | kgCO2e/kEUR HT 2023 | Décision nécessaire |
+|---|---|---|---:|---|
+| IT | programmation/conseil/services d'information J62_63 | 43445 | 75 | distinguer logiciel édité J58 (43345, 96), télécom J61 (43510, 136), matériel C26 (43420, 216) |
+| Services | juridique, comptabilité, conseil M69_70 | 43545 | 67 | ne pas étendre à tous services (ingénierie M71, 43470, 102) |
+| Biens/achats | papier/carton C17 | 43370 | 357 | produits réels distincts, ex. informatique 216, métallurgie C24 (43430, 990) ; séparer immobilisations selon catégorie GHG |
+| Logistique | entreposage H52 | 43350 | 147 | transport terrestre H49 (43570, 319), eau H50 (43560, 1247), aérien H51 (43565, 914) ; distinguer frais de transport et flotte contrôlée |
+| Déplacements | transport terrestre H49 | 43570 | 319 | facteur agrège passagers/fret ; préférer km et mode adaptés ; agence N79 (43515, 136) exclut le trajet ; aérien ne pas dupliquer |
+| Hébergement/événements | hébergement/restauration NAF-I | 43525 | 250 | événement non équivalent à hôtel, rechercher nature effective ; pas de facteur unique événement vérifié |
+| Autres | publicité et études de marché M73 | 43490 | 113 | exemple uniquement ; autres dépenses non classées doivent rester inconnues |
+
+### Proposition d'ergonomie à arbitrer en B04
+Garder les sept titres et le formulaire actuel. Sous chaque titre, ajouter éventuellement une sélection de nature d'achat (et montant ventilé) uniquement lorsque nécessaire pour attribuer un facteur défendable. Ne pas imposer 56 champs ni masquer la catégorie non couverte. Ne jamais utiliser un facteur unique arbitraire pour un panier hétérogène. Pour énergie, combustion et déplacements avec données physiques pertinentes, préférer ces données ; ne pas compter la même dépense deux fois. Pas d'affectation automatique des 7 postes au scope 3 exhaustif. Distinguer coûts HT et TTC, année de prix et année de reporting, pays et périmètre. Au-delà des années de prix disponibles, une conversion/inflation documentée ou un proxy transparent exige validation, et la couverture géographique France ne permet pas de prétendre à une méthode européenne. Exemple pédagogique France prix 2023 : 1 000 EUR HT de services IT J62_63 = 75 kgCO2e ; 1 000 EUR HT de matériel C26 = 216 kgCO2e ; ces chiffres ne sont pas interchangeables et ne prouvent pas les émissions d'un fournisseur particulier. Calculs historiques inchangés.
+
+B03 avancé : provenance des nouveaux candidats désormais prouvée, pas celle des sept valeurs historiques. B03/C02 encore ouverts pour classification finale, harmonisation année/pays/HT, frontières et revue qualifiée. Aucun nouveau coefficient activé ni aucune nouvelle offre.
