@@ -7,7 +7,7 @@ Mis en place le 26 novembre 2026 après l'annonce par le propriétaire de la deu
 - Ce fichier pilote les travaux et remplace les anciennes orientations commerciales contradictoires (notamment réserver l'attestation historique aux anciens clients). Le document REPRISE_SITE_EXISTANT_2026-11-14.md reste une archive technique utile ; ne pas reprendre la PR #107 comme base.
 - **Décision prioritaire du propriétaire : actualiser le site et l'attestation existante, pas reconstruire ni étendre sans nécessité.** La première livraison doit préserver design, navigation, URL, 24 langues, attestation à 89 €, packs, clients, moteur et parcours existants sauf correction justifiée. Actualiser textes, références, facteurs lorsque leur provenance est vérifiée, PDF historique et méthodologie selon les exigences applicables. Ne pas transformer le calcul par dépenses en calcul B3 par simple changement de libellé. Le prototype physique scopes 1/2 reste isolé, non commercialisé : une éventuelle offre distincte, extension scope 3, nouveau prix ou refonte substantielle relève d'une phase séparée, à valider expressément après l'actualisation prioritaire. Ne pas utiliser Bilan Carbone® ou revendiquer BEGES réglementaire/conformité B3 sans preuve. Cette décision prévaut sur les orientations précédentes.
 - Aucun merge, déploiement production, paiement réel, migration de données ou changement de DNS sans autorisation explicite. Maintenir les garde-fous de la PR, aucune donnée client réelle en recette. Préserver le site qui vend.
-- **Lot courant : A — inventaire et protection du patrimoine.** A01 et A02 validés le 27 novembre 2026 ; A03 en cours, recette publique réussie et archive examinée, 24 PDF historiques et contrats hors ligne validés automatiquement ; examen des PDF et derniers contrôles ciblés à terminer.
+- **Lot courant : A — inventaire et protection du patrimoine.** A01 et A02 validés ; A03 : recette publique réussie, 24 PDF historiques régénérés, empreintes et planches vérifiées ; dernier contrôle ciblé du formulaire en cours.
 
 ## Protocole obligatoire à chaque reprise
 1. Lire ce fichier, le journal et les décisions. Vérifier la branche, le SHA, l'état de la PR et les écarts de production. Ne pas ouvrir un nouveau chantier si le lot courant n'est pas clôturé, sauf incident de sécurité.
@@ -33,14 +33,14 @@ Légende : [ ] non validé ; [x] preuve inscrite au journal. Un point bloqué es
 - [ ] B01 Vérifier sur EUR-Lex les textes officiels 2026/470 et 2026/1560, dates, périmètres, exceptions, dispositions transitoires et éventuels correctifs.
 - [ ] B02 Matrice B3 : exigences, conditions, unité, source, couverture produit, exclusions et texte exact référencé ; distinguer norme volontaire, obligations des grandes entreprises et demandes fournisseurs.
 - [ ] B03 Documenter les limites spend-based vs données physiques, périmètres organisationnels, facteurs, scopes, données manquantes, énergie, déclaratif/non audité ; vérifier aussi règles applicables aux allégations environnementales.
-- [ ] B04 Valider direction commerciale des deux offres, intitulé du bilan GES simplifié, périmètre scopes 1/2 et éventuel scope 3 distinct (couverture et méthode à définir), pays/langues, prix (89 € historique à préserver), packs, usage, support ; définir ce qui est reporté et ne pas vendre de périmètre non couvert.
+- [ ] B04 Valider le positionnement de l'attestation existante actualisée, prix 89 €, packs, langues, usages et limites ; définir explicitement les éventuelles évolutions nécessaires. Nouveau produit, intitulé distinct et extension scope 3 hors première livraison.
 - [ ] B05 Revue juridique et méthodologique qualifiée des textes, limitations, CGV, TVA, facturation, mentions légales et RGPD ; consigner réserves.
 **Sortie :** matrice réglementaire sourcée, spécifications produit et méthode approuvées ; pas de promesse de certification.
 
 ### C — Moteurs et facteurs
 - [ ] C01 Auditer le moteur historique et ses hypothèses, catégories de dépenses, unités, monnaie, année, provenance et droits de réutilisation.
 - [ ] C02 Actualiser/justifier les facteurs ADEME et autres sources appropriées ; registre de version, date, géographie, unité, frontière, licence et proxies ; ne pas inventer de facteur.
-- [ ] C03 Vérifier scopes 1/2 location-based, chaleur achetée, combustibles, fluides frigorigènes (y compris mélanges si supportés), procédés, production propre, énergie renouvelable/non renouvelable, prévention du double comptage ; rendre explicites les sources non couvertes.
+- [ ] C03 Vérifier le périmètre du modèle historique et ses exclusions, notamment les scopes non couverts. Les calculs physiques scopes 1/2, énergie et autres sources restent dans la phase optionnelle sauf décision spécifique après analyse B.
 - [ ] C04 Corriger modèle des exercices 2027+, périodes partielles et futures, dates invalides, pays, conversions ; limiter clairement la vente aux pays réellement supportés (FR actuellement).
 - [ ] C05 Gérer zéro vs inconnu, exclusions, preuves, qualité des données, incertitudes, limites, arrondis et critères d'éligibilité ; ne pas présenter une somme partielle comme total.
 - [ ] C06 Calcul serveur autoritatif, schémas validés, protection contre manipulation client ; tests numériques indépendants et cas limites, régression historique.
@@ -49,15 +49,15 @@ Légende : [ ] non validé ; [x] preuve inscrite au journal. Un point bloqué es
 
 ### D — PDF et parcours produits
 - [ ] D01 Améliorer PDF historique sans casser format/droits/vérification ; sources, catégories, réserves, cohérence calcul/PDF, date, identité, version.
-- [ ] D02 Finaliser formulaire fournisseur et PDF personnalisé (actuellement spécimen fixe), énergie MWh, ventilation, scopes, détails, sources et réserves.
+- [ ] D02 Adapter seulement les champs et textes du formulaire et du PDF historiques dont la modification est justifiée par B/C. Le formulaire physique et son spécimen restent isolés, hors première livraison.
 - [ ] D03 Vérification documentaire et identifiants, intégrité, accès sécurisé, conservation et récupération ; ne pas confondre authenticité du fichier et véracité des déclarations.
-- [ ] D04 Produire PDF FR/EN/DE selon périmètre approuvé, contrôler accents, valeurs, unités, sauts de page, pagination et données longues ; spécimens fictifs identifiés.
+- [ ] D04 Préserver le gabarit historique de deux pages et ses 24 langues ; actualiser les textes nécessaires, contrôler accents, valeurs, unités, sauts de page et pagination ; spécimens fictifs identifiés.
 - [ ] D05 Tester erreurs de génération, reprises, cohérence formulaire/calcul/CSV/PDF, données minimales et maximales.
 **Sortie :** PDF et formulaires testés avec preuves visuelles et fonctionnelles, aucun remplacement du produit historique.
 
 ### E — Site, contenu et référencement
-- [ ] E01 Préserver design, navigation, responsive, routes et pages historiques des 24 langues ; différencier deux offres sur accueil/produit/prix sans CTA trompeurs.
-- [ ] E02 Comparatif d'usages, exemples PDF, FAQ, méthode, restrictions réglementaires, prix TTC/HT selon obligations, parcours avant achat.
+- [ ] E01 Préserver design, navigation, responsive, routes et pages historiques des 24 langues ; actualiser les textes de l'offre existante sur accueil/produit/prix sans CTA trompeurs ni publicité d'un produit non commercialisé.
+- [ ] E02 Actualiser uniquement les exemples PDF, FAQ, méthode, usages, restrictions réglementaires et mentions prix nécessaires ; conserver le parcours avant achat.
 - [ ] E03 Vérifier intégralité des textes FR/EN/DE, erreurs, emails, pages légales et SEO ; préserver les parcours historiques des 21 autres langues et leurs PDF/emails ; pas de langue ou de pays vendu sans support correspondant.
 - [ ] E04 Préserver URL, redirections, liens internes, canonicals, hreflang, sitemap, robots, données structurées ; pages réglementaires sourcées utiles, pas de pages dupliquées.
 - [ ] E05 Recette UX desktop/mobile, accessibilité clavier/contraste, performance, formulaires, analytics et consentement approprié ; préparer suivi Search Console et conversions.
@@ -70,11 +70,11 @@ Légende : [ ] non validé ; [x] preuve inscrite au journal. Un point bloqué es
 - [ ] F04 Livraison PDF/email, retours, paiements refusés/abandonnés, remboursement, litiges, récupération et support ; tester échecs et reprises.
 - [ ] F05 Audit API, authentification/autorisation, entrées, accès PDF, débit, confidentialité, rétention/purge, logs sans données sensibles, dépendances et vulnérabilités ; gérer les secrets.
 - [ ] F06 Sauvegarde/restauration testée sur données fictives, observabilité, alertes et coûts ; aucune clé live dans la preview.
-**Sortie :** parcours complet des deux produits et droits historiques testés en mode test ; sécurité critique résolue.
+**Sortie :** parcours complet du produit historique actualisé et droits historiques testés en mode test ; sécurité critique résolue.
 
 ### G — Recette de release
 - [ ] G01 CI sur SHA candidat : npm ci, tests moteur/historique, tests intégration, TypeScript, build, lint fonctionnel, audit dépendances et smoke HTTP.
-- [ ] G02 Recette navigateur desktop/mobile des deux parcours FR/EN/DE et du parcours historique dans les 21 autres langues, PDF contrôlés visuellement et cas d'erreur ; validation de non-régression des routes/SEO.
+- [ ] G02 Recette navigateur desktop/mobile du parcours historique actualisé FR/EN/DE et des 21 autres langues, PDF contrôlés visuellement et cas d'erreur ; validation de non-régression des routes/SEO.
 - [ ] G03 Recette bout en bout avec Stripe test, crédits, emails, vérification, accès et restauration ; rapport résultats et défauts.
 - [ ] G04 Revue finale juridique/méthodologique et sécurité, vérification de la matrice B3, validation des prix et périmètre.
 - [ ] G05 Préparer candidat en environnement isolé avec garde-fous de preview ; plan de transition des verrous API/noindex vers configuration de production testé sans activer de paiements réels.
@@ -120,5 +120,7 @@ Nouvelle offre physique B3 distincte, scope 3 additionnel, nouveau formulaire/ch
 | 2026-11-27 | DECISION OFFRE | Le propriétaire souhaite adapter la nouvelle offre comme un bilan carbone plutôt qu'une simple fiche fournisseur. Intitulé de travail : bilan d'émissions de GES simplifié — énergie, scopes 1 et 2, indicateurs B3. Étudier l'extension scope 3 au lot B et les conditions d'usage des appellations. Sources : [règlement 2026/1560](https://eur-lex.europa.eu/eli/reg_del/2026/1560/oj), [BEGES](https://www.ecologie.gouv.fr/presse/decret-bilan-emissions-gaz-effet-serre-beges), [marque Bilan Carbone®](https://associationbilancarbone.fr/f-a-q/). | Orientation de travail consignée ; intitulé et périmètre définitifs à valider au lot B. Aucun changement de code, prix ni production. A03 reste prioritaire. |
 
 | 2026-11-27 | DECISION PRIORITAIRE / A03 | Le propriétaire confirme : actualiser site et attestation existants, sans tout modifier. Première livraison ciblée ; prototype physique isolé, extensions facultatives reportées. [Recette PDF historique](https://github.com/BACOUL/certif-scopev01/actions/runs/46025669212) : job 140596294176 success, 24 PDF de 2 pages et 10 rubriques sans coupure détectée, 576 combinaisons UI/PDF, 24 contrats email/webhook et contrôles numériques historiques réussis ; [archive fictive](https://github.com/BACOUL/certif-scopev01/actions/runs/46025669212/artifacts/15211882927). | A03 non cochée : examen visuel et saisie interactive à terminer ; aucun paiement ni déploiement. Recentrage du périmètre, pas de modification du produit. |
+
+| 2026-11-27 | A03 + périmètre | [Rapport A03](https://github.com/BACOUL/certif-scopev01/blob/refonte/conserver-site-existant-20261114/docs/refonte/A03_REFERENCE_VISUELLE_FONCTIONNELLE.md), commit 8a0f9cc2 : 24 PDF (48 pages), 24 empreintes vérifiées, planches examinées, contrats hors ligne réussis. Contrôle ciblé FR/EN/DE/ES ajouté en f74e56e1. Checklist B–G précisée pour actualiser exclusivement l'existant en première livraison. | A03 : résultat du dernier contrôle à vérifier ; pas de refonte ni nouveau produit imposé, pas de déploiement. |
 
 Pour chaque validation : ajouter une ligne avec ID, commit de code, lien vers résultat/test, date, limite et prochaine action. Aucun secret ni donnée client dans ce fichier.
