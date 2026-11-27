@@ -1,0 +1,54 @@
+name: A03 - Reference PDF historique hors ligne
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - refonte/conserver-site-existant-20261114
+    paths:
+      - '.github/workflows/a03-offline-pdf.yml'
+permissions:
+  contents: read
+jobs:
+  historical-pdf:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout exact historical source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 71e6cd87a8c04041ff58be4db99a6fa49cb8c40a
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+      - name: Remove local environment file without reading it
+        run: rm -f .env.local
+      - name: Install locked dependencies without lifecycle scripts
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Check system dependencies
+        run: |
+          command -v pdfinfo
+          command -v pdftoppm
+          command -v google-chrome
+          command -v setpriv
+          command -v unshare
+      - name: Run existing offline contracts and PDF geometry checks without network
+        run: |
+          mkdir -p artifacts/a03-pdf
+          sudo unshare --net -- setpriv --reuid="$(id -u)" --regid="$(id -g)" --init-groups env -i HOME="$HOME" PATH="$PATH" CHROMIUM_EXECUTABLE_PATH="$(command -v google-chrome)" PDF_CHECK_OUTPUT="$PWD/artifacts/a03-pdf" PDF_CHECK_LIBS="" PDF_CHECK_FONTS="/etc/fonts" bash -euo pipefail -c '
+            node scripts/check-ui-regressions.cjs
+            node scripts/check-multilingual.cjs
+            node scripts/check-eu-contracts.cjs
+            node scripts/check-pdf-parity.cjs
+            test "$(find artifacts/a03-pdf -name "*.pdf" | wc -l)" -eq 24
+            sha256sum artifacts/a03-pdf/*.pdf > artifacts/a03-pdf/SHA256SUMS.txt
+            printf "%s\n" "REFERENCE TECHNIQUE FICTIVE — NON VALABLE — signatures simulées, aucune émission commerciale" > artifacts/a03-pdf/README.txt
+          '
+      - name: Archive fictional reference only
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: a03-pdf-reference-fictitious
+          path: artifacts/a03-pdf/
+          if-no-files-found: warn
+          retention-days: 30
