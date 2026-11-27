@@ -78,7 +78,8 @@ jobs:
                 await page.waitForSelector(company);
                 await advance(1);
                 await page.waitForSelector('[role="alert"]',{timeout:10000});
-                await page.type(company,"Example Services");
+                await page.type(company,"Example Services",{delay:75});
+                assert.equal(await page.$eval(company,el=>el.value),"Example Services","company input before moving to next step");
                 await page.select(sector,"professional_services");
                 if(locale==="en"||locale==="de")await page.select('main select[id$="-language"]',locale==="en"?"de":"en");
                 if(fr)await page.select("#attestation-language","en");
