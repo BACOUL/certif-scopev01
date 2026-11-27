@@ -7,7 +7,7 @@ Mis en place le 26 novembre 2026 après l'annonce par le propriétaire de la deu
 - Ce fichier pilote les travaux et remplace les anciennes orientations commerciales contradictoires (notamment réserver l'attestation historique aux anciens clients). Le document REPRISE_SITE_EXISTANT_2026-11-14.md reste une archive technique utile ; ne pas reprendre la PR #107 comme base.
 - Direction de travail : préserver l'attestation historique à 89 € et préparer séparément la fiche carbone fournisseur B3. Prix de la nouvelle fiche, pays effectivement couverts, modalités de packs et périmètre de lancement à faire valider. Ne pas annoncer une conformité globale ou une obligation d'achat.
 - Aucun merge, déploiement production, paiement réel, migration de données ou changement de DNS sans autorisation explicite. Maintenir les garde-fous de la PR, aucune donnée client réelle en recette. Préserver le site qui vend.
-- **Lot courant : A — inventaire et protection du patrimoine.** A01 et A02 validés le 27 novembre 2026 ; A03 en cours, recette publique lancée, résultats et référence PDF à valider.
+- **Lot courant : A — inventaire et protection du patrimoine.** A01 et A02 validés le 27 novembre 2026 ; A03 en cours, recette publique réussie et archive examinée, recette PDF hors ligne relancée.
 
 ## Protocole obligatoire à chaque reprise
 1. Lire ce fichier, le journal et les décisions. Vérifier la branche, le SHA, l'état de la PR et les écarts de production. Ne pas ouvrir un nouveau chantier si le lot courant n'est pas clôturé, sauf incident de sécurité.
@@ -98,7 +98,7 @@ Légende : [ ] non validé ; [x] preuve inscrite au journal. Un point bloqué es
 | R06 | Présence .env.local au niveau racine observée ; contenu et exposition non vérifiés, ne pas afficher de valeurs | A |
 | R07 | CI historique verte mais ne valide pas parcours paiement ni recette juridique/visuelle ; à rejouer sur candidat | G |
 | R08 | Résolu le 27/11 : SHA actif identique à la base PR #108, aucune divergence à intégrer. Revérifier avant livraison. | A01 |
-| R09 | A03 : accès navigateur local impossible (DNS), recette Actions lancée ; captures et référence PDF fictive non vérifiées. Ne pas clôturer A03 avant preuves. | A03 |
+| R09 | A03 : 133 HTTP 200 et 132 captures inspectées par planches ; référence visuelle partielle (animations/illustrations à stabiliser). Recette PDF : premier essai arrêté sur prérequis, correction puis relance. Ne pas clôturer A03 avant preuves PDF et saisie hors production. | A03 |
 
 ## Backlog différable
 Internationalisation géographique supplémentaire, nouvelles offres, campagnes payantes, abonnements, automatisations avancées : hors lancement tant que leur utilité et leur coût ne sont pas validés. Ne pas retarder une version sûre pour un enrichissement facultatif.
@@ -113,5 +113,7 @@ Internationalisation géographique supplémentaire, nouvelles offres, campagnes 
 | 2026-11-27 | A02 | [Inventaire de référence](https://github.com/BACOUL/certif-scopev01/blob/refonte/conserver-site-existant-20261114/docs/refonte/A02_INVENTAIRE_PRODUCTION.md), commit `9f11ec98e17d0dd378137dc43edec2aa736d1202` : 120 fichiers page, 16 API, 108 URL des sitemaps, 24 langues, 7 catégories historiques, packs et dépendances. Pages publiques FR/DE consultées via cache web ; EN/sitemap live non récupérés. | Inventaire statique validé, pas de recette live ou de services externes ; A03 capture visuelle et comportement réel, A04/A06 sécurité/coûts. Aucun paiement, API commerciale ni déploiement. |
 
 | 2026-11-27 | A03 (en cours) | [Référence et matrice A03](https://github.com/BACOUL/certif-scopev01/blob/refonte/conserver-site-existant-20261114/docs/refonte/A03_REFERENCE_VISUELLE_FONCTIONNELLE.md), commit `a2120e8f563d92f524a8a27c6b0232b96bf147a5`. Script `635c24bb`, workflow `37aad89b`, [exécution Actions](https://github.com/BACOUL/certif-scopev01/actions/runs/46022869856) observée en cours. Captures historiques et 24 aperçus retrouvés, non régénérés. | Non validé : examiner rapport/captures, compléter PDF fictifs hors production et cas de saisie. DNS local indisponible, cache web non suffisant. Aucun paiement, API commerciale, changement de production. Prochain : terminer A03. |
+
+| 2026-11-27 | A03 (suite) | [Recette publique réussie](https://github.com/BACOUL/certif-scopev01/actions/runs/46022869856), 133 HTTP 200, 132 captures, archive analysée, 0 échec. [Rapport actualisé](https://github.com/BACOUL/certif-scopev01/blob/refonte/conserver-site-existant-20261114/docs/refonte/A03_REFERENCE_VISUELLE_FONCTIONNELLE.md), commit `d141dd916387a01b668dd73455adcf5d23aeee20`. [Recette PDF hors ligne](https://github.com/BACOUL/certif-scopev01/actions/runs/46025669212) en cours lors du contrôle ; premier essai `46025558529` arrêté avant tests sur absence pdfinfo, corrigé en `50f203b6`. | A03 reste ouverte : PDF fictifs, cas de saisie et stabilisation visuelle à terminer. Aucun paiement, migration ou déploiement. |
 
 Pour chaque validation : ajouter une ligne avec ID, commit de code, lien vers résultat/test, date, limite et prochaine action. Aucun secret ni donnée client dans ce fichier.
