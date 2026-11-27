@@ -1,0 +1,45 @@
+name: B03 - Verification facteurs physiques ADEME
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - refonte/conserver-site-existant-20261114
+    paths:
+      - '.github/workflows/b03-ademe-physical-factors.yml'
+permissions:
+  contents: read
+jobs:
+  public-physical:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Read public records and discover newer candidates
+        run: |
+          python3 - <<'PY'
+          import json, urllib.request, urllib.parse, hashlib, re
+          base='https://data.ademe.fr/data-fair/api/v1/datasets/base-carboner'
+          def get(params):
+              url=base+'/lines?'+urllib.parse.urlencode(params)
+              req=urllib.request.Request(url,headers={'Accept':'application/json','User-Agent':'Certif-Scope-methodology-review/1.0'})
+              with urllib.request.urlopen(req,timeout=40) as res: raw=res.read(20_000_001)
+              if len(raw)>20_000_000: raise ValueError('Response too large')
+              return json.loads(raw),hashlib.sha256(raw).hexdigest()
+          known={'electricity':('43273','JF-Ssewkm48XeLYhjMd0C',0.0394),'gas_pcs':('37133','3oceUt65q5HMNWwmGxohv',0.181),'gas_pci':('37132','4hxvzq5E9w-8ueSVrvooB',0.201),'diesel_b7':('25775','bxSZYsoSp4G8TYo_p8S27',2.49),'petrol_e10':('13988','75uU5oI94zp14HF0O-Yxe',2.19)}
+          fields=['_id','Type_Ligne',"Identifiant_de_l'élément","Type_de_l'élément","Statut_de_l'élément",'Nom_base_français','Nom_attribut_français','Nom_frontière_français','Code_de_la_catégorie','Unité_français','Contributeur','Source','Localisation_géographique','Période_de_validité','Date_de_modification','Incertitude','Type_poste','Nom_poste_français','Total_poste_non_décomposé','CO2f','CH4f','CH4b','N2O','CO2b','Autres_GES']
+          select=','.join(fields)
+          for key,(id,rid,value) in known.items():
+              result,sha=get({'qs':f'_id:"{rid}"','size':20,'select':select})
+              rows=result.get('results',[])
+              exact=[r for r in rows if r.get('_id')==rid and str(r.get("Identifiant_de_l'élément"))==id]
+              if len(exact)!=1: raise ValueError('Missing exact row: '+key)
+              print('REFERENCE '+json.dumps({'key':key,'expected':value,'row':exact[0],'sha256':sha},ensure_ascii=False),flush=True)
+          # Discovery only: query the latest electricity labels and possible additional fuel families.
+          # No result is automatically adopted. Explicitly record truncation.
+          for label,q in [('electricity_2024','"2024" AND "mix moyen"'),('electricity_2025','"2025" AND "mix moyen"'),('fuel_oil','"fioul domestique"'),('propane','"propane"'),('wood','"granulés de bois"'),('heat_network','"réseau de chaleur"')]:
+              result,sha=get({'qs':q,'size':100,'select':select})
+              rows=result.get('results',[])
+              print('SEARCH '+json.dumps({'label':label,'query':q,'total':result.get('total'),'returned':len(rows),'sha256':sha,'truncated':bool(result.get('next'))},ensure_ascii=False),flush=True)
+              for row in rows:
+                  print('CANDIDATE '+json.dumps({'search':label,'row':row},ensure_ascii=False,separators=(',',':')),flush=True)
+          print('Discovery finished; exact row identity checked. Scientific boundary, units and period need review; no factor activated.')
+          PY
