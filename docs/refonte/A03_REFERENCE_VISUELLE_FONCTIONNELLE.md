@@ -31,7 +31,7 @@ Domaine https://www.certif-scope.com, déploiement identifié en A01, [source hi
 | A03-T01 | 108 URL des sitemaps + routes non indexées utiles | statut, URL finale et redirections attendus ; comparer sans suivre vers un paiement |
 | A03-T02 | Accueil, produit, tarifs, méthodologie, conformité, vérification, démonstration | navigation, CTA, limites, prix et lisibilité préservés |
 | A03-T03 | 24 accueils + formulaires ; ordinateur 1440 et mobile 390 (compléter 360/768) | langue HTML, sélection langue, pas de débordements, aucune erreur critique |
-| A03-T04 | Données fictives : société Exemple, 7 catégories de 1000 EUR, modèle historique inchangé | somme brute 1,9 tCO2e ; vérifier arrondi et reprise des 3 étapes |
+| A03-T04 | Données fictives : société Exemple, 7 catégories de 1000 EUR, modèle historique inchangé | somme brute 1,92 tCO2e, affichage historique attendu 1,9 tCO2e ; vérifier arrondi et reprise des 3 étapes |
 | A03-T05 | Saisie invalide, montant décimal, langue site distincte langue PDF, retour formulaire | règles et messages cohérents ; aucune soumission en production |
 | A03-T06 | PDF fictifs des 24 langues, 2 pages historiques, 10 rubriques, logo, QR, accents, mise en page et limites | utiliser les mocks existants et générer hors production ; vérifier pdfinfo et inspecter visuellement |
 | A03-T07 | Contrats historiques simulés Stripe/PDFShift/Resend/Cloudflare ; clés valides, expirées, falsifiées | mêmes droits, pas de double émission, rejet des accès non autorisés ; tests de concurrence à F |
