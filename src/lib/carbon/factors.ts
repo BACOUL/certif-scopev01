@@ -1,7 +1,7 @@
 // ADEME Base Carbone V23.6, retrieved 2026-11-12. Raw records in docs/refonte/evidence.
 // Use direct emissions rows, NEVER the lifecycle total. Historical proxies are disclosed.
 import {REFRIGERANT_FACTORS} from "./refrigerants";
-export const METHOD = "CS-ENERGY-1.2.0";
+export const METHOD = "CS-ENERGY-1.3.0-REVIEW";
 export const SOURCE = "https://data.ademe.fr/datasets/base-carboner";
 export const ADEME_FACTORS = {
  electricity: { id: "43273", row: "JF-Ssewkm48XeLYhjMd0C", value: 0.0394, scope: 2, unit: "kWh", year: 2023, energy: 1, biogenic: 0, boundary: "Combustion à la centrale", validity: "Année 2023" },
@@ -12,6 +12,30 @@ export const ADEME_FACTORS = {
 } as const;
 export const FACTORS = {...ADEME_FACTORS,...REFRIGERANT_FACTORS} as const;
 export type SourceKind = keyof typeof FACTORS;
+
+/** Verified source row, not yet approved for commercial issuance.
+ * Exact-year selection only; historic demo values are kept separately.
+ * Evidence: docs/refonte/evidence/B03_ADEME_PHYSICAL_20261127.json.
+ */
+export const ELECTRICITY_2024 = {
+ id:"43642", row:"4a-V7kBU5QVSOA-uwyHZp", value:0.035, scope:2 as const,
+ unit:"kWh" as const, year:2024, energy:1 as const, biogenic:0 as const,
+ boundary:"Combustion à la centrale", validity:"Données valides pour l'année 2024",
+ source:SOURCE, version:"ADEME-API-2026-11-27", retrieved:"2026-11-27",
+} as const;
+export function selectReviewFactor(kind:SourceKind,year:number) {
+ const f=kind==="electricity" && year===2024?ELECTRICITY_2024:FACTORS[kind];
+ // The legacy demonstration is intentionally not an approved fallback.
+ // In particular a 2023 factor for 2025/26 is a historic example, not a 2025/26 factor.
+ const selection=kind==="electricity"
+  ? f.year===year?"exact_year_candidate":"historical_demo_only"
+  : "historical_demo_only";
+ return {...f,source:"source" in f?f.source:SOURCE,
+  version:"version" in f?f.version:"ADEME-V23.6",
+  retrieved:"retrieved" in f?f.retrieved:"2026-11-13",
+  selection, approvedForIssuance:false as const};
+}
+
 export const CATEGORIES = ["electricity", "gas", "diesel_b7", "petrol_e10", "other_fuels", "refrigerants", "purchased_heat", "processes", "self_generation"] as const;
 export type Category = typeof CATEGORIES[number];
 export function category(kind: SourceKind): Category { return kind.startsWith("gas_") ? "gas" : kind.startsWith("refrigerant_") ? "refrigerants" : kind as Category; }
