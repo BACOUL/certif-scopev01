@@ -42,12 +42,35 @@ export function calculate(input: unknown) {
  if(!energyBreakdown.total.totalComplete)warnings.push("ENERGY_TOTAL_INCOMPLETE");
  const scope1Kg=lines.filter(l=>l.factor.scope===1).reduce((s,l)=>s+l.kgCO2e,0);
  const scope2Kg=lines.filter(l=>l.factor.scope===2).reduce((s,l)=>s+l.kgCO2e,0);
- return {methodology:METHOD,assessment,lines,scope1T:scope1Kg/1000,scope2LocationT:scope2Kg/1000,totalT:(scope1Kg+scope2Kg)/1000,
+ // A numerical subtotal is not a complete company-wide metric. Keep legacy
+ // raw subtotals for the simulation, but use report for all new disclosures.
+ const scope1Sources = ["gas","diesel_b7","petrol_e10","other_fuels","refrigerants","processes","self_generation"];
+ const scope2Sources = ["electricity","purchased_heat","self_generation"];
+ const hasExclusions = Boolean(assessment.exclusions);
+ const metric = (knownSum:number, incomplete:boolean) => ({
+  status: (hasExclusions || incomplete ? "partial" : "declared_covered") as "partial" | "declared_covered",
+  value: hasExclusions || incomplete ? null : knownSum,
+  knownSum,
+ });
+ const scope1 = metric(scope1Kg/1000, missing.some(k=>scope1Sources.includes(k)));
+ const scope2 = metric(scope2Kg/1000, missing.some(k=>scope2Sources.includes(k)));
+ const energy = metric(energyBreakdown.total.totalMwh, missingEnergy);
+ const total = metric((scope1Kg+scope2Kg)/1000, scope1.value===null || scope2.value===null);
+ const report = {
+  scope1, scope2, energy, total,
+  scopeShares: total.value!==null && total.value>0 && scope1.value!==null && scope2.value!==null
+    ? {scope1:scope1.value/total.value,scope2:scope2.value/total.value} : null,
+  energyMix: energy.value!==null && energyBreakdown.total.complete
+    ? {renewableMwh:energyBreakdown.total.renewableMwh,nonRenewableMwh:energyBreakdown.total.nonRenewableMwh} : null,
+  // Release approval must come from validated methodology, factors and commercial controls.
+  releaseApproved:false as const,
+ };
+ return {methodology:METHOD,assessment,lines,report,scope1T:scope1Kg/1000,scope2LocationT:scope2Kg/1000,totalT:(scope1Kg+scope2Kg)/1000,
   // Keep the measured sum for traceability. When source categories are missing,
   // it MUST NOT be presented as company total energy in PDF, UI or CSV.
   energyMwh:energyBreakdown.total.totalMwh,energyTotalComplete:energyBreakdown.total.totalComplete,energyBreakdown,biogenicCO2T:lines.reduce((s,l)=>s+l.biogenicCO2kg,0)/1000,
   coverage:missing.length || assessment.exclusions?"partial":"declared_sources_covered", missing, warnings:[...new Set(warnings)],
   // Source refresh and external methodology validation are release blockers, not hidden claims.
-  saleEligible:assessment.year<2026 && lines.length>0 && missing.length===0 && !assessment.exclusions && !warnings.includes("PARTIAL_YEAR")};
+  saleEligible:false};
 }
 export type Calculation = ReturnType<typeof calculate>;
