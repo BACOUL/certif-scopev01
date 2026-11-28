@@ -1,7 +1,8 @@
 // ADEME Base Carbone V23.6, retrieved 2026-11-12. Raw records in docs/refonte/evidence.
 // Use direct emissions rows, NEVER the lifecycle total. Historical proxies are disclosed.
 import {REFRIGERANT_FACTORS} from "./refrigerants";
-export const METHOD = "CS-ENERGY-1.7.0-REVIEW";
+import {REVIEW_GEOGRAPHY} from "./period";
+export const METHOD = "CS-ENERGY-1.8.0-REVIEW";
 export const SOURCE = "https://data.ademe.fr/datasets/base-carboner";
 export const ADEME_FACTORS = {
  electricity: { id: "43273", row: "JF-Ssewkm48XeLYhjMd0C", value: 0.0394, scope: 2, unit: "kWh", year: 2023, energy: 1, biogenic: 0, boundary: "Combustion à la centrale", validity: "Année 2023" },
@@ -53,7 +54,8 @@ export const ELECTRICITY_2024 = {
  boundary:"Combustion à la centrale", validity:"Données valides pour l'année 2024",
  source:SOURCE, version:"ADEME-API-2026-11-27", retrieved:"2026-11-27",
 } as const;
-export function selectReviewFactor(kind:SourceKind,year:number) {
+export function selectReviewFactor(kind:SourceKind,year:number,geography:string=REVIEW_GEOGRAPHY) {
+ if(geography!==REVIEW_GEOGRAPHY)throw Error("UNSUPPORTED_GEOGRAPHY");
  const f=kind==="electricity" && year===2024?ELECTRICITY_2024:FACTORS[kind];
  // The legacy demonstration is intentionally not an approved fallback.
  // In particular a 2023 factor for 2025/26 is a historic example, not a 2025/26 factor.
@@ -63,7 +65,7 @@ export function selectReviewFactor(kind:SourceKind,year:number) {
  return {...f,source:"source" in f?f.source:SOURCE,
   version:"version" in f?f.version:"ADEME-V23.6",
   retrieved:"retrieved" in f?f.retrieved:"2026-11-13",
-  selection, approvedForIssuance:false as const};
+  selection, geography:REVIEW_GEOGRAPHY, approvedForIssuance:false as const};
 }
 
 export const CATEGORIES = ["electricity", "gas", "diesel_b7", "petrol_e10", "other_fuels", "refrigerants", "purchased_heat", "processes", "self_generation"] as const;
