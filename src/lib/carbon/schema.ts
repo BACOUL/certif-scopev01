@@ -15,6 +15,15 @@ export const assessmentSchema = z.object({
   exportedKwh: z.number().finite().min(0).max(1e9).optional(),
   quality: z.enum(["invoice", "estimate", "declaration"]), evidence: text,
  }).strict()).max(40),
+ // Energy-only thermal purchases until an independently qualified network factor exists.
+ thermalPurchases: z.array(z.object({
+  id: z.string().regex(/^[a-zA-Z0-9_-]{1,40}$/),
+  kind: z.enum(["heat","steam","cooling"]),
+  network: text,
+  quantityKwh: z.number().finite().min(0).max(1e9),
+  renewableEnergyKwh: z.number().finite().min(0).max(1e9).optional(),
+  evidence: text,
+ }).strict()).max(40).default([]),
  exclusions: z.string().trim().max(600), confirmed: z.literal(true),
 }).strict().superRefine((x,ctx)=>{
  const start = new Date(x.start), end = new Date(x.end);
@@ -23,6 +32,16 @@ export const assessmentSchema = z.object({
  if(x.year===2026 && x.end>new Date().toISOString().slice(0,10))ctx.addIssue({code:"custom",message:"FUTURE_PERIOD_NOT_ALLOWED"});
  if(new Set(x.activities.map(a=>a.id)).size!==x.activities.length)ctx.addIssue({code:"custom",message:"DUPLICATE_ACTIVITY"});
  if(new Set(x.activities.map(a=>`${a.kind.startsWith("gas_")?"gas":a.kind}|${a.evidence.trim().toLowerCase()}`)).size!==x.activities.length)ctx.addIssue({code:"custom",message:"DUPLICATE_EVIDENCE"});
+ if(x.thermalPurchases.length && x.sources.purchased_heat!=="known")
+  ctx.addIssue({code:"custom",message:"THERMAL_SOURCE_CONFLICT"});
+ if(new Set([...x.activities,...x.thermalPurchases].map(a=>a.id)).size!==x.activities.length+x.thermalPurchases.length)
+  ctx.addIssue({code:"custom",message:"DUPLICATE_ACTIVITY"});
+ if(new Set(x.thermalPurchases.map(a=>[a.kind,a.network.trim().toLowerCase(),a.evidence.trim().toLowerCase()].join("|"))).size!==x.thermalPurchases.length)
+  ctx.addIssue({code:"custom",message:"DUPLICATE_THERMAL_EVIDENCE"});
+ for(const a of x.thermalPurchases){
+  if(a.renewableEnergyKwh!==undefined && a.renewableEnergyKwh>a.quantityKwh)
+   ctx.addIssue({code:"custom",message:"RENEWABLE_EXCEEDS_TOTAL_ENERGY"});
+ }
  for(const a of x.activities){
   const f=FACTORS[a.kind];
   if(a.kind==="solar_pv_owned"){
