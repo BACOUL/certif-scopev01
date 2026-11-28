@@ -13,6 +13,7 @@ export function calculate(input: unknown) {
  }
  if(assessment.start!==`${assessment.year}-01-01` || assessment.end!==`${assessment.year}-12-31`)warnings.push("PARTIAL_YEAR");
  if(assessment.exclusions)warnings.push("DECLARED_EXCLUSIONS");
+ if(assessment.thermalPurchases.length)warnings.push("THERMAL_EMISSION_FACTOR_UNAVAILABLE");
  const lines=assessment.activities.map(a=>{
   const f=selectReviewFactor(a.kind,assessment.year);
   if(f.source===SOURCE && f.year!==assessment.year)warnings.push("FACTOR_YEAR_DIFFERS");
@@ -24,7 +25,7 @@ export function calculate(input: unknown) {
  });
  // B3 §32: energy split is disclosed only when each relevant line is supported by a declared value.
 // Missing renewable information is null (never an inferred zero). Location-based GHG totals are independent of this split.
- type EnergyLine = (typeof lines)[number];
+ type EnergyLine = {energyKwh:number;renewableEnergyKwh?:number};
  const split=(rows:EnergyLine[], sourceMissing=false)=>{
   const totalKwh=rows.reduce((sum,l)=>sum+l.energyKwh,0);
   const complete=!sourceMissing && rows.every(l=>l.renewableEnergyKwh!==undefined);
@@ -36,9 +37,11 @@ export function calculate(input: unknown) {
  const fuelCategories=new Set<string>(["gas","diesel_b7","petrol_e10","other_fuels"]);
  const fuelsSplit=split(lines.filter(l=>fuelCategories.has(category(l.kind))),
    [...fuelCategories].some(kind=>missing.includes(kind)));
- const missingEnergy=["electricity","gas","diesel_b7","petrol_e10","other_fuels","purchased_heat","self_generation"]
-   .some(kind=>missing.includes(kind));
- const energyBreakdown={electricity:electricitySplit,fuels:fuelsSplit,total:split(lines.filter(l=>category(l.kind)!=="refrigerants"),missingEnergy)};
+ const thermalLines=assessment.thermalPurchases.map(a=>({energyKwh:a.quantityKwh,renewableEnergyKwh:a.renewableEnergyKwh}));
+ const thermalEnergyMissing=assessment.sources.purchased_heat==="unknown"||(assessment.sources.purchased_heat==="known"&&!thermalLines.length);
+ const missingEnergy=["electricity","gas","diesel_b7","petrol_e10","other_fuels","self_generation"]
+   .some(kind=>missing.includes(kind))||thermalEnergyMissing;
+ const energyBreakdown={electricity:electricitySplit,fuels:fuelsSplit,thermal:split(thermalLines,thermalEnergyMissing),total:split([...lines.filter(l=>category(l.kind)!=="refrigerants"),...thermalLines],missingEnergy)};
  if(lines.some(l=>l.factor.source===SOURCE))warnings.push("HISTORICAL_FACTORS");
  if(lines.some(l=>l.factor.version===EU_F_GAS_VERSION))warnings.push("PURE_F_GAS_ONLY_MASS_RELEASE_NOT_CHARGE");
  if(!energyBreakdown.total.complete)warnings.push("ENERGY_SPLIT_NOT_AVAILABLE");
