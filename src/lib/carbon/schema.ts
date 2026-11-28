@@ -44,6 +44,8 @@ export const assessmentSchema = z.object({
  }
  for(const a of x.activities){
   const f=FACTORS[a.kind];
+  if(a.kind.startsWith("wood_") && a.renewableEnergyKwh!==undefined && Math.abs(a.renewableEnergyKwh-a.quantity)>0.001)
+   ctx.addIssue({code:"custom",message:"PURE_WOOD_RENEWABLE_MISMATCH"});
   if(a.kind==="solar_pv_owned"){
    // Only the directly consumed portion is counted. No netting of exports
    // against imported electricity. Other generation/storage configurations
