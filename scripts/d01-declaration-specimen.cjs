@@ -29,8 +29,8 @@ const out="artifacts/d01-declaration";fs.mkdirSync(out,{recursive:true});
  const zero=base();
  const wood=example();wood.sources.other_fuels="known";wood.activities.push({id:"w",kind:"wood_commercial_pci",quantity:10000,unit:"kWh PCI",renewableEnergyKwh:10000,quality:"invoice",evidence:"FICTIVE-W"});
  const thermal=example();thermal.sources.purchased_heat="known";thermal.thermalPurchases=[{id:"th",kind:"heat",network:"Réseau fictif",quantityKwh:5000,renewableEnergyKwh:2000,evidence:"FICTIVE-TH"}];
- const process=example();process.sources.processes="known";process.processEmissions=[{id:"p",process:"Réaction fictive",grossTCO2e:2.5,method:"Mesure documentée",gwpBasis:"AR6 100 ans",evidence:"FICTIVE-P",confirmedBoundary:true}];
- const cases=[["declaration-carbone-b3",example()],["couverture-partielle",partial],["zero",zero],["biomasse",wood],["chaleur-achetee",thermal],["procedes",process]];
+ const processCase=example();processCase.sources.processes="known";processCase.processEmissions=[{id:"p",process:"Réaction fictive",grossTCO2e:2.5,method:"Mesure documentée",gwpBasis:"AR6 100 ans",evidence:"FICTIVE-P",confirmedBoundary:true}];
+ const cases=[["declaration-carbone-b3",example()],["couverture-partielle",partial],["zero",zero],["biomasse",wood],["chaleur-achetee",thermal],["procedes",processCase]];
  browser=await puppeteer.launch({executablePath:process.env.CHROMIUM_EXECUTABLE_PATH,headless:true,pipe:true,args:["--no-sandbox","--no-zygote","--disable-gpu"]});
  for(const [name,input] of cases){
   const result=calculate(input),html=renderDeclarationSpecimen(result,logo);
