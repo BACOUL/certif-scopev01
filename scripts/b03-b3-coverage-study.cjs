@@ -17,21 +17,13 @@ function add(x,kind,quantity,extra={}){
  x.activities.push({id:"row"+x.activities.length,kind,quantity,unit:FACTORS[kind].unit,quality:"invoice",evidence:"FICTIVE-"+x.activities.length,...extra});return x;
 }
 function example(){return add(add(base(),"electricity",12000,{renewableEnergyKwh:8000}),"gas_pci",18000,{renewableEnergyKwh:0});}
-const S1=["gas","diesel_b7","petrol_e10","other_fuels","refrigerants","processes","self_generation"];
-const S2=["electricity","purchased_heat","self_generation"];
-// Conservative presentation contract: the current unstructured exclusion text cannot identify
-// which metric is affected. Mark all affected metrics partial rather than asserting completeness.
+// Read the actual engine report contract, not a separately implemented mock.
 function view(r){
- const uncertain=!!r.assessment.exclusions;
- function metric(value,missing){return uncertain||missing?{status:"partial",value:null,knownSum:value}:{status:"declared_covered",value,knownSum:value};}
- const s1=metric(r.scope1T,r.missing.some(k=>S1.includes(k)));
- const s2=metric(r.scope2LocationT,r.missing.some(k=>S2.includes(k)));
- const energy=metric(r.energyMwh,!r.energyTotalComplete);
- const sum=metric(r.totalT,s1.status==="partial"||s2.status==="partial");
- const shares=sum.value!==null&&sum.value>0?[s1.value/sum.value,s2.value/sum.value]:null;
- const mix=energy.value!==null&&r.energyBreakdown.total.complete?{renewable:r.energyBreakdown.total.renewableMwh,nonRenewable:r.energyBreakdown.total.nonRenewableMwh}:null;
- // Even all declared sources covered is not a claim of approved factors or legal compliance.
- return {s1,s2,energy,sum,shares,mix,releaseApproved:false};
+ const p=r.report;
+ return {s1:p.scope1,s2:p.scope2,energy:p.energy,sum:p.total,
+ shares:p.scopeShares?[p.scopeShares.scope1,p.scopeShares.scope2]:null,
+ mix:p.energyMix?{renewable:p.energyMix.renewableMwh,nonRenewable:p.energyMix.nonRenewableMwh}:null,
+ releaseApproved:p.releaseApproved};
 }
 let count=0; function test(name,fn){fn();count++;console.log("PASS "+name);}
 const close=(a,b)=>assert.ok(Math.abs(a-b)<1e-9,a+" != "+b);
@@ -50,6 +42,9 @@ test("actual prototype rejects renewable over total",()=>{const x=example();x.ac
 test("actual prototype rejects wrong unit",()=>{const x=example();x.activities[1].unit="kWh PCS";assert.throws(()=>calculate(x),/UNIT_MISMATCH/);});
 test("actual prototype rejects duplicate evidence",()=>{const x=example();x.activities.push({...x.activities[0],id:"dup"});assert.throws(()=>calculate(x),/DUPLICATE_EVIDENCE/);});
 test("actual prototype rejects unsupported geographic code",()=>{const x=example();x.country="DE";assert.throws(()=>calculate(x));});
-test("known release gaps: 2027 unsupported and eligibility not approval",()=>{const x=example();x.year=2027;x.start="2027-01-01";x.end="2027-12-31";assert.throws(()=>calculate(x));const r=calculate(example());assert.equal(r.saleEligible,true);assert.ok(r.warnings.includes("HISTORICAL_FACTORS"));assert.equal(view(r).releaseApproved,false);});
-test("known release gap: unbounded positive fuel energy ratio accepted",()=>{const x=add(base(),"diesel_b7",1,{energyKwh:100000});const r=calculate(x);close(r.energyMwh,100);assert.equal(r.saleEligible,true);});
-console.log("RESULT "+count+" study assertions passed; includes reproduction of release gaps, NOT production acceptance.");
+test("2027 still unsupported and unvalidated sale blocked",()=>{const x=example();x.year=2027;x.start="2027-01-01";x.end="2027-12-31";assert.throws(()=>calculate(x));const r=calculate(example());assert.equal(r.saleEligible,false);assert.ok(r.warnings.includes("HISTORICAL_FACTORS"));assert.equal(view(r).releaseApproved,false);});
+test("implausible fuel energy rejected",()=>{const x=add(base(),"diesel_b7",1,{energyKwh:100000});assert.throws(()=>calculate(x),/IMPLAUSIBLE_FUEL_ENERGY/);});
+test("plausible diesel and E10 inputs preserved",()=>{const x=add(add(base(),"diesel_b7",100,{energyKwh:1000}),"petrol_e10",100,{energyKwh:900});const r=calculate(x);close(r.energyMwh,1.9);close(r.scope1T,.468);assert.equal(r.saleEligible,false);});
+test("implausibly low fuel energy rejected",()=>{const x=add(base(),"petrol_e10",100,{energyKwh:1});assert.throws(()=>calculate(x),/IMPLAUSIBLE_FUEL_ENERGY/);});
+test("CSV omits incomplete emissions and energy despite retained measured subtotal",()=>{const {simulationCsv}=load("export.ts");const x=example();x.exclusions="Une source manquante";const rows=simulationCsv(calculate(x)).replace(/^\uFEFF/,"").split("\r\n").map(l=>l.split(";"));assert.equal(rows[1][7],"");assert.equal(rows[1][8],"30");for(const i of [9,10,11])assert.equal(rows[1][i],"");});
+console.log("RESULT "+count+" study assertions passed; actual engine and CSV report contract, NOT production acceptance.");
