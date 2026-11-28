@@ -9,11 +9,13 @@ export function calculate(input: unknown) {
  for(const c of CATEGORIES){
   const rows=assessment.activities.filter(a=>category(a.kind)===c);
   if(assessment.sources[c]!=="known" && rows.length)throw new Error("SOURCE_CONFLICT");
-  if(assessment.sources[c]==="unknown" || (assessment.sources[c]==="known" && rows.length===0))missing.push(c);
+  const hasData=rows.length>0 || (c==="processes" && assessment.processEmissions.length>0);
+  if(assessment.sources[c]==="unknown" || (assessment.sources[c]==="known" && !hasData))missing.push(c);
  }
  if(assessment.start!==`${assessment.year}-01-01` || assessment.end!==`${assessment.year}-12-31`)warnings.push("PARTIAL_YEAR");
  if(assessment.exclusions)warnings.push("DECLARED_EXCLUSIONS");
  if(assessment.thermalPurchases.length)warnings.push("THERMAL_EMISSION_FACTOR_UNAVAILABLE");
+ if(assessment.processEmissions.length)warnings.push("DECLARED_PROCESS_TOTALS_UNVERIFIED_GWP_REVIEW_REQUIRED");
  const lines=assessment.activities.map(a=>{
   const f=selectReviewFactor(a.kind,assessment.year);
   if(f.source===SOURCE && f.year!==assessment.year)warnings.push("FACTOR_YEAR_DIFFERS");
@@ -47,7 +49,8 @@ export function calculate(input: unknown) {
  if(lines.some(l=>l.factor.version===EU_F_GAS_VERSION))warnings.push("PURE_F_GAS_ONLY_MASS_RELEASE_NOT_CHARGE");
  if(!energyBreakdown.total.complete)warnings.push("ENERGY_SPLIT_NOT_AVAILABLE");
  if(!energyBreakdown.total.totalComplete)warnings.push("ENERGY_TOTAL_INCOMPLETE");
- const scope1Kg=lines.filter(l=>l.factor.scope===1).reduce((s,l)=>s+l.kgCO2e,0);
+ const processTCO2e=assessment.processEmissions.reduce((sum,p)=>sum+p.grossTCO2e,0);
+ const scope1Kg=lines.filter(l=>l.factor.scope===1).reduce((s,l)=>s+l.kgCO2e,0)+1000*processTCO2e;
  const scope2Kg=lines.filter(l=>l.factor.scope===2).reduce((s,l)=>s+l.kgCO2e,0);
  // A numerical subtotal is not a complete company-wide metric. Keep legacy
  // raw subtotals for the simulation, but use report for all new disclosures.
@@ -72,7 +75,7 @@ export function calculate(input: unknown) {
   // Release approval must come from validated methodology, factors and commercial controls.
   releaseApproved:false as const,
  };
- return {methodology:METHOD,assessment,lines,report,scope1T:scope1Kg/1000,scope2LocationT:scope2Kg/1000,totalT:(scope1Kg+scope2Kg)/1000,
+ return {methodology:METHOD,assessment,lines,processTCO2e,report,scope1T:scope1Kg/1000,scope2LocationT:scope2Kg/1000,totalT:(scope1Kg+scope2Kg)/1000,
   // Keep the measured sum for traceability. When source categories are missing,
   // it MUST NOT be presented as company total energy in PDF, UI or CSV.
   energyMwh:energyBreakdown.total.totalMwh,energyTotalComplete:energyBreakdown.total.totalComplete,energyBreakdown,biogenicCO2T:lines.reduce((s,l)=>s+l.biogenicCO2kg,0)/1000,
