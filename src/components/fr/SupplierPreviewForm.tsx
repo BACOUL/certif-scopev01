@@ -4,6 +4,7 @@ import { useState } from "react";
 import { calculate, type Calculation } from "@/lib/carbon/calculate";
 import { simulationCsv } from "@/lib/carbon/export";
 import { assessmentSchema } from "@/lib/carbon/schema";
+import { evaluateLaunch } from "@/lib/carbon/eligibility";
 import { reportingYears, reportingToday, reportingPeriod, REVIEW_GEOGRAPHY } from "@/lib/carbon/period";
 import {
   CATEGORIES,
@@ -170,6 +171,8 @@ export default function SupplierPreviewForm() {
       setError(reason instanceof Error ? reason.message : "La simulation a échoué.");
     }
   }
+
+  const eligibility = result ? evaluateLaunch(result) : null;
 
   return (
     <div id="simulation-fournisseur" className="scroll-mt-28">
@@ -527,11 +530,25 @@ export default function SupplierPreviewForm() {
                 Aucune émission calculée. N’interprétez pas les zéros comme une absence d’émissions.
               </p>
             )}
-            {result.warnings.length > 0 && (
-              <p className="mt-5 text-sm leading-relaxed text-[#475569]">
-                Réserves techniques : {result.warnings.join(", ")}. Les facteurs ADEME historiques
-                et les catégories non prises en charge restent des blocages avant vente.
-              </p>
+            {eligibility && (
+              <div className="mt-5 rounded-xl border border-[#0B3A63]/15 p-5 text-sm text-[#475569]">
+                <h3 className="font-bold text-[#0B3A63]">Préparation de votre déclaration</h3>
+                <p className="mt-2">{eligibility.dataStatus==="launch_candidate"
+                  ? "Vos données correspondent au périmètre de lancement envisagé. Les facteurs, comparatifs et contrôles de délivrance restent à valider."
+                  : "Votre simulation est disponible, mais certaines données ou sources nécessitent une vérification complémentaire."}</p>
+                {eligibility.dataBlockers.length>0 && <ul className="mt-2 list-disc space-y-1 pl-5">
+                  {eligibility.dataBlockers.map(code=><li key={code}>{({
+                    GEOGRAPHY_UNCONFIRMED:"Périmètre géographique à confirmer.",
+                    PERIOD_NOT_FULL_CALENDAR_YEAR:"Exercice calendaire complet requis pour la première version commerciale envisagée.",
+                    MISSING_REQUIRED_TOTAL:"Consommation totale ou émissions incomplètes.",
+                    DECLARED_EXCLUSIONS:"Sources exclues à clarifier.",
+                    SOURCE_OUTSIDE_LAUNCH_SCOPE:"Une source nécessite une méthode complémentaire.",
+                    NO_DOCUMENTED_ACTIVITY:"Aucune activité documentée ; vérifier les zéros.",
+                    ACTIVITY_NOT_DOCUMENTED:"Consommations à documenter."
+                  })[code]}</li>)}
+                </ul>}
+                <p className="mt-2 font-semibold">Commande indisponible : version de travail non commercialisée.</p>
+              </div>
             )}
             <div className="mt-6">
               <button type="button" onClick={() => downloadSimulationCsv(result)}
