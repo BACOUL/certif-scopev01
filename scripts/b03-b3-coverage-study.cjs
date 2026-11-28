@@ -6,7 +6,7 @@ function load(file){
  if(cache.has(file))return cache.get(file).exports;
  const module={exports:{}};cache.set(file,module);
  const js=ts.transpileModule(fs.readFileSync(file,"utf8"),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText;
- vm.runInNewContext(js,{module,exports:module.exports,require:n=>n==="zod"?require("zod"):n.startsWith("./")?load(n+".ts"):(()=>{throw Error("DEPENDENCY "+n)})()},{filename:file});
+ vm.runInNewContext(js,{module,exports:module.exports,require:n=>n==="server-only"?{}:n==="node:buffer"?require("node:buffer"):n==="zod"?require("zod"):n.startsWith("./")?load(n+".ts"):(()=>{throw Error("DEPENDENCY "+n)})()},{filename:file});
  return module.exports;
 }
 const {calculate}=load("calculate.ts"),{CATEGORIES,FACTORS,category}=load("factors.ts");
@@ -100,4 +100,13 @@ test("estimates remain in simulation but not documented candidate",()=>{const x=
 test("complex sources retained in simulation but not candidate scope",()=>{for(const x of [thermalExample(),processExample(),add(launchExample(),"wood_commercial_pci",1000),add(launchExample(),"solar_pv_owned",5000,{generatedKwh:8000,exportedKwh:3000})]){x.geography=REVIEW_GEOGRAPHY;const e=evaluateLaunch(calculate(x));assert.ok(e.dataBlockers.includes("SOURCE_OUTSIDE_LAUNCH_SCOPE"));assert.equal(e.canPurchase,false);}});
 test("historical electricity fallback is a release blocker, not validated factor",()=>{const x=launchExample();x.year=2025;x.start="2025-01-01";x.end="2025-12-31";const e=evaluateLaunch(calculate(x));assert.ok(e.releaseBlockers.includes("HISTORICAL_ELECTRICITY_PROXY"));assert.equal(e.canPurchase,false);});
 test("launch scope contains only explicitly selected ordinary candidate kinds",()=>{assert.equal(LAUNCH_SOURCE_CANDIDATES.join(","),"electricity,gas_pcs,gas_pci,diesel_b7,petrol_e10,fuel_oil_pci");});
+const {recalculateOnServer,prepareDeclarationOrder,MAX_ASSESSMENT_BYTES}=load("server-calculation.ts");
+test("server recalculates raw activity without trusting browser totals",()=>{const r=recalculateOnServer(JSON.stringify(launchExample()));close(r.calculation.report.total.value,4.0908);assert.equal(r.eligibility.canPurchase,false);assert.equal(r.calculation.saleEligible,false);});
+test("server rejects forged top-level totals, approval and eligibility",()=>{for(const key of ["totalCO2e","report","saleEligible","methodology","eligibility","factorVersion","canPurchase","price"]){const x=launchExample();x[key]=true;assert.throws(()=>recalculateOnServer(JSON.stringify(x)),/INVALID_ASSESSMENT/);}});
+test("server rejects nested factor substitution and fabricated emissions",()=>{for(const key of ["factor","kgCO2e","approvedForIssuance","scope","value"]){const x=launchExample();x.activities[0][key]=0;assert.throws(()=>recalculateOnServer(JSON.stringify(x)),/INVALID_ASSESSMENT/);}});
+test("server rejects missing geography even though old fixtures simulate",()=>{assert.throws(()=>recalculateOnServer(JSON.stringify(example())),/GEOGRAPHY_REQUIRED/);});
+test("server refuses malformed nonobject and oversized UTF8 request bodies",()=>{for(const raw of ["","{","null","[]","123",undefined])assert.throws(()=>recalculateOnServer(raw),/INVALID_BODY|INVALID_ASSESSMENT/);assert.throws(()=>recalculateOnServer("é".repeat(MAX_ASSESSMENT_BYTES/2+1)),/BODY_TOO_LARGE/);});
+test("server sanitizes validation errors and rejects contradictory declarations",()=>{const x=launchExample();x.sources.gas="not_applicable";x.company="PRIVATE-FIXTURE";assert.throws(()=>recalculateOnServer(JSON.stringify(x)),e=>e.message==="INVALID_ASSESSMENT"&&!e.message.includes("PRIVATE-FIXTURE"));});
+test("order preparation always fails closed, including compatible data and zero",()=>{for(const x of [launchExample(),add({...base(),geography:REVIEW_GEOGRAPHY},"electricity",0)])assert.throws(()=>prepareDeclarationOrder(JSON.stringify(x)),/ISSUANCE_DISABLED/);});
+test("server independently recalculates changed consumption and preserves incomplete coverage",()=>{const x=launchExample();x.activities[0].quantity=24000;const r=recalculateOnServer(JSON.stringify(x));close(r.calculation.report.scope2.value,.9456);x.sources.refrigerants="unknown";const p=recalculateOnServer(JSON.stringify(x));assert.equal(p.calculation.report.total.value,null);assert.ok(p.eligibility.dataBlockers.includes("MISSING_REQUIRED_TOTAL"));});
 console.log("RESULT "+count+" study assertions passed; actual engine and CSV report contract, NOT production acceptance.");
