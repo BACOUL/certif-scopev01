@@ -1,0 +1,115 @@
+name: A03 - Controle cible formulaire historique
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - refonte/conserver-site-existant-20261114
+    paths:
+      - '.github/workflows/a03-form-reference.yml'
+permissions:
+  contents: read
+jobs:
+  form-reference:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 71e6cd87a8c04041ff58be4db99a6fa49cb8c40a
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+      - run: rm -f .env.local && npm ci --ignore-scripts --no-audit --no-fund
+      - name: Read-only browser checks with commercial requests blocked
+        run: |
+          export CHROMIUM_EXECUTABLE_PATH="$(command -v google-chrome)"
+          node <<'NODE'
+          const puppeteer = require("puppeteer-core");
+          const assert = require("node:assert/strict");
+          const fs = require("node:fs");
+          const origin = "https://www.certif-scope.com";
+          const paths = {fr:"/fr/generate/",en:"/en/generate/",de:"/de/erstellen/",es:"/es/generate/"};
+          const publicPaths = new Set([...Object.values(paths),...Object.keys(paths).map(l=>"/"+l+"/")]);
+          const output="artifacts/a03-form";
+          fs.mkdirSync(output,{recursive:true});
+          (async()=>{
+            const browser=await puppeteer.launch({executablePath:process.env.CHROMIUM_EXECUTABLE_PATH,headless:true,args:["--no-sandbox","--disable-dev-shm-usage","--disable-background-networking"]});
+            const results=[];
+            try {
+              for(const [locale,route] of Object.entries(paths)){
+                const page=await browser.newPage();
+                const errors=[];const attempted=[];
+                page.on("pageerror",e=>errors.push(e.message));
+                await page.setRequestInterception(true);
+                page.on("request",async req=>{
+                  try{
+                    const u=new URL(req.url());
+                    if(["data:","blob:"].includes(u.protocol))return await req.continue();
+                    const allowedPath=publicPaths.has(u.pathname)||/^\/_next\/(?:static\/|image(?:\/|$))/.test(u.pathname)||/\.(?:png|webp|svg|jpe?g|ico|woff2?|ttf|css|js)$/i.test(u.pathname);
+                    const api=/(?:^|\/)(?:api|success|erfolg|checkout|redeem-key|signin|signup)(?:\/|$)/i.test(u.pathname);
+                    if(api||!["GET","HEAD"].includes(req.method()))attempted.push(req.method()+" "+u.origin+u.pathname);
+                    if(u.origin!==origin||api||!allowedPath||!["GET","HEAD"].includes(req.method()))return await req.abort();
+                    await req.continue();
+                  }catch{try{await req.abort()}catch{}}
+                });
+                await page.setViewport({width:locale==="es"?390:1440,height:900});
+                const landing=await page.goto(origin+"/"+locale+"/",{waitUntil:"networkidle2",timeout:35000});
+                assert.equal(landing.status(),200);
+                await page.evaluate(async()=>{await document.fonts.ready; await Promise.race([Promise.all([...document.images].filter(x=>x.getBoundingClientRect().top<innerHeight).map(x=>x.decode().catch(()=>{}))),new Promise(r=>setTimeout(r,1500))]);});
+                await new Promise(r=>setTimeout(r,1200));
+                await page.screenshot({path:output+"/"+locale+"-home.png"});
+                const res=await page.goto(origin+route,{waitUntil:"networkidle2",timeout:35000});
+                assert.equal(res.status(),200);
+                const fr=locale==="fr";
+                const company=fr?"#company-name":'main input[id$="-company"]';
+                const sector=fr?"#company-sector":'main select[id$="-sector"]';
+                const buttons=()=>page.$$eval('main button[type="button"]',nodes=>nodes.map(b=>b.innerText));
+                async function advance(stage){
+                  if(fr){
+                    const label=stage===1?"Continuer vers les dépenses":"Voir le récapitulatif";
+                    await page.evaluate(label=>{const b=[...document.querySelectorAll("main button")].find(b=>b.innerText.trim()===label);if(!b)throw Error("Next button not found");b.click()},label);
+                  }else{
+                    const b=await page.$$("main button");
+                    assert.ok(b.length);
+                    await b[b.length-1].click();
+                  }
+                }
+                await page.waitForSelector(company);
+                await advance(1);
+                await page.waitForSelector('[role="alert"]',{timeout:10000});
+                await page.type(company,"Example Services",{delay:75});
+                assert.equal(await page.$eval(company,el=>el.value),"Example Services","company input before moving to next step");
+                await page.select(sector,"professional_services");
+                if(locale==="en"||locale==="de")await page.select('main select[id$="-language"]',locale==="en"?"de":"en");
+                if(fr)await page.select("#attestation-language","en");
+                await advance(1);
+                await page.waitForSelector('main input[inputmode="decimal"]',{timeout:10000});
+                const fields=await page.$$('main input[inputmode="decimal"]');
+                assert.equal(fields.length,7);
+                for(const field of fields){await field.click({clickCount:3});await field.type("1000");}
+                await advance(2);
+                await page.waitForSelector('main input[type="checkbox"]',{timeout:10000});
+                const text=await page.$eval("main",el=>el.innerText);
+                assert.match(text,/1[.,]9(?:2)?\b/);
+                assert.match(text,/Example Services/);
+                assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false);
+                assert.equal(errors.length,0,errors.join(";"));
+                console.log("BLOCKED",locale,JSON.stringify(attempted));
+                const unexpected=attempted.filter(s=>s.includes(origin+"/api/")&&!["GET "+origin+"/api/sample","HEAD "+origin+"/api/sample","GET "+origin+"/api/attestation/eu-sample","HEAD "+origin+"/api/attestation/eu-sample"].includes(s.replace(/\/$/,"")));
+                assert.deepEqual(unexpected,[],"unexpected API attempt (all blocked)");
+                await page.screenshot({path:output+"/"+locale+"-recap.png",fullPage:true});
+                results.push({locale,status:"pass",categories:7,displayedTotal:text.match(/1[.,]9(?:2)?\b/)[0],blockedExternalRequests:attempted.length,errors});
+                console.log("PASS",locale,"three steps, mandatory fields, seven expenses, 1.9/1.92 tCO2e, no commercial API");
+                await page.close();
+              }
+            }finally{fs.writeFileSync(output+"/report.json",JSON.stringify(results,null,2));await browser.close();}
+          })().catch(e=>{console.error(e.stack||e.message);process.exitCode=1;});
+          NODE
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: a03-form-reference
+          path: artifacts/a03-form/
+          retention-days: 30
+          if-no-files-found: warn

@@ -1,0 +1,49 @@
+name: B04 - Specimen PDF comparatif
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - refonte/conserver-site-existant-20261114
+    paths:
+      - '.github/workflows/b04-pdf-specimen.yml'
+      - 'scripts/b04-specimen.cjs'
+permissions:
+  contents: read
+jobs:
+  specimen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+      - run: rm -f .env.local
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Install missing Poppler utilities
+        run: |
+          if ! command -v pdfinfo || ! command -v pdftoppm || ! command -v pdftotext; then
+            sudo apt-get update -qq
+            sudo apt-get install -y --no-install-recommends poppler-utils
+          fi
+      - name: Confirm historical source unchanged
+        run: |
+          test "$(git rev-parse HEAD:src/lib/attestation-pdf-template.ts)" = d86303121ac76e72cb27d57b4e962714fd7fbd2f
+          test "$(git rev-parse HEAD:src/lib/attestation-pdf-copy.ts)" = 1b8c42507ac12a82dda7734f0c062199edd11937
+          echo 'Historical template and dictionary unchanged'
+          command -v google-chrome
+          command -v pdfinfo
+          command -v pdftoppm
+      - name: Render offline and verify
+        run: |
+          sudo unshare --net -- setpriv --reuid="$(id -u)" --regid="$(id -g)" --init-groups env -i HOME="$HOME" PATH="$PATH" CHROMIUM_EXECUTABLE_PATH="$(command -v google-chrome)" node scripts/b04-specimen.cjs
+          sha256sum artifacts/b04-specimen/*.pdf > artifacts/b04-specimen/SHA256SUMS.txt
+      - name: Archive comparative PDFs and page images
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: certif-scope-specimens-comparatifs
+          path: artifacts/b04-specimen/
+          if-no-files-found: error
+          retention-days: 30

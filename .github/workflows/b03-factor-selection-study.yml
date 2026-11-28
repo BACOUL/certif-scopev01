@@ -1,0 +1,21 @@
+name: B03 - Contrat de selection des facteurs
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - refonte/conserver-site-existant-20261114
+    paths:
+      - '.github/workflows/b03-factor-selection-study.yml'
+      - 'scripts/b03-factor-selection-study.py'
+      - 'docs/refonte/evidence/B03_ADEME_PHYSICAL_20261127.json'
+permissions:
+  contents: read
+jobs:
+  selection-study:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - run: python3 scripts/b03-factor-selection-study.py

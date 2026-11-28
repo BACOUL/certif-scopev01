@@ -1,0 +1,24 @@
+name: B03 - Contrat de couverture B3
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - refonte/conserver-site-existant-20261114
+    paths:
+      - 'scripts/b03-b3-coverage-study.cjs'
+      - '.github/workflows/b03-b3-coverage-study.yml'
+      - 'src/lib/carbon/**'
+permissions:
+  contents: read
+jobs:
+  study:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Run isolated synthetic study without network
+        run: |
+          sudo unshare --net -- setpriv --reuid "$(id -u)" --regid "$(id -g)" --clear-groups env -i PATH="$PATH" HOME="$HOME" node scripts/b03-b3-coverage-study.cjs

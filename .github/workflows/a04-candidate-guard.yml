@@ -1,0 +1,61 @@
+name: A04 - Garde du candidat
+on:
+  push:
+    branches:
+      - refonte/conserver-site-existant-20261114
+  pull_request:
+    branches:
+      - fix/multilingual-fr-en-de-20261001
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  candidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Reject new tracked environment files and recognizable credentials
+        run: |
+          python3 - <<'PY'
+          import collections, re, subprocess, sys
+          # Never emit paths, values, matching lines or artifacts.
+          rules = [
+              re.compile(rb'(?<![A-Za-z0-9_])(?:sk|rk)_(?:live|test)_[A-Za-z0-9]{16,}'),
+              re.compile(rb'(?<![A-Za-z0-9_])whsec_[A-Za-z0-9]{16,}'),
+              re.compile(rb'(?<![A-Za-z0-9_])re_[A-Za-z0-9]{8,}_[A-Za-z0-9_-]{12,}'),
+              re.compile(rb'(?<![A-Za-z0-9_])(?:gh[pousr]_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{40,})'),
+              re.compile(rb'-----BEGIN (?:RSA |EC |OPENSSH |ENCRYPTED )?PRIVATE KEY-----'),
+          ]
+          fixtures = [b'sk_'+b'live_'+b'A'*24,b'wh'+b'sec_'+b'B'*24,
+                      b're_'+b'C'*9+b'_'+b'D'*20,b'gh'+b'p_'+b'E'*36,
+                      b'-----BEGIN '+b'PRIVATE KEY-----']
+          def blocked_env(path):
+              name = path.rsplit(b'/',1)[-1].lower()
+              return (name == b'.env' or name.startswith(b'.env.')) and not name.endswith((b'.example',b'.sample',b'.template'))
+          assert all(rule.search(fixture) for rule,fixture in zip(rules,fixtures))
+          assert blocked_env(b'src/.env.production') and not blocked_env(b'.env.example')
+          counts = collections.Counter()
+          tree = subprocess.check_output(['git','ls-tree','-r','-z','HEAD'])
+          for record in tree.split(b'\0'):
+              if not record: continue
+              meta,path=record.split(b'\t',1)
+              mode,kind,oid=meta.split()
+              if blocked_env(path): counts['env']+=1
+              if kind != b'blob': counts['nonblob']+=1; continue
+              size=int(subprocess.check_output(['git','cat-file','-s',oid]))
+              if size>2_000_000: counts['large']+=1; continue
+              data=subprocess.check_output(['git','cat-file','blob',oid])
+              if b'\0' in data: counts['binary']+=1; continue
+              counts['text']+=1
+              if any(rule.search(data) for rule in rules): counts['flagged']+=1
+          print('Candidate text blobs:',counts['text'])
+          print('Excluded large/binary/nonblob:',counts['large'],counts['binary'],counts['nonblob'])
+          print('Forbidden environment files:',counts['env'])
+          print('Recognizable credentials:',counts['flagged'])
+          if counts['env'] or counts['flagged']:
+              sys.exit('Candidate policy failed; inspect privately')
+          print('Candidate policy passed; historical exposure and generic secrets still require separate review.')
+          PY

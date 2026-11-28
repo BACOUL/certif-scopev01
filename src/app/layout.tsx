@@ -53,10 +53,12 @@ export default async function RootLayout({
 }) {
   const requestedLocale = (await headers()).get("x-site-locale") || "fr";
   const locale = isEuLocale(requestedLocale) ? requestedLocale : "fr";
+  const reviewMode = process.env.VERCEL_ENV === "preview" || process.env.VERCEL_PROJECT_ID === "prj_uB8VwMP9wnONmHvVbrTPxyqYXD65";
 
   return (
     <html lang={locale} className="light" suppressHydrationWarning>
       <head>
+        {reviewMode && <meta name="robots" content="noindex,nofollow,noarchive" />}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -85,6 +87,11 @@ export default async function RootLayout({
       </head>
 
       <body className="bg-white text-gray-800">
+        {reviewMode && (
+          <div role="status" className="border-b border-amber-200 bg-amber-50 px-4 py-3 text-center text-sm font-semibold text-amber-950">
+            Aperçu Certif-Scope en lecture seule : paiements, crédits et accès aux dossiers clients désactivés.
+          </div>
+        )}
         <ClientLayout>{children}</ClientLayout>
         <Analytics />
       </body>

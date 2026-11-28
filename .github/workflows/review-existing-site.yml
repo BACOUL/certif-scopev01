@@ -1,0 +1,62 @@
+name: Preserve and update original Certif-Scope
+
+on:
+  push:
+    branches:
+      - refonte/conserver-site-existant-20261114
+  pull_request:
+    branches:
+      - fix/multilingual-fr-en-de-20261001
+
+permissions:
+  contents: read
+
+jobs:
+  review-original-site:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: Use Node.js 22
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Verify supplier carbon calculator ported from PR 107
+        run: node scripts/verify-supplier-engine.mjs
+      - name: Check preservation and honest regulatory copy
+        run: |
+          node --input-type=module <<'NODE'
+          import assert from "node:assert/strict";
+          import {readFileSync,existsSync} from "node:fs";
+          const read=p=>readFileSync(p,"utf8");
+          const home=read("src/components/international/Homepage.tsx");
+          for(const component of ["<Hero copy={copy} />","<UseCaseDecisionTable copy={copy} />","<Features copy={copy} />","<HowItWorks copy={copy} />","<Pricing copy={copy} />","<FAQ copy={copy} />","<FinalCTA copy={copy} />"]){
+            assert.ok(home.includes(component),`missing original module: ${component}`);
+          }
+          assert.ok(home.includes('locale === "fr" && <RegulatoryUpdate2026 />'));
+          const update=read("src/components/fr/RegulatoryUpdate2026.tsx");
+          for(const term of ["2026/1560","2026/470","scope 1","scope 2","dépenses","1er janvier 2027"]){
+            assert.ok(update.includes(term),`missing regulatory explanation ${term}`);
+          }
+          for(const p of ["src/app/fr/page.tsx","src/app/fr/generate/page.tsx","src/app/fr/pricing/page.tsx","src/app/fr/product/page.tsx"]){
+            assert.ok(existsSync(p),`original route deleted: ${p}`);
+          }
+          assert.equal(JSON.parse(read("vercel.json")).git.deploymentEnabled,false);
+          const previewGuard=read("src/proxy.ts");
+          for(const fragment of ['REVIEW_ONLY_LOCK','request.method === "GET"','path.startsWith("/api/")','success|erfolg','status: 403','noindex, nofollow']){
+            assert.ok(previewGuard.includes(fragment),`preview read-only guard missing: ${fragment}`);
+          }
+
+          console.log("Original site preserved; regulatory update and deployment safeguard verified.");
+          NODE
+      - name: Compile original site with regulatory changes
+        env:
+          NEXT_TELEMETRY_DISABLED: "1"
+        run: npm run build
+
+      - name: HTTP smoke test read-only site (no secrets, no checkout)
+        run: node scripts/review-smoke.mjs

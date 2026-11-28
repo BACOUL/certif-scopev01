@@ -1,0 +1,45 @@
+name: A06 - Inventaire des dependances historiques
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - refonte/conserver-site-existant-20261114
+    paths:
+      - '.github/workflows/a06-dependency-audit.yml'
+permissions:
+  contents: read
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 71e6cd87a8c04041ff58be4db99a6fa49cb8c40a
+          persist-credentials: false
+      - name: Count source references without printing source or environment values
+        run: |
+          python3 - <<'PY'
+          import subprocess,re
+          paths = subprocess.check_output(['git','ls-files','-z']).split(b'\0')
+          source = {}
+          for path in paths:
+              if not path or not re.search(rb'\.(?:tsx?|jsx?|mjs|cjs)$',path): continue
+              # Historical runtime and top-level build/middleware; exclude tests and scripts.
+              if not (path.startswith((b'src/',b'lib/',b'app/',b'pages/')) or b'/' not in path): continue
+              source[path] = subprocess.check_output(['git','show',b'HEAD:'+path])
+          patterns = {
+              'Stripe':rb'\bSTRIPE_SECRET_KEY\b|\bstripe\.checkout\b',
+              'Cloudflare KV':rb'\bCF_KV_NAMESPACE_ID\b|storage/kv/namespaces/',
+              'Resend':rb'\bRESEND_API_KEY\b|\bResend\b',
+              'PDFShift':rb'\bPDFSHIFT_API_KEY\b|api\.pdfshift\.io',
+              'Browserless':rb'BROWSERLESS|browserless',
+              'Chromium/Puppeteer':rb'puppeteer|chromium',
+              'Vercel Analytics':rb'@vercel/analytics',
+          }
+          print('Historical source files inspected:',len(source))
+          for service,pattern in patterns.items():
+              hits=sum(bool(re.search(pattern,data,re.I)) for data in source.values())
+              print(service+': '+str(hits)+' source files')
+          print('Static references only. No account data, external requests or proof of billing/traffic.')
+          PY

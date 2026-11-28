@@ -2,11 +2,12 @@
 import type { Metadata } from "next";
 
 import AssessmentForm from "./AssessmentForm";
+import SupplierPreviewForm from "@/components/fr/SupplierPreviewForm";
 
 export const metadata: Metadata = {
-  title: "Générer une attestation CO₂e PME | Certif-Scope",
+  title: "Simulation carbone fournisseur et ancienne attestation | Certif-Scope",
   description:
-    "Générez une attestation CO₂e indicative pour PME, basée sur les dépenses, sans audit complet ni stockage des données financières détaillées.",
+    "Simulez une fiche de données carbone énergie et scopes 1/2 avec facteurs historiques. Nouvelle fiche non vendue ; le formulaire de l’ancienne attestation demeure disponible aux clients historiques.",
   alternates: {
     canonical: "https://www.certif-scope.com/fr/generate/",
     languages: {
@@ -17,9 +18,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Générer une attestation CO₂e PME | Certif-Scope",
+    title: "Simulation fournisseur et attestation historique | Certif-Scope",
     description:
-      "Formulaire simple pour générer une attestation CO₂e indicative, vérifiable et adaptée aux demandes fournisseurs, banques, assurances ou appels d’offres.",
+      "Calcul indicatif énergie, scopes 1 et 2 sur le site existant ; ancienne attestation basée sur les dépenses préservée pour les clients historiques.",
     url: "https://www.certif-scope.com/fr/generate/",
     siteName: "Certif-Scope",
     type: "website",
@@ -30,48 +31,45 @@ export const metadata: Metadata = {
 
 export default function GenerateFRPage() {
   return (
-    <section
-      id="generate"
-      data-section="generate"
-      className="max-w-7xl mx-auto px-6 pt-8 pb-16 md:pt-12 md:pb-24"
-    >
-      <header className="mb-6">
-        <p className="uppercase text-xs tracking-wider text-[#64748B] mb-3">
-          Attestation CO₂e indicative — Génération PME
+    <section id="generate" className="mx-auto max-w-7xl px-6 pb-20 pt-8 md:px-8 md:pt-12">
+      <header className="mb-9 max-w-4xl">
+        <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#0B3A63]/70">
+          Certif-Scope · nouvelle fiche en préparation
         </p>
-
-        <h1 className="text-2xl md:text-3xl font-extrabold text-[#0B3A63] mb-4">
-          Générer une attestation CO₂e indicative pour votre PME
+        <h1 className="mt-3 text-3xl font-extrabold text-[#0B3A63] md:text-4xl">
+          Votre simulation de données carbone fournisseur
         </h1>
-
-        <p className="text-lg text-gray-700 leading-relaxed max-w-3xl">
-          Remplissez un formulaire simple pour produire une attestation CO₂e
-          indicative basée sur les dépenses. Le document est conçu pour répondre
-          à une demande fournisseur, bancaire, assurantielle ou d’appel d’offres,
-          sans lancer un audit carbone complet.
+        <p className="mt-4 text-lg leading-relaxed text-[#475569]">
+          Nous modernisons le formulaire du Certif-Scope existant pour préparer la
+          future fiche énergie et scopes 1 et 2. Le calcul ci-dessous est
+          indicatif : les facteurs et la méthodologie restent à valider avant
+          toute commercialisation.
         </p>
-
-        <div className="mt-6 grid gap-3 text-sm text-[#475569] md:grid-cols-3">
-          <div className="rounded-2xl border border-[#0B3A63]/10 bg-[#F8FAFC] p-4">
-            <strong className="block text-[#0B3A63]">Sans audit complet</strong>
-            <span>Document indicatif de screening, non CSRD/ESRS.</span>
-          </div>
-          <div className="rounded-2xl border border-[#0B3A63]/10 bg-[#F8FAFC] p-4">
-            <strong className="block text-[#0B3A63]">Données limitées</strong>
-            <span>Aucune donnée financière détaillée n’est conservée.</span>
-          </div>
-          <div className="rounded-2xl border border-[#0B3A63]/10 bg-[#F8FAFC] p-4">
-            <strong className="block text-[#0B3A63]">PDF vérifiable</strong>
-            <span>Attestation standardisée, datée et vérifiable.</span>
-          </div>
-        </div>
-
-        <div className="w-20 h-[2px] bg-gray-300 mt-10" />
       </header>
 
-      <div className="max-w-4xl">
-        <AssessmentForm />
+      <div className="max-w-5xl">
+        <SupplierPreviewForm />
       </div>
+
+      <section className="mt-12 max-w-5xl rounded-[26px] border border-[#0B3A63]/15 bg-[#F8FAFC] p-6 md:p-8">
+        <h2 className="text-2xl font-extrabold text-[#0B3A63]">
+          Ancienne attestation CO₂e — clients historiques
+        </h2>
+        <p className="mt-3 text-sm leading-relaxed text-[#475569]">
+          L’ancien formulaire fondé sur sept catégories de dépenses est conservé
+          intact pour protéger les anciens parcours et droits. Il ne produit
+          pas la nouvelle fiche scopes 1 et 2. Dans cette Preview, les accès
+          aux API, les crédits et les paiements sont désactivés.
+        </p>
+        <details className="mt-5 rounded-xl border border-[#0B3A63]/15 bg-white p-5">
+          <summary className="cursor-pointer font-semibold text-[#0B3A63]">
+            Consulter le formulaire historique (sans paiement dans la Preview)
+          </summary>
+          <div className="mt-7">
+            <AssessmentForm />
+          </div>
+        </details>
+      </section>
     </section>
   );
 }
