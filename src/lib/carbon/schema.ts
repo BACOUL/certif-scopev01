@@ -24,6 +24,19 @@ export const assessmentSchema = z.object({
   renewableEnergyKwh: z.number().finite().min(0).max(1e9).optional(),
   evidence: text,
  }).strict()).max(40).default([]),
+ // Imported documented process-only totals, not a sector-specific calculator.
+ // Restricted to gross non-biogenic process emissions within the reporting
+ // boundary. Mixed inventories, combustion, fugitive releases, offsets and
+ // carbon removals must not be entered as process totals.
+ processEmissions: z.array(z.object({
+  id: z.string().regex(/^[a-zA-Z0-9_-]{1,40}$/),
+  process: text,
+  grossTCO2e: z.number().finite().min(0).max(1e9),
+  method: text,
+  gwpBasis: text,
+  evidence: text,
+  confirmedBoundary: z.literal(true),
+ }).strict()).max(40).default([]),
  exclusions: z.string().trim().max(600), confirmed: z.literal(true),
 }).strict().superRefine((x,ctx)=>{
  const start = new Date(x.start), end = new Date(x.end);
@@ -34,7 +47,11 @@ export const assessmentSchema = z.object({
  if(new Set(x.activities.map(a=>`${a.kind.startsWith("gas_")?"gas":a.kind}|${a.evidence.trim().toLowerCase()}`)).size!==x.activities.length)ctx.addIssue({code:"custom",message:"DUPLICATE_EVIDENCE"});
  if(x.thermalPurchases.length && x.sources.purchased_heat!=="known")
   ctx.addIssue({code:"custom",message:"THERMAL_SOURCE_CONFLICT"});
- if(new Set([...x.activities,...x.thermalPurchases].map(a=>a.id)).size!==x.activities.length+x.thermalPurchases.length)
+ if(x.processEmissions.length && x.sources.processes!=="known")
+  ctx.addIssue({code:"custom",message:"PROCESS_SOURCE_CONFLICT"});
+ if(new Set(x.processEmissions.map(a=>[a.process.trim().toLowerCase(),a.evidence.trim().toLowerCase()].join("|"))).size!==x.processEmissions.length)
+  ctx.addIssue({code:"custom",message:"DUPLICATE_PROCESS_EVIDENCE"});
+ if(new Set([...x.activities,...x.thermalPurchases,...x.processEmissions].map(a=>a.id)).size!==x.activities.length+x.thermalPurchases.length+x.processEmissions.length)
   ctx.addIssue({code:"custom",message:"DUPLICATE_ACTIVITY"});
  if(new Set(x.thermalPurchases.map(a=>[a.kind,a.network.trim().toLowerCase(),a.evidence.trim().toLowerCase()].join("|"))).size!==x.thermalPurchases.length)
   ctx.addIssue({code:"custom",message:"DUPLICATE_THERMAL_EVIDENCE"});
