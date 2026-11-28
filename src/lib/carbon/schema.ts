@@ -1,9 +1,11 @@
 import { z } from "zod";
 import { CATEGORIES, FACTORS } from "./factors";
+import { FIRST_REVIEW_YEAR, REVIEW_GEOGRAPHY, reportingToday } from "./period";
 const text = z.string().trim().min(1).max(180).refine(s => !/[\x00-\x1f]/.test(s), "CONTROL_CHARACTERS");
-export const assessmentSchema = z.object({
+export const createAssessmentSchema = (clock:()=>Date=()=>new Date()) => z.object({
  locale: z.enum(["fr", "en", "de"]), company: text, identifier: text, country: z.literal("FR"),
- year: z.number().int().min(2023).max(2026), boundary: text, declarant: text,
+ geography: z.literal(REVIEW_GEOGRAPHY).optional(),
+ year: z.number().int().min(FIRST_REVIEW_YEAR).max(9999), boundary: text, declarant: text,
  start: z.string().regex(/^\d{4}-\d{2}-\d{2}$/), end: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
  sources: z.object(Object.fromEntries(CATEGORIES.map(k => [k, z.enum(["known", "not_applicable", "unknown"])])) as Record<typeof CATEGORIES[number], z.ZodEnum<["known", "not_applicable", "unknown"]>>).strict(),
  activities: z.array(z.object({
@@ -42,7 +44,8 @@ export const assessmentSchema = z.object({
  const start = new Date(x.start), end = new Date(x.end);
  if (!Number.isFinite(+start) || !Number.isFinite(+end) || start.toISOString().slice(0,10)!==x.start || end.toISOString().slice(0,10)!==x.end || start>end || +end-+start>366*86400000 || start.getUTCFullYear()!==x.year || end.getUTCFullYear()!==x.year)
  ctx.addIssue({code:"custom",message:"INVALID_PERIOD"});
- if(x.year===2026 && x.end>new Date().toISOString().slice(0,10))ctx.addIssue({code:"custom",message:"FUTURE_PERIOD_NOT_ALLOWED"});
+ const today=reportingToday(clock());
+ if(x.year>Number(today.slice(0,4)) || x.start>today || x.end>today)ctx.addIssue({code:"custom",message:"FUTURE_PERIOD_NOT_ALLOWED"});
  if(new Set(x.activities.map(a=>a.id)).size!==x.activities.length)ctx.addIssue({code:"custom",message:"DUPLICATE_ACTIVITY"});
  if(new Set(x.activities.map(a=>`${a.kind.startsWith("gas_")?"gas":a.kind}|${a.evidence.trim().toLowerCase()}`)).size!==x.activities.length)ctx.addIssue({code:"custom",message:"DUPLICATE_EVIDENCE"});
  if(x.thermalPurchases.length && x.sources.purchased_heat!=="known")
@@ -99,4 +102,5 @@ export const assessmentSchema = z.object({
    ctx.addIssue({code:"custom",message:"RENEWABLE_EXCEEDS_TOTAL_ENERGY"});
  }
 });
+export const assessmentSchema = createAssessmentSchema();
 export type Assessment = z.infer<typeof assessmentSchema>;
