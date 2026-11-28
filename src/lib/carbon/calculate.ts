@@ -1,10 +1,14 @@
 import { assessmentSchema } from "./schema";
 import { selectReviewFactor, METHOD, SOURCE, CATEGORIES, category } from "./factors";
 import {EU_F_GAS_VERSION} from "./refrigerants";
+import {REVIEW_GEOGRAPHY, reportingToday} from "./period";
 export function calculate(input: unknown) {
  const assessment = assessmentSchema.parse(input);
  const warnings: string[] = ["NOT_AUDITED", "SCOPE3_EXCLUDED", "MARKET_BASED_NOT_CALCULATED"];
+ const today=reportingToday();
+ if(assessment.year===Number(today.slice(0,4)))warnings.push("CURRENT_YEAR_PROVISIONAL");
  if(assessment.year===2026)warnings.push("2026_PROVISIONAL");
+ if(!assessment.geography)warnings.push("LEGACY_GEOGRAPHY_NOT_EXPLICITLY_CONFIRMED");
  const missing: string[] = [];
  for(const c of CATEGORIES){
   const rows=assessment.activities.filter(a=>category(a.kind)===c);
@@ -17,7 +21,7 @@ export function calculate(input: unknown) {
  if(assessment.thermalPurchases.length)warnings.push("THERMAL_EMISSION_FACTOR_UNAVAILABLE");
  if(assessment.processEmissions.length)warnings.push("DECLARED_PROCESS_TOTALS_UNVERIFIED_GWP_REVIEW_REQUIRED");
  const lines=assessment.activities.map(a=>{
-  const f=selectReviewFactor(a.kind,assessment.year);
+  const f=selectReviewFactor(a.kind,assessment.year,assessment.geography??REVIEW_GEOGRAPHY);
   if(f.source===SOURCE && f.year!==assessment.year)warnings.push("FACTOR_YEAR_DIFFERS");
   if(a.kind==="electricity" && f.selection==="historical_demo_only")warnings.push("ELECTRICITY_EXACT_YEAR_UNAVAILABLE_DEMO_ONLY");
   if(!f.approvedForIssuance)warnings.push("FACTORS_NOT_APPROVED_FOR_ISSUANCE");
