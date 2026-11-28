@@ -1,7 +1,7 @@
 // ADEME Base Carbone V23.6, retrieved 2026-11-12. Raw records in docs/refonte/evidence.
 // Use direct emissions rows, NEVER the lifecycle total. Historical proxies are disclosed.
 import {REFRIGERANT_FACTORS} from "./refrigerants";
-export const METHOD = "CS-ENERGY-1.4.0-REVIEW";
+export const METHOD = "CS-ENERGY-1.5.0-REVIEW";
 export const SOURCE = "https://data.ademe.fr/datasets/base-carboner";
 export const ADEME_FACTORS = {
  electricity: { id: "43273", row: "JF-Ssewkm48XeLYhjMd0C", value: 0.0394, scope: 2, unit: "kWh", year: 2023, energy: 1, biogenic: 0, boundary: "Combustion à la centrale", validity: "Année 2023" },
@@ -19,7 +19,12 @@ export const OTHER_FUEL_CANDIDATES = {
  butane_pci: {id:"13548",row:"e5XFpMbvZy1WTzzO5Oz_T",value:0.233,scope:1,unit:"kWh PCI",year:2017,energy:1,biogenic:0,boundary:"Combustion — butane, source incluant maritime",validity:"déc-17",source:SOURCE,version:"ADEME-API-2026-11-27",retrieved:"2026-11-27"},
  propane_pci: {id:"13554",row:"aRCjX1sQ_wNVhNm-nQcOk",value:64.8*0.0036,scope:1,unit:"kWh PCI",year:2017,energy:1,biogenic:0,boundary:"Combustion — propane, source incluant maritime ; 64,8 kgCO2e/GJ PCI × 0,0036 GJ/kWh",validity:"déc-17",source:SOURCE,version:"ADEME-API-2026-11-27",retrieved:"2026-11-27"},
 } as const;
-export const FACTORS = {...ADEME_FACTORS,...OTHER_FUEL_CANDIDATES,...REFRIGERANT_FACTORS} as const;
+// Operational accounting convention, NOT an ADEME lifecycle factor.
+// Restricted to PV equipment operated by the reporting entity, direct
+// metered self-consumption without storage or complex allocation.
+// GHG Protocol Scope 2 Guidance, chapter 5: own generation is not purchased energy.
+export const PV_OWNED = {id:"GHGP-OWN-PV-OPERATIONAL",row:"GHGP-SCOPE2-CH5",value:0,scope:1,unit:"kWh",year:2015,energy:1,biogenic:0,boundary:"Photovoltaïque exploité par l'entité : production directe sans combustion ; hors cycle de vie",validity:"Convention opérationnelle à valider",source:"https://ghgprotocol.org/scope-2-guidance",version:"GHGP-SCOPE2-2015-REVIEW",retrieved:"2026-11-28"} as const;
+export const FACTORS = {...ADEME_FACTORS,...OTHER_FUEL_CANDIDATES,...REFRIGERANT_FACTORS,solar_pv_owned:PV_OWNED} as const;
 export type SourceKind = keyof typeof FACTORS;
 
 /** Verified source row, not yet approved for commercial issuance.
@@ -36,7 +41,7 @@ export function selectReviewFactor(kind:SourceKind,year:number) {
  const f=kind==="electricity" && year===2024?ELECTRICITY_2024:FACTORS[kind];
  // The legacy demonstration is intentionally not an approved fallback.
  // In particular a 2023 factor for 2025/26 is a historic example, not a 2025/26 factor.
- const selection=kind==="electricity"
+ const selection=kind==="solar_pv_owned"?"operational_convention_candidate":kind==="electricity"
   ? f.year===year?"exact_year_candidate":"historical_demo_only"
   : "historical_demo_only";
  return {...f,source:"source" in f?f.source:SOURCE,
@@ -47,7 +52,7 @@ export function selectReviewFactor(kind:SourceKind,year:number) {
 
 export const CATEGORIES = ["electricity", "gas", "diesel_b7", "petrol_e10", "other_fuels", "refrigerants", "purchased_heat", "processes", "self_generation"] as const;
 export type Category = typeof CATEGORIES[number];
-export function category(kind: SourceKind): Category { return kind.startsWith("gas_") ? "gas" : kind.startsWith("refrigerant_") ? "refrigerants" : kind in OTHER_FUEL_CANDIDATES ? "other_fuels" : kind as Category; }
+export function category(kind: SourceKind): Category { return kind.startsWith("gas_") ? "gas" : kind.startsWith("refrigerant_") ? "refrigerants" : kind in OTHER_FUEL_CANDIDATES ? "other_fuels" : kind==="solar_pv_owned" ? "self_generation" : kind as Category; }
 
 /** Only create activity rows for supported sources. Unsupported source selections remain reportable as missing. */
 export function firstSupportedKind(source: Category): SourceKind | undefined {
