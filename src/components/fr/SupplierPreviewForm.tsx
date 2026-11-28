@@ -4,6 +4,7 @@ import { useState } from "react";
 import { calculate, type Calculation } from "@/lib/carbon/calculate";
 import { simulationCsv } from "@/lib/carbon/export";
 import { assessmentSchema } from "@/lib/carbon/schema";
+import { reportingYears, reportingToday, reportingPeriod, REVIEW_GEOGRAPHY } from "@/lib/carbon/period";
 import {
   CATEGORIES,
   FACTORS,
@@ -73,9 +74,8 @@ export default function SupplierPreviewForm() {
   const [profile, setProfile] = useState({
     company: "",
     identifier: "",
-    year: 2025,
-    start: "2025-01-01",
-    end: "2025-12-31",
+    year: Math.max(2023,Number(reportingToday().slice(0,4))-1),
+    ...reportingPeriod(Math.max(2023,Number(reportingToday().slice(0,4))-1)),
     boundary: "",
     declarant: "",
     exclusions: "",
@@ -84,6 +84,7 @@ export default function SupplierPreviewForm() {
     () => Object.fromEntries(CATEGORIES.map((key) => [key, "unknown"])) as SourceMap,
   );
   const [lines, setLines] = useState<InputLine[]>([]);
+  const [geographyConfirmed,setGeographyConfirmed]=useState(false);
   const [processes, setProcesses] = useState<Array<{id:string;process:string;grossTCO2e:string;method:string;gwpBasis:string;evidence:string;confirmedBoundary:boolean}>>([]);
   const addProcess=()=>{setProcesses(old=>[...old,{id:crypto.randomUUID(),process:"",grossTCO2e:"",method:"",gwpBasis:"",evidence:"",confirmedBoundary:false}]);setResult(null);};
   function editProcess(id:string,patch:Partial<(typeof processes)[number]>){setProcesses(old=>old.map(a=>a.id===id?{...a,...patch}:a));setResult(null);setError("");}
@@ -126,6 +127,7 @@ export default function SupplierPreviewForm() {
 
   function calculatePreview(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if(!geographyConfirmed){setError("Périmètre géographique non couvert ou non confirmé.");setResult(null);return;}
     setError("");
     setResult(null);
     try {
@@ -140,6 +142,7 @@ export default function SupplierPreviewForm() {
         country: "FR",
         sources,
         confirmed,
+        geography: geographyConfirmed?REVIEW_GEOGRAPHY:undefined,
         processEmissions: processes.map(a=>({...a,grossTCO2e:a.grossTCO2e.trim()===""?NaN:Number(a.grossTCO2e)})),
         thermalPurchases: thermal.map(a=>({id:a.id,kind:a.kind,network:a.network,quantityKwh:a.quantityKwh.trim()===""?NaN:Number(a.quantityKwh),evidence:a.evidence,...(a.renewableEnergyKwh.trim()===""?{}:{renewableEnergyKwh:Number(a.renewableEnergyKwh)})})),
         activities: lines.map((line) => ({
@@ -204,12 +207,10 @@ export default function SupplierPreviewForm() {
               <select className={fieldClass} value={profile.year}
                 onChange={(event) => {
                   const year = Number(event.target.value);
-                  const today = new Date().toISOString().slice(0, 10);
-                  setProfile((old) => ({ ...old, year, start: year + "-01-01",
-                    end: year === Number(today.slice(0, 4)) ? today : year + "-12-31" }));
+                  setProfile((old) => ({ ...old, year, ...reportingPeriod(year) }));
                   setResult(null);
                 }}>
-                {[2026, 2025, 2024, 2023].map((year) => <option key={year} value={year}>{year}</option>)}
+                {reportingYears().map((year) => <option key={year} value={year}>{year}</option>)}
               </select>
             </label>
             <label className={labelClass}>Nom et fonction du déclarant
@@ -217,14 +218,15 @@ export default function SupplierPreviewForm() {
                 onChange={(event) => editProfile("declarant", event.target.value)} />
             </label>
             <label className={labelClass}>Début de la période
-              <input required type="date" className={fieldClass} value={profile.start}
+              <input required type="date" min={profile.year+"-01-01"} max={reportingPeriod(profile.year).end} className={fieldClass} value={profile.start}
                 onChange={(event) => editProfile("start", event.target.value)} />
             </label>
             <label className={labelClass}>Fin de la période
-              <input required type="date" className={fieldClass} value={profile.end}
+              <input required type="date" min={profile.start} max={reportingPeriod(profile.year).end} className={fieldClass} value={profile.end}
                 onChange={(event) => editProfile("end", event.target.value)} />
             </label>
           </div>
+          <label className="mt-4 flex items-start gap-2 text-sm"><input required type="checkbox" checked={geographyConfirmed} onChange={e=>{setGeographyConfirmed(e.target.checked);setResult(null);}}/>Je confirme que les activités déclarées relèvent uniquement de la France métropolitaine continentale (hors Corse et outre-mer). Les activités à l’étranger ou hors de ce périmètre ne sont pas encore couvertes par ce prototype.</label>
           <label className={labelClass + " mt-5"}>Périmètre : sites, entités et véhicules concernés
             <input required maxLength={180} className={fieldClass} value={profile.boundary}
               onChange={(event) => editProfile("boundary", event.target.value)} />
