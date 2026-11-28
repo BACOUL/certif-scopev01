@@ -21,6 +21,7 @@ export function calculate(input: unknown) {
   if(!f.approvedForIssuance)warnings.push("FACTORS_NOT_APPROVED_FOR_ISSUANCE");
   if(a.quality!=="invoice")warnings.push("UNVERIFIED_ACTIVITY");
   if(a.kind==="solar_pv_owned")warnings.push("PV_OPERATIONAL_ONLY_NO_AVOIDED_EMISSIONS");
+  if(a.kind.startsWith("wood_"))warnings.push("WOOD_TIER1_AR6_CANDIDATE_GWP_HARMONISATION_REQUIRED");
   return {...a, ...(a.kind==="solar_pv_owned"?{renewableEnergyKwh:a.quantity}:{}), factor:f, kgCO2e:a.quantity*f.value, biogenicCO2kg:a.quantity*f.biogenic, energyKwh:f.energy===null?a.energyKwh!:a.quantity*f.energy};
  });
  // B3 §32: energy split is disclosed only when each relevant line is supported by a declared value.
