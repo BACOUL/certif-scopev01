@@ -293,6 +293,22 @@ export default function SupplierPreviewForm() {
                         </select>
                       </label>
                     )}
+                    {group === "other_fuels" && (
+                      <label className={labelClass}>Combustible (simulation historique)
+                        <select className={fieldClass} value={line.kind}
+                          onChange={(event) => editLine(line.id, { kind: event.target.value as SourceKind, quantity: "", energyKwh: "", renewableEnergyKwh: "", evidence: "" })}>
+                          <option value="fuel_oil_pci">Fioul domestique — kWh PCI</option>
+                          <option value="butane_pci">Butane — kWh PCI</option>
+                          <option value="propane_pci">Propane — kWh PCI</option>
+                        </select>
+                        <span className="mt-1 block text-xs font-normal text-amber-800">
+                          Facteurs historiques non approuvés pour la vente. Saisir uniquement
+                          une énergie PCI documentée, pas des litres ni des kilogrammes.
+                          Si un autre combustible est utilisé, le signaler dans les exclusions ;
+                          ne pas le remplacer par un combustible de cette liste.
+                        </span>
+                      </label>
+                    )}
                     {group === "refrigerants" && (
                       <label className={labelClass}>Gaz fluoré pur
                         <select className={fieldClass} value={line.kind}
