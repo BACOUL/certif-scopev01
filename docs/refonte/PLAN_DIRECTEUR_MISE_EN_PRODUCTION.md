@@ -24,6 +24,18 @@ Mis en place le 26 novembre 2026 après l'annonce par le propriétaire de la deu
 ### P1 — après lancement ou exceptionnellement si nécessaire à un blocage P0
 Calculs industriels sectoriels détaillés, stockage/cogénération et autres autoproductions complexes, exercices décalés entre deux années, facteurs pour nouveaux pays, scope 3 détaillé, import automatique avancé, automatisations et élargissement de la gamme. Conserver les prototypes et leurs tests en tant que travaux de recherche isolés ; aucune activation commerciale par défaut. Si une source est significative chez un client, son absence reste un blocage de couverture et non une dispense réglementaire.
 
+### Registre court des facteurs P0 (C05)
+| Source candidate | Référence disponible | Validation indispensable avant vente |
+|---|---|---|
+| Électricité achetée | ADEME 2023 ID 43273 ; 2024 ID 43642 ; RTE 2025 candidat externe non intégré | Facteur location-based de consommation par exercice et zone ; frontières gaz, pertes et millésime ; règle de substitution approuvée ou blocage. Priorité 2025 puis 2026 dès données pertinentes. |
+| Gaz naturel PCS/PCI | ADEME 37133 / 37132 | Provenance, validité, couverture GES, convention PCS/PCI et conversion énergie, PRG et licence. |
+| Diesel B7 / essence E10 | ADEME 25775 / 13988 | Type de carburant, frontière combustion, PCI documenté, CO2 biogénique séparé, millésime et PRG. |
+| Fioul domestique PCI | ADEME 14085 | Facteur historique déc-17, validité actuelle et usage stationnaire, PRG et licence. |
+
+Liste de travail volontairement courte, **aucun facteur de cette liste n'est approuvé pour la délivrance**. Autres combustibles, fluides frigorigènes, bois, PV, achats thermiques et procédés restent accessibles en recherche ; pour le lancement, ajouter uniquement une source simple dont la validation est indispensable au marché cible ou exclure clairement le client concerné de la délivrance complète. La fréquence réelle de ces sources chez les clients doit être vérifiée avant de figer définitivement le marché initial. Ne pas traiter une source utilisée comme non applicable pour contourner ce filtre.
+
+Politique CS-B3-P0-REVIEW-1 : résultat de simulation distinct de l'éligibilité des données et de l'autorisation de commande. Pour le lancement envisagé, exercice calendaire complet, géographie confirmée, au moins une ligne d'activité documentée, sources couvertes, aucune exclusion et totaux énergie/scope 1/scope 2 disponibles. Part renouvelable facultative si inconnue. Les estimations restent autorisées en simulation : la condition de justificatif est un choix conservateur commercial à réexaminer, pas une exigence générale de B3. N-1 non encore implémenté : blocage transversal à lever en D02c. Le filtre de recherche ne peut jamais activer un achat, même si les données sont compatibles. Le serveur devra recalculer et appliquer ses propres validations de release en C06/C07 ; aucune confiance dans un résultat ou indicateur fourni par le navigateur.
+
 ### Ordre de reprise révisé
 1. C05 : définir un filtre d'éligibilité simple, sûr et explicite, figer le périmètre des sources de lancement et établir la liste courte des facteurs/validations P0 manquants (C02/C03/C04).
 2. C06/C07 : calcul serveur, instantané versionné et protection de la délivrance.
@@ -273,3 +285,6 @@ Pour chaque validation : ajouter une ligne avec ID, commit de code, lien vers r�
 
 
 | 2026-11-28 | Décision propriétaire — lancement simple P0/P1 | Plan recentré : produit unique B3 à 89 EUR, parcours court, exigences applicables conservées, extension sectorielle reportée, filtre d'éligibilité avant achat et validation des facteurs du périmètre choisi. | Prochaine action C05, puis C06/C07. Décision documentée, pas de développement ni validation supplémentaire dans ce commit, aucun déploiement. |
+
+
+| 2026-11-28 | C05 — filtre de lancement P0 | Commits 99ee17af1d02b3497d8e1e620693fe4bf44cede5 (politique d'éligibilité), 196172b4bc61fa8880a245dc61695275c91f5817 (messages compréhensibles en simulation), c015770686c37d897510b219d4fe7a115bf74118 (9 assertions supplémentaires). Registre court P0 ci-dessus. | C05 partiel : filtre candidat, non validation juridique ou méthodologique ; aucune vente possible. Choix conservateur du périmètre et des justificatifs à valider avant publication. Contrôles C02/C03/C04 et historique N-1 restent ouverts ; C06 prochain chantier après recette. Aucun changement de production. |
