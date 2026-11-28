@@ -1,7 +1,7 @@
 // ADEME Base Carbone V23.6, retrieved 2026-11-12. Raw records in docs/refonte/evidence.
 // Use direct emissions rows, NEVER the lifecycle total. Historical proxies are disclosed.
 import {REFRIGERANT_FACTORS} from "./refrigerants";
-export const METHOD = "CS-ENERGY-1.5.0-REVIEW";
+export const METHOD = "CS-ENERGY-1.6.0-REVIEW";
 export const SOURCE = "https://data.ademe.fr/datasets/base-carboner";
 export const ADEME_FACTORS = {
  electricity: { id: "43273", row: "JF-Ssewkm48XeLYhjMd0C", value: 0.0394, scope: 2, unit: "kWh", year: 2023, energy: 1, biogenic: 0, boundary: "Combustion à la centrale", validity: "Année 2023" },
@@ -24,7 +24,23 @@ export const OTHER_FUEL_CANDIDATES = {
 // metered self-consumption without storage or complex allocation.
 // GHG Protocol Scope 2 Guidance, chapter 5: own generation is not purchased energy.
 export const PV_OWNED = {id:"GHGP-OWN-PV-OPERATIONAL",row:"GHGP-SCOPE2-CH5",value:0,scope:1,unit:"kWh",year:2015,energy:1,biogenic:0,boundary:"Photovoltaïque exploité par l'entité : production directe sans combustion ; hors cycle de vie",validity:"Convention opérationnelle à valider",source:"https://ghgprotocol.org/scope-2-guidance",version:"GHGP-SCOPE2-2015-REVIEW",retrieved:"2026-11-28"} as const;
-export const FACTORS = {...ADEME_FACTORS,...OTHER_FUEL_CANDIDATES,...REFRIGERANT_FACTORS,solar_pv_owned:PV_OWNED} as const;
+// IPCC 2006 volume 2 chapter 2, tables 2.3/2.4 (wood/wood waste).
+// Tier 1 generic candidate for untreated pure wood including logs/pellets/chips.
+// kg gas/TJ NCV -> kg gas/kWh PCI: 1 kWh = 0.0000036 TJ.
+// AR6 GWP100: non-fossil CH4 27, N2O 273. CO2 biogenic reported separately.
+// Other historical factors use different GWP versions: harmonisation mandatory before issuance.
+const WOOD_SOURCE="https://www.ipcc-nggip.iges.or.jp/public/2006gl/pdf/2_Volume2/V2_2_Ch2_Stationary_Combustion.pdf";
+const woodCandidate=(id:string,table:string,ch4:number,boundary:string)=>({
+ id,row:table,value:(ch4*27+4*273)*0.0000036,scope:1 as const,unit:"kWh PCI" as const,year:2006,energy:1 as const,
+ biogenic:112000*0.0000036,boundary,validity:"Facteur générique Tier 1, adéquation à valider",
+ source:WOOD_SOURCE,version:"IPCC-2006-TIER1-AR6-REVIEW",retrieved:"2026-11-28",
+ gasMassKgPerTJ:{co2Biogenic:112000,ch4,n2o:4},gwp100:{ch4:27,n2o:273},
+});
+export const WOOD_CANDIDATES={
+ wood_commercial_pci:woodCandidate("IPCC-2006-T2.4-WOOD","Table 2.4 p.2.21",300,"Combustion stationnaire de bois pur — commercial/institutionnel"),
+ wood_industrial_pci:woodCandidate("IPCC-2006-T2.3-WOOD","Table 2.3 p.2.19",30,"Combustion stationnaire de bois pur — industrie manufacturière/construction"),
+} as const;
+export const FACTORS = {...ADEME_FACTORS,...OTHER_FUEL_CANDIDATES,...WOOD_CANDIDATES,...REFRIGERANT_FACTORS,solar_pv_owned:PV_OWNED} as const;
 export type SourceKind = keyof typeof FACTORS;
 
 /** Verified source row, not yet approved for commercial issuance.
@@ -52,7 +68,7 @@ export function selectReviewFactor(kind:SourceKind,year:number) {
 
 export const CATEGORIES = ["electricity", "gas", "diesel_b7", "petrol_e10", "other_fuels", "refrigerants", "purchased_heat", "processes", "self_generation"] as const;
 export type Category = typeof CATEGORIES[number];
-export function category(kind: SourceKind): Category { return kind.startsWith("gas_") ? "gas" : kind.startsWith("refrigerant_") ? "refrigerants" : kind in OTHER_FUEL_CANDIDATES ? "other_fuels" : kind==="solar_pv_owned" ? "self_generation" : kind as Category; }
+export function category(kind: SourceKind): Category { return kind.startsWith("gas_") ? "gas" : kind.startsWith("refrigerant_") ? "refrigerants" : (kind in OTHER_FUEL_CANDIDATES || kind in WOOD_CANDIDATES) ? "other_fuels" : kind==="solar_pv_owned" ? "self_generation" : kind as Category; }
 
 /** Only create activity rows for supported sources. Unsupported source selections remain reportable as missing. */
 export function firstSupportedKind(source: Category): SourceKind | undefined {
