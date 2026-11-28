@@ -165,7 +165,7 @@ export default function SupplierPreviewForm() {
           envoyée à une API de calcul ou d’achat.
         </p>
         <p className="mt-3 text-sm font-medium text-[#0B3A63]">
-          Attention : facteurs ADEME historiques (2021–2023), en cours de
+          Attention : facteurs historiques ADEME et candidat électrique 2024, en cours de
           révision. Résultats non audités, non certifiés, non exploitables comme
           justificatif réglementaire. La future vente à 89 € n’est pas ouverte.
         </p>
@@ -377,6 +377,13 @@ export default function SupplierPreviewForm() {
               Méthode {result.methodology}. Les facteurs historiques doivent être actualisés
               et validés avant toute vente. Aucun PDF ou JSON signé n’est produit par cette simulation.
             </p>
+            {result.warnings.includes("ELECTRICITY_EXACT_YEAR_UNAVAILABLE_DEMO_ONLY") && (
+              <p className="mt-3 rounded-lg bg-amber-50 p-3 text-sm text-amber-900">
+                Aucun facteur électrique du millésime demandé n’est validé dans ce prototype.
+                Le résultat électrique utilise uniquement la référence historique de 2023
+                à titre de démonstration, pas un facteur de l’exercice sélectionné.
+              </p>
+            )}
             <div className="mt-6 grid gap-4 sm:grid-cols-3">
               <div className="rounded-2xl bg-[#F8FAFC] p-5">
                 <p className="text-sm font-semibold text-[#0B3A63]">Scope 1 calculé</p>
