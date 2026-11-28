@@ -47,6 +47,11 @@ export function simulationCsv(result: Calculation): string {
       null,null,line.quantityKwh/1000,null,null,null,"facteur_indisponible","purchased_heat",
       null,result.methodology,"THERMAL_EMISSION_FACTOR_UNAVAILABLE",
     ]),
+    ...result.assessment.processEmissions.map((line):Cell[]=>[
+      "detail_procede",result.assessment.year,"processes","1",null,"tCO2e",
+      null,line.grossTCO2e,null,null,null,null,"declare_non_verifie","",
+      null,result.methodology,"DECLARED_PROCESS_TOTALS_UNVERIFIED_GWP_REVIEW_REQUIRED",
+    ]),
   ];
   // BOM makes the UTF-8 French headers readable in common spreadsheet apps.
   return "\uFEFF" + [csvRow(header), ...rows.map(csvRow)].join("\r\n") + "\r\n";
