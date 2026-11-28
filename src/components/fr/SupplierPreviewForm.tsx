@@ -84,6 +84,10 @@ export default function SupplierPreviewForm() {
     () => Object.fromEntries(CATEGORIES.map((key) => [key, "unknown"])) as SourceMap,
   );
   const [lines, setLines] = useState<InputLine[]>([]);
+  const [thermal, setThermal] = useState<Array<{id:string;kind:"heat"|"steam"|"cooling";network:string;quantityKwh:string;renewableEnergyKwh:string;evidence:string}>>([]);
+  const addThermal = () => {setThermal(old=>[...old,{id:crypto.randomUUID(),kind:"heat",network:"",quantityKwh:"",renewableEnergyKwh:"",evidence:""}]);setResult(null);};
+  function editThermal(id:string,patch:Partial<(typeof thermal)[number]>){setThermal(old=>old.map(a=>a.id===id?{...a,...patch}:a));setResult(null);setError("");}
+
   const [confirmed, setConfirmed] = useState(false);
   const [result, setResult] = useState<Calculation | null>(null);
   const [error, setError] = useState("");
@@ -96,6 +100,7 @@ export default function SupplierPreviewForm() {
 
   function editSource(key: Category, status: SourceStatus) {
     setSources((old) => ({ ...old, [key]: status }));
+    if(key==="purchased_heat" && status!=="known")setThermal([]);
     if (status !== "known") {
       setLines((old) => old.filter((line) => category(line.kind) !== key));
     } else {
@@ -131,6 +136,7 @@ export default function SupplierPreviewForm() {
         country: "FR",
         sources,
         confirmed,
+        thermalPurchases: thermal.map(a=>({id:a.id,kind:a.kind,network:a.network,quantityKwh:a.quantityKwh.trim()===""?NaN:Number(a.quantityKwh),evidence:a.evidence,...(a.renewableEnergyKwh.trim()===""?{}:{renewableEnergyKwh:Number(a.renewableEnergyKwh)})})),
         activities: lines.map((line) => ({
           id: line.id,
           kind: line.kind,
@@ -230,7 +236,7 @@ export default function SupplierPreviewForm() {
           </p>
           <div className="grid gap-4 md:grid-cols-2">
             {CATEGORIES.map((key) => {
-              const supported = Boolean(firstSupportedKind(key));
+              const supported = Boolean(firstSupportedKind(key)) || key==="purchased_heat";
               return (
                 <label key={key} className={labelClass}>
                   {SOURCE_LABELS[key]}
@@ -389,6 +395,25 @@ export default function SupplierPreviewForm() {
           </div>
         </fieldset>
 
+        {sources.purchased_heat==="known" && (
+          <fieldset className={panelClass}>
+            <legend className="px-2 text-xl font-extrabold text-[#0B3A63]">Chaleur, vapeur et froid achetés</legend>
+            <p className="mb-4 text-sm text-amber-800">Saisissez les consommations livrées et documentées. Le facteur d’émission du réseau reste à qualifier : le scope 2 et le total des émissions seront indisponibles, jamais supposés nuls. Ne pas saisir la chaleur produite sur place ni le taux combiné renouvelable et récupération.</p>
+            {thermal.map(a=><div key={a.id} className="mb-4 grid gap-4 rounded-xl border p-4 md:grid-cols-2">
+              <label className={labelClass}>Énergie achetée
+                <select className={fieldClass} value={a.kind} onChange={e=>editThermal(a.id,{kind:e.target.value as typeof a.kind})}>
+                  <option value="heat">Chaleur</option><option value="steam">Vapeur</option><option value="cooling">Froid</option>
+                </select>
+              </label>
+              <label className={labelClass}>Réseau ou fournisseur<input required maxLength={180} className={fieldClass} value={a.network} onChange={e=>editThermal(a.id,{network:e.target.value})}/></label>
+              <label className={labelClass}>Énergie livrée (kWh)<input required type="number" min="0" max="1000000000" step="any" className={fieldClass} value={a.quantityKwh} onChange={e=>editThermal(a.id,{quantityKwh:e.target.value})}/></label>
+              <label className={labelClass}>Énergie renouvelable documentée (kWh, facultatif)<input type="number" min="0" max="1000000000" step="any" className={fieldClass} value={a.renewableEnergyKwh} onChange={e=>editThermal(a.id,{renewableEnergyKwh:e.target.value})}/></label>
+              <label className={labelClass}>Référence du relevé ou de la facture<input required maxLength={180} className={fieldClass} value={a.evidence} onChange={e=>editThermal(a.id,{evidence:e.target.value})}/></label>
+              <button type="button" className="text-sm font-semibold text-[#0B3A63]" onClick={()=>{setThermal(old=>old.filter(x=>x.id!==a.id));setResult(null);}}>Supprimer</button>
+            </div>)}
+            <button type="button" disabled={thermal.length>=40} onClick={addThermal} className="rounded-xl border border-[#0B3A63] px-4 py-2 text-sm font-semibold text-[#0B3A63]">Ajouter une énergie thermique achetée</button>
+          </fieldset>
+        )}
         <div className={panelClass}>
           <label className="flex items-start gap-3 text-sm leading-relaxed text-[#0B3A63]">
             <input required type="checkbox" className="mt-1 h-4 w-4" checked={confirmed}
