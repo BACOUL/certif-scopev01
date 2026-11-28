@@ -1,7 +1,7 @@
 // ADEME Base Carbone V23.6, retrieved 2026-11-12. Raw records in docs/refonte/evidence.
 // Use direct emissions rows, NEVER the lifecycle total. Historical proxies are disclosed.
 import {REFRIGERANT_FACTORS} from "./refrigerants";
-export const METHOD = "CS-ENERGY-1.6.0-REVIEW";
+export const METHOD = "CS-ENERGY-1.7.0-REVIEW";
 export const SOURCE = "https://data.ademe.fr/datasets/base-carboner";
 export const ADEME_FACTORS = {
  electricity: { id: "43273", row: "JF-Ssewkm48XeLYhjMd0C", value: 0.0394, scope: 2, unit: "kWh", year: 2023, energy: 1, biogenic: 0, boundary: "Combustion à la centrale", validity: "Année 2023" },
