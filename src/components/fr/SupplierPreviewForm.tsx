@@ -381,44 +381,45 @@ export default function SupplierPreviewForm() {
               <div className="rounded-2xl bg-[#F8FAFC] p-5">
                 <p className="text-sm font-semibold text-[#0B3A63]">Scope 1 calculé</p>
                 <p className="mt-2 text-2xl font-bold text-[#0B3A63]">
-                  {result.lines.length ? fmt(result.scope1T) + " tCO₂e" : "Non calculé"}
+                  {result.report.scope1.value !== null && result.lines.length ? fmt(result.report.scope1.value) + " tCO₂e" : "Non disponible"}
                 </p>
               </div>
               <div className="rounded-2xl bg-[#F8FAFC] p-5">
                 <p className="text-sm font-semibold text-[#0B3A63]">Scope 2 location-based calculé</p>
                 <p className="mt-2 text-2xl font-bold text-[#0B3A63]">
-                  {result.lines.length ? fmt(result.scope2LocationT) + " tCO₂e" : "Non calculé"}
+                  {result.report.scope2.value !== null && result.lines.length ? fmt(result.report.scope2.value) + " tCO₂e" : "Non disponible"}
                 </p>
               </div>
               <div className="rounded-2xl bg-[#F8FAFC] p-5">
                 <p className="text-sm font-semibold text-[#0B3A63]">
-                  {result.coverage === "partial" ? "Sous-total partiel" : "Somme des sources déclarées"}
+                  {result.report.total.value === null ? "Total scopes 1 et 2 indisponible" : "Somme des sources déclarées"}
                 </p>
                 <p className="mt-2 text-2xl font-bold text-[#0B3A63]">
-                  {result.lines.length ? fmt(result.totalT) + " tCO₂e" : "Non calculé"}
+                  {result.report.total.value !== null && result.lines.length ? fmt(result.report.total.value) + " tCO₂e" : "Non disponible"}
                 </p>
               </div>
             </div>
             <div className="mt-5 rounded-xl border border-[#0B3A63]/15 p-5 text-sm text-[#475569]">
               <h3 className="font-bold text-[#0B3A63]">Énergie déclarée</h3>
               <p className="mt-2">
-                {result.energyTotalComplete
-                  ? "Total énergétique des sources déclarées : " + fmt(result.energyMwh) + " MWh."
+                {result.report.energy.value !== null
+                  ? "Total énergétique des sources déclarées : " + fmt(result.report.energy.value) + " MWh."
                   : "Total énergétique incomplet : " + fmt(result.energyMwh) + " MWh pour les lignes renseignées seulement."}
               </p>
               <p className="mt-2">
-                Part renouvelable : {result.energyBreakdown.total.renewableMwh === null
-                  ? "inconnue / non justifiée" : fmt(result.energyBreakdown.total.renewableMwh) + " MWh"}.
-                {" "}Part non renouvelable : {result.energyBreakdown.total.nonRenewableMwh === null
-                  ? "inconnue / non justifiée" : fmt(result.energyBreakdown.total.nonRenewableMwh) + " MWh"}.
+                Part renouvelable : {result.report.energyMix?.renewableMwh == null
+                  ? "inconnue / non justifiée" : fmt(result.report.energyMix.renewableMwh) + " MWh"}.
+                {" "}Part non renouvelable : {result.report.energyMix?.nonRenewableMwh == null
+                  ? "inconnue / non justifiée" : fmt(result.report.energyMix.nonRenewableMwh) + " MWh"}.
               </p>
               {result.biogenicCO2T > 0 && <p className="mt-2">CO₂ biogénique séparé (hors total) : {fmt(result.biogenicCO2T)} t.</p>}
             </div>
-            {result.missing.length > 0 && (
+            {result.coverage === "partial" && (
               <div className="mt-5 rounded-xl border border-amber-300 bg-amber-50 p-5">
                 <h3 className="font-bold text-amber-900">Périmètre partiel — aucun total d’entreprise fiable</h3>
                 <p className="mt-2 text-sm text-amber-900">
-                  Sources inconnues ou non couvertes : {result.missing.map((source) => SOURCE_LABELS[source as Category] || source).join(", ")}.
+                  {result.missing.length > 0 && <>Sources inconnues ou non couvertes : {result.missing.map((source) => SOURCE_LABELS[source as Category] || source).join(", ")}. </>}
+                  {result.assessment.exclusions && <>Des exclusions déclarées empêchent de confirmer les totaux. </>}
                   Les valeurs non disponibles ne sont jamais présumées nulles.
                 </p>
               </div>
