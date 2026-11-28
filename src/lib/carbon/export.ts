@@ -19,7 +19,7 @@ function csvRow(cells: Cell[]): string {
 }
 
 export function simulationCsv(result: Calculation): string {
-  const total = result.energyBreakdown.total;
+  const report = result.report;
   const header = [
     "type_ligne", "exercice", "source", "scope", "quantite", "unite",
     "facteur_kgco2e_unite", "emissions_tco2e", "energie_relevee_mwh",
@@ -30,9 +30,9 @@ export function simulationCsv(result: Calculation): string {
   const rows: Cell[][] = [
     [
       "resume", result.assessment.year, "", "1+2", "", "", "",
-      result.totalT, result.energyMwh,
-      result.energyTotalComplete ? result.energyMwh : null,
-      total.renewableMwh, total.nonRenewableMwh, result.coverage,
+      report.total.value, result.energyMwh,
+      report.energy.value,
+      report.energyMix?.renewableMwh, report.energyMix?.nonRenewableMwh, result.coverage,
       result.missing.join("|"), "", result.methodology,
       "SIMULATION_NON_CERTIFIEE_FACTEURS_HISTORIQUES",
     ],
