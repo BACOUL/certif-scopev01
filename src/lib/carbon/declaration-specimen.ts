@@ -5,7 +5,7 @@ import type { Calculation } from "./calculate";
 const esc = (x: unknown) => String(x ?? "").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]!));
 const num = (x: number|null, digits=3) => x===null?"Non disponible":new Intl.NumberFormat("fr-FR",{maximumFractionDigits:digits,minimumFractionDigits:digits}).format(x);
 const fmt = (x: number|null, unit:string) => x===null?"Non disponible":num(x)+" "+unit;
-const names:Record<string,string>={electricity:"Électricité",gas_pci:"Gaz naturel PCI",gas_pcs:"Gaz naturel PCS",diesel_b7:"Diesel B7",petrol_e10:"Essence E10",gas:"Gaz naturel",other_fuels:"Autres combustibles",refrigerants:"Fluides frigorigènes",purchased_heat:"Chaleur / froid achetés",processes:"Procédés",self_generation:"Autoproduction"};
+const names:Record<string,string>={electricity:"Électricité",gas_pci:"Gaz naturel PCI",gas_pcs:"Gaz naturel PCS",diesel_b7:"Diesel B7",petrol_e10:"Essence E10",gas:"Gaz naturel",other_fuels:"Autres combustibles",fuel_oil_pci:"Fioul domestique PCI",butane_pci:"Butane PCI",propane_pci:"Propane PCI",refrigerants:"Fluides frigorigènes",purchased_heat:"Chaleur / froid achetés",processes:"Procédés",self_generation:"Autoproduction"};
 const label=(key:string)=>names[key]||key;
 const cell=(value:unknown)=>"<td>"+esc(value)+"</td>";
 const table=(heads:string[],rows:unknown[][])=>"<table><thead><tr>"+heads.map(h=>"<th>"+esc(h)+"</th>").join("")+"</tr></thead><tbody>"+rows.map(r=>"<tr>"+r.map(cell).join("")+"</tr>").join("")+"</tbody></table>";
