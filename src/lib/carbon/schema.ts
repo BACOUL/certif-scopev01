@@ -11,6 +11,8 @@ export const assessmentSchema = z.object({
   quantity: z.number().finite().min(0).max(1e9), unit: z.enum(["kWh", "kWh PCS", "kWh PCI", "L", "kg"]),
   energyKwh: z.number().finite().min(0).max(1e9).optional(),
   renewableEnergyKwh: z.number().finite().min(0).max(1e9).optional(),
+  generatedKwh: z.number().finite().min(0).max(1e9).optional(),
+  exportedKwh: z.number().finite().min(0).max(1e9).optional(),
   quality: z.enum(["invoice", "estimate", "declaration"]), evidence: text,
  }).strict()).max(40),
  exclusions: z.string().trim().max(600), confirmed: z.literal(true),
@@ -23,6 +25,19 @@ export const assessmentSchema = z.object({
  if(new Set(x.activities.map(a=>`${a.kind.startsWith("gas_")?"gas":a.kind}|${a.evidence.trim().toLowerCase()}`)).size!==x.activities.length)ctx.addIssue({code:"custom",message:"DUPLICATE_EVIDENCE"});
  for(const a of x.activities){
   const f=FACTORS[a.kind];
+  if(a.kind==="solar_pv_owned"){
+   // Only the directly consumed portion is counted. No netting of exports
+   // against imported electricity. Other generation/storage configurations
+   // stay unsupported until a separate reviewed allocation method exists.
+   if(a.generatedKwh===undefined || a.exportedKwh===undefined || a.quality!=="invoice")
+    ctx.addIssue({code:"custom",message:"PV_METERED_BALANCE_REQUIRED"});
+   else if(Math.abs(a.generatedKwh-a.exportedKwh-a.quantity)>0.001)
+    ctx.addIssue({code:"custom",message:"PV_BALANCE_MISMATCH"});
+   if(a.renewableEnergyKwh!==undefined && Math.abs(a.renewableEnergyKwh-a.quantity)>0.001)
+    ctx.addIssue({code:"custom",message:"PV_RENEWABLE_MISMATCH"});
+  } else if(a.generatedKwh!==undefined || a.exportedKwh!==undefined){
+   ctx.addIssue({code:"custom",message:"UNEXPECTED_GENERATION_BALANCE"});
+  }
   if(a.unit!==f.unit)ctx.addIssue({code:"custom",message:"UNIT_MISMATCH"});
   if(f.energy===null && a.energyKwh===undefined)ctx.addIssue({code:"custom",message:"FUEL_ENERGY_REQUIRED"});
   if(f.energy!==null && a.energyKwh!==undefined)ctx.addIssue({code:"custom",message:"UNEXPECTED_ENERGY"});
