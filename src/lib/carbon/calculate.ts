@@ -1,5 +1,5 @@
 import { assessmentSchema } from "./schema";
-import { FACTORS, METHOD, SOURCE, CATEGORIES, category } from "./factors";
+import { selectReviewFactor, METHOD, SOURCE, CATEGORIES, category } from "./factors";
 import {EU_F_GAS_VERSION} from "./refrigerants";
 export function calculate(input: unknown) {
  const assessment = assessmentSchema.parse(input);
@@ -14,10 +14,12 @@ export function calculate(input: unknown) {
  if(assessment.start!==`${assessment.year}-01-01` || assessment.end!==`${assessment.year}-12-31`)warnings.push("PARTIAL_YEAR");
  if(assessment.exclusions)warnings.push("DECLARED_EXCLUSIONS");
  const lines=assessment.activities.map(a=>{
-  const f=FACTORS[a.kind];
-  if(!("version" in f) && f.year!==assessment.year)warnings.push("FACTOR_YEAR_DIFFERS");
+  const f=selectReviewFactor(a.kind,assessment.year);
+  if(f.source===SOURCE && f.year!==assessment.year)warnings.push("FACTOR_YEAR_DIFFERS");
+  if(a.kind==="electricity" && f.selection==="historical_demo_only")warnings.push("ELECTRICITY_EXACT_YEAR_UNAVAILABLE_DEMO_ONLY");
+  if(!f.approvedForIssuance)warnings.push("FACTORS_NOT_APPROVED_FOR_ISSUANCE");
   if(a.quality!=="invoice")warnings.push("UNVERIFIED_ACTIVITY");
-  return {...a, factor:{...f,source:("source" in f?f.source:SOURCE),version:("version" in f?f.version:"ADEME-V23.6"),retrieved:"2026-11-13"}, kgCO2e:a.quantity*f.value, biogenicCO2kg:a.quantity*f.biogenic, energyKwh:f.energy===null?a.energyKwh!:a.quantity*f.energy};
+  return {...a, factor:f, kgCO2e:a.quantity*f.value, biogenicCO2kg:a.quantity*f.biogenic, energyKwh:f.energy===null?a.energyKwh!:a.quantity*f.energy};
  });
  // B3 §32: energy split is disclosed only when each relevant line is supported by a declared value.
 // Missing renewable information is null (never an inferred zero). Location-based GHG totals are independent of this split.
