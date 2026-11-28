@@ -27,6 +27,16 @@ export const assessmentSchema = z.object({
   if(f.energy===null && a.energyKwh===undefined)ctx.addIssue({code:"custom",message:"FUEL_ENERGY_REQUIRED"});
   if(f.energy!==null && a.energyKwh!==undefined)ctx.addIssue({code:"custom",message:"UNEXPECTED_ENERGY"});
   if(f.energy===null && ((a.quantity===0)!==(a.energyKwh===0)))ctx.addIssue({code:"custom",message:"INCONSISTENT_FUEL_ENERGY"});
+  // Broad plausibility screen ONLY for road diesel B7 / petrol E10.
+  // Normal liquid road fuels are around 9–10 kWh PCI per litre.
+  // 5–15 is an intentionally generous input-error guard, not an official
+  // tolerance, conversion factor, or proof of the supplied energy value.
+  // Source for physical properties: ADEME PCI et masse volumique:
+  // https://prod-basecarbonesolo.ademe-dri.fr/documentation/UPLOAD_DOC_FR/pci_et_masse_volumique.htm
+  if((a.kind==="diesel_b7" || a.kind==="petrol_e10") && a.quantity>0 && a.energyKwh!==undefined) {
+   const ratio=a.energyKwh/a.quantity;
+   if(ratio<5 || ratio>15)ctx.addIssue({code:"custom",message:"IMPLAUSIBLE_FUEL_ENERGY"});
+  }
   const energyKwh=f.energy===null?a.energyKwh:a.quantity*f.energy;
   if(a.kind.startsWith("refrigerant_") && (a.renewableEnergyKwh!==undefined || a.energyKwh!==undefined))
    ctx.addIssue({code:"custom",message:"REFRIGERANT_HAS_NO_ENERGY_DATA"});
