@@ -22,6 +22,8 @@ type InputLine = {
   quantity: string;
   energyKwh: string;
   renewableEnergyKwh: string;
+  generatedKwh: string;
+  exportedKwh: string;
   quality: Quality;
   evidence: string;
 };
@@ -43,6 +45,8 @@ const newLine = (kind: SourceKind): InputLine => ({
   quantity: "",
   energyKwh: "",
   renewableEnergyKwh: "",
+  generatedKwh: "",
+  exportedKwh: "",
   quality: "invoice",
   evidence: "",
 });
@@ -117,7 +121,8 @@ export default function SupplierPreviewForm() {
     setResult(null);
     try {
       if (lines.some((line) => line.quantity.trim() === "" ||
-        (FACTORS[line.kind].energy === null && line.energyKwh.trim() === ""))) {
+        (FACTORS[line.kind].energy === null && line.energyKwh.trim() === "") ||
+        (line.kind === "solar_pv_owned" && (line.generatedKwh.trim() === "" || line.exportedKwh.trim() === "")))) {
         throw new Error("Renseignez les quantités nécessaires pour chaque ligne.");
       }
       const payload = {
@@ -135,6 +140,7 @@ export default function SupplierPreviewForm() {
           evidence: line.evidence,
           ...(FACTORS[line.kind].energy === null
             ? { energyKwh: Number(line.energyKwh) } : {}),
+          ...(line.kind === "solar_pv_owned" ? { generatedKwh: Number(line.generatedKwh), exportedKwh: Number(line.exportedKwh) } : {}),
           ...(line.renewableEnergyKwh.trim() === ""
             ? {} : { renewableEnergyKwh: Number(line.renewableEnergyKwh) }),
         })),
@@ -319,17 +325,36 @@ export default function SupplierPreviewForm() {
                       </label>
                     )}
                     <label className={labelClass}>
-                      {group === "refrigerants" ? "Masse réellement émise" : "Quantité consommée"} ({factor.unit})
+                      {group === "refrigerants" ? "Masse réellement émise" : line.kind === "solar_pv_owned" ? "Électricité photovoltaïque autoconsommée" : "Quantité consommée"} ({factor.unit})
                       <input required type="number" min="0" max="1000000000" step="any" className={fieldClass}
                         value={line.quantity} onChange={(event) => editLine(line.id, { quantity: event.target.value })} />
                     </label>
+                    {line.kind === "solar_pv_owned" && (
+                      <>
+                        <label className={labelClass}>Production photovoltaïque totale (kWh)
+                          <input required type="number" min="0" max="1000000000" step="any" className={fieldClass}
+                            value={line.generatedKwh} onChange={(event) => editLine(line.id, { generatedKwh: event.target.value })} />
+                        </label>
+                        <label className={labelClass}>Électricité injectée / vendue (kWh)
+                          <input required type="number" min="0" max="1000000000" step="any" className={fieldClass}
+                            value={line.exportedKwh} onChange={(event) => editLine(line.id, { exportedKwh: event.target.value })} />
+                        </label>
+                        <p className="text-sm text-amber-800 md:col-span-2">
+                          Cas couvert uniquement : panneaux exploités par l’entreprise, relevés concordants,
+                          sans stockage ni allocation complexe. Production = autoconsommation + injection.
+                          Pour l’électricité achetée, saisir le prélèvement brut du réseau, jamais la
+                          consommation totale du bâtiment ni un solde net des injections.
+                          Toute autre autoproduction doit être signalée dans les exclusions.
+                        </p>
+                      </>
+                    )}
                     {factor.energy === null && (
                       <label className={labelClass}>Énergie correspondante en kWh PCI, documentée
                         <input required type="number" min="0" max="1000000000" step="any" className={fieldClass}
                           value={line.energyKwh} onChange={(event) => editLine(line.id, { energyKwh: event.target.value })} />
                       </label>
                     )}
-                    {group !== "refrigerants" && (
+                    {group !== "refrigerants" && group !== "self_generation" && (
                       <label className={labelClass}>Énergie renouvelable en kWh (laisser vide si inconnue)
                         <input type="number" min="0" max="1000000000" step="any" className={fieldClass}
                           value={line.renewableEnergyKwh}
