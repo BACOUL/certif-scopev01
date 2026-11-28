@@ -84,6 +84,9 @@ export default function SupplierPreviewForm() {
     () => Object.fromEntries(CATEGORIES.map((key) => [key, "unknown"])) as SourceMap,
   );
   const [lines, setLines] = useState<InputLine[]>([]);
+  const [processes, setProcesses] = useState<Array<{id:string;process:string;grossTCO2e:string;method:string;gwpBasis:string;evidence:string;confirmedBoundary:boolean}>>([]);
+  const addProcess=()=>{setProcesses(old=>[...old,{id:crypto.randomUUID(),process:"",grossTCO2e:"",method:"",gwpBasis:"",evidence:"",confirmedBoundary:false}]);setResult(null);};
+  function editProcess(id:string,patch:Partial<(typeof processes)[number]>){setProcesses(old=>old.map(a=>a.id===id?{...a,...patch}:a));setResult(null);setError("");}
   const [thermal, setThermal] = useState<Array<{id:string;kind:"heat"|"steam"|"cooling";network:string;quantityKwh:string;renewableEnergyKwh:string;evidence:string}>>([]);
   const addThermal = () => {setThermal(old=>[...old,{id:crypto.randomUUID(),kind:"heat",network:"",quantityKwh:"",renewableEnergyKwh:"",evidence:""}]);setResult(null);};
   function editThermal(id:string,patch:Partial<(typeof thermal)[number]>){setThermal(old=>old.map(a=>a.id===id?{...a,...patch}:a));setResult(null);setError("");}
@@ -100,6 +103,7 @@ export default function SupplierPreviewForm() {
 
   function editSource(key: Category, status: SourceStatus) {
     setSources((old) => ({ ...old, [key]: status }));
+    if(key==="processes" && status!=="known")setProcesses([]);
     if(key==="purchased_heat" && status!=="known")setThermal([]);
     if (status !== "known") {
       setLines((old) => old.filter((line) => category(line.kind) !== key));
@@ -136,6 +140,7 @@ export default function SupplierPreviewForm() {
         country: "FR",
         sources,
         confirmed,
+        processEmissions: processes.map(a=>({...a,grossTCO2e:a.grossTCO2e.trim()===""?NaN:Number(a.grossTCO2e)})),
         thermalPurchases: thermal.map(a=>({id:a.id,kind:a.kind,network:a.network,quantityKwh:a.quantityKwh.trim()===""?NaN:Number(a.quantityKwh),evidence:a.evidence,...(a.renewableEnergyKwh.trim()===""?{}:{renewableEnergyKwh:Number(a.renewableEnergyKwh)})})),
         activities: lines.map((line) => ({
           id: line.id,
@@ -236,7 +241,7 @@ export default function SupplierPreviewForm() {
           </p>
           <div className="grid gap-4 md:grid-cols-2">
             {CATEGORIES.map((key) => {
-              const supported = Boolean(firstSupportedKind(key)) || key==="purchased_heat";
+              const supported = Boolean(firstSupportedKind(key)) || key==="purchased_heat" || key==="processes";
               return (
                 <label key={key} className={labelClass}>
                   {SOURCE_LABELS[key]}
@@ -416,6 +421,22 @@ export default function SupplierPreviewForm() {
             <button type="button" disabled={thermal.length>=40} onClick={addThermal} className="rounded-xl border border-[#0B3A63] px-4 py-2 text-sm font-semibold text-[#0B3A63]">Ajouter une énergie thermique achetée</button>
           </fieldset>
         )}
+        {sources.processes==="known" && (
+          <fieldset className={panelClass}>
+            <legend className="px-2 text-xl font-extrabold text-[#0B3A63]">Émissions des procédés</legend>
+            <p className="mb-4 text-sm text-amber-800">Réservé aux entreprises disposant d’un calcul documenté des émissions directes de leurs procédés, hors combustion, fuites et CO₂ biogénique. Saisir des émissions brutes, sans compensation ni émissions évitées. Sans chiffre justifié, le Scope 1 restera incomplet.</p>
+            {processes.map(a=><div key={a.id} className="mb-4 grid gap-4 rounded-xl border p-4 md:grid-cols-2">
+              <label className={labelClass}>Procédé concerné<input required maxLength={180} className={fieldClass} value={a.process} onChange={e=>editProcess(a.id,{process:e.target.value})}/></label>
+              <label className={labelClass}>Émissions brutes directes (tCO₂e)<input required type="number" min="0" max="1000000000" step="any" className={fieldClass} value={a.grossTCO2e} onChange={e=>editProcess(a.id,{grossTCO2e:e.target.value})}/></label>
+              <label className={labelClass}>Méthode de calcul ou mesure<input required maxLength={180} className={fieldClass} value={a.method} onChange={e=>editProcess(a.id,{method:e.target.value})}/></label>
+              <label className={labelClass}>Référence des PRG utilisés<input required maxLength={180} className={fieldClass} value={a.gwpBasis} onChange={e=>editProcess(a.id,{gwpBasis:e.target.value})}/></label>
+              <label className={labelClass}>Référence du document source<input required maxLength={180} className={fieldClass} value={a.evidence} onChange={e=>editProcess(a.id,{evidence:e.target.value})}/></label>
+              <label className="flex items-start gap-2 text-sm"><input required type="checkbox" checked={a.confirmedBoundary} onChange={e=>editProcess(a.id,{confirmedBoundary:e.target.checked})}/>Je confirme le même exercice et périmètre, sans double comptage avec les autres postes, sans CO₂ biogénique ni compensation.</label>
+              <button type="button" className="text-sm font-semibold text-[#0B3A63]" onClick={()=>{setProcesses(old=>old.filter(x=>x.id!==a.id));setResult(null);}}>Supprimer</button>
+            </div>)}
+            <button type="button" disabled={processes.length>=40} onClick={addProcess} className="rounded-xl border border-[#0B3A63] px-4 py-2 text-sm font-semibold text-[#0B3A63]">Ajouter un procédé documenté</button>
+          </fieldset>
+        )}
         <div className={panelClass}>
           <label className="flex items-start gap-3 text-sm leading-relaxed text-[#0B3A63]">
             <input required type="checkbox" className="mt-1 h-4 w-4" checked={confirmed}
@@ -456,13 +477,13 @@ export default function SupplierPreviewForm() {
               <div className="rounded-2xl bg-[#F8FAFC] p-5">
                 <p className="text-sm font-semibold text-[#0B3A63]">Scope 1 calculé</p>
                 <p className="mt-2 text-2xl font-bold text-[#0B3A63]">
-                  {result.report.scope1.value !== null && result.lines.length ? fmt(result.report.scope1.value) + " tCO₂e" : "Non disponible"}
+                  {result.report.scope1.value !== null && (result.lines.length || result.assessment.processEmissions.length) ? fmt(result.report.scope1.value) + " tCO₂e" : "Non disponible"}
                 </p>
               </div>
               <div className="rounded-2xl bg-[#F8FAFC] p-5">
                 <p className="text-sm font-semibold text-[#0B3A63]">Scope 2 location-based calculé</p>
                 <p className="mt-2 text-2xl font-bold text-[#0B3A63]">
-                  {result.report.scope2.value !== null && result.lines.length ? fmt(result.report.scope2.value) + " tCO₂e" : "Non disponible"}
+                  {result.report.scope2.value !== null && (result.lines.length || result.assessment.processEmissions.length) ? fmt(result.report.scope2.value) + " tCO₂e" : "Non disponible"}
                 </p>
               </div>
               <div className="rounded-2xl bg-[#F8FAFC] p-5">
@@ -470,7 +491,7 @@ export default function SupplierPreviewForm() {
                   {result.report.total.value === null ? "Total scopes 1 et 2 indisponible" : "Somme des sources déclarées"}
                 </p>
                 <p className="mt-2 text-2xl font-bold text-[#0B3A63]">
-                  {result.report.total.value !== null && result.lines.length ? fmt(result.report.total.value) + " tCO₂e" : "Non disponible"}
+                  {result.report.total.value !== null && (result.lines.length || result.assessment.processEmissions.length) ? fmt(result.report.total.value) + " tCO₂e" : "Non disponible"}
                 </p>
               </div>
             </div>
@@ -499,7 +520,7 @@ export default function SupplierPreviewForm() {
                 </p>
               </div>
             )}
-            {result.lines.length === 0 && (
+            {result.lines.length === 0 && result.assessment.processEmissions.length===0 && (
               <p className="mt-4 text-sm font-semibold text-amber-900">
                 Aucune émission calculée. N’interprétez pas les zéros comme une absence d’émissions.
               </p>
