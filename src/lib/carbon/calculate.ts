@@ -19,7 +19,8 @@ export function calculate(input: unknown) {
   if(a.kind==="electricity" && f.selection==="historical_demo_only")warnings.push("ELECTRICITY_EXACT_YEAR_UNAVAILABLE_DEMO_ONLY");
   if(!f.approvedForIssuance)warnings.push("FACTORS_NOT_APPROVED_FOR_ISSUANCE");
   if(a.quality!=="invoice")warnings.push("UNVERIFIED_ACTIVITY");
-  return {...a, factor:f, kgCO2e:a.quantity*f.value, biogenicCO2kg:a.quantity*f.biogenic, energyKwh:f.energy===null?a.energyKwh!:a.quantity*f.energy};
+  if(a.kind==="solar_pv_owned")warnings.push("PV_OPERATIONAL_ONLY_NO_AVOIDED_EMISSIONS");
+  return {...a, ...(a.kind==="solar_pv_owned"?{renewableEnergyKwh:a.quantity}:{}), factor:f, kgCO2e:a.quantity*f.value, biogenicCO2kg:a.quantity*f.biogenic, energyKwh:f.energy===null?a.energyKwh!:a.quantity*f.energy};
  });
  // B3 §32: energy split is disclosed only when each relevant line is supported by a declared value.
 // Missing renewable information is null (never an inferred zero). Location-based GHG totals are independent of this split.
@@ -31,7 +32,7 @@ export function calculate(input: unknown) {
   return {totalMwh:totalKwh/1000,totalComplete:!sourceMissing,renewableMwh:renewableKwh===null?null:renewableKwh/1000,
    nonRenewableMwh:renewableKwh===null?null:(totalKwh-renewableKwh)/1000,complete};
  };
- const electricitySplit=split(lines.filter(l=>l.kind==="electricity"),missing.includes("electricity"));
+ const electricitySplit=split(lines.filter(l=>l.kind==="electricity"||l.kind==="solar_pv_owned"),missing.includes("electricity")||missing.includes("self_generation"));
  const fuelCategories=new Set<string>(["gas","diesel_b7","petrol_e10","other_fuels"]);
  const fuelsSplit=split(lines.filter(l=>fuelCategories.has(category(l.kind))),
    [...fuelCategories].some(kind=>missing.includes(kind)));
